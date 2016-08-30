@@ -1,0 +1,19 @@
+.view-margin.view-size-sm((click)="showExtendedView()",
+                        [class.showExtendedView] = "isExtendedView")
+    .view-header
+        .text-content.text-float-right.text-subtitle#demoQ-float-subtitle Questionnaire
+        .text-content.text-title {{ questionName }}
+    .view-content
+        .row(style="margin-left:20px")
+            .col.col--1-of-3
+                .text-label.text-center Submitted
+                .text-accentuate.text-center {{ questionsSubmitted}}
+            .col.col--1-of-3
+                .text-label.text-center ADR
+                .text-accentuate.text-center {{ adverseEvents }}
+            .col.col--1-of-3
+                .text-label.text-center Status
+                .text-accentuate.text-center.status-indicator([style.background-color] = "status ? '#26A65B' : '#FF5252'")
+
+    .view-close.view-size-sm(*ngIf="isExtendedView", (click)="closeExtendedView()")
+        .text-link.text-center Close
