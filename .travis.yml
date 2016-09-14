@@ -1,0 +1,20 @@
+dist: trusty
+sudo: required
+language: node_js
+node_js:
+  - "6"
+
+before_install:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - export CHROME_BIN=chromium-browser
+  - npm config set spin false
+  - npm config set progress false
+
+install:
+  - npm install --no-optional
+
+script:
+  - npm run lint
+  - npm run e2e
+  - npm run test
