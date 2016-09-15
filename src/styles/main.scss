@@ -16,7 +16,6 @@ body {
 
   margin: 0;
 
-  background-color: $cl-base;
   background-image: linear-gradient(-180deg, #467487 0%, #88ADBD 100%);
 }
 
@@ -48,16 +47,4 @@ p {
 
 .font-small {
   @include font-small;
-}
-
-.app-icon-button {
-  padding: 0;
-
-  cursor: pointer;
-  user-select: none;
-
-  color: $cl-font;
-  border: none;
-  background: none;
-  box-shadow: none;
 }

@@ -2,13 +2,19 @@
 
 import { TestBed, async } from '@angular/core/testing';
 import { DashboardComponent } from './dashboard.component';
+import { DashboardItemComponent } from '../dashboard-item/dashboard-item.component';
+import { DashboardService } from '../../services/dashboard.service';
 
 describe('Component: Dashboard', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
-        DashboardComponent
+        DashboardComponent,
+        DashboardItemComponent
       ],
+      providers: [
+        DashboardService
+      ]
     });
   });
 

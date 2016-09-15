@@ -3,7 +3,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 
-describe('App: RADAR-Dashboard', () => {
+describe('App: RADAR', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -21,6 +21,6 @@ describe('App: RADAR-Dashboard', () => {
   it(`should have a toolbar`, async(() => {
     let fixture = TestBed.createComponent(AppComponent);
     let el = fixture.debugElement.nativeElement;
-    expect(el.querySelector('md-toolbar')).toBeTruthy();
+    expect(el.querySelector('app-toolbar')).toBeTruthy();
   }));
 });

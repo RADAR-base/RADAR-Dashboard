@@ -13,12 +13,16 @@ import { routes } from './app.routes';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DashboardItemComponent } from './components/dashboard-item/dashboard-item.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
+
+import { DashboardService } from './services/dashboard.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    DashboardItemComponent
+    DashboardItemComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,7 @@ import { DashboardItemComponent } from './components/dashboard-item/dashboard-it
     routes
   ],
   providers: [
-
+    DashboardService
   ],
   bootstrap: [AppComponent]
 })
