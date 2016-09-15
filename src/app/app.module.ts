@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 
 import { MdCoreModule } from '@angular2-material/core';
 import { MdButtonModule } from '@angular2-material/button';
@@ -27,7 +26,6 @@ import { DashboardService } from './services/dashboard.service';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
 
     MdCoreModule.forRoot(),
     MdButtonModule.forRoot(),
