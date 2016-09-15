@@ -18,9 +18,4 @@ describe('Component: Dashboard', () => {
     expect(el).toBeTruthy();
   }));
 
-  it(`should have a toolbar`, async(() => {
-    let fixture = TestBed.createComponent(DashboardComponent);
-    let el = fixture.debugElement.nativeElement;
-    expect(el.querySelector('md-toolbar')).toBeTruthy();
-  }));
 });

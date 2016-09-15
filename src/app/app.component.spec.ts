@@ -18,9 +18,9 @@ describe('App: RADAR-Dashboard', () => {
     expect(el).toBeTruthy();
   }));
 
-  it(`should have the DashboardComponent`, async(() => {
+  it(`should have a toolbar`, async(() => {
     let fixture = TestBed.createComponent(AppComponent);
     let el = fixture.debugElement.nativeElement;
-    expect(el.querySelector('app-dashboard')).toBeTruthy();
+    expect(el.querySelector('md-toolbar')).toBeTruthy();
   }));
 });
