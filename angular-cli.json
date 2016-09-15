@@ -15,7 +15,7 @@
       "prefix": "app",
       "mobile": false,
       "styles": [
-        "styles.scss"
+        "styles/main.scss"
       ],
       "scripts": [
         "../node_modules/hammerjs/hammer.js",

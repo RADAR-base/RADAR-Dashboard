@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="248px" height="248px" viewBox="0 0 248 248" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 39.1 (31720) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_checkmark-big</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="ic_checkmark-big" stroke="#FFFFFF" stroke-width="6">
+            <polyline id="Path-28" points="72 120 120 168 224 56"></polyline>
+            <path d="M183.707634,64.9153181 C168.482725,49.530894 147.354392,40 124,40 C77.608081,40 40,77.608081 40,124 C40,170.391919 77.608081,208 124,208 L124,208 C170.391919,208 208,170.391919 208,124 C208,117.190679 207.189778,110.570595 205.66048,104.230896" id="Oval-1"></path>
+        </g>
+    </g>
+</svg>

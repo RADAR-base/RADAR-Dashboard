@@ -1,0 +1,36 @@
+@import '../styles/common';
+
+:host {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+}
+
+md-toolbar {
+  @include font-title;
+
+  z-index: 1;
+
+  flex: 0 0 auto;
+
+  color: $cl-font;
+  background-color: $cl-light;
+  box-shadow: 0 0 4px 0 rgba(0,0,0,.12), 0 2px 4px 0 rgba(0,0,0,.24);
+}
+
+.radar-logo {
+  width: 48px;
+  height: 48px;
+  margin-right: 14px;
+}
+
+.app-toolbar-filler {
+  flex: 1 1 auto;
+}
+
+.app-content {
+  flex: 1 0 auto;
+  display: flex;
+}

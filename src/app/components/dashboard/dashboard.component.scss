@@ -1,0 +1,14 @@
+@import '../../../styles/common';
+
+:host {
+  flex: 1 0 auto;
+  display: flex;
+
+  padding: 8px;
+
+  flex-wrap: wrap;
+}
+
+app-dashboard-item {
+  width: 40%;
+}

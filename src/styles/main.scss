@@ -1,0 +1,63 @@
+@import './common';
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+// TODO: check back on MD components for theming strategies
+// https://github.com/angular/material2/blob/g3_v2_material/docs/scss-theming.md
+body {
+  @include font;
+
+  font-size: 100%;
+  line-height: 1.25em;
+
+  margin: 0;
+
+  background-color: $cl-base;
+  background-image: linear-gradient(-180deg, #467487 0%, #88ADBD 100%);
+}
+
+p {
+  @include font-large;
+
+  margin: 16px;
+}
+
+.font-title {
+  @include font-title;
+}
+
+.font-body {
+  @include font-body;
+}
+
+.font-body-strong {
+  @include font-body-strong;
+}
+
+.font-body-light {
+  @include font-body-light;
+}
+
+.font-large {
+  @include font-large;
+}
+
+.font-small {
+  @include font-small;
+}
+
+.app-icon-button {
+  padding: 0;
+
+  cursor: pointer;
+  user-select: none;
+
+  color: $cl-font;
+  border: none;
+  background: none;
+  box-shadow: none;
+}

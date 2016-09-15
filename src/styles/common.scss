@@ -1,0 +1,72 @@
+// COLORS
+$cl-base: #0B4A59;
+$cl-base-light: rgba(#0B4A59, .4);
+$cl-base-lighter: rgba(#0B4A59, .2);
+
+$cl-font: white;
+$cl-font-light: rgba(white, .8);
+
+$cl-light: #6D9AA5;
+$cl-lighter: #9BB5BC;
+
+// Graph Colors
+$cl-graph-1: #FFC;
+$cl-graph-2: #C7E9B4;
+$cl-graph-3: #7FCDBB;
+$cl-graph-4: #41B6C4;
+$cl-graph-5: #225EA8;
+$cl-graph-6: #0C2C84;
+
+// MIXINS
+@mixin font() {
+  font-family: 'Montserrat', sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin font-body() {
+  @include font;
+
+  font-size: 14px;
+
+  color: $cl-font;
+}
+
+@mixin font-body-strong() {
+  @include font-body;
+
+  font-weight: bold;
+}
+
+@mixin font-body-light() {
+  @include font;
+
+  font-size: 14px;
+
+  color: $cl-font-light;
+}
+
+@mixin font-small() {
+  @include font;
+
+  font-size: 12px;
+
+  color: $cl-font-light;
+}
+
+@mixin font-large() {
+  @include font;
+
+  font-size: 18px;
+
+  color: $cl-font;
+}
+
+@mixin font-title() {
+  @include font;
+
+  font-size: 20px;
+
+  color: $cl-font;
+}

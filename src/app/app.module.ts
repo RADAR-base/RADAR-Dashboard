@@ -12,21 +12,23 @@ import { routes } from './app.routes';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DashboardItemComponent } from './components/dashboard-item/dashboard-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent
+    DashboardComponent,
+    DashboardItemComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
 
-    MdCoreModule,
-    MdButtonModule,
-    MdIconModule,
-    MdToolbarModule,
+    MdCoreModule.forRoot(),
+    MdButtonModule.forRoot(),
+    MdIconModule.forRoot(),
+    MdToolbarModule.forRoot(),
 
     routes
   ],
