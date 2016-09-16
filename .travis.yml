@@ -18,4 +18,4 @@ script:
   - npm run lint
   # FIXME: currently not working on Travis
   # - npm run e2e
-  - npm run test1
+  - npm run testonce
