@@ -14,8 +14,11 @@ before_install:
 install:
   - npm install --no-optional
 
+before_script:
+  - npm start &
+  - sleep 20
+
 script:
   - npm run lint
-  # FIXME: currently not working on Travis
-  # - npm run e2e
-  - npm run testonce
+  - npm run test:ci
+  - npm run e2e

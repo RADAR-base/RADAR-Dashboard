@@ -1,21 +1,19 @@
 // COLORS
-$cl-base: #0B4A59;
-$cl-base-light: rgba(#0B4A59, .4);
-$cl-base-lighter: rgba(#0B4A59, .2);
-
+$cl-base: #0b4a59;
+$cl-base-light: rgba(#0b4a59, .4);
+$cl-base-lighter: rgba(#0b4a59, .2);
 $cl-font: white;
 $cl-font-light: rgba(white, .8);
-
-$cl-light: #6D9AA5;
-$cl-lighter: #9BB5BC;
+$cl-light: #6d9aa5;
+$cl-lighter: #9bb5bc;
 
 // Graph Colors
-$cl-graph-1: #FFC;
-$cl-graph-2: #C7E9B4;
-$cl-graph-3: #7FCDBB;
-$cl-graph-4: #41B6C4;
-$cl-graph-5: #225EA8;
-$cl-graph-6: #0C2C84;
+$cl-graph-1: #ffc;
+$cl-graph-2: #c7e9b4;
+$cl-graph-3: #7fcdbb;
+$cl-graph-4: #41b6c4;
+$cl-graph-5: #225ea8;
+$cl-graph-6: #0c2c84;
 
 // MIXINS
 @mixin font() {

@@ -46,7 +46,6 @@
     "no-inferrable-types": true,
     "no-shadowed-variable": true,
     "no-string-literal": false,
-    // "no-switch-case-fall-through": true,
     "no-trailing-whitespace": true,
     "no-unused-expression": true,
     "no-unused-variable": true,
@@ -66,9 +65,7 @@
       "single"
     ],
     "radix": true,
-    "semicolon": [
-      "always"
-    ],
+    "semicolon": true,
     "triple-equals": [
       true,
       "allow-null-check"
