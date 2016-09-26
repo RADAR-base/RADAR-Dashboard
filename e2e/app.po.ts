@@ -1,5 +1,3 @@
-import { browser, element, by } from 'protractor/globals';
-
 export class RadarDashboardPage {
   navigateTo() {
     return browser.get('/');
