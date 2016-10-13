@@ -1,26 +1,22 @@
 @import '../../../styles/common';
 
 :host {
-  flex: 1 0 auto;
   display: flex;
+  flex: 1 0 auto;
   flex-direction: column;
-
   padding: 8px;
 }
 
 .item-title {
-  flex: 0 0 auto;
   display: flex;
+  flex: 0 0 auto;
   align-items: center;
-
-  height: 24px;
   padding: 0 8px;
-
+  height: 24px;
   background-color: $cl-base-light;
 }
 
 .item-content {
   flex: 1 0 auto;
-
   background-color: $cl-base-lighter;
 }

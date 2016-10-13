@@ -1,0 +1,4 @@
+@import 'common';
+
+@include md-core();
+@include angular-material-theme($theme);

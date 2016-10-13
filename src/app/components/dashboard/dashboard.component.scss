@@ -1,12 +1,10 @@
 @import '../../../styles/common';
 
 :host {
-  flex: 1 0 auto;
   display: flex;
-
-  padding: 8px;
-
+  flex: 1 0 auto;
   flex-wrap: wrap;
+  padding: 8px;
 }
 
 app-dashboard-item {

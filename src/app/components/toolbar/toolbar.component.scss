@@ -8,18 +8,16 @@ md-toolbar {
   @include font-title;
 
   z-index: 1;
-
   flex: 0 0 auto;
-
-  color: $cl-font;
   background-color: $cl-light;
   box-shadow: 0 0 4px 0 rgba(black, .12), 0 2px 4px 0 rgba(black, .24);
+  color: $cl-font;
 }
 
 .radar-logo {
+  margin-right: 14px;
   width: 48px;
   height: 48px;
-  margin-right: 14px;
 }
 
 .toolbar-filler {
@@ -28,12 +26,10 @@ md-toolbar {
 
 .icon-button {
   padding: 0;
-
-  cursor: pointer;
-  user-select: none;
-
-  color: $cl-font;
   border: none;
   background: none;
   box-shadow: none;
+  color: $cl-font;
+  cursor: pointer;
+  user-select: none;
 }

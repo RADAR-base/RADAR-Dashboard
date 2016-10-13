@@ -1,11 +1,11 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
-import { DebugElement } from '@angular/core';
+import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { AppModule } from './app.module';
 
 let comp: AppComponent;
 let fixture: ComponentFixture<AppComponent>;
@@ -14,18 +14,21 @@ let el: DebugElement;
 describe('App: RADAR', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        AppModule
-      ]
-    })
-    .compileComponents();
+        imports: [
+          RouterTestingModule.withRoutes([]),
+        ],
+        declarations: [
+          AppComponent
+        ],
+        schemas: [NO_ERRORS_SCHEMA]
+      })
+      .compileComponents()
+      .then(() => {
+        fixture = TestBed.createComponent(AppComponent);
+        comp = fixture.componentInstance;
+        el = fixture.debugElement;
+      });
   }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(AppComponent);
-    comp = fixture.debugElement.componentInstance;
-    el = fixture.debugElement;
-  });
 
   it('should create the app', async(() => {
     expect(comp).toBeTruthy();

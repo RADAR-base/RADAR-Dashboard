@@ -6,17 +6,13 @@ body {
   height: 100%;
 }
 
-// TODO: check back on MD components for theming strategies
-// https://github.com/angular/material2/blob/g3_v2_material/docs/scss-theming.md
 body {
   @include font;
 
+  margin: 0;
+  background-image: linear-gradient(-180deg, #467487 0%, #88adbd 100%);
   font-size: 100%;
   line-height: 1.25em;
-
-  margin: 0;
-
-  background-image: linear-gradient(-180deg, #467487 0%, #88adbd 100%);
 }
 
 p {

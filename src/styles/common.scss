@@ -1,3 +1,6 @@
+@import '~@angular/material/core/theming/all-theme';
+@import '~@angular/material/core/style/elevation';
+
 // COLORS
 $cl-base: #0b4a59;
 $cl-base-light: rgba(#0b4a59, .4);
@@ -6,6 +9,10 @@ $cl-font: white;
 $cl-font-light: rgba(white, .8);
 $cl-light: #6d9aa5;
 $cl-lighter: #9bb5bc;
+
+// Theme
+$warn: md-palette($md-red);
+$theme: md-light-theme($cl-base, $cl-light, $warn);
 
 // Graph Colors
 $cl-graph-1: #ffc;
@@ -18,7 +25,6 @@ $cl-graph-6: #0c2c84;
 // MIXINS
 @mixin font() {
   font-family: 'Montserrat', sans-serif;
-
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -26,9 +32,8 @@ $cl-graph-6: #0c2c84;
 @mixin font-body() {
   @include font;
 
-  font-size: 14px;
-
   color: $cl-font;
+  font-size: 14px;
 }
 
 @mixin font-body-strong() {
@@ -40,31 +45,27 @@ $cl-graph-6: #0c2c84;
 @mixin font-body-light() {
   @include font;
 
-  font-size: 14px;
-
   color: $cl-font-light;
+  font-size: 14px;
 }
 
 @mixin font-small() {
   @include font;
 
-  font-size: 12px;
-
   color: $cl-font-light;
+  font-size: 12px;
 }
 
 @mixin font-large() {
   @include font;
 
-  font-size: 18px;
-
   color: $cl-font;
+  font-size: 18px;
 }
 
 @mixin font-title() {
   @include font;
 
-  font-size: 20px;
-
   color: $cl-font;
+  font-size: 20px;
 }
