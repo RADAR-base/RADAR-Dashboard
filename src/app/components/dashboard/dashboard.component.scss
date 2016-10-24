@@ -8,5 +8,10 @@
 }
 
 app-dashboard-item {
+  box-sizing: border-box;
   width: 40%;
+
+  @include mq(mobile, tablet) {
+    width: 100%;
+  }
 }

@@ -1,0 +1,20 @@
+$mq-responsive: true;
+
+// Name your breakpoints in a way that creates a ubiquitous language
+// across team members. It will improve communication between
+// stakeholders, designers, developers, and testers.
+$mq-breakpoints: (
+  mobile: 280px,
+  tablet: 768px,
+  desktop: 980px,
+  mobileLandscape: 480px
+);
+
+$mq-static-breakpoint: desktop;
+
+// If you want to display the currently active breakpoint in the top
+// right corner of your site during development, add the breakpoints
+// to this list, ordered by width, e.g. (mobile, tablet, desktop).
+//$mq-show-breakpoints: (mobile, tablet, desktop);
+
+@import '~sass-mq/mq';

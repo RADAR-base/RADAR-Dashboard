@@ -241,7 +241,7 @@
         "..."
       ],
       ["@media"],
-      ["@mixin mq"],
+      ["@include mq"],
       [">child"]
     ]
   }
