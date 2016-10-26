@@ -8,21 +8,22 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DashboardItemComponent } from './components/dashboard-item/dashboard-item.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
-
 import { DashboardService } from './services/dashboard.service';
+import { ChartHeartRateModule } from './components/chart-heart-rate/chart-heart-rate.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     DashboardItemComponent,
-    ToolbarComponent
+    ToolbarComponent,
   ],
   imports: [
     BrowserModule,
     HttpModule,
     AppRoutingModule,
-    MaterialModule.forRoot()
+    MaterialModule.forRoot(),
+    ChartHeartRateModule,
   ],
   providers: [
     DashboardService

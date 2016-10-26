@@ -2,14 +2,14 @@
 
 :host {
   display: flex;
-  flex: 1 0 auto;
+  flex-grow: 1;
   flex-direction: column;
   padding: 8px;
 }
 
 .item-title {
   display: flex;
-  flex: 0 0 auto;
+  flex-grow: 0;
   align-items: center;
   padding: 0 8px;
   height: 24px;
@@ -17,6 +17,7 @@
 }
 
 .item-content {
-  flex: 1 0 auto;
+  display: flex;
+  flex-grow: 1;
   background-color: $cl-base-lighter;
 }

@@ -5,7 +5,9 @@ import { Item } from '../../models/item';
   selector: 'app-dashboard-item',
   templateUrl: `
     <div class="item-title font-small">{{item.title}}</div>
-    <div class="item-content"></div>
+    <div class="item-content">
+      <app-chart-heart-rate></app-chart-heart-rate>
+    </div>
   `,
   styleUrls: ['./dashboard-item.component.scss']
 })

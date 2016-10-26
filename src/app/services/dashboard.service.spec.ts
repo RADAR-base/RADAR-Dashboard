@@ -10,7 +10,8 @@ describe('Service: Dashboard', () => {
     });
   });
 
-  it('should get items for dashboard', inject([DashboardService], (service: DashboardService) => {
-    expect(service.getItems()).toBeTruthy();
-  }));
+  it('should get items for dashboard',
+    inject([DashboardService], (service: DashboardService) => {
+      expect(service.getItems()).toBeTruthy();
+    }));
 });

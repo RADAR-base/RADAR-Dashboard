@@ -7,11 +7,11 @@ import { By } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 
-let comp: AppComponent;
-let fixture: ComponentFixture<AppComponent>;
-let el: DebugElement;
-
 describe('App: RADAR', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+  let element: DebugElement;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
         imports: [
@@ -22,19 +22,21 @@ describe('App: RADAR', () => {
         ],
         schemas: [NO_ERRORS_SCHEMA]
       })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(AppComponent);
-        comp = fixture.componentInstance;
-        el = fixture.debugElement;
-      });
+      .compileComponents();
   }));
 
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+    element = fixture.debugElement;
+    fixture.detectChanges();
+  });
+
   it('should create the app', async(() => {
-    expect(comp).toBeTruthy();
+    expect(component).toBeTruthy();
   }));
 
   it(`should have a toolbar`, async(() => {
-    expect(el.query(By.css('app-toolbar'))).toBeTruthy();
+    expect(element.query(By.css('app-toolbar'))).toBeTruthy();
   }));
 });

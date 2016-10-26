@@ -20,8 +20,7 @@
         "styles/main.scss"
       ],
       "scripts": [
-        "../node_modules/hammerjs/hammer.js",
-        "../node_modules/d3/build/d3.js"
+        "../node_modules/hammerjs/hammer.js"
       ],
       "environments": {
         "source": "environments/environment.ts",
