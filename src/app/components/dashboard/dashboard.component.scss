@@ -11,12 +11,3 @@ md-grid-list {
   width: 100%;
   height: 100%;
 }
-
-app-dashboard-tile {
-  box-sizing: border-box;
-  width: 100%;
-
-  @include mq(mobile, tablet) {
-    width: 100%;
-  }
-}

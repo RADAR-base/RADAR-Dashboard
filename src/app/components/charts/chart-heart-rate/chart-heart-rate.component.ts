@@ -1,14 +1,15 @@
 import {
-  Component, ElementRef, ViewChild, Input, AfterViewInit
+  Component, ElementRef, ViewChild, Input, AfterViewInit, ChangeDetectionStrategy
 } from '@angular/core';
 import * as d3 from 'd3';
 
 @Component({
   selector: 'app-chart-heart-rate',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <svg #chartContainer (window:resize)="onResize()"></svg>
   `,
-  styleUrls: ['./chart-heart-rate.component.scss']
+  styleUrls: ['chart-heart-rate.component.scss']
 })
 export class ChartHeartRateComponent implements AfterViewInit {
   @ViewChild('chartContainer') chartContainer: ElementRef;

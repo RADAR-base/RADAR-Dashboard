@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-chart-empty',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div></div>
   `,
-  styleUrls: ['./chart-empty.component.scss']
+  styleUrls: ['chart-empty.component.scss']
 })
 export class ChartEmptyComponent implements OnInit {
 

@@ -1,26 +1,19 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
-import { DashboardComponent } from './dashboard.component';
-import { TileComponent } from '../tile/tile.component';
-import { GridService } from '../../services/grid.service';
+import { TileComponent } from './tile.component';
 import { NO_ERRORS_SCHEMA, DebugElement } from '@angular/core';
-import { TileType } from '../tile/tile.type';
+import { TileModule } from './tile.module';
 
-describe('Component: Dashboard', () => {
-  let component: DashboardComponent;
-  let fixture: ComponentFixture<DashboardComponent>;
+describe('Component: Tile', () => {
+  let component: TileComponent;
+  let fixture: ComponentFixture<TileComponent>;
   let element: DebugElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-        declarations: [
-          DashboardComponent,
-          TileComponent
-        ],
-        providers: [
-          GridService,
-          TileType
+        imports: [
+          TileModule
         ],
         schemas: [NO_ERRORS_SCHEMA]
       })
@@ -28,9 +21,19 @@ describe('Component: Dashboard', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DashboardComponent);
+    fixture = TestBed.createComponent(TileComponent);
     component = fixture.componentInstance;
     element = fixture.debugElement;
+
+    // Tile Stub
+    component.tile = {
+      id: 1,
+      rows: 2,
+      cols: 3,
+      title: 'Heart Rate Monitoring',
+      type: 'heart-rate'
+    };
+
     fixture.detectChanges();
   });
 
@@ -39,3 +42,4 @@ describe('Component: Dashboard', () => {
   }));
 
 });
+

@@ -5,24 +5,19 @@ import { MaterialModule } from '@angular/material';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
+import { reducer } from './reducers/index';
 import { AppRoutingModule } from './app.routes';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { DashboardTileComponent } from './components/dashboard-item/dashboard-tile.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
-import { DashboardTilesService } from './services/dashboard-tiles.service';
-import { ChartHeartRateModule } from './components/chart-heart-rate/chart-heart-rate.module';
-import { ChartEmptyComponent } from './components/chart-empty/chart-empty.component';
-import { TileType } from './shared/tile-type.const';
-import { reducer } from './reducers/index';
+import { GridService } from './services/grid.service';
+import { TileModule } from './components/tile/tile.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    DashboardTileComponent,
     ToolbarComponent,
-    ChartEmptyComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,11 +26,10 @@ import { reducer } from './reducers/index';
     MaterialModule.forRoot(),
     StoreModule.provideStore(reducer),
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
-    ChartHeartRateModule,
+    TileModule,
   ],
   providers: [
-    DashboardTilesService,
-    TileType
+    GridService,
   ],
   bootstrap: [AppComponent]
 })
