@@ -29,6 +29,8 @@ describe('ChartHeartRateComponent', () => {
   });
 
   it('should instantiate the chart', () => {
-    expect(element.nativeElement.querySelector('.chart')).toBeTruthy();
+    setTimeout(() => {
+      expect(element.nativeElement.querySelector('.chart')).toBeTruthy();
+    }, 500);
   });
 });

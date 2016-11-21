@@ -31,7 +31,7 @@ export class ChartHeartRateComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     // needs to wait for the changes in the grid
-    // TODO: research a better solution
+    // TODO: research a better solution, bad for testing!
     setTimeout(() => this.initChart(), 100);
   }
 

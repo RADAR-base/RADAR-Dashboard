@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard.component';
 import { DashboardTileComponent } from '../dashboard-item/dashboard-tile.component';
 import { DashboardTilesService } from '../../services/dashboard-tiles.service';
 import { NO_ERRORS_SCHEMA, DebugElement } from '@angular/core';
+import { TileType } from '../../shared/tile-type.const';
 
 describe('Component: Dashboard', () => {
   let component: DashboardComponent;
@@ -18,7 +19,8 @@ describe('Component: Dashboard', () => {
           DashboardTileComponent
         ],
         providers: [
-          DashboardTilesService
+          DashboardTilesService,
+          TileType
         ],
         schemas: [NO_ERRORS_SCHEMA]
       })
