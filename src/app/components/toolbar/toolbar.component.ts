@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-toolbar',
-  templateUrl: `
+  template: `
     <md-toolbar>
       <img class="radar-logo" src="assets/radar-logo.svg" alt="RADAR-CNS Logo">
       <div>

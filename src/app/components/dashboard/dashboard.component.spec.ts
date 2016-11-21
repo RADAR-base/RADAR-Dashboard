@@ -2,8 +2,8 @@
 
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { DashboardComponent } from './dashboard.component';
-import { DashboardItemComponent } from '../dashboard-item/dashboard-item.component';
-import { DashboardService } from '../../services/dashboard.service';
+import { DashboardTileComponent } from '../dashboard-item/dashboard-tile.component';
+import { DashboardTilesService } from '../../services/dashboard-tiles.service';
 import { NO_ERRORS_SCHEMA, DebugElement } from '@angular/core';
 
 describe('Component: Dashboard', () => {
@@ -15,10 +15,10 @@ describe('Component: Dashboard', () => {
     TestBed.configureTestingModule({
         declarations: [
           DashboardComponent,
-          DashboardItemComponent
+          DashboardTileComponent
         ],
         providers: [
-          DashboardService
+          DashboardTilesService
         ],
         schemas: [NO_ERRORS_SCHEMA]
       })

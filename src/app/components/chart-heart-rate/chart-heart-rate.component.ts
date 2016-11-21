@@ -1,14 +1,16 @@
-import { Component, OnInit, ElementRef, ViewChild, Input } from '@angular/core';
+import {
+  Component, ElementRef, ViewChild, Input, AfterViewInit
+} from '@angular/core';
 import * as d3 from 'd3';
 
 @Component({
   selector: 'app-chart-heart-rate',
-  templateUrl: `
+  template: `
     <svg #chartContainer (window:resize)="onResize()"></svg>
   `,
   styleUrls: ['./chart-heart-rate.component.scss']
 })
-export class ChartHeartRateComponent implements OnInit {
+export class ChartHeartRateComponent implements AfterViewInit {
   @ViewChild('chartContainer') chartContainer: ElementRef;
 
   @Input() data;
@@ -27,8 +29,10 @@ export class ChartHeartRateComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit() {
-    this.initChart();
+  ngAfterViewInit() {
+    // needs to wait for the changes in the grid
+    // TODO: research a better solution
+    setTimeout(() => this.initChart(), 100);
   }
 
   initChart() {
