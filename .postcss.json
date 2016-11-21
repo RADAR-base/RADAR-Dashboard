@@ -1,12 +1,10 @@
 {
-  "use": ["stylefmt", "postcss-sorting"],
+  "use": ["postcss-sorting"],
   "syntax": "postcss-scss",
   "input": "src/**/*.scss",
   "local-plugins": true,
   "replace": true,
-  "stylefmt": {
-    "config": ".stylelintrc"
-  },
+  "stylefmt": {},
   "postcss-sorting": {
     "empty-lines-between-children-rules": 1,
     "empty-lines-between-media-rules": 1,

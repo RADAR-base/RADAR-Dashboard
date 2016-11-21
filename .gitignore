@@ -10,11 +10,12 @@
 
 # IDEs and editors
 /.idea
+/.vscode
 .project
 .classpath
+.c9/
 *.launch
 .settings/
-.vscode
 
 # misc
 /.sass-cache
@@ -24,7 +25,6 @@
 npm-debug.log
 testem.log
 /typings
-yarn.*
 
 # e2e
 /e2e/*.js
