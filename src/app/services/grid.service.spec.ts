@@ -12,6 +12,6 @@ describe('Service: Grid', () => {
 
   it('should get tile for dashboard',
     inject([GridService], (service: GridService) => {
-      expect(service.getItems()).toBeTruthy();
+      expect(service.getTiles()).toBeTruthy();
     }));
 });

@@ -1,50 +1,18 @@
 import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
 import { Tile } from '../models/tile';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class GridService {
-  items: Tile[] = [
-    {
-      id: 1,
-      rows: 2,
-      cols: 3,
-      title: 'Heart Rate Monitoring',
-      type: 'heart-rate'
-    },
-    {
-      id: 2,
-      rows: 1,
-      cols: 1,
-      title: 'TBD',
-      type: 'empty'
-    },
-    {
-      id: 3,
-      rows: 1,
-      cols: 1,
-      title: 'TBD',
-      type: 'empty'
-    },
-    {
-      id: 4,
-      rows: 1,
-      cols: 2,
-      title: 'TBD',
-      type: 'empty'
-    },
-    {
-      id: 5,
-      rows: 1,
-      cols: 2,
-      title: 'TBD',
-      type: 'empty'
-    }
-  ];
+  // TODO: move to a static class
+  private API_PATH: string = 'assets/data';
 
-  constructor() { }
+  constructor(private http: Http) {}
 
-  getItems(): Tile[] {
-    return this.items;
+  getTiles(): Observable<Tile[]> {
+    return this.http.get(`${this.API_PATH}/mock-grid.json`)
+      .delay(2000)
+      .map(res => res.json().tiles || []);
   }
-
 }

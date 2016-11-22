@@ -1,0 +1,40 @@
+{
+  "tiles": [
+    {
+      "cols": 3,
+      "id": 1,
+      "rows": 2,
+      "title": "Heart Rate Monitoring",
+      "type": "heart-rate"
+    },
+    {
+      "cols": 1,
+      "id": 2,
+      "rows": 1,
+      "title": "TBD",
+      "type": "empty"
+    },
+    {
+      "cols": 1,
+      "id": 3,
+      "rows": 1,
+      "title": "TBD",
+      "type": "empty"
+    },
+    {
+      "cols": 2,
+      "id": 4,
+      "rows": 1,
+      "title": "TBD",
+      "type": "empty"
+    },
+    {
+      "cols": 2,
+      "id": 5,
+      "rows": 1,
+      "title": "TBD",
+      "type": "empty"
+    }
+  ]
+}
+

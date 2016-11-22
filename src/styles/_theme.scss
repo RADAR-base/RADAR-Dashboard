@@ -1,4 +1,10 @@
-@import 'common';
+@import '~@angular/material/core/theming/all-theme';
 
 @include md-core();
-@include angular-material-theme($theme);
+
+// Theme
+$cl-app-primary: md-palette($md-blue-grey);
+$cl-app-accent:  md-palette($md-grey);
+$cl-app-warn: md-palette($md-red);
+$cl-app-theme: md-dark-theme($cl-app-primary, $cl-app-accent, $cl-app-warn);
+@include angular-material-theme($cl-app-theme);
