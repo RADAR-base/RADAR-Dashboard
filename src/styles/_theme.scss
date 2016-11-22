@@ -7,4 +7,6 @@ $cl-app-primary: md-palette($md-blue-grey);
 $cl-app-accent:  md-palette($md-grey);
 $cl-app-warn: md-palette($md-red);
 $cl-app-theme: md-dark-theme($cl-app-primary, $cl-app-accent, $cl-app-warn);
+
+// add Theme
 @include angular-material-theme($cl-app-theme);
