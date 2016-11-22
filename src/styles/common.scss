@@ -1,4 +1,3 @@
-@import '~@angular/material/core/theming/all-theme';
 @import '~@angular/material/core/style/elevation';
 @import 'mq-values';
 
@@ -10,10 +9,6 @@ $cl-font: white;
 $cl-font-light: rgba(white, 0.8);
 $cl-light: #6d9aa5;
 $cl-lighter: #9bb5bc;
-
-// Theme
-$warn: md-palette($md-red);
-$theme: md-light-theme($cl-base, $cl-light, $warn);
 
 // Graph Colors
 $cl-graph-1: #ffc;

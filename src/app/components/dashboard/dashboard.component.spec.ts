@@ -6,6 +6,8 @@ import { TileComponent } from '../tile/tile.component';
 import { GridService } from '../../services/grid.service';
 import { NO_ERRORS_SCHEMA, DebugElement } from '@angular/core';
 import { TileType } from '../tile/tile.type';
+import { Store, StoreModule } from '@ngrx/store';
+import { reducer } from '../../reducers/index';
 
 describe('Component: Dashboard', () => {
   let component: DashboardComponent;
@@ -14,12 +16,14 @@ describe('Component: Dashboard', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+        imports: [
+          StoreModule.provideStore(reducer)
+        ],
         declarations: [
           DashboardComponent,
           TileComponent
         ],
         providers: [
-          GridService,
           TileType
         ],
         schemas: [NO_ERRORS_SCHEMA]

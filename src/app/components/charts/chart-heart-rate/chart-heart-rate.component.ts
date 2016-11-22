@@ -62,6 +62,7 @@ export class ChartHeartRateComponent implements AfterViewInit {
   }
 
   onResize() {
+    // TODO: add debounce for better performance on window resize
     if (this.chart) {
       this.updateChart();
     }
