@@ -3,22 +3,22 @@ import { Actions, Effect } from '@ngrx/effects';
 import { Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
 
-import { GridService } from '../services/grid.service';
-import * as gridAction from '../actions/grid';
+import { UserService } from '../services/user.service';
+import * as userAction from '../actions/user';
 
 @Injectable()
-export class GridEffects {
+export class UserEffects {
 
   constructor(
     private actions$: Actions,
-    private gridService: GridService
+    private userService: UserService
   ) { }
 
   @Effect()
   load$: Observable<Action> = this.actions$
-    .ofType(gridAction.Types.LOAD)
+    .ofType(userAction.Types.LOAD)
     .switchMap(() => {
-      return this.gridService.getTiles()
-        .map(tiles => new gridAction.LoadSuccess(tiles));
+      return this.userService.getUser()
+        .map(user => new userAction.LoadSuccess(user));
     });
 }

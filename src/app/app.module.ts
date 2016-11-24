@@ -12,10 +12,12 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { GridService } from './services/grid.service';
 import { TileModule } from './components/tile/tile.module';
-import { ErrorLoggerService } from './services/error-logger-service.service';
+import { ErrorService } from './services/error.service';
 import { GridEffects } from './effects/grid';
 import { EffectsModule } from '@ngrx/effects';
 import { UIProgressComponent } from './components/ui-progress/ui-progress.component';
+import { UserEffects } from './effects/user';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -32,12 +34,14 @@ import { UIProgressComponent } from './components/ui-progress/ui-progress.compon
     StoreModule.provideStore(reducer),
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
     EffectsModule.run(GridEffects),
+    EffectsModule.run(UserEffects),
     TileModule,
   ],
   providers: [
     GridService,
-    ErrorLoggerService
+    UserService,
+    ErrorService,
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

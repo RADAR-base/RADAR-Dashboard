@@ -89,57 +89,57 @@
   dependencies:
     "@angular-cli/ast-tools" "^1.0.0"
 
-"@types/d3-array@1.0", "@types/d3-array@^1.0.5":
+"@types/d3-array@1.0":
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@types/d3-array/-/d3-array-1.0.5.tgz#f9bf57a9e67cb2b694da04ec86f199cceb973e42"
 
-"@types/d3-axis@1.0", "@types/d3-axis@^1.0.5":
+"@types/d3-axis@1.0":
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@types/d3-axis/-/d3-axis-1.0.5.tgz#267f389c055de629d8c1d53dae7c289655057025"
   dependencies:
     "@types/d3-selection" "*"
 
-"@types/d3-brush@1.0", "@types/d3-brush@^1.0.5":
+"@types/d3-brush@1.0":
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@types/d3-brush/-/d3-brush-1.0.5.tgz#078e1c67c4c91e2958ee990d659c23cd905af07a"
   dependencies:
     "@types/d3-selection" "*"
 
-"@types/d3-chord@1.0", "@types/d3-chord@^1.0.4":
+"@types/d3-chord@1.0":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@types/d3-chord/-/d3-chord-1.0.4.tgz#50a035ced50afa53906144bd8575d117d7728f3f"
 
-"@types/d3-collection@1.0", "@types/d3-collection@^1.0.4":
+"@types/d3-collection@1.0":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@types/d3-collection/-/d3-collection-1.0.4.tgz#19b1eede200ba5bdafb4c8af19afe32c2de7a660"
 
-"@types/d3-color@*", "@types/d3-color@1.0", "@types/d3-color@^1.0.4":
+"@types/d3-color@*", "@types/d3-color@1.0":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@types/d3-color/-/d3-color-1.0.4.tgz#f0e1b64162fea2f932007fb966c26cc8aff3a47d"
 
-"@types/d3-dispatch@1.0", "@types/d3-dispatch@^1.0.4":
+"@types/d3-dispatch@1.0":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@types/d3-dispatch/-/d3-dispatch-1.0.4.tgz#91b8de6198053efc46788ad5f27182bcc42335b5"
 
-"@types/d3-drag@1.0", "@types/d3-drag@^1.0.5":
+"@types/d3-drag@1.0":
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@types/d3-drag/-/d3-drag-1.0.5.tgz#04f4423df49c1daa709b3a0be6cc0f0f798f0662"
   dependencies:
     "@types/d3-selection" "*"
 
-"@types/d3-dsv@*", "@types/d3-dsv@1.0", "@types/d3-dsv@^1.0.29":
+"@types/d3-dsv@*", "@types/d3-dsv@1.0":
   version "1.0.29"
   resolved "https://registry.yarnpkg.com/@types/d3-dsv/-/d3-dsv-1.0.29.tgz#06c92b01ec32b5c457701d520d5bac6358b1fb0f"
 
-"@types/d3-ease@1.0", "@types/d3-ease@^1.0.4":
+"@types/d3-ease@1.0":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@types/d3-ease/-/d3-ease-1.0.4.tgz#261fc1e72cfe7d2d2f7537a5bb7ef10f8304e5fb"
 
-"@types/d3-force@1.0", "@types/d3-force@^1.0.5":
+"@types/d3-force@1.0":
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@types/d3-force/-/d3-force-1.0.5.tgz#30c0b382dd17e332993efd10d951ce4bd17de584"
 
-"@types/d3-format@1.0", "@types/d3-format@^1.0.5":
+"@types/d3-format@1.0":
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@types/d3-format/-/d3-format-1.0.5.tgz#aa6dbee6dc0a1969bf1b8e61eb94807d26f0c7b3"
 
@@ -149,81 +149,69 @@
   dependencies:
     "@types/geojson" "*"
 
-"@types/d3-geo@^1.2.3":
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/@types/d3-geo/-/d3-geo-1.2.3.tgz#ba7e10c374ede1a72fe7dba871b9a4cfb37d4095"
-  dependencies:
-    "@types/geojson" "*"
-
-"@types/d3-hierarchy@1.0", "@types/d3-hierarchy@^1.0.4":
+"@types/d3-hierarchy@1.0":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@types/d3-hierarchy/-/d3-hierarchy-1.0.4.tgz#9857760dc276523dd65f6ecf848b78486925daa8"
 
-"@types/d3-hsv@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@types/d3-hsv/-/d3-hsv-0.0.3.tgz#0fda95fb18697a3ef1829f993fe15fb895c9deb6"
-  dependencies:
-    "@types/d3-color" "*"
-
-"@types/d3-interpolate@1.1", "@types/d3-interpolate@^1.1.5":
+"@types/d3-interpolate@1.1":
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/@types/d3-interpolate/-/d3-interpolate-1.1.5.tgz#956485bb0f75c07b49b33f7b44a35cfa9f7f4f46"
   dependencies:
     "@types/d3-color" "*"
 
-"@types/d3-path@1.0", "@types/d3-path@^1.0.4":
+"@types/d3-path@1.0":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@types/d3-path/-/d3-path-1.0.4.tgz#e9ba6555f4c653d5f202902cddee8b54d3d5dfe8"
 
-"@types/d3-polygon@1.0", "@types/d3-polygon@^1.0.4":
+"@types/d3-polygon@1.0":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@types/d3-polygon/-/d3-polygon-1.0.4.tgz#44aa10bf081c8e87642827feb6285e8280c3eee4"
 
-"@types/d3-quadtree@1.0", "@types/d3-quadtree@^1.0.4":
+"@types/d3-quadtree@1.0":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@types/d3-quadtree/-/d3-quadtree-1.0.4.tgz#fb164e00a82f3105b810afad757804664742c049"
 
-"@types/d3-queue@3.0", "@types/d3-queue@^3.0.4":
+"@types/d3-queue@3.0":
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/@types/d3-queue/-/d3-queue-3.0.4.tgz#a86b6d55e307d363aedd5153d8f1117793df6710"
 
-"@types/d3-random@1.0", "@types/d3-random@^1.0.5":
+"@types/d3-random@1.0":
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@types/d3-random/-/d3-random-1.0.5.tgz#e1d212f503376899f8a290ebae9cbf606eac856d"
 
-"@types/d3-request@1.0", "@types/d3-request@^1.0.1":
+"@types/d3-request@1.0":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@types/d3-request/-/d3-request-1.0.1.tgz#b3e8b79c97618b396814ee8931a318efe9a51c64"
   dependencies:
     "@types/d3-dsv" "*"
 
-"@types/d3-scale@1.0", "@types/d3-scale@^1.0.4":
+"@types/d3-scale@1.0":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@types/d3-scale/-/d3-scale-1.0.4.tgz#2763f81a52383caac89c063eb9c3bf7f72e286c6"
   dependencies:
     "@types/d3-time" "*"
 
-"@types/d3-selection@*", "@types/d3-selection@1.0", "@types/d3-selection@^1.0.5":
+"@types/d3-selection@*", "@types/d3-selection@1.0":
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@types/d3-selection/-/d3-selection-1.0.5.tgz#c4116d1002d0b4f7642cf9f702cae8d58ea0a05f"
 
-"@types/d3-shape@1.0", "@types/d3-shape@^1.0.5":
+"@types/d3-shape@1.0":
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@types/d3-shape/-/d3-shape-1.0.5.tgz#0bedcdfca7e2d00c0cabff6886483551772dbf38"
 
-"@types/d3-time-format@2.0", "@types/d3-time-format@^2.0.4":
+"@types/d3-time-format@2.0":
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/@types/d3-time-format/-/d3-time-format-2.0.4.tgz#3f4749652f347bce4b1c405053b0cfc5154cf537"
 
-"@types/d3-time@*", "@types/d3-time@1.0", "@types/d3-time@^1.0.4":
+"@types/d3-time@*", "@types/d3-time@1.0":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@types/d3-time/-/d3-time-1.0.4.tgz#4f6eb6c069837a0032bc44b2a7d07f4ae68018bd"
 
-"@types/d3-timer@1.0", "@types/d3-timer@^1.0.5":
+"@types/d3-timer@1.0":
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@types/d3-timer/-/d3-timer-1.0.5.tgz#aad31e6aa185a6440f544d9167ef3194667d7f1e"
 
-"@types/d3-transition@1.0", "@types/d3-transition@^1.0.5":
+"@types/d3-transition@1.0":
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@types/d3-transition/-/d3-transition-1.0.5.tgz#7b7e5bbe9238ff91b234ebd1e46956846fc89806"
   dependencies:
@@ -233,11 +221,7 @@
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/@types/d3-voronoi/-/d3-voronoi-1.1.5.tgz#67d03acb2d56006bb202c20cee1b8d5ad9fe0461"
 
-"@types/d3-voronoi@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@types/d3-voronoi/-/d3-voronoi-1.0.4.tgz#9babc93cc84721eaa59f70be24b1c1121b0e9316"
-
-"@types/d3-zoom@1.0", "@types/d3-zoom@^1.0.5":
+"@types/d3-zoom@1.0":
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@types/d3-zoom/-/d3-zoom-1.0.5.tgz#9d25fb2bef73d05d6c6a3ea1c032e6051a4ec707"
   dependencies:
@@ -1344,10 +1328,6 @@ commander@~2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.1.0.tgz#d121bbae860d9992a3d517ba96f56588e47c6781"
 
-comment-regex@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/comment-regex/-/comment-regex-1.0.0.tgz#7dd70268c83648a9c4cc19bf472d52e64f63918d"
-
 common-tags@^1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/common-tags/-/common-tags-1.3.1.tgz#35c51f09b08e5a991371638ed4d047341926611b"
@@ -1700,13 +1680,17 @@ custom-event@~1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/custom-event/-/custom-event-1.0.1.tgz#5d02a46850adf1b4a317946a3928fccb5bfd0425"
 
-d3-array@1, d3-array@1.0.1:
+d3-array@1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/d3-array/-/d3-array-1.0.1.tgz#375c02874fcd96c16ed9f1bcf5b4a7be53f358e7"
 
-d3-axis@1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/d3-axis/-/d3-axis-1.0.3.tgz#ddcbd8a23c2a568d3787de0dee00a36413c5d595"
+d3-array@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/d3-array/-/d3-array-1.0.2.tgz#174237bf356a852fadd6af87743d928631de7655"
+
+d3-axis@1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/d3-axis/-/d3-axis-1.0.4.tgz#bdfdcf5e859824062e0f17ad920f76236e72512c"
 
 d3-brush@1.0.3:
   version "1.0.3"
@@ -1718,28 +1702,43 @@ d3-brush@1.0.3:
     d3-selection "1"
     d3-transition "1"
 
-d3-chord@1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/d3-chord/-/d3-chord-1.0.2.tgz#9b1ac90efe7de448c0b9188309071de52855a99a"
+d3-chord@1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/d3-chord/-/d3-chord-1.0.3.tgz#a398bae7cb632a3c4ea687a555a6b9ee4609d990"
   dependencies:
     d3-array "1"
     d3-path "1"
 
-d3-collection@1, d3-collection@1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/d3-collection/-/d3-collection-1.0.1.tgz#5b5c5626f731122b600b107d71a08833fec049ad"
+d3-collection@1, d3-collection@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/d3-collection/-/d3-collection-1.0.2.tgz#df5acb5400443e9eabe9c1379896c67e52426b39"
 
-d3-color@1, d3-color@1.0.1:
+d3-color@1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/d3-color/-/d3-color-1.0.1.tgz#73cc91f4ee3f12e00ca06b1596a7c83cf104723a"
 
-d3-dispatch@1, d3-dispatch@1.0.1:
+d3-color@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/d3-color/-/d3-color-1.0.2.tgz#83cb4b3a9474e40795f009d97e97a15649830bbc"
+
+d3-dispatch@1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/d3-dispatch/-/d3-dispatch-1.0.1.tgz#4bd65a43cecff4318deb9df24552aa8bf281a840"
 
-d3-drag@1, d3-drag@1.0.1:
+d3-dispatch@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/d3-dispatch/-/d3-dispatch-1.0.2.tgz#5b511e79a46a1f89492841c0a8f656687d5daa0a"
+
+d3-drag@1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/d3-drag/-/d3-drag-1.0.1.tgz#49ad9f5c91865593fb30c86b15f9322d43fec51f"
+  dependencies:
+    d3-dispatch "1"
+    d3-selection "1"
+
+d3-drag@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/d3-drag/-/d3-drag-1.0.2.tgz#d634cc3f7689f99dd03fd7eb1af2945c0f4339ad"
   dependencies:
     d3-dispatch "1"
     d3-selection "1"
@@ -1752,13 +1751,17 @@ d3-dsv@1, d3-dsv@1.0.3:
     iconv-lite "0.4"
     rw "1"
 
-d3-ease@1, d3-ease@1.0.1:
+d3-ease@1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/d3-ease/-/d3-ease-1.0.1.tgz#a18c2d44e218fb8b9ec6d635bcca587f85979a85"
 
-d3-force@1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/d3-force/-/d3-force-1.0.3.tgz#4b7bc812382b24497954b19a6130b551a33e1b73"
+d3-ease@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/d3-ease/-/d3-ease-1.0.2.tgz#b486f8f3ca308ca7be38197d65622b6e30983377"
+
+d3-force@1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/d3-force/-/d3-force-1.0.4.tgz#f84dcbb3200be41de7bc30fa71923143156758bf"
   dependencies:
     d3-collection "1"
     d3-dispatch "1"
@@ -1769,54 +1772,64 @@ d3-format@1, d3-format@1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/d3-format/-/d3-format-1.0.2.tgz#138618320b4bbeb43b5c0ff30519079fbbd7375e"
 
-d3-geo@1.3.1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/d3-geo/-/d3-geo-1.3.1.tgz#1299fb6760794f074ccd3b34826cccdd6268323e"
+d3-geo@1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/d3-geo/-/d3-geo-1.4.0.tgz#15e58c414b5bafa1a960eeeb29059c94a60d8408"
   dependencies:
     d3-array "1"
 
-d3-hierarchy@1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/d3-hierarchy/-/d3-hierarchy-1.0.2.tgz#c8faa11dc49bcc93914c6aa35a46bdee4e01ee72"
+d3-hierarchy@1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/d3-hierarchy/-/d3-hierarchy-1.0.3.tgz#986b4925e81f1e0b4087e9442850f950cf27d338"
 
-d3-interpolate@1, d3-interpolate@1.1.1:
+d3-interpolate@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/d3-interpolate/-/d3-interpolate-1.1.1.tgz#f9ad4f9a421b22cad8838cf53d9bd2cbad0b8fd7"
   dependencies:
     d3-color "1"
 
-d3-path@1, d3-path@1.0.2:
+d3-interpolate@1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/d3-interpolate/-/d3-interpolate-1.1.2.tgz#b52e6927a04fe1fe2a4cffc139e5389ed3e5e790"
+  dependencies:
+    d3-color "1"
+
+d3-path@1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/d3-path/-/d3-path-1.0.2.tgz#9941a472daed62084e5ecf4394987bcadc8c39a7"
 
-d3-polygon@1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/d3-polygon/-/d3-polygon-1.0.1.tgz#c1e710cc715b082f18494d102e41bdaaf8c44d03"
+d3-path@1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/d3-path/-/d3-path-1.0.3.tgz#60103d0dea9a6cd6ca58de86c6d56724002d3fde"
 
-d3-quadtree@1, d3-quadtree@1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/d3-quadtree/-/d3-quadtree-1.0.1.tgz#13be025624f110405ed43536c506aaec199ed591"
+d3-polygon@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/d3-polygon/-/d3-polygon-1.0.2.tgz#6552c0fb03aa2d05023351da6e0e8adc4df0202b"
+
+d3-quadtree@1, d3-quadtree@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/d3-quadtree/-/d3-quadtree-1.0.2.tgz#e7e873af06aaa427eaa4af094cc4cbfb350b9e38"
 
 d3-queue@3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/d3-queue/-/d3-queue-3.0.3.tgz#10ee4dd0574a1affaabfb931d0ba4f117926edc6"
 
-d3-random@1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/d3-random/-/d3-random-1.0.1.tgz#2c9444cdcba23f8c41f7940d46bf301bf99603eb"
-
-d3-request@1.0.2:
+d3-random@1.0.2:
   version "1.0.2"
-  resolved "https://registry.yarnpkg.com/d3-request/-/d3-request-1.0.2.tgz#98083736d4146fdd28703b5aa8ef7e7328ba3f69"
+  resolved "https://registry.yarnpkg.com/d3-random/-/d3-random-1.0.2.tgz#83ff6a391206209c30565299e43c6549866db269"
+
+d3-request@1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/d3-request/-/d3-request-1.0.3.tgz#63fc7dfd784607db0df5d535d7cb898fceba755a"
   dependencies:
     d3-collection "1"
     d3-dispatch "1"
     d3-dsv "1"
     xmlhttprequest "1"
 
-d3-scale@1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/d3-scale/-/d3-scale-1.0.3.tgz#4f9e8f0cc2ea0f3925ff04ac27adc09045fa4c90"
+d3-scale@1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/d3-scale/-/d3-scale-1.0.4.tgz#50e28bf6a193b706745528515ed9b3d44205a033"
   dependencies:
     d3-array "1"
     d3-collection "1"
@@ -1826,19 +1839,23 @@ d3-scale@1.0.3:
     d3-time "1"
     d3-time-format "2"
 
-d3-selection@1, d3-selection@1.0.2:
+d3-selection@1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/d3-selection/-/d3-selection-1.0.2.tgz#ae662afd4702ac9c5da039b2107a1764fa1c9070"
 
-d3-shape@1.0.3:
+d3-selection@1.0.3:
   version "1.0.3"
-  resolved "https://registry.yarnpkg.com/d3-shape/-/d3-shape-1.0.3.tgz#bf685dcfc192ed1d35a39ff69826a409a9385034"
+  resolved "https://registry.yarnpkg.com/d3-selection/-/d3-selection-1.0.3.tgz#e63e51416172427854c1bcdfa066eb5fe872c108"
+
+d3-shape@1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/d3-shape/-/d3-shape-1.0.4.tgz#145ee100ccbec42f8e3f1996cd05c786f79fe1c6"
   dependencies:
     d3-path "1"
 
-d3-time-format@2, d3-time-format@2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/d3-time-format/-/d3-time-format-2.0.2.tgz#1c537e9d4558966a658c51f4ca3dd1b47369c2d5"
+d3-time-format@2, d3-time-format@2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/d3-time-format/-/d3-time-format-2.0.3.tgz#3241569b74ddc9c42e0689c0e8a903579fd6280a"
   dependencies:
     d3-time "1"
 
@@ -1865,9 +1882,9 @@ d3-voronoi@1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/d3-voronoi/-/d3-voronoi-1.1.0.tgz#69ea59563cf1e75d1c6c45edc803c6583768f628"
 
-d3-zoom@1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/d3-zoom/-/d3-zoom-1.0.3.tgz#b36bfb517e535dff0e179088dbeb3d7899a6050e"
+d3-zoom@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/d3-zoom/-/d3-zoom-1.1.0.tgz#29869cfd164928dd238aaa4365145741dcf1301f"
   dependencies:
     d3-dispatch "1"
     d3-drag "1"
@@ -1875,40 +1892,40 @@ d3-zoom@1.0.3:
     d3-selection "1"
     d3-transition "1"
 
-d3@^4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/d3/-/d3-4.3.0.tgz#1039c6e73fe27482be8b06e14b9e331094a6229f"
+d3@4.4:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/d3/-/d3-4.4.0.tgz#aec4ad0fd574304a909b012fac4783fbbcf9f096"
   dependencies:
-    d3-array "1.0.1"
-    d3-axis "1.0.3"
+    d3-array "1.0.2"
+    d3-axis "1.0.4"
     d3-brush "1.0.3"
-    d3-chord "1.0.2"
-    d3-collection "1.0.1"
-    d3-color "1.0.1"
-    d3-dispatch "1.0.1"
-    d3-drag "1.0.1"
+    d3-chord "1.0.3"
+    d3-collection "1.0.2"
+    d3-color "1.0.2"
+    d3-dispatch "1.0.2"
+    d3-drag "1.0.2"
     d3-dsv "1.0.3"
-    d3-ease "1.0.1"
-    d3-force "1.0.3"
+    d3-ease "1.0.2"
+    d3-force "1.0.4"
     d3-format "1.0.2"
-    d3-geo "1.3.1"
-    d3-hierarchy "1.0.2"
-    d3-interpolate "1.1.1"
-    d3-path "1.0.2"
-    d3-polygon "1.0.1"
-    d3-quadtree "1.0.1"
+    d3-geo "1.4.0"
+    d3-hierarchy "1.0.3"
+    d3-interpolate "1.1.2"
+    d3-path "1.0.3"
+    d3-polygon "1.0.2"
+    d3-quadtree "1.0.2"
     d3-queue "3.0.3"
-    d3-random "1.0.1"
-    d3-request "1.0.2"
-    d3-scale "1.0.3"
-    d3-selection "1.0.2"
-    d3-shape "1.0.3"
+    d3-random "1.0.2"
+    d3-request "1.0.3"
+    d3-scale "1.0.4"
+    d3-selection "1.0.3"
+    d3-shape "1.0.4"
     d3-time "1.0.4"
-    d3-time-format "2.0.2"
+    d3-time-format "2.0.3"
     d3-timer "1.0.3"
     d3-transition "1.0.3"
     d3-voronoi "1.1.0"
-    d3-zoom "1.0.3"
+    d3-zoom "1.1.0"
 
 d@^0.1.1, d@~0.1.1:
   version "0.1.1"
@@ -2022,6 +2039,10 @@ di@^0.0.1:
 diff@^2.2.1, diff@^2.2.2:
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/diff/-/diff-2.2.3.tgz#60eafd0d28ee906e4e8ff0a52c1229521033bf99"
+
+diff@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/diff/-/diff-3.0.1.tgz#a52d90cc08956994be00877bff97110062582c35"
 
 diffie-hellman@^5.0.0:
   version "5.0.2"
@@ -2840,6 +2861,16 @@ globby@^5.0.0:
 globby@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/globby/-/globby-6.0.0.tgz#8f5710eda32296ac53f011a97dccc70e936685dc"
+  dependencies:
+    array-union "^1.0.1"
+    glob "^7.0.3"
+    object-assign "^4.0.1"
+    pify "^2.0.0"
+    pinkie-promise "^2.0.0"
+
+globby@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/globby/-/globby-6.1.0.tgz#f5a6d70e8395e21c858fb0489d64df02424d506c"
   dependencies:
     array-union "^1.0.1"
     glob "^7.0.3"
@@ -4312,12 +4343,6 @@ minimatch@2.x:
   dependencies:
     brace-expansion "^1.0.0"
 
-minimatch@3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.0.2.tgz#0f398a7300ea441e9c348c83d98ab8c9dbf9c40a"
-  dependencies:
-    brace-expansion "^1.0.0"
-
 minimist@0.0.8, minimist@~0.0.1:
   version "0.0.8"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-0.0.8.tgz#857fcabfc3397d2625b8228262e86aa7a011b05d"
@@ -4864,21 +4889,6 @@ pbkdf2@^3.0.3:
   dependencies:
     create-hmac "^1.1.2"
 
-perfectionist@^2.3.1:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/perfectionist/-/perfectionist-2.3.1.tgz#b7a1fb439ed8098ab22aad9e9843fb8c29f80b42"
-  dependencies:
-    comment-regex "^1.0.0"
-    defined "^1.0.0"
-    minimist "^1.2.0"
-    postcss "^5.0.8"
-    postcss-scss "^0.3.0"
-    postcss-value-parser "^3.3.0"
-    read-file-stdin "^0.2.0"
-    string.prototype.repeat "^0.2.0"
-    vendors "^1.0.0"
-    write-file-stdout "0.0.2"
-
 pify@^2.0.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/pify/-/pify-2.3.0.tgz#ed141a6ac043a849ea588498e7dca8b15330e90c"
@@ -4922,7 +4932,7 @@ postcss-calc@^5.2.0:
     postcss-message-helpers "^2.0.0"
     reduce-css-calc "^1.2.6"
 
-postcss-cli@^2.6.0:
+postcss-cli@2:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/postcss-cli/-/postcss-cli-2.6.0.tgz#f0de393caa026fcfc1b1479822989af508ed515d"
   dependencies:
@@ -5154,12 +5164,6 @@ postcss-resolve-nested-selector@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/postcss-resolve-nested-selector/-/postcss-resolve-nested-selector-0.1.1.tgz#29ccbc7c37dedfac304e9fff0bf1596b3f6a0e4e"
 
-postcss-scss@^0.3.0:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/postcss-scss/-/postcss-scss-0.3.1.tgz#65c610d8e2a7ee0e62b1835b71b8870734816e4b"
-  dependencies:
-    postcss "^5.2.4"
-
 postcss-scss@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/postcss-scss/-/postcss-scss-0.4.0.tgz#087c052c529b9270d9580bd1248a0f93d3b40d57"
@@ -5174,7 +5178,7 @@ postcss-selector-parser@^2.0.0, postcss-selector-parser@^2.1.1:
     indexes-of "^1.0.1"
     uniq "^1.0.1"
 
-postcss-sorting@^1.7.0:
+postcss-sorting@^1, postcss-sorting@^1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/postcss-sorting/-/postcss-sorting-1.7.0.tgz#69b92db051ed4181c5b8c585ee8b8c5f40915a82"
   dependencies:
@@ -5209,7 +5213,7 @@ postcss-zindex@^2.0.1:
     postcss "^5.0.4"
     uniqs "^2.0.0"
 
-postcss@^5.0.0, postcss@^5.0.10, postcss@^5.0.11, postcss@^5.0.12, postcss@^5.0.13, postcss@^5.0.14, postcss@^5.0.16, postcss@^5.0.18, postcss@^5.0.19, postcss@^5.0.2, postcss@^5.0.20, postcss@^5.0.21, postcss@^5.0.4, postcss@^5.0.5, postcss@^5.0.6, postcss@^5.0.8, postcss@^5.1.2, postcss@^5.2.4, postcss@^5.2.5:
+postcss@5, postcss@^5.0.0, postcss@^5.0.10, postcss@^5.0.11, postcss@^5.0.12, postcss@^5.0.13, postcss@^5.0.14, postcss@^5.0.16, postcss@^5.0.18, postcss@^5.0.19, postcss@^5.0.2, postcss@^5.0.20, postcss@^5.0.21, postcss@^5.0.4, postcss@^5.0.5, postcss@^5.0.6, postcss@^5.0.8, postcss@^5.1.2, postcss@^5.2.4, postcss@^5.2.5:
   version "5.2.5"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-5.2.5.tgz#ec428c27dffc7fac65961340a9b022fa4af5f056"
   dependencies:
@@ -5507,12 +5511,6 @@ readline2@^1.0.1:
     is-fullwidth-code-point "^1.0.0"
     mute-stream "0.0.5"
 
-recursive-readdir@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/recursive-readdir/-/recursive-readdir-2.1.0.tgz#78b7bfd79582d3d7596b8ff1bd29fbd50229f6aa"
-  dependencies:
-    minimatch "3.0.2"
-
 redent@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/redent/-/redent-1.0.0.tgz#cf916ab1fd5f1f16dfb20822dd6ec7f730c2afde"
@@ -5776,7 +5774,7 @@ sass-loader@^3.2.0:
     loader-utils "^0.2.5"
     object-assign "^4.0.1"
 
-sass-mq@^3.3.1:
+sass-mq@3:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/sass-mq/-/sass-mq-3.3.1.tgz#1199f5a43b549f5cbb67bc81f5f495ebf96250ce"
 
@@ -6226,10 +6224,6 @@ string.prototype.padend@^3.0.0:
     es-abstract "^1.4.3"
     function-bind "^1.0.2"
 
-string.prototype.repeat@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/string.prototype.repeat/-/string.prototype.repeat-0.2.0.tgz#aba36de08dcee6a5a337d49b2ea1da1b28fc0ecf"
-
 string_decoder@~0.10.25, string_decoder@~0.10.x:
   version "0.10.31"
   resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-0.10.31.tgz#62e203bc41766c6c28c9fc84301dab1c5310fa94"
@@ -6280,21 +6274,22 @@ style-search@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/style-search/-/style-search-0.1.0.tgz#7958c793e47e32e07d2b5cafe5c0bf8e12e77902"
 
-stylefmt@^4.4.0:
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/stylefmt/-/stylefmt-4.4.0.tgz#9abe94f6df961fb6bcfb135b415ccaed60a5b327"
+stylefmt@5:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/stylefmt/-/stylefmt-5.0.0.tgz#c567e4064747b9b9846b3ab406eab017f0a1f145"
   dependencies:
+    chalk "^1.1.3"
     css-color-list "0.0.1"
+    diff "^3.0.1"
     editorconfig "^0.13.2"
+    globby "^6.1.0"
     minimist "^1.2.0"
     postcss "^5.2.5"
     postcss-scss "^0.4.0"
     postcss-sorting "^1.7.0"
     postcss-value-parser "^3.3.0"
-    recursive-readdir "^2.1.0"
     stdin "0.0.1"
     stylelint "^7.5.0"
-    tmp "0.0.30"
 
 stylehacks@^2.3.0:
   version "2.3.1"
@@ -6312,11 +6307,11 @@ stylehacks@^2.3.0:
     text-table "^0.2.0"
     write-file-stdout "0.0.2"
 
-stylelint-config-standard@^15.0.0:
+stylelint-config-standard@15:
   version "15.0.0"
   resolved "https://registry.yarnpkg.com/stylelint-config-standard/-/stylelint-config-standard-15.0.0.tgz#3180b2f9aa3896a754ce6a69bf1b1fe7ab2e0ca0"
 
-stylelint@^7.5.0, stylelint@^7.6.0:
+stylelint@7, stylelint@^7.5.0:
   version "7.6.0"
   resolved "https://registry.yarnpkg.com/stylelint/-/stylelint-7.6.0.tgz#ddeb06ccc95f72c119fcde5e85439fb7e9cde4df"
   dependencies:
@@ -6538,12 +6533,6 @@ tmp@0.0.28:
   dependencies:
     os-tmpdir "~1.0.1"
 
-tmp@0.0.30:
-  version "0.0.30"
-  resolved "https://registry.yarnpkg.com/tmp/-/tmp-0.0.30.tgz#72419d4a8be7d6ce75148fd8b324e593a711c2ed"
-  dependencies:
-    os-tmpdir "~1.0.1"
-
 to-array@0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/to-array/-/to-array-0.1.4.tgz#17e6c11f73dd4f3d74cda7a4ff3238e9ad9bf890"
@@ -6625,7 +6614,7 @@ tslint-loader@^2.1.4:
     rimraf "^2.4.4"
     strip-json-comments "^1.0.2"
 
-tslint@^3.15.1:
+tslint@3, tslint@^3.15.1:
   version "3.15.1"
   resolved "https://registry.yarnpkg.com/tslint/-/tslint-3.15.1.tgz#da165ca93d8fdc2c086b51165ee1bacb48c98ea5"
   dependencies:
@@ -7157,3 +7146,7 @@ yn@^1.2.0:
 zone.js@^0.6.23:
   version "0.6.26"
   resolved "https://registry.yarnpkg.com/zone.js/-/zone.js-0.6.26.tgz#067c13b8b80223a89b62e9dc82680f09762c4636"
+
+zone.js@^0.7.0:
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/zone.js/-/zone.js-0.7.1.tgz#62db98e2b9cfcb60eff9cf105d199c23c8d78e4f"
