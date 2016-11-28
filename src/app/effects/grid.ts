@@ -3,25 +3,23 @@ import { Actions, Effect } from '@ngrx/effects';
 import { Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
 
-import * as grid from '../actions/grid';
 import { GridService } from '../services/grid.service';
-import { ErrorLoggerService } from '../services/error-logger-service.service';
+import { Tile } from '../models/tile';
+import * as gridAction from '../actions/grid';
 
 @Injectable()
 export class GridEffects {
 
   constructor(
     private actions$: Actions,
-    private gridService: GridService,
-    private errorLogger: ErrorLoggerService
+    private gridService: GridService
   ) { }
 
   @Effect()
   load$: Observable<Action> = this.actions$
-    .ofType(grid.ActionTypes.LOAD)
+    .ofType(gridAction.Types.LOAD)
     .switchMap(() => {
       return this.gridService.getTiles()
-        .map(tiles => new grid.LoadSuccessAction(tiles))
-        .catch((error) => Observable.of(this.errorLogger.log(error)));
+        .map((tiles: Tile[]) => new gridAction.LoadSuccess(tiles));
     });
 }

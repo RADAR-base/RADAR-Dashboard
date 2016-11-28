@@ -1,19 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { Tile } from '../../models/tile';
 import * as fromRoot from '../../reducers';
-import * as grid from '../../actions/grid';
+import * as gridAction from '../../actions/grid';
+import * as userAction from '../../actions/user';
 
 @Component({
   selector: 'app-dashboard',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <app-ui-progress *ngIf="(loading$ | async) === true"></app-ui-progress>
     <md-grid-list *ngIf="(loading$ | async) === false" cols="4" rowHeight="fit">
       <md-grid-tile *ngFor="let tile of tiles$ | async"
         [colspan]="tile.cols" [rowspan]="tile.rows">
-        <app-tile [tile]="tile"></app-tile>
+        <app-chart-container [tile]="tile"></app-chart-container>
       </md-grid-tile>
     </md-grid-list>
   `,
@@ -33,6 +35,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.dispatch(new grid.LoadAction());
+    this.store.dispatch(new gridAction.Load());
+    this.store.dispatch(new userAction.Load());
   }
 }

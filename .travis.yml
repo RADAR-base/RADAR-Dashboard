@@ -2,7 +2,9 @@ dist: trusty
 sudo: required
 language: node_js
 node_js:
-  - "7"
+  - "node"
+
+cache: yarn
 
 before_install:
   - export CHROME_BIN=/usr/bin/google-chrome
@@ -12,17 +14,12 @@ before_install:
   - sudo apt-get install -y libappindicator1 fonts-liberation
   - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
   - sudo dpkg -i google-chrome*.deb
-  - npm config set spin false
-  - npm config set progress false
-
-install:
-  - npm install --no-optional
 
 before_script:
-  - npm start &
+  - yarn start &
   - sleep 20
 
 script:
-  - npm run lint
-  - npm run test:ci
-  - npm run e2e
+  - yarn run lint
+  - yarn run test:ci
+  - yarn run e2e

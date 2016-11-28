@@ -1,18 +1,17 @@
 /* tslint:disable:no-unused-variable */
 import { TestBed, inject } from '@angular/core/testing';
-import { GridService } from './grid.service';
+import { UserService } from './user.service';
 import { HttpModule } from '@angular/http';
 
-describe('Service: Grid', () => {
+describe('UserService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpModule],
-      providers: [GridService]
+      providers: [UserService]
     });
   });
 
-  it('should ...',
-    inject([GridService], (service: GridService) => {
-      expect(service).toBeTruthy();
-    }));
+  it('should ...', inject([UserService], (service: UserService) => {
+    expect(service).toBeTruthy();
+  }));
 });

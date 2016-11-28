@@ -1,7 +1,10 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { DebugElement } from '@angular/core';
+import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ChartHeartRateComponent } from './chart-heart-rate.component';
+import { ChartModule } from '../chart.module';
+import { reducer } from '../../../reducers/index';
+import { StoreModule } from '@ngrx/store';
 
 describe('ChartHeartRateComponent', () => {
   let component: ChartHeartRateComponent;
@@ -10,9 +13,11 @@ describe('ChartHeartRateComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-        declarations: [
-          ChartHeartRateComponent
-        ]
+        imports: [
+          ChartModule,
+          StoreModule.provideStore(reducer)
+        ],
+        schemas: [NO_ERRORS_SCHEMA]
       })
       .compileComponents();
   }));

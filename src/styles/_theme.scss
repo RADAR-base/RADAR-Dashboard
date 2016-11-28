@@ -4,7 +4,7 @@
 
 // Theme
 $cl-app-primary: md-palette($md-blue-grey);
-$cl-app-accent:  md-palette($md-grey);
+$cl-app-accent: md-palette($md-cyan);
 $cl-app-warn: md-palette($md-red);
 $cl-app-theme: md-dark-theme($cl-app-primary, $cl-app-accent, $cl-app-warn);
 
