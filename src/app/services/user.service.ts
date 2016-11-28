@@ -14,7 +14,7 @@ export class UserService {
   getUser(): Observable<User> {
     return this.http.get(`${AppConfig.API_PATH}/mock-user.json`)
       .delay(1000)
-      .map(res => res.json().body || [])
+      .map(res => res.json().dataset || [])
       .catch(ErrorService.handleError);
   }
 }

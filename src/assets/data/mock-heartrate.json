@@ -1,5 +1,5 @@
 {
-  "body": [
+  "dataset": [
     {
       "org.radarcns.avro.HeartRateItem": {
         "avg": 0.6117274154968215,

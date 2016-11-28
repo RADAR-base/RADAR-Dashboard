@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class TileType {
+export class ChartType {
   HR: string = 'heart-rate';
   EMPTY: string = 'empty';
 }

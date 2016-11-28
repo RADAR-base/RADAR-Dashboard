@@ -12,9 +12,9 @@ export class GridService {
   constructor(private http: Http) {}
 
   getTiles(): Observable<Tile[]> {
-    return this.http.get(`${AppConfig.API_PATH}/mock-grid.jso`)
+    return this.http.get(`${AppConfig.API_PATH}/mock-grid.json`)
       .delay(2000)
-      .map(res => res.json().body || [])
+      .map(res => res.json().dataset || [])
       .catch(ErrorService.handleError);
   }
 }

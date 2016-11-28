@@ -1,20 +1,34 @@
 @import '../../../../styles/common';
 
-:host {
-  display: flex;
-  flex-grow: 1;
-  padding: $tile-padding;
-}
-
-svg {
-  width: 100%;
-  height: 100%;
-  background-color: rgba(white, 0.1);
-}
-
-// TODO: Check for fix in NG2 [https://github.com/angular/angular/issues/7108]
 :host /deep/ {
-  .bg {
-    fill: rgba(white, 0.1);
+  .line {
+    fill: none;
+    stroke: url(#hr-gradient);
+    stroke-width: 3px;
+    stroke-linejoin: round;
+  }
+
+  .axis text {
+    @include font-small;
+
+    fill: $cl-white-80;
+  }
+
+  .axis--x path,
+  .axis--x line {
+    stroke: $cl-white-40;
+  }
+
+  .axis--x line {
+    stroke-width: 2px;
+  }
+
+  .axis--y line {
+    stroke: $cl-white-20;
+    stroke-dasharray: 4, 2;
+  }
+
+  .axis--y path {
+    stroke: none;
   }
 }

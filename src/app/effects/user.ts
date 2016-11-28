@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
 
 import { UserService } from '../services/user.service';
+import { User } from '../models/user';
 import * as userAction from '../actions/user';
 
 @Injectable()
@@ -19,6 +20,6 @@ export class UserEffects {
     .ofType(userAction.Types.LOAD)
     .switchMap(() => {
       return this.userService.getUser()
-        .map(user => new userAction.LoadSuccess(user));
+        .map((user: User) => new userAction.LoadSuccess(user));
     });
 }

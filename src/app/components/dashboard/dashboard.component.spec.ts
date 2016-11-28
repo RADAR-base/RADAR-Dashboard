@@ -1,12 +1,10 @@
 /* tslint:disable:no-unused-variable */
-
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { DashboardComponent } from './dashboard.component';
-import { TileComponent } from '../tile/tile.component';
-import { GridService } from '../../services/grid.service';
+import { ChartContainerComponent } from '../charts/container/chart-container.component';
 import { NO_ERRORS_SCHEMA, DebugElement } from '@angular/core';
-import { TileType } from '../tile/tile.type';
-import { Store, StoreModule } from '@ngrx/store';
+import { ChartType } from '../charts/chart.type';
+import { StoreModule } from '@ngrx/store';
 import { reducer } from '../../reducers/index';
 
 describe('Component: Dashboard', () => {
@@ -21,10 +19,10 @@ describe('Component: Dashboard', () => {
         ],
         declarations: [
           DashboardComponent,
-          TileComponent
+          ChartContainerComponent
         ],
         providers: [
-          TileType
+          ChartType
         ],
         schemas: [NO_ERRORS_SCHEMA]
       })

@@ -1,19 +1,22 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
-import { TileComponent } from './tile.component';
+import { ChartContainerComponent } from './chart-container.component';
 import { NO_ERRORS_SCHEMA, DebugElement } from '@angular/core';
-import { TileModule } from './tile.module';
+import { ChartModule } from '../chart.module';
+import { reducer } from '../../../reducers/index';
+import { StoreModule } from '@ngrx/store';
 
 describe('Component: Tile', () => {
-  let component: TileComponent;
-  let fixture: ComponentFixture<TileComponent>;
+  let component: ChartContainerComponent;
+  let fixture: ComponentFixture<ChartContainerComponent>;
   let element: DebugElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
         imports: [
-          TileModule
+          ChartModule,
+          StoreModule.provideStore(reducer)
         ],
         schemas: [NO_ERRORS_SCHEMA]
       })
@@ -21,7 +24,7 @@ describe('Component: Tile', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TileComponent);
+    fixture = TestBed.createComponent(ChartContainerComponent);
     component = fixture.componentInstance;
     element = fixture.debugElement;
 
