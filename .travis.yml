@@ -4,8 +4,7 @@ language: node_js
 node_js:
   - "node"
 
-cache:
-  yarn: true
+cache: yarn
 
 before_install:
   - export CHROME_BIN=/usr/bin/google-chrome
