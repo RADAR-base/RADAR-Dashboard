@@ -1,3 +1,3 @@
 # RADAR-CNS Frontend Dashboard App
 
-[![Build Status](https://travis-ci.org/RADAR-CNS/RADAR-Dashboard.svg?branch=develop)](https://travis-ci.org/RADAR-CNS/RADAR-Dashboard) [![Dependencies Status](https://david-dm.org/RADAR-CNS/RADAR-Dashboard.svg)](https://david-dm.org/RADAR-CNS/RADAR-Dashboard)
+[![Build Status](https://travis-ci.org/RADAR-CNS/RADAR-Dashboard.svg?branch=develop)](https://travis-ci.org/RADAR-CNS/RADAR-Dashboard) [![bitHound Dependencies](https://www.bithound.io/github/data-intuitive/LuciusWeb/badges/dependencies.svg)](https://www.bithound.io/github/data-intuitive/LuciusWeb/develop/dependencies/npm) [![bitHound Dev Dependencies](https://www.bithound.io/github/RADAR-CNS/RADAR-Dashboard/badges/devDependencies.svg)](https://www.bithound.io/github/RADAR-CNS/RADAR-Dashboard/develop/dependencies/npm)
