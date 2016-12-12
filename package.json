@@ -5,6 +5,7 @@
   "angular-cli": {},
   "scripts": {
     "start": "ng serve",
+    "build": "ng build",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
     "test:ci": "ng test --watch=false",
@@ -63,7 +64,7 @@
     "stylelint-config-standard": "15",
     "ts-node": "^1.7.2",
     "tslint": "4",
-    "typescript": "^2.0.10",
+    "typescript": "2.0.10",
     "webdriver-manager": "10.2.10"
   }
 }
