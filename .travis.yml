@@ -2,7 +2,12 @@ dist: trusty
 sudo: required
 language: node_js
 node_js:
-  - "node"
+  - node
+
+env:
+  global:
+    - secure: "DSc0N1OBVomwJogVVQKDBUjzOEhtgYFvgWUFRlrL2J/qmAEEJne0Y8DmJErfL5oN2zhCSC402v3PQiPk0Avt7E1jAJk5Jor8bIAA/yiot+zs1RMGEpIRg/H2zveGBJ6IxMWBMXMwxwGC52KhAT38AN9wKh5WI8+T3YTTBxP4WMOXAT0zTBRuSlOA44242aH+c5x370jEXjvdf0iA3x0aXMnlziFIqtnjygwWfs/p1lUAlpgbbnIDcR/mxjYPZ1f7w08u0z+i9hjSX660137Zw5p0W917orgNPo+73nEQAgJRQNq1TN3s4Ce1jJSzy56UL2TBsSC8oriH2vnMBSZfoDelb9hfaHYzUu4yt2flQmY3upX31uuJ7gXrjcPCKBnGgrwaIp7NEW7fhbPhmsVEhW3s6c+xiPuH1hya5WcFXI1xbShrI0dXCa2bx14oQQsiLBqGBfS+UUHvFovwD/3AlbeJpLASqQZtRk/yjC0C/ec4F8OW/diXtrPrrEn/DrpLG+yNuvHN0mMdQim+3qGvP9CinoYUA4K1wSx4bCHRq8ltgkd+fULBArlZW/zhQOU299IMAYk6hfRrgQUbTqYgvDA02TzvTAL4EFw+RHsQrWwBm7D+zEeI8b02a2vie2PmK4n+fNtuQzp6waXtujBwDMTzeY5ch1lymWO9WSKkC4o="
+    - secure: "b/VI5lVFzuWQpzMcJ8uKr9NC+yrxud5FJDZph+DINAu0Rwojz14++LKzCvWX3sQ205WYQ28+U4ow5HPkuZhh43xqVSdV9W/Sit0md1sJ9rFgcGpA/GfVPxYSIfOlY1wmjB2yL46c+vTyFOanvqhgqx2CTdSWsvbCMnzSyOnOBc1iMOYjhGt3c0b2ZmsCRSDsXdbIOI6jK8g4LsdJ4NkOXBSMk6BEPfnthAHFYVr3NHmf9F1RWEWQvDHQ0fjvH9I7V3bhJXmAJ304T/Onqjy1aHxxjotm0yuYCPeFqFOKl0b4ey0mpIYZ69ogX4KVcTyYqxgpalsO4YBDTueoy/Fsw8rL2xWJfSEuEXnH6OpNUTKy7HEFPRzkmyvb4/ulZjkr0LfI/RCYkR5po1tqCR3Msdi4LAu9hDqQSkI9/eSRfOy6ekbFzl5O0sXeaYyNkqeGQaf9IDcBD+dThHR9DMkWLLccwQI8BQWYNTW2dnPstCCh0AHf2xWLQ9Dl+fJ3c3UAM/nu0l/N3GpQkLS1kW6YaxXhVBwdbx6IY4X2lywbtErTjt1Ni1tV78OOoadFAyv6wcOkcqM08ulJ/CYhfxz8reGr73dqNYgFf0R7LJCoYa/l4gUOR1/MnbF9fNmu6uw7HXJw+raHL5MDCdDodGpN3GROMJgTjHZ1g4ZbS7M8xNA="
 
 cache: yarn
 
@@ -16,10 +21,24 @@ before_install:
   - sudo dpkg -i google-chrome*.deb
 
 before_script:
+  - echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   - yarn start &
-  - sleep 20
 
 script:
-  - yarn run lint
-  - yarn run test:ci
-  - yarn run e2e
+  - yarn build
+  - yarn lint
+  - yarn test:ci
+  - yarn e2e
+
+before_deploy:
+  - openssl aes-256-cbc -K $encrypted_03759da18559_key -iv $encrypted_03759da18559_iv -in deploy_key.enc -out deploy_key.pem -d
+  - eval "$(ssh-agent -s)"
+  - chmod 600 deploy_key.pem
+  - ssh-add deploy_key.pem
+
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: ./scripts/deploy.sh
+  on:
+    branch: master
