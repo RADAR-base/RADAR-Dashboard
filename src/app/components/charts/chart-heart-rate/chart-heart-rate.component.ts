@@ -38,15 +38,14 @@ import * as hrAction from '../../../actions/charts/heart-rate';
         </md-checkbox>
       </div>
     </div>
-    <div #chartContainer class="container">
-      <svg #svgContainer (window:resize)="onResize()"></svg>
+    <div class="container">
+      <svg #chartContainer (window:resize)="onResize()"></svg>
     </div>
   `,
   styleUrls: ['chart-heart-rate.component.scss']
 })
 export class ChartHeartRateComponent implements AfterViewInit {
   @ViewChild('chartContainer') chartContainer: ElementRef;
-  @ViewChild('svgContainer') svgContainer: ElementRef;
 
   @Input() title: string;
 
@@ -54,7 +53,6 @@ export class ChartHeartRateComponent implements AfterViewInit {
   private data: HeartRate[];
 
   private margin: any = { top: 16, bottom: 32, left: 48, right: 16 };
-  private chartContainerEl: HTMLElement;
   private svg: any;
   private chart: any;
   private width: number;
@@ -94,8 +92,7 @@ export class ChartHeartRateComponent implements AfterViewInit {
   }
 
   initChart() {
-    this.chartContainerEl = this.chartContainer.nativeElement;
-    this.svg = d3.select(this.svgContainer.nativeElement);
+    this.svg = d3.select(this.chartContainer.nativeElement);
 
     this.chart = this.svg.append('g')
       .attr('class', 'chart')
@@ -130,8 +127,12 @@ export class ChartHeartRateComponent implements AfterViewInit {
   }
 
   updateChartValues() {
-    this.width = this.chartContainerEl.clientWidth - this.margin.left - this.margin.right;
-    this.height = this.chartContainerEl.clientHeight - this.margin.top - this.margin.bottom;
+    let svgEl = this.chartContainer.nativeElement;
+    let width = svgEl.clientWidth || svgEl.parentNode.clientWidth;
+    let height = svgEl.clientHeight || svgEl.parentNode.clientHeight;
+
+    this.width = width - this.margin.left - this.margin.right;
+    this.height = height - this.margin.top - this.margin.bottom;
   }
 
   updateChart() {
