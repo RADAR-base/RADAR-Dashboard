@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
 
 import * as hrAction from '../../actions/charts/heart-rate';
-import { HeartRate } from '../../models/charts/heart-rate';
+import { HeartRate } from '../../models/charts/heart-rate.model';
 import { ChartHeartRateService } from '../../services/charts/heart-rate.service';
 
 @Injectable()
@@ -19,7 +19,7 @@ export class ChartHeartRateEffects {
   update$: Observable<Action> = this.actions$
     .ofType(hrAction.Types.UPDATE)
     .switchMap(() => {
-      return this.hrService.getData()
+      return this.hrService.get()
         .map((data: HeartRate[]) => new hrAction.UpdateSuccess(data));
     });
 }

@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { type } from '../shared/util';
-import { Tile } from '../models/tile';
+import { Tile } from '../models/tile.model';
 
 export const Types = {
   LOAD:         type('[Grid] Load'),

@@ -18,3 +18,7 @@ export function type<T>(label: T | ''): T {
 
   return <T>label;
 }
+
+export function requiredParam(parameter = '') {
+  throw new Error(`Missing required parameter: ${parameter}!`);
+}

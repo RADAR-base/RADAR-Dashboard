@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
 
 import { GridService } from '../services/grid.service';
-import { Tile } from '../models/tile';
+import { Tile } from '../models/tile.model';
 import * as gridAction from '../actions/grid';
 
 @Injectable()
@@ -19,7 +19,7 @@ export class GridEffects {
   load$: Observable<Action> = this.actions$
     .ofType(gridAction.Types.LOAD)
     .switchMap(() => {
-      return this.gridService.getTiles()
+      return this.gridService.get()
         .map((tiles: Tile[]) => new gridAction.LoadSuccess(tiles));
     });
 }

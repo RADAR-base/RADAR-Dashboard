@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ChartEmptyComponent } from './chart-empty/chart-empty.component';
 import { ChartHeartRateComponent } from './chart-heart-rate/chart-heart-rate.component';
 import { ChartContainerComponent } from './container/chart-container.component';
-import { ChartType } from './chart.type';
+import { ChartBaseLineComponent } from './chart-base-line/chart-base-line.component';
 
 @NgModule({
   imports: [
@@ -14,11 +14,10 @@ import { ChartType } from './chart.type';
   declarations: [
     ChartEmptyComponent,
     ChartHeartRateComponent,
-    ChartContainerComponent
+    ChartContainerComponent,
+    ChartBaseLineComponent,
   ],
-  providers: [
-    ChartType
-  ],
+  providers: [],
   exports: [
     ChartContainerComponent
   ]

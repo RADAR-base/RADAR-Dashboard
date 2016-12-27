@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 
 @Component({
   selector: 'app-chart-empty',
@@ -7,17 +7,12 @@ import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core
     <div class="header">
       <div class="title">{{title}}</div>
     </div>
-    <div class="container">
-    </div>
+    <div class="container"></div>
   `,
   styleUrls: ['chart-empty.component.scss']
 })
-export class ChartEmptyComponent implements OnInit {
+export class ChartEmptyComponent {
 
   @Input() title: string;
-
-  constructor() {}
-
-  ngOnInit() {}
 
 }
