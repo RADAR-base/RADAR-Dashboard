@@ -1,7 +1,7 @@
 import '@ngrx/core/add/operator/select';
 import { Observable } from 'rxjs/Observable';
 import * as gridAction from '../actions/grid';
-import { Tile } from '../models/tile';
+import { Tile } from '../models/tile.model';
 
 export interface State {
   loaded: boolean;

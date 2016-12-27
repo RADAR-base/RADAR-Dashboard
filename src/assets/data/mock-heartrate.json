@@ -1,199 +1,201 @@
 {
+  "header": {
+    "descriptive_statistic": "average",
+    "unit": "beats_per_min",
+    "effective_time_frame": {
+      "start_date_time": "2016-10-27T20:02:20Z",
+      "end_date_time": "2016-10-27T20:06:50Z"
+    }
+  },
   "dataset": [
     {
-      "org.radarcns.avro.HeartRateItem": {
-        "avg": 0.6117274154968215,
-        "effective_time_frame": {
-          "start_date_time": "2016-10-27T20:02:20Z",
-          "end_date_time": "2016-10-27T20:02:30Z"
-        }
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:02:20Z",
+        "end_date_time": "2016-10-27T20:02:30Z"
+      },
+      "heart_rate": {
+        "value": 60.17274154968215
       }
     },
     {
-      "org.radarcns.avro.HeartRateItem": {
-        "avg": 108.39180563508566,
-        "effective_time_frame": {
-          "start_date_time": "2016-10-27T20:03:00Z",
-          "end_date_time": "2016-10-27T20:03:10Z"
-        }
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:03:00Z",
+        "end_date_time": "2016-10-27T20:03:10Z"
+      },
+      "heart_rate": {
+        "value": 108.39180563508566
       }
     },
     {
-      "org.radarcns.avro.HeartRateItem": {
-        "avg": 135.30344544328108,
-        "effective_time_frame": {
-          "start_date_time": "2016-10-27T20:03:10Z",
-          "end_date_time": "2016-10-27T20:03:20Z"
-        }
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:03:10Z",
+        "end_date_time": "2016-10-27T20:03:20Z"
+      },
+      "heart_rate": {
+        "value": 135.30344544328108
       }
     },
     {
-      "org.radarcns.avro.HeartRateItem": {
-        "avg": 83.8401962366746,
-        "effective_time_frame": {
-          "start_date_time": "2016-10-27T20:03:20Z",
-          "end_date_time": "2016-10-27T20:03:30Z"
-        }
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:03:20Z",
+        "end_date_time": "2016-10-27T20:03:30Z"
+      },
+      "heart_rate": {
+        "value": 83.8401962366746
       }
     },
     {
-      "org.radarcns.avro.HeartRateItem": {
-        "avg": 97.23948813480582,
-        "effective_time_frame": {
-          "start_date_time": "2016-10-27T20:03:30Z",
-          "end_date_time": "2016-10-27T20:03:40Z"
-        }
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:03:30Z",
+        "end_date_time": "2016-10-27T20:03:40Z"
+      },
+      "heart_rate": {
+        "value": 97.23948813480582
       }
     },
     {
-      "org.radarcns.avro.HeartRateItem": {
-        "avg": 128.66517715813478,
-        "effective_time_frame": {
-          "start_date_time": "2016-10-27T20:03:40Z",
-          "end_date_time": "2016-10-27T20:03:50Z"
-        }
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:03:40Z",
+        "end_date_time": "2016-10-27T20:03:50Z"
+      },
+      "heart_rate": {
+        "value": 128.66517715813478
       }
     },
     {
-      "org.radarcns.avro.HeartRateItem": {
-        "avg": 91.80151784071714,
-        "effective_time_frame": {
-          "start_date_time": "2016-10-27T20:04:00Z",
-          "end_date_time": "2016-10-27T20:04:10Z"
-        }
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:04:00Z",
+        "end_date_time": "2016-10-27T20:04:10Z"
+      },
+      "heart_rate": {
+        "value": 91.80151784071714
       }
     },
     {
-      "org.radarcns.avro.HeartRateItem": {
-        "avg": 97.13949614657035,
-        "effective_time_frame": {
-          "start_date_time": "2016-10-27T20:04:10Z",
-          "end_date_time": "2016-10-27T20:04:20Z"
-        }
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:04:10Z",
+        "end_date_time": "2016-10-27T20:04:20Z"
+      },
+      "heart_rate": {
+        "value": 97.13949614657035
       }
     },
     {
-      "org.radarcns.avro.HeartRateItem": {
-        "avg": 121.85530820805425,
-        "effective_time_frame": {
-          "start_date_time": "2016-10-27T20:04:20Z",
-          "end_date_time": "2016-10-27T20:04:30Z"
-        }
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:04:20Z",
+        "end_date_time": "2016-10-27T20:04:30Z"
+      },
+      "heart_rate": {
+        "value": 121.85530820805425
       }
     },
     {
-      "org.radarcns.avro.HeartRateItem": {
-        "avg": 110.10916227683296,
-        "effective_time_frame": {
-          "start_date_time": "2016-10-27T20:04:30Z",
-          "end_date_time": "2016-10-27T20:04:40Z"
-        }
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:04:30Z",
+        "end_date_time": "2016-10-27T20:04:40Z"
+      },
+      "heart_rate": {
+        "value": 110.10916227683296
       }
     },
     {
-      "org.radarcns.avro.HeartRateItem": {
-        "avg": 93.2521764908646,
-        "effective_time_frame": {
-          "start_date_time": "2016-10-27T20:04:40Z",
-          "end_date_time": "2016-10-27T20:04:50Z"
-        }
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:04:40Z",
+        "end_date_time": "2016-10-27T20:04:50Z"
+      },
+      "heart_rate": {
+        "value": 93.2521764908646
       }
     },
     {
-      "org.radarcns.avro.HeartRateItem": {
-        "avg": 120.45378719830005,
-        "effective_time_frame": {
-          "start_date_time": "2016-10-27T20:05:00Z",
-          "end_date_time": "2016-10-27T20:05:10Z"
-        }
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:05:00Z",
+        "end_date_time": "2016-10-27T20:05:10Z"
+      },
+      "heart_rate": {
+        "value": 120.45378719830005
       }
     },
     {
-      "org.radarcns.avro.HeartRateItem": {
-        "avg": 110.07754079985364,
-        "effective_time_frame": {
-          "start_date_time": "2016-10-27T20:05:10Z",
-          "end_date_time": "2016-10-27T20:05:20Z"
-        }
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:05:10Z",
+        "end_date_time": "2016-10-27T20:05:20Z"
+      },
+      "heart_rate": {
+        "value": 110.07754079985364
       }
     },
     {
-      "org.radarcns.avro.HeartRateItem": {
-        "avg": 107.95353665953152,
-        "effective_time_frame": {
-          "start_date_time": "2016-10-27T20:05:20Z",
-          "end_date_time": "2016-10-27T20:05:30Z"
-        }
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:05:20Z",
+        "end_date_time": "2016-10-27T20:05:30Z"
+      },
+      "heart_rate": {
+        "value": 107.95353665953152
       }
     },
     {
-      "org.radarcns.avro.HeartRateItem": {
-        "avg": 97.37527353070601,
-        "effective_time_frame": {
-          "start_date_time": "2016-10-27T20:05:30Z",
-          "end_date_time": "2016-10-27T20:05:40Z"
-        }
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:05:30Z",
+        "end_date_time": "2016-10-27T20:05:40Z"
+      },
+      "heart_rate": {
+        "value": 97.37527353070601
       }
     },
     {
-      "org.radarcns.avro.HeartRateItem": {
-        "avg": 93.67078714323348,
-        "effective_time_frame": {
-          "start_date_time": "2016-10-27T20:05:40Z",
-          "end_date_time": "2016-10-27T20:05:50Z"
-        }
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:05:40Z",
+        "end_date_time": "2016-10-27T20:05:50Z"
+      },
+      "heart_rate": {
+        "value": 93.67078714323348
       }
     },
     {
-      "org.radarcns.avro.HeartRateItem": {
-        "avg": 108.13737208996312,
-        "effective_time_frame": {
-          "start_date_time": "2016-10-27T20:06:00Z",
-          "end_date_time": "2016-10-27T20:06:10Z"
-        }
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:06:00Z",
+        "end_date_time": "2016-10-27T20:06:10Z"
+      },
+      "heart_rate": {
+        "value": 108.13737208996312
       }
     },
     {
-      "org.radarcns.avro.HeartRateItem": {
-        "avg": 100.24465065899412,
-        "effective_time_frame": {
-          "start_date_time": "2016-10-27T20:06:10Z",
-          "end_date_time": "2016-10-27T20:06:20Z"
-        }
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:06:10Z",
+        "end_date_time": "2016-10-27T20:06:20Z"
+      },
+      "heart_rate": {
+        "value": 100.24465065899412
       }
     },
     {
-      "org.radarcns.avro.HeartRateItem": {
-        "avg": 96.08971596211111,
-        "effective_time_frame": {
-          "start_date_time": "2016-10-27T20:06:20Z",
-          "end_date_time": "2016-10-27T20:06:30Z"
-        }
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:06:20Z",
+        "end_date_time": "2016-10-27T20:06:30Z"
+      },
+      "heart_rate": {
+        "value": 96.08971596211111
       }
     },
     {
-      "org.radarcns.avro.HeartRateItem": {
-        "avg": 116.166892627476,
-        "effective_time_frame": {
-          "start_date_time": "2016-10-27T20:06:30Z",
-          "end_date_time": "2016-10-27T20:06:40Z"
-        }
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:06:30Z",
+        "end_date_time": "2016-10-27T20:06:40Z"
+      },
+      "heart_rate": {
+        "value": 116.166892627476
       }
     },
     {
-      "org.radarcns.avro.HeartRateItem": {
-        "avg": 97.85922078672958,
-        "effective_time_frame": {
-          "start_date_time": "2016-10-27T20:06:40Z",
-          "end_date_time": "2016-10-27T20:06:50Z"
-        }
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:06:40Z",
+        "end_date_time": "2016-10-27T20:06:50Z"
+      },
+      "heart_rate": {
+        "value": 97.85922078672958
       }
     }
-  ],
-  "effective_time_frame": {
-    "start_date_time": "2016-10-27T20:02:20Z",
-    "end_date_time": "2016-10-27T20:06:50Z"
-  },
-  "descriptive_statistic": "average",
-  "unit": "beats_per_min"
+  ]
 }

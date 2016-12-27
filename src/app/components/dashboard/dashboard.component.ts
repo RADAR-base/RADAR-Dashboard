@@ -2,17 +2,19 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { Tile } from '../../models/tile';
+import { Tile } from '../../models/tile.model';
 import * as fromRoot from '../../reducers';
 import * as gridAction from '../../actions/grid';
 import * as userAction from '../../actions/user';
+import { AppConfig } from '../../shared/app.config';
 
 @Component({
   selector: 'app-dashboard',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <app-ui-progress *ngIf="(loading$ | async) === true"></app-ui-progress>
-    <md-grid-list *ngIf="(loading$ | async) === false" cols="4" rowHeight="fit">
+    <md-grid-list *ngIf="(loading$ | async) === false" 
+      [cols]="gridCols" rowHeight="fit">
       <md-grid-tile *ngFor="let tile of tiles$ | async"
         [colspan]="tile.cols" [rowspan]="tile.rows">
         <app-chart-container [tile]="tile"></app-chart-container>
@@ -24,6 +26,7 @@ import * as userAction from '../../actions/user';
 export class DashboardComponent implements OnInit {
   tiles$: Observable<Tile[]>;
   loading$: Observable<boolean>;
+  gridCols = AppConfig.GRID_COLS;
 
   // TODO: update grid when MD adds responsive support
   // [https://github.com/angular/material2/blob/master/src/lib/grid-list/README.md]
