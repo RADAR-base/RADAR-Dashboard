@@ -1,24 +1,27 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
-import { Tile } from '../../../models/tile';
-import { ChartType } from '../chart.type';
+import { Tile } from '../../../models/tile.model';
 
 @Component({
   selector: 'app-chart-container',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <app-chart-heart-rate *ngIf="tile.type === chartType.HR" 
-      [title]="tile.title"
-      class="app-chart"></app-chart-heart-rate>
-    <app-chart-empty *ngIf="tile.type === chartType.EMPTY"
-      [title]="tile.title"
-      class="app-chart"></app-chart-empty>
+    <app-chart-heart-rate *ngIf="tile.type === CHART_TYPE.HR" 
+      [title]="title" class="app-chart"></app-chart-heart-rate>
+    <app-chart-empty *ngIf="tile.type === CHART_TYPE.EMPTY"
+      [title]="title" class="app-chart"></app-chart-empty>
   `,
   styleUrls: ['chart-container.component.scss']
 })
 export class ChartContainerComponent {
 
+  CHART_TYPE = {
+    HR: 'heart-rate',
+    EMPTY: 'empty',
+  };
+
   @Input() tile: Tile;
 
-  constructor(public chartType: ChartType) {}
-
+  get title() {
+    return this.tile.title;
+  }
 }

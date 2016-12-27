@@ -1,6 +1,6 @@
 import '@ngrx/core/add/operator/select';
 import { Observable } from 'rxjs/Observable';
-import { HeartRate } from '../../models/charts/heart-rate';
+import { HeartRate } from '../../models/charts/heart-rate.model';
 import * as hrAction from '../../actions/charts/heart-rate';
 
 export interface State {

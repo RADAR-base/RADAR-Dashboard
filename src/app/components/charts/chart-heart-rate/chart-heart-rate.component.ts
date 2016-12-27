@@ -1,11 +1,8 @@
-import {
-  Component, ElementRef, ViewChild, AfterViewInit, ChangeDetectionStrategy, Input
-} from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import * as d3 from 'd3';
 
-import { HeartRate } from '../../../models/charts/heart-rate';
+import { HeartRate } from '../../../models/charts/heart-rate.model';
 import * as fromRoot from '../../../reducers';
 import * as hrAction from '../../../actions/charts/heart-rate';
 
@@ -39,146 +36,28 @@ import * as hrAction from '../../../actions/charts/heart-rate';
       </div>
     </div>
     <div class="container">
-      <svg #chartContainer (window:resize)="onResize()"></svg>
+      <app-chart-base-line 
+        [chartData]="data$ | async"
+        [margin]="{ top: 16, right: 16, bottom: 32, left: 48 }"
+        [gradientEnabled]="true"></app-chart-base-line>
     </div>
   `,
   styleUrls: ['chart-heart-rate.component.scss']
 })
-export class ChartHeartRateComponent implements AfterViewInit {
-  @ViewChild('chartContainer') chartContainer: ElementRef;
+export class ChartHeartRateComponent implements OnInit {
 
   @Input() title: string;
 
-  private data$: Observable<HeartRate[]>;
-  private data: HeartRate[];
-
-  private margin: any = { top: 16, bottom: 32, left: 48, right: 16 };
-  private svg: any;
-  private chart: any;
-  private width: number;
-  private height: number;
-  private xScale: any;
-  private yScale: any;
-  private xAxis: any;
-  private yAxis: any;
-  private line: any;
-  private lineEl: any;
-  private gradient: any;
-  private gradientColors = [
-    { offset: '0%', color: '#2ED8E5' },
-    { offset: '50%', color: '#F8E81C' },
-    { offset: '100%', color: '#FF9100' }
-  ];
+  data$: Observable<HeartRate[]>;
 
   constructor(
     private store: Store<fromRoot.State>
   ) {
     this.data$ = this.store.let(fromRoot.getChartHRData)
       .filter(data => !!data);
-
-    this.data$.subscribe(
-      data => {
-        this.data = data;
-        this.updateChart();
-      }
-    );
   }
 
-  ngAfterViewInit() {
-    // needs to wait for the changes in the grid
-    // TODO: research a better solution, bad for testing!
-    setTimeout(() => this.initChart(), 100);
+  ngOnInit() {
     this.store.dispatch(new hrAction.Update('average'));
-  }
-
-  initChart() {
-    this.svg = d3.select(this.chartContainer.nativeElement);
-
-    this.chart = this.svg.append('g')
-      .attr('class', 'chart')
-      .attr('transform', `translate(${this.margin.left}, ${this.margin.top})`);
-
-    this.xAxis = this.chart.append('g')
-      .attr('class', 'axis axis--x');
-
-    this.yAxis = this.chart.append('g')
-      .attr('class', 'axis axis--y');
-
-    this.gradient = this.svg.append('linearGradient');
-    this.gradient
-      .attr('id', 'hr-gradient')
-      .attr('gradientUnits', 'userSpaceOnUse')
-      .attr('x1', 0)
-      .attr('x2', 0)
-      .selectAll('stop')
-      .data(this.gradientColors)
-      .enter().append('stop')
-      .attr('offset', (d) => d.offset)
-      .attr('stop-color', (d) => d.color);
-
-    this.lineEl = this.chart
-      .append('path')
-      .attr('class', 'line');
-
-    this.line = d3.line()
-      .curve(d3.curveBasis);
-
-    this.updateChart();
-  }
-
-  updateChartValues() {
-    let svgEl = this.chartContainer.nativeElement;
-    let width = svgEl.clientWidth || svgEl.parentNode.clientWidth;
-    let height = svgEl.clientHeight || svgEl.parentNode.clientHeight;
-
-    this.width = width - this.margin.left - this.margin.right;
-    this.height = height - this.margin.top - this.margin.bottom;
-  }
-
-  updateChart() {
-    if (this.chart && this.data) {
-      this.updateChartValues();
-      this.drawChart();
-    }
-  }
-
-  drawChart() {
-    this.chart
-      .attr('width', this.width)
-      .attr('height', this.height);
-
-    this.xScale = d3.scaleTime()
-      .range([0, this.width])
-      .domain(d3.extent(this.data, (d: any) => d.date));
-
-    this.yScale = d3.scaleLinear()
-      .range([this.height, 0])
-      .domain([0, d3.max(this.data, (d: any) => d.value)]);
-
-    this.gradient
-      .attr('y1', this.yScale(60))
-      .attr('y2', this.yScale(120));
-
-    this.xAxis
-      .attr('transform', `translate(0, ${this.yScale(0)})`)
-      .call(d3.axisBottom(this.xScale));
-
-    this.yAxis.call(
-      d3.axisLeft(this.yScale)
-        .tickSize(-this.width)
-    );
-
-    this.line
-      .x((d: any) => this.xScale(d.date))
-      .y((d: any) => this.yScale(d.value));
-
-    this.lineEl
-      .datum(this.data)
-      .attr('d', this.line);
-  }
-
-  onResize() {
-    // TODO: add debounce for better performance on window resize
-    this.updateChart();
   }
 }

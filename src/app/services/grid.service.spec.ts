@@ -1,4 +1,3 @@
-/* tslint:disable:no-unused-variable */
 import { TestBed, inject } from '@angular/core/testing';
 import { GridService } from './grid.service';
 import { HttpModule } from '@angular/http';
@@ -11,8 +10,7 @@ describe('Service: Grid', () => {
     });
   });
 
-  it('should ...',
-    inject([GridService], (service: GridService) => {
-      expect(service).toBeTruthy();
-    }));
+  it('should ...', inject([GridService], (service: GridService) => {
+    expect(service).toBeTruthy();
+  }));
 });

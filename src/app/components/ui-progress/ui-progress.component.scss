@@ -2,9 +2,9 @@
 
 :host {
   display: flex;
+  flex: 1 0 auto;
   align-items: center;
   justify-content: center;
-  flex: 1 0 auto;
 }
 
 .spinner {
@@ -14,7 +14,7 @@
 }
 
 .spinner > div {
-  flex-grow: 1;
+  flex: 1 0 auto;
   margin: 2px;
   background-color: rgba(white, 0.6);
   animation: sk-stretchdelay 1.2s infinite ease-in-out;

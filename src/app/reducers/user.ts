@@ -1,7 +1,7 @@
 import '@ngrx/core/add/operator/select';
 import { Observable } from 'rxjs/Observable';
 import * as userAction from '../actions/user';
-import { User } from '../models/user';
+import { User } from '../models/user.model';
 
 export interface State extends User {
   loaded: boolean;

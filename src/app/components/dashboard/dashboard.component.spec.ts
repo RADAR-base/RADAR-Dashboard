@@ -1,43 +1,79 @@
-/* tslint:disable:no-unused-variable */
-import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture, inject } from '@angular/core/testing';
 import { DashboardComponent } from './dashboard.component';
-import { ChartContainerComponent } from '../charts/container/chart-container.component';
-import { NO_ERRORS_SCHEMA, DebugElement } from '@angular/core';
-import { ChartType } from '../charts/chart.type';
-import { StoreModule } from '@ngrx/store';
+import { DebugElement } from '@angular/core';
+import { StoreModule, Store } from '@ngrx/store';
 import { reducer } from '../../reducers/index';
+import { MaterialModule } from '@angular/material';
+import { UIProgressComponent } from '../ui-progress/ui-progress.component';
+import { ChartModule } from '../charts/chart.module';
+import * as gridAction from '../../actions/grid';
 
-describe('Component: Dashboard', () => {
+describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
-  let element: DebugElement;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-        imports: [
-          StoreModule.provideStore(reducer)
-        ],
-        declarations: [
-          DashboardComponent,
-          ChartContainerComponent
-        ],
-        providers: [
-          ChartType
-        ],
-        schemas: [NO_ERRORS_SCHEMA]
-      })
-      .compileComponents();
-  }));
+  let element: HTMLElement;
+  let de: DebugElement;
+  let store;
 
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        ChartModule,
+        MaterialModule,
+        StoreModule.provideStore(reducer),
+      ],
+      declarations: [
+        DashboardComponent,
+        UIProgressComponent,
+      ]
+    });
+
     fixture = TestBed.createComponent(DashboardComponent);
     component = fixture.componentInstance;
-    element = fixture.debugElement;
+    element = fixture.nativeElement;
+    de = fixture.debugElement;
+
     fixture.detectChanges();
   });
 
-  it('should create the component', async(() => {
+  beforeEach(inject([Store], s => {
+    store = s;
+  }));
+
+  it('creates the component', async(() => {
     expect(component).toBeTruthy();
+  }));
+
+  it('shows loading', async(() => {
+    expect(element.querySelector('app-ui-progress')).toBeTruthy();
+    expect(element.querySelector('md-grid-list')).toBeFalsy();
+  }));
+
+  it('shows the grid', async(() => {
+    let mockGrid = [
+      {
+        'cols': 3,
+        'id': 1,
+        'rows': 2,
+        'title': 'Heart Rate Monitoring',
+        'type': 'heart-rate'
+      },
+      {
+        'cols': 1,
+        'id': 2,
+        'rows': 1,
+        'title': 'TBD',
+        'type': 'empty'
+      }
+    ];
+
+    store.dispatch(new gridAction.LoadSuccess(mockGrid));
+
+    component.tiles$.subscribe(() => {
+      fixture.detectChanges();
+      expect(element.querySelector('app-ui-progress')).toBeFalsy();
+      expect(element.querySelector('md-grid-list')).toBeTruthy();
+    });
   }));
 
 });
