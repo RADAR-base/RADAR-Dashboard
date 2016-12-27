@@ -1,6 +1,4 @@
-/* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ChartEmptyComponent } from './chart-empty.component';
 
 describe('ChartEmptyComponent', () => {

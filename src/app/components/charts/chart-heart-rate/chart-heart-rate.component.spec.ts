@@ -1,31 +1,29 @@
-/* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { ChartHeartRateComponent } from './chart-heart-rate.component';
 import { ChartModule } from '../chart.module';
 import { reducer } from '../../../reducers/index';
 import { StoreModule } from '@ngrx/store';
+import { DebugElement } from '@angular/core';
 
 describe('ChartHeartRateComponent', () => {
   let component: ChartHeartRateComponent;
   let fixture: ComponentFixture<ChartHeartRateComponent>;
-  let element: DebugElement;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-        imports: [
-          ChartModule,
-          StoreModule.provideStore(reducer)
-        ],
-        schemas: [NO_ERRORS_SCHEMA]
-      })
-      .compileComponents();
-  }));
+  let element: HTMLElement;
+  let de: DebugElement;
 
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        ChartModule,
+        StoreModule.provideStore(reducer)
+      ]
+    });
+
     fixture = TestBed.createComponent(ChartHeartRateComponent);
     component = fixture.componentInstance;
-    element = fixture.debugElement;
+    element = fixture.nativeElement;
+    de = fixture.debugElement;
+
     fixture.detectChanges();
   });
 
@@ -34,8 +32,6 @@ describe('ChartHeartRateComponent', () => {
   });
 
   it('should instantiate the chart', () => {
-    setTimeout(() => {
-      expect(element.nativeElement.querySelector('.chart')).toBeTruthy();
-    }, 500);
+    expect(element.querySelector('.chart')).toBeTruthy();
   });
 });

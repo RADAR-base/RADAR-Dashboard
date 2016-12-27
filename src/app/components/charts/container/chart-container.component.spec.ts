@@ -1,48 +1,83 @@
-/* tslint:disable:no-unused-variable */
-
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { ChartContainerComponent } from './chart-container.component';
-import { NO_ERRORS_SCHEMA, DebugElement } from '@angular/core';
-import { ChartModule } from '../chart.module';
-import { reducer } from '../../../reducers/index';
 import { StoreModule } from '@ngrx/store';
 
-describe('Component: Tile', () => {
+import { reducer } from '../../../reducers/index';
+import { ChartModule } from '../chart.module';
+import { DebugElement } from '@angular/core';
+
+describe('ChartContainerComponent', () => {
   let component: ChartContainerComponent;
   let fixture: ComponentFixture<ChartContainerComponent>;
-  let element: DebugElement;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-        imports: [
-          ChartModule,
-          StoreModule.provideStore(reducer)
-        ],
-        schemas: [NO_ERRORS_SCHEMA]
-      })
-      .compileComponents();
-  }));
+  let element: HTMLElement;
+  let de: DebugElement;
 
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        ChartModule,
+        StoreModule.provideStore(reducer)
+      ]
+    });
+
     fixture = TestBed.createComponent(ChartContainerComponent);
     component = fixture.componentInstance;
-    element = fixture.debugElement;
-
-    // Tile Stub
-    component.tile = {
-      id: 1,
-      rows: 2,
-      cols: 3,
-      title: 'Heart Rate Monitoring',
-      type: 'heart-rate'
-    };
-
-    fixture.detectChanges();
+    element = fixture.nativeElement;
+    de = fixture.debugElement;
   });
 
   it('should create the component', async(() => {
     expect(component).toBeTruthy();
   }));
+
+  describe('Heart Rate Type', () => {
+    beforeEach(() => {
+      // Tile Stub
+      component.tile = {
+        id: 1,
+        rows: 2,
+        cols: 3,
+        title: 'Heart Rate Monitoring',
+        type: 'heart-rate'
+      };
+      fixture.detectChanges();
+    });
+
+    it('should have a tile with title "Heart Rate Monitoring"', async(() => {
+      expect(component.title)
+        .toBe('Heart Rate Monitoring');
+      expect(element.querySelector('.title').textContent)
+        .toBe('Heart Rate Monitoring');
+    }));
+
+    it('should have a "app-chart-heart-rate" component', async(() => {
+      expect(component.tile.type)
+        .toBe(component.CHART_TYPE.HR);
+      expect(element.querySelector('app-chart-heart-rate'))
+        .toBeTruthy();
+    }));
+  });
+
+  describe('Empty Type', () => {
+    beforeEach(() => {
+      // Tile Stub
+      component.tile = {
+        id: 1,
+        rows: 2,
+        cols: 3,
+        title: 'Empty',
+        type: 'empty'
+      };
+      fixture.detectChanges();
+    });
+
+    it('should have a "app-chart-empty" component', async(() => {
+      expect(component.tile.type)
+        .toBe(component.CHART_TYPE.EMPTY);
+      expect(element.querySelector('app-chart-empty'))
+        .toBeTruthy();
+    }));
+  });
 
 });
 
