@@ -10,7 +10,7 @@ import { Tile } from '../../../models/tile.model';
     <app-chart-empty *ngIf="tile.type === CHART_TYPE.EMPTY"
       [title]="title" class="app-chart"></app-chart-empty>
   `,
-  styleUrls: ['chart-container.component.scss']
+  styleUrls: ['./chart-container.component.scss']
 })
 export class ChartContainerComponent {
 

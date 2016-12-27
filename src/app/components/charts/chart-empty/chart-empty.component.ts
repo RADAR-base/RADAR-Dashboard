@@ -9,7 +9,7 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
     </div>
     <div class="container"></div>
   `,
-  styleUrls: ['chart-empty.component.scss']
+  styleUrls: ['./chart-empty.component.scss']
 })
 export class ChartEmptyComponent {
 

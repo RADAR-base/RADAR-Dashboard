@@ -42,7 +42,7 @@ import * as hrAction from '../../../actions/charts/heart-rate';
         [gradientEnabled]="true"></app-chart-base-line>
     </div>
   `,
-  styleUrls: ['chart-heart-rate.component.scss']
+  styleUrls: ['./chart-heart-rate.component.scss']
 })
 export class ChartHeartRateComponent implements OnInit {
 

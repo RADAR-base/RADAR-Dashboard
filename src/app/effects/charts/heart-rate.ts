@@ -10,11 +10,6 @@ import { ChartHeartRateService } from '../../services/charts/heart-rate.service'
 @Injectable()
 export class ChartHeartRateEffects {
 
-  constructor(
-    private actions$: Actions,
-    private hrService: ChartHeartRateService
-  ) { }
-
   @Effect()
   update$: Observable<Action> = this.actions$
     .ofType(hrAction.Types.UPDATE)
@@ -22,4 +17,9 @@ export class ChartHeartRateEffects {
       return this.hrService.get()
         .map((data: HeartRate[]) => new hrAction.UpdateSuccess(data));
     });
+
+  constructor(
+    private actions$: Actions,
+    private hrService: ChartHeartRateService
+  ) { }
 }
