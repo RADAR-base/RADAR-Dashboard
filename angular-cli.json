@@ -19,9 +19,7 @@
       "styles": [
         "styles/main.scss"
       ],
-      "scripts": [
-        "../node_modules/hammerjs/hammer.js"
-      ],
+      "scripts": [],
       "environments": {
         "source": "environments/environment.ts",
         "dev": "environments/environment.ts",

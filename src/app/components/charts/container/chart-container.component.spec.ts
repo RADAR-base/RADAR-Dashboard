@@ -1,10 +1,10 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { ChartContainerComponent } from './chart-container.component';
 import { StoreModule } from '@ngrx/store';
-
 import { reducer } from '../../../reducers/index';
 import { ChartModule } from '../chart.module';
 import { DebugElement } from '@angular/core';
+import { MaterialModule } from '@angular/material';
 
 describe('ChartContainerComponent', () => {
   let component: ChartContainerComponent;
@@ -16,6 +16,7 @@ describe('ChartContainerComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         ChartModule,
+        MaterialModule.forRoot(),
         StoreModule.provideStore(reducer)
       ]
     });

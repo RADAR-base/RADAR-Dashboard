@@ -4,7 +4,6 @@ import { HeartRate } from '../../models/charts/heart-rate.model';
 import * as hrAction from '../../actions/charts/heart-rate';
 
 export interface State {
-  loaded: boolean;
   loading: boolean;
   data: HeartRate[];
   config: any;
@@ -12,7 +11,6 @@ export interface State {
 }
 
 const initialState: State = {
-  loaded: false,
   loading: false,
   data: null,
   config: null,
@@ -31,7 +29,6 @@ export function reducer(state = initialState, action: hrAction.Actions): State {
 
     case hrAction.Types.UPDATE_SUCCESS: {
       return Object.assign({}, state, {
-        loaded: true,
         loading: false,
         data: action.payload
       });
@@ -40,10 +37,6 @@ export function reducer(state = initialState, action: hrAction.Actions): State {
     default:
       return state;
   }
-}
-
-export function getLoaded(state$: Observable<State>) {
-  return state$.select(s => s.loaded);
 }
 
 export function getLoading(state$: Observable<State>) {

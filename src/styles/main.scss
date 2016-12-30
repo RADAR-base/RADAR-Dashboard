@@ -1,6 +1,7 @@
 @import 'common';
 @import 'theme';
 
+// Main
 html,
 body {
   width: 100%;
@@ -22,6 +23,38 @@ p {
   margin: 16px;
 }
 
+// MD2 Select
+md-select {
+  padding: 0 8px;
+  border-radius: 4px;
+  background: rgba(white, 0.05);
+
+  &:focus .md-select-trigger,
+  &:focus:not(.md-select-disabled) .md-select-trigger,
+  .md-select-trigger {
+    border: none;
+  }
+
+  .md-select-trigger {
+    height: 24px;
+  }
+
+  .md-select-value {
+    top: initial;
+    color: $cl-white-80;
+  }
+}
+
+.md-select-content {
+  background: $cl-lighter;
+}
+
+// MD2 Checkbox
+.md-checkbox-inner-container {
+  opacity: 0.6;
+}
+
+// Fonts
 .font-title {
   @include font-title;
 }

@@ -4,6 +4,7 @@ import { ChartModule } from '../chart.module';
 import { reducer } from '../../../reducers/index';
 import { StoreModule } from '@ngrx/store';
 import { DebugElement } from '@angular/core';
+import { MaterialModule } from '@angular/material';
 
 describe('ChartHeartRateComponent', () => {
   let component: ChartHeartRateComponent;
@@ -15,6 +16,7 @@ describe('ChartHeartRateComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         ChartModule,
+        MaterialModule.forRoot(),
         StoreModule.provideStore(reducer)
       ]
     });

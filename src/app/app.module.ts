@@ -19,6 +19,9 @@ import { UserService } from './services/user.service';
 import { ChartHeartRateService } from './services/charts/heart-rate.service';
 import { ChartHeartRateEffects } from './effects/charts/heart-rate';
 import { ChartModule } from './components/charts/chart.module';
+import { ConfigEffects } from './effects/config';
+import { ConfigService } from './services/config.service';
+import 'hammerjs';
 
 @NgModule({
   declarations: [
@@ -39,6 +42,7 @@ import { ChartModule } from './components/charts/chart.module';
     // Setup ngrx/effects
     EffectsModule.run(GridEffects),
     EffectsModule.run(UserEffects),
+    EffectsModule.run(ConfigEffects),
     EffectsModule.run(ChartHeartRateEffects),
 
     // App modules
@@ -48,6 +52,7 @@ import { ChartModule } from './components/charts/chart.module';
   providers: [
     GridService,
     UserService,
+    ConfigService,
     ErrorService,
 
     // Chart Services
