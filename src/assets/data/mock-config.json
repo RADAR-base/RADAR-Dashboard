@@ -1,36 +1,12 @@
 {
   "descriptive_statistic": [
     {
-      "label": "average",
+      "label": "Average",
       "value": "avg"
     },
     {
-      "label": "count",
-      "value": "count"
-    },
-    {
-      "label": "maximum",
-      "value": "max"
-    },
-    {
-      "label": "median",
+      "label": "Median",
       "value": "median"
-    },
-    {
-      "label": "minimum",
-      "value": "min"
-    },
-    {
-      "label": "sum",
-      "value": "sum"
-    },
-    {
-      "label": "interquartile range",
-      "value": "iqr"
-    },
-    {
-      "label": "quartile",
-      "value": "quartile"
     }
   ]
 }

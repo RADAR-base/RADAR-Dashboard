@@ -4,14 +4,12 @@ import * as userAction from '../actions/user';
 import { User } from '../models/user.model';
 
 export interface State extends User {
-  loaded: boolean;
   loading: boolean;
   id: string;
   lastUpdate: string;
 }
 
 const initialState: State = {
-  loaded: false,
   loading: false,
   id: null,
   lastUpdate: null
@@ -31,7 +29,6 @@ export function reducer(state = initialState, action: userAction.Actions): State
 
       return {
         loading: false,
-        loaded: true,
         id: user.id,
         lastUpdate: user.lastUpdate
       };
@@ -42,14 +39,11 @@ export function reducer(state = initialState, action: userAction.Actions): State
   }
 }
 
-export function getLoaded(state$: Observable<State>) {
-  return state$.select(s => s.loaded);
-}
-
 export function getLoading(state$: Observable<State>) {
   return state$.select(s => s.loading);
 }
 
 export function getUserID(state$: Observable<State>) {
+  console.log(state$.select(s => s.id).mergeAll());
   return state$.select(s => s.id);
 }

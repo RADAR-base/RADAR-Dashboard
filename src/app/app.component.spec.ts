@@ -4,6 +4,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { routes } from './app.routes';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { StoreModule } from '@ngrx/store';
+import { reducer } from './reducers/index';
 
 describe('App: RADAR', () => {
   let component: AppComponent;
@@ -15,6 +17,7 @@ describe('App: RADAR', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule.withRoutes(routes),
+        StoreModule.provideStore(reducer),
       ],
       declarations: [
         AppComponent,

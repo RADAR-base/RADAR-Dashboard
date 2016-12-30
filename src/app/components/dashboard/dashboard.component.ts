@@ -2,11 +2,10 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
+import { AppConfig } from '../../shared/app.config';
 import { Tile } from '../../models/tile.model';
 import * as fromRoot from '../../reducers';
 import * as gridAction from '../../actions/grid';
-import * as userAction from '../../actions/user';
-import { AppConfig } from '../../shared/app.config';
 
 @Component({
   selector: 'app-dashboard',
@@ -39,6 +38,5 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(new gridAction.Load());
-    this.store.dispatch(new userAction.Load());
   }
 }

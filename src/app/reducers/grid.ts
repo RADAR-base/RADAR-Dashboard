@@ -4,13 +4,11 @@ import * as gridAction from '../actions/grid';
 import { Tile } from '../models/tile.model';
 
 export interface State {
-  loaded: boolean;
   loading: boolean;
   tiles: Tile[];
 }
 
 const initialState: State = {
-  loaded: false,
   loading: false,
   tiles: []
 };
@@ -26,7 +24,6 @@ export function reducer(state = initialState, action: gridAction.Actions): State
 
     case gridAction.Types.LOAD_SUCCESS: {
       return {
-        loaded: true,
         loading: false,
         tiles: action.payload
       };
@@ -35,10 +32,6 @@ export function reducer(state = initialState, action: gridAction.Actions): State
     default:
       return state;
   }
-}
-
-export function getLoaded(state$: Observable<State>) {
-  return state$.select(s => s.loaded);
 }
 
 export function getLoading(state$: Observable<State>) {

@@ -10,17 +10,20 @@ import { Observable } from 'rxjs';
 
 import * as fromGrid from './grid';
 import * as fromUser from './user';
+import * as fromConfig from './config';
 import * as fromChartHR from './charts/heart-rate';
 
 export interface State {
   grid: fromGrid.State;
   user: fromUser.State;
+  config: fromConfig.State;
   chartHR: fromChartHR.State;
 }
 
 const reducers = {
   grid: fromGrid.reducer,
   user: fromUser.reducer,
+  config: fromConfig.reducer,
   chartHR: fromChartHR.reducer,
 };
 
@@ -39,27 +42,29 @@ export function reducer(state: any, action: any) {
 
 // Grid Selectors
 export function getGridState(state$: Observable<State>) {
-  return state$.select(state => state.grid);
+  return state$.select(s => s.grid);
 }
-
 export const getGridLoading = compose(fromGrid.getLoading, getGridState);
-export const getGridLoaded = compose(fromGrid.getLoaded, getGridState);
 export const getGridTiles = compose(fromGrid.getTiles, getGridState);
 
 // User Selectors
 export function getUserState(state$: Observable<State>) {
-  return state$.select(state => state.user);
+  return state$.select(s => s.user);
 }
-
-export const getUserLoaded = compose(fromUser.getLoaded, getUserState);
 export const getUserLoading = compose(fromUser.getLoading, getUserState);
 export const getUserID = compose(fromUser.getUserID, getUserState);
 
+// Config Selectors
+export function getConfigState(state$: Observable<State>) {
+  return state$.select(s => s.config);
+}
+export const getConfigLoading = compose(fromConfig.getLoading, getConfigState);
+export const getConfigDescriptiveStatistic =
+  compose(fromConfig.getDescriptiveStatistic, getConfigState);
+
 // ChartHR Selectors
 export function getChartHRState(state$: Observable<State>) {
-  return state$.select(state => state.chartHR);
+  return state$.select(s => s.chartHR);
 }
-
-export const getChartHRLoaded = compose(fromChartHR.getLoaded, getChartHRState);
 export const getChartHRLoading = compose(fromChartHR.getLoading, getChartHRState);
 export const getChartHRData = compose(fromChartHR.getData, getChartHRState);

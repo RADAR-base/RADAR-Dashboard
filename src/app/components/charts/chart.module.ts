@@ -9,7 +9,7 @@ import { ChartBaseLineComponent } from './chart-base-line/chart-base-line.compon
 @NgModule({
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
   ],
   declarations: [
     ChartEmptyComponent,
