@@ -10,11 +10,6 @@ import * as userAction from '../actions/user';
 @Injectable()
 export class UserEffects {
 
-  constructor(
-    private actions$: Actions,
-    private userService: UserService
-  ) { }
-
   @Effect()
   load$: Observable<Action> = this.actions$
     .ofType(userAction.Types.LOAD)
@@ -22,4 +17,9 @@ export class UserEffects {
       return this.userService.get()
         .map((user: User) => new userAction.LoadSuccess(user));
     });
+
+  constructor(
+    private actions$: Actions,
+    private userService: UserService
+  ) { }
 }

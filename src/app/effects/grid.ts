@@ -10,11 +10,6 @@ import * as gridAction from '../actions/grid';
 @Injectable()
 export class GridEffects {
 
-  constructor(
-    private actions$: Actions,
-    private gridService: GridService
-  ) { }
-
   @Effect()
   load$: Observable<Action> = this.actions$
     .ofType(gridAction.Types.LOAD)
@@ -22,4 +17,9 @@ export class GridEffects {
       return this.gridService.get()
         .map((tiles: Tile[]) => new gridAction.LoadSuccess(tiles));
     });
+
+  constructor(
+    private actions$: Actions,
+    private gridService: GridService
+  ) { }
 }
