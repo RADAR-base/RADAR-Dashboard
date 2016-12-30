@@ -1,4 +1,4 @@
-import { ChartGradientColors, ChartMargin } from '../models/charts/chart.model';
+import { ChartGradientColors, ChartMargin } from '../models/chart.model';
 
 export class AppConfig {
   // API Config
