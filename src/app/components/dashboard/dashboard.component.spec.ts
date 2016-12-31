@@ -2,11 +2,11 @@ import { TestBed, async, ComponentFixture, inject } from '@angular/core/testing'
 import { DashboardComponent } from './dashboard.component';
 import { DebugElement } from '@angular/core';
 import { StoreModule, Store } from '@ngrx/store';
-import { reducer } from '../../reducers/index';
+import { reducer } from '../../store/index';
 import { MaterialModule } from '@angular/material';
 import { UIProgressComponent } from '../ui-progress/ui-progress.component';
-import { ChartModule } from '../charts/chart.module';
-import * as gridAction from '../../actions/grid';
+import { ChartModule } from '../../charts/chart.module';
+import * as gridAction from '../../store/grid/grid.actions';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;

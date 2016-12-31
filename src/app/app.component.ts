@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import * as fromRoot from './reducers';
-import * as userAction from './actions/user';
-import * as configAction from './actions/config';
+import * as fromRoot from './store/';
+import * as userAction from './store/user/user.actions';
+import * as configAction from './store/config/config.actions';
 
 @Component({
   selector: 'app-root',

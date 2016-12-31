@@ -1,11 +1,10 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-
 import { AppConfig } from '../../shared/app.config';
 import { Tile } from '../../models/tile.model';
-import * as fromRoot from '../../reducers';
-import * as gridAction from '../../actions/grid';
+import * as fromRoot from '../../store';
+import * as gridAction from '../../store/grid/grid.actions';
 
 @Component({
   selector: 'app-dashboard',
