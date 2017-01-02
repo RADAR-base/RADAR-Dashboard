@@ -25,7 +25,7 @@ export function reducer(state = initialState, action: userAction.Actions): State
     }
 
     case userAction.Types.LOAD_SUCCESS: {
-      const user: User = action.payload;
+      const user = action.payload;
 
       return {
         loading: false,

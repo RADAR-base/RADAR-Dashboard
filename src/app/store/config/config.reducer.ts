@@ -22,7 +22,7 @@ export function reducer(state = initialState, action: configAction.Actions): Sta
     }
 
     case configAction.Types.LOAD_SUCCESS: {
-      let payload: Config = action.payload;
+      let payload = action.payload;
       return {
         loading: false,
         descriptive_statistic: payload.descriptive_statistic
