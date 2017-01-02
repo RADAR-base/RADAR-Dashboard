@@ -2,17 +2,17 @@ import { Action } from '@ngrx/store';
 import { type } from '../../shared/util';
 import { Tile } from '../../models/tile.model';
 
-export const Types = {
-  LOAD:         type('[Grid] Load'),
-  LOAD_SUCCESS: type('[Grid] Load Success'),
-};
+export class Types {
+  static readonly LOAD         = type('[Grid] Load');
+  static readonly LOAD_SUCCESS = type('[Grid] Load Success');
+}
 
 export class Load implements Action {
-  type = Types.LOAD;
+  readonly type = Types.LOAD;
 }
 
 export class LoadSuccess implements Action {
-  type = Types.LOAD_SUCCESS;
+  readonly type = Types.LOAD_SUCCESS;
 
   constructor(public payload: Tile[]) {}
 }
