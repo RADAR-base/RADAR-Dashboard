@@ -5,4 +5,4 @@
 
 ## Supportive Partners
 We thank our supportive partners who have been a tremendous help in streamlining our development process.
- <img src="https://github.com/RADAR-CNS/RADAR-Dashboard/docs/supportive-partners-src/brwsrstck.svg">
+![Browserstack_logo](https://github.com/RADAR-CNS/RADAR-Dashboard/docs/supportive-partners-src/brwsrstck.svg)
