@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { HeartRate } from '../../models/chart-heart-rate.model';
+import { TimeSeries } from '../../models/time-series.model';
 import * as fromRoot from '../../store';
 import * as hrAction from '../../store/chart-heart-rate/chart-heart-rate.actions';
 import { DescriptiveStatistic } from '../../models/config.model';
@@ -37,7 +37,7 @@ export class ChartHeartRateComponent implements OnInit {
 
   @Input() title: string;
 
-  data$: Observable<HeartRate[]>;
+  data$: Observable<TimeSeries[]>;
   stat$: Observable<DescriptiveStatistic[]>;
 
   constructor(

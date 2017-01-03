@@ -2,7 +2,7 @@ import { TestBed, inject, async } from '@angular/core/testing';
 import { ChartHeartRateService } from './chart-heart-rate.service';
 import { HttpModule, XHRBackend, Response, ResponseOptions } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
-import { HeartRate } from '../models/chart-heart-rate.model';
+import { TimeSeries } from '../models/time-series.model';
 
 describe('ChartHeartRateService', () => {
   let mockbackend, service;
@@ -56,14 +56,14 @@ describe('ChartHeartRateService', () => {
         mockbackend = _mockbackend;
       }));
 
-  it('should parse data to HeartRate[] (async)', async(() => {
+  it('should parse data to TimeSeries[] (async)', async(() => {
     let options = new ResponseOptions({ body: mockData });
     mockbackend.connections.subscribe(connection => {
       connection.mockRespond(new Response(options));
     });
 
     service.get().subscribe(data => {
-      data.map((obj: HeartRate) => {
+      data.map((obj: TimeSeries) => {
         expect(obj.value).toBeDefined();
         expect(obj.date).toBeDefined();
       });

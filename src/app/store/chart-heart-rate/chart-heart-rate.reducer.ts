@@ -1,11 +1,11 @@
 import '@ngrx/core/add/operator/select';
 import { Observable } from 'rxjs/Observable';
-import { HeartRate } from '../../models/chart-heart-rate.model';
+import { TimeSeries } from '../../models/time-series.model';
 import * as hrAction from './chart-heart-rate.actions';
 
 export interface State {
   loading: boolean;
-  data: HeartRate[];
+  data: TimeSeries[];
   config: any;
   request: any;
 }

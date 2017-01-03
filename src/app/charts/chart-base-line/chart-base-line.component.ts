@@ -1,7 +1,7 @@
 import { Component, Input, AfterViewInit } from '@angular/core';
 import * as d3 from 'd3';
 
-import { HeartRate } from '../../models/chart-heart-rate.model';
+import { TimeSeries } from '../../models/time-series.model';
 import { ChartBase } from '../chart-base/chart-base';
 import { AppConfig } from '../../shared/app.config';
 
@@ -13,7 +13,7 @@ import { AppConfig } from '../../shared/app.config';
   styleUrls: ['./chart-base-line.component.scss']
 })
 export class ChartBaseLineComponent extends ChartBase implements AfterViewInit {
-  data: HeartRate[];
+  data: TimeSeries[];
 
   @Input() gradientEnabled: boolean = false;
   @Input() gradientColors = AppConfig.CHART_GRADIENT_COLORS;

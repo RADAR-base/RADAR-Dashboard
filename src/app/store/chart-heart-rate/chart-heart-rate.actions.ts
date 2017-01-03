@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { type } from '../../shared/util';
-import { HeartRate } from '../../models/chart-heart-rate.model';
+import { TimeSeries } from '../../models/time-series.model';
 
 export class Types {
   static readonly UPDATE         = type('[ChartHeartRate] Update');
@@ -16,7 +16,7 @@ export class Update implements Action {
 export class UpdateSuccess implements Action {
   readonly type = Types.UPDATE_SUCCESS;
 
-  constructor(public payload: HeartRate[]) {}
+  constructor(public payload: TimeSeries[]) {}
 }
 
 export type Actions
