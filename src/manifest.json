@@ -1,0 +1,33 @@
+{
+  "lang": "en",
+  "short_name": "RADAR Dashboard",
+  "name": "RADAR Dashboard",
+  "description": "Manage and monitor research data from the RADAR-CNS Platform.",
+  "icons": [
+    {
+      "src": "assets/icons/icon_48.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/icon_96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/icon_144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/icon_192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "index.html?launcher=true",
+  "display": "standalone",
+  "orientation": "landscape",
+  "theme_color": "#6d9aa5",
+  "background_color": "#6d9aa5"
+}

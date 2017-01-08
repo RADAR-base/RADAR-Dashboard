@@ -8,7 +8,11 @@
       "root": "src",
       "outDir": "dist",
       "assets": [
-        "assets"
+        "assets",
+        "favicon.ico",
+        "manifest.json",
+        "browserconfig.xml",
+        "apple-touch-icon.png"
       ],
       "index": "index.html",
       "main": "main.ts",

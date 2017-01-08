@@ -25,7 +25,7 @@ before_script:
   - yarn start &
 
 script:
-  - yarn build
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then yarn build; fi
   - yarn lint
   - yarn test:ci
   - yarn e2e
