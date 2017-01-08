@@ -25,7 +25,6 @@ before_script:
   - yarn start &
 
 script:
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then yarn build; fi
   - yarn lint
   - yarn test:ci
   - yarn e2e
@@ -35,6 +34,7 @@ before_deploy:
   - eval "$(ssh-agent -s)"
   - chmod 600 deploy_key.pem
   - ssh-add deploy_key.pem
+  - yarn build
 
 deploy:
   provider: script
