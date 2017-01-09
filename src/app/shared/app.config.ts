@@ -2,6 +2,7 @@ import { ChartGradientColors, ChartMargin } from '../models/chart.model';
 
 export class AppConfig {
   // API Config
+  static API_URI: string = 'http://radar-restapi.eu-west-1.elasticbeanstalk.com/api';
   static API_PATH: string = 'assets/data';
 
   // Grid Config
