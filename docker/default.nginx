@@ -1,0 +1,24 @@
+# Default server configuration
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+
+  root /var/www;
+	index index.html;
+	server_name radar-dashboard;
+
+	location / {
+		# First attempt to serve request as file, then
+		# as directory, then fall back to displaying a 404.
+		try_files $uri $uri/ =404;
+	}
+
+  gzip on;
+  gzip_static on;
+  gzip_vary on;
+  gzip_proxied any;
+  gzip_comp_level 6;
+  gzip_buffers 16 8k;
+  gzip_min_length 256;
+  gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript application/vnd.ms-fontobject application/x-font-ttf font/opentype image/svg+xml image/x-icon;
+}

@@ -5,14 +5,15 @@ Create the docker image:
 $ docker build -t radarcns/radar-dashboard ./
 ```
 
-Or Pull from dockerhub
+Or pull from dockerhub:
 ```
 $ docker pull radarcns/radar-dashboard:latest 
 ```
 
 Run the docker image locally:
 ```
-$ docker run -p 3000:3000 --name radar-dashboard -t radarcns/radar-dashboard:latest
+$ docker run -d -p 3030:80 --name radar-dashboard radarcns/radar-dashboard:latest
 ```
 
-The dashboard will be running at http://localhost:3000
+The dashboard will be running at http://localhost:3030
+

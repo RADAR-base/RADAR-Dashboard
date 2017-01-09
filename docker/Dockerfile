@@ -10,36 +10,50 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-## BUILD COMMAND
-# docker build -t radarcns/dashboard ./
-
-## RUN COMMAND
-# docker run -p 3000:3000 --name radar-dashboard -t radarcns/dashboard
-
 FROM node:7.4
 
-MAINTAINER Herculano Campos <im@herkulano.com>
+MAINTAINER Maximilian Kerz @kerzmaximilian, Amos Folarin @afolarin, Herculano Campos @herkulano
 
 LABEL org="RADAR-CNS"
 LABEL project="Dashboard"
 LABEL version="1.0"
 
+ENV PROJ RADAR-Dashboard
+
+# install git nginx yarn
 RUN echo && echo "==> Installing Components" \
-    && apt-get -qq update \
-    && apt-get install git \
-    && npm install http-server -g --quiet
+    && curl -sS http://dl.yarnpkg.com/debian/pubkey.gpg \
+        | apt-key add - \
+    && echo "deb http://dl.yarnpkg.com/debian/ stable main" \
+        | tee /etc/apt/sources.list.d/yarn.list \
+    && apt-get update -qq \
+    && apt-get install -y git nginx yarn \
+    && echo
 
-RUN echo && echo "==> Cloning RADAR-Dashboard from GitHub" \
+# forward request and error logs to docker log collector
+RUN echo && echo "==> Setup nginx" \
+    && ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log \
+    && echo
+
+# override default nginx config
+COPY default.nginx /etc/nginx/sites-available/default
+
+# git clone PROJ
+RUN echo && echo "==> Cloning ${PROJ} from GitHub" \
     && cd /opt \
-    && git clone --depth 1 "https://github.com/RADAR-CNS/RADAR-Dashboard.git"
+    && git clone --depth 1 "https://github.com/RADAR-CNS/${PROJ}.git" \
+    && echo
 
+# yarn install and build
 RUN echo && echo "==> Installing dependencies and building App" \
-    && mkdir www \
-    && cd /opt/RADAR-Dashboard \
-    && npm install --quiet \
-    && npm run build \
-    && cp -a /opt/RADAR-Dashboard/dist/. /www
+    && cd /opt/${PROJ} \
+    && yarn \
+    && yarn build \
+    && rm -rf /var/www/* \
+    && cp -a /opt/${PROJ}/dist/. /var/www \
+    && echo
 
-EXPOSE 3000
-ENTRYPOINT ["http-server", "/www"]
-CMD ["-p", "3000"]
+# start nginx and expose internal port:80
+EXPOSE 80
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
