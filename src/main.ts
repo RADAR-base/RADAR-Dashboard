@@ -2,12 +2,12 @@ import './polyfills.ts';
 
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { enableProdMode } from '@angular/core';
-import { environment } from './environments/environment';
+import { ENV } from './environments/environment';
 import { AppModule } from './app/';
 
 import { hmrBootstrap } from './hmr';
 
-if (environment.production) {
+if (ENV.PROD) {
   enableProdMode();
 }
 
@@ -15,7 +15,7 @@ const bootstrap = () => {
   return platformBrowserDynamic().bootstrapModule(AppModule);
 };
 
-if (environment.hmr) {
+if (ENV.HMR) {
   if (module['hot']) {
     hmrBootstrap(module, bootstrap);
   } else {

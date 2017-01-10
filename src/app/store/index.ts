@@ -3,7 +3,7 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/let';
 
 import { ActionReducer, combineReducers } from '@ngrx/store';
-import { environment } from '../../environments/environment';
+import { ENV } from '../../environments/environment';
 import { compose } from '@ngrx/core/compose';
 import { storeFreeze } from 'ngrx-store-freeze';
 import { Observable } from 'rxjs';
@@ -33,7 +33,7 @@ const productionReducer: ActionReducer<State> =
   combineReducers(reducers);
 
 export function reducer(state: any, action: any) {
-  if (environment.production) {
+  if (ENV.PROD) {
     return productionReducer(state, action);
   } else {
     return developmentReducer(state, action);
