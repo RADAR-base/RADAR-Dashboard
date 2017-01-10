@@ -12,7 +12,7 @@ export class ChartHeartRateService {
 
   get(): Observable<TimeSeries[]> {
     // TODO: Change when API is ready
-    return this.http.get(AppConfig.API_URI + '/HR/avg/user')
+    return this.http.get(`${AppConfig.API_URI}/HR/avg/user`)
       .map(res => res.json().dataset || [])
       .map(this.parseHeartRateData)
       .catch(ErrorService.handleError);

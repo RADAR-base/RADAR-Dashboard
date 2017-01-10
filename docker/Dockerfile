@@ -18,8 +18,6 @@ LABEL org="RADAR-CNS"
 LABEL project="Dashboard"
 LABEL version="1.0"
 
-ENV PROJ RADAR-Dashboard
-
 # install git nginx yarn
 RUN echo && echo "==> Installing Components" \
     && curl -sS http://dl.yarnpkg.com/debian/pubkey.gpg \
@@ -39,21 +37,9 @@ RUN echo && echo "==> Setup nginx" \
 # override default nginx config
 COPY default.nginx /etc/nginx/sites-available/default
 
-# git clone PROJ
-RUN echo && echo "==> Cloning ${PROJ} from GitHub" \
-    && cd /opt \
-    && git clone --depth 1 "https://github.com/RADAR-CNS/${PROJ}.git" \
-    && echo
+# add init script
+COPY init.sh .
 
-# yarn install and build
-RUN echo && echo "==> Installing dependencies and building App" \
-    && cd /opt/${PROJ} \
-    && yarn \
-    && yarn build \
-    && rm -rf /var/www/* \
-    && cp -a /opt/${PROJ}/dist/. /var/www \
-    && echo
-
-# start nginx and expose internal port:80
+# expose internal port:80 and run init.sh
 EXPOSE 80
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["./init.sh"]
