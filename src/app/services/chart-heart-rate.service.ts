@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Http } from '@angular/http';
 import { TimeSeries } from '../models/time-series.model';
 import { ErrorService } from './error.service';
-import { AppConfig } from '../shared/app.config';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class ChartHeartRateService {
@@ -12,7 +12,7 @@ export class ChartHeartRateService {
 
   get(): Observable<TimeSeries[]> {
     // TODO: Change when API is ready
-    return this.http.get(`${AppConfig.API_URI}/HR/avg/user`)
+    return this.http.get(`${environment.API_URI}/HR/avg/user`)
       .map(res => res.json().dataset || [])
       .map(this.parseHeartRateData)
       .catch(ErrorService.handleError);

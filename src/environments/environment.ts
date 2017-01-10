@@ -5,5 +5,7 @@
 
 export const environment = {
   production: false,
-  hmr: false
+  hmr: false,
+  API_URI: 'http://radar-restapi.eu-west-1.elasticbeanstalk.com/api',
+  API_PATH: 'assets/data'
 };
