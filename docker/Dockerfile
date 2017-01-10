@@ -42,4 +42,4 @@ COPY init.sh .
 
 # expose internal port:80 and run init.sh
 EXPOSE 80
-ENTRYPOINT ["./init.sh"]
+ENTRYPOINT ["./entrypoint.sh"]
