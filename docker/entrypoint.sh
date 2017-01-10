@@ -6,7 +6,7 @@ echo '==' && echo "==> Enviroment variables"
     PROJ_FOLDER="/opt/${PROJ}"
     echo PROJ=${PROJ}
 
-    API_URI=${API_URI:-'http://TEST/TEST'}
+    API_URI=${API_URI:-'http://radar-restapi.eu-west-1.elasticbeanstalk.com/api'}
     echo API_URI=${API_URI}
 
     BRANCH=${BRANCH:-'master'}
@@ -28,11 +28,11 @@ if [ ${INIT} == YES ]; then
 
     # replace API_URI in AppConfig
     echo '==' && echo "==> Replace API_URI"
-        cd ${PROJ_FOLDER}/src/app/shared
-        FIND="(API_URI)(.*?[=])(.*?['](.*?[']))"
+        cd ${PROJ_FOLDER}/src/environments
+        FIND="(API_URI)(.*?[:])(.*?['](.*?[']))"
         REPLACE="\\1\\2 \'$API_URI\'"
-        sed -ri "s|${FIND}|${REPLACE}|" app.config.ts
-        cat -n app.config.ts
+        sed -ri "s|${FIND}|${REPLACE}|" environment.prod.ts
+        cat -n environment.prod.ts
 
     # yarn install and build
     echo '==' && echo "==> Installing dependencies and building App"

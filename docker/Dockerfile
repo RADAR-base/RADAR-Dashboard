@@ -15,7 +15,7 @@ FROM node:7.4
 MAINTAINER Maximilian Kerz @kerzmaximilian, Amos Folarin @afolarin, Herculano Campos @herkulano
 
 LABEL org="RADAR-CNS"
-LABEL project="Dashboard"
+LABEL name="RADAR-Dashboard"
 LABEL version="1.0"
 
 # install git nginx yarn
@@ -38,8 +38,8 @@ RUN echo && echo "==> Setup nginx" \
 COPY default.nginx /etc/nginx/sites-available/default
 
 # add init script
-COPY init.sh .
+COPY entrypoint.sh .
 
 # expose internal port:80 and run init.sh
 EXPOSE 80
-ENTRYPOINT ["./entrypoint.sh"]
+CMD ["./entrypoint.sh"]
