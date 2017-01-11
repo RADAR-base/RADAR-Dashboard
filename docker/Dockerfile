@@ -38,8 +38,8 @@ RUN echo && echo "==> Setup nginx" \
 COPY default.nginx /etc/nginx/sites-available/default
 
 # add init script
-COPY entrypoint.sh .
+COPY init.sh .
 
 # expose internal port:80 and run init.sh
 EXPOSE 80
-CMD ["./entrypoint.sh"]
+CMD ["./init.sh"]
