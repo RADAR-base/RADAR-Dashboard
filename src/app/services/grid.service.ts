@@ -12,7 +12,6 @@ export class GridService {
 
   get(): Observable<Tile[]> {
     return this.http.get(`${ENV.API_PATH}/mock-grid.json`)
-      .delay(2000)
       .map(res => res.json().dataset || [])
       .catch(ErrorService.handleError);
   }
