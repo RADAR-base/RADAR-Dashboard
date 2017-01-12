@@ -2,50 +2,33 @@
 set -e
 
 echo '==' && echo "==> Enviroment variables"
-    PROJ=${PROJ:-'RADAR-Dashboard'}
-    PROJ_FOLDER="/opt/${PROJ}"
+    echo BRANCH=${BRANCH}
     echo PROJ=${PROJ}
+    echo PROJ_FOLDER=${PROJ_FOLDER}
 
     API_URI=${API_URI:-'http://radar-restapi.eu-west-1.elasticbeanstalk.com/api'}
     echo API_URI=${API_URI}
 
-    BRANCH=${BRANCH:-'master'}
-    echo BRANCH=${BRANCH}
+echo '==' && echo "==> Replace API_URI"
+    cd /var/www
 
-echo '==' && echo "==> Initiate project?"
-    INIT_FILE="${PROJ_FOLDER}/.dockerinit"
-    if [ -f ${INIT_FILE} ]; then source ${INIT_FILE}; fi
-    INIT=${INIT:-YES}
-    echo INIT=${INIT}
+    # search file for main.*.bundle.js
+    MAIN_FILE=$(find . -name "main.*.bundle.js")
 
-# initiate project
-if [ ${INIT} == YES ]; then
+    # regex patterns
+    # replace API_URI value
+    FIND="(API_URI:)([\"\'])(.*?)([\"\'])"
+    API_URI=$(echo ${API_URI} | sed 's|\/|\\\/|g')
+    REPLACE="\1\2$API_URI\4"
+    perl -pi -e "s/${FIND}/${REPLACE}/" ${MAIN_FILE}
 
-    # git clone PROJ
-    echo '==' && echo "==> Cloning ${PROJ} from GitHub"
-        cd /opt
-        git clone --depth 1 "https://github.com/RADAR-CNS/${PROJ}.git" --branch ${BRANCH}
+    # check replacement
+    head -c 300 ${MAIN_FILE} && echo
 
-    # replace API_URI in AppConfig
-    echo '==' && echo "==> Replace API_URI"
-        cd ${PROJ_FOLDER}/src/environments
-        FIND="(API_URI)(.*?[:])(.*?['](.*?[']))"
-        REPLACE="\\1\\2 \'$API_URI\'"
-        sed -ri "s|${FIND}|${REPLACE}|" environment.prod.ts
-        cat -n environment.prod.ts
-
-    # yarn install and build
-    echo '==' && echo "==> Installing dependencies and building App"
-        cd ${PROJ_FOLDER}
-        yarn
-        yarn build
-        rm -rf /var/www/*
-        cp -a ${PROJ_FOLDER}/dist/. /var/www
-
-    echo '==' && echo "==> ${PROJ} initiated"
-        echo -e "INIT=NO" >> ${INIT_FILE}
-
-fi
+    # rm previous gzip file
+    # gzip main.*.bundle.js
+    rm ${MAIN_FILE}.gz
+    gzip -5 -c ${MAIN_FILE} > ${MAIN_FILE}.gz
 
 echo '==' && echo "==> Starting nginx in the foreground"
     nginx -g "daemon off;"
