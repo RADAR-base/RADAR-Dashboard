@@ -3401,9 +3401,9 @@ jasmine-core@~2.4.0:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/jasmine-core/-/jasmine-core-2.4.1.tgz#6f83ab3a0f16951722ce07d206c773d57cc838be"
 
-jasmine-spec-reporter@3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/jasmine-spec-reporter/-/jasmine-spec-reporter-3.1.0.tgz#29c74a51d25f7ca46a635d18925ba431a7be840d"
+jasmine-spec-reporter@2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/jasmine-spec-reporter/-/jasmine-spec-reporter-2.7.0.tgz#42907ff889952a129c0afc2929e195f4e74c98ff"
   dependencies:
     colors "1.1.2"
 

@@ -30,3 +30,7 @@ let context = require.context('./', true, /\.spec\.ts/);
 context.keys().map(context);
 // Finally, start Karma to run the tests.
 __karma__.start();
+
+// GLOBAL PARAMS
+import { MockParams } from './app/test/mock-params';
+(<any>window).PARAMS = MockParams;
