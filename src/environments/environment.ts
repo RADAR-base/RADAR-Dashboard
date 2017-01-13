@@ -3,9 +3,7 @@
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `angular-cli.json`.
 
-export const ENV = {
+export const environment = {
   PROD: false,
-  HMR: false,
-  API_URI: 'http://radar-restapi.eu-west-1.elasticbeanstalk.com/api',
-  API_PATH: 'assets/data'
+  HMR: false
 };

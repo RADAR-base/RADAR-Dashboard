@@ -12,23 +12,16 @@ echo '==' && echo "==> Enviroment variables"
 echo '==' && echo "==> Replace API_URI"
     cd /var/www
 
-    # search file for main.*.bundle.js
-    MAIN_FILE=$(find . -name "main.*.bundle.js")
-
     # regex patterns
+    FILE="index.html"
+    FIND="(API_URI[^\"\']*)(.*)(,)"
+    REPLACE="\\1\'${API_URI}\'\\3"
+
     # replace API_URI value
-    FIND="(API_URI:)([\"\'])(.*?)([\"\'])"
-    API_URI=$(echo ${API_URI} | sed 's|\/|\\\/|g')
-    REPLACE="\1\2$API_URI\4"
-    perl -pi -e "s/${FIND}/${REPLACE}/" ${MAIN_FILE}
+    sed -ri "s|${FIND}|${REPLACE}|" ${FILE}
 
     # check replacement
-    head -c 300 ${MAIN_FILE} && echo
-
-    # rm previous gzip file
-    # gzip main.*.bundle.js
-    rm ${MAIN_FILE}.gz
-    gzip -5 -c ${MAIN_FILE} > ${MAIN_FILE}.gz
+    cat ${FILE}
 
 echo '==' && echo "==> Starting nginx in the foreground"
     nginx -g "daemon off;"
