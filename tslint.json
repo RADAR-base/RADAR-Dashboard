@@ -11,6 +11,8 @@
     "curly": true,
     "eofline": true,
     "forin": true,
+    "import-blacklist": [true, "rxjs"],
+    "import-spacing": true,
     "indent": [
       true,
       "spaces"
@@ -40,6 +42,7 @@
     "no-debugger": true,
     "no-duplicate-variable": true,
     "no-empty": false,
+    "no-empty-interface": true,
     "no-eval": true,
     "no-inferrable-types": true,
     "no-shadowed-variable": true,
@@ -56,6 +59,7 @@
       "check-else",
       "check-whitespace"
     ],
+    "prefer-const": true,
     "quotemark": [
       true,
       "single"
@@ -78,6 +82,8 @@
         "variable-declaration": "nospace"
       }
     ],
+    "typeof-compare": true,
+    "unified-signatures": true,
     "variable-name": false,
     "whitespace": [
       true,

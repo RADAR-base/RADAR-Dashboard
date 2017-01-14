@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { AppConfig } from '../../shared/app.config';
 import { Tile } from '../../models/tile.model';
 import * as fromRoot from '../../store';
@@ -11,7 +11,7 @@ import * as gridAction from '../../store/grid/grid.actions';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <app-ui-progress *ngIf="(loading$ | async) === true"></app-ui-progress>
-    <md-grid-list *ngIf="(loading$ | async) === false" 
+    <md-grid-list *ngIf="(loading$ | async) === false"
       [cols]="gridCols" rowHeight="fit">
       <md-grid-tile *ngFor="let tile of tiles$ | async"
         [colspan]="tile.cols" [rowspan]="tile.rows">

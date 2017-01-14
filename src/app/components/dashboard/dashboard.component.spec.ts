@@ -6,6 +6,7 @@ import { reducer } from '../../store/index';
 import { MaterialModule } from '@angular/material';
 import { UIProgressComponent } from '../ui-progress/ui-progress.component';
 import { ChartModule } from '../../charts/chart.module';
+import { MockGrid } from '../../test/mock-grid';
 import * as gridAction from '../../store/grid/grid.actions';
 
 describe('DashboardComponent', () => {
@@ -50,24 +51,7 @@ describe('DashboardComponent', () => {
   }));
 
   it('shows the grid', async(() => {
-    let mockGrid = [
-      {
-        'cols': 3,
-        'id': 1,
-        'rows': 2,
-        'title': 'Heart Rate Monitoring',
-        'type': 'heart-rate'
-      },
-      {
-        'cols': 1,
-        'id': 2,
-        'rows': 1,
-        'title': 'TBD',
-        'type': 'empty'
-      }
-    ];
-
-    store.dispatch(new gridAction.LoadSuccess(mockGrid));
+    store.dispatch(new gridAction.LoadSuccess(MockGrid));
 
     component.tiles$.subscribe(() => {
       fixture.detectChanges();

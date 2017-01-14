@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { Action } from '@ngrx/store';
-
 import { GridService } from '../../services/grid.service';
 import { Tile } from '../../models/tile.model';
 import * as gridAction from './grid.actions';

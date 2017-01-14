@@ -1,5 +1,7 @@
+import 'rxjs/add/operator/debounceTime';
+
 import { ElementRef, ViewChild, Input } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import * as d3 from 'd3';
 
 import { AppConfig } from '../../shared/app.config';
@@ -66,9 +68,9 @@ export class ChartBase {
   }
 
   beforeDraw() {
-    let svgEl = this.chartContainer.nativeElement;
-    let width = svgEl.clientWidth || svgEl.parentNode.clientWidth;
-    let height = svgEl.clientHeight || svgEl.parentNode.clientHeight;
+    const svgEl = this.chartContainer.nativeElement;
+    const width = svgEl.clientWidth || svgEl.parentNode.clientWidth;
+    const height = svgEl.clientHeight || svgEl.parentNode.clientHeight;
 
     this.width = width - this.margin.left - this.margin.right;
     this.height = height - this.margin.top - this.margin.bottom;

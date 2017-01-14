@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { Action } from '@ngrx/store';
-
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user.model';
 import * as userAction from './user.actions';
