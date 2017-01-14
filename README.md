@@ -37,6 +37,43 @@ $ yarn css
 ## Contributing
 PR's and issues are welcome. When creating a PR make sure all tests pass. In case of a new feature add unit tests.
 
+## Docker
+
+Create docker image:
+```
+$ docker build -t radarcns/radar-dashboard ./
+```
+
+Or pull from [dockerhub](https://hub.docker.com/r/radarcns/radar-dashboard/):
+```
+$ docker pull radarcns/radar-dashboard:latest 
+```
+
+Run docker image locally:
+```
+$ docker run -d -p 3030:80 --name radar-dashboard radarcns/radar-dashboard:latest
+```
+
+The dashboard will be running at http://localhost:3030
+
+### Docker environment parameters
+
+The environment parameters are set in `docker run` so they can be overridden by `docker-compose`. More information in [https://docs.docker.com](https://docs.docker.com/compose/environment-variables/#/setting-environment-variables-in-containers).
+
+```bash
+# to change the URI of the API
+API_URI='http://radar-restapi.eu-west-1.elasticbeanstalk.com/api'
+```
+
+The parameters are replaced in `index.html` and are global to the application.
+```html
+<script>
+  const PARAMS = {
+    API_URI: 'http://radar-restapi.eu-west-1.elasticbeanstalk.com/api'
+  };
+</script>
+```
+
 ## Supporting Partners
 We thank our supporting partners who have been a tremendous help in streamlining our development process.
 
