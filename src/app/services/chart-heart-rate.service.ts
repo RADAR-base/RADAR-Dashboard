@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { Http } from '@angular/http';
 import { TimeSeries } from '../models/time-series.model';
 import { ErrorService } from './error.service';

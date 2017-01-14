@@ -1,4 +1,5 @@
 import '@ngrx/core/add/operator/select';
+import 'rxjs/add/operator/mergeAll';
 import { Observable } from 'rxjs/Observable';
 import * as userAction from './user.actions';
 import { User } from '../../models/user.model';

@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { TimeSeries } from '../../models/time-series.model';
 import * as fromRoot from '../../store';
 import * as hrAction from '../../store/chart-heart-rate/chart-heart-rate.actions';
@@ -25,7 +25,7 @@ import { DescriptiveStatistic } from '../../models/config.model';
       </div>
     </div>
     <div class="container">
-      <app-chart-base-line 
+      <app-chart-base-line
         [chartData]="data$ | async"
         [margin]="{ top: 16, right: 16, bottom: 32, left: 48 }"
         [gradientEnabled]="true"></app-chart-base-line>

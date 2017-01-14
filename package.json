@@ -45,7 +45,7 @@
     "@types/hammerjs": "^2.0.34",
     "@types/jasmine": "^2.5.40",
     "@types/node": "^7.0.0",
-    "angular-cli": "1.0.0-beta.24",
+    "angular-cli": "1.0.0-beta.25.5",
     "codelyzer": "^2.0.0-beta.4",
     "enhanced-resolve": "^3.0.0",
     "jasmine-core": "2.5.2",
@@ -67,7 +67,6 @@
     "stylelint-config-standard": "^15.0.1",
     "ts-node": "2.0.0",
     "tslint": "4.3.1",
-    "typescript": "^2.1.5",
-    "webdriver-manager": "^11.1.0"
+    "typescript": "^2.1.5"
   }
 }

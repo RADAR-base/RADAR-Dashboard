@@ -6,7 +6,7 @@ import { ActionReducer, combineReducers } from '@ngrx/store';
 import { environment } from '../../environments/environment';
 import { compose } from '@ngrx/core/compose';
 import { storeFreeze } from 'ngrx-store-freeze';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 
 import * as fromGrid from './grid/grid.reducer';
 import * as fromUser from './user/user.reducer';

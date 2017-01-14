@@ -7,7 +7,6 @@ import { MockData } from '../test/mock-HR-data';
 
 describe('ChartHeartRateService', () => {
   let mockbackend, service;
-  let mockData = MockData;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -28,7 +27,7 @@ describe('ChartHeartRateService', () => {
       }));
 
   it('should parse data to TimeSeries[] (async)', async(() => {
-    let options = new ResponseOptions({ body: mockData });
+    const options = new ResponseOptions({ body: MockData });
     mockbackend.connections.subscribe(connection => {
       connection.mockRespond(new Response(options));
     });
