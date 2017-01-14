@@ -2,7 +2,6 @@
 set -e
 
 echo '==' && echo "==> Enviroment variables"
-    echo BRANCH=${BRANCH}
     echo PROJ=${PROJ}
     echo PROJ_FOLDER=${PROJ_FOLDER}
 

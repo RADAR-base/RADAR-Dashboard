@@ -18,7 +18,6 @@ LABEL org="RADAR-CNS"
 LABEL name="RADAR-Dashboard"
 LABEL version="1.0"
 
-ENV BRANCH="master"
 ENV PROJ="RADAR-Dashboard"
 ENV PROJ_FOLDER="/opt/${PROJ}"
 
@@ -38,13 +37,12 @@ RUN echo && echo "==> Setup nginx" \
     && ln -sf /dev/stderr /var/log/nginx/error.log \
     && echo
 
-# override default nginx config
-COPY default.nginx /etc/nginx/sites-available/default
+    # override default nginx config
+    COPY ./docker/default.nginx /etc/nginx/sites-available/default
 
-# git clone PROJ
-RUN echo && echo "==> Cloning ${PROJ} from GitHub" \
-    && cd /opt \
-    && git clone --depth 1 "https://github.com/RADAR-CNS/${PROJ}.git" --branch ${BRANCH}
+# copy project files to build
+RUN echo && echo "==> Copy files to build ${PROJ}"
+    COPY ./ ${PROJ_FOLDER}
 
 # yarn install and build
 RUN echo && echo "==> Installing dependencies and building App" \
@@ -52,10 +50,11 @@ RUN echo && echo "==> Installing dependencies and building App" \
     && yarn \
     && yarn build \
     && rm -rf /var/www/* \
-    && cp -a ${PROJ_FOLDER}/dist/. /var/www
+    && cp -a ${PROJ_FOLDER}/dist/. /var/www \
+    && echo
 
 # add init script
-COPY init.sh .
+COPY ./docker/init.sh .
 
 # expose internal port:80 and run init.sh
 EXPOSE 80
