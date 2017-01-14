@@ -1,0 +1,6 @@
+.*
+node_modules
+dist
+docs
+e2e
+scripts
