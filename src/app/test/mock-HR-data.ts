@@ -1,4 +1,4 @@
-export const MockData = {
+export const MockHRData = {
   'header': {
     'descriptive_statistic': 'average',
     'unit': 'beats_per_min',
