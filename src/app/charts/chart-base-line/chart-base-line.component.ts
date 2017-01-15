@@ -1,18 +1,16 @@
-import { Component, Input, AfterViewInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import * as d3 from 'd3';
 
 import { TimeSeries } from '../../models/time-series.model';
-import { ChartBase } from '../chart-base/chart-base';
+import { ChartBaseComponent } from '../chart-base/chart-base.component';
 import { AppConfig } from '../../shared/app.config';
 
 @Component({
   selector: 'app-chart-base-line',
-  template: `
-    <svg #chartContainer></svg>
-  `,
+  template: '',
   styleUrls: ['./chart-base-line.component.scss']
 })
-export class ChartBaseLineComponent extends ChartBase implements AfterViewInit {
+export class ChartBaseLineComponent extends ChartBaseComponent {
   data: TimeSeries[];
 
   @Input() gradientEnabled: boolean = false;
@@ -31,11 +29,7 @@ export class ChartBaseLineComponent extends ChartBase implements AfterViewInit {
   lineEl: any;
   gradient: any;
 
-  ngAfterViewInit() {
-    this.init();
-  }
-
-  afterInit() {
+  init() {
     // Add HR Gradient
     if (this.gradientEnabled) {
       this.chart.classed('hr-gradient', true);
@@ -60,7 +54,7 @@ export class ChartBaseLineComponent extends ChartBase implements AfterViewInit {
     this.line = d3.line()
       .curve(d3.curveBasis);
 
-    super.afterInit();
+    super.init();
   }
 
   draw() {

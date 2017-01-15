@@ -19,7 +19,7 @@ import { ChartBaseLineComponent } from './chart-base-line/chart-base-line.compon
   ],
   providers: [],
   exports: [
-    ChartContainerComponent
+    ChartContainerComponent,
   ]
 })
 export class ChartModule {}
