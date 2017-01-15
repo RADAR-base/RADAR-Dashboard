@@ -34,6 +34,6 @@ describe('ChartHeartRateComponent', () => {
   });
 
   it('should instantiate the chart', () => {
-    expect(element.querySelector('.chart')).toBeTruthy();
+    expect(element.querySelector('g.chart')).toBeTruthy();
   });
 });

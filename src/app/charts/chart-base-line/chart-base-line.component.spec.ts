@@ -1,9 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ChartBaseLineComponent } from './chart-base-line.component';
 import { DebugElement } from '@angular/core';
-import { ChartModule } from '../chart.module';
-import { StoreModule } from '@ngrx/store';
-import { reducer } from '../../store';
+import { MockTimeSeriesData } from '../../test/mock-timeseries-data';
 
 describe('ChartBaseLineComponent', () => {
   let component: ChartBaseLineComponent;
@@ -13,10 +11,7 @@ describe('ChartBaseLineComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        ChartModule,
-        StoreModule.provideStore(reducer)
-      ]
+      declarations: [ChartBaseLineComponent]
     });
 
     fixture = TestBed.createComponent(ChartBaseLineComponent);
@@ -25,7 +20,65 @@ describe('ChartBaseLineComponent', () => {
     de = fixture.debugElement;
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  describe('=> without @Input', () => {
+    beforeEach(() => {
+      fixture.detectChanges();
+    });
+
+    it('should create', () => {
+      expect(component).toBeTruthy();
+    });
+
+    it('should create a chart', () => {
+      expect(element.querySelector('g.chart')).toBeTruthy();
+    });
+
+    it('should update() and change size if data changes', () => {
+      // without data
+      expect(component.width).toBeFalsy();
+      expect(component.height).toBeFalsy();
+      expect(component.chartData).toBeFalsy();
+
+      // with data
+      component.chartData = MockTimeSeriesData;
+      expect(component.width).toBeGreaterThan(0);
+      expect(component.height).toBeGreaterThan(0);
+      expect(component.chartData).toEqual(MockTimeSeriesData);
+    });
+
+    it('path.line should have attribute "d" when data changes', () => {
+      const lineEl = element.querySelector('path.line');
+      const attr = 'd';
+
+      // without data
+      expect(lineEl.getAttribute(attr)).toBeFalsy();
+
+      // with data
+      component.chartData = MockTimeSeriesData;
+      expect(lineEl.getAttribute(attr)).toBeTruthy();
+    });
+
+    it('should not have a linearGradient', () => {
+      expect(element.querySelector('linearGradient#hr-gradient')).toBeFalsy();
+    });
   });
+
+  describe('=> with @Input: gradientEnabled', () => {
+    beforeEach(() => {
+      component.gradientEnabled = true;
+      fixture.detectChanges();
+    });
+
+    it('should have a linearGradient', () => {
+      expect(element.querySelector('linearGradient#hr-gradient')).toBeTruthy();
+    });
+
+    it('linearGradient should have attributes "y1, y2" when data changes', () => {
+      component.chartData = MockTimeSeriesData;
+      const gradient = element.querySelector('linearGradient#hr-gradient');
+      expect(gradient.getAttribute('y1')).toBeGreaterThan(0);
+      expect(gradient.getAttribute('y2')).toBeGreaterThan(0);
+    });
+  });
+
 });
