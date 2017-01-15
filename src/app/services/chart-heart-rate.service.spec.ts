@@ -3,7 +3,7 @@ import { ChartHeartRateService } from './chart-heart-rate.service';
 import { HttpModule, XHRBackend, Response, ResponseOptions } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 import { TimeSeries } from '../models/time-series.model';
-import { MockData } from '../test/mock-HR-data';
+import { MockHRData } from '../test/mock-HR-data';
 
 describe('ChartHeartRateService', () => {
   let mockbackend, service;
@@ -27,7 +27,7 @@ describe('ChartHeartRateService', () => {
       }));
 
   it('should parse data to TimeSeries[] (async)', async(() => {
-    const options = new ResponseOptions({ body: MockData });
+    const options = new ResponseOptions({ body: MockHRData });
     mockbackend.connections.subscribe(connection => {
       connection.mockRespond(new Response(options));
     });
