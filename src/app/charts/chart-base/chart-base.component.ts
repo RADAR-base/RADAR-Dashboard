@@ -1,20 +1,34 @@
 import 'rxjs/add/operator/debounceTime';
 
-import { ElementRef, ViewChild, Input } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
+import { ElementRef, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import * as d3 from 'd3';
 
 import { AppConfig } from '../../shared/app.config';
 
-export class ChartBase {
-  @ViewChild('chartContainer') chartContainer: ElementRef;
+/**
+ *  BaseComponent to be extended by chart components
+ *
+ *  The component appends an SVG element, it doesn't need a template.
+ *  It has an empty template for testing purposes only.
+ *
+ *  Use the following lifecycle methods in the extended components:
+ *  1. init() use to initiate the chart elements
+ *  2. update() use if you need to update values before draw()
+ *  3. draw() use to draw the chart elements
+ */
+@Component({
+  template: '',
+})
+export class ChartBaseComponent implements AfterViewInit {
 
   data: any;
 
   @Input()
   set chartData(value) {
     this.data = value;
-    this.update();
+    this.beforeUpdate();
   }
 
   get chartData() {
@@ -33,16 +47,25 @@ export class ChartBase {
 
   private window$: Observable<Event>;
 
-  init() {
+  constructor(
+    private elementRef: ElementRef
+  ) {}
+
+  ngAfterViewInit() {
+    this.svg = d3.select(this.elementRef.nativeElement)
+      .append('svg');
+
+    this.beforeInit();
+  }
+
+  private beforeInit() {
     // Observe window resize and debounce events
     this.window$ = Observable.fromEvent(window, 'resize')
       .debounceTime(150);
 
     this.window$.subscribe(() => {
-      this.update();
+      this.beforeUpdate();
     });
-
-    this.svg = d3.select(this.chartContainer.nativeElement);
 
     this.chart = this.svg.append('g')
       .attr('class', 'chart')
@@ -54,21 +77,25 @@ export class ChartBase {
     this.yAxis = this.chart.append('g')
       .attr('class', 'axis axis--y');
 
-    this.afterInit();
+    this.init();
   }
 
-  afterInit() {
-    this.update();
+  init() {
+    this.beforeUpdate();
   }
 
-  update() {
+  private beforeUpdate() {
     if (this.chart && this.data) {
-      this.beforeDraw();
+      this.update();
     }
   }
 
-  beforeDraw() {
-    const svgEl = this.chartContainer.nativeElement;
+  update() {
+    this.beforeDraw();
+  }
+
+  private beforeDraw() {
+    const svgEl = this.svg.node();
     const width = svgEl.clientWidth || svgEl.parentNode.clientWidth;
     const height = svgEl.clientHeight || svgEl.parentNode.clientHeight;
 
