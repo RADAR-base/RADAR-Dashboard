@@ -64,7 +64,7 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
 
     this.yScale = d3.scaleLinear()
       .range([this.height, 0])
-      .domain([0, d3.max(this.data, (d: any) => d.value)]);
+      .domain([0, d3.max(this.data, (d) => d.value)]);
 
     this.xAxis
       .attr('transform', `translate(0, ${this.yScale(0)})`)
@@ -83,8 +83,8 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
     }
 
     this.line
-      .x((d: any) => this.xScale(d.date))
-      .y((d: any) => this.yScale(d.value));
+      .x((d) => this.xScale(d.date))
+      .y((d) => this.yScale(d.value));
 
     this.lineEl
       .datum(this.data)
