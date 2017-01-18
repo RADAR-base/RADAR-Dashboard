@@ -42,8 +42,15 @@ module.exports = function (config) {
 
     // global config of your BrowserStack account
     browserStack: {
+      project: 'radar-dashboard',
+      build: 'Karma Travis #' + ${process.env.TRAVIS_BUILD_NUMBER} +
+        ' (' + ${process.env.TRAVIS_BUILD_ID} +')' || 'Karma Local',
       username: process.env.BROWSERSTACK_USERNAME || 'BROWSERSTACK_USERNAME',
-      accessKey: process.env.BROWSERSTACK_ACCESS_KEY || 'BROWSERSTACK_ACCESS_KEY'
+      accessKey: process.env.BROWSERSTACK_ACCESS_KEY || 'BROWSERSTACK_ACCESS_KEY',
+      startTunnel: false,
+      retryLimit: 1,
+      timeout: 600,
+      pollingTimeout: 20000
     },
     customLaunchers: {
       'BS_CHROME': {
@@ -71,10 +78,10 @@ module.exports = function (config) {
         os_version: '10'
       }
     },
-    browserDisconnectTimeout: 10000, // default 2000
-    browserDisconnectTolerance: 1, // default 0
-    browserNoActivityTimeout: 4 * 60 * 1000, //default 10000
-    captureTimeout: 4 * 60 * 1000, //default 60000
+    browserDisconnectTimeout: 20000,
+    browserDisconnectTolerance: 1,
+    browserNoActivityTimeout: 240000,
+    captureTimeout: 120000,
 
     browsers: ['Chrome', 'BS_EDGE', 'BS_FIREFOX', 'BS_SAFARI']
   });
