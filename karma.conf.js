@@ -43,8 +43,8 @@ module.exports = function (config) {
     // global config of your BrowserStack account
     browserStack: {
       project: 'radar-dashboard',
-      build: 'Karma Travis #' + ${process.env.TRAVIS_BUILD_NUMBER} +
-        ' (' + ${process.env.TRAVIS_BUILD_ID} +')' || 'Karma Local',
+      build: 'Karma Travis #' + process.env.TRAVIS_BUILD_NUMBER +
+        ' (' + process.env.TRAVIS_BUILD_ID +')' || 'Karma Local',
       username: process.env.BROWSERSTACK_USERNAME || 'BROWSERSTACK_USERNAME',
       accessKey: process.env.BROWSERSTACK_ACCESS_KEY || 'BROWSERSTACK_ACCESS_KEY',
       startTunnel: false,
