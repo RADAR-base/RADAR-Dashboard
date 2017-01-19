@@ -7,6 +7,7 @@ module.exports = function (config) {
     frameworks: ['jasmine', 'angular-cli'],
     plugins: [
       require('karma-jasmine'),
+      require('karma-browserstack-launcher'),
       require('karma-chrome-launcher'),
       require('karma-remap-istanbul'),
       require('angular-cli/plugins/karma')
@@ -18,7 +19,7 @@ module.exports = function (config) {
       './src/test.ts': ['angular-cli']
     },
     mime: {
-      'text/x-typescript': ['ts','tsx']
+      'text/x-typescript': ['ts', 'tsx']
     },
     remapIstanbulReporter: {
       reports: {
@@ -31,13 +32,53 @@ module.exports = function (config) {
       environment: 'dev'
     },
     reporters: config.angularCli && config.angularCli.codeCoverage
-              ? ['progress', 'karma-remap-istanbul']
-              : ['progress'],
+      ? ['progress', 'karma-remap-istanbul']
+      : ['progress'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
-    singleRun: false
+    singleRun: false,
+
+    // global config of your BrowserStack account
+    browserStack: {
+      project: 'radar-dashboard',
+      build: 'Karma Travis #' + process.env.TRAVIS_BUILD_NUMBER +
+        ' (' + process.env.TRAVIS_BUILD_ID +')' || 'Karma Local',
+      username: process.env.BROWSERSTACK_USERNAME || 'BROWSERSTACK_USERNAME',
+      accessKey: process.env.BROWSERSTACK_ACCESS_KEY || 'BROWSERSTACK_ACCESS_KEY'
+    },
+    customLaunchers: {
+      'BS_CHROME': {
+        base: 'BrowserStack',
+        browser: 'chrome',
+        os: 'Windows',
+        os_version: '10'
+      },
+      'BS_FIREFOX': {
+        base: 'BrowserStack',
+        browser: 'firefox',
+        os: 'Windows',
+        os_version: '10'
+      },
+      'BS_SAFARI': {
+        base: 'BrowserStack',
+        browser: 'safari',
+        os: 'OS X',
+        os_version: 'El Capitan'
+      },
+      'BS_EDGE': {
+        base: 'BrowserStack',
+        browser: 'edge',
+        os: 'Windows',
+        os_version: '10'
+      }
+    },
+    browserDisconnectTimeout: 20000,
+    browserDisconnectTolerance: 1,
+    browserNoActivityTimeout: 240000,
+    captureTimeout: 240000,
+
+    browsers: ['Chrome', 'BS_EDGE', 'BS_FIREFOX', 'BS_SAFARI']
   });
 };

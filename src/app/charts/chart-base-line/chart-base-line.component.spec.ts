@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ChartBaseLineComponent } from './chart-base-line.component';
 import { DebugElement } from '@angular/core';
-import { MockTimeSeriesData } from '../../test/mock-timeseries-data';
+import { MockTimeSeriesData, parseMockTimeSeriesData } from '../../test/mock-timeseries-data';
 
 describe('ChartBaseLineComponent', () => {
   let component: ChartBaseLineComponent;
@@ -39,11 +39,10 @@ describe('ChartBaseLineComponent', () => {
       expect(component.height).toBeFalsy();
       expect(component.chartData).toBeFalsy();
 
-      // with data
-      component.chartData = MockTimeSeriesData;
+      // with data // needs to be parsed //
+      component.chartData = parseMockTimeSeriesData(MockTimeSeriesData);
       expect(component.width).toBeGreaterThan(0);
       expect(component.height).toBeGreaterThan(0);
-      expect(component.chartData).toEqual(MockTimeSeriesData);
     });
 
     it('path.line should have attribute "d" when data changes', () => {
@@ -53,8 +52,8 @@ describe('ChartBaseLineComponent', () => {
       // without data
       expect(lineEl.getAttribute(attr)).toBeFalsy();
 
-      // with data
-      component.chartData = MockTimeSeriesData;
+      // with data // needs to be parsed //
+      component.chartData = parseMockTimeSeriesData(MockTimeSeriesData);
       expect(lineEl.getAttribute(attr)).toBeTruthy();
     });
 
@@ -74,7 +73,8 @@ describe('ChartBaseLineComponent', () => {
     });
 
     it('linearGradient should have attributes "y1, y2" when data changes', () => {
-      component.chartData = MockTimeSeriesData;
+      // with data // needs to be parsed //
+      component.chartData = parseMockTimeSeriesData(MockTimeSeriesData);
       const gradient = element.querySelector('linearGradient#hr-gradient');
       expect(gradient.getAttribute('y1')).toBeGreaterThan(0);
       expect(gradient.getAttribute('y2')).toBeGreaterThan(0);
