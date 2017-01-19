@@ -46,11 +46,7 @@ module.exports = function (config) {
       build: 'Karma Travis #' + process.env.TRAVIS_BUILD_NUMBER +
         ' (' + process.env.TRAVIS_BUILD_ID +')' || 'Karma Local',
       username: process.env.BROWSERSTACK_USERNAME || 'BROWSERSTACK_USERNAME',
-      accessKey: process.env.BROWSERSTACK_ACCESS_KEY || 'BROWSERSTACK_ACCESS_KEY',
-      startTunnel: false,
-      retryLimit: 1,
-      timeout: 600,
-      pollingTimeout: 20000
+      accessKey: process.env.BROWSERSTACK_ACCESS_KEY || 'BROWSERSTACK_ACCESS_KEY'
     },
     customLaunchers: {
       'BS_CHROME': {
@@ -81,7 +77,7 @@ module.exports = function (config) {
     browserDisconnectTimeout: 20000,
     browserDisconnectTolerance: 1,
     browserNoActivityTimeout: 240000,
-    captureTimeout: 120000,
+    captureTimeout: 240000,
 
     browsers: ['Chrome', 'BS_EDGE', 'BS_FIREFOX', 'BS_SAFARI']
   });
