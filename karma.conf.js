@@ -40,13 +40,11 @@ module.exports = function (config) {
     autoWatch: true,
     singleRun: false,
 
-    // global config of your BrowserStack account
     browserStack: {
       project: 'radar-dashboard',
-      build: 'Karma Travis #' + process.env.TRAVIS_BUILD_NUMBER +
-        ' (' + process.env.TRAVIS_BUILD_ID +')' || 'Karma Local',
-      username: process.env.BROWSERSTACK_USERNAME || 'BROWSERSTACK_USERNAME',
-      accessKey: process.env.BROWSERSTACK_ACCESS_KEY || 'BROWSERSTACK_ACCESS_KEY'
+      build: 'Karma Local',
+      username: process.env.BROWSERSTACK_USERNAME,
+      accessKey: process.env.BROWSERSTACK_ACCESS_KEY
     },
     customLaunchers: {
       'BS_CHROME': {
@@ -72,6 +70,12 @@ module.exports = function (config) {
         browser: 'edge',
         os: 'Windows',
         os_version: '10'
+      },
+      'BS_IOS9': {
+        base: 'BrowserStack',
+        device: 'iPad Mini 4',
+        os: 'ios',
+        os_version: '9.1'
       }
     },
     browserDisconnectTimeout: 20000,
@@ -81,4 +85,11 @@ module.exports = function (config) {
 
     browsers: ['Chrome', 'BS_EDGE', 'BS_FIREFOX', 'BS_SAFARI']
   });
+
+  if (process.env['TRAVIS']) {
+    config.browserStack.tunnelIdentifier = process.env.TRAVIS_JOB_NUMBER;
+    config.browserStack.build = 'Karma Travis #' +
+      process.env.TRAVIS_BUILD_NUMBER + ' [' +
+      process.env.TRAVIS_BUILD_ID + ']';
+  }
 };

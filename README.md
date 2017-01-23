@@ -1,6 +1,6 @@
 # RADAR-CNS Frontend Dashboard App
 
-[![Build Status](https://travis-ci.org/RADAR-CNS/RADAR-Dashboard.svg?branch=develop)](https://travis-ci.org/RADAR-CNS/RADAR-Dashboard) [![bitHound Dependencies](https://www.bithound.io/github/RADAR-CNS/RADAR-Dashboard/badges/dependencies.svg)](https://www.bithound.io/github/RADAR-CNS/RADAR-Dashboard/develop/dependencies/npm) [![bitHound Dev Dependencies](https://www.bithound.io/github/RADAR-CNS/RADAR-Dashboard/badges/devDependencies.svg)](https://www.bithound.io/github/RADAR-CNS/RADAR-Dashboard/develop/dependencies/npm)
+[![Build Status](https://travis-ci.org/RADAR-CNS/RADAR-Dashboard.svg?branch=develop)](https://travis-ci.org/RADAR-CNS/RADAR-Dashboard) [![bitHound Dependencies](https://www.bithound.io/github/RADAR-CNS/RADAR-Dashboard/badges/dependencies.svg)](https://www.bithound.io/github/RADAR-CNS/RADAR-Dashboard/develop/dependencies/npm) [![bitHound Dev Dependencies](https://www.bithound.io/github/RADAR-CNS/RADAR-Dashboard/badges/devDependencies.svg)](https://www.bithound.io/github/RADAR-CNS/RADAR-Dashboard/develop/dependencies/npm) [![Coverage Status](https://coveralls.io/repos/github/RADAR-CNS/RADAR-Dashboard/badge.svg?branch=karma-refactor)](https://coveralls.io/github/RADAR-CNS/RADAR-Dashboard?branch=karma-refactor)
 
 An [Angular](https://angular.io/) and [D3](https://d3js.org/) web application to manage and monitor research data from the [RADAR-CNS Platform](http://radar-cns.org/).
 
