@@ -5,17 +5,22 @@ import { ChartEmptyComponent } from './chart-empty/chart-empty.component';
 import { ChartHeartRateComponent } from './chart-heart-rate/chart-heart-rate.component';
 import { ChartContainerComponent } from './chart-container/chart-container.component';
 import { ChartBaseLineComponent } from './chart-base-line/chart-base-line.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ChartBaseComponent } from './chart-base/chart-base.component';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     MaterialModule,
   ],
   declarations: [
+    ChartBaseComponent,
+    ChartBaseLineComponent,
     ChartEmptyComponent,
     ChartHeartRateComponent,
     ChartContainerComponent,
-    ChartBaseLineComponent,
   ],
   providers: [],
   exports: [
