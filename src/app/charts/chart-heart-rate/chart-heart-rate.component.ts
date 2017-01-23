@@ -12,8 +12,7 @@ import { DescriptiveStatistic } from '../../models/config.model';
   template: `
     <div class="header">
       <div class="title">{{title}}</div>
-      <!-- TODO: update to select average by default -->
-      <md-select class="item">
+      <md-select #statSelect="ngModel" [(ngModel)]="selectedValue" class="item">
         <md-option *ngFor="let stat of stat$ | async" [value]="stat.value">
           {{ stat.label }}
         </md-option>
@@ -39,6 +38,9 @@ export class ChartHeartRateComponent implements OnInit {
 
   data$: Observable<TimeSeries[]>;
   stat$: Observable<DescriptiveStatistic[]>;
+
+  // TODO: plug it to the config
+  selectedValue = 'avg';
 
   constructor(
     private store: Store<fromRoot.State>
