@@ -1,11 +1,18 @@
 {
   "dataset": [
     {
-      "cols": 3,
+      "cols": 2,
       "id": 1,
       "rows": 2,
       "title": "Heart Rate Monitoring",
       "type": "heart-rate"
+    },
+    {
+      "cols": 2,
+      "id": 6,
+      "rows": 2,
+      "title": "Accelerometer Monitoring",
+      "type": "acceleration"
     },
     {
       "cols": 1,

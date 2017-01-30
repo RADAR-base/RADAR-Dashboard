@@ -12,12 +12,14 @@ import * as fromGrid from './grid/grid.reducer';
 import * as fromUser from './user/user.reducer';
 import * as fromConfig from './config/config.reducer';
 import * as fromChartHR from './chart-heart-rate/chart-heart-rate.reducer';
+import * as fromChartAC from './chart-acceleration/chart-acceleration.reducer';
 
 export interface State {
   grid: fromGrid.State;
   user: fromUser.State;
   config: fromConfig.State;
   chartHR: fromChartHR.State;
+  chartAC: fromChartAC.State;
 }
 
 const reducers = {
@@ -25,6 +27,7 @@ const reducers = {
   user: fromUser.reducer,
   config: fromConfig.reducer,
   chartHR: fromChartHR.reducer,
+  chartAC: fromChartAC.reducer,
 };
 
 const developmentReducer: ActionReducer<State> =
@@ -68,3 +71,10 @@ export function getChartHRState(state$: Observable<State>) {
 }
 export const getChartHRLoading = compose(fromChartHR.getLoading, getChartHRState);
 export const getChartHRData = compose(fromChartHR.getData, getChartHRState);
+
+// ChartAC Selectors
+export function getChartACState(state$: Observable<State>) {
+  return state$.select(s => s.chartAC);
+}
+export const getChartACLoading = compose(fromChartAC.getLoading, getChartACState);
+export const getChartACData = compose(fromChartAC.getData, getChartACState);
