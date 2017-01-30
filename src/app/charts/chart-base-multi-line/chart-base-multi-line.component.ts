@@ -46,7 +46,9 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
     let maxDate = new Date(d3.max(this.data[0].vals, function(v: any) {return v.date;}));
     xScale.domain([minDate, maxDate]);
 
-    yScale.domain([0, d3.max(this.data, function(el: any) { return d3.max(el.vals, function(d: any) { return d.val; }); })]);
+    yScale.domain([
+      d3.min(this.data, function(el: any) { return d3.min(el.vals, function(d: any) { return d.val; }); }), 
+      d3.max(this.data, function(el: any) { return d3.max(el.vals, function(d: any) { return d.val; }); })]);
 
     var axisIds = d3.map(this.data.map(function (axis: any) {return axis.vals[0];}), function(d) {return d.id;}).keys();
     var zScale = d3.scaleOrdinal(d3.schemeCategory10)
