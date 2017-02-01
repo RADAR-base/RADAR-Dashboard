@@ -2,7 +2,7 @@ import { ChartGradientColors, ChartMargin } from '../models/chart.model';
 
 export class AppConfig {
   // Grid Config
-  static GRID_COLS: number = 4;
+  static GRID_COLS = 4;
 
   // CHART Config
   static CHART_MARGIN: ChartMargin = {

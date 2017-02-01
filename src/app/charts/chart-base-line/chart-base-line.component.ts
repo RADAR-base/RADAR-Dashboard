@@ -13,7 +13,7 @@ import { AppConfig } from '../../shared/app.config';
 export class ChartBaseLineComponent extends ChartBaseComponent {
   data: TimeSeries[];
 
-  @Input() gradientEnabled: boolean = false;
+  @Input() gradientEnabled = false;
   @Input() gradientColors = AppConfig.CHART_GRADIENT_COLORS;
   @Input() gradientStops = AppConfig.CHART_GRADIENT_STOPS;
 
