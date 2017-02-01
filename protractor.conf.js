@@ -23,7 +23,7 @@ exports.config = {
   },
   multiCapabilities: [
     { 'browserName': 'Chrome' },
-    { 'browserName': 'Firefox' },
+    // { 'browserName': 'Firefox' },
     { 'browserName': 'Safari' },
     { 'browserName': 'Edge' }
   ],
@@ -60,8 +60,6 @@ exports.config = {
 };
 
 if (process.env['TRAVIS']) {
-  exports.config.commonCapabilities['tunnelIdentifier']
-    = process.env.TRAVIS_JOB_NUMBER;
   exports.config.commonCapabilities['build']
     = 'Protractor Travis #' +
     process.env.TRAVIS_BUILD_NUMBER + ' [' +
