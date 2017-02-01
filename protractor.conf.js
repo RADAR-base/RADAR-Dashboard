@@ -7,8 +7,8 @@ var browserstack = require('browserstack-local');
 
 exports.config = {
   seleniumAddress: 'http://hub-cloud.browserstack.com/wd/hub',
-  allScriptsTimeout: 120000,
-  getPageTimeout: 120000,
+  allScriptsTimeout: 360000,
+  getPageTimeout: 360000,
   specs: [
     './e2e/**/*.e2e-spec.ts'
   ],
@@ -24,22 +24,22 @@ exports.config = {
   multiCapabilities: [
     { 'browserName': 'Chrome' },
     // { 'browserName': 'Firefox' },
-    // { 'browserName': 'Safari' },
-    // { 'browserName': 'Edge' }
+    { 'browserName': 'Safari' },
+    { 'browserName': 'Edge' }
   ],
   baseUrl: 'http://localhost:4200/',
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,
-    defaultTimeoutInterval: 30000,
+    defaultTimeoutInterval: 360000,
     print: function () {}
   },
   useAllAngular2AppRoots: true,
+  onPrepare: function () {
+    require('ts-node').register({ project: 'e2e' });
+    jasmine.getEnv().addReporter(new SpecReporter());
+  },
   beforeLaunch: function () {
-    require('ts-node').register({
-      project: 'e2e'
-    });
-
     console.log('Connecting local');
     return new Promise(function (resolve, reject) {
       exports.bs_local = new browserstack.Local();
@@ -52,9 +52,6 @@ exports.config = {
       });
     });
   },
-  onPrepare: function () {
-    jasmine.getEnv().addReporter(new SpecReporter());
-  },
   afterLaunch: function () {
     return new Promise(function (resolve) {
       exports.bs_local.stop(resolve);
@@ -63,8 +60,10 @@ exports.config = {
 };
 
 if (process.env['TRAVIS']) {
-  exports.config.commonCapabilities['browserStack.tunnelIdentifier'] = process.env.TRAVIS_JOB_NUMBER;
-  exports.config.commonCapabilities['browserStack.build'] = 'Karma Travis #' +
+  exports.config.commonCapabilities['tunnelIdentifier']
+    = process.env.TRAVIS_JOB_NUMBER;
+  exports.config.commonCapabilities['build']
+    = 'Protractor Travis #' +
     process.env.TRAVIS_BUILD_NUMBER + ' [' +
     process.env.TRAVIS_BUILD_ID + ']';
 }
