@@ -60,7 +60,7 @@ exports.config = {
 };
 
 if (process.env['TRAVIS']) {
-  exports.config.commonCapabilities['browserstack.tunnelIdentifier']
+  exports.config.commonCapabilities['tunnelIdentifier']
     = process.env.TRAVIS_JOB_NUMBER;
   exports.config.commonCapabilities['build']
     = 'Protractor Travis #' +
