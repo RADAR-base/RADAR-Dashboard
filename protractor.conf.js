@@ -60,8 +60,10 @@ exports.config = {
 };
 
 if (process.env['TRAVIS']) {
-  exports.config.commonCapabilities['browserStack.tunnelIdentifier'] = process.env.TRAVIS_JOB_NUMBER;
-  exports.config.commonCapabilities['browserStack.build'] = 'Karma Travis #' +
+  exports.config.commonCapabilities['tunnelIdentifier']
+    = process.env.TRAVIS_JOB_NUMBER;
+  exports.config.commonCapabilities['build']
+    = 'Protractor Travis #' +
     process.env.TRAVIS_BUILD_NUMBER + ' [' +
     process.env.TRAVIS_BUILD_ID + ']';
 }
