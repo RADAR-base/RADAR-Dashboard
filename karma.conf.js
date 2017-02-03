@@ -4,32 +4,32 @@
 module.exports = function (config) {
   config.set({
     basePath: '',
-    frameworks: ['jasmine', 'angular-cli'],
+    frameworks: ['jasmine', '@angular/cli'],
     plugins: [
       require('karma-jasmine'),
       require('karma-browserstack-launcher'),
       require('karma-chrome-launcher'),
       require('karma-remap-istanbul'),
-      require('angular-cli/plugins/karma')
+      require('@angular/cli/plugins/karma'),
     ],
     files: [
-      { pattern: './src/test.ts', watched: false }
+      { pattern: './src/test.ts', watched: false },
     ],
     preprocessors: {
-      './src/test.ts': ['angular-cli']
+      './src/test.ts': ['@angular/cli'],
     },
     mime: {
-      'text/x-typescript': ['ts', 'tsx']
+      'text/x-typescript': ['ts', 'tsx'],
     },
     remapIstanbulReporter: {
       reports: {
         html: 'coverage',
-        lcovonly: './coverage/coverage.lcov'
-      }
+        lcovonly: './coverage/coverage.lcov',
+      },
     },
     angularCli: {
       config: './angular-cli.json',
-      environment: 'dev'
+      environment: 'dev',
     },
     reporters: config.angularCli && config.angularCli.codeCoverage
       ? ['progress', 'karma-remap-istanbul']
@@ -44,46 +44,47 @@ module.exports = function (config) {
       project: 'radar-dashboard',
       build: 'Karma Local',
       username: process.env.BROWSERSTACK_USERNAME,
-      accessKey: process.env.BROWSERSTACK_ACCESS_KEY
+      accessKey: process.env.BROWSERSTACK_ACCESS_KEY,
     },
     customLaunchers: {
       'BS_CHROME': {
         base: 'BrowserStack',
         browser: 'chrome',
         os: 'Windows',
-        os_version: '10'
+        os_version: '10',
       },
       'BS_FIREFOX': {
         base: 'BrowserStack',
         browser: 'firefox',
         os: 'Windows',
-        os_version: '10'
+        os_version: '10',
       },
       'BS_SAFARI': {
         base: 'BrowserStack',
         browser: 'safari',
         os: 'OS X',
-        os_version: 'El Capitan'
+        os_version: 'El Capitan',
       },
       'BS_EDGE': {
         base: 'BrowserStack',
         browser: 'edge',
         os: 'Windows',
-        os_version: '10'
+        os_version: '10',
       },
       'BS_IOS9': {
         base: 'BrowserStack',
         device: 'iPad Mini 4',
         os: 'ios',
-        os_version: '9.1'
-      }
+        os_version: '9.1',
+      },
     },
     browserDisconnectTimeout: 20000,
     browserDisconnectTolerance: 1,
     browserNoActivityTimeout: 240000,
     captureTimeout: 240000,
 
-    browsers: ['Chrome', 'BS_EDGE', 'BS_FIREFOX', 'BS_SAFARI']
+    // browsers: ['Chrome'],
+    browsers: ['Chrome', 'BS_EDGE', 'BS_FIREFOX', 'BS_SAFARI'],
   });
 
   if (process.env['TRAVIS']) {
