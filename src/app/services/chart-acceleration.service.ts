@@ -11,7 +11,7 @@ export class ChartAccelerationService {
 
   get(): Observable<MultiTimeSeries[]> {
     // TODO: Change when API is ready
-    //return this.http.get(`${PARAMS.API_URI}/HR/avg/user`)
+    // return this.http.get(`${PARAMS.API_URI}/HR/avg/user`)
     return this.http.get(`${PARAMS.API_LOCAL}/mock-acceleration.json`)
       .map(res => res.json().dataset || [])
       .map(this.parseAccelerationData)
@@ -23,21 +23,25 @@ export class ChartAccelerationService {
     // Reshaping the data as to have date value info
     // for each of the measurements (e.g. x, y, z)
 
-    var lines = {};
-    for (var entry in dataset) { 
-      for (var j in dataset[entry].acceleration) {
+    const lines = {};
+    for (const entry of dataset) {
+      for (const j in entry.acceleration) {
+        if (entry.acceleration.hasOwnProperty(j)) {
           if (!(j in lines)) {
             lines[j] = [];
           }
-          lines[j].push({date: new Date(dataset[entry].effective_time_frame.start_date_time), 
-            val: +dataset[entry].acceleration[j],
-            id: j})
+          lines[j].push({date: new Date(entry.effective_time_frame.start_date_time),
+            val: +entry.acceleration[j],
+            id: j});
+        }
       }
     }
 
-    var data = [];
-    for (var ax in lines) {
-      data.push({vals: lines[ax]});
+    const data = [];
+    for (const ax in lines) {
+      if (lines.hasOwnProperty(ax)) {
+        data.push({vals: lines[ax]});
+      }
     }
 
     return data;

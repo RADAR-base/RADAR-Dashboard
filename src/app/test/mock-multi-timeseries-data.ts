@@ -12,24 +12,28 @@ export function parseMockMultiTimeSeriesData(dataset): MultiTimeSeries[] {
   // Reshaping the data as to have date value info
   // for each of the measurements (e.g. x, y, z)
 
-    var lines = {};
-    for (var entry in dataset) { 
-      var date = dataset[entry].date;
-      for (var j in dataset[entry]) {
-          if (j!="date") {
+    const lines = {};
+    for (const entry of dataset) {
+      const date = entry.date;
+      for (const j in entry) {
+        if (entry.hasOwnProperty(j)) {
+          if (j !== 'date') {
             if (!(j in lines)) {
               lines[j] = [];
             }
-            lines[j].push({date: new Date(date), 
-              val: +dataset[entry][j],
-              id: j})
+            lines[j].push({date: new Date(date),
+              val: +entry[j],
+              id: j});
           }
+        }
       }
     }
 
-    var data = [];
-    for (var ax in lines) {
-      data.push({vals: lines[ax]});
+    const data = [];
+    for (const ax in lines) {
+      if (lines.hasOwnProperty(ax)) {
+        data.push({vals: lines[ax]});
+      }
     }
 
     return data;
