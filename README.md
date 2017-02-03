@@ -11,7 +11,7 @@ We use [angular-cli](https://github.com/angular/angular-cli) so you can use all 
 
 If you and want to use angular-cli's commands globally install it:
 ```
-$ npm install -g angular-cli
+$ npm install -g @angular/cli
 ```
 
 In the project folder run `yarn` to install dependencies:
