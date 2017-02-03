@@ -28,6 +28,7 @@ before_script:
 
 script:
   - yarn lint
+  - yarn lint:style
   - yarn test:ci
   - cat ./coverage/coverage.lcov | ./node_modules/coveralls/bin/coveralls.js
   - yarn e2e
