@@ -46,14 +46,10 @@ describe('ChartBaseMultiLineComponent', () => {
     });
 
     it('path.line should have attribute "d" when data changes', () => {
-      const lineEl = element.querySelector('path.line');
-      const attr = 'd';
-
-      // without data
-      expect(lineEl.getAttribute(attr)).toBeFalsy();
-
       // with data // needs to be parsed //
       component.chartData = parseMockMultiTimeSeriesData(MockMultiTimeSeriesData);
+      const lineEl = element.querySelector('path.line');
+      const attr = 'd';
       expect(lineEl.getAttribute(attr)).toBeTruthy();
     });
 

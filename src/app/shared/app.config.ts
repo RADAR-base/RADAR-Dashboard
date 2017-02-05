@@ -17,4 +17,12 @@ export class AppConfig {
     'y1': 60,
     'y2': 120,
   };
+  static CHART_CATEGORICAL_COLORS = [
+    '#add8e6',
+    '#ffa500',
+    '#ffc0cb',
+    '#f0f8ff',
+    '#deb887',
+    '#d8bfd8'
+  ];
 }

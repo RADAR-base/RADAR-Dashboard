@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import * as d3 from 'd3';
 
 import { MultiTimeSeries } from '../../models/multi-time-series.model';
 import { ChartBaseComponent } from '../chart-base/chart-base.component';
+import { AppConfig } from '../../shared/app.config';
 
 @Component({
   selector: 'app-chart-base-multi-line',
@@ -12,15 +13,14 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component';
 export class ChartBaseMultiLineComponent extends ChartBaseComponent {
   data: MultiTimeSeries[];
 
+  @Input() lineColors = AppConfig.CHART_CATEGORICAL_COLORS;
+
   svg: any;
   chart: any;
   width: number;
   height: number;
   xAxis: any;
   yAxis: any;
-  xScale: any;
-  yScale: any;
-  zScale: any;
   lines: any;
 
   init() {
@@ -48,8 +48,9 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
       d3.max(this.data, function(el: any) { return d3.max(el.vals, function(d: any) { return d.val; }); })]);
 
     const axisIds = d3.map(this.data.map(function (axis: any) { return axis.vals[0]; }), function(d) { return d.id; }).keys();
-    const zScale = d3.scaleOrdinal(d3.schemeCategory10)
-      .domain(axisIds);
+    const zScale = d3.scaleOrdinal()
+      .domain(axisIds)
+      .range(this.lineColors);
 
     this.xAxis
       .attr('transform', `translate(0, ${this.height})`)
