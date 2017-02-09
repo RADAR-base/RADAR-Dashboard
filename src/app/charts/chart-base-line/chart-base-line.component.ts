@@ -43,8 +43,8 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
         .selectAll('stop')
         .data(this.gradientColors)
         .enter().append('stop')
-        .attr('offset', (d) => d.offset)
-        .attr('stop-color', (d) => d.color);
+        .attr('offset', d => d.offset)
+        .attr('stop-color', d => d.color);
     }
 
     this.lineEl = this.chart
@@ -60,11 +60,11 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
   draw() {
     this.xScale = d3.scaleTime()
       .range([0, this.width])
-      .domain(d3.extent(this.data, (d: any) => d.date));
+      .domain(d3.extent(this.data, d => d.date));
 
     this.yScale = d3.scaleLinear()
       .range([this.height, 0])
-      .domain([0, d3.max(this.data, (d) => d.value)]);
+      .domain([0, d3.max(this.data, d => d.value)]);
 
     this.xAxis
       .attr('transform', `translate(0, ${this.yScale(0)})`)
@@ -83,8 +83,8 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
     }
 
     this.line
-      .x((d) => this.xScale(d.date))
-      .y((d) => this.yScale(d.value));
+      .x(d => this.xScale(d.date))
+      .y(d => this.yScale(d.value));
 
     this.lineEl
       .datum(this.data)

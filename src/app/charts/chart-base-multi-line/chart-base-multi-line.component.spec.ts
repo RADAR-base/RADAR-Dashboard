@@ -18,41 +18,43 @@ describe('ChartBaseMultiLineComponent', () => {
     component = fixture.componentInstance;
     element = fixture.nativeElement;
     de = fixture.debugElement;
+
+    fixture.detectChanges();
   });
 
-  describe('=> without @Input', () => {
-    beforeEach(() => {
-      fixture.detectChanges();
-    });
-
-    it('should create', () => {
-      expect(component).toBeTruthy();
-    });
-
-    it('should create a chart', () => {
-      expect(element.querySelector('g.chart')).toBeTruthy();
-    });
-
-    it('should update() and change size if data changes', () => {
-      // without data
-      expect(component.width).toBeFalsy();
-      expect(component.height).toBeFalsy();
-      expect(component.chartData).toBeFalsy();
-
-      // with data // needs to be parsed //
-      component.chartData = parseMockMultiTimeSeriesData(MockMultiTimeSeriesData);
-      expect(component.width).toBeGreaterThan(0);
-      expect(component.height).toBeGreaterThan(0);
-    });
-
-    it('path.line should have attribute "d" when data changes', () => {
-      // with data // needs to be parsed //
-      component.chartData = parseMockMultiTimeSeriesData(MockMultiTimeSeriesData);
-      const lineEl = element.querySelector('path.line');
-      const attr = 'd';
-      expect(lineEl.getAttribute(attr)).toBeTruthy();
-    });
-
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 
+  it('should create a chart', () => {
+    expect(element.querySelector('g.chart')).toBeTruthy();
+  });
+
+  it('should update() and change size if data changes', () => {
+    // without data
+    expect(component.width).toBeFalsy();
+    expect(component.height).toBeFalsy();
+    expect(component.chartData).toBeFalsy();
+
+    // with data // needs to be parsed //
+    component.chartData = parseMockMultiTimeSeriesData(MockMultiTimeSeriesData);
+    expect(component.width).toBeGreaterThan(0);
+    expect(component.height).toBeGreaterThan(0);
+  });
+
+  it('path.line should have attribute "d" when data changes', () => {
+    const lineElements: any = element.querySelectorAll('path.line');
+    const attr = 'd';
+
+    // without data
+    for (const el of lineElements) {
+      expect(el.getAttribute(attr)).toBeFalsy();
+    }
+
+    // with data // needs to be parsed //
+    component.chartData = parseMockMultiTimeSeriesData(MockMultiTimeSeriesData);
+    for (const el of lineElements) {
+      expect(el.getAttribute(attr)).toBeTruthy();
+    }
+  });
 });

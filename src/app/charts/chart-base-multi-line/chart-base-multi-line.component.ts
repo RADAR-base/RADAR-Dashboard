@@ -19,59 +19,56 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
   chart: any;
   width: number;
   height: number;
+  xScale: any;
+  yScale: any;
+  zScale: any;
   xAxis: any;
   yAxis: any;
   lines: any;
+  line: any;
 
   init() {
+    this.line = d3.line()
+      .curve(d3.curveBasis)
+      .x((d: any) => this.xScale(d.date))
+      .y((d: any) => this.yScale(d.value));
+
     super.init();
   }
 
   draw() {
+    const minDate = d3.min(this.data, row => d3.min(row.values, d => d.date));
+    const maxDate = d3.max(this.data, row => d3.max(row.values, d => d.date));
 
-    const xScale = d3.scaleTime();
-    xScale.range([0, this.width]);
-    const yScale = d3.scaleLinear();
-    yScale.range([this.height, 0]);
+    this.xScale = d3.scaleTime()
+      .range([0, this.width])
+      .domain([minDate, maxDate]);
 
-    const line = d3.line()
-      .curve(d3.curveBasis)
-      .x(function(d: any) { return xScale(d.date); })
-      .y(function(d: any) { return yScale(d.val); });
+    const minValue = d3.min(this.data, row => d3.min(row.values, d => d.value));
+    const maxValue = d3.max(this.data, row => d3.max(row.values, d => d.value));
 
-    const minDate = new Date(d3.min(this.data[0].vals, function(v: any) { return v.date; }));
-    const maxDate = new Date(d3.max(this.data[0].vals, function(v: any) { return v.date; }));
-    xScale.domain([minDate, maxDate]);
+    this.yScale = d3.scaleLinear()
+      .range([this.height, 0])
+      .domain([minValue, maxValue]);
 
-    yScale.domain([
-      d3.min(this.data, function(el: any) { return d3.min(el.vals, function(d: any) { return d.val; }); }),
-      d3.max(this.data, function(el: any) { return d3.max(el.vals, function(d: any) { return d.val; }); })]);
-
-    const axisIds = d3.map(this.data.map(function (axis: any) { return axis.vals[0]; }), function(d) { return d.id; }).keys();
-    const zScale = d3.scaleOrdinal()
-      .domain(axisIds)
+    this.zScale = d3.scaleOrdinal()
+      .domain(this.data.map(d => d.id))
       .range(this.lineColors);
 
     this.xAxis
       .attr('transform', `translate(0, ${this.height})`)
-      .call(d3.axisBottom(xScale));
+      .call(d3.axisBottom(this.xScale));
 
     this.yAxis.call(
-      d3.axisLeft(yScale)
+      d3.axisLeft(this.yScale)
         .tickSize(-this.width)
     );
 
-    this.chart.selectAll('.line').remove();
-
     this.lines = this.chart.selectAll('.line')
-      .data(this.data.map(function (axis: any) { return axis.vals; }))
-      .attr('class', 'line');
-
-    this.lines.enter()
-      .append('path')
+      .data(this.data, d => d.id)
+      .enter().append('path')
       .attr('class', 'line')
-      .attr('d', line)
-      .style('stroke', function(d) { return zScale(d[0].id); });
-
+      .attr('d', d => this.line(d.values))
+      .style('stroke', d => this.zScale(d.id));
   }
 }

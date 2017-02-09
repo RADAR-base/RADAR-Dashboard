@@ -18,7 +18,7 @@ import { DescriptiveStatistic } from '../../models/config.model';
         </md-option>
       </md-select>
       <div class="item">
-        <md-checkbox [checked]="true" align="end">
+        <md-checkbox [checked]="false" align="end">
           Min & Max
         </md-checkbox>
       </div>
@@ -26,7 +26,6 @@ import { DescriptiveStatistic } from '../../models/config.model';
     <div class="container">
       <app-chart-base-line
         [chartData]="data$ | async"
-        [margin]="{ top: 16, right: 16, bottom: 32, left: 48 }"
         [gradientEnabled]="true"></app-chart-base-line>
     </div>
   `,

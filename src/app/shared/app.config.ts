@@ -18,11 +18,20 @@ export class AppConfig {
     'y2': 120,
   };
   static CHART_CATEGORICAL_COLORS = [
-    '#add8e6',
-    '#ffa500',
-    '#ffc0cb',
-    '#f0f8ff',
-    '#deb887',
-    '#d8bfd8'
+    // Graph Colors as in 'common.scss'
+    '#ffc',
+    '#c7e9b4',
+    '#7fcdbb',
+    '#41b6c4',
+    '#225ea8',
+    '#0c2c84',
+
+    // Alternative Colors
+    // '#aae5f2',
+    // '#b7f2ac',
+    // '#f2ecac',
+    // '#f2acac',
+    // '#f2acf2',
+    // '#b1acf2',
   ];
 }

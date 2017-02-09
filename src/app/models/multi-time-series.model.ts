@@ -1,9 +1,6 @@
-export interface MultiTimeSeries {
-  vals: TimeValue[];
-}
+import { TimeSeries } from './time-series.model';
 
-export interface TimeValue {
-  date: Date;
-  val: number;
+export interface MultiTimeSeries {
   id: string;
+  values: TimeSeries[];
 }

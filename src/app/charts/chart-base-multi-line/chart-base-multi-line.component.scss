@@ -12,10 +12,6 @@
     stroke-linejoin: round;
   }
 
-  .hr-gradient .line {
-    stroke: url(#hr-gradient);
-  }
-
   .axis text {
     @include font-small;
 

@@ -18,16 +18,14 @@ import { DescriptiveStatistic } from '../../models/config.model';
         </md-option>
       </md-select>
       <div class="item">
-        <md-checkbox [checked]="true" align="end">
+        <md-checkbox [checked]="false" align="end">
           Min & Max
         </md-checkbox>
       </div>
     </div>
     <div class="container">
       <app-chart-base-multi-line
-        [chartData]="data$ | async"
-        [margin]="{ top: 16, right: 16, bottom: 32, left: 48 }"
-        ></app-chart-base-multi-line>
+        [chartData]="data$ | async"></app-chart-base-multi-line>
     </div>
   `,
   styleUrls: ['./chart-acceleration.component.scss']

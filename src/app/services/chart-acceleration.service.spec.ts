@@ -34,7 +34,8 @@ describe('ChartAccelerationService', () => {
 
     service.get().subscribe(data => {
       data.map((obj: MultiTimeSeries) => {
-        expect(obj.vals).toBeDefined();
+        expect(obj.id).toBeDefined();
+        expect(obj.values).toBeDefined();
       });
     });
   }));

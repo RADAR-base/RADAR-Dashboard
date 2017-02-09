@@ -1,40 +1,39 @@
 import { MultiTimeSeries } from '../models/multi-time-series.model';
+import { parseMockTimeSeriesData } from './mock-timeseries-data';
 
 export const MockMultiTimeSeriesData = [
-  { x: 120, y: 120, z: 120, date: '2016-10-27T20:02:20Z' },
-  { x: 122, y: 122, z: 122, date: '2016-10-28T20:02:20Z' },
-  { x: 120, y: 120, z: 120, date: '2016-10-29T20:02:20Z' },
-  { x: 122, y: 122, z: 122, date: '2016-10-30T20:02:20Z' }
+  {
+    'id': 'x',
+    'values': [
+      {'value': 50.17274154968215, 'date': '2016-10-27T20:02:20.000Z'},
+      {'value': 108.39180563508566, 'date': '2016-10-27T20:03:00.000Z'},
+      {'value': 100.30344544328108, 'date': '2016-10-27T20:03:10.000Z'},
+      {'value': 83.8401962366746, 'date': '2016-10-27T20:03:20.000Z'}
+    ]
+  },
+  {
+    'id': 'y',
+    'values': [
+      {'value': 89.17274154968214, 'date': '2016-10-27T20:02:20.000Z'},
+      {'value': 99.39180563508566, 'date': '2016-10-27T20:03:00.000Z'},
+      {'value': 98.39180563508566, 'date': '2016-10-27T20:03:10.000Z'},
+      {'value': 99.39180563508566, 'date': '2016-10-27T20:03:20.000Z'}
+    ]
+  },
+  {
+    'id': 'z',
+    'values': [
+      {'value': 43.17274154968215, 'date': '2016-10-27T20:02:20.000Z'},
+      {'value': 47.39180563508566, 'date': '2016-10-27T20:03:00.000Z'},
+      {'value': 55.39180563508566, 'date': '2016-10-27T20:03:10.000Z'},
+      {'value': 47.39180563508566, 'date': '2016-10-27T20:03:20.000Z'}
+    ]
+  }
 ];
 
 export function parseMockMultiTimeSeriesData(dataset): MultiTimeSeries[] {
-
-  // Reshaping the data as to have date value info
-  // for each of the measurements (e.g. x, y, z)
-
-    const lines = {};
-    for (const entry of dataset) {
-      const date = entry.date;
-      for (const j in entry) {
-        if (entry.hasOwnProperty(j)) {
-          if (j !== 'date') {
-            if (!(j in lines)) {
-              lines[j] = [];
-            }
-            lines[j].push({date: new Date(date),
-              val: +entry[j],
-              id: j});
-          }
-        }
-      }
-    }
-
-    const data = [];
-    for (const ax in lines) {
-      if (lines.hasOwnProperty(ax)) {
-        data.push({vals: lines[ax]});
-      }
-    }
-
-    return data;
+  return dataset.map(data => ({
+    id: data.id,
+    values: parseMockTimeSeriesData(data.values)
+  }));
 }
