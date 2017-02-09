@@ -23,7 +23,7 @@ exports.config = {
   },
   multiCapabilities: [
     { 'browserName': 'Chrome' },
-    { 'browserName': 'Firefox' },
+    // { 'browserName': 'Firefox' },
     // { 'browserName': 'Safari' },
     { 'browserName': 'Edge' }
   ],
