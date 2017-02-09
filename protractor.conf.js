@@ -24,7 +24,7 @@ exports.config = {
   multiCapabilities: [
     { 'browserName': 'Chrome' },
     // { 'browserName': 'Firefox' },
-    { 'browserName': 'Safari' },
+    // { 'browserName': 'Safari' },
     { 'browserName': 'Edge' }
   ],
   baseUrl: 'http://localhost:4200/',
