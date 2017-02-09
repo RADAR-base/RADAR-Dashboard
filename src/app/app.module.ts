@@ -17,10 +17,12 @@ import { UIProgressComponent } from './components/ui-progress/ui-progress.compon
 import { UserEffects } from './store/user/user.effects';
 import { UserService } from './services/user.service';
 import { ChartHeartRateEffects } from './store/chart-heart-rate/chart-heart-rate.effects';
+import { ChartAccelerationEffects } from './store/chart-acceleration/chart-acceleration.effects';
 import { ChartModule } from './charts/chart.module';
 import { ConfigEffects } from './store/config/config.effects';
 import { ConfigService } from './services/config.service';
 import { ChartHeartRateService } from './services/chart-heart-rate.service';
+import { ChartAccelerationService } from './services/chart-acceleration.service';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import { ChartHeartRateService } from './services/chart-heart-rate.service';
     EffectsModule.run(UserEffects),
     EffectsModule.run(ConfigEffects),
     EffectsModule.run(ChartHeartRateEffects),
+    EffectsModule.run(ChartAccelerationEffects),
 
     // App modules
     AppRoutingModule,
@@ -54,6 +57,7 @@ import { ChartHeartRateService } from './services/chart-heart-rate.service';
     ConfigService,
     ErrorService,
     ChartHeartRateService,
+    ChartAccelerationService,
   ],
   bootstrap: [AppComponent]
 })

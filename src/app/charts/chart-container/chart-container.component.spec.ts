@@ -59,6 +59,34 @@ describe('ChartContainerComponent', () => {
     }));
   });
 
+  describe('Acceleration Type', () => {
+    beforeEach(() => {
+      // Tile Stub
+      component.tile = {
+        id: 1,
+        rows: 2,
+        cols: 3,
+        title: 'Accelerometer Monitoring',
+        type: 'acceleration'
+      };
+      fixture.detectChanges();
+    });
+
+    it('should have a tile with title "Accelerometer Monitoring"', async(() => {
+      expect(component.title)
+        .toBe('Accelerometer Monitoring');
+      expect(element.querySelector('.title').textContent)
+        .toBe('Accelerometer Monitoring');
+    }));
+
+    it('should have a "app-chart-acceleration" component', async(() => {
+      expect(component.tile.type)
+        .toBe(component.CHART_TYPE.AC);
+      expect(element.querySelector('app-chart-acceleration'))
+        .toBeTruthy();
+    }));
+  });
+
   describe('Empty Type', () => {
     beforeEach(() => {
       // Tile Stub

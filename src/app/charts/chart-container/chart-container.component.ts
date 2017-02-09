@@ -7,6 +7,8 @@ import { Tile } from '../../models/tile.model';
   template: `
     <app-chart-heart-rate *ngIf="tile.type === CHART_TYPE.HR" 
       [title]="title" class="app-chart"></app-chart-heart-rate>
+    <app-chart-acceleration *ngIf="tile.type === CHART_TYPE.AC" 
+      [title]="title" class="app-chart"></app-chart-acceleration>
     <app-chart-empty *ngIf="tile.type === CHART_TYPE.EMPTY"
       [title]="title" class="app-chart"></app-chart-empty>
   `,
@@ -17,6 +19,7 @@ export class ChartContainerComponent {
   CHART_TYPE = {
     HR: 'heart-rate',
     EMPTY: 'empty',
+    AC: 'acceleration',
   };
 
   @Input() tile: Tile;

@@ -1,13 +1,13 @@
 import { Component, ChangeDetectionStrategy, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import { TimeSeries } from '../../models/time-series.model';
+import { MultiTimeSeries } from '../../models/multi-time-series.model';
 import * as fromRoot from '../../store';
-import * as hrAction from '../../store/chart-heart-rate/chart-heart-rate.actions';
+import * as acAction from '../../store/chart-acceleration/chart-acceleration.actions';
 import { DescriptiveStatistic } from '../../models/config.model';
 
 @Component({
-  selector: 'app-chart-heart-rate',
+  selector: 'app-chart-acceleration',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="header">
@@ -24,18 +24,17 @@ import { DescriptiveStatistic } from '../../models/config.model';
       </div>
     </div>
     <div class="container">
-      <app-chart-base-line
-        [chartData]="data$ | async"
-        [gradientEnabled]="true"></app-chart-base-line>
+      <app-chart-base-multi-line
+        [chartData]="data$ | async"></app-chart-base-multi-line>
     </div>
   `,
-  styleUrls: ['./chart-heart-rate.component.scss']
+  styleUrls: ['./chart-acceleration.component.scss']
 })
-export class ChartHeartRateComponent implements OnInit {
+export class ChartAccelerationComponent implements OnInit {
 
   @Input() title: string;
 
-  data$: Observable<TimeSeries[]>;
+  data$: Observable<MultiTimeSeries[]>;
   stat$: Observable<DescriptiveStatistic[]>;
 
   // TODO: plug it to the config
@@ -44,13 +43,13 @@ export class ChartHeartRateComponent implements OnInit {
   constructor(
     private store: Store<fromRoot.State>
   ) {
-    this.data$ = this.store.let(fromRoot.getChartHRData)
+    this.data$ = this.store.let(fromRoot.getChartACData)
       .filter(data => !!data);
 
     this.stat$ = this.store.let(fromRoot.getConfigDescriptiveStatistic);
   }
 
   ngOnInit() {
-    this.store.dispatch(new hrAction.Update('average'));
+    this.store.dispatch(new acAction.Update('average'));
   }
 }

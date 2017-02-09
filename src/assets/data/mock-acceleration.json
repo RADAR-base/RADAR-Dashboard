@@ -1,0 +1,243 @@
+{
+  "header": {
+    "descriptive_statistic": "average",
+    "unit": "constant g",
+    "effective_time_frame": {
+      "start_date_time": "2016-10-27T20:02:20Z",
+      "end_date_time": "2016-10-27T20:06:50Z"
+    }
+  },
+  "dataset": [
+    {
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:02:20Z",
+        "end_date_time": "2016-10-27T20:02:30Z"
+      },
+      "acceleration": {
+        "x": 50.17274154968215,
+        "y": 89.17274154968215,
+        "z": 43.17274154968215
+      }
+    },
+    {
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:03:00Z",
+        "end_date_time": "2016-10-27T20:03:10Z"
+      },
+      "acceleration": {
+        "x": 108.39180563508566,
+        "y": 99.39180563508566,
+        "z": 47.39180563508566
+      }
+    },
+    {
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:03:10Z",
+        "end_date_time": "2016-10-27T20:03:20Z"
+      },
+      "acceleration": {
+        "x": 100.30344544328108,
+        "y": 98.39180563508566,
+        "z": 55.39180563508566
+      }
+    },
+    {
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:03:20Z",
+        "end_date_time": "2016-10-27T20:03:30Z"
+      },
+      "acceleration": {
+        "x": 83.8401962366746,
+        "y": 99.39180563508566,
+        "z": 47.39180563508566
+      }
+    },
+    {
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:03:30Z",
+        "end_date_time": "2016-10-27T20:03:40Z"
+      },
+      "acceleration": {
+        "x": 97.23948813480582,
+        "y": 120.39180563508566,
+        "z": 57.39180563508566
+      }
+    },
+    {
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:03:40Z",
+        "end_date_time": "2016-10-27T20:03:50Z"
+      },
+      "acceleration": {
+        "x": 128.66517715813478,
+        "y": 30.39180563508566,
+        "z": 90.39180563508566
+      }
+    },
+    {
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:04:00Z",
+        "end_date_time": "2016-10-27T20:04:10Z"
+      },
+      "acceleration": {
+        "x": 91.80151784071714,
+        "y": 40.39180563508566,
+        "z": 80.39180563508566
+      }
+    },
+    {
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:04:10Z",
+        "end_date_time": "2016-10-27T20:04:20Z"
+      },
+      "acceleration": {
+        "x": 97.13949614657035,
+        "y": 45.39180563508566,
+        "z": 75.39180563508566
+      }
+    },
+    {
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:04:20Z",
+        "end_date_time": "2016-10-27T20:04:30Z"
+      },
+      "acceleration": {
+        "x": 121.85530820805425,
+        "y": 50.39180563508566,
+        "z": 70.39180563508566
+      }
+    },
+    {
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:04:30Z",
+        "end_date_time": "2016-10-27T20:04:40Z"
+      },
+      "acceleration": {
+        "x": 110.10916227683296,
+        "y": 99.39180563508566,
+        "z": 47.39180563508566
+      }
+    },
+    {
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:04:40Z",
+        "end_date_time": "2016-10-27T20:04:50Z"
+      },
+      "acceleration": {
+        "x": 93.2521764908646,
+        "y": 99.39180563508566,
+        "z": 47.39180563508566
+      }
+    },
+    {
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:05:00Z",
+        "end_date_time": "2016-10-27T20:05:10Z"
+      },
+      "acceleration": {
+        "x": 120.45378719830005,
+        "y": 100.39180563508566,
+        "z": 50.39180563508566
+      }
+    },
+    {
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:05:10Z",
+        "end_date_time": "2016-10-27T20:05:20Z"
+      },
+      "acceleration": {
+        "x": 110.07754079985364,
+        "y": 103.39180563508566,
+        "z": 78.39180563508566
+      }
+    },
+    {
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:05:20Z",
+        "end_date_time": "2016-10-27T20:05:30Z"
+      },
+      "acceleration": {
+        "x": 107.95353665953152,
+        "y": 100.95353665953152,
+        "z": 80.95353665953152
+      }
+    },
+    {
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:05:30Z",
+        "end_date_time": "2016-10-27T20:05:40Z"
+      },
+      "acceleration": {
+        "x": 97.37527353070601,
+        "y": 100.95353665953152,
+        "z": 80.95353665953152
+      }
+    },
+    {
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:05:40Z",
+        "end_date_time": "2016-10-27T20:05:50Z"
+      },
+      "acceleration": {
+        "x": 93.67078714323348,
+        "y": 93.95353665953152,
+        "z": 56.95353665953152
+      }
+    },
+    {
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:06:00Z",
+        "end_date_time": "2016-10-27T20:06:10Z"
+      },
+      "acceleration": {
+        "x": 108.13737208996312,
+        "y": 95.95353665953152,
+        "z": 60.95353665953152
+      }
+    },
+    {
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:06:10Z",
+        "end_date_time": "2016-10-27T20:06:20Z"
+      },
+      "acceleration": {
+        "x": 100.24465065899412,
+        "y": 97.95353665953152,
+        "z": 62.95353665953152
+      }
+    },
+    {
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:06:20Z",
+        "end_date_time": "2016-10-27T20:06:30Z"
+      },
+      "acceleration": {
+        "x": 96.08971596211111,
+        "y": 90.95353665953152,
+        "z": 60.95353665953152
+      }
+    },
+    {
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:06:30Z",
+        "end_date_time": "2016-10-27T20:06:40Z"
+      },
+      "acceleration": {
+        "x": 116.166892627476,
+        "y": 97.95353665953152,
+        "z": 80.95353665953152
+      }
+    },
+    {
+      "effective_time_frame": {
+        "start_date_time": "2016-10-27T20:06:40Z",
+        "end_date_time": "2016-10-27T20:06:50Z"
+      },
+      "acceleration": {
+        "x": 97.85922078672958,
+        "y": 100.95353665953152,
+        "z": 89.95353665953152
+      }
+    }
+  ]
+}

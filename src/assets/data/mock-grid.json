@@ -1,18 +1,18 @@
 {
   "dataset": [
     {
-      "cols": 3,
+      "cols": 2,
       "id": 1,
       "rows": 2,
       "title": "Heart Rate Monitoring",
       "type": "heart-rate"
     },
     {
-      "cols": 1,
+      "cols": 2,
       "id": 2,
-      "rows": 1,
-      "title": "TBD",
-      "type": "empty"
+      "rows": 2,
+      "title": "Accelerometer Monitoring",
+      "type": "acceleration"
     },
     {
       "cols": 1,
@@ -22,7 +22,7 @@
       "type": "empty"
     },
     {
-      "cols": 2,
+      "cols": 1,
       "id": 4,
       "rows": 1,
       "title": "TBD",
@@ -31,6 +31,20 @@
     {
       "cols": 2,
       "id": 5,
+      "rows": 1,
+      "title": "TBD",
+      "type": "empty"
+    },
+    {
+      "cols": 2,
+      "id": 6,
+      "rows": 1,
+      "title": "TBD",
+      "type": "empty"
+    },
+    {
+      "cols": 2,
+      "id": 7,
       "rows": 1,
       "title": "TBD",
       "type": "empty"
