@@ -84,7 +84,7 @@ module.exports = function (config) {
     captureTimeout: 240000,
 
     // browsers: ['Chrome'],
-    browsers: ['Chrome', 'BS_EDGE', 'BS_FIREFOX', 'BS_SAFARI'],
+    browsers: ['Chrome', 'BS_EDGE', 'BS_FIREFOX'],
   });
 
   if (process.env['TRAVIS']) {
