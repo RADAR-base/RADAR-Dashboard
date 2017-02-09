@@ -26,12 +26,11 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
   yAxis: any;
   lines: any;
   line: any;
+  firstDraw = true;
 
   init() {
     this.line = d3.line()
-      .curve(d3.curveBasis)
-      .x((d: any) => this.xScale(d.date))
-      .y((d: any) => this.yScale(d.value));
+      .curve(d3.curveBasis);
 
     super.init();
   }
@@ -64,11 +63,20 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
         .tickSize(-this.width)
     );
 
+    this.line
+      .x(d => this.xScale(d.date))
+      .y(d => this.yScale(d.value));
+
     this.lines = this.chart.selectAll('.line')
-      .data(this.data, d => d.id)
-      .enter().append('path')
+      .data(this.data, d => d.id);
+
+    this.lines.enter().append('path')
       .attr('class', 'line')
+      .merge(this.lines)
+      .transition()
       .attr('d', d => this.line(d.values))
       .style('stroke', d => this.zScale(d.id));
+
+    this.lines.exit().remove();
   }
 }

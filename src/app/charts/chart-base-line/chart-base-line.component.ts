@@ -88,6 +88,7 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
 
     this.lineEl
       .datum(this.data)
+      .transition()
       .attr('d', this.line);
   }
 }

@@ -54,7 +54,11 @@ describe('ChartBaseLineComponent', () => {
 
       // with data // needs to be parsed //
       component.chartData = parseMockTimeSeriesData(MockTimeSeriesData);
-      expect(lineEl.getAttribute(attr)).toBeTruthy();
+
+      // wait for transition
+      setTimeout(() => {
+        expect(lineEl.getAttribute(attr)).toBeTruthy();
+      }, 100);
     });
 
     it('should not have a linearGradient', () => {
