@@ -60,7 +60,7 @@
     "karma-cli": "^1.0.1",
     "karma-jasmine": "^1.0.2",
     "karma-remap-istanbul": "^0.6.0",
-    "ngrx-store-freeze": "^0.1.6",
+    "ngrx-store-freeze": "^0.1.7",
     "postcss": "^5.2.12",
     "postcss-cli": "2",
     "postcss-scss": "0",
