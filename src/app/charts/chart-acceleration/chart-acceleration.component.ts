@@ -17,11 +17,6 @@ import { DescriptiveStatistic } from '../../models/config.model';
           {{ stat.label }}
         </md-option>
       </md-select>
-      <div class="item">
-        <md-checkbox [checked]="false" align="end">
-          Min & Max
-        </md-checkbox>
-      </div>
     </div>
     <div class="container">
       <app-chart-base-multi-line

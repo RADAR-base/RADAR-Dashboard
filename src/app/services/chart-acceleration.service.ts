@@ -11,7 +11,7 @@ export class ChartAccelerationService {
 
   get(): Observable<MultiTimeSeries[]> {
     // TODO: Change when API is ready
-    return this.http.get(`${PARAMS.API_LOCAL}/mock-acceleration.json`)
+    return this.http.get(`${PARAMS.API_URI}/Acc/avg/UserID_0/SourceID_0`)
       .map(res => res.json().dataset || [])
       .map(this.parseAccelerationData)
       .catch(ErrorService.handleError);
