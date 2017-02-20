@@ -1,0 +1,19 @@
+{
+  "study_id": 0,
+  "patients": [
+    {
+      "user_id": "UserID_0",
+      "source_id": [
+        "SourceID_10",
+        "SourceID_0"
+      ]
+    },
+    {
+      "user_id": "UserID_10",
+      "source_id": [
+        "SourceID_30",
+        "SourceID_0"
+      ]
+    }
+  ]
+}

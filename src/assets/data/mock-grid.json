@@ -4,14 +4,14 @@
       "cols": 2,
       "id": 1,
       "rows": 2,
-      "title": "Heart Rate Monitoring",
+      "title": "Heart Rate",
       "type": "heart-rate"
     },
     {
       "cols": 2,
       "id": 2,
       "rows": 2,
-      "title": "Accelerometer Monitoring",
+      "title": "Accelerometer",
       "type": "acceleration"
     },
     {
