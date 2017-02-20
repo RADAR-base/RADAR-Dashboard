@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ChartBaseLineComponent } from './chart-base-line.component';
 import { DebugElement } from '@angular/core';
 import { MockTimeSeriesData, parseMockTimeSeriesData } from '../../test/mock-timeseries-data';
@@ -45,7 +45,7 @@ describe('ChartBaseLineComponent', () => {
       expect(component.height).toBeGreaterThan(0);
     });
 
-    it('path.line should have attribute "d" when data changes', () => {
+    it('path.line should have attribute "d" when data changes', async(() => {
       const lineEl = element.querySelector('path.line');
       const attr = 'd';
 
@@ -59,7 +59,7 @@ describe('ChartBaseLineComponent', () => {
       setTimeout(() => {
         expect(lineEl.getAttribute(attr)).toBeTruthy();
       }, 100);
-    });
+    }));
 
     it('should not have a linearGradient', () => {
       expect(element.querySelector('linearGradient#hr-gradient')).toBeFalsy();
@@ -79,7 +79,7 @@ describe('ChartBaseLineComponent', () => {
     it('linearGradient should have attributes "y1, y2" when data changes', () => {
       // with data // needs to be parsed //
       component.chartData = parseMockTimeSeriesData(MockTimeSeriesData);
-      const gradient = element.querySelector('linearGradient#hr-gradient');
+      const gradient = de.nativeElement.querySelector('linearGradient#hr-gradient');
       expect(gradient.getAttribute('y1')).toBeGreaterThan(0);
       expect(gradient.getAttribute('y2')).toBeGreaterThan(0);
     });

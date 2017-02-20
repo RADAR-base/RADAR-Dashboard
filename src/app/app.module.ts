@@ -34,7 +34,7 @@ import { ChartAccelerationService } from './services/chart-acceleration.service'
   imports: [
     BrowserModule,
     HttpModule,
-    MaterialModule.forRoot(),
+    MaterialModule,
 
     // ngrx/store
     StoreModule.provideStore(reducer),

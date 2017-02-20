@@ -30,7 +30,7 @@ script:
   - yarn lint
   - yarn lint:style
   - yarn test:ci
-  - cat ./coverage/coverage.lcov | ./node_modules/coveralls/bin/coveralls.js
+  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
   - yarn e2e
 
 before_deploy:
