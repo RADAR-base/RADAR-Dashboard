@@ -7,7 +7,7 @@ import { AppConfig } from '../../shared/app.config';
 
 @Component({
   selector: 'app-chart-base-multi-line',
-  template: '',
+  template: '<svg #svg></svg>',
   styleUrls: ['./chart-base-multi-line.component.scss']
 })
 export class ChartBaseMultiLineComponent extends ChartBaseComponent {

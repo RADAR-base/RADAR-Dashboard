@@ -7,7 +7,7 @@ import { AppConfig } from '../../shared/app.config';
 
 @Component({
   selector: 'app-chart-base-line',
-  template: '',
+  template: '<svg #svg></svg>',
   styleUrls: ['./chart-base-line.component.scss']
 })
 export class ChartBaseLineComponent extends ChartBaseComponent {

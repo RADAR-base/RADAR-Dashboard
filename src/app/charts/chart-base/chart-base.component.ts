@@ -1,6 +1,6 @@
 import 'rxjs/add/operator/debounceTime';
 
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, ViewChild } from '@angular/core';
 import { ElementRef, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import * as d3 from 'd3';
@@ -10,8 +10,9 @@ import { AppConfig } from '../../shared/app.config';
 /**
  *  BaseComponent to be extended by chart components
  *
- *  The component appends an SVG element, it doesn't need a template.
- *  It has an empty template for testing purposes only.
+ *  Components that extend this component
+ *  must to include the following element in their template:
+ *  `<svg #svg></svg>`
  *
  *  Use the following lifecycle methods in the extended components:
  *  1. init() use to initiate the chart elements
@@ -19,9 +20,10 @@ import { AppConfig } from '../../shared/app.config';
  *  3. draw() use to draw the chart elements
  */
 @Component({
-  template: '',
+  template: '<svg #svg></svg>',
 })
 export class ChartBaseComponent implements AfterViewInit {
+  @ViewChild('svg') svgRef: ElementRef;
 
   data: any;
 
@@ -47,14 +49,8 @@ export class ChartBaseComponent implements AfterViewInit {
 
   private window$: Observable<Event>;
 
-  constructor(
-    private elementRef: ElementRef
-  ) {}
-
   ngAfterViewInit() {
-    this.svg = d3.select(this.elementRef.nativeElement)
-      .append('svg');
-
+    this.svg = d3.select(this.svgRef.nativeElement);
     this.beforeInit();
   }
 
