@@ -24,7 +24,6 @@ before_install:
 
 before_script:
   - echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-  - yarn start &
 
 script:
   - yarn lint
