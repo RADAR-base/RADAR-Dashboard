@@ -3,15 +3,15 @@
     "descriptive_statistic": "average",
     "unit": "steps",
     "effective_time_frame": {
-      "start_date_time": "2016-10-27T20:02:20Z",
-      "end_date_time": "2016-10-27T20:06:50Z"
+      "start_date_time": "2016-10-01T20:03:00Z",
+      "end_date_time": "2016-10-01T20:03:10Z"
     }
   },
   "dataset": [
     {
       "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:02:20Z",
-        "end_date_time": "2016-10-27T20:02:30Z"
+        "start_date_time": "2016-10-02T20:03:00Z",
+        "end_date_time": "2016-10-02T20:03:10Z"
       },
       "steps": {
         "value": 100
@@ -19,8 +19,8 @@
     },
     {
       "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:03:00Z",
-        "end_date_time": "2016-10-27T20:03:10Z"
+        "start_date_time": "2016-10-03T20:03:00Z",
+        "end_date_time": "2016-10-03T20:03:10Z"
       },
       "steps": {
         "value": 120
@@ -28,8 +28,8 @@
     },
     {
       "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:03:10Z",
-        "end_date_time": "2016-10-27T20:03:20Z"
+        "start_date_time": "2016-10-04T20:03:10Z",
+        "end_date_time": "2016-10-04T20:03:20Z"
       },
       "steps": {
         "value": 135
@@ -37,8 +37,8 @@
     },
     {
       "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:03:20Z",
-        "end_date_time": "2016-10-27T20:03:30Z"
+        "start_date_time": "2016-10-05T20:03:20Z",
+        "end_date_time": "2016-10-05T20:03:30Z"
       },
       "steps": {
         "value": 83
@@ -46,8 +46,8 @@
     },
     {
       "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:03:30Z",
-        "end_date_time": "2016-10-27T20:03:40Z"
+        "start_date_time": "2016-10-06T20:03:30Z",
+        "end_date_time": "2016-10-06T20:03:40Z"
       },
       "steps": {
         "value": 30
@@ -55,8 +55,8 @@
     },
     {
       "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:03:40Z",
-        "end_date_time": "2016-10-27T20:03:50Z"
+        "start_date_time": "2016-10-07T20:03:40Z",
+        "end_date_time": "2016-10-07T20:03:50Z"
       },
       "steps": {
         "value": 30
@@ -64,8 +64,8 @@
     },
     {
       "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:04:00Z",
-        "end_date_time": "2016-10-27T20:04:10Z"
+        "start_date_time": "2016-10-08T20:04:00Z",
+        "end_date_time": "2016-10-08T20:04:10Z"
       },
       "steps": {
         "value": 91
@@ -73,8 +73,8 @@
     },
     {
       "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:04:10Z",
-        "end_date_time": "2016-10-27T20:04:20Z"
+        "start_date_time": "2016-10-09T20:04:10Z",
+        "end_date_time": "2016-10-09T20:04:20Z"
       },
       "steps": {
         "value": 97
@@ -82,8 +82,8 @@
     },
     {
       "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:04:20Z",
-        "end_date_time": "2016-10-27T20:04:30Z"
+        "start_date_time": "2016-10-11T20:04:20Z",
+        "end_date_time": "2016-10-11T20:04:30Z"
       },
       "steps": {
         "value": 121
@@ -91,8 +91,8 @@
     },
     {
       "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:04:30Z",
-        "end_date_time": "2016-10-27T20:04:40Z"
+        "start_date_time": "2016-10-12T20:04:30Z",
+        "end_date_time": "2016-10-12T20:04:40Z"
       },
       "steps": {
         "value": 110
@@ -100,8 +100,8 @@
     },
     {
       "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:04:40Z",
-        "end_date_time": "2016-10-27T20:04:50Z"
+        "start_date_time": "2016-10-13T20:04:40Z",
+        "end_date_time": "2016-10-13T20:04:50Z"
       },
       "steps": {
         "value": 93
@@ -109,8 +109,8 @@
     },
     {
       "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:05:00Z",
-        "end_date_time": "2016-10-27T20:05:10Z"
+        "start_date_time": "2016-10-14T20:05:00Z",
+        "end_date_time": "2016-10-14T20:05:10Z"
       },
       "steps": {
         "value": 120
@@ -118,8 +118,8 @@
     },
     {
       "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:05:10Z",
-        "end_date_time": "2016-10-27T20:05:20Z"
+        "start_date_time": "2016-10-15T20:05:10Z",
+        "end_date_time": "2016-10-15T20:05:20Z"
       },
       "steps": {
         "value": 110
@@ -127,8 +127,8 @@
     },
     {
       "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:05:20Z",
-        "end_date_time": "2016-10-27T20:05:30Z"
+        "start_date_time": "2016-10-16T20:05:20Z",
+        "end_date_time": "2016-10-16T20:05:30Z"
       },
       "steps": {
         "value": 107
@@ -136,8 +136,8 @@
     },
     {
       "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:05:30Z",
-        "end_date_time": "2016-10-27T20:05:40Z"
+        "start_date_time": "2016-10-17T20:05:30Z",
+        "end_date_time": "2016-10-17T20:05:40Z"
       },
       "steps": {
         "value": 97
@@ -145,8 +145,8 @@
     },
     {
       "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:05:40Z",
-        "end_date_time": "2016-10-27T20:05:50Z"
+        "start_date_time": "2016-10-18T20:05:40Z",
+        "end_date_time": "2016-10-18T20:05:50Z"
       },
       "steps": {
         "value": 93
@@ -154,8 +154,8 @@
     },
     {
       "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:06:00Z",
-        "end_date_time": "2016-10-27T20:06:10Z"
+        "start_date_time": "2016-10-19T20:06:00Z",
+        "end_date_time": "2016-10-19T20:06:10Z"
       },
       "steps": {
         "value": 108
@@ -163,8 +163,8 @@
     },
     {
       "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:06:10Z",
-        "end_date_time": "2016-10-27T20:06:20Z"
+        "start_date_time": "2016-10-20T20:06:10Z",
+        "end_date_time": "2016-10-20T20:06:20Z"
       },
       "steps": {
         "value": 100
@@ -172,8 +172,8 @@
     },
     {
       "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:06:20Z",
-        "end_date_time": "2016-10-27T20:06:30Z"
+        "start_date_time": "2016-10-21T20:06:20Z",
+        "end_date_time": "2016-10-21T20:06:30Z"
       },
       "steps": {
         "value": 96
@@ -181,8 +181,8 @@
     },
     {
       "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:06:30Z",
-        "end_date_time": "2016-10-27T20:06:40Z"
+        "start_date_time": "2016-10-22T20:06:30Z",
+        "end_date_time": "2016-10-22T20:06:40Z"
       },
       "steps": {
         "value": 116
@@ -190,8 +190,8 @@
     },
     {
       "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:06:40Z",
-        "end_date_time": "2016-10-27T20:06:50Z"
+        "start_date_time": "2016-10-23T20:06:40Z",
+        "end_date_time": "2016-10-23T20:06:50Z"
       },
       "steps": {
         "value": 97

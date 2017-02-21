@@ -34,10 +34,12 @@ export class ChartBaseBarComponent extends ChartBaseComponent {
   draw () {
     this.xScaleOrdinal = d3.scaleBand()
       .rangeRound([0, this.width])
-      .padding(0.3)
+      .paddingInner(0.2)
+      .paddingOuter(0.2)
 
     if (this.categorical) {
-      this.xScaleOrdinal.domain(this.data.map(function (d: Categorical) { return d.name }))
+      this.xScaleOrdinal
+        .domain(this.data.map((d: Categorical) => d.name))
 
       this.yScale = d3.scaleLinear()
         .range([this.height, 0])
@@ -46,12 +48,15 @@ export class ChartBaseBarComponent extends ChartBaseComponent {
       this.xAxis
         .attr('transform', `translate(0, ${this.yScale(0)})`)
         .call(d3.axisBottom(this.xScaleOrdinal))
-    } else {
-      this.xScaleTime = d3.scaleTime()
-        .range([0, this.width - this.margin.right])
-        .domain(d3.extent(this.data, (d: TimeSeries) => d.date))
 
-      this.xScaleOrdinal.domain(this.data.map(function (d: TimeSeries) { return d.date }))
+    } else {
+      this.xScaleOrdinal
+        .paddingOuter(0)
+        .domain(this.data.map((d: TimeSeries) => d.date))
+
+      this.xScaleTime = d3.scaleTime()
+        .range([0, this.width])
+        .domain(d3.extent(this.data, (d: TimeSeries) => d.date))
 
       this.yScale = d3.scaleLinear()
         .range([this.height, 0])
@@ -72,23 +77,14 @@ export class ChartBaseBarComponent extends ChartBaseComponent {
     this.bar = this.chart.selectAll('bar')
       .data(this.data)
 
-    if (this.categorical) {
-      this.bar.enter()
-        .append('rect')
-        .attr('class', 'bar')
-        .attr('x', d => this.xScaleOrdinal(d.name))
-        .attr('width', this.xScaleOrdinal.bandwidth())
-        .attr('y', d => this.yScale(d.value))
-        .attr('height', d => this.height - this.yScale(d.value))
-    } else {
-      this.bar.enter()
-        .append('rect')
-        .attr('class', 'bar')
-        .attr('x', d => this.xScaleTime(d.date))
-        .attr('width', this.xScaleOrdinal.bandwidth())
-        .attr('y', d => this.yScale(d.value))
-        .attr('height', d => this.height - this.yScale(d.value))
-    }
+    this.bar.enter().append('rect')
+      .attr('class', 'bar')
+      .attr('x', d => this.xScaleOrdinal(
+        this.categorical ? d.name : d.date
+      ))
+      .attr('width', this.xScaleOrdinal.bandwidth())
+      .attr('y', d => this.yScale(d.value))
+      .attr('height', d => this.height - this.yScale(d.value))
 
     this.bar.exit().remove()
   }
