@@ -46,8 +46,6 @@ describe('ChartBaseBarComponent', () => {
     })
 
     it('rect should have attribute x and y when data changes', () => {
-      const attr = 'x'
-
       // without data
       expect(element.querySelector('rect.bar')).toBeFalsy()
 
@@ -55,7 +53,14 @@ describe('ChartBaseBarComponent', () => {
       component.chartData = parseMockTimeSeriesData(MockTimeSeriesData)
 
       // select element again as they'll be instantiated
-      expect(element.querySelector('rect.bar').getAttribute(attr)).toBeTruthy()
+      expect(element.querySelector('rect.bar')).toBeTruthy()
+
+      const rectElements: any = element.querySelectorAll('rect.bar')
+
+      Object.getOwnPropertyNames(rectElements).forEach((prop) => {
+        expect(rectElements[prop].getAttribute('x')).toBeTruthy()
+        expect(rectElements[prop].getAttribute('y')).toBeTruthy()
+      })
     })
   })
 })
