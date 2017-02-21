@@ -1,8 +1,7 @@
 export interface Tile {
-  id: number;
-  cols: number;
-  rows: number;
-  type: string;
-  title: string;
+  id: number
+  cols: number
+  rows: number
+  type: string
+  title: string
 }
-

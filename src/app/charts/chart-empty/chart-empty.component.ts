@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 
 @Component({
   selector: 'app-chart-empty',
@@ -13,6 +13,6 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 })
 export class ChartEmptyComponent {
 
-  @Input() title: string;
+  @Input() title: string
 
 }

@@ -1,29 +1,29 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Http } from '@angular/http';
-import { MultiTimeSeries } from '../models/multi-time-series.model';
-import { ErrorService } from './error.service';
+import { Injectable } from '@angular/core'
+import { Observable } from 'rxjs/Observable'
+import { Http } from '@angular/http'
+import { MultiTimeSeries } from '../models/multi-time-series.model'
+import { ErrorService } from './error.service'
 
 @Injectable()
 export class ChartAccelerationService {
 
-  constructor(private http: Http) {}
+  constructor (private http: Http) {}
 
-  get(): Observable<MultiTimeSeries[]> {
+  get (): Observable<MultiTimeSeries[]> {
     // TODO: Change when API is ready
     return this.http.get(`${PARAMS.API_URI}/Acc/avg/UserID_0/SourceID_0`)
       .map(res => res.json().dataset || [])
       .map(this.parseAccelerationData)
-      .catch(ErrorService.handleError);
+      .catch(ErrorService.handleError)
   }
 
-  parseAccelerationData(dataset) {
+  parseAccelerationData (dataset) {
 
     // Reshaping the data as to have date value info
     // for each of the measurements (e.g. x, y, z)
 
-    const coords = ['x', 'y', 'z'];
-    const dataParsed = [];
+    const coords = ['x', 'y', 'z']
+    const dataParsed = []
 
     coords.map(id => {
       dataParsed.push({
@@ -32,10 +32,10 @@ export class ChartAccelerationService {
           value: data.acceleration[id],
           date: new Date(data.effective_time_frame.start_date_time)
         }))
-      });
-    });
+      })
+    })
 
-    return dataParsed;
+    return dataParsed
   }
 
 }

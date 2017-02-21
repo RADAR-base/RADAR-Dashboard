@@ -1,17 +1,17 @@
-import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import { Tile } from '../models/tile.model';
-import { ErrorService } from './error.service';
+import { Injectable } from '@angular/core'
+import { Http } from '@angular/http'
+import { Observable } from 'rxjs/Observable'
+import { Tile } from '../models/tile.model'
+import { ErrorService } from './error.service'
 
 @Injectable()
 export class GridService {
 
-  constructor(private http: Http) {}
+  constructor (private http: Http) {}
 
-  get(): Observable<Tile[]> {
+  get (): Observable<Tile[]> {
     return this.http.get(`${PARAMS.API_LOCAL}/mock-grid.json`)
       .map(res => res.json().dataset || [])
-      .catch(ErrorService.handleError);
+      .catch(ErrorService.handleError)
   }
 }

@@ -1,10 +1,10 @@
-import { Component, ChangeDetectionStrategy, Input, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
-import { MultiTimeSeries } from '../../models/multi-time-series.model';
-import * as fromRoot from '../../store';
-import * as acAction from '../../store/chart-acceleration/chart-acceleration.actions';
-import { DescriptiveStatistic } from '../../models/config.model';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core'
+import { Store } from '@ngrx/store'
+import { Observable } from 'rxjs/Observable'
+import { MultiTimeSeries } from '../../models/multi-time-series.model'
+import * as fromRoot from '../../store'
+import * as acAction from '../../store/chart-acceleration/chart-acceleration.actions'
+import { DescriptiveStatistic } from '../../models/config.model'
 
 @Component({
   selector: 'app-chart-acceleration',
@@ -27,24 +27,24 @@ import { DescriptiveStatistic } from '../../models/config.model';
 })
 export class ChartAccelerationComponent implements OnInit {
 
-  @Input() title: string;
+  @Input() title: string
 
-  data$: Observable<MultiTimeSeries[]>;
-  stat$: Observable<DescriptiveStatistic[]>;
+  data$: Observable<MultiTimeSeries[]>
+  stat$: Observable<DescriptiveStatistic[]>
 
   // TODO: plug it to the config
-  selectedValue = 'avg';
+  selectedValue = 'avg'
 
-  constructor(
+  constructor (
     private store: Store<fromRoot.State>
   ) {
     this.data$ = this.store.let(fromRoot.getChartACData)
-      .filter(data => !!data);
+      .filter(data => !!data)
 
-    this.stat$ = this.store.let(fromRoot.getConfigDescriptiveStatistic);
+    this.stat$ = this.store.let(fromRoot.getConfigDescriptiveStatistic)
   }
 
-  ngOnInit() {
-    this.store.dispatch(new acAction.Update('average'));
+  ngOnInit () {
+    this.store.dispatch(new acAction.Update('average'))
   }
 }

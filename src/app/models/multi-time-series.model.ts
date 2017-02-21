@@ -1,6 +1,6 @@
-import { TimeSeries } from './time-series.model';
+import { TimeSeries } from './time-series.model'
 
 export interface MultiTimeSeries {
-  id: string;
-  values: TimeSeries[];
+  id: string
+  values: TimeSeries[]
 }

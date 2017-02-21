@@ -1,11 +1,11 @@
-import { browser, element, by } from 'protractor';
+import { browser, by, element } from 'protractor'
 
 export class RadarDashboardPage {
-  navigateTo() {
-    return browser.get('/');
+  navigateTo () {
+    return browser.get('/')
   }
 
-  getDashboard() {
-    return element(by.css('app-root app-dashboard'));
+  getDashboard () {
+    return element(by.css('app-root app-dashboard'))
   }
 }

@@ -1,10 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
-import { AppConfig } from '../../shared/app.config';
-import { Tile } from '../../models/tile.model';
-import * as fromRoot from '../../store';
-import * as gridAction from '../../store/grid/grid.actions';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
+import { Store } from '@ngrx/store'
+import { Observable } from 'rxjs/Observable'
+import { AppConfig } from '../../shared/app.config'
+import { Tile } from '../../models/tile.model'
+import * as fromRoot from '../../store'
+import * as gridAction from '../../store/grid/grid.actions'
 
 @Component({
   selector: 'app-dashboard',
@@ -22,20 +22,20 @@ import * as gridAction from '../../store/grid/grid.actions';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  tiles$: Observable<Tile[]>;
-  loading$: Observable<boolean>;
-  gridCols = AppConfig.GRID_COLS;
+  tiles$: Observable<Tile[]>
+  loading$: Observable<boolean>
+  gridCols = AppConfig.GRID_COLS
 
   // TODO: update grid when MD adds responsive support
   // [https://github.com/angular/material2/blob/master/src/lib/grid-list/README.md]
-  constructor(
+  constructor (
     private store: Store<fromRoot.State>
   ) {
-    this.tiles$ = this.store.let(fromRoot.getGridTiles);
-    this.loading$ = this.store.let(fromRoot.getGridLoading);
+    this.tiles$ = this.store.let(fromRoot.getGridTiles)
+    this.loading$ = this.store.let(fromRoot.getGridLoading)
   }
 
-  ngOnInit() {
-    this.store.dispatch(new gridAction.Load());
+  ngOnInit () {
+    this.store.dispatch(new gridAction.Load())
   }
 }

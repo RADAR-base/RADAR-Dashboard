@@ -1,22 +1,22 @@
-import { Action } from '@ngrx/store';
-import { type } from '../../shared/util';
-import { User } from '../../models/user.model';
+import { Action } from '@ngrx/store'
+import { type } from '../../shared/util'
+import { User } from '../../models/user.model'
 
 export class Types {
-  static readonly LOAD         = type('[User] Load');
-  static readonly LOAD_SUCCESS = type('[User] Load Success');
+  static readonly LOAD = type('[User] Load')
+  static readonly LOAD_SUCCESS = type('[User] Load Success')
 }
 
 export class Load implements Action {
-  readonly type = Types.LOAD;
+  readonly type = Types.LOAD
 }
 
 export class LoadSuccess implements Action {
-  readonly type = Types.LOAD_SUCCESS;
+  readonly type = Types.LOAD_SUCCESS
 
-  constructor(public payload: User) {}
+  constructor (public payload: User) {}
 }
 
 export type Actions
   = Load
-  | LoadSuccess;
+  | LoadSuccess

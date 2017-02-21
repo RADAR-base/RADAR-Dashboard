@@ -1,11 +1,11 @@
 export interface ChartMargin {
-  top: number;
-  right: number;
-  bottom: number;
-  left: number;
+  top: number
+  right: number
+  bottom: number
+  left: number
 }
 
 export interface ChartGradientColors {
-  offset: string;
-  color: string;
+  offset: string
+  color: string
 }
