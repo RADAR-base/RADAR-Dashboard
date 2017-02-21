@@ -31,20 +31,13 @@
     {
       "cols": 2,
       "id": 5,
-      "rows": 1,
-      "title": "TBD",
-      "type": "empty"
+      "rows": 2,
+      "title": "Steps",
+      "type": "steps"
     },
     {
       "cols": 2,
       "id": 6,
-      "rows": 1,
-      "title": "TBD",
-      "type": "empty"
-    },
-    {
-      "cols": 2,
-      "id": 7,
       "rows": 1,
       "title": "TBD",
       "type": "empty"

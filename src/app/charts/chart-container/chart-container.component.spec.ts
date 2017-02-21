@@ -87,6 +87,34 @@ describe('ChartContainerComponent', () => {
     }))
   })
 
+  describe('Steps Type', () => {
+    beforeEach(() => {
+      // Tile Stub
+      component.tile = {
+        id: 1,
+        rows: 2,
+        cols: 3,
+        title: 'Steps',
+        type: 'steps'
+      };
+      fixture.detectChanges();
+    });
+
+    it('should have a tile with title "Steps"', async(() => {
+      expect(component.title)
+        .toBe('Steps');
+      expect(element.querySelector('.title').textContent)
+        .toBe('Steps');
+    }));
+
+    it('should have a "app-chart-steps" component', async(() => {
+      expect(component.tile.type)
+        .toBe(component.CHART_TYPE.STEPS);
+      expect(element.querySelector('app-chart-steps'))
+        .toBeTruthy();
+    }));
+  });
+
   describe('Empty Type', () => {
     beforeEach(() => {
       // Tile Stub
