@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing'
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ChartBaseLineComponent } from './chart-base-line.component'
 import { DebugElement } from '@angular/core'
 import { MockTimeSeriesData, parseMockTimeSeriesData } from '../../test/mock-timeseries-data'
@@ -45,7 +45,7 @@ describe('ChartBaseLineComponent', () => {
       expect(component.height).toBeGreaterThan(0)
     })
 
-    it('path.line should have attribute "d" when data changes', async(() => {
+    it('path.line should have attribute "d" when data changes', (done) => {
       const lineEl = element.querySelector('path.line')
       const attr = 'd'
 
@@ -58,8 +58,9 @@ describe('ChartBaseLineComponent', () => {
       // wait for transition
       setTimeout(() => {
         expect(lineEl.getAttribute(attr)).toBeTruthy()
-      }, 100)
-    }))
+        done()
+      }, 500)
+    })
 
     it('should not have a linearGradient', () => {
       expect(element.querySelector('linearGradient#hr-gradient')).toBeFalsy()

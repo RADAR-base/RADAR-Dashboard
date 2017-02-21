@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing'
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing'
 import { ChartBaseMultiLineComponent } from './chart-base-multi-line.component'
 import { DebugElement } from '@angular/core'
 import { MockMultiTimeSeriesData, parseMockMultiTimeSeriesData } from '../../test/mock-multi-timeseries-data'
@@ -42,7 +42,7 @@ describe('ChartBaseMultiLineComponent', () => {
     expect(component.height).toBeGreaterThan(0)
   })
 
-  it('path.line should have attribute "d" when data changes (async)', async(() => {
+  it('path.line should have attribute "d" when data changes (fakeAsync)', fakeAsync(() => {
     const lineElements = element.querySelectorAll('path.line')
     const attr = 'd'
 
@@ -55,10 +55,9 @@ describe('ChartBaseMultiLineComponent', () => {
     component.chartData = parseMockMultiTimeSeriesData(MockMultiTimeSeriesData)
 
     // wait for transition
-    setTimeout(() => {
-      Object.getOwnPropertyNames(lineElements).forEach((prop) => {
-        expect(lineElements[prop].getAttribute(attr)).toBeTruthy()
-      })
-    }, 100)
+    tick(500)
+    Object.getOwnPropertyNames(lineElements).forEach((prop) => {
+      expect(lineElements[prop].getAttribute(attr)).toBeTruthy()
+    })
   }))
 })

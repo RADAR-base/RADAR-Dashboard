@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing'
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ChartContainerComponent } from './chart-container.component'
 import { StoreModule } from '@ngrx/store'
 import { reducer } from '../../store'
@@ -27,9 +27,9 @@ describe('ChartContainerComponent', () => {
     de = fixture.debugElement
   })
 
-  it('should create the component', async(() => {
+  it('should create the component', () => {
     expect(component).toBeTruthy()
-  }))
+  })
 
   describe('Heart Rate Type', () => {
     beforeEach(() => {
@@ -44,19 +44,19 @@ describe('ChartContainerComponent', () => {
       fixture.detectChanges()
     })
 
-    it('should have a tile with title "Heart Rate Monitoring"', async(() => {
+    it('should have a tile with title "Heart Rate Monitoring"', () => {
       expect(component.title)
         .toBe('Heart Rate Monitoring')
       expect(element.querySelector('.title').textContent)
         .toBe('Heart Rate Monitoring')
-    }))
+    })
 
-    it('should have a "app-chart-heart-rate" component', async(() => {
+    it('should have a "app-chart-heart-rate" component', () => {
       expect(component.tile.type)
         .toBe(component.CHART_TYPE.HR)
       expect(element.querySelector('app-chart-heart-rate'))
         .toBeTruthy()
-    }))
+    })
   })
 
   describe('Acceleration Type', () => {
@@ -72,19 +72,19 @@ describe('ChartContainerComponent', () => {
       fixture.detectChanges()
     })
 
-    it('should have a tile with title "Accelerometer Monitoring"', async(() => {
+    it('should have a tile with title "Accelerometer Monitoring"', () => {
       expect(component.title)
         .toBe('Accelerometer Monitoring')
       expect(element.querySelector('.title').textContent)
         .toBe('Accelerometer Monitoring')
-    }))
+    })
 
-    it('should have a "app-chart-acceleration" component', async(() => {
+    it('should have a "app-chart-acceleration" component', () => {
       expect(component.tile.type)
         .toBe(component.CHART_TYPE.AC)
       expect(element.querySelector('app-chart-acceleration'))
         .toBeTruthy()
-    }))
+    })
   })
 
   describe('Steps Type', () => {
@@ -96,24 +96,24 @@ describe('ChartContainerComponent', () => {
         cols: 3,
         title: 'Steps',
         type: 'steps'
-      };
-      fixture.detectChanges();
-    });
+      }
+      fixture.detectChanges()
+    })
 
-    it('should have a tile with title "Steps"', async(() => {
+    it('should have a tile with title "Steps"', () => {
       expect(component.title)
-        .toBe('Steps');
+        .toBe('Steps')
       expect(element.querySelector('.title').textContent)
-        .toBe('Steps');
-    }));
+        .toBe('Steps')
+    })
 
-    it('should have a "app-chart-steps" component', async(() => {
+    it('should have a "app-chart-steps" component', () => {
       expect(component.tile.type)
-        .toBe(component.CHART_TYPE.STEPS);
+        .toBe(component.CHART_TYPE.STEPS)
       expect(element.querySelector('app-chart-steps'))
-        .toBeTruthy();
-    }));
-  });
+        .toBeTruthy()
+    })
+  })
 
   describe('Empty Type', () => {
     beforeEach(() => {
@@ -128,11 +128,11 @@ describe('ChartContainerComponent', () => {
       fixture.detectChanges()
     })
 
-    it('should have a "app-chart-empty" component', async(() => {
+    it('should have a "app-chart-empty" component', () => {
       expect(component.tile.type)
         .toBe(component.CHART_TYPE.EMPTY)
       expect(element.querySelector('app-chart-empty'))
         .toBeTruthy()
-    }))
+    })
   })
 })

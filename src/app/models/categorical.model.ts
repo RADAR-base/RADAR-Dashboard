@@ -1,4 +1,4 @@
 export interface Categorical {
-  name: string;
-  value: number;
+  name: string
+  value: number
 }
