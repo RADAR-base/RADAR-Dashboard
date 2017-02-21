@@ -13,4 +13,4 @@ export const MockGrid = [
     'title': 'TBD',
     'type': 'empty'
   }
-];
+]

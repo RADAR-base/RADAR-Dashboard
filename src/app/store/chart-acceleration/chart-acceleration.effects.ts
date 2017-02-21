@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { Actions, Effect } from '@ngrx/effects';
-import { Observable } from 'rxjs/Observable';
-import { Action } from '@ngrx/store';
-import * as acAction from './chart-acceleration.actions';
-import { MultiTimeSeries } from '../../models/multi-time-series.model';
-import { ChartAccelerationService } from '../../services/chart-acceleration.service';
+import { Injectable } from '@angular/core'
+import { Actions, Effect } from '@ngrx/effects'
+import { Observable } from 'rxjs/Observable'
+import { Action } from '@ngrx/store'
+import * as acAction from './chart-acceleration.actions'
+import { MultiTimeSeries } from '../../models/multi-time-series.model'
+import { ChartAccelerationService } from '../../services/chart-acceleration.service'
 
 @Injectable()
 export class ChartAccelerationEffects {
@@ -14,10 +14,10 @@ export class ChartAccelerationEffects {
     .ofType(acAction.Types.UPDATE)
     .switchMap(() => {
       return this.acService.get()
-        .map((data: MultiTimeSeries[]) => new acAction.UpdateSuccess(data));
-    });
+        .map((data: MultiTimeSeries[]) => new acAction.UpdateSuccess(data))
+    })
 
-  constructor(
+  constructor (
     private actions$: Actions,
     private acService: ChartAccelerationService
   ) { }

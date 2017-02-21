@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { Actions, Effect } from '@ngrx/effects';
-import { Observable } from 'rxjs/Observable';
-import { Action } from '@ngrx/store';
-import { UserService } from '../../services/user.service';
-import { User } from '../../models/user.model';
-import * as userAction from './user.actions';
+import { Injectable } from '@angular/core'
+import { Actions, Effect } from '@ngrx/effects'
+import { Observable } from 'rxjs/Observable'
+import { Action } from '@ngrx/store'
+import { UserService } from '../../services/user.service'
+import { User } from '../../models/user.model'
+import * as userAction from './user.actions'
 
 @Injectable()
 export class UserEffects {
@@ -14,10 +14,10 @@ export class UserEffects {
     .ofType(userAction.Types.LOAD)
     .switchMap(() => {
       return this.userService.get()
-        .map((user: User) => new userAction.LoadSuccess(user));
-    });
+        .map((user: User) => new userAction.LoadSuccess(user))
+    })
 
-  constructor(
+  constructor (
     private actions$: Actions,
     private userService: UserService
   ) { }

@@ -7,7 +7,10 @@
     "noUnusedParameters": true,
     "noUnusedLocals": true,
     "alwaysStrict": true,
-    "lib": ["es6", "dom"],
+    "lib": [
+      "es6",
+      "dom"
+    ],
     "mapRoot": "./",
     "module": "es6",
     "moduleResolution": "node",

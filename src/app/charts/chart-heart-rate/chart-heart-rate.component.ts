@@ -1,10 +1,10 @@
-import { Component, ChangeDetectionStrategy, Input, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
-import { TimeSeries } from '../../models/time-series.model';
-import * as fromRoot from '../../store';
-import * as hrAction from '../../store/chart-heart-rate/chart-heart-rate.actions';
-import { DescriptiveStatistic } from '../../models/config.model';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core'
+import { Store } from '@ngrx/store'
+import { Observable } from 'rxjs/Observable'
+import { TimeSeries } from '../../models/time-series.model'
+import * as fromRoot from '../../store'
+import * as hrAction from '../../store/chart-heart-rate/chart-heart-rate.actions'
+import { DescriptiveStatistic } from '../../models/config.model'
 
 @Component({
   selector: 'app-chart-heart-rate',
@@ -28,24 +28,24 @@ import { DescriptiveStatistic } from '../../models/config.model';
 })
 export class ChartHeartRateComponent implements OnInit {
 
-  @Input() title: string;
+  @Input() title: string
 
-  data$: Observable<TimeSeries[]>;
-  stat$: Observable<DescriptiveStatistic[]>;
+  data$: Observable<TimeSeries[]>
+  stat$: Observable<DescriptiveStatistic[]>
 
   // TODO: plug it to the config
-  selectedValue = 'avg';
+  selectedValue = 'avg'
 
-  constructor(
+  constructor (
     private store: Store<fromRoot.State>
   ) {
     this.data$ = this.store.let(fromRoot.getChartHRData)
-      .filter(data => !!data);
+      .filter(data => !!data)
 
-    this.stat$ = this.store.let(fromRoot.getConfigDescriptiveStatistic);
+    this.stat$ = this.store.let(fromRoot.getConfigDescriptiveStatistic)
   }
 
-  ngOnInit() {
-    this.store.dispatch(new hrAction.Update('average'));
+  ngOnInit () {
+    this.store.dispatch(new hrAction.Update('average'))
   }
 }

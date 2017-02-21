@@ -1,4 +1,4 @@
 export interface User {
-  id: string;
-  lastUpdate: string;
+  id: string
+  lastUpdate: string
 }
