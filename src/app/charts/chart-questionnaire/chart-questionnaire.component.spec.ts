@@ -1,14 +1,14 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
-import { ChartStepsComponent } from './chart-steps.component';
+import { ChartQuestionnaireComponent } from './chart-questionnaire.component';
 import { ChartModule } from '../chart.module';
 import { reducer } from '../../store';
 import { StoreModule } from '@ngrx/store';
 import { DebugElement } from '@angular/core';
 import { MaterialModule } from '@angular/material';
 
-describe('ChartStepsComponent', () => {
-  let component: ChartStepsComponent;
-  let fixture: ComponentFixture<ChartStepsComponent>;
+describe('ChartQuestionnaireComponent', () => {
+  let component: ChartQuestionnaireComponent;
+  let fixture: ComponentFixture<ChartQuestionnaireComponent>;
   let element: HTMLElement;
   let de: DebugElement;
 
@@ -21,7 +21,7 @@ describe('ChartStepsComponent', () => {
       ]
     });
 
-    fixture = TestBed.createComponent(ChartStepsComponent);
+    fixture = TestBed.createComponent(ChartQuestionnaireComponent);
     component = fixture.componentInstance;
     element = fixture.nativeElement;
     de = fixture.debugElement;

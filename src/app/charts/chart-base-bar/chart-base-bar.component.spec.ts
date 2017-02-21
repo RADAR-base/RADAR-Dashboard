@@ -46,7 +46,7 @@ describe('ChartBaseBarComponent', () => {
     });
 
     it('rect should have attribute x and y when data changes', async(() => {
-      const rectEl = element.querySelector('rect');
+      const rectEl = element.querySelector('rect.bar');
       const attr = 'x';
 
       // without data

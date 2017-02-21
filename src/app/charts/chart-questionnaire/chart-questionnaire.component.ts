@@ -1,13 +1,13 @@
 import { Component, ChangeDetectionStrategy, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import { TimeSeries } from '../../models/time-series.model';
+import { Categorical } from '../../models/categorical.model';
 import * as fromRoot from '../../store';
-import * as stepsAction from '../../store/chart-steps/chart-steps.actions';
+import * as questionnaireAction from '../../store/chart-questionnaire/chart-questionnaire.actions';
 import { DescriptiveStatistic } from '../../models/config.model';
 
 @Component({
-  selector: 'app-chart-steps',
+  selector: 'app-chart-questionnaire',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="header">
@@ -21,16 +21,16 @@ import { DescriptiveStatistic } from '../../models/config.model';
     <div class="container">
       <app-chart-base-bar
         [chartData]="data$ | async"
-        [categorical]="false"></app-chart-base-bar>
+        [categorical]="true"></app-chart-base-bar>
     </div>
   `,
-  styleUrls: ['./chart-steps.component.scss']
+  styleUrls: ['./chart-questionnaire.component.scss']
 })
-export class ChartStepsComponent implements OnInit {
+export class ChartQuestionnaireComponent implements OnInit {
 
   @Input() title: string;
 
-  data$: Observable<TimeSeries[]>;
+  data$: Observable<Categorical[]>;
   stat$: Observable<DescriptiveStatistic[]>;
 
   // TODO: plug it to the config
@@ -39,13 +39,13 @@ export class ChartStepsComponent implements OnInit {
   constructor(
     private store: Store<fromRoot.State>
   ) {
-    this.data$ = this.store.let(fromRoot.getChartStepsData)
+    this.data$ = this.store.let(fromRoot.getChartQuestionnaireData)
       .filter(data => !!data);
 
     this.stat$ = this.store.let(fromRoot.getConfigDescriptiveStatistic);
   }
 
   ngOnInit() {
-    this.store.dispatch(new stepsAction.Update('average'));
+    this.store.dispatch(new questionnaireAction.Update('average'));
   }
 }

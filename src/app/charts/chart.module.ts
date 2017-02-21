@@ -5,6 +5,7 @@ import { ChartEmptyComponent } from './chart-empty/chart-empty.component';
 import { ChartHeartRateComponent } from './chart-heart-rate/chart-heart-rate.component';
 import { ChartAccelerationComponent } from './chart-acceleration/chart-acceleration.component';
 import { ChartStepsComponent } from './chart-steps/chart-steps.component';
+import { ChartQuestionnaireComponent } from './chart-questionnaire/chart-questionnaire.component';
 import { ChartContainerComponent } from './chart-container/chart-container.component';
 import { ChartBaseLineComponent } from './chart-base-line/chart-base-line.component';
 import { ChartBaseMultiLineComponent } from './chart-base-multi-line/chart-base-multi-line.component';
@@ -28,6 +29,7 @@ import { ChartBaseComponent } from './chart-base/chart-base.component';
     ChartHeartRateComponent,
     ChartAccelerationComponent,
     ChartStepsComponent,
+    ChartQuestionnaireComponent,
     ChartContainerComponent,
   ],
   providers: [],

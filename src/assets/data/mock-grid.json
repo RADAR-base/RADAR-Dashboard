@@ -18,8 +18,8 @@
       "cols": 1,
       "id": 3,
       "rows": 1,
-      "title": "TBD",
-      "type": "empty"
+      "title": "Questionnaire",
+      "type": "questionnaire"
     },
     {
       "cols": 1,

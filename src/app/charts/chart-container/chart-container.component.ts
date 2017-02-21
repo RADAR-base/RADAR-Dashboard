@@ -11,6 +11,8 @@ import { Tile } from '../../models/tile.model';
       [title]="title" class="app-chart"></app-chart-acceleration>
     <app-chart-steps *ngIf="tile.type === CHART_TYPE.STEPS" 
       [title]="title" class="app-chart"></app-chart-steps>
+    <app-chart-questionnaire *ngIf="tile.type === CHART_TYPE.QUEST" 
+      [title]="title" class="app-chart"></app-chart-questionnaire>
     <app-chart-empty *ngIf="tile.type === CHART_TYPE.EMPTY"
       [title]="title" class="app-chart"></app-chart-empty>
   `,
@@ -23,6 +25,7 @@ export class ChartContainerComponent {
     EMPTY: 'empty',
     AC: 'acceleration',
     STEPS: 'steps',
+    QUEST: 'questionnaire',
   };
 
   @Input() tile: Tile;

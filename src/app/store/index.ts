@@ -14,6 +14,7 @@ import * as fromConfig from './config/config.reducer';
 import * as fromChartHR from './chart-heart-rate/chart-heart-rate.reducer';
 import * as fromChartAC from './chart-acceleration/chart-acceleration.reducer';
 import * as fromChartSteps from './chart-steps/chart-steps.reducer';
+import * as fromChartQuestionnaire from './chart-questionnaire/chart-questionnaire.reducer';
 
 
 export interface State {
@@ -23,6 +24,7 @@ export interface State {
   chartHR: fromChartHR.State;
   chartAC: fromChartAC.State;
   chartSteps: fromChartSteps.State;
+  chartQuestionnaire: fromChartQuestionnaire.State;
 }
 
 const reducers = {
@@ -32,6 +34,7 @@ const reducers = {
   chartHR: fromChartHR.reducer,
   chartAC: fromChartAC.reducer,
   chartSteps: fromChartSteps.reducer,
+  chartQuestionnaire: fromChartQuestionnaire.reducer,
 };
 
 const developmentReducer: ActionReducer<State> =
@@ -89,3 +92,10 @@ export function getChartStepsState(state$: Observable<State>) {
 }
 export const getChartStepsLoading = compose(fromChartSteps.getLoading, getChartStepsState);
 export const getChartStepsData = compose(fromChartSteps.getData, getChartStepsState);
+
+// ChartQuestionnaire Selectors
+export function getChartQuestionnaireState(state$: Observable<State>) {
+  return state$.select(s => s.chartQuestionnaire);
+}
+export const getChartQuestionnaireLoading = compose(fromChartQuestionnaire.getLoading, getChartQuestionnaireState);
+export const getChartQuestionnaireData = compose(fromChartQuestionnaire.getData, getChartQuestionnaireState);
