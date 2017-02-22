@@ -30,11 +30,11 @@ script:
   - yarn lint
   - yarn lint:style
   - yarn test:ci
-  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
-  - cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage
   - yarn e2e
 
 before_deploy:
+  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+  - cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage
   - openssl aes-256-cbc -K $encrypted_03759da18559_key -iv $encrypted_03759da18559_iv -in ./scripts/deploy_key.enc -out deploy_key.pem -d
   - eval "$(ssh-agent -s)"
   - chmod 600 deploy_key.pem
