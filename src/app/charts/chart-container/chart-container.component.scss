@@ -20,7 +20,7 @@
 
     display: flex;
     align-items: center;
-    height: 40px;
+    min-height: 40px;
     background-color: $cl-base-40;
 
     .item {
