@@ -1,11 +1,12 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core'
+import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 import { RouterTestingModule } from '@angular/router/testing'
-import { AppComponent } from './app.component'
-import { routes } from './app.routes'
-import { DashboardComponent } from './components/dashboard/dashboard.component'
 import { StoreModule } from '@ngrx/store'
-import { reducer } from './store/index'
+
+import { AppComponent } from './app.component'
+import { routes } from './app.routing'
+import { DashboardGridComponent } from './components/dashboard-grid/dashboard-grid.component'
+import { reducer } from './core/store'
 
 describe('AppComponent', () => {
   let component: AppComponent
@@ -21,7 +22,7 @@ describe('AppComponent', () => {
       ],
       declarations: [
         AppComponent,
-        DashboardComponent
+        DashboardGridComponent
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })

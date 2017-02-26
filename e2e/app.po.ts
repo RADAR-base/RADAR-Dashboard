@@ -6,6 +6,6 @@ export class RadarDashboardPage {
   }
 
   getDashboard () {
-    return element(by.css('app-root app-dashboard'))
+    return element(by.css('app-root app-dashboard-grid'))
   }
 }

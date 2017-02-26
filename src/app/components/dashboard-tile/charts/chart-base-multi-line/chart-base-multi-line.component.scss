@@ -1,0 +1,10 @@
+@import '../../../../../styles/common';
+@import '../chart.common';
+
+:host /deep/ {
+  .line {
+    fill: none;
+    stroke-width: 3px;
+    stroke-linejoin: round;
+  }
+}

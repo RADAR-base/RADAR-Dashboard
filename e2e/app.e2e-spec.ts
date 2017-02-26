@@ -7,7 +7,7 @@ describe('radar-dashboard App', function () {
     page = new RadarDashboardPage()
   })
 
-  it('should have the DashboardComponent', () => {
+  it('should have the DashboardGridComponent', () => {
     page.navigateTo()
     expect(page.getDashboard()).toBeTruthy()
   })
