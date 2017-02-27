@@ -1,11 +1,11 @@
 import { Action } from '@ngrx/store'
 
-import { Categorical } from '../../../components/dashboard-tile/models/categorical.model'
+import { TimeSeries } from '../../models/time-series.model'
 import { type } from '../../utils/type'
 
 export class Types {
-  static readonly UPDATE = type('[TileQuestionnaire] Update')
-  static readonly UPDATE_SUCCESS = type('[TileQuestionnaire] Update Success')
+  static readonly UPDATE = type('[TileSteps] Update')
+  static readonly UPDATE_SUCCESS = type('[TileSteps] Update Success')
 }
 
 export class Update implements Action {
@@ -17,7 +17,7 @@ export class Update implements Action {
 export class UpdateSuccess implements Action {
   readonly type = Types.UPDATE_SUCCESS
 
-  constructor (public payload: Categorical[]) {}
+  constructor (public payload: TimeSeries[]) {}
 }
 
 export type Actions

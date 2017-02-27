@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core'
 import { Http } from '@angular/http'
 import { Observable } from 'rxjs/Observable'
 
-import { MultiTimeSeries } from '../../../components/dashboard-tile/models/multi-time-series.model'
-import { ErrorService } from '../../../shared/services/error.service'
+import { MultiTimeSeries } from '../../models/multi-time-series.model'
+import { ErrorService } from '../../services/error.service'
 
 @Injectable()
 export class TileAccelerationService {

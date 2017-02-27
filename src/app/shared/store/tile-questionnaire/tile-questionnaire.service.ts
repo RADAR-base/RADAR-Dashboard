@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core'
 import { Http } from '@angular/http'
 import { Observable } from 'rxjs/Observable'
 
-import { Categorical } from '../../../components/dashboard-tile/models/categorical.model'
-import { ErrorService } from '../../../shared/services/error.service'
+import { Categorical } from '../../models/categorical.model'
+import { ErrorService } from '../../services/error.service'
 
 @Injectable()
 export class TileQuestionnaireService {

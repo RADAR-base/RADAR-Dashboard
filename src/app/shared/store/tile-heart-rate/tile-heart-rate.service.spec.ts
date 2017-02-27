@@ -2,8 +2,8 @@ import { async, inject, TestBed } from '@angular/core/testing'
 import { HttpModule, Response, ResponseOptions, XHRBackend } from '@angular/http'
 import { MockBackend } from '@angular/http/testing'
 
-import { TimeSeries } from '../../../components/dashboard-tile/models/time-series.model'
-import { MockHRData } from '../../../shared/testing/mocks/mock-HR-data'
+import { TimeSeries } from '../../models/time-series.model'
+import { MockHRData } from '../../testing/mocks/mock-HR-data'
 import { TileHeartRateService } from './tile-heart-rate.service'
 
 describe('TileHeartRateService', () => {

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core'
 import { Http } from '@angular/http'
 import { Observable } from 'rxjs/Observable'
 
-import { TimeSeries } from '../../../components/dashboard-tile/models/time-series.model'
-import { ErrorService } from '../../../shared/services/error.service'
+import { TimeSeries } from '../../models/time-series.model'
+import { ErrorService } from '../../services/error.service'
 
 @Injectable()
 export class TileHeartRateService {

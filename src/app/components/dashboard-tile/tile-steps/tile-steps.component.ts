@@ -2,10 +2,10 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
-import * as fromRoot from '../../../core/store'
-import * as stepsAction from '../../../core/store/tile-steps/tile-steps.actions'
-import { DescriptiveStatistic } from '../../../core/store/config/config.model'
-import { TimeSeries } from '../models/time-series.model'
+import * as fromRoot from '../../../shared/store'
+import * as stepsAction from '../../../shared/store/tile-steps/tile-steps.actions'
+import { DescriptiveStatistic } from '../../../shared/store/config/config.model'
+import { TimeSeries } from '../../../shared/models/time-series.model'
 
 @Component({
   selector: 'app-tile-steps',

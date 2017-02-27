@@ -1,11 +1,11 @@
 import { Action } from '@ngrx/store'
-import { MultiTimeSeries } from '../../../components/dashboard-tile/models/multi-time-series.model'
 
+import { Categorical } from '../../models/categorical.model'
 import { type } from '../../utils/type'
 
 export class Types {
-  static readonly UPDATE = type('[TileAcceleration] Update')
-  static readonly UPDATE_SUCCESS = type('[TileAcceleration] Update Success')
+  static readonly UPDATE = type('[TileQuestionnaire] Update')
+  static readonly UPDATE_SUCCESS = type('[TileQuestionnaire] Update Success')
 }
 
 export class Update implements Action {
@@ -17,7 +17,7 @@ export class Update implements Action {
 export class UpdateSuccess implements Action {
   readonly type = Types.UPDATE_SUCCESS
 
-  constructor (public payload: MultiTimeSeries[]) {}
+  constructor (public payload: Categorical[]) {}
 }
 
 export type Actions

@@ -1,12 +1,12 @@
 import '@ngrx/core/add/operator/select'
 import { Observable } from 'rxjs/Observable'
 
-import { MultiTimeSeries } from '../../../components/dashboard-tile/models/multi-time-series.model'
-import * as acAction from './tile-acceleration.actions'
+import { TimeSeries } from '../../models/time-series.model'
+import * as stepsAction from './tile-steps.actions'
 
 export interface State {
   loading: boolean
-  data: MultiTimeSeries[]
+  data: TimeSeries[]
   config: any
   request: any
 }
@@ -18,17 +18,17 @@ const initialState: State = {
   request: null
 }
 
-export function reducer (state = initialState, action: acAction.Actions): State {
+export function reducer (state = initialState, action: stepsAction.Actions): State {
   switch (action.type) {
 
-    case acAction.Types.UPDATE: {
+    case stepsAction.Types.UPDATE: {
       return Object.assign({}, state, {
         loading: true,
         request: action.payload
       })
     }
 
-    case acAction.Types.UPDATE_SUCCESS: {
+    case stepsAction.Types.UPDATE_SUCCESS: {
       return Object.assign({}, state, {
         loading: false,
         data: action.payload

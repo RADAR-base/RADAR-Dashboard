@@ -3,7 +3,7 @@ import { Http } from '@angular/http'
 import { Observable } from 'rxjs/Observable'
 
 import { DashboardTile } from '../../../components/dashboard-tile/dashboard-tile.model'
-import { ErrorService } from '../../../shared/services/error.service'
+import { ErrorService } from '../../services/error.service'
 
 @Injectable()
 export class GridService {

@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store'
 
-import { TimeSeries } from '../../../components/dashboard-tile/models/time-series.model'
+import { TimeSeries } from '../../models/time-series.model'
 import { type } from '../../utils/type'
 
 export class Types {

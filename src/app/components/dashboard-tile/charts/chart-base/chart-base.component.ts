@@ -3,7 +3,7 @@ import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular
 import { Observable } from 'rxjs/Observable'
 import * as d3 from 'd3'
 
-import { Config } from '../../../../core/utils/config'
+import { Config } from '../../../../shared/utils/config'
 
 /**
  *  BaseComponent to be extended by chart components

@@ -2,8 +2,8 @@ import { async, inject, TestBed } from '@angular/core/testing'
 import { HttpModule, Response, ResponseOptions, XHRBackend } from '@angular/http'
 import { MockBackend } from '@angular/http/testing'
 
-import { Categorical } from '../../../components/dashboard-tile/models/categorical.model'
-import { MockQuestionnaireData } from '../../../shared/testing/mocks/mock-questionnaire-data'
+import { Categorical } from '../../models/categorical.model'
+import { MockQuestionnaireData } from '../../testing/mocks/mock-questionnaire-data'
 import { TileQuestionnaireService } from './tile-questionnaire.service'
 
 describe('TileQuestionnaireService', () => {

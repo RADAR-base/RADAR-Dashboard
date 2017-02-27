@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core'
 import * as d3 from 'd3'
 
-import { Config } from '../../../../core/utils/config'
-import { TimeSeries } from '../../models/time-series.model'
+import { Config } from '../../../../shared/utils/config'
+import { TimeSeries } from '../../../../shared/models/time-series.model'
 import { ChartBaseComponent } from '../chart-base/chart-base.component'
 
 @Component({

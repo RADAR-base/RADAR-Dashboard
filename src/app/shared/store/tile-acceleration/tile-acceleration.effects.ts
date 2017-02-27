@@ -3,7 +3,7 @@ import { Actions, Effect } from '@ngrx/effects'
 import { Action } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
-import { MultiTimeSeries } from '../../../components/dashboard-tile/models/multi-time-series.model'
+import { MultiTimeSeries } from '../../models/multi-time-series.model'
 import * as acAction from './tile-acceleration.actions'
 import { TileAccelerationService } from './tile-acceleration.service'
 

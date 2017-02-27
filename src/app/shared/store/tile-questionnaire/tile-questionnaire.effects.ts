@@ -3,7 +3,7 @@ import { Actions, Effect } from '@ngrx/effects'
 import { Action } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
-import { Categorical } from '../../../components/dashboard-tile/models/categorical.model'
+import { Categorical } from '../../models/categorical.model'
 import * as questionnaireAction from './tile-questionnaire.actions'
 import { TileQuestionnaireService } from './tile-questionnaire.service'
 

@@ -2,11 +2,11 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
-import * as fromRoot from '../../../core/store'
-import * as questionnaireAction from '../../../core/store/tile-questionnaire/tile-questionnaire.actions'
-import { DescriptiveStatistic } from '../../../core/store/config/config.model'
+import * as fromRoot from '../../../shared/store'
+import * as questionnaireAction from '../../../shared/store/tile-questionnaire/tile-questionnaire.actions'
+import { DescriptiveStatistic } from '../../../shared/store/config/config.model'
 
-import { Categorical } from '../models/categorical.model'
+import { Categorical } from '../../../shared/models/categorical.model'
 
 @Component({
   selector: 'app-tile-questionnaire',

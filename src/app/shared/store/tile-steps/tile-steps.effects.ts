@@ -3,7 +3,7 @@ import { Actions, Effect } from '@ngrx/effects'
 import { Action } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
-import { TimeSeries } from '../../../components/dashboard-tile/models/time-series.model'
+import { TimeSeries } from '../../models/time-series.model'
 import * as stepsAction from './tile-steps.actions'
 import { TileStepsService } from './tile-steps.service'
 

@@ -2,9 +2,9 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
-import * as fromRoot from '../../core/store'
-import * as gridAction from '../../core/store/grid/grid.actions'
-import { Config } from '../../core/utils/config'
+import * as fromRoot from '../../shared/store'
+import * as gridAction from '../../shared/store/grid/grid.actions'
+import { Config } from '../../shared/utils/config'
 import { DashboardTile } from '../dashboard-tile/dashboard-tile.model'
 
 @Component({

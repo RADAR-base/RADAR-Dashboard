@@ -6,7 +6,7 @@ import { StoreModule } from '@ngrx/store'
 import { AppComponent } from './app.component'
 import { routes } from './app.routing'
 import { DashboardGridComponent } from './components/dashboard-grid/dashboard-grid.component'
-import { reducer } from './core/store'
+import { reducer } from './shared/store'
 
 describe('AppComponent', () => {
   let component: AppComponent

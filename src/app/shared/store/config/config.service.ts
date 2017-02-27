@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import { Http } from '@angular/http'
 import { Observable } from 'rxjs/Observable'
 
-import { ErrorService } from '../../../shared/services/error.service'
+import { ErrorService } from '../../services/error.service'
 import { Config } from './config.model'
 
 @Injectable()

@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { MaterialModule } from '@angular/material'
 import { StoreModule } from '@ngrx/store'
 
-import { reducer } from '../../../core/store'
+import { reducer } from '../../../shared/store'
 import { DashboardTileModule } from '../dashboard-tile.module'
 import { TileQuestionnaireComponent } from './tile-questionnaire.component'
 
