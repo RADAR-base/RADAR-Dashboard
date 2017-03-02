@@ -1,7 +1,7 @@
 import {
   ChartGradientColors,
   ChartMargin
-} from '../../components/dashboard-tile/charts/chart.model'
+} from '../../components/charts/chart.model'
 
 export class Config {
   // Grid Config

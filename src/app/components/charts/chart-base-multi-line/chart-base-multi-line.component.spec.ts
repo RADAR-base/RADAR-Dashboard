@@ -4,7 +4,7 @@ import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testin
 import {
   MockMultiTimeSeriesData,
   parseMockMultiTimeSeriesData
-} from '../../../../shared/testing/mocks/mock-multi-timeseries-data'
+} from '../../../shared/testing/mocks/mock-multi-timeseries-data'
 import { ChartBaseMultiLineComponent } from './chart-base-multi-line.component'
 
 describe('ChartBaseMultiLineComponent', () => {

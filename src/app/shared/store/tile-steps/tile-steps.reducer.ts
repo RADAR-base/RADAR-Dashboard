@@ -1,6 +1,3 @@
-import '@ngrx/core/add/operator/select'
-import { Observable } from 'rxjs/Observable'
-
 import { TimeSeries } from '../../models/time-series.model'
 import * as stepsAction from './tile-steps.actions'
 
@@ -40,10 +37,5 @@ export function reducer (state = initialState, action: stepsAction.Actions): Sta
   }
 }
 
-export function getLoading (state$: Observable<State>) {
-  return state$.select(s => s.loading)
-}
-
-export function getData (state$: Observable<State>) {
-  return state$.select(s => s.data)
-}
+export const getLoading = (state: State) => state.loading
+export const getData = (state: State) => state.data

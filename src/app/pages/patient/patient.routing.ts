@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
+
 import { PatientPageComponent } from './patient.component'
 
 const routes: Routes = [
-  { path: '', component: PatientPageComponent },
-  // { path: ':id', component: PatientPageComponent }
+  { path: 'patient', component: PatientPageComponent },
+  { path: 'patient/:id', component: PatientPageComponent }
 ]
 
 @NgModule({

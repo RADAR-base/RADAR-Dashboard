@@ -38,8 +38,8 @@ describe('DashboardGridComponent', () => {
     fixture.detectChanges()
   })
 
-  beforeEach(inject([Store], s => {
-    store = s
+  beforeEach(inject([Store], state => {
+    store = state
   }))
 
   it('creates the component', async(() => {

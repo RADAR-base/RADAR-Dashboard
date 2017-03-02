@@ -1,7 +1,3 @@
-import '@ngrx/core/add/operator/select'
-import 'rxjs/add/operator/mergeAll'
-import { Observable } from 'rxjs/Observable'
-
 import * as userAction from './user.actions'
 import { User } from './user.model'
 
@@ -41,11 +37,5 @@ export function reducer (state = initialState, action: userAction.Actions): Stat
   }
 }
 
-export function getLoading (state$: Observable<State>) {
-  return state$.select(s => s.loading)
-}
-
-export function getUserID (state$: Observable<State>) {
-  console.log(state$.select(s => s.id).mergeAll())
-  return state$.select(s => s.id)
-}
+export const getLoading = (state: State) => state.loading
+export const getUserID = (state: State) => state.id

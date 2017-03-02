@@ -1,11 +1,12 @@
+import '@ngrx/core/add/operator/select'
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
+import { TimeSeries } from '../../../shared/models/time-series.model'
+import { DescriptiveStatistic } from '../../../shared/store/config/config.model'
 import * as fromRoot from '../../../shared/store'
 import * as hrAction from '../../../shared/store/tile-heart-rate/tile-heart-rate.actions'
-import { DescriptiveStatistic } from '../../../shared/store/config/config.model'
-import { TimeSeries } from '../../../shared/models/time-series.model'
 
 @Component({
   selector: 'app-tile-heart-rate',
@@ -38,10 +39,10 @@ export class TileHeartRateComponent implements OnInit {
   selectedValue = 'avg'
 
   constructor (private store: Store<fromRoot.State>) {
-    this.data$ = this.store.let(fromRoot.getChartHRData)
+    this.data$ = store.select(fromRoot.getChartHRData)
       .filter(data => !!data)
 
-    this.stat$ = this.store.let(fromRoot.getConfigDescriptiveStatistic)
+    this.stat$ = store.select(fromRoot.getConfigDescriptiveStatistic)
   }
 
   ngOnInit () {

@@ -5,7 +5,6 @@
   "extends": "tslint-config-standard",
   "rules": {
     "no-angle-bracket-type-assertion": false,
-    "no-switch-case-fall-through": false,
 
     "callable-types": true,
     "class-name": true,
@@ -53,10 +52,6 @@
     "no-empty": false,
     "no-empty-interface": true,
     "no-eval": true,
-    "no-inferrable-types": [
-      true,
-      "ignore-params"
-    ],
     "no-shadowed-variable": true,
     "no-string-literal": false,
     "no-string-throw": true,
@@ -106,6 +101,7 @@
     "directive-selector": [
       true,
       "attribute",
+      "",
       "camelCase"
     ],
     "component-selector": [
@@ -114,7 +110,6 @@
       "app",
       "kebab-case"
     ],
-
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
     "use-host-property-decorator": true,

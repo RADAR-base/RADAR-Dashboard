@@ -1,6 +1,3 @@
-import '@ngrx/core/add/operator/select'
-import { Observable } from 'rxjs/Observable'
-
 import * as configAction from './config.actions'
 import { Config } from './config.model'
 
@@ -35,10 +32,5 @@ export function reducer (state = initialState, action: configAction.Actions): St
   }
 }
 
-export function getLoading (state$: Observable<State>) {
-  return state$.select(s => s.loading)
-}
-
-export function getDescriptiveStatistic (state$: Observable<State>) {
-  return state$.select(s => s.descriptive_statistic)
-}
+export const getLoading = (state: State) => state.loading
+export const getDescriptiveStatistic = (state: State) => state.descriptive_statistic

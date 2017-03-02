@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core'
 import * as d3 from 'd3'
 
-import { Categorical } from '../../../../shared/models/categorical.model'
-import { TimeSeries } from '../../../../shared/models/time-series.model'
+import { Categorical } from '../../../shared/models/categorical.model'
+import { TimeSeries } from '../../../shared/models/time-series.model'
 import { ChartBaseComponent } from '../chart-base/chart-base.component'
 
 @Component({

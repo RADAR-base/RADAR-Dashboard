@@ -1,17 +1,15 @@
+/* tslint:disable */
 // export for convenience.
 export { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router'
-
-import { Component, Directive, Injectable, Input } from '@angular/core'
+import { Component, Directive, HostListener, Injectable, Input } from '@angular/core'
 import { NavigationExtras } from '@angular/router'
 import { BehaviorSubject } from 'rxjs/BehaviorSubject'
 
 @Directive({
-  selector: '[routerLink]',
-  host: {
-    '(click)': 'onClick()'
-  }
+  selector: '[routerLink]'
 })
 export class RouterLinkStubDirective {
+  @HostListener('click') onClick
   @Input('routerLink') linkParams: any
   navigatedTo: any = null
 
@@ -21,8 +19,7 @@ export class RouterLinkStubDirective {
 }
 
 @Component({ selector: 'router-outlet', template: '' })
-export class RouterOutletStubComponent {
-}
+export class RouterOutletStubComponent {}
 
 @Injectable()
 export class RouterStub {

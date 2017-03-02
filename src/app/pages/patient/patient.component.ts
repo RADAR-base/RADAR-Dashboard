@@ -11,9 +11,7 @@ import { ActivatedRoute } from '@angular/router'
 })
 export class PatientPageComponent implements OnDestroy {
 
-  constructor (
-    public route: ActivatedRoute
-  ) {
+  constructor (public route: ActivatedRoute) {
     route.params.subscribe(console.log)
   }
 

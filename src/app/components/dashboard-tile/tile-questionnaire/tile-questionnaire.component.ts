@@ -1,12 +1,13 @@
+import '@ngrx/core/add/operator/select'
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
-import * as fromRoot from '../../../shared/store'
-import * as questionnaireAction from '../../../shared/store/tile-questionnaire/tile-questionnaire.actions'
-import { DescriptiveStatistic } from '../../../shared/store/config/config.model'
-
 import { Categorical } from '../../../shared/models/categorical.model'
+
+import * as fromRoot from '../../../shared/store'
+import { DescriptiveStatistic } from '../../../shared/store/config/config.model'
+import * as questionnaireAction from '../../../shared/store/tile-questionnaire/tile-questionnaire.actions'
 
 @Component({
   selector: 'app-tile-questionnaire',
@@ -14,11 +15,6 @@ import { Categorical } from '../../../shared/models/categorical.model'
   template: `
     <div class="header">
       <div class="title">{{title}}</div>
-      <md-select #statSelect="ngModel" [(ngModel)]="selectedValue" class="item">
-        <md-option *ngFor="let stat of stat$ | async" [value]="stat.value">
-          {{ stat.label }}
-        </md-option>
-      </md-select>
     </div>
     <div class="container">
       <app-chart-base-bar
@@ -38,13 +34,11 @@ export class TileQuestionnaireComponent implements OnInit {
   // TODO: plug it to the config
   selectedValue = 'avg'
 
-  constructor (
-    private store: Store<fromRoot.State>
-  ) {
-    this.data$ = this.store.let(fromRoot.getChartQuestionnaireData)
+  constructor (private store: Store<fromRoot.State>) {
+    this.data$ = store.select(fromRoot.getChartQuestionnaireData)
       .filter(data => !!data)
 
-    this.stat$ = this.store.let(fromRoot.getConfigDescriptiveStatistic)
+    this.stat$ = store.select(fromRoot.getConfigDescriptiveStatistic)
   }
 
   ngOnInit () {

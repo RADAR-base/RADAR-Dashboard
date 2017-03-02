@@ -39,10 +39,10 @@ export class TileAccelerationComponent implements OnInit {
   constructor (
     private store: Store<fromRoot.State>
   ) {
-    this.data$ = this.store.let(fromRoot.getChartACData)
+    this.data$ = this.store.select(fromRoot.getChartACData)
       .filter(data => !!data)
 
-    this.stat$ = this.store.let(fromRoot.getConfigDescriptiveStatistic)
+    this.stat$ = this.store.select(fromRoot.getConfigDescriptiveStatistic)
   }
 
   ngOnInit () {

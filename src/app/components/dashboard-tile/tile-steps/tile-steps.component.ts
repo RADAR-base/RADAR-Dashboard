@@ -1,11 +1,12 @@
+import '@ngrx/core/add/operator/select'
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
+import { TimeSeries } from '../../../shared/models/time-series.model'
 
 import * as fromRoot from '../../../shared/store'
-import * as stepsAction from '../../../shared/store/tile-steps/tile-steps.actions'
 import { DescriptiveStatistic } from '../../../shared/store/config/config.model'
-import { TimeSeries } from '../../../shared/models/time-series.model'
+import * as stepsAction from '../../../shared/store/tile-steps/tile-steps.actions'
 
 @Component({
   selector: 'app-tile-steps',
@@ -13,11 +14,6 @@ import { TimeSeries } from '../../../shared/models/time-series.model'
   template: `
     <div class="header">
       <div class="title">{{title}}</div>
-      <md-select #statSelect="ngModel" [(ngModel)]="selectedValue" class="item">
-        <md-option *ngFor="let stat of stat$ | async" [value]="stat.value">
-          {{ stat.label }}
-        </md-option>
-      </md-select>
     </div>
     <div class="container">
       <app-chart-base-bar
@@ -37,13 +33,11 @@ export class TileStepsComponent implements OnInit {
   // TODO: plug it to the config
   selectedValue = 'avg'
 
-  constructor (
-    private store: Store<fromRoot.State>
-  ) {
-    this.data$ = this.store.let(fromRoot.getChartStepsData)
+  constructor (private store: Store<fromRoot.State>) {
+    this.data$ = store.select(fromRoot.getChartStepsData)
       .filter(data => !!data)
 
-    this.stat$ = this.store.let(fromRoot.getConfigDescriptiveStatistic)
+    this.stat$ = store.select(fromRoot.getConfigDescriptiveStatistic)
   }
 
   ngOnInit () {

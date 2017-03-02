@@ -1,3 +1,4 @@
+import '@ngrx/core/add/operator/select'
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
@@ -29,11 +30,9 @@ export class DashboardGridComponent implements OnInit {
 
   // TODO: update grid when MD adds responsive support
   // [https://github.com/angular/material2/blob/master/src/lib/grid-list/README.md]
-  constructor (
-    private store: Store<fromRoot.State>
-  ) {
-    this.tiles$ = this.store.let(fromRoot.getGridTiles)
-    this.loading$ = this.store.let(fromRoot.getGridLoading)
+  constructor (private store: Store<fromRoot.State>) {
+    this.tiles$ = store.select(fromRoot.getGridTiles)
+    this.loading$ = store.select(fromRoot.getGridLoading)
   }
 
   ngOnInit () {

@@ -12,7 +12,7 @@ export class TileHeartRateService {
 
   get (): Observable<TimeSeries[]> {
     // TODO: Change when API is ready
-    return this.http.get(`${PARAMS.API_URI}/HR/avg/UserID_0/SourceID_0`)
+    return this.http.get(`${PARAMS.API_URI}/HR/avg/KCLTest0/00:07:80:1F:52:F3`)
       .map(res => res.json().dataset || [])
       .map(this.parseHeartRateData)
       .catch(ErrorService.handleError)
@@ -27,5 +27,4 @@ export class TileHeartRateService {
         }
       })
   }
-
 }

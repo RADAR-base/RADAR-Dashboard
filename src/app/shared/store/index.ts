@@ -1,10 +1,7 @@
-import '@ngrx/core/add/operator/select'
-import 'rxjs/add/operator/switchMap'
-import 'rxjs/add/operator/let'
 import { compose } from '@ngrx/core/compose'
 import { ActionReducer, combineReducers } from '@ngrx/store'
 import { storeFreeze } from 'ngrx-store-freeze'
-import { Observable } from 'rxjs/Observable'
+import { createSelector } from 'reselect'
 
 import { environment } from '../../../environments/environment'
 import * as fromConfig from './config/config.reducer'
@@ -14,8 +11,10 @@ import * as fromChartHR from './tile-heart-rate/tile-heart-rate.reducer'
 import * as fromChartQuestionnaire from './tile-questionnaire/tile-questionnaire.reducer'
 import * as fromChartSteps from './tile-steps/tile-steps.reducer'
 import * as fromUser from './user/user.reducer'
+import * as fromStudy from './study/study.reducer'
 
 export interface State {
+  study: fromStudy.State
   grid: fromGrid.State
   user: fromUser.State
   config: fromConfig.State
@@ -26,6 +25,7 @@ export interface State {
 }
 
 const reducers = {
+  study: fromStudy.reducer,
   grid: fromGrid.reducer,
   user: fromUser.reducer,
   config: fromConfig.reducer,
@@ -35,10 +35,8 @@ const reducers = {
   chartQuestionnaire: fromChartQuestionnaire.reducer
 }
 
-const developmentReducer: ActionReducer<State> =
-        compose(storeFreeze, combineReducers)(reducers)
-const productionReducer: ActionReducer<State> =
-        combineReducers(reducers)
+const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers)
+const productionReducer: ActionReducer<State> = combineReducers(reducers)
 
 export function reducer (state: any, action: any) {
   if (environment.PROD) {
@@ -48,54 +46,49 @@ export function reducer (state: any, action: any) {
   }
 }
 
+// Study Selectors
+export const getStudyState = (state: State) => state.study
+export const getStudyLoading = createSelector(getStudyState, fromStudy.getLoading)
+export const getStudyAll = createSelector(getStudyState, fromStudy.getAll)
+
+/**
+ * OLD SELECTORS
+ * TODO: Delete old selectors
+ */
 // Grid Selectors
-export function getGridState (state$: Observable<State>) {
-  return state$.select(s => s.grid)
-}
-export const getGridLoading = compose(fromGrid.getLoading, getGridState)
-export const getGridTiles = compose(fromGrid.getTiles, getGridState)
+export const getGridState = (state: State) => state.grid
+export const getGridLoading = createSelector(getGridState, fromGrid.getLoading)
+export const getGridTiles = createSelector(getGridState, fromGrid.getTiles)
 
 // User Selectors
-export function getUserState (state$: Observable<State>) {
-  return state$.select(s => s.user)
-}
-export const getUserLoading = compose(fromUser.getLoading, getUserState)
-export const getUserID = compose(fromUser.getUserID, getUserState)
+export const getUserState = (state: State) => state.user
+export const getUserLoading = createSelector(getUserState, fromUser.getLoading)
+export const getUserID = createSelector(getUserState, fromUser.getUserID)
 
 // Config Selectors
-export function getConfigState (state$: Observable<State>) {
-  return state$.select(s => s.config)
-}
-export const getConfigLoading = compose(fromConfig.getLoading, getConfigState)
+export const getConfigState = (state: State) => state.config
+export const getConfigLoading = createSelector(getConfigState, fromConfig.getLoading)
 export const getConfigDescriptiveStatistic =
-               compose(fromConfig.getDescriptiveStatistic, getConfigState)
+  createSelector(getConfigState, fromConfig.getDescriptiveStatistic)
 
 // ChartHR Selectors
-export function getChartHRState (state$: Observable<State>) {
-  return state$.select(s => s.chartHR)
-}
-export const getChartHRLoading = compose(fromChartHR.getLoading, getChartHRState)
-export const getChartHRData = compose(fromChartHR.getData, getChartHRState)
+export const getChartHRState = (state: State) => state.chartHR
+export const getChartHRLoading = createSelector(getChartHRState, fromChartHR.getLoading)
+export const getChartHRData = createSelector(getChartHRState, fromChartHR.getData)
 
 // ChartAC Selectors
-export function getChartACState (state$: Observable<State>) {
-  return state$.select(s => s.chartAC)
-}
-export const getChartACLoading = compose(fromChartAC.getLoading, getChartACState)
-export const getChartACData = compose(fromChartAC.getData, getChartACState)
+export const getChartACState = (state: State) => state.chartAC
+export const getChartACLoading = createSelector(getChartACState, fromChartAC.getLoading)
+export const getChartACData = createSelector(getChartACState, fromChartAC.getData)
 
 // ChartSteps Selectors
-export function getChartStepsState (state$: Observable<State>) {
-  return state$.select(s => s.chartSteps)
-}
-export const getChartStepsLoading = compose(fromChartSteps.getLoading, getChartStepsState)
-export const getChartStepsData = compose(fromChartSteps.getData, getChartStepsState)
+export const getChartStepsState = (state: State) => state.chartSteps
+export const getChartStepsLoading = createSelector(getChartStepsState, fromChartSteps.getLoading)
+export const getChartStepsData = createSelector(getChartStepsState, fromChartSteps.getData)
 
 // ChartQuestionnaire Selectors
-export function getChartQuestionnaireState (state$: Observable<State>) {
-  return state$.select(s => s.chartQuestionnaire)
-}
-export const getChartQuestionnaireLoading
-               = compose(fromChartQuestionnaire.getLoading, getChartQuestionnaireState)
-export const getChartQuestionnaireData
-               = compose(fromChartQuestionnaire.getData, getChartQuestionnaireState)
+export const getChartQuestionnaireState = (state: State) => state.chartQuestionnaire
+export const getChartQuestionnaireLoading =
+  createSelector(getChartQuestionnaireState, fromChartQuestionnaire.getLoading)
+export const getChartQuestionnaireData =
+  createSelector(getChartQuestionnaireState, fromChartQuestionnaire.getData)

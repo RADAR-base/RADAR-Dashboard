@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing'
 import {
   MockTimeSeriesData,
   parseMockTimeSeriesData
-} from '../../../../shared/testing/mocks/mock-timeseries-data'
+} from '../../../shared/testing/mocks/mock-timeseries-data'
 import { ChartBaseBarComponent } from './chart-base-bar.component'
 
 describe('ChartBaseBarComponent', () => {
