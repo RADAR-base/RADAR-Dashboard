@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
+import { HttpModule } from '@angular/http'
 import { EffectsModule } from '@ngrx/effects'
 
 import { StudyEffects } from '../../shared/store/study/study.effects'
@@ -10,6 +11,7 @@ import { StudyRoutingModule } from './study.routing'
 @NgModule({
   imports: [
     CommonModule,
+    HttpModule,
     StudyRoutingModule,
     EffectsModule.run(StudyEffects)
   ],

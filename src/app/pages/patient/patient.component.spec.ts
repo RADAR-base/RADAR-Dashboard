@@ -1,9 +1,10 @@
 import { DebugElement } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { ActivatedRoute } from '@angular/router'
 import { StoreModule } from '@ngrx/store'
 
 import { reducer } from '../../shared/store'
-import { ActivatedRoute, ActivatedRouteStub } from '../../shared/testing/router-stubs'
+import { ActivatedRouteStub } from '../../shared/testing/router-stubs'
 import { PatientPageComponent } from './patient.component'
 import { PatientModule } from './patient.module'
 
