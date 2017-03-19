@@ -48,8 +48,10 @@ export function reducer (state: any, action: any) {
 
 // Study Selectors
 export const getStudyState = (state: State) => state.study
-export const getStudyLoading = createSelector(getStudyState, fromStudy.getLoading)
+export const getStudyIsLoading = createSelector(getStudyState, fromStudy.getIsLoading)
+export const getStudyIsLoaded = createSelector(getStudyState, fromStudy.getIsLoaded)
 export const getStudyAll = createSelector(getStudyState, fromStudy.getAll)
+export const getStudyEntities = createSelector(getStudyState, fromStudy.getEntities)
 
 /**
  * OLD SELECTORS

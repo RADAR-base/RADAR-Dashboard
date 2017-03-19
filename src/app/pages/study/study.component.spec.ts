@@ -7,7 +7,7 @@ import { StoreModule } from '@ngrx/store'
 import { reducer } from '../../shared/store'
 import { ActivatedRouteStub, RouterStub } from '../../shared/testing/router-stubs'
 import { StudyPageComponent } from './study.component'
-import { StudyModule } from './study.module'
+import { StudyPageModule } from './study.module'
 
 describe('StudyPageComponent', () => {
   let component: StudyPageComponent
@@ -20,7 +20,7 @@ describe('StudyPageComponent', () => {
 
     TestBed.configureTestingModule({
       imports: [
-        StudyModule,
+        StudyPageModule,
         StoreModule.provideStore(reducer)
       ],
       providers: [

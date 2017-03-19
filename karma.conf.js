@@ -16,7 +16,7 @@ module.exports = function (config) {
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
-    files: [{pattern: './src/test.ts', watched: false}],
+    files: [{ pattern: './src/test.ts', watched: false }],
     preprocessors: {
       './src/test.ts': ['@angular/cli']
     },
@@ -85,7 +85,7 @@ module.exports = function (config) {
     browserNoActivityTimeout: 240000,
     captureTimeout: 240000,
 
-    browsers: ['Chrome'], // for quick local tests
+    browsers: ['Chrome'] // for quick local tests
     // browsers: ['Chrome', 'BS_EDGE', 'BS_FIREFOX', 'BS_SAFARI']
   })
 

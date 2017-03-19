@@ -1,3 +1,4 @@
+import 'rxjs/add/operator/delay'
 import { Injectable } from '@angular/core'
 import { Http } from '@angular/http'
 import { Observable } from 'rxjs/Observable'
@@ -13,6 +14,7 @@ export class StudyService {
   get (): Observable<Study[]> {
     // TODO: Change when API is ready
     return this.http.get(`${PARAMS.API_LOCAL}/mock-all-studies.json`)
+      .delay(2000)
       .map(res => res.json().dataset || [])
       .catch(ErrorService.handleError)
   }

@@ -46,7 +46,7 @@ describe('DashboardGridComponent', () => {
     expect(component).toBeTruthy()
   }))
 
-  it('shows loading', async(() => {
+  it('shows isLoading', async(() => {
     expect(element.querySelector('app-progress-animation')).toBeTruthy()
     expect(element.querySelector('md-grid-list')).toBeFalsy()
   }))

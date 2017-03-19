@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 
 import { ActivatedRouteStub, RouterStub } from '../../shared/testing/router-stubs'
 import { NotFoundPageComponent } from './not-found.component'
-import { NotFoundModule } from './not-found.module'
+import { NotFoundPageModule } from './not-found.module'
 
 describe('NotFoundPageComponent', () => {
   let component: NotFoundPageComponent
@@ -17,7 +17,7 @@ describe('NotFoundPageComponent', () => {
 
     TestBed.configureTestingModule({
       imports: [
-        NotFoundModule
+        NotFoundPageModule
       ],
       providers: [
         { provide: Router, useClass: RouterStub },

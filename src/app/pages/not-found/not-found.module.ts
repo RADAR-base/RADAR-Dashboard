@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
+import { RouterModule } from '@angular/router'
 
 import { NotFoundPageComponent } from './not-found.component'
-import { NotFoundRoutingModule } from './not-found.routing'
 
 const COMPONENTS = [
   NotFoundPageComponent
@@ -11,9 +11,9 @@ const COMPONENTS = [
 @NgModule({
   imports: [
     CommonModule,
-    NotFoundRoutingModule
+    RouterModule
   ],
   declarations: COMPONENTS,
   exports: COMPONENTS
 })
-export class NotFoundModule {}
+export class NotFoundPageModule {}

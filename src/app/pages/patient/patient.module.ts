@@ -1,7 +1,7 @@
-///<reference path="../../shared/store/tile-questionnaire/tile-questionnaire.effects.ts"/>
 import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
 import { HttpModule } from '@angular/http'
+import { RouterModule } from '@angular/router'
 import { EffectsModule } from '@ngrx/effects'
 
 import { DashboardGridModule } from '../../components/dashboard-grid/dashboard-grid.module'
@@ -16,13 +16,12 @@ import { TileQuestionnaireService } from '../../shared/store/tile-questionnaire/
 import { TileStepsEffects } from '../../shared/store/tile-steps/tile-steps.effects'
 import { TileStepsService } from '../../shared/store/tile-steps/tile-steps.service'
 import { PatientPageComponent } from './patient.component'
-import { PatientRoutingModule } from './patient.routing'
 
 @NgModule({
   imports: [
     CommonModule,
     HttpModule,
-    PatientRoutingModule,
+    RouterModule,
     DashboardGridModule,
     EffectsModule.run(GridEffects),
     EffectsModule.run(TileHeartRateEffects),
@@ -41,4 +40,4 @@ import { PatientRoutingModule } from './patient.routing'
     TileQuestionnaireService
   ]
 })
-export class PatientModule {}
+export class PatientPageModule {}

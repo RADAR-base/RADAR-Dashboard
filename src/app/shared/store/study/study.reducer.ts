@@ -5,14 +5,16 @@ export interface State {
   ids: string[]
   entities: { [id: string]: any }
   selectedId: string
-  loading: boolean
+  isLoading: boolean,
+  isLoaded: boolean
 }
 
 const initialState: State = {
   ids: [],
   entities: {},
   selectedId: '',
-  loading: false
+  isLoading: false,
+  isLoaded: false
 }
 
 export function reducer (state = initialState, action: study.Actions): State {
@@ -20,7 +22,7 @@ export function reducer (state = initialState, action: study.Actions): State {
 
     case study.Types.UPDATE: {
       return Object.assign({}, state, {
-        loading: true
+        isLoading: true
       })
     }
 
@@ -34,9 +36,16 @@ export function reducer (state = initialState, action: study.Actions): State {
       }, {})
 
       return Object.assign({}, state, {
-        loading: false,
+        isLoading: false,
+        isLoaded: true,
         ids: studyIds,
         entities: studyEntities
+      })
+    }
+
+    case study.Types.SELECT: {
+      return Object.assign({}, state, {
+        selectedId: action.payload
       })
     }
 
@@ -45,7 +54,8 @@ export function reducer (state = initialState, action: study.Actions): State {
   }
 }
 
-export const getLoading = (state: State) => state.loading
+export const getIsLoading = (state: State) => state.isLoading
+export const getIsLoaded = (state: State) => state.isLoaded
 export const getIds = (state: State) => state.ids
 export const getEntities = (state: State) => state.entities
 export const getSelectedId = (state: State) => state.selectedId

@@ -6,7 +6,7 @@ import { StoreModule } from '@ngrx/store'
 import { reducer } from '../../shared/store'
 import { ActivatedRouteStub } from '../../shared/testing/router-stubs'
 import { PatientPageComponent } from './patient.component'
-import { PatientModule } from './patient.module'
+import { PatientPageModule } from './patient.module'
 
 describe('PatientPageComponent', () => {
   let component: PatientPageComponent
@@ -19,7 +19,7 @@ describe('PatientPageComponent', () => {
 
     TestBed.configureTestingModule({
       imports: [
-        PatientModule,
+        PatientPageModule,
         StoreModule.provideStore(reducer)
       ],
       providers: [
