@@ -73,7 +73,7 @@
     "stylefmt": "^5.1.2",
     "stylelint": "^7.9.0",
     "stylelint-config-standard": "^16.0.0",
-    "ts-node": "^2.1.0",
+    "ts-node": "^3.0.1",
     "tslint": "~4.4.2",
     "tslint-config-standard": "^4.0.0",
     "typescript": "^2.1.6"
