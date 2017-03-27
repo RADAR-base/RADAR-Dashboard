@@ -1,4 +1,4 @@
-import { TimeSeries } from '../models/time-series.model'
+import { TimeSeries } from '../../models/time-series.model'
 
 export const MockTimeSeriesData = [
   { value: 120, date: '2016-10-27T20:02:20Z' },

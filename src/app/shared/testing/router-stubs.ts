@@ -7,11 +7,9 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject'
   selector: '[routerLink]'
 })
 export class RouterLinkStubDirective {
-  @HostListener('click') onClick
   @Input('routerLink') linkParams: any
   navigatedTo: any = null
-
-  onClick () {
+  @HostListener('click') onClick () {
     this.navigatedTo = this.linkParams
   }
 }

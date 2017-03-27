@@ -1,4 +1,4 @@
-import { MultiTimeSeries } from '../models/multi-time-series.model'
+import { MultiTimeSeries } from '../../models/multi-time-series.model'
 import { parseMockTimeSeriesData } from './mock-timeseries-data'
 
 export const MockMultiTimeSeriesData = [
