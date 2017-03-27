@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core'
 import { HttpModule } from '@angular/http'
 import { MaterialModule } from '@angular/material'
 import { BrowserModule } from '@angular/platform-browser'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { EffectsModule } from '@ngrx/effects'
 import { StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
@@ -30,6 +31,7 @@ import { UserService } from './shared/store/user/user.service'
     BrowserModule,
     HttpModule,
     MaterialModule,
+    BrowserAnimationsModule,
 
     // ngrx/store
     StoreModule.provideStore(reducer),

@@ -1,6 +1,5 @@
 import { DebugElement } from '@angular/core'
-import { ComponentFixture, TestBed } from '@angular/core/testing'
-// import { HttpModule } from '@angular/http'
+import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 import { ActivatedRoute, Router } from '@angular/router'
 import { StoreModule } from '@ngrx/store'
 
@@ -15,8 +14,9 @@ describe('StudyPageComponent', () => {
   let element: HTMLElement
   let de: DebugElement
 
-  beforeEach(() => {
+  beforeEach(async(() => {
     const activatedRoute = new ActivatedRouteStub()
+    activatedRoute.testParams = { studyId: '0' }
 
     TestBed.configureTestingModule({
       imports: [
@@ -35,7 +35,7 @@ describe('StudyPageComponent', () => {
     de = fixture.debugElement
 
     fixture.detectChanges()
-  })
+  }))
 
   it('should create', () => {
     expect(component).toBeTruthy()

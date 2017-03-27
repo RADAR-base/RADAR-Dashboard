@@ -1,14 +1,12 @@
 import { DebugElement } from '@angular/core'
 import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing'
-import { MaterialModule } from '@angular/material'
 import { Store, StoreModule } from '@ngrx/store'
 
 import { reducer } from '../../shared/store'
 import * as gridAction from '../../shared/store/grid/grid.actions'
 import { MockGrid } from '../../shared/testing/mocks/mock-grid'
-import { DashboardTileModule } from '../dashboard-tile/dashboard-tile.module'
-import { ProgressAnimationComponent } from '../progress-animation/progress-animation.component'
 import { DashboardGridComponent } from './dashboard-grid.component'
+import { DashboardGridModule } from './dashboard-grid.module'
 
 describe('DashboardGridComponent', () => {
   let component: DashboardGridComponent
@@ -20,13 +18,8 @@ describe('DashboardGridComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        DashboardTileModule,
-        MaterialModule,
+        DashboardGridModule,
         StoreModule.provideStore(reducer)
-      ],
-      declarations: [
-        DashboardGridComponent,
-        ProgressAnimationComponent
       ]
     })
 

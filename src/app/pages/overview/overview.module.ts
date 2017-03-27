@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
+import { HttpModule } from '@angular/http'
 import { RouterModule } from '@angular/router'
 import { EffectsModule } from '@ngrx/effects'
-import { StudyEffects } from '../../shared/store/study/study.effects'
 
+import { StudyEffects } from '../../shared/store/study/study.effects'
 import { StudyService } from '../../shared/store/study/study.service'
 import { OverviewPageComponent } from './overview.component'
 
@@ -11,6 +12,7 @@ import { OverviewPageComponent } from './overview.component'
   imports: [
     CommonModule,
     RouterModule,
+    HttpModule,
     EffectsModule.run(StudyEffects)
   ],
   declarations: [
@@ -20,4 +22,5 @@ import { OverviewPageComponent } from './overview.component'
     StudyService
   ]
 })
-export class OverviewPageModule {}
+export class OverviewPageModule {
+}
