@@ -66,7 +66,7 @@
     "ngrx-store-freeze": "^0.1.9",
     "postcss": "^5.2.14",
     "postcss-cli": "^3.0.0-beta",
-    "postcss-scss": "^0.4.1",
+    "postcss-scss": "^1.0.0",
     "postcss-sorting": "^2.0.1",
     "protractor": "~5.1.0",
     "sass-mq": "^3.3.2",
