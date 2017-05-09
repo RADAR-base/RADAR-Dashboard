@@ -65,7 +65,7 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "ngrx-store-freeze": "^0.1.9",
     "postcss": "^5.2.14",
-    "postcss-cli": "^3.0.0-beta",
+    "postcss-cli": "^4.0.0",
     "postcss-scss": "^0.4.1",
     "postcss-sorting": "^2.0.1",
     "protractor": "~5.1.0",
