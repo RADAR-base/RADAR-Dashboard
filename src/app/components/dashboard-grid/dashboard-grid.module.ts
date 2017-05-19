@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
-import { MaterialModule } from '@angular/material'
+import { MdGridListModule } from '@angular/material'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { DashboardTileModule } from '../dashboard-tile/dashboard-tile.module'
@@ -10,9 +10,11 @@ import { DashboardGridComponent } from './dashboard-grid.component'
 @NgModule({
   imports: [
     CommonModule,
-    MaterialModule,
-    BrowserAnimationsModule,
-    DashboardTileModule
+    DashboardTileModule,
+
+    // Material 2
+    MdGridListModule,
+    BrowserAnimationsModule
   ],
   declarations: [
     ProgressAnimationComponent,

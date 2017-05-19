@@ -1,6 +1,5 @@
 import { DebugElement } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { MaterialModule } from '@angular/material'
 import { StoreModule } from '@ngrx/store'
 
 import { reducer } from '../../../shared/store'
@@ -17,7 +16,6 @@ describe('TileAccelerationComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         DashboardTileModule,
-        MaterialModule,
         StoreModule.provideStore(reducer)
       ]
     })

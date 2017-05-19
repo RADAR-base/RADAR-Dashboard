@@ -1,6 +1,8 @@
 /* SystemJS module definition */
-declare var module: {
-  id: string;
+declare const module: NodeModule
+
+interface NodeModule {
+  id: string
 }
 
 /* GLOBAL PARAMS */

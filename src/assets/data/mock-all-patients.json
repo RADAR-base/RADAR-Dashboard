@@ -1,18 +1,59 @@
 {
-  "study_id": 0,
+  "studyId": 0,
   "patients": [
     {
-      "user_id": "UserID_0",
-      "source_id": [
-        "SourceID_10",
-        "SourceID_0"
+      "userId": "KCLTest0",
+      "sources": [
+        {
+          "id": "00:07:80:1F:53:1C",
+          "type": "EMPATICA",
+          "summary": null
+        },
+        {
+          "id": "aee3b9f7-db8b-4a9c-9198-2e1906d90a9e",
+          "type": "ANDROID",
+          "summary": null
+        },
+        {
+          "id": "00:07:80:1F:52:F3",
+          "type": "EMPATICA",
+          "summary": null
+        },
+        {
+          "id": "00:07:80:1F:53:51",
+          "type": "EMPATICA",
+          "summary": null
+        }
       ]
     },
     {
-      "user_id": "UserID_10",
-      "source_id": [
-        "SourceID_30",
-        "SourceID_0"
+      "userId": "UserID_0",
+      "sources": [
+        {
+          "id": "SourceID_0",
+          "type": "EMPATICA",
+          "summary": null
+        },
+        {
+          "id": "SourceID_10",
+          "type": "EMPATICA",
+          "summary": null
+        }
+      ]
+    },
+    {
+      "userId": "UserID_10",
+      "sources": [
+        {
+          "id": "SourceID_0",
+          "type": "EMPATICA",
+          "summary": null
+        },
+        {
+          "id": "SourceID_30",
+          "type": "EMPATICA",
+          "summary": null
+        }
       ]
     }
   ]

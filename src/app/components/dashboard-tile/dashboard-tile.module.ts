@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { MaterialModule } from '@angular/material'
+import { MdSelectModule } from '@angular/material'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { ChartBaseBarComponent } from '../charts/chart-base-bar/chart-base-bar.component'
@@ -20,7 +20,9 @@ import { TileStepsComponent } from './tile-steps/tile-steps.component'
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule,
+
+    // Material 2
+    MdSelectModule,
     BrowserAnimationsModule
   ],
   declarations: [

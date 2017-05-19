@@ -1,6 +1,7 @@
+import 'hammerjs'
 import { NgModule } from '@angular/core'
 import { HttpModule } from '@angular/http'
-import { MaterialModule } from '@angular/material'
+import { MdButtonModule, MdToolbarModule } from '@angular/material'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { EffectsModule } from '@ngrx/effects'
@@ -30,8 +31,11 @@ import { UserService } from './shared/store/user/user.service'
   imports: [
     BrowserModule,
     HttpModule,
-    MaterialModule,
     BrowserAnimationsModule,
+
+    // Material 2
+    MdToolbarModule,
+    MdButtonModule,
 
     // ngrx/store
     StoreModule.provideStore(reducer),

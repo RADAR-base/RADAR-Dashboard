@@ -10,7 +10,7 @@ import * as userAction from './shared/store/user/user.actions'
   template: `
     <app-toolbar></app-toolbar>
     <div class="app-content">
-      <router-outlet></router-outlet>
+      <!--<router-outlet></router-outlet>-->
     </div>
   `,
   styleUrls: ['./app.component.scss']
