@@ -1,0 +1,141 @@
+{
+  "sensor": {
+    "ACCELEROMETER": {
+      "label": {
+        "EN": "Accelerometer"
+      },
+      "key": "acceleration",
+      "subKeys": [
+        {
+          "key": "x",
+          "label": {
+            "EN": "X Coord"
+          }
+        },
+        {
+          "key": "y",
+          "label": {
+            "EN": "Y Coord"
+          }
+        },
+        {
+          "key": "z",
+          "label": {
+            "EN": "Z Coord"
+          }
+        }
+      ]
+    },
+    "BATTERY": {
+      "label": {
+        "EN": "Battery"
+      }
+    },
+    "BLOOD_VOLUME_PULSE": {
+      "label": {
+        "EN": "Blood Volume Pulse"
+      }
+    },
+    "ELECTRODERMAL_ACTIVITY": {
+      "label": {
+        "EN": "Electrodermal Activity"
+      }
+    },
+    "INTER_BEAT_INTERVAL": {
+      "label": {
+        "EN": "Inter Beat Interval"
+      }
+    },
+    "HEART_RATE": {
+      "label": {
+        "EN": "Heart Rate"
+      },
+      "key": "heartRate",
+      "subKeys": [
+        {
+          "key": "value",
+          "label": {
+            "EN": "Heart Rate"
+          }
+        }
+      ]
+    },
+    "THERMOMETER": {
+      "label": {
+        "EN": "Thermometer"
+      }
+    }
+  },
+  "stat": {
+    "AVERAGE": {
+      "label": {
+        "EN": "Average"
+      }
+    },
+    "COUNT": {
+      "label": {
+        "EN": "Count"
+      }
+    },
+    "MAXIMUM": {
+      "label": {
+        "EN": "Maximum"
+      }
+    },
+    "MEDIAN": {
+      "label": {
+        "EN": "Median"
+      }
+    },
+    "MINIMUM": {
+      "label": {
+        "EN": "Minimum"
+      }
+    },
+    "SUM": {
+      "label": {
+        "EN": "Sum"
+      }
+    },
+    "INTERQUARTILE_RANGE": {
+      "label": {
+        "EN": "Interquartile Range"
+      }
+    },
+    "LOWER_QUARTILE": {
+      "label": {
+        "EN": "Lower Quartile"
+      }
+    },
+    "UPPER_QUARTILE": {
+      "label": {
+        "EN": "Upper Quartile"
+      }
+    },
+    "QUARTILES": {
+      "label": {
+        "EN": "Quartiles"
+      }
+    }
+  },
+  "unit": {
+    "BEATS_PER_MIN": {
+      "label": {
+        "EN": "Beats per Minute"
+      }
+    },
+    "G": {
+      "label": {
+        "EN": "G Force"
+      }
+    }
+  },
+  "timeInterval": {
+    "TEN_SEC": {
+      "value": 10000,
+      "label": {
+        "EN": "10s"
+      }
+    }
+  }
+}
