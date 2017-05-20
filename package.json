@@ -9,7 +9,7 @@
     "hmr": "ng serve --hmr -e=hmr",
     "build": "ng build --prod",
     "build:dev": "ng build",
-    "lint": "ng lint",
+    "lint": "ng lint --type-check",
     "lint:style": "stylelint \"src/**/*.scss\" --syntax scss",
     "test": "ng test",
     "test:ci": "ng test --code-coverage --watch=false",
@@ -76,6 +76,7 @@
     "ts-node": "^3.0.4",
     "tslint": "^5.2.0",
     "tslint-config-standard": "^5.0.2",
+    "tslint-language-service": "^0.9.5",
     "typescript": "2.2.2"
   }
 }

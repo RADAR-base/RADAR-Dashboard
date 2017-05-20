@@ -15,6 +15,15 @@
     "lib": [
       "es2016",
       "dom"
+    ],
+    "plugins": [
+      {
+        "name": "tslint-language-service",
+        "alwaysShowRuleFailuresAsWarnings": false,
+        "ignoreDefinitionFiles": true,
+        "configFile": "./tslint.json",
+        "disableNoUnusedVariableRule": false
+      }
     ]
   }
 }
