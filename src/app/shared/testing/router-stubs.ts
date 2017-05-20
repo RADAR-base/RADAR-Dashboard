@@ -1,5 +1,5 @@
 /* tslint:disable */
-import { Component, Directive, HostListener, Injectable, Input } from '@angular/core'
+import { Component, Directive, HostListener, Injectable, Input, NgModule } from '@angular/core'
 import { NavigationExtras } from '@angular/router'
 import { BehaviorSubject } from 'rxjs/BehaviorSubject'
 
@@ -9,12 +9,17 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject'
 export class RouterLinkStubDirective {
   @Input('routerLink') linkParams: any
   navigatedTo: any = null
-  @HostListener('click') onClick () {
+
+  @HostListener('click')
+  onClick () {
     this.navigatedTo = this.linkParams
   }
 }
 
-@Component({ selector: 'router-outlet', template: '' })
+@Component({
+  selector: 'router-outlet',
+  template: `<p>router-stub</p>`
+})
 export class RouterOutletStubComponent {}
 
 @Injectable()
@@ -43,6 +48,18 @@ export class ActivatedRouteStub {
     return { params: this.testParams }
   }
 }
+
+@NgModule({
+  providers: [
+    ActivatedRouteStub,
+    RouterStub
+  ],
+  declarations: [
+    RouterLinkStubDirective,
+    RouterOutletStubComponent
+  ]
+})
+export class RouterStubModule {}
 
 /*
  Copyright 2017 Google Inc. All Rights Reserved.

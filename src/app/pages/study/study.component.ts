@@ -1,6 +1,6 @@
-import '@ngrx/core/add/operator/select'
 import 'rxjs/add/operator/withLatestFrom'
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core'
+import '@ngrx/core/add/operator/select'
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
@@ -21,7 +21,7 @@ import { Study } from '../../shared/store/study/study.model'
   `,
   styleUrls: ['./study.component.scss']
 })
-export class StudyPageComponent implements OnInit, OnDestroy {
+export class StudyPageComponent implements OnDestroy {
 
   study$: Observable<Study>
   isLoaded$: Observable<boolean>
@@ -54,8 +54,6 @@ export class StudyPageComponent implements OnInit, OnDestroy {
       })
       .map(([studies, loaded]) => studies[this.studyId])
   }
-
-  ngOnInit () { }
 
   ngOnDestroy () {
     this.route$.unsubscribe()

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 
 @Component({
   selector: 'app-progress-animation',
@@ -13,11 +13,4 @@ import { Component, OnInit } from '@angular/core'
   `,
   styleUrls: ['./progress-animation.component.scss']
 })
-export class ProgressAnimationComponent implements OnInit {
-
-  constructor () { }
-
-  ngOnInit () {
-  }
-
-}
+export class ProgressAnimationComponent {}

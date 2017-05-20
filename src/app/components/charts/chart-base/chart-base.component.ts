@@ -104,4 +104,5 @@ export class ChartBaseComponent implements AfterViewInit {
   }
 
   draw () {}
+
 }

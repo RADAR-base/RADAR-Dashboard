@@ -16,6 +16,16 @@
       true,
       120
     ],
+    "member-ordering": [
+      true,
+      {
+        "order": [
+          "static-field",
+          "instance-field",
+          "constructor"
+        ]
+      }
+    ],
     "no-bitwise": true,
     "no-console": [
       true,
@@ -27,11 +37,13 @@
     ],
     "no-construct": true,
     "no-debugger": true,
+    "no-empty": false,
     "no-empty-interface": true,
     "no-inferrable-types": [
       true,
       "ignore-params"
     ],
+    "no-floating-promises": false,
     "no-shadowed-variable": true,
     "no-string-literal": false,
     "object-literal-sort-keys": false,
