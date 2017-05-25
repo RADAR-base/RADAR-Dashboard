@@ -1,4 +1,4 @@
-import * as patientAction from './patient.actions'
+import * as subjectAction from './subject.actions'
 
 export interface State {
   ids: string[]
@@ -16,16 +16,16 @@ const initialState: State = {
   isLoaded: false
 }
 
-export function reducer (state = initialState, action: patientAction.Actions): State {
+export function reducer (state = initialState, action: subjectAction.Actions): State {
   switch (action.type) {
 
-    case patientAction.Types.UPDATE: {
+    case subjectAction.Types.UPDATE: {
       return Object.assign({}, state, {
         loading: true
       })
     }
 
-    case patientAction.Types.UPDATE_SUCCESS: {
+    case subjectAction.Types.UPDATE_SUCCESS: {
       return Object.assign({}, state, {
         loading: false,
         isLoaded: true
