@@ -13,7 +13,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component'
 import { NotFoundPageModule } from './pages/not-found/not-found.module'
 
 import { OverviewPageModule } from './pages/overview/overview.module'
-import { PatientPageModule } from './pages/patient/patient.module'
+import { SubjectPageModule } from './pages/subject/subject.module'
 import { StudyPageModule } from './pages/study/study.module'
 import { StudyGuard } from './shared/guards/study.guard'
 import { ErrorService } from './shared/services/error.service'
@@ -47,7 +47,7 @@ import { UserService } from './shared/store/user/user.service'
 
     // App modules
     StudyPageModule,
-    PatientPageModule,
+    SubjectPageModule,
     NotFoundPageModule,
     OverviewPageModule,
 

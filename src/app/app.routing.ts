@@ -7,8 +7,8 @@ export const routes: Routes = [
     loadChildren: './pages/study/study.module#StudyPageModule'
   },
   {
-    path: 'study/:studyId/patient/:patientId',
-    loadChildren: './pages/patient/patient.module#PatientPageModule'
+    path: 'study/:studyId/subject/:subjectId',
+    loadChildren: './pages/subject/subject.module#SubjectPageModule'
   },
   {
     path: 'not-found',

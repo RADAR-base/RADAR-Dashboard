@@ -5,12 +5,12 @@ import { StoreModule } from '@ngrx/store'
 
 import { reducer } from '../../shared/store'
 import { ActivatedRouteStub } from '../../shared/testing/router-stubs'
-import { PatientPageComponent } from './patient.component'
-import { PatientPageModule } from './patient.module'
+import { SubjectPageComponent } from './subject.component'
+import { SubjectPageModule } from './subject.module'
 
-describe('PatientPageComponent', () => {
-  let component: PatientPageComponent
-  let fixture: ComponentFixture<PatientPageComponent>
+describe('SubjectPageComponent', () => {
+  let component: SubjectPageComponent
+  let fixture: ComponentFixture<SubjectPageComponent>
   let element: HTMLElement
   let de: DebugElement
 
@@ -19,7 +19,7 @@ describe('PatientPageComponent', () => {
 
     TestBed.configureTestingModule({
       imports: [
-        PatientPageModule,
+        SubjectPageModule,
         StoreModule.provideStore(reducer)
       ],
       providers: [
@@ -27,7 +27,7 @@ describe('PatientPageComponent', () => {
       ]
     })
 
-    fixture = TestBed.createComponent(PatientPageComponent)
+    fixture = TestBed.createComponent(SubjectPageComponent)
     component = fixture.componentInstance
     element = fixture.nativeElement
     de = fixture.debugElement

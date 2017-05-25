@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router'
 import { StudyGuard } from '../../shared/guards/study.guard'
-import { PatientPageComponent } from './patient.component'
+import { SubjectPageComponent } from './subject.component'
 
 export const routes: Routes = [
   {
-    path: 'study/:studyId/patient/:patientId',
-    component: PatientPageComponent,
+    path: 'study/:studyId/subject/:subjectId',
+    component: SubjectPageComponent,
     canActivate: [StudyGuard]
   }
 ]

@@ -7,9 +7,9 @@ import { ActivatedRoute } from '@angular/router'
   template: `
     <app-dashboard-grid></app-dashboard-grid>
   `,
-  styleUrls: ['./patient.component.scss']
+  styleUrls: ['./subject.component.scss']
 })
-export class PatientPageComponent implements OnDestroy {
+export class SubjectPageComponent implements OnDestroy {
 
   private route$: any
 

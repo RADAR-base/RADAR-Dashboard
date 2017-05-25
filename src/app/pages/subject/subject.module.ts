@@ -15,8 +15,8 @@ import { TileQuestionnaireEffects } from '../../shared/store/tile-questionnaire/
 import { TileQuestionnaireService } from '../../shared/store/tile-questionnaire/tile-questionnaire.service'
 import { TileStepsEffects } from '../../shared/store/tile-steps/tile-steps.effects'
 import { TileStepsService } from '../../shared/store/tile-steps/tile-steps.service'
-import { PatientPageComponent } from './patient.component'
-import { routes } from './patient.routing'
+import { SubjectPageComponent } from './subject.component'
+import { routes } from './subject.routing'
 
 @NgModule({
   imports: [
@@ -31,7 +31,7 @@ import { routes } from './patient.routing'
     EffectsModule.run(TileQuestionnaireEffects)
   ],
   declarations: [
-    PatientPageComponent
+    SubjectPageComponent
   ],
   providers: [
     GridService,
@@ -41,4 +41,4 @@ import { routes } from './patient.routing'
     TileQuestionnaireService
   ]
 })
-export class PatientPageModule {}
+export class SubjectPageModule {}
