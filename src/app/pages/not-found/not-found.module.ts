@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router'
 
 import { NotFoundPageComponent } from './not-found.component'
+import { routes } from './not-found.routing'
 
 const COMPONENTS = [
   NotFoundPageComponent
@@ -11,7 +12,7 @@ const COMPONENTS = [
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule.forChild(routes)
   ],
   declarations: COMPONENTS,
   exports: COMPONENTS

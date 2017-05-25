@@ -16,12 +16,13 @@ import { TileQuestionnaireService } from '../../shared/store/tile-questionnaire/
 import { TileStepsEffects } from '../../shared/store/tile-steps/tile-steps.effects'
 import { TileStepsService } from '../../shared/store/tile-steps/tile-steps.service'
 import { PatientPageComponent } from './patient.component'
+import { routes } from './patient.routing'
 
 @NgModule({
   imports: [
     CommonModule,
     HttpModule,
-    RouterModule,
+    RouterModule.forChild(routes),
     DashboardGridModule,
     EffectsModule.run(GridEffects),
     EffectsModule.run(TileHeartRateEffects),

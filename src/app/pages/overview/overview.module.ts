@@ -7,11 +7,12 @@ import { EffectsModule } from '@ngrx/effects'
 import { StudyEffects } from '../../shared/store/study/study.effects'
 import { StudyService } from '../../shared/store/study/study.service'
 import { OverviewPageComponent } from './overview.component'
+import { routes } from './overview.routing'
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule,
+    RouterModule.forChild(routes),
     HttpModule,
     EffectsModule.run(StudyEffects)
   ],
@@ -22,5 +23,4 @@ import { OverviewPageComponent } from './overview.component'
     StudyService
   ]
 })
-export class OverviewPageModule {
-}
+export class OverviewPageModule {}

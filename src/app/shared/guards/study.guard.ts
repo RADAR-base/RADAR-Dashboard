@@ -11,15 +11,13 @@ export class StudyGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
-    return true
-
-    // const r = !Math.round(Math.random())
-    // console.log(r)
-    // if (r) {
-    //   return true
-    // } else {
-    //   this.router.navigate(['/'])
-    //   return false
-    // }
+    // TODO: replace with guard check
+    const r = true
+    if (r) {
+      return true
+    } else {
+      this.router.navigate(['/'])
+      return false
+    }
   }
 }

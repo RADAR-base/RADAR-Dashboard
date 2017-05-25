@@ -4,12 +4,13 @@ import { HttpModule } from '@angular/http'
 import { RouterModule } from '@angular/router'
 
 import { StudyPageComponent } from './study.component'
+import { routes } from './study.routing'
 
 @NgModule({
   imports: [
     CommonModule,
     HttpModule,
-    RouterModule
+    RouterModule.forChild(routes)
   ],
   declarations: [
     StudyPageComponent
