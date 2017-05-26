@@ -1,16 +1,16 @@
 import * as subjectAction from './subject.actions'
 
 export interface State {
-  ids: string[]
-  entities: { [id: string]: any }
+  allIds: string[]
+  byId: { [id: string]: any }
   selectedId: string
   isLoading: boolean
   isLoaded: boolean
 }
 
 const initialState: State = {
-  ids: [],
-  entities: {},
+  allIds: [],
+  byId: {},
   selectedId: '',
   isLoading: false,
   isLoaded: false

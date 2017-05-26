@@ -19,8 +19,6 @@ import { ErrorService } from './shared/services/error.service'
 import { reducer } from './shared/store'
 import { ConfigEffects } from './shared/store/config/config.effects'
 import { ConfigService } from './shared/store/config/config.service'
-import { UserEffects } from './shared/store/user/user.effects'
-import { UserService } from './shared/store/user/user.service'
 
 @NgModule({
   declarations: [
@@ -41,7 +39,6 @@ import { UserService } from './shared/store/user/user.service'
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
 
     // Setup ngrx/effects
-    EffectsModule.run(UserEffects),
     EffectsModule.run(ConfigEffects),
 
     // App modules
@@ -54,7 +51,6 @@ import { UserService } from './shared/store/user/user.service'
     AppRoutingModule
   ],
   providers: [
-    UserService,
     ConfigService,
     ErrorService,
     StudyGuard

@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 @Component({
   selector: 'app-source-list',
   template: `
-    <div>source-list Works!</div>
+    <div>SOURCE LIST</div>
   `,
   styleUrls: ['./source-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

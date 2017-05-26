@@ -3,7 +3,6 @@ import { Store } from '@ngrx/store'
 
 import * as fromRoot from './shared/store/'
 import * as configAction from './shared/store/config/config.actions'
-import * as userAction from './shared/store/user/user.actions'
 
 @Component({
   selector: 'app-root',
@@ -21,7 +20,6 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit () {
-    this.store.dispatch(new userAction.Load())
     this.store.dispatch(new configAction.Load())
   }
 }

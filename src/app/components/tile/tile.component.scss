@@ -1,0 +1,62 @@
+@import '../../../styles/common';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 8px;
+  width: 100%;
+  height: 100%;
+}
+
+// Common styles for all charts
+:host /deep/ {
+  .header {
+    @include font-small;
+
+    display: flex;
+    align-items: center;
+    min-height: 40px;
+    background-color: $cl-base-40;
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      margin: 0 16px;
+
+      & > * {
+        margin: 0 8px;
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+
+    .title {
+      flex: 1 0 auto;
+      margin: 0 16px;
+    }
+
+    .divider {
+      width: 1px;
+      height: 24px;
+      background-color: $cl-white-20;
+    }
+  }
+
+  .container {
+    display: flex;
+    flex: 1 0 auto;
+    background-color: $cl-base-20;
+  }
+
+  svg {
+    flex: 1 0 auto;
+  }
+
+  .axis path,
+  .axis line {
+    shape-rendering: crispEdges;
+  }
+}

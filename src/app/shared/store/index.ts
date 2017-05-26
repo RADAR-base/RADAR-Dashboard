@@ -5,18 +5,14 @@ import { createSelector } from 'reselect'
 
 import { environment } from '../../../environments/environment'
 import * as fromConfig from './config/config.reducer'
-import * as fromGrid from './grid/grid.reducer'
 import * as fromChartAC from './tile-acceleration/tile-acceleration.reducer'
 import * as fromChartHR from './tile-heart-rate/tile-heart-rate.reducer'
 import * as fromChartQuestionnaire from './tile-questionnaire/tile-questionnaire.reducer'
 import * as fromChartSteps from './tile-steps/tile-steps.reducer'
-import * as fromUser from './user/user.reducer'
 import * as fromStudy from './study/study.reducer'
 
 export interface State {
   study: fromStudy.State
-  grid: fromGrid.State
-  user: fromUser.State
   config: fromConfig.State
   chartHR: fromChartHR.State
   chartAC: fromChartAC.State
@@ -26,8 +22,6 @@ export interface State {
 
 const reducers = {
   study: fromStudy.reducer,
-  grid: fromGrid.reducer,
-  user: fromUser.reducer,
   config: fromConfig.reducer,
   chartHR: fromChartHR.reducer,
   chartAC: fromChartAC.reducer,
@@ -57,15 +51,6 @@ export const getStudyEntities = createSelector(getStudyState, fromStudy.getEntit
  * OLD SELECTORS
  * TODO: Delete old selectors
  */
-// Grid Selectors
-export const getGridState = (state: State) => state.grid
-export const getGridLoading = createSelector(getGridState, fromGrid.getLoading)
-export const getGridTiles = createSelector(getGridState, fromGrid.getTiles)
-
-// User Selectors
-export const getUserState = (state: State) => state.user
-export const getUserLoading = createSelector(getUserState, fromUser.getLoading)
-export const getUserID = createSelector(getUserState, fromUser.getUserID)
 
 // Config Selectors
 export const getConfigState = (state: State) => state.config
