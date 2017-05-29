@@ -1,11 +1,11 @@
 import { browser, by, element } from 'protractor'
 
-export class RadarDashboardPage {
-  navigateTo () {
-    return browser.get('/')
+export class RadarPagesTest {
+  navigateTo (route) {
+    return browser.get(route)
   }
 
-  getDashboard () {
-    return element(by.css('app-root app-dashboard'))
+  getPage (page) {
+    return element(by.css(`app-root app-${page}-page`))
   }
 }

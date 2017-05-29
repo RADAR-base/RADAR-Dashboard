@@ -1,0 +1,10 @@
+@import '../../../styles/common';
+
+:host {
+  display: flex;
+  flex: 1 0 auto;
+}
+
+.mat-grid-list {
+  width: 100%;
+}

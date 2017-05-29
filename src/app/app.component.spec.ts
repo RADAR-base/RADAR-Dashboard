@@ -1,11 +1,12 @@
+import { DebugElement } from '@angular/core'
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
-import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core'
 import { RouterTestingModule } from '@angular/router/testing'
-import { AppComponent } from './app.component'
-import { routes } from './app.routes'
-import { DashboardComponent } from './components/dashboard/dashboard.component'
 import { StoreModule } from '@ngrx/store'
-import { reducer } from './store/index'
+
+import { AppComponent } from './app.component'
+import { AppModule } from './app.module'
+import { routes } from './app.routing'
+import { reducer } from './shared/store'
 
 describe('AppComponent', () => {
   let component: AppComponent
@@ -16,14 +17,10 @@ describe('AppComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
+        AppModule,
         RouterTestingModule.withRoutes(routes),
         StoreModule.provideStore(reducer)
-      ],
-      declarations: [
-        AppComponent,
-        DashboardComponent
-      ],
-      schemas: [NO_ERRORS_SCHEMA]
+      ]
     })
 
     fixture = TestBed.createComponent(AppComponent)

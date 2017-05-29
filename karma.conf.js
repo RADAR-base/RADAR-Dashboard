@@ -16,9 +16,7 @@ module.exports = function (config) {
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
-    files: [
-      { pattern: './src/test.ts', watched: false }
-    ],
+    files: [{ pattern: './src/test.ts', watched: false }],
     preprocessors: {
       './src/test.ts': ['@angular/cli']
     },
@@ -33,9 +31,11 @@ module.exports = function (config) {
       config: './.angular-cli.json',
       environment: 'dev'
     },
-    reporters: config.angularCli && config.angularCli.codeCoverage
-      ? ['progress', 'coverage-istanbul']
-      : ['progress', 'kjhtml'],
+    reporters: (
+      config.angularCli && config.angularCli.codeCoverage
+        ? ['progress', 'coverage-istanbul']
+        : ['progress', 'kjhtml']
+    ),
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
@@ -49,31 +49,31 @@ module.exports = function (config) {
       accessKey: process.env.BROWSERSTACK_ACCESS_KEY
     },
     customLaunchers: {
-      'BS_CHROME': {
+      BS_CHROME: {
         base: 'BrowserStack',
         browser: 'chrome',
         os: 'Windows',
         os_version: '10'
       },
-      'BS_FIREFOX': {
+      BS_FIREFOX: {
         base: 'BrowserStack',
         browser: 'firefox',
         os: 'Windows',
         os_version: '10'
       },
-      'BS_SAFARI': {
+      BS_SAFARI: {
         base: 'BrowserStack',
         browser: 'safari',
         os: 'OS X',
         os_version: 'El Capitan'
       },
-      'BS_EDGE': {
+      BS_EDGE: {
         base: 'BrowserStack',
         browser: 'edge',
         os: 'Windows',
         os_version: '10'
       },
-      'BS_IOS9': {
+      BS_IOS9: {
         base: 'BrowserStack',
         device: 'iPad Mini 4',
         os: 'ios',
@@ -85,14 +85,16 @@ module.exports = function (config) {
     browserNoActivityTimeout: 240000,
     captureTimeout: 240000,
 
-    // browsers: ['Chrome'], // for quick local tests
-    browsers: ['Chrome', 'BS_EDGE', 'BS_FIREFOX']
+    browsers: ['Chrome'] // for quick local tests
+    // browsers: ['Chrome', 'BS_EDGE', 'BS_FIREFOX', 'BS_SAFARI']
   })
 
   if (process.env['TRAVIS']) {
     config.browserStack.tunnelIdentifier = process.env.TRAVIS_JOB_NUMBER
     config.browserStack.build = 'Karma Travis #' +
-      process.env.TRAVIS_BUILD_NUMBER + ' [' +
-      process.env.TRAVIS_BUILD_ID + ']'
+      process.env.TRAVIS_BUILD_NUMBER +
+      ' [' +
+      process.env.TRAVIS_BUILD_ID +
+      ']'
   }
 }

@@ -1,0 +1,32 @@
+@import '../../../styles/common';
+
+:host {
+  display: flex;
+  flex: 1 0 auto;
+}
+
+:host /deep/ {
+  .axis text {
+    @include font-small;
+
+    fill: $cl-white-80;
+  }
+
+  .axis--x path,
+  .axis--x line {
+    stroke: $cl-white-40;
+  }
+
+  .axis--x line {
+    stroke-width: 2px;
+  }
+
+  .axis--y line {
+    stroke: $cl-white-20;
+    stroke-dasharray: 4, 2;
+  }
+
+  .axis--y path {
+    stroke: none;
+  }
+}

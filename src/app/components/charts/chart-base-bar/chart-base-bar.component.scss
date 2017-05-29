@@ -1,0 +1,12 @@
+@import '../../../../styles/common';
+@import '../chart.common';
+
+:host /deep/ {
+  .bar {
+    fill: #7fcdbb;
+  }
+
+  .bar:hover {
+    fill: #fcaf0a;
+  }
+}
