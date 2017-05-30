@@ -7,7 +7,7 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
 
 @Component({
   selector: 'app-chart-base-line',
-  templateUrl: '../chart.common.html',
+  templateUrl: '../charts.common.html',
   styleUrls: ['./chart-base-line.component.scss']
 })
 export class ChartBaseLineComponent extends ChartBaseComponent {

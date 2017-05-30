@@ -7,7 +7,7 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
 
 @Component({
   selector: 'app-chart-base-multi-line',
-  templateUrl: '../chart.common.html',
+  templateUrl: '../charts.common.html',
   styleUrls: ['./chart-base-multi-line.component.scss']
 })
 export class ChartBaseMultiLineComponent extends ChartBaseComponent {
