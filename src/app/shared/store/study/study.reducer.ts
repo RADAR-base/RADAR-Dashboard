@@ -28,16 +28,16 @@ export function reducer (state = initialState, action: study.Actions): State {
 
     case study.LOAD_SUCCESS: {
       const payload = action.payload
-      const studyIds = payload.map(study => study.id)
-      const studyEntities = payload.reduce((entities, study) => {
-        return Object.assign(entities, { [study.id]: study })
+      const ids = payload.map(study => study.id)
+      const entities = payload.reduce((accumulator, study) => {
+        return Object.assign(accumulator, { [study.id]: study })
       }, {})
 
       return Object.assign({}, state, {
         isLoading: false,
         isLoaded: true,
-        ids: studyIds,
-        entities: studyEntities
+        ids,
+        entities
       })
     }
 
