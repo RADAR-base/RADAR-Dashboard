@@ -1,10 +1,8 @@
 import { Action } from '@ngrx/store'
-
-import { type } from '../../utils/type'
 import { Config } from './config.model'
 
-export const LOAD = type('[Config] Load')
-export const LOAD_SUCCESS = type('[Config] Load Success')
+export const LOAD = '[Config] Load'
+export const LOAD_SUCCESS = '[Config] Load Success'
 
 export class Load implements Action {
   readonly type = LOAD
