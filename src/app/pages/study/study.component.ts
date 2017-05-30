@@ -48,7 +48,7 @@ export class StudyPageComponent implements OnDestroy {
       .withLatestFrom(store.select(fromRoot.getStudyIsLoaded))
       .do(([studies, loaded]) => {
         if (!loaded) {
-          this.store.dispatch(new studyAction.Update())
+          this.store.dispatch(new studyAction.Load())
           this.store.dispatch(new studyAction.Select(this.studyId))
         }
       })

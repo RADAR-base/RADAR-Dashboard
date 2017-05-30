@@ -52,7 +52,7 @@
     "directive-selector": [
       true,
       "attribute",
-      "tbd",
+      "app",
       "camelCase"
     ],
     "component-selector": [

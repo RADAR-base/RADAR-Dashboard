@@ -1,34 +1,43 @@
-import * as subjectAction from './subject.actions'
+import { createSelector } from 'reselect'
+import * as subject from './subject.actions'
 
 export interface State {
-  allIds: string[]
-  byId: { [id: string]: any }
+  ids: string[]
+  entities: { [id: string]: any }
   selectedId: string
-  isLoading: boolean
+  isLoading: boolean,
   isLoaded: boolean
 }
 
 const initialState: State = {
-  allIds: [],
-  byId: {},
+  ids: [],
+  entities: {},
   selectedId: '',
   isLoading: false,
   isLoaded: false
 }
 
-export function reducer (state = initialState, action: subjectAction.Actions): State {
+export function reducer (state = initialState, action: subject.Actions): State {
   switch (action.type) {
 
-    case subjectAction.Types.UPDATE: {
+    case subject.LOAD: {
       return Object.assign({}, state, {
-        loading: true
+        isLoading: true
       })
     }
 
-    case subjectAction.Types.UPDATE_SUCCESS: {
+    case subject.LOAD_SUCCESS: {
+      const payload = action.payload
+      const ids = payload.map(subject => subject.id)
+      const entities = payload.reduce((accumulator, subject) => {
+        return Object.assign(accumulator, { [subject.id]: subject })
+      }, {})
+
       return Object.assign({}, state, {
-        loading: false,
-        isLoaded: true
+        isLoading: false,
+        isLoaded: true,
+        ids,
+        entities
       })
     }
 
@@ -39,3 +48,16 @@ export function reducer (state = initialState, action: subjectAction.Actions): S
 
 export const getIsLoading = (state: State) => state.isLoading
 export const getIsLoaded = (state: State) => state.isLoaded
+export const getIds = (state: State) => state.ids
+export const getEntities = (state: State) => state.entities
+export const getSelectedId = (state: State) => state.selectedId
+
+export const getSelected = createSelector(
+  getEntities, getSelectedId, (entities, selectedId) => {
+    return entities[selectedId]
+  })
+
+export const getAll = createSelector(
+  getEntities, getIds, (entities, ids) => {
+    return ids.map(id => entities[id])
+  })

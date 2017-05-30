@@ -12,7 +12,7 @@ export class ConfigEffects {
 
   @Effect()
   load$: Observable<Action> = this.actions$
-    .ofType(configAction.Types.LOAD)
+    .ofType(configAction.LOAD)
     .switchMap(() => {
       return this.configService.get()
         .map((config: Config) => new configAction.LoadSuccess(config))

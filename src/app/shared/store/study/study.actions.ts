@@ -1,31 +1,27 @@
 import { Action } from '@ngrx/store'
-
-import { type } from '../../utils/type'
 import { Study } from './study.model'
 
-export class Types {
-  static readonly UPDATE = type('[Study] Update')
-  static readonly UPDATE_SUCCESS = type('[Study] Update Success')
-  static readonly SELECT = type('[Study] Select')
+export const LOAD = '[Study] Load'
+export const LOAD_SUCCESS = '[Study] Load Success'
+export const SELECT = '[Study] Select'
+
+export class Load implements Action {
+  readonly type = LOAD
 }
 
-export class Update implements Action {
-  readonly type = Types.UPDATE
-}
-
-export class UpdateSuccess implements Action {
-  readonly type = Types.UPDATE_SUCCESS
+export class LoadSuccess implements Action {
+  readonly type = LOAD_SUCCESS
 
   constructor (public payload: Study[]) {}
 }
 
 export class Select implements Action {
-  readonly type = Types.SELECT
+  readonly type = SELECT
 
   constructor (public payload: string) {}
 }
 
 export type Actions
-  = Update
-  | UpdateSuccess
+  = Load
+  | LoadSuccess
   | Select

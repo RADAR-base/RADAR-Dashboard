@@ -5,28 +5,22 @@ import { createSelector } from 'reselect'
 
 import { environment } from '../../../environments/environment'
 import * as fromConfig from './config/config.reducer'
-import * as fromChartAC from './tile-acceleration/tile-acceleration.reducer'
-import * as fromChartHR from './tile-heart-rate/tile-heart-rate.reducer'
-import * as fromChartQuestionnaire from './tile-questionnaire/tile-questionnaire.reducer'
-import * as fromChartSteps from './tile-steps/tile-steps.reducer'
 import * as fromStudy from './study/study.reducer'
+import * as fromSubject from './subject/subject.reducer'
+import * as fromSource from './source/source.reducer'
 
 export interface State {
   study: fromStudy.State
+  subject: fromSubject.State
+  source: fromSource.State
   config: fromConfig.State
-  chartHR: fromChartHR.State
-  chartAC: fromChartAC.State
-  chartSteps: fromChartSteps.State
-  chartQuestionnaire: fromChartQuestionnaire.State
 }
 
 const reducers = {
   study: fromStudy.reducer,
-  config: fromConfig.reducer,
-  chartHR: fromChartHR.reducer,
-  chartAC: fromChartAC.reducer,
-  chartSteps: fromChartSteps.reducer,
-  chartQuestionnaire: fromChartQuestionnaire.reducer
+  subject: fromSubject.reducer,
+  source: fromSource.reducer,
+  config: fromConfig.reducer
 }
 
 const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers)
@@ -40,42 +34,27 @@ export function reducer (state: any, action: any) {
   }
 }
 
-// Study Selectors
-export const getStudyState = (state: State) => state.study
-export const getStudyIsLoading = createSelector(getStudyState, fromStudy.getIsLoading)
-export const getStudyIsLoaded = createSelector(getStudyState, fromStudy.getIsLoaded)
-export const getStudyAll = createSelector(getStudyState, fromStudy.getAll)
-export const getStudyEntities = createSelector(getStudyState, fromStudy.getEntities)
-
-/**
- * OLD SELECTORS
- * TODO: Delete old selectors
- */
-
 // Config Selectors
 export const getConfigState = (state: State) => state.config
 export const getConfigLoading = createSelector(getConfigState, fromConfig.getLoading)
 export const getConfigDescriptiveStatistic =
   createSelector(getConfigState, fromConfig.getDescriptiveStatistic)
 
-// ChartHR Selectors
-export const getChartHRState = (state: State) => state.chartHR
-export const getChartHRLoading = createSelector(getChartHRState, fromChartHR.getLoading)
-export const getChartHRData = createSelector(getChartHRState, fromChartHR.getData)
+// Study Selectors
+export const getStudyState = (state: State) => state.study
+export const getStudyIsLoading = createSelector(getStudyState, fromStudy.getIsLoading)
+export const getStudyIsLoaded = createSelector(getStudyState, fromStudy.getIsLoaded)
+export const getStudyEntities = createSelector(getStudyState, fromStudy.getEntities)
+export const getStudyAll = createSelector(getStudyState, fromStudy.getAll)
 
-// ChartAC Selectors
-export const getChartACState = (state: State) => state.chartAC
-export const getChartACLoading = createSelector(getChartACState, fromChartAC.getLoading)
-export const getChartACData = createSelector(getChartACState, fromChartAC.getData)
+// Subject Selectors
+export const getSubjectState = (state: State) => state.subject
+export const getSubjectIsLoading = createSelector(getSubjectState, fromSubject.getIsLoading)
+export const getSubjectIsLoaded = createSelector(getSubjectState, fromSubject.getIsLoaded)
+export const getSubjectEntities = createSelector(getSubjectState, fromSubject.getEntities)
+export const getSubjectAll = createSelector(getSubjectState, fromSubject.getAll)
 
-// ChartSteps Selectors
-export const getChartStepsState = (state: State) => state.chartSteps
-export const getChartStepsLoading = createSelector(getChartStepsState, fromChartSteps.getLoading)
-export const getChartStepsData = createSelector(getChartStepsState, fromChartSteps.getData)
-
-// ChartQuestionnaire Selectors
-export const getChartQuestionnaireState = (state: State) => state.chartQuestionnaire
-export const getChartQuestionnaireLoading =
-  createSelector(getChartQuestionnaireState, fromChartQuestionnaire.getLoading)
-export const getChartQuestionnaireData =
-  createSelector(getChartQuestionnaireState, fromChartQuestionnaire.getData)
+// Source Selectors
+export const getSourceState = (state: State) => state.source
+export const getSourceIsLoading = createSelector(getSourceState, fromSource.getIsLoading)
+export const getSourceIsLoaded = createSelector(getSourceState, fromSource.getIsLoaded)

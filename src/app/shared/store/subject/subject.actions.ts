@@ -1,24 +1,20 @@
 import { Action } from '@ngrx/store'
 
-import { type } from '../../utils/type'
+export const LOAD = '[Subject] Load'
+export const LOAD_SUCCESS = '[Subject] Load Success'
 
-export class Types {
-  static readonly UPDATE = type('[Patient] Update')
-  static readonly UPDATE_SUCCESS = type('[Patient] Update Success')
-}
-
-export class Update implements Action {
-  readonly type = Types.UPDATE
+export class Load implements Action {
+  readonly type = LOAD
 
   constructor (public payload: string) {}
 }
 
-export class UpdateSuccess implements Action {
-  readonly type = Types.UPDATE_SUCCESS
+export class LoadSuccess implements Action {
+  readonly type = LOAD_SUCCESS
 
   constructor (public payload: any) {}
 }
 
 export type Actions
-  = Update
-  | UpdateSuccess
+  = Load
+  | LoadSuccess
