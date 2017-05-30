@@ -19,13 +19,13 @@ const initialState: State = {
 export function reducer (state = initialState, action: subject.Actions): State {
   switch (action.type) {
 
-    case subject.UPDATE: {
+    case subject.LOAD: {
       return Object.assign({}, state, {
         loading: true
       })
     }
 
-    case subject.UPDATE_SUCCESS: {
+    case subject.LOAD_SUCCESS: {
       return Object.assign({}, state, {
         loading: false,
         isLoaded: true

@@ -12,10 +12,10 @@ export class StudyEffects {
 
   @Effect()
   update$: Observable<Action> = this.actions$
-    .ofType(studyAction.UPDATE)
+    .ofType(studyAction.LOAD)
     .switchMap(() => {
       return this.studyService.get()
-        .map((data: Study[]) => new studyAction.UpdateSuccess(data))
+        .map((data: Study[]) => new studyAction.LoadSuccess(data))
     })
 
   constructor (

@@ -20,13 +20,13 @@ const initialState: State = {
 export function reducer (state = initialState, action: study.Actions): State {
   switch (action.type) {
 
-    case study.UPDATE: {
+    case study.LOAD: {
       return Object.assign({}, state, {
         isLoading: true
       })
     }
 
-    case study.UPDATE_SUCCESS: {
+    case study.LOAD_SUCCESS: {
       const payload = action.payload
       const studyIds = payload.map(study => study.id)
       const studyEntities = payload.reduce((entities, study) => {

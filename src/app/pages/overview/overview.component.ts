@@ -29,7 +29,7 @@ export class OverviewPageComponent implements OnInit {
   }
 
   ngOnInit () {
-    this.store.dispatch(new studyAction.Update())
+    this.store.dispatch(new studyAction.Load())
   }
 
   navigateToPatient (id) {
