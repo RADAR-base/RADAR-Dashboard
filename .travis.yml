@@ -28,7 +28,7 @@ before_script:
 
 script:
   - yarn lint
-  - yarn lint:style
+  - yarn lint:css
   - yarn test:ci
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
   - cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage

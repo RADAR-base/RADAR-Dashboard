@@ -10,12 +10,12 @@
     "build": "ng build --prod",
     "build:dev": "ng build",
     "lint": "ng lint --type-check",
-    "lint:style": "stylelint \"src/**/*.scss\" --syntax scss",
+    "lint:css": "stylelint \"src/**/*.scss\" --syntax scss",
     "test": "ng test",
     "test:ci": "ng test --code-coverage --watch=false",
     "test:coverage": "ng test --code-coverage --watch=false && open coverage/index.html",
     "e2e": "ng e2e",
-    "css": "postcss \"src/**/*.scss\" --replace"
+    "fix:css": "postcss \"src/**/*.scss\" --replace"
   },
   "private": true,
   "dependencies": {
