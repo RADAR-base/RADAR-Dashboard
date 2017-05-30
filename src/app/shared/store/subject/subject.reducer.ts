@@ -1,31 +1,31 @@
-import * as subjectAction from './subject.actions'
+import * as subject from './subject.actions'
 
 export interface State {
-  allIds: string[]
-  byId: { [id: string]: any }
+  ids: string[]
+  entities: { [id: string]: any }
   selectedId: string
   isLoading: boolean
   isLoaded: boolean
 }
 
 const initialState: State = {
-  allIds: [],
-  byId: {},
+  ids: [],
+  entities: {},
   selectedId: '',
   isLoading: false,
   isLoaded: false
 }
 
-export function reducer (state = initialState, action: subjectAction.Actions): State {
+export function reducer (state = initialState, action: subject.Actions): State {
   switch (action.type) {
 
-    case subjectAction.Types.UPDATE: {
+    case subject.UPDATE: {
       return Object.assign({}, state, {
         loading: true
       })
     }
 
-    case subjectAction.Types.UPDATE_SUCCESS: {
+    case subject.UPDATE_SUCCESS: {
       return Object.assign({}, state, {
         loading: false,
         isLoaded: true

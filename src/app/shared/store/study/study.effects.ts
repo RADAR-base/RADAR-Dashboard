@@ -3,7 +3,7 @@ import { Actions, Effect } from '@ngrx/effects'
 import { Action } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
-import * as study from './study.actions'
+import * as studyAction from './study.actions'
 import { Study } from './study.model'
 import { StudyService } from './study.service'
 
@@ -12,10 +12,10 @@ export class StudyEffects {
 
   @Effect()
   update$: Observable<Action> = this.actions$
-    .ofType(study.Types.UPDATE)
+    .ofType(studyAction.UPDATE)
     .switchMap(() => {
       return this.studyService.get()
-        .map((data: Study[]) => new study.UpdateSuccess(data))
+        .map((data: Study[]) => new studyAction.UpdateSuccess(data))
     })
 
   constructor (
