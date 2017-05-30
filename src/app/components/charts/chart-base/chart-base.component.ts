@@ -18,7 +18,7 @@ import { Config } from '../../../shared/utils/config'
  *  3. draw() use to draw the chart elements
  */
 @Component({
-  templateUrl: '../chart.common.html'
+  templateUrl: '../charts.common.html'
 })
 export class ChartBaseComponent implements AfterViewInit {
   @ViewChild('svg') svgRef: ElementRef
