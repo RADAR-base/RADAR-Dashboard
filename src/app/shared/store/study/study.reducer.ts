@@ -4,7 +4,7 @@ import * as study from './study.actions'
 export interface State {
   ids: string[]
   entities: { [id: string]: any }
-  selectedId: string
+  selectedId: string,
   isLoading: boolean,
   isLoaded: boolean
 }
@@ -20,13 +20,15 @@ const initialState: State = {
 export function reducer (state = initialState, action: study.Actions): State {
   switch (action.type) {
 
-    case study.LOAD: {
+    case study.GET_ALL:
+    case study.GET_BY_ID: {
       return Object.assign({}, state, {
-        isLoading: true
+        isLoading: true,
+        isLoaded: false
       })
     }
 
-    case study.LOAD_SUCCESS: {
+    case study.GET_ALL_SUCCESS: {
       const payload = action.payload
       const ids = payload.map(study => study.id)
       const entities = payload.reduce((accumulator, study) => {
@@ -36,6 +38,24 @@ export function reducer (state = initialState, action: study.Actions): State {
       return Object.assign({}, state, {
         isLoading: false,
         isLoaded: true,
+        ids,
+        entities
+      })
+    }
+
+    case study.GET_BY_ID_SUCCESS: {
+      const payload = action.payload
+      const index = state.ids.findIndex(id => id === payload.id.toString())
+      const ids = index > -1
+        ? state.ids
+        : [...state.ids, payload.id]
+      const entity = { [payload.id]: payload }
+      const entities = Object.assign({}, state.entities, entity)
+
+      return Object.assign({}, state, {
+        isLoading: false,
+        isLoaded: true,
+        selectedId: payload.id,
         ids,
         entities
       })
