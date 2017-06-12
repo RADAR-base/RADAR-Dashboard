@@ -1,4 +1,4 @@
 export interface Study {
-  id: number
+  id: string
   name: string
 }

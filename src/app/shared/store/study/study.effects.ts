@@ -11,11 +11,19 @@ import { StudyService } from './study.service'
 export class StudyEffects {
 
   @Effect()
-  update$: Observable<Action> = this.actions$
-    .ofType(studyAction.LOAD)
+  getAll$: Observable<Action> = this.actions$
+    .ofType(studyAction.GET_ALL)
     .switchMap(() => {
-      return this.studyService.get()
-        .map((data: Study[]) => new studyAction.LoadSuccess(data))
+      return this.studyService.getAll()
+        .map((data: Study[]) => new studyAction.GetAllSuccess(data))
+    })
+
+  @Effect()
+  getById$: Observable<Action> = this.actions$
+    .ofType(studyAction.GET_BY_ID)
+    .switchMap(({ payload }) => {
+      return this.studyService.getById(payload)
+        .map((data: Study) => new studyAction.GetByIdSuccess(data))
     })
 
   constructor (
