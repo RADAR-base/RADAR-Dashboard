@@ -1,4 +1,9 @@
 export interface Subject {
-  id: number
-  name: string
+  subjectId: string
+  active: boolean
+  effectiveTimeFrame: {
+    endDateTime: string,
+    startDateTime: string
+  }
+  sources: any[]
 }
