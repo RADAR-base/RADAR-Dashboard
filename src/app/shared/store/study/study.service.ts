@@ -25,7 +25,7 @@ export class StudyService {
     return this.http.get(`${PARAMS.API_LOCAL}/mock-all-studies.json`)
       .delay(1000)
       .map(res => res.json().dataset || [])
-      .map(res => res.filter((data: Study) => data.id === id)[0] || {})
+      .map(res => res.filter((data: Study) => data.id === id)[0] || null)
       .catch(ErrorService.handleError)
   }
 }
