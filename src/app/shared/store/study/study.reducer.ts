@@ -5,7 +5,6 @@ export interface State {
   ids: string[]
   entities: { [id: string]: any }
   selectedId: string,
-  isLoading: boolean,
   isLoaded: boolean
 }
 
@@ -13,7 +12,6 @@ const initialState: State = {
   ids: [],
   entities: {},
   selectedId: '',
-  isLoading: false,
   isLoaded: false
 }
 
@@ -23,7 +21,6 @@ export function reducer (state = initialState, action: study.Actions): State {
     case study.GET_ALL:
     case study.GET_BY_ID: {
       return Object.assign({}, state, {
-        isLoading: true,
         isLoaded: false
       })
     }
@@ -36,7 +33,6 @@ export function reducer (state = initialState, action: study.Actions): State {
       }, {})
 
       return Object.assign({}, state, {
-        isLoading: false,
         isLoaded: true,
         ids,
         entities
@@ -45,17 +41,29 @@ export function reducer (state = initialState, action: study.Actions): State {
 
     case study.GET_BY_ID_SUCCESS: {
       const payload = action.payload
-      const index = state.ids.findIndex(id => id === payload.id.toString())
-      const ids = index > -1
-        ? state.ids
-        : [...state.ids, payload.id]
-      const entity = { [payload.id]: payload }
-      const entities = Object.assign({}, state.entities, entity)
+      let index
+      let ids
+      let entities
+      let entity
+      let selectedId
+
+      if (payload && payload.id) {
+        index = state.ids.findIndex(id => id === payload.id.toString())
+        ids = index > -1
+          ? [...state.ids]
+          : [...state.ids, payload.id]
+        entity = { [payload.id]: payload }
+        entities = Object.assign({}, state.entities, entity)
+        selectedId = payload.id
+      } else {
+        ids = [...state.ids]
+        entities = Object.assign({}, state.entities)
+        selectedId = ''
+      }
 
       return Object.assign({}, state, {
-        isLoading: false,
         isLoaded: true,
-        selectedId: payload.id,
+        selectedId,
         ids,
         entities
       })
@@ -72,11 +80,15 @@ export function reducer (state = initialState, action: study.Actions): State {
   }
 }
 
-export const getIsLoading = (state: State) => state.isLoading
 export const getIsLoaded = (state: State) => state.isLoaded
 export const getIds = (state: State) => state.ids
 export const getEntities = (state: State) => state.entities
 export const getSelectedId = (state: State) => state.selectedId
+
+export const getIsLoadedAndValid = createSelector(
+  getIsLoaded, getEntities, getSelectedId, (loaded, entities, selectedId) => {
+    return loaded && !!entities[selectedId]
+  })
 
 export const getSelected = createSelector(
   getEntities, getSelectedId, (entities, selectedId) => {

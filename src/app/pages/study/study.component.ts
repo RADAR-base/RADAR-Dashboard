@@ -18,7 +18,7 @@ import { Study } from '../../shared/store/study/study.model'
 
     <p *ngIf="!(isLoaded$ | async)">Loading...</p>
     <p *ngIf="isLoadedAndValid$ | async">{{ study$ | async | json}}</p>
-    <p *ngIf="!(isLoadedAndValid$ | async)">Study with ID {{studyId}} not found.</p>
+    <p *ngIf="!(isLoadedAndValid$ | async) && (isLoaded$ | async)">Study with ID {{studyId}} not found.</p>
   `,
   styleUrls: ['./study.component.scss']
 })
@@ -39,13 +39,14 @@ export class StudyPageComponent implements OnDestroy {
     this.route$ = route.params
       .subscribe(params => {
         this.studyId = params['studyId']
-        this.store.dispatch(new studyAction.GetById(this.studyId))
       })
 
-    // check if `studyId` is a valid study on the store
-    this.isLoadedAndValid$ = store.select(fromRoot.getStudyIsLoaded)
-      .withLatestFrom(store.select(fromRoot.getStudyEntities))
-      .map(([loaded, studies]) => !loaded || !!studies[this.studyId])
+    this.isLoadedAndValid$ = store.select(fromRoot.getStudyIsLoadedAndValid)
+      .do(isLoadedAndValid => {
+        if (!isLoadedAndValid) {
+          this.store.dispatch(new studyAction.GetById(this.studyId))
+        }
+      })
 
     // check if study is loaded
     this.isLoaded$ = store.select(fromRoot.getStudyIsLoaded)
