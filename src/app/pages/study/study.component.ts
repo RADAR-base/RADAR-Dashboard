@@ -18,7 +18,9 @@ import { Study } from '../../shared/store/study/study.model'
 
     <p *ngIf="!(isLoaded$ | async)">Loading...</p>
     <p *ngIf="isLoadedAndValid$ | async">{{ study$ | async | json}}</p>
-    <p *ngIf="!(isLoadedAndValid$ | async) && (isLoaded$ | async)">Study with ID {{studyId}} not found.</p>
+    <p *ngIf="!(isLoadedAndValid$ | async) && (isLoaded$ | async)">
+      Study with ID {{studyId}} not found.
+    </p>
   `,
   styleUrls: ['./study.component.scss']
 })
@@ -41,6 +43,7 @@ export class StudyPageComponent implements OnDestroy {
         this.studyId = params['studyId']
       })
 
+    // If study is not loaded and not valid then fetch it
     this.isLoadedAndValid$ = store.select(fromRoot.getStudyIsLoadedAndValid)
       .do(isLoadedAndValid => {
         if (!isLoadedAndValid) {
@@ -48,10 +51,10 @@ export class StudyPageComponent implements OnDestroy {
         }
       })
 
-    // check if study is loaded
+    // Check if study is loaded
     this.isLoaded$ = store.select(fromRoot.getStudyIsLoaded)
 
-    // get selected study
+    // Get selected study
     this.study$ = store.select(fromRoot.getStudySelected)
   }
 
