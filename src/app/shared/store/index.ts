@@ -42,9 +42,10 @@ export const getConfigDescriptiveStatistic =
 
 // Study Selectors
 export const getStudyState = (state: State) => state.study
-export const getStudyIsLoading = createSelector(getStudyState, fromStudy.getIsLoading)
 export const getStudyIsLoaded = createSelector(getStudyState, fromStudy.getIsLoaded)
+export const getStudyIsLoadedAndValid = createSelector(getStudyState, fromStudy.getIsLoadedAndValid)
 export const getStudyEntities = createSelector(getStudyState, fromStudy.getEntities)
+export const getStudySelected = createSelector(getStudyState, fromStudy.getSelected)
 export const getStudyAll = createSelector(getStudyState, fromStudy.getAll)
 
 // Subject Selectors

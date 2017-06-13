@@ -1,8 +1,9 @@
-import 'rxjs/add/operator/withLatestFrom'
-import '@ngrx/core/add/operator/select'
 import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
+import '@ngrx/core/add/operator/select'
 import { Store } from '@ngrx/store'
+import 'rxjs/add/operator/switchMap'
+import 'rxjs/add/operator/withLatestFrom'
 import { Observable } from 'rxjs/Observable'
 
 import * as fromRoot from '../../shared/store/index'
@@ -16,8 +17,10 @@ import { Study } from '../../shared/store/study/study.model'
     <p>Study Page</p>
 
     <p *ngIf="!(isLoaded$ | async)">Loading...</p>
-    <p *ngIf="study$ | async">{{ study$ | async | json}}</p>
-    <p *ngIf="isLoadedAndValid$ | async">Study with ID {{studyId}} not found.</p>
+    <p *ngIf="isLoadedAndValid$ | async">{{ study$ | async | json}}</p>
+    <p *ngIf="!(isLoadedAndValid$ | async) && (isLoaded$ | async)">
+      Study with ID {{studyId}} not found.
+    </p>
   `,
   styleUrls: ['./study.component.scss']
 })
@@ -34,25 +37,25 @@ export class StudyPageComponent implements OnDestroy {
     private route: ActivatedRoute,
     private store: Store<fromRoot.State>
   ) {
+    // Get `studyId` from route and then get Study by `studyId`
     this.route$ = route.params
-      .do(console.log)
-      .subscribe(params => this.studyId = params['studyId'])
+      .subscribe(params => {
+        this.studyId = params['studyId']
+      })
 
-    this.isLoadedAndValid$ = store.select(fromRoot.getStudyIsLoaded)
-      .withLatestFrom(store.select(fromRoot.getStudyEntities))
-      .map(([loaded, studies]) => loaded && !studies[this.studyId])
-
-    this.isLoaded$ = store.select(fromRoot.getStudyIsLoaded)
-
-    this.study$ = store.select(fromRoot.getStudyEntities)
-      .withLatestFrom(store.select(fromRoot.getStudyIsLoaded))
-      .do(([studies, loaded]) => {
-        if (!loaded) {
-          this.store.dispatch(new studyAction.Load())
-          this.store.dispatch(new studyAction.Select(this.studyId))
+    // If study is not loaded and not valid then fetch it
+    this.isLoadedAndValid$ = store.select(fromRoot.getStudyIsLoadedAndValid)
+      .do(isLoadedAndValid => {
+        if (!isLoadedAndValid) {
+          this.store.dispatch(new studyAction.GetById(this.studyId))
         }
       })
-      .map(([studies, loaded]) => studies[this.studyId])
+
+    // Check if study is loaded
+    this.isLoaded$ = store.select(fromRoot.getStudyIsLoaded)
+
+    // Get selected study
+    this.study$ = store.select(fromRoot.getStudySelected)
   }
 
   ngOnDestroy () {
