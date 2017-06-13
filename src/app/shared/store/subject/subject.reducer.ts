@@ -1,11 +1,12 @@
 import { createSelector } from 'reselect'
+
 import * as subject from './subject.actions'
+import { Subject } from './subject.model'
 
 export interface State {
   ids: string[]
-  entities: { [id: string]: any }
+  entities: { [id: string]: Subject }
   selectedId: string
-  isLoading: boolean,
   isLoaded: boolean
 }
 
@@ -13,28 +14,26 @@ const initialState: State = {
   ids: [],
   entities: {},
   selectedId: '',
-  isLoading: false,
   isLoaded: false
 }
 
 export function reducer (state = initialState, action: subject.Actions): State {
   switch (action.type) {
 
-    case subject.LOAD: {
+    case subject.GET_ALL: {
       return Object.assign({}, state, {
-        isLoading: true
+        isLoaded: false
       })
     }
 
-    case subject.LOAD_SUCCESS: {
+    case subject.GET_ALL_SUCCESS: {
       const payload = action.payload
-      const ids = payload.map(subject => subject.id)
+      const ids = payload.map(subject => subject.subjectId)
       const entities = payload.reduce((accumulator, subject) => {
-        return Object.assign(accumulator, { [subject.id]: subject })
+        return Object.assign(accumulator, { [subject.subjectId]: subject })
       }, {})
 
       return Object.assign({}, state, {
-        isLoading: false,
         isLoaded: true,
         ids,
         entities
@@ -46,7 +45,6 @@ export function reducer (state = initialState, action: subject.Actions): State {
   }
 }
 
-export const getIsLoading = (state: State) => state.isLoading
 export const getIsLoaded = (state: State) => state.isLoaded
 export const getIds = (state: State) => state.ids
 export const getEntities = (state: State) => state.entities
