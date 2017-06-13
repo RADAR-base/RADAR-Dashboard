@@ -11,7 +11,7 @@ import { Study } from '../../shared/store/study/study.model'
   selector: 'app-overview-page',
   template: `
     <div *ngFor="let study of (studies$ | async )">
-      <button (click)="navigateToPatient(study.id)">{{ study.name }} - {{ study.id }}</button>
+      <button (click)="navigateToStudy(study.id)">{{ study.name }} - {{ study.id }}</button>
     </div>
   `,
   styleUrls: ['./overview.component.scss']
@@ -25,14 +25,13 @@ export class OverviewPageComponent implements OnInit {
     private store: Store<fromRoot.State>
   ) {
     this.studies$ = store.select(fromRoot.getStudyAll)
-      .filter(d => !!d.length)
   }
 
   ngOnInit () {
     this.store.dispatch(new studyAction.GetAll())
   }
 
-  navigateToPatient (id) {
+  navigateToStudy (id) {
     this.store.dispatch(new studyAction.Select(id))
     this.router.navigate(['/study', id])
   }
