@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { Actions, Effect } from '@ngrx/effects'
+import { Actions, Effect, toPayload } from '@ngrx/effects'
 import { Action } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
@@ -8,18 +8,19 @@ import { Subject } from './subject.model'
 import { SubjectService } from './subject.service'
 
 @Injectable()
-export class StudyEffects {
+export class SubjectEffects {
 
   @Effect()
-  update$: Observable<Action> = this.actions$
-    .ofType(subjectAction.LOAD)
-    .switchMap(() => {
-      return this.studyService.get()
-        .map((data: Subject[]) => new subjectAction.LoadSuccess(data))
+  getAll$: Observable<Action> = this.actions$
+    .ofType(subjectAction.GET_ALL)
+    .map(toPayload)
+    .switchMap(payload => {
+      return this.subjectService.getAll(payload)
+        .map((data: Subject[]) => new subjectAction.GetAllSuccess(data))
     })
 
   constructor (
     private actions$: Actions,
-    private studyService: SubjectService
-  ) { }
+    private subjectService: SubjectService
+  ) {}
 }
