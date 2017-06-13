@@ -2,9 +2,7 @@ import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
 import { HttpModule } from '@angular/http'
 import { RouterModule } from '@angular/router'
-import { EffectsModule } from '@ngrx/effects'
 
-import { StudyEffects } from '../../shared/store/study/study.effects'
 import { StudyService } from '../../shared/store/study/study.service'
 import { OverviewPageComponent } from './overview.component'
 import { routes } from './overview.routing'
@@ -13,8 +11,7 @@ import { routes } from './overview.routing'
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    HttpModule,
-    EffectsModule.run(StudyEffects)
+    HttpModule
   ],
   declarations: [
     OverviewPageComponent

@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core'
 import { HttpModule } from '@angular/http'
 import { RouterModule } from '@angular/router'
 
+import { StudyService } from '../../shared/store/study/study.service'
+import { SubjectService } from '../../shared/store/subject/subject.service'
 import { StudyPageComponent } from './study.component'
 import { routes } from './study.routing'
 
@@ -14,6 +16,10 @@ import { routes } from './study.routing'
   ],
   declarations: [
     StudyPageComponent
+  ],
+  providers: [
+    StudyService,
+    SubjectService
   ]
 })
 export class StudyPageModule {}
