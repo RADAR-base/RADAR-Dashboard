@@ -50,7 +50,6 @@ export const getStudyAll = createSelector(getStudyState, fromStudy.getAll)
 
 // Subject Selectors
 export const getSubjectState = (state: State) => state.subject
-export const getSubjectIsLoading = createSelector(getSubjectState, fromSubject.getIsLoading)
 export const getSubjectIsLoaded = createSelector(getSubjectState, fromSubject.getIsLoaded)
 export const getSubjectEntities = createSelector(getSubjectState, fromSubject.getEntities)
 export const getSubjectAll = createSelector(getSubjectState, fromSubject.getAll)

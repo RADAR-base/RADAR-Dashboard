@@ -1,9 +1,10 @@
 import { createSelector } from 'reselect'
 import * as study from './study.actions'
+import { Study } from './study.model'
 
 export interface State {
   ids: string[]
-  entities: { [id: string]: any }
+  entities: { [id: string]: Study }
   selectedId: string,
   isLoaded: boolean
 }

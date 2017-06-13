@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { Actions, Effect } from '@ngrx/effects'
+import { Actions, Effect, toPayload } from '@ngrx/effects'
 import { Action } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
@@ -21,7 +21,8 @@ export class StudyEffects {
   @Effect()
   getById$: Observable<Action> = this.actions$
     .ofType(studyAction.GET_BY_ID)
-    .switchMap(({ payload }) => {
+    .map(toPayload)
+    .switchMap(payload => {
       return this.studyService.getById(payload)
         .map((data: Study) => new studyAction.GetByIdSuccess(data))
     })
