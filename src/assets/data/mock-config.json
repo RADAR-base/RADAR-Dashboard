@@ -2,12 +2,11 @@
   "config": {
     "sensor": {
       "ACCELEROMETER": {
-        "key": "acceleration",
         "doc": "Acceleration item for a dataset with gravitational constant g as unit.",
         "label": {
           "EN": "Accelerometer"
         },
-        "subKeys": [
+        "keys": [
           {
             "key": "x",
             "doc": "Acceleration x axis with gravitational constant g as unit.",
@@ -60,8 +59,7 @@
         "label": {
           "EN": "Heart Rate"
         },
-        "key": "heartRate",
-        "subKeys": [
+        "keys": [
           {
             "key": "value",
             "label": {

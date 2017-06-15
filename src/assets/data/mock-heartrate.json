@@ -1,201 +1,1595 @@
 {
   "header": {
-    "descriptive_statistic": "average",
-    "unit": "beats_per_min",
-    "effective_time_frame": {
-      "start_date_time": "2016-10-27T20:02:20Z",
-      "end_date_time": "2016-10-27T20:06:50Z"
+    "subjectId": "KCLTest0",
+    "sourceId": "00:07:80:1F:53:1C",
+    "source": "EMPATICA",
+    "sensor": "HEART_RATE",
+    "descriptiveStatistic": "AVERAGE",
+    "unit": "BEATS_PER_MIN",
+    "timeFrame": "TEN_SECOND",
+    "effectiveTimeFrame": {
+      "startDateTime": "2017-02-28T13:06:30Z",
+      "endDateTime": "2017-02-28T15:54:10Z"
     }
   },
   "dataset": [
     {
-      "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:02:20Z",
-        "end_date_time": "2016-10-27T20:02:30Z"
+      "sample": {
+        "value": 159.99267446874498
       },
-      "heart_rate": {
-        "value": 60.17274154968215
-      }
+      "startDateTime": "2017-02-28T13:06:30Z"
     },
     {
-      "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:03:00Z",
-        "end_date_time": "2016-10-27T20:03:10Z"
+      "sample": {
+        "value": 167.26506855122798
       },
-      "heart_rate": {
-        "value": 108.39180563508566
-      }
+      "startDateTime": "2017-02-28T13:07:00Z"
     },
     {
-      "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:03:10Z",
-        "end_date_time": "2016-10-27T20:03:20Z"
+      "sample": {
+        "value": 122.67187165457308
       },
-      "heart_rate": {
-        "value": 135.30344544328108
-      }
+      "startDateTime": "2017-02-28T13:08:30Z"
     },
     {
-      "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:03:20Z",
-        "end_date_time": "2016-10-27T20:03:30Z"
+      "sample": {
+        "value": 123.86529838727175
       },
-      "heart_rate": {
-        "value": 83.8401962366746
-      }
+      "startDateTime": "2017-02-28T13:08:40Z"
     },
     {
-      "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:03:30Z",
-        "end_date_time": "2016-10-27T20:03:40Z"
+      "sample": {
+        "value": 119.99450425170527
       },
-      "heart_rate": {
-        "value": 97.23948813480582
-      }
+      "startDateTime": "2017-02-28T13:09:00Z"
     },
     {
-      "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:03:40Z",
-        "end_date_time": "2016-10-27T20:03:50Z"
+      "sample": {
+        "value": 116.35831067901668
       },
-      "heart_rate": {
-        "value": 128.66517715813478
-      }
+      "startDateTime": "2017-02-28T13:10:30Z"
     },
     {
-      "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:04:00Z",
-        "end_date_time": "2016-10-27T20:04:10Z"
+      "sample": {
+        "value": 100.91191294022241
       },
-      "heart_rate": {
-        "value": 91.80151784071714
-      }
+      "startDateTime": "2017-02-28T13:12:00Z"
     },
     {
-      "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:04:10Z",
-        "end_date_time": "2016-10-27T20:04:20Z"
+      "sample": {
+        "value": 153.59296961972018
       },
-      "heart_rate": {
-        "value": 97.13949614657035
-      }
+      "startDateTime": "2017-02-28T13:13:30Z"
     },
     {
-      "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:04:20Z",
-        "end_date_time": "2016-10-27T20:04:30Z"
+      "sample": {
+        "value": 123.86529838727175
       },
-      "heart_rate": {
-        "value": 121.85530820805425
-      }
+      "startDateTime": "2017-02-28T13:14:00Z"
     },
     {
-      "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:04:30Z",
-        "end_date_time": "2016-10-27T20:04:40Z"
+      "sample": {
+        "value": 116.46525744815037
       },
-      "heart_rate": {
-        "value": 110.10916227683296
-      }
+      "startDateTime": "2017-02-28T13:14:10Z"
     },
     {
-      "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:04:40Z",
-        "end_date_time": "2016-10-27T20:04:50Z"
+      "sample": {
+        "value": 109.76901966237001
       },
-      "heart_rate": {
-        "value": 93.2521764908646
-      }
+      "startDateTime": "2017-02-28T13:14:20Z"
     },
     {
-      "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:05:00Z",
-        "end_date_time": "2016-10-27T20:05:10Z"
+      "sample": {
+        "value": 147.68554596638776
       },
-      "heart_rate": {
-        "value": 120.45378719830005
-      }
+      "startDateTime": "2017-02-28T13:15:00Z"
     },
     {
-      "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:05:10Z",
-        "end_date_time": "2016-10-27T20:05:20Z"
+      "sample": {
+        "value": 101.04800251676892
       },
-      "heart_rate": {
-        "value": 110.07754079985364
-      }
+      "startDateTime": "2017-02-28T13:16:20Z"
     },
     {
-      "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:05:20Z",
-        "end_date_time": "2016-10-27T20:05:30Z"
+      "sample": {
+        "value": 98.45703064425851
       },
-      "heart_rate": {
-        "value": 107.95353665953152
-      }
+      "startDateTime": "2017-02-28T13:16:50Z"
     },
     {
-      "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:05:30Z",
-        "end_date_time": "2016-10-27T20:05:40Z"
+      "sample": {
+        "value": 166.94887983562214
       },
-      "heart_rate": {
-        "value": 97.37527353070601
-      }
+      "startDateTime": "2017-02-28T13:20:10Z"
     },
     {
-      "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:05:40Z",
-        "end_date_time": "2016-10-27T20:05:50Z"
+      "sample": {
+        "value": 104.42412398917789
       },
-      "heart_rate": {
-        "value": 93.67078714323348
-      }
+      "startDateTime": "2017-02-28T13:20:40Z"
     },
     {
-      "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:06:00Z",
-        "end_date_time": "2016-10-27T20:06:10Z"
+      "sample": {
+        "value": 116.46525744815037
       },
-      "heart_rate": {
-        "value": 108.13737208996312
-      }
+      "startDateTime": "2017-02-28T13:20:50Z"
     },
     {
-      "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:06:10Z",
-        "end_date_time": "2016-10-27T20:06:20Z"
+      "sample": {
+        "value": 101.04800251676892
       },
-      "heart_rate": {
-        "value": 100.24465065899412
-      }
+      "startDateTime": "2017-02-28T13:21:10Z"
     },
     {
-      "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:06:20Z",
-        "end_date_time": "2016-10-27T20:06:30Z"
+      "sample": {
+        "value": 103.77903395764149
       },
-      "heart_rate": {
-        "value": 96.08971596211111
-      }
+      "startDateTime": "2017-02-28T13:21:50Z"
     },
     {
-      "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:06:30Z",
-        "end_date_time": "2016-10-27T20:06:40Z"
+      "sample": {
+        "value": 116.35831067901668
       },
-      "heart_rate": {
-        "value": 116.166892627476
-      }
+      "startDateTime": "2017-02-28T13:23:00Z"
     },
     {
-      "effective_time_frame": {
-        "start_date_time": "2016-10-27T20:06:40Z",
-        "end_date_time": "2016-10-27T20:06:50Z"
+      "sample": {
+        "value": 98.45703064425851
       },
-      "heart_rate": {
-        "value": 97.85922078672958
-      }
+      "startDateTime": "2017-02-28T13:23:30Z"
+    },
+    {
+      "sample": {
+        "value": 147.68554596638776
+      },
+      "startDateTime": "2017-02-28T13:24:50Z"
+    },
+    {
+      "sample": {
+        "value": 127.99414025760017
+      },
+      "startDateTime": "2017-02-28T13:25:50Z"
+    },
+    {
+      "sample": {
+        "value": 118.17640746536098
+      },
+      "startDateTime": "2017-02-28T13:26:10Z"
+    },
+    {
+      "sample": {
+        "value": 159.99267446874498
+      },
+      "startDateTime": "2017-02-28T13:26:50Z"
+    },
+    {
+      "sample": {
+        "value": 142.21571611657234
+      },
+      "startDateTime": "2017-02-28T13:27:00Z"
+    },
+    {
+      "sample": {
+        "value": 159.99267446874498
+      },
+      "startDateTime": "2017-02-28T13:27:50Z"
+    },
+    {
+      "sample": {
+        "value": 147.68554596638776
+      },
+      "startDateTime": "2017-02-28T13:29:30Z"
+    },
+    {
+      "sample": {
+        "value": 109.70926441528994
+      },
+      "startDateTime": "2017-02-28T13:31:10Z"
+    },
+    {
+      "sample": {
+        "value": 123.86529838727175
+      },
+      "startDateTime": "2017-02-28T13:31:30Z"
+    },
+    {
+      "sample": {
+        "value": 157.01144610323752
+      },
+      "startDateTime": "2017-02-28T13:34:40Z"
+    },
+    {
+      "sample": {
+        "value": 132.4077326645507
+      },
+      "startDateTime": "2017-02-28T13:35:20Z"
+    },
+    {
+      "sample": {
+        "value": 131.51046300671533
+      },
+      "startDateTime": "2017-02-28T13:35:50Z"
+    },
+    {
+      "sample": {
+        "value": 120.30821838463363
+      },
+      "startDateTime": "2017-02-28T13:36:10Z"
+    },
+    {
+      "sample": {
+        "value": 159.99267446874498
+      },
+      "startDateTime": "2017-02-28T13:37:00Z"
+    },
+    {
+      "sample": {
+        "value": 147.68554596638776
+      },
+      "startDateTime": "2017-02-28T13:37:30Z"
+    },
+    {
+      "sample": {
+        "value": 132.56535944803423
+      },
+      "startDateTime": "2017-02-28T13:38:10Z"
+    },
+    {
+      "sample": {
+        "value": 115.04655584625178
+      },
+      "startDateTime": "2017-02-28T13:42:30Z"
+    },
+    {
+      "sample": {
+        "value": 104.64637077606335
+      },
+      "startDateTime": "2017-02-28T13:42:40Z"
+    },
+    {
+      "sample": {
+        "value": 120.30821838463363
+      },
+      "startDateTime": "2017-02-28T13:42:50Z"
+    },
+    {
+      "sample": {
+        "value": 119.68636428037144
+      },
+      "startDateTime": "2017-02-28T13:43:10Z"
+    },
+    {
+      "sample": {
+        "value": 106.17695896001466
+      },
+      "startDateTime": "2017-02-28T13:43:20Z"
+    },
+    {
+      "sample": {
+        "value": 105.20537440080362
+      },
+      "startDateTime": "2017-02-28T13:43:30Z"
+    },
+    {
+      "sample": {
+        "value": 105.6793713364956
+      },
+      "startDateTime": "2017-02-28T13:43:40Z"
+    },
+    {
+      "sample": {
+        "value": 107.55063180664753
+      },
+      "startDateTime": "2017-02-28T13:43:50Z"
+    },
+    {
+      "sample": {
+        "value": 107.50495143846031
+      },
+      "startDateTime": "2017-02-28T13:44:00Z"
+    },
+    {
+      "sample": {
+        "value": 113.0011952463007
+      },
+      "startDateTime": "2017-02-28T13:44:10Z"
+    },
+    {
+      "sample": {
+        "value": 94.94070854988612
+      },
+      "startDateTime": "2017-02-28T13:44:20Z"
+    },
+    {
+      "sample": {
+        "value": 101.04800251676892
+      },
+      "startDateTime": "2017-02-28T13:44:30Z"
+    },
+    {
+      "sample": {
+        "value": 105.45343519413146
+      },
+      "startDateTime": "2017-02-28T13:44:40Z"
+    },
+    {
+      "sample": {
+        "value": 95.94291282453239
+      },
+      "startDateTime": "2017-02-28T13:44:50Z"
+    },
+    {
+      "sample": {
+        "value": 103.9592599411248
+      },
+      "startDateTime": "2017-02-28T13:45:00Z"
+    },
+    {
+      "sample": {
+        "value": 109.29847689586468
+      },
+      "startDateTime": "2017-02-28T13:45:10Z"
+    },
+    {
+      "sample": {
+        "value": 116.35831067901668
+      },
+      "startDateTime": "2017-02-28T13:45:20Z"
+    },
+    {
+      "sample": {
+        "value": 110.5212533842371
+      },
+      "startDateTime": "2017-02-28T13:45:30Z"
+    },
+    {
+      "sample": {
+        "value": 103.00334800027709
+      },
+      "startDateTime": "2017-02-28T13:45:40Z"
+    },
+    {
+      "sample": {
+        "value": 103.77903395764149
+      },
+      "startDateTime": "2017-02-28T13:45:50Z"
+    },
+    {
+      "sample": {
+        "value": 113.99271780632152
+      },
+      "startDateTime": "2017-02-28T13:46:00Z"
+    },
+    {
+      "sample": {
+        "value": 103.1613018713147
+      },
+      "startDateTime": "2017-02-28T13:46:10Z"
+    },
+    {
+      "sample": {
+        "value": 101.09468903955631
+      },
+      "startDateTime": "2017-02-28T13:46:30Z"
+    },
+    {
+      "sample": {
+        "value": 98.45703064425851
+      },
+      "startDateTime": "2017-02-28T13:47:00Z"
+    },
+    {
+      "sample": {
+        "value": 123.86529838727175
+      },
+      "startDateTime": "2017-02-28T13:47:10Z"
+    },
+    {
+      "sample": {
+        "value": 116.35831067901668
+      },
+      "startDateTime": "2017-02-28T13:49:30Z"
+    },
+    {
+      "sample": {
+        "value": 103.84064221056799
+      },
+      "startDateTime": "2017-02-28T13:49:40Z"
+    },
+    {
+      "sample": {
+        "value": 115.2635411572482
+      },
+      "startDateTime": "2017-02-28T13:49:50Z"
+    },
+    {
+      "sample": {
+        "value": 98.45703064425851
+      },
+      "startDateTime": "2017-02-28T13:50:00Z"
+    },
+    {
+      "sample": {
+        "value": 102.55940728574159
+      },
+      "startDateTime": "2017-02-28T13:50:50Z"
+    },
+    {
+      "sample": {
+        "value": 123.99432225465272
+      },
+      "startDateTime": "2017-02-28T13:51:30Z"
+    },
+    {
+      "sample": {
+        "value": 105.19780060427759
+      },
+      "startDateTime": "2017-02-28T13:51:40Z"
+    },
+    {
+      "sample": {
+        "value": 60.94959097034248
+      },
+      "startDateTime": "2017-02-28T13:54:20Z"
+    },
+    {
+      "sample": {
+        "value": 68.00942536856557
+      },
+      "startDateTime": "2017-02-28T13:54:30Z"
+    },
+    {
+      "sample": {
+        "value": 91.42438645551373
+      },
+      "startDateTime": "2017-02-28T13:54:40Z"
+    },
+    {
+      "sample": {
+        "value": 91.0155795999095
+      },
+      "startDateTime": "2017-02-28T13:57:50Z"
+    },
+    {
+      "sample": {
+        "value": 80.0194958254332
+      },
+      "startDateTime": "2017-02-28T13:58:00Z"
+    },
+    {
+      "sample": {
+        "value": 95.25517898783374
+      },
+      "startDateTime": "2017-02-28T13:58:10Z"
+    },
+    {
+      "sample": {
+        "value": 86.32015656313658
+      },
+      "startDateTime": "2017-02-28T13:58:20Z"
+    },
+    {
+      "sample": {
+        "value": 83.51876415369323
+      },
+      "startDateTime": "2017-02-28T13:58:30Z"
+    },
+    {
+      "sample": {
+        "value": 93.65425315962135
+      },
+      "startDateTime": "2017-02-28T13:58:40Z"
+    },
+    {
+      "sample": {
+        "value": 85.27223011636767
+      },
+      "startDateTime": "2017-02-28T13:58:50Z"
+    },
+    {
+      "sample": {
+        "value": 84.40193277134634
+      },
+      "startDateTime": "2017-02-28T14:00:30Z"
+    },
+    {
+      "sample": {
+        "value": 88.46995643685932
+      },
+      "startDateTime": "2017-02-28T14:00:40Z"
+    },
+    {
+      "sample": {
+        "value": 88.24850645443048
+      },
+      "startDateTime": "2017-02-28T14:00:50Z"
+    },
+    {
+      "sample": {
+        "value": 79.69761156571359
+      },
+      "startDateTime": "2017-02-28T14:01:10Z"
+    },
+    {
+      "sample": {
+        "value": 82.98781892556428
+      },
+      "startDateTime": "2017-02-28T14:02:20Z"
+    },
+    {
+      "sample": {
+        "value": 73.84277298319388
+      },
+      "startDateTime": "2017-02-28T14:02:30Z"
+    },
+    {
+      "sample": {
+        "value": 91.04345144423043
+      },
+      "startDateTime": "2017-02-28T14:03:00Z"
+    },
+    {
+      "sample": {
+        "value": 83.33994729736702
+      },
+      "startDateTime": "2017-02-28T14:03:10Z"
+    },
+    {
+      "sample": {
+        "value": 78.79489115485453
+      },
+      "startDateTime": "2017-02-28T14:03:20Z"
+    },
+    {
+      "sample": {
+        "value": 84.25633850639133
+      },
+      "startDateTime": "2017-02-28T14:03:30Z"
+    },
+    {
+      "sample": {
+        "value": 98.4889965967675
+      },
+      "startDateTime": "2017-02-28T14:03:40Z"
+    },
+    {
+      "sample": {
+        "value": 74.62299963566328
+      },
+      "startDateTime": "2017-02-28T14:04:10Z"
+    },
+    {
+      "sample": {
+        "value": 82.76677300508433
+      },
+      "startDateTime": "2017-02-28T14:06:30Z"
+    },
+    {
+      "sample": {
+        "value": 65.94822879204796
+      },
+      "startDateTime": "2017-02-28T14:06:40Z"
+    },
+    {
+      "sample": {
+        "value": 72.05873152643863
+      },
+      "startDateTime": "2017-02-28T14:07:10Z"
+    },
+    {
+      "sample": {
+        "value": 72.97374724962256
+      },
+      "startDateTime": "2017-02-28T14:07:20Z"
+    },
+    {
+      "sample": {
+        "value": 79.53130118524678
+      },
+      "startDateTime": "2017-02-28T14:07:30Z"
+    },
+    {
+      "sample": {
+        "value": 76.79648480986009
+      },
+      "startDateTime": "2017-02-28T14:07:40Z"
+    },
+    {
+      "sample": {
+        "value": 79.4521453599116
+      },
+      "startDateTime": "2017-02-28T14:07:50Z"
+    },
+    {
+      "sample": {
+        "value": 79.0829934779751
+      },
+      "startDateTime": "2017-02-28T14:08:00Z"
+    },
+    {
+      "sample": {
+        "value": 83.06898478517529
+      },
+      "startDateTime": "2017-02-28T14:08:10Z"
+    },
+    {
+      "sample": {
+        "value": 79.23549168062864
+      },
+      "startDateTime": "2017-02-28T14:08:20Z"
+    },
+    {
+      "sample": {
+        "value": 76.64157760952789
+      },
+      "startDateTime": "2017-02-28T14:08:40Z"
+    },
+    {
+      "sample": {
+        "value": 84.68763707829802
+      },
+      "startDateTime": "2017-02-28T14:08:50Z"
+    },
+    {
+      "sample": {
+        "value": 84.43204635069057
+      },
+      "startDateTime": "2017-02-28T14:09:00Z"
+    },
+    {
+      "sample": {
+        "value": 79.92905901545639
+      },
+      "startDateTime": "2017-02-28T14:11:40Z"
+    },
+    {
+      "sample": {
+        "value": 81.71022458234417
+      },
+      "startDateTime": "2017-02-28T14:11:50Z"
+    },
+    {
+      "sample": {
+        "value": 84.34278754359093
+      },
+      "startDateTime": "2017-02-28T14:12:00Z"
+    },
+    {
+      "sample": {
+        "value": 78.34822219537429
+      },
+      "startDateTime": "2017-02-28T14:12:20Z"
+    },
+    {
+      "sample": {
+        "value": 79.80947111128594
+      },
+      "startDateTime": "2017-02-28T14:12:30Z"
+    },
+    {
+      "sample": {
+        "value": 85.3294256248816
+      },
+      "startDateTime": "2017-02-28T14:14:50Z"
+    },
+    {
+      "sample": {
+        "value": 81.08963742513752
+      },
+      "startDateTime": "2017-02-28T14:15:00Z"
+    },
+    {
+      "sample": {
+        "value": 82.01724568403579
+      },
+      "startDateTime": "2017-02-28T14:15:30Z"
+    },
+    {
+      "sample": {
+        "value": 77.64772727899445
+      },
+      "startDateTime": "2017-02-28T14:15:40Z"
+    },
+    {
+      "sample": {
+        "value": 78.48412220036913
+      },
+      "startDateTime": "2017-02-28T14:15:50Z"
+    },
+    {
+      "sample": {
+        "value": 77.7717396983639
+      },
+      "startDateTime": "2017-02-28T14:16:00Z"
+    },
+    {
+      "sample": {
+        "value": 98.45703064425851
+      },
+      "startDateTime": "2017-02-28T14:16:10Z"
+    },
+    {
+      "sample": {
+        "value": 87.26872877824508
+      },
+      "startDateTime": "2017-02-28T14:16:20Z"
+    },
+    {
+      "sample": {
+        "value": 74.33222932736435
+      },
+      "startDateTime": "2017-02-28T14:16:30Z"
+    },
+    {
+      "sample": {
+        "value": 71.46698129346726
+      },
+      "startDateTime": "2017-02-28T14:16:40Z"
+    },
+    {
+      "sample": {
+        "value": 97.44893137049503
+      },
+      "startDateTime": "2017-02-28T14:17:00Z"
+    },
+    {
+      "sample": {
+        "value": 76.79648480986009
+      },
+      "startDateTime": "2017-02-28T14:17:10Z"
+    },
+    {
+      "sample": {
+        "value": 84.45963542888806
+      },
+      "startDateTime": "2017-02-28T14:17:20Z"
+    },
+    {
+      "sample": {
+        "value": 75.5496735796621
+      },
+      "startDateTime": "2017-02-28T14:17:30Z"
+    },
+    {
+      "sample": {
+        "value": 78.03732575609438
+      },
+      "startDateTime": "2017-02-28T14:17:40Z"
+    },
+    {
+      "sample": {
+        "value": 78.36375947785181
+      },
+      "startDateTime": "2017-02-28T14:19:20Z"
+    },
+    {
+      "sample": {
+        "value": 76.81697110895708
+      },
+      "startDateTime": "2017-02-28T14:19:30Z"
+    },
+    {
+      "sample": {
+        "value": 77.30966896830239
+      },
+      "startDateTime": "2017-02-28T14:19:40Z"
+    },
+    {
+      "sample": {
+        "value": 182.84877291102745
+      },
+      "startDateTime": "2017-02-28T14:20:10Z"
+    },
+    {
+      "sample": {
+        "value": 76.52510318283021
+      },
+      "startDateTime": "2017-02-28T14:24:20Z"
+    },
+    {
+      "sample": {
+        "value": 72.01546431926644
+      },
+      "startDateTime": "2017-02-28T14:24:30Z"
+    },
+    {
+      "sample": {
+        "value": 66.20386487129142
+      },
+      "startDateTime": "2017-02-28T14:24:40Z"
+    },
+    {
+      "sample": {
+        "value": 142.21571611657234
+      },
+      "startDateTime": "2017-02-28T14:27:00Z"
+    },
+    {
+      "sample": {
+        "value": 89.29823730042142
+      },
+      "startDateTime": "2017-02-28T14:27:20Z"
+    },
+    {
+      "sample": {
+        "value": 86.53164546978715
+      },
+      "startDateTime": "2017-02-28T14:27:30Z"
+    },
+    {
+      "sample": {
+        "value": 92.27997688986443
+      },
+      "startDateTime": "2017-02-28T14:27:40Z"
+    },
+    {
+      "sample": {
+        "value": 77.69786492992354
+      },
+      "startDateTime": "2017-02-28T14:27:50Z"
+    },
+    {
+      "sample": {
+        "value": 72.44951446146645
+      },
+      "startDateTime": "2017-02-28T14:28:40Z"
+    },
+    {
+      "sample": {
+        "value": 80.13546236383559
+      },
+      "startDateTime": "2017-02-28T14:29:10Z"
+    },
+    {
+      "sample": {
+        "value": 87.26872877824508
+      },
+      "startDateTime": "2017-02-28T14:29:20Z"
+    },
+    {
+      "sample": {
+        "value": 87.54389075570047
+      },
+      "startDateTime": "2017-02-28T14:32:10Z"
+    },
+    {
+      "sample": {
+        "value": 97.35112783819514
+      },
+      "startDateTime": "2017-02-28T14:32:40Z"
+    },
+    {
+      "sample": {
+        "value": 87.54045721179091
+      },
+      "startDateTime": "2017-02-28T14:33:00Z"
+    },
+    {
+      "sample": {
+        "value": 81.4577907413193
+      },
+      "startDateTime": "2017-02-28T14:34:10Z"
+    },
+    {
+      "sample": {
+        "value": 83.47443991781107
+      },
+      "startDateTime": "2017-02-28T14:38:30Z"
+    },
+    {
+      "sample": {
+        "value": 72.13919694299163
+      },
+      "startDateTime": "2017-02-28T14:41:30Z"
+    },
+    {
+      "sample": {
+        "value": 93.65425315962135
+      },
+      "startDateTime": "2017-02-28T14:41:40Z"
+    },
+    {
+      "sample": {
+        "value": 166.94887983562214
+      },
+      "startDateTime": "2017-02-28T14:42:50Z"
+    },
+    {
+      "sample": {
+        "value": 76.82721425850556
+      },
+      "startDateTime": "2017-02-28T14:43:00Z"
+    },
+    {
+      "sample": {
+        "value": 76.46422006339247
+      },
+      "startDateTime": "2017-02-28T14:43:10Z"
+    },
+    {
+      "sample": {
+        "value": 74.44215735170472
+      },
+      "startDateTime": "2017-02-28T14:43:20Z"
+    },
+    {
+      "sample": {
+        "value": 78.36375947785181
+      },
+      "startDateTime": "2017-02-28T14:43:30Z"
+    },
+    {
+      "sample": {
+        "value": 76.61768248989212
+      },
+      "startDateTime": "2017-02-28T14:43:40Z"
+    },
+    {
+      "sample": {
+        "value": 72.44951446146645
+      },
+      "startDateTime": "2017-02-28T14:43:50Z"
+    },
+    {
+      "sample": {
+        "value": 75.29066903915931
+      },
+      "startDateTime": "2017-02-28T14:44:00Z"
+    },
+    {
+      "sample": {
+        "value": 79.0128069336824
+      },
+      "startDateTime": "2017-02-28T14:44:10Z"
+    },
+    {
+      "sample": {
+        "value": 76.79648480986009
+      },
+      "startDateTime": "2017-02-28T14:44:20Z"
+    },
+    {
+      "sample": {
+        "value": 75.98704540991602
+      },
+      "startDateTime": "2017-02-28T14:45:10Z"
+    },
+    {
+      "sample": {
+        "value": 82.87909543174878
+      },
+      "startDateTime": "2017-02-28T14:45:20Z"
+    },
+    {
+      "sample": {
+        "value": 79.49707093610262
+      },
+      "startDateTime": "2017-02-28T14:45:30Z"
+    },
+    {
+      "sample": {
+        "value": 80.04888397797343
+      },
+      "startDateTime": "2017-02-28T14:45:50Z"
+    },
+    {
+      "sample": {
+        "value": 82.68778208579727
+      },
+      "startDateTime": "2017-02-28T14:47:00Z"
+    },
+    {
+      "sample": {
+        "value": 84.46732907051923
+      },
+      "startDateTime": "2017-02-28T14:47:10Z"
+    },
+    {
+      "sample": {
+        "value": 83.50075174673297
+      },
+      "startDateTime": "2017-02-28T14:47:20Z"
+    },
+    {
+      "sample": {
+        "value": 79.25842612909652
+      },
+      "startDateTime": "2017-02-28T14:50:00Z"
+    },
+    {
+      "sample": {
+        "value": 73.30573533784991
+      },
+      "startDateTime": "2017-02-28T14:50:30Z"
+    },
+    {
+      "sample": {
+        "value": 99.50375085785568
+      },
+      "startDateTime": "2017-02-28T14:55:40Z"
+    },
+    {
+      "sample": {
+        "value": 82.72480541601864
+      },
+      "startDateTime": "2017-02-28T14:56:10Z"
+    },
+    {
+      "sample": {
+        "value": 75.40663696965913
+      },
+      "startDateTime": "2017-02-28T14:56:50Z"
+    },
+    {
+      "sample": {
+        "value": 63.562898216346184
+      },
+      "startDateTime": "2017-02-28T15:00:00Z"
+    },
+    {
+      "sample": {
+        "value": 78.3540496471513
+      },
+      "startDateTime": "2017-02-28T15:00:30Z"
+    },
+    {
+      "sample": {
+        "value": 91.98545317619586
+      },
+      "startDateTime": "2017-02-28T15:00:40Z"
+    },
+    {
+      "sample": {
+        "value": 85.59511454487887
+      },
+      "startDateTime": "2017-02-28T15:01:50Z"
+    },
+    {
+      "sample": {
+        "value": 73.77687732194937
+      },
+      "startDateTime": "2017-02-28T15:02:00Z"
+    },
+    {
+      "sample": {
+        "value": 75.50446415695673
+      },
+      "startDateTime": "2017-02-28T15:02:10Z"
+    },
+    {
+      "sample": {
+        "value": 56.40784254280519
+      },
+      "startDateTime": "2017-02-28T15:04:30Z"
+    },
+    {
+      "sample": {
+        "value": 68.56829010283587
+      },
+      "startDateTime": "2017-02-28T15:09:20Z"
+    },
+    {
+      "sample": {
+        "value": 68.56829010283587
+      },
+      "startDateTime": "2017-02-28T15:09:30Z"
+    },
+    {
+      "sample": {
+        "value": 70.60685844843444
+      },
+      "startDateTime": "2017-02-28T15:09:40Z"
+    },
+    {
+      "sample": {
+        "value": 77.12019540885748
+      },
+      "startDateTime": "2017-02-28T15:09:50Z"
+    },
+    {
+      "sample": {
+        "value": 78.49452936833279
+      },
+      "startDateTime": "2017-02-28T15:10:00Z"
+    },
+    {
+      "sample": {
+        "value": 72.87715589918015
+      },
+      "startDateTime": "2017-02-28T15:11:50Z"
+    },
+    {
+      "sample": {
+        "value": 73.45128577653757
+      },
+      "startDateTime": "2017-02-28T15:12:00Z"
+    },
+    {
+      "sample": {
+        "value": 76.08621951146549
+      },
+      "startDateTime": "2017-02-28T15:12:10Z"
+    },
+    {
+      "sample": {
+        "value": 67.05913079034248
+      },
+      "startDateTime": "2017-02-28T15:12:20Z"
+    },
+    {
+      "sample": {
+        "value": 69.62995773098768
+      },
+      "startDateTime": "2017-02-28T15:13:00Z"
+    },
+    {
+      "sample": {
+        "value": 71.37548896259935
+      },
+      "startDateTime": "2017-02-28T15:13:10Z"
+    },
+    {
+      "sample": {
+        "value": 68.99843558095291
+      },
+      "startDateTime": "2017-02-28T15:13:20Z"
+    },
+    {
+      "sample": {
+        "value": 132.4077326645507
+      },
+      "startDateTime": "2017-02-28T15:15:00Z"
+    },
+    {
+      "sample": {
+        "value": 132.4077326645507
+      },
+      "startDateTime": "2017-02-28T15:15:30Z"
+    },
+    {
+      "sample": {
+        "value": 137.13657863846828
+      },
+      "startDateTime": "2017-02-28T15:15:40Z"
+    },
+    {
+      "sample": {
+        "value": 65.09575320253528
+      },
+      "startDateTime": "2017-02-28T15:17:20Z"
+    },
+    {
+      "sample": {
+        "value": 70.08583825895263
+      },
+      "startDateTime": "2017-02-28T15:17:30Z"
+    },
+    {
+      "sample": {
+        "value": 69.92553779644739
+      },
+      "startDateTime": "2017-02-28T15:17:40Z"
+    },
+    {
+      "sample": {
+        "value": 70.50890228215115
+      },
+      "startDateTime": "2017-02-28T15:20:10Z"
+    },
+    {
+      "sample": {
+        "value": 68.56829010283587
+      },
+      "startDateTime": "2017-02-28T15:20:20Z"
+    },
+    {
+      "sample": {
+        "value": 70.69316206438198
+      },
+      "startDateTime": "2017-02-28T15:21:40Z"
+    },
+    {
+      "sample": {
+        "value": 83.47443991781107
+      },
+      "startDateTime": "2017-02-28T15:24:50Z"
+    },
+    {
+      "sample": {
+        "value": 87.26872877824508
+      },
+      "startDateTime": "2017-02-28T15:25:50Z"
+    },
+    {
+      "sample": {
+        "value": 83.42860011438174
+      },
+      "startDateTime": "2017-02-28T15:26:00Z"
+    },
+    {
+      "sample": {
+        "value": 74.30620909235095
+      },
+      "startDateTime": "2017-02-28T15:26:10Z"
+    },
+    {
+      "sample": {
+        "value": 65.90919923977098
+      },
+      "startDateTime": "2017-02-28T15:26:20Z"
+    },
+    {
+      "sample": {
+        "value": 60.94959097034248
+      },
+      "startDateTime": "2017-02-28T15:40:20Z"
+    },
+    {
+      "sample": {
+        "value": 70.31844643861652
+      },
+      "startDateTime": "2017-02-28T15:40:30Z"
+    },
+    {
+      "sample": {
+        "value": 66.52025330632327
+      },
+      "startDateTime": "2017-02-28T15:40:40Z"
+    },
+    {
+      "sample": {
+        "value": 72.36264316365263
+      },
+      "startDateTime": "2017-02-28T15:41:10Z"
+    },
+    {
+      "sample": {
+        "value": 76.26200781231277
+      },
+      "startDateTime": "2017-02-28T15:41:20Z"
+    },
+    {
+      "sample": {
+        "value": 82.7109764209684
+      },
+      "startDateTime": "2017-02-28T15:41:40Z"
+    },
+    {
+      "sample": {
+        "value": 70.83563617697797
+      },
+      "startDateTime": "2017-02-28T15:41:50Z"
+    },
+    {
+      "sample": {
+        "value": 73.62357836688557
+      },
+      "startDateTime": "2017-02-28T15:42:00Z"
+    },
+    {
+      "sample": {
+        "value": 74.16994120796652
+      },
+      "startDateTime": "2017-02-28T15:42:10Z"
+    },
+    {
+      "sample": {
+        "value": 79.9963383009415
+      },
+      "startDateTime": "2017-02-28T15:42:20Z"
+    },
+    {
+      "sample": {
+        "value": 76.66827290433758
+      },
+      "startDateTime": "2017-02-28T15:42:30Z"
+    },
+    {
+      "sample": {
+        "value": 72.13465216805973
+      },
+      "startDateTime": "2017-02-28T15:42:40Z"
+    },
+    {
+      "sample": {
+        "value": 76.89806684585919
+      },
+      "startDateTime": "2017-02-28T15:42:50Z"
+    },
+    {
+      "sample": {
+        "value": 71.89069897914395
+      },
+      "startDateTime": "2017-02-28T15:43:00Z"
+    },
+    {
+      "sample": {
+        "value": 70.56087248679873
+      },
+      "startDateTime": "2017-02-28T15:43:10Z"
+    },
+    {
+      "sample": {
+        "value": 73.32836418310788
+      },
+      "startDateTime": "2017-02-28T15:43:30Z"
+    },
+    {
+      "sample": {
+        "value": 66.85903227237188
+      },
+      "startDateTime": "2017-02-28T15:43:40Z"
+    },
+    {
+      "sample": {
+        "value": 67.41428749980827
+      },
+      "startDateTime": "2017-02-28T15:43:50Z"
+    },
+    {
+      "sample": {
+        "value": 68.42383225523758
+      },
+      "startDateTime": "2017-02-28T15:44:00Z"
+    },
+    {
+      "sample": {
+        "value": 70.74598168685938
+      },
+      "startDateTime": "2017-02-28T15:44:10Z"
+    },
+    {
+      "sample": {
+        "value": 66.20386487129142
+      },
+      "startDateTime": "2017-02-28T15:44:20Z"
+    },
+    {
+      "sample": {
+        "value": 75.23744225733623
+      },
+      "startDateTime": "2017-02-28T15:44:30Z"
+    },
+    {
+      "sample": {
+        "value": 64.35862424779786
+      },
+      "startDateTime": "2017-02-28T15:44:40Z"
+    },
+    {
+      "sample": {
+        "value": 67.94977852101937
+      },
+      "startDateTime": "2017-02-28T15:45:30Z"
+    },
+    {
+      "sample": {
+        "value": 65.6428135988859
+      },
+      "startDateTime": "2017-02-28T15:45:40Z"
+    },
+    {
+      "sample": {
+        "value": 74.73580876806899
+      },
+      "startDateTime": "2017-02-28T15:45:50Z"
+    },
+    {
+      "sample": {
+        "value": 66.02816674328346
+      },
+      "startDateTime": "2017-02-28T15:46:00Z"
+    },
+    {
+      "sample": {
+        "value": 71.51011224527291
+      },
+      "startDateTime": "2017-02-28T15:46:40Z"
+    },
+    {
+      "sample": {
+        "value": 71.38763043405761
+      },
+      "startDateTime": "2017-02-28T15:46:50Z"
+    },
+    {
+      "sample": {
+        "value": 74.43438882237035
+      },
+      "startDateTime": "2017-02-28T15:47:00Z"
+    },
+    {
+      "sample": {
+        "value": 81.69838969750627
+      },
+      "startDateTime": "2017-02-28T15:47:20Z"
+    },
+    {
+      "sample": {
+        "value": 79.32505221453424
+      },
+      "startDateTime": "2017-02-28T15:47:30Z"
+    },
+    {
+      "sample": {
+        "value": 68.56264357411624
+      },
+      "startDateTime": "2017-02-28T15:47:40Z"
+    },
+    {
+      "sample": {
+        "value": 66.20386487129142
+      },
+      "startDateTime": "2017-02-28T15:47:50Z"
+    },
+    {
+      "sample": {
+        "value": 75.23305456459293
+      },
+      "startDateTime": "2017-02-28T15:48:30Z"
+    },
+    {
+      "sample": {
+        "value": 67.42318388354832
+      },
+      "startDateTime": "2017-02-28T15:48:40Z"
+    },
+    {
+      "sample": {
+        "value": 68.40267282735218
+      },
+      "startDateTime": "2017-02-28T15:48:50Z"
+    },
+    {
+      "sample": {
+        "value": 73.85895544400952
+      },
+      "startDateTime": "2017-02-28T15:49:00Z"
+    },
+    {
+      "sample": {
+        "value": 75.46246097399818
+      },
+      "startDateTime": "2017-02-28T15:49:10Z"
+    },
+    {
+      "sample": {
+        "value": 72.36591151088568
+      },
+      "startDateTime": "2017-02-28T15:49:20Z"
+    },
+    {
+      "sample": {
+        "value": 70.08544269573392
+      },
+      "startDateTime": "2017-02-28T15:49:30Z"
+    },
+    {
+      "sample": {
+        "value": 75.01355842479747
+      },
+      "startDateTime": "2017-02-28T15:49:50Z"
+    },
+    {
+      "sample": {
+        "value": 81.75290963398058
+      },
+      "startDateTime": "2017-02-28T15:50:00Z"
+    },
+    {
+      "sample": {
+        "value": 69.45203693538737
+      },
+      "startDateTime": "2017-02-28T15:50:10Z"
+    },
+    {
+      "sample": {
+        "value": 68.38372123394336
+      },
+      "startDateTime": "2017-02-28T15:50:20Z"
+    },
+    {
+      "sample": {
+        "value": 112.93601064459546
+      },
+      "startDateTime": "2017-02-28T15:50:40Z"
+    },
+    {
+      "sample": {
+        "value": 78.0624309830724
+      },
+      "startDateTime": "2017-02-28T15:50:50Z"
+    },
+    {
+      "sample": {
+        "value": 56.88940794457518
+      },
+      "startDateTime": "2017-02-28T15:51:00Z"
+    },
+    {
+      "sample": {
+        "value": 83.18932401362575
+      },
+      "startDateTime": "2017-02-28T15:51:20Z"
+    },
+    {
+      "sample": {
+        "value": 74.98290495770101
+      },
+      "startDateTime": "2017-02-28T15:51:30Z"
+    },
+    {
+      "sample": {
+        "value": 68.50304613037899
+      },
+      "startDateTime": "2017-02-28T15:51:40Z"
+    },
+    {
+      "sample": {
+        "value": 71.99955041085848
+      },
+      "startDateTime": "2017-02-28T15:51:50Z"
+    },
+    {
+      "sample": {
+        "value": 78.90819526189377
+      },
+      "startDateTime": "2017-02-28T15:52:00Z"
+    },
+    {
+      "sample": {
+        "value": 75.4313423195049
+      },
+      "startDateTime": "2017-02-28T15:52:10Z"
+    },
+    {
+      "sample": {
+        "value": 79.52909893335104
+      },
+      "startDateTime": "2017-02-28T15:52:20Z"
+    },
+    {
+      "sample": {
+        "value": 72.64302257113756
+      },
+      "startDateTime": "2017-02-28T15:52:30Z"
+    },
+    {
+      "sample": {
+        "value": 76.5614518895345
+      },
+      "startDateTime": "2017-02-28T15:52:40Z"
+    },
+    {
+      "sample": {
+        "value": 80.74588679827733
+      },
+      "startDateTime": "2017-02-28T15:52:50Z"
+    },
+    {
+      "sample": {
+        "value": 75.81155311938136
+      },
+      "startDateTime": "2017-02-28T15:53:00Z"
+    },
+    {
+      "sample": {
+        "value": 71.98102945359103
+      },
+      "startDateTime": "2017-02-28T15:53:10Z"
+    },
+    {
+      "sample": {
+        "value": 74.19862302453333
+      },
+      "startDateTime": "2017-02-28T15:53:20Z"
+    },
+    {
+      "sample": {
+        "value": 71.1322501636531
+      },
+      "startDateTime": "2017-02-28T15:54:00Z"
     }
   ]
 }
