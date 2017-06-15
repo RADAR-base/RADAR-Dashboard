@@ -1,8 +1,13 @@
 {
   "studyId": 0,
-  "patients": [
+  "subjects": [
     {
-      "userId": "KCLTest0",
+      "subjectId": "KCLTest0",
+      "active": true,
+      "effectiveTimeFrame": {
+        "startDateTime": "2017-02-27T11:29:40Z",
+        "endDateTime": "2017-02-28T15:54:10Z"
+      },
       "sources": [
         {
           "id": "00:07:80:1F:53:1C",
@@ -27,7 +32,12 @@
       ]
     },
     {
-      "userId": "UserID_0",
+      "subjectId": "UserID_0",
+      "active": true,
+      "effectiveTimeFrame": {
+        "startDateTime": "2017-02-13T14:16:00Z",
+        "endDateTime": "2017-02-13T14:23:30Z"
+      },
       "sources": [
         {
           "id": "SourceID_0",
@@ -42,7 +52,12 @@
       ]
     },
     {
-      "userId": "UserID_10",
+      "subjectId": "UserID_10",
+      "active": true,
+      "effectiveTimeFrame": {
+        "startDateTime": "2017-02-13T14:27:10Z",
+        "endDateTime": "2017-02-13T14:39:00Z"
+      },
       "sources": [
         {
           "id": "SourceID_0",
