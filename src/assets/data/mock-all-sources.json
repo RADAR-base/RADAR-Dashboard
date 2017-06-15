@@ -1,7 +1,30 @@
 {
-  "user_id": "KCLTest0",
-  "source_id": [
-    "00:07:80:1F:53:51",
-    "00:07:80:1F:52:F3"
+  "subjectId": "KCLTest0",
+  "active": true,
+  "effectiveTimeFrame": {
+    "startDateTime": "2017-02-27T11:29:40Z",
+    "endDateTime": "2017-02-28T15:54:10Z"
+  },
+  "sources": [
+    {
+      "id": "00:07:80:1F:53:1C",
+      "type": "EMPATICA",
+      "summary": null
+    },
+    {
+      "id": "aee3b9f7-db8b-4a9c-9198-2e1906d90a9e",
+      "type": "ANDROID",
+      "summary": null
+    },
+    {
+      "id": "00:07:80:1F:52:F3",
+      "type": "EMPATICA",
+      "summary": null
+    },
+    {
+      "id": "00:07:80:1F:53:51",
+      "type": "EMPATICA",
+      "summary": null
+    }
   ]
 }
