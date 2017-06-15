@@ -2,12 +2,15 @@ import * as config from './config.actions'
 import { Config } from './config.model'
 
 export interface State extends Config {
-  loading: boolean
+  loading?: boolean
 }
 
 const initialState: State = {
   loading: false,
-  descriptive_statistic: []
+  stat: {},
+  sensor: {},
+  timeInterval: {},
+  unit: {}
 }
 
 export function reducer (state = initialState, action: config.Actions): State {
@@ -20,11 +23,9 @@ export function reducer (state = initialState, action: config.Actions): State {
     }
 
     case config.LOAD_SUCCESS: {
-      const payload = action.payload
-      return {
-        loading: false,
-        descriptive_statistic: payload.descriptive_statistic
-      }
+      return Object.assign({}, action.payload, {
+        loading: false
+      })
     }
 
     default:
@@ -33,4 +34,3 @@ export function reducer (state = initialState, action: config.Actions): State {
 }
 
 export const getLoading = (state: State) => state.loading
-export const getDescriptiveStatistic = (state: State) => state.descriptive_statistic
