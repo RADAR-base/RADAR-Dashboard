@@ -1,9 +1,9 @@
-import 'rxjs/add/operator/debounceTime'
 import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core'
-import { Observable } from 'rxjs/Observable'
 import * as d3 from 'd3'
+import 'rxjs/add/operator/debounceTime'
+import { Observable } from 'rxjs/Observable'
 
-import { Config } from '../../../shared/utils/config'
+import { AppConfig } from '../../../shared/utils/config'
 
 /**
  *  BaseComponent to be extended by chart components
@@ -36,7 +36,7 @@ export class ChartBaseComponent implements AfterViewInit {
   }
 
   @Input()
-  margin = Config.CHART_MARGIN
+  margin = AppConfig.charts.MARGIN
 
   svg: any
   chart: any

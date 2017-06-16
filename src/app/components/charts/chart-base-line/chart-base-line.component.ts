@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core'
 import * as d3 from 'd3'
 
-import { Config } from '../../../shared/utils/config'
 import { TimeSeries } from '../../../shared/models/time-series.model'
+import { AppConfig } from '../../../shared/utils/config'
 import { ChartBaseComponent } from '../chart-base/chart-base.component'
 
 @Component({
@@ -14,8 +14,8 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
   data: TimeSeries[]
 
   @Input() gradientEnabled = false
-  @Input() gradientColors = Config.CHART_GRADIENT_COLORS
-  @Input() gradientStops = Config.CHART_GRADIENT_STOPS
+  @Input() gradientColors = AppConfig.charts.GRADIENT_COLORS
+  @Input() gradientStops = AppConfig.charts.GRADIENT_STOPS
 
   svg: any
   chart: any

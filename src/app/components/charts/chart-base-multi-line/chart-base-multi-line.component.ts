@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core'
 import * as d3 from 'd3'
 
-import { Config } from '../../../shared/utils/config'
 import { MultiTimeSeries } from '../../../shared/models/multi-time-series.model'
+import { AppConfig } from '../../../shared/utils/config'
 import { ChartBaseComponent } from '../chart-base/chart-base.component'
 
 @Component({
@@ -13,7 +13,7 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
 export class ChartBaseMultiLineComponent extends ChartBaseComponent {
   data: MultiTimeSeries[]
 
-  @Input() lineColors = Config.CHART_CATEGORICAL_COLORS
+  @Input() lineColors = AppConfig.charts.CATEGORICAL_COLORS
 
   svg: any
   chart: any
