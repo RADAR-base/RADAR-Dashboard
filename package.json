@@ -41,7 +41,7 @@
     "zone.js": "^0.8.12"
   },
   "devDependencies": {
-    "@angular/cli": "^1.1.1",
+    "@angular/cli": "^1.1.2",
     "@angular/compiler-cli": "^4.2.2",
     "@angular/language-service": "^4.2.2",
     "@ngrx/store-devtools": "^3.2.4",
@@ -71,7 +71,7 @@
     "protractor": "^5.1.2",
     "sass-mq": "^3.3.2",
     "stylefmt": "^6.0.0",
-    "stylelint": "^7.11.0",
+    "stylelint": "^7.11.1",
     "stylelint-config-standard": "^16.0.0",
     "ts-node": "^3.0.6",
     "tslint": "^5.4.3",
