@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import '@ngrx/core/add/operator/select'
 import { Store } from '@ngrx/store'
@@ -34,7 +34,7 @@ import { Subject } from '../../shared/store/subject/subject.model'
   `,
   styleUrls: ['./study.component.scss']
 })
-export class StudyPageComponent implements OnDestroy {
+export class StudyPageComponent implements OnInit, OnDestroy {
 
   studyId: string
   study$: Observable<Study>
@@ -50,15 +50,17 @@ export class StudyPageComponent implements OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private store: Store<fromRoot.State>
-  ) {
+  ) {}
+
+  ngOnInit () {
     // Get `studyId` from route and then get Study by `studyId`
-    this.route$ = route.params
+    this.route$ = this.route.params
       .subscribe(params => {
         this.studyId = params['studyId']
       })
 
     // If study is not loaded and not valid then fetch it
-    this.isStudyLoadedAndValid$ = store.select(fromRoot.getStudyIsLoadedAndValid)
+    this.isStudyLoadedAndValid$ = this.store.select(fromRoot.getStudyIsLoadedAndValid)
       .subscribe(
         (isLoadedAndValid) => {
           this.isStudyLoadedAndValid = isLoadedAndValid
@@ -71,14 +73,11 @@ export class StudyPageComponent implements OnDestroy {
       )
 
     // Check if study is loaded
-    this.isLoaded$ = store.select(fromRoot.getStudyIsLoaded)
+    this.isLoaded$ = this.store.select(fromRoot.getStudyIsLoaded)
       .subscribe(isLoaded => this.isLoaded = isLoaded)
 
-    // Get selected study
-    this.study$ = store.select(fromRoot.getStudySelected)
-
-    // Get subjects
-    this.subjects$ = store.select(fromRoot.getSubjectAll)
+    this.study$ = this.store.select(fromRoot.getStudySelected)
+    this.subjects$ = this.store.select(fromRoot.getSubjectAll)
   }
 
   navigateToSubject (id) {

@@ -23,12 +23,11 @@ export class OverviewPageComponent implements OnInit {
   constructor (
     private router: Router,
     private store: Store<fromRoot.State>
-  ) {
-    this.studies$ = store.select(fromRoot.getStudyAll)
-  }
+  ) {}
 
   ngOnInit () {
     this.store.dispatch(new studyAction.GetAll())
+    this.studies$ = this.store.select(fromRoot.getStudyAll)
   }
 
   navigateToStudy (id) {

@@ -1,5 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
+import { Subscription } from 'rxjs/Subscription'
+import { AppConfig } from '../../shared/utils/config'
 
 @Component({
   selector: 'app-patient-page',
@@ -30,13 +32,19 @@ import { ActivatedRoute } from '@angular/router'
   styleUrls: ['./subject.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SubjectPageComponent implements OnDestroy {
+export class SubjectPageComponent implements OnInit, OnDestroy {
 
-  private route$: any
+  private route$: Subscription
 
-  constructor (private route: ActivatedRoute) {
-    this.route$ = route.params
-      .subscribe(console.log)
+  constructor (
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit () {
+    this.route$ = this.route.params
+      .subscribe(params => console.log(params))
+
+    console.log(AppConfig.config)
   }
 
   ngOnDestroy () {
