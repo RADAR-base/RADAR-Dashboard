@@ -11,7 +11,7 @@ export class ConfigService {
   constructor (private http: Http) {}
 
   get (): Observable<Config> {
-    return this.http.get(`${PARAMS.API_LOCAL}/mock-config.json`)
+    return this.http.get(`${PARAMS.API_FIREBASE}/config.json`)
       .map(res => res.json() || [])
       .catch(ErrorService.handleError)
   }

@@ -14,7 +14,7 @@ describe('AppComponent', () => {
   let element: HTMLElement
   let de: DebugElement
 
-  beforeEach(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         AppModule,
@@ -29,7 +29,7 @@ describe('AppComponent', () => {
     de = fixture.debugElement
 
     fixture.detectChanges()
-  })
+  }))
 
   it('should create the app', async(() => {
     expect(component).toBeTruthy()

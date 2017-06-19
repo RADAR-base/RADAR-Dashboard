@@ -5,9 +5,9 @@ import { createSelector } from 'reselect'
 
 import { environment } from '../../../environments/environment'
 import * as fromConfig from './config/config.reducer'
+import * as fromSource from './source/source.reducer'
 import * as fromStudy from './study/study.reducer'
 import * as fromSubject from './subject/subject.reducer'
-import * as fromSource from './source/source.reducer'
 
 export interface State {
   study: fromStudy.State
@@ -37,8 +37,6 @@ export function reducer (state: any, action: any) {
 // Config Selectors
 export const getConfigState = (state: State) => state.config
 export const getConfigLoading = createSelector(getConfigState, fromConfig.getLoading)
-export const getConfigDescriptiveStatistic =
-  createSelector(getConfigState, fromConfig.getDescriptiveStatistic)
 
 // Study Selectors
 export const getStudyState = (state: State) => state.study

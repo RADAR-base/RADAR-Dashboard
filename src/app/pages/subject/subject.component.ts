@@ -1,5 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
+import 'rxjs/add/operator/takeUntil'
+
+import { AppConfig } from '../../shared/utils/config'
+import { TakeUntilDestroy } from '../../shared/utils/TakeUntilDestroy'
 
 @Component({
   selector: 'app-patient-page',
@@ -30,16 +34,21 @@ import { ActivatedRoute } from '@angular/router'
   styleUrls: ['./subject.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SubjectPageComponent implements OnDestroy {
+@TakeUntilDestroy
+export class SubjectPageComponent implements OnInit {
 
-  private route$: any
+  private takeUntilDestroy
 
-  constructor (private route: ActivatedRoute) {
-    this.route$ = route.params
-      .subscribe(console.log)
+  constructor (
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit () {
+    this.route.params
+      .takeUntil(this.takeUntilDestroy())
+      .subscribe(params => console.log(params))
+
+    console.log(AppConfig.config)
   }
 
-  ngOnDestroy () {
-    this.route$.unsubscribe()
-  }
 }

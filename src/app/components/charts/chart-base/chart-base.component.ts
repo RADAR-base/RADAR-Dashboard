@@ -1,9 +1,10 @@
-import 'rxjs/add/operator/debounceTime'
-import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core'
-import { Observable } from 'rxjs/Observable'
+import { AfterViewInit, Component, ElementRef, Input, OnDestroy, ViewChild } from '@angular/core'
 import * as d3 from 'd3'
+import 'rxjs/add/operator/debounceTime'
+import { Observable } from 'rxjs/Observable'
+import { Subscription } from 'rxjs/Subscription'
 
-import { Config } from '../../../shared/utils/config'
+import { AppConfig } from '../../../shared/utils/config'
 
 /**
  *  BaseComponent to be extended by chart components
@@ -20,7 +21,7 @@ import { Config } from '../../../shared/utils/config'
 @Component({
   templateUrl: '../charts.common.html'
 })
-export class ChartBaseComponent implements AfterViewInit {
+export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   @ViewChild('svg') svgRef: ElementRef
 
   data: any
@@ -36,7 +37,7 @@ export class ChartBaseComponent implements AfterViewInit {
   }
 
   @Input()
-  margin = Config.CHART_MARGIN
+  margin = AppConfig.charts.MARGIN
 
   svg: any
   chart: any
@@ -45,7 +46,7 @@ export class ChartBaseComponent implements AfterViewInit {
   xAxis: any
   yAxis: any
 
-  private window$: Observable<Event>
+  window$: Subscription
 
   ngAfterViewInit () {
     this.svg = d3.select(this.svgRef.nativeElement)
@@ -56,10 +57,9 @@ export class ChartBaseComponent implements AfterViewInit {
     // Observe window resize and debounce events
     this.window$ = Observable.fromEvent(window, 'resize')
       .debounceTime(150)
-
-    this.window$.subscribe(() => {
-      this.beforeUpdate()
-    })
+      .subscribe(() => {
+        this.beforeUpdate()
+      })
 
     this.chart = this.svg.append('g')
       .attr('class', 'chart')
@@ -104,5 +104,9 @@ export class ChartBaseComponent implements AfterViewInit {
   }
 
   draw () {}
+
+  ngOnDestroy () {
+    this.window$.unsubscribe()
+  }
 
 }
