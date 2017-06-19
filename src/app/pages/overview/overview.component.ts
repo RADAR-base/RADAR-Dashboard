@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
@@ -10,11 +10,12 @@ import { Study } from '../../shared/store/study/study.model'
 @Component({
   selector: 'app-overview-page',
   template: `
-    <div *ngFor="let study of (studies$ | async )">
+    <div *ngFor="let study of (studies$ | async)">
       <button (click)="navigateToStudy(study.id)">{{ study.name }} - {{ study.id }}</button>
     </div>
   `,
-  styleUrls: ['./overview.component.scss']
+  styleUrls: ['./overview.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OverviewPageComponent implements OnInit {
 
