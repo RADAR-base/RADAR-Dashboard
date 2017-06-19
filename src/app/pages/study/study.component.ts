@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
-import { ActivatedRoute, Router } from '@angular/router'
+import { ActivatedRoute } from '@angular/router'
 import '@ngrx/core/add/operator/select'
 import { Store } from '@ngrx/store'
 import 'rxjs/add/operator/publishReplay'
@@ -25,16 +25,17 @@ import { TakeUntilDestroy } from '../../shared/utils/TakeUntilDestroy'
       <p>{{ study$ | async | json}}</p>
       <ul>
         <li *ngFor="let subject of (subjects$ | async)">
-          <button (click)="navigateToSubject(subject.subjectId)">
+          <button [routerLink]="['subject', subject.subjectId]">
             ID: {{ subject.subjectId }} | Active: {{ subject.active }}
           </button>
         </li>
       </ul>
     </ng-container>
 
-    <p *ngIf="!(isStudyLoadedAndValid$ | async) && (isLoaded$ | async)">
-      Study with ID {{studyId}} not found.
-    </p>
+    <div *ngIf="!(isStudyLoadedAndValid$ | async) && (isLoaded$ | async)">
+      <p>Study "{{studyId}}" not found.</p>
+      <p><button [routerLink]="['/']" >Go to the overview page</button></p>
+    </div>
   `,
   styleUrls: ['./study.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -50,7 +51,6 @@ export class StudyPageComponent implements OnInit {
   subjects$: Observable<Subject[]>
 
   constructor (
-    private router: Router,
     private route: ActivatedRoute,
     private store: Store<fromRoot.State>
   ) {}
@@ -80,10 +80,6 @@ export class StudyPageComponent implements OnInit {
 
     this.study$ = this.store.select(fromRoot.getStudySelected)
     this.subjects$ = this.store.select(fromRoot.getSubjectAll)
-  }
-
-  navigateToSubject (id) {
-    this.router.navigate(['subject', id], { relativeTo: this.route })
   }
 
 }
