@@ -5,9 +5,9 @@ import { createSelector } from 'reselect'
 
 import { environment } from '../../../environments/environment'
 import * as fromConfig from './config/config.reducer'
+import * as fromSource from './source/source.reducer'
 import * as fromStudy from './study/study.reducer'
 import * as fromSubject from './subject/subject.reducer'
-import * as fromSource from './source/source.reducer'
 
 export interface State {
   study: fromStudy.State
