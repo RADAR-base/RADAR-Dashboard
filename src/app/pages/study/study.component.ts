@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import '@ngrx/core/add/operator/select'
 import { Store } from '@ngrx/store'
+import 'rxjs/add/operator/publishReplay'
+import 'rxjs/add/operator/share'
 import 'rxjs/add/operator/takeUntil'
 import { Observable } from 'rxjs/Observable'
 
@@ -17,9 +19,9 @@ import { TakeUntilDestroy } from '../../shared/utils/TakeUntilDestroy'
   template: `
     <p>Study Page</p>
 
-    <p *ngIf="!isLoaded">Loading...</p>
+    <p *ngIf="!(isLoaded$ | async)">Loading...</p>
 
-    <ng-container *ngIf="isStudyLoadedAndValid && isLoaded">
+    <ng-container *ngIf="isStudyLoadedAndValid$ && isLoaded$ | async">
       <p>{{ study$ | async | json}}</p>
       <ul>
         <li *ngFor="let subject of (subjects$ | async)">
@@ -30,11 +32,12 @@ import { TakeUntilDestroy } from '../../shared/utils/TakeUntilDestroy'
       </ul>
     </ng-container>
 
-    <p *ngIf="!isStudyLoadedAndValid && isLoaded">
+    <p *ngIf="!(isStudyLoadedAndValid$ | async) && (isLoaded$ | async)">
       Study with ID {{studyId}} not found.
     </p>
   `,
-  styleUrls: ['./study.component.scss']
+  styleUrls: ['./study.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 @TakeUntilDestroy
 export class StudyPageComponent implements OnInit {
@@ -42,8 +45,8 @@ export class StudyPageComponent implements OnInit {
   takeUntilDestroy // from TakeUntilDestroy
   studyId: string
   study$: Observable<Study>
-  isStudyLoadedAndValid = false
-  isLoaded = false
+  isStudyLoadedAndValid$: Observable<boolean>
+  isLoaded$: Observable<boolean>
   subjects$: Observable<Subject[]>
 
   constructor (
@@ -61,23 +64,19 @@ export class StudyPageComponent implements OnInit {
       })
 
     // If study is not loaded and not valid then fetch it
-    this.store.select(fromRoot.getStudyIsLoadedAndValid)
-      .takeUntil(this.takeUntilDestroy())
-      .subscribe(
-        (isLoadedAndValid) => {
-          this.isStudyLoadedAndValid = !!isLoadedAndValid
-          if (isLoadedAndValid) {
-            this.store.dispatch(new subjectAction.GetAll(this.studyId))
-          } else {
-            this.store.dispatch(new studyAction.GetById(this.studyId))
-          }
+    this.isStudyLoadedAndValid$ = this.store.select(fromRoot.getStudyIsLoadedAndValid)
+      .do(isLoadedAndValid => {
+        if (isLoadedAndValid) {
+          this.store.dispatch(new subjectAction.GetAll(this.studyId))
+        } else {
+          this.store.dispatch(new studyAction.GetById(this.studyId))
         }
-      )
+      })
+      .publishReplay().refCount()
 
     // Check if study is loaded
-    this.store.select(fromRoot.getStudyIsLoaded)
-      .takeUntil(this.takeUntilDestroy())
-      .subscribe(isLoaded => this.isLoaded = !!isLoaded)
+    this.isLoaded$ = this.store.select(fromRoot.getStudyIsLoaded)
+      .publishReplay().refCount()
 
     this.study$ = this.store.select(fromRoot.getStudySelected)
     this.subjects$ = this.store.select(fromRoot.getSubjectAll)
