@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core'
 import { HttpModule } from '@angular/http'
 import { RouterModule } from '@angular/router'
 
+import { ToolbarModule } from '../../components/toolbar/toolbar.module'
 import { StudyService } from '../../shared/store/study/study.service'
 import { SubjectService } from '../../shared/store/subject/subject.service'
 import { StudyPageComponent } from './study.component'
@@ -12,7 +13,8 @@ import { routes } from './study.routing'
   imports: [
     CommonModule,
     HttpModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ToolbarModule
   ],
   declarations: [
     StudyPageComponent
