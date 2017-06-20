@@ -1,10 +1,10 @@
 import { DebugElement } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { StoreModule } from '@ngrx/store'
 
 import { reducer } from '../../shared/store'
-import { ActivatedRouteStub } from '../../shared/testing/router-stubs'
+import { ActivatedRouteStub, RouterStub } from '../../shared/testing/router-stubs'
 import { SubjectPageComponent } from './subject.component'
 import { SubjectPageModule } from './subject.module'
 
@@ -16,6 +16,7 @@ describe('SubjectPageComponent', () => {
 
   beforeEach(() => {
     const activatedRoute = new ActivatedRouteStub()
+    activatedRoute.testParams = { studyId: '0', patientId: 'MRC02' }
 
     TestBed.configureTestingModule({
       imports: [
@@ -23,6 +24,7 @@ describe('SubjectPageComponent', () => {
         StoreModule.provideStore(reducer)
       ],
       providers: [
+        { provide: Router, useClass: RouterStub },
         { provide: ActivatedRoute, useValue: activatedRoute }
       ]
     })
