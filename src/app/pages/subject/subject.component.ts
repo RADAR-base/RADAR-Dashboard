@@ -10,7 +10,7 @@ import { TakeUntilDestroy } from '../../shared/utils/TakeUntilDestroy'
   template: `
     <app-toolbar>
       <div start>
-        <button [routerLink]="['study', studyId]" md-icon-button>
+        <button [routerLink]="['/study', studyId]" md-icon-button>
           <i class="material-icons">arrow_back</i>
         </button>
         <div class="title">Subject {{subjectId}}</div>
