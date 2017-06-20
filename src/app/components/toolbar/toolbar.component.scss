@@ -1,35 +1,41 @@
 @import '../../../styles/common';
 
 :host {
+  z-index: 1;
   display: flex;
+  flex: 0 0 auto;
 }
 
-md-toolbar {
+:host /deep/ md-toolbar {
   @include font-title;
 
-  z-index: 1;
   flex: 0 0 auto;
   background-color: $cl-light;
   box-shadow: 0 0 4px 0 rgba(black, 0.12), 0 2px 4px 0 rgba(black, 0.24);
   color: $cl-font;
+
+  [start] {
+    display: flex;
+  }
+
+  .logo {
+    width: 48px;
+    height: 48px;
+  }
+
+  .title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 8px;
+  }
+
+  .title > div {
+    line-height: 1.2em;
+  }
+
+  .fill {
+    flex: 1 1 auto;
+  }
 }
 
-.radar-logo {
-  margin-right: 14px;
-  width: 48px;
-  height: 48px;
-}
-
-.toolbar-filler {
-  flex: 1 1 auto;
-}
-
-.icon-button {
-  padding: 0;
-  border: none;
-  background: none;
-  box-shadow: none;
-  color: $cl-font;
-  cursor: pointer;
-  user-select: none;
-}

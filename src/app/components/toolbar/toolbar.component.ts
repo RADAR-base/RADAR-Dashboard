@@ -4,15 +4,9 @@ import { Component } from '@angular/core'
   selector: 'app-toolbar',
   template: `
     <md-toolbar>
-      <img class="radar-logo" src="assets/radar-logo.svg" alt="RADAR-CNS Logo">
-      <div>
-        <div class="font-body-light">RADAR-CNS</div>
-        <div class="font-title">Mental Health</div>
-      </div>
-      <span class="toolbar-filler"></span>
-      <button class="icon-button">
-        <i class="material-icons">more_vert</i>
-      </button>
+      <ng-content select="[start]"></ng-content>
+      <span class="fill"></span>
+      <ng-content select="[end]"></ng-content>
     </md-toolbar>
   `,
   styleUrls: ['./toolbar.component.scss']

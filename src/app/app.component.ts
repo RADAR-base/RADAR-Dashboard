@@ -9,13 +9,10 @@ import { AppConfig } from './shared/utils/config'
 @Component({
   selector: 'app-root',
   template: `
-    <app-toolbar></app-toolbar>
-    <div class="app-content">
-      <p *ngIf="isLoadingConfig$ | async; else pages">Loading...</p>
-      <ng-template #pages>
-        <router-outlet></router-outlet>
-      </ng-template>
-    </div>
+    <p *ngIf="isLoadingConfig$ | async; else pages">Loading...</p>
+    <ng-template #pages>
+      <router-outlet></router-outlet>
+    </ng-template>
   `,
   styleUrls: ['./app.component.scss']
 })

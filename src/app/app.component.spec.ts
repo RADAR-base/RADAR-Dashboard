@@ -35,8 +35,4 @@ describe('AppComponent', () => {
     expect(component).toBeTruthy()
   }))
 
-  it(`should have a toolbar`, async(() => {
-    expect(element.querySelector('app-toolbar')).toBeTruthy()
-  }))
-
 })
