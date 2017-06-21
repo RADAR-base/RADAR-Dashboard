@@ -1,5 +1,7 @@
 dist: trusty
 sudo: required
+group: edge
+
 language: node_js
 node_js:
   - node
