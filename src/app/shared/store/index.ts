@@ -54,5 +54,6 @@ export const getSubjectAll = createSelector(getSubjectState, fromSubject.getAll)
 
 // Source Selectors
 export const getSourceState = (state: State) => state.source
-export const getSourceIsLoading = createSelector(getSourceState, fromSource.getIsLoading)
 export const getSourceIsLoaded = createSelector(getSourceState, fromSource.getIsLoaded)
+export const getSourceEntities = createSelector(getSourceState, fromSource.getEntities)
+export const getSourceAll = createSelector(getSourceState, fromSource.getAll)

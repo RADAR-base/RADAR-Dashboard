@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
+import { Store } from '@ngrx/store'
 import 'rxjs/add/operator/takeUntil'
+import { Observable } from 'rxjs/Observable'
 
-import { AppConfig } from '../../shared/utils/config'
+import * as fromRoot from '../../shared/store/index'
+import * as sourceAction from '../../shared/store/source/source.actions'
+import { Source } from '../../shared/store/source/source.model'
 import { TakeUntilDestroy } from '../../shared/utils/TakeUntilDestroy'
 
 @Component({
@@ -23,39 +27,35 @@ import { TakeUntilDestroy } from '../../shared/utils/TakeUntilDestroy'
       <md-grid-list cols="8" rowHeight="fit">
         <md-grid-tile colspan="2">
           <app-tile title="Sources">
-            <div class="header-content">
-              <div>Item</div>
-              <div>Item</div>
-              <div>Item</div>
-            </div>
-            <app-source-list class="tile-content"></app-source-list>
+            <app-source-list [sources]="sources$ | async" tile-content></app-source-list>
           </app-tile>
         </md-grid-tile>
         <md-grid-tile colspan="6">
           <app-tile title="Graphs">
-            <div class="header-content">
-              <div>Item</div>
-              <div>Item</div>
-              <div>Item</div>
+            <div tile-content>
+              <p>GRAPHS</p>
             </div>
-            <div class="tile-content">SOURCE GRAPHS</div>
           </app-tile>
         </md-grid-tile>
       </md-grid-list>
     </div>
   `,
-  styleUrls: ['./subject.component.scss']
+  styleUrls: ['./subject.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 @TakeUntilDestroy
 export class SubjectPageComponent implements OnInit {
 
   studyId: string
   subjectId: string
+  sources$: Observable<Source[]>
+  sourceIsLoaded$: Observable<boolean>
 
   private takeUntilDestroy
 
   constructor (
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private store: Store<fromRoot.State>
   ) {}
 
   ngOnInit () {
@@ -64,10 +64,12 @@ export class SubjectPageComponent implements OnInit {
       .subscribe(params => {
         this.studyId = params.studyId
         this.subjectId = params.subjectId
-        console.log(params)
       })
 
-    console.log(AppConfig.config)
+    // Get sources from server
+    this.store.dispatch(new sourceAction.GetAll(this.subjectId))
+    this.sourceIsLoaded$ = this.store.select(fromRoot.getSourceIsLoaded)
+    this.sources$ = this.store.select(fromRoot.getSourceAll)
   }
 
 }

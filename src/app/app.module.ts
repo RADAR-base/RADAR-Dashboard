@@ -17,6 +17,7 @@ import { ErrorService } from './shared/services/error.service'
 import { reducer } from './shared/store'
 import { ConfigEffects } from './shared/store/config/config.effects'
 import { ConfigService } from './shared/store/config/config.service'
+import { SourceEffects } from './shared/store/source/source.effects'
 import { StudyEffects } from './shared/store/study/study.effects'
 import { SubjectEffects } from './shared/store/subject/subject.effects'
 
@@ -38,6 +39,7 @@ import { SubjectEffects } from './shared/store/subject/subject.effects'
     EffectsModule.run(ConfigEffects),
     EffectsModule.run(StudyEffects),
     EffectsModule.run(SubjectEffects),
+    EffectsModule.run(SourceEffects),
 
     // App modules
     StudyPageModule,

@@ -19,7 +19,7 @@
     min-height: 40px;
     background-color: $cl-base-40;
 
-    .header-content {
+    [header-content] {
       display: flex;
       align-items: center;
       margin: 0 16px;

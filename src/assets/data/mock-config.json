@@ -1,6 +1,6 @@
 {
   "config": {
-    "sensor": {
+    "sensors": {
       "ACCELEROMETER": {
         "doc": "Acceleration item for a dataset with gravitational constant g as unit.",
         "label": {
@@ -75,7 +75,7 @@
         }
       }
     },
-    "stat": {
+    "stats": {
       "AVERAGE": {
         "doc": "The sum of a list of numbers divided by the number of numbers in the list.",
         "label": {
@@ -137,7 +137,7 @@
         }
       }
     },
-    "unit": {
+    "units": {
       "doc": "All possible units requested data is returned as.",
       "BEATS_PER_MIN": {
         "doc": "Number of events (heart beats) per minute.",
@@ -158,7 +158,7 @@
         }
       }
     },
-    "timeInterval": {
+    "timeIntervals": {
       "doc": "Available time intervals in which requested data is returned.",
       "TEN_SECOND": {
         "doc": "10 seconds time interval",
@@ -207,6 +207,52 @@
         "value": 604800000,
         "label": {
           "EN": "1w"
+        }
+      }
+    },
+    "specs": {
+      "EMPATICA": {
+        "BATTERY": {
+          "name": "BATTERY",
+          "dataType": "RAW",
+          "frequency": 1,
+          "unit": "PERCENTAGE"
+        },
+        "INTER_BEAT_INTERVAL": {
+          "name": "INTER_BEAT_INTERVAL",
+          "dataType": "RAW",
+          "frequency": 1,
+          "unit": "BEATS_PER_MIN"
+        },
+        "HEART_RATE": {
+          "name": "HEART_RATE",
+          "dataType": "RADAR",
+          "frequency": 1,
+          "unit": "BEATS_PER_MIN"
+        },
+        "THERMOMETER": {
+          "name": "THERMOMETER",
+          "dataType": "RAW",
+          "frequency": 4,
+          "unit": "CELSIUS"
+        },
+        "ACCELEROMETER": {
+          "name": "ACCELEROMETER",
+          "dataType": "RAW",
+          "frequency": 32,
+          "unit": "G"
+        },
+        "ELECTRODERMAL_ACTIVITY": {
+          "name": "ELECTRODERMAL_ACTIVITY",
+          "dataType": "RAW",
+          "frequency": 4,
+          "unit": "MICROSIEMENS"
+        },
+        "BLOOD_VOLUME_PULSE": {
+          "name": "BLOOD_VOLUME_PULSE",
+          "dataType": "RAW",
+          "frequency": 64,
+          "unit": "NANOWATT"
         }
       }
     }
