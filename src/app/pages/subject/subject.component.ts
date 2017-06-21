@@ -2,12 +2,12 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
 import 'rxjs/add/operator/takeUntil'
+import { Observable } from 'rxjs/Observable'
 
 import * as fromRoot from '../../shared/store/index'
 import * as sourceAction from '../../shared/store/source/source.actions'
-import { TakeUntilDestroy } from '../../shared/utils/TakeUntilDestroy'
-import { Observable } from 'rxjs/Observable'
 import { Source } from '../../shared/store/source/source.model'
+import { TakeUntilDestroy } from '../../shared/utils/TakeUntilDestroy'
 
 @Component({
   selector: 'app-patient-page',
@@ -27,23 +27,13 @@ import { Source } from '../../shared/store/source/source.model'
       <md-grid-list cols="8" rowHeight="fit">
         <md-grid-tile colspan="2">
           <app-tile title="Sources">
-            <div header-content>
-              <div>Item</div>
-              <div>Item</div>
-              <div>Item</div>
-            </div>
             <app-source-list [sources]="sources$ | async" tile-content></app-source-list>
           </app-tile>
         </md-grid-tile>
         <md-grid-tile colspan="6">
           <app-tile title="Graphs">
-            <div header-content>
-              <div>Item</div>
-              <div>Item</div>
-              <div>Item</div>
-            </div>
             <div tile-content>
-              SOURCE GRAPHS
+              <p>GRAPHS</p>
             </div>
           </app-tile>
         </md-grid-tile>
