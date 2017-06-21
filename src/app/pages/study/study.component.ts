@@ -17,24 +17,33 @@ import { TakeUntilDestroy } from '../../shared/utils/TakeUntilDestroy'
 @Component({
   selector: 'app-study-page',
   template: `
-    <p>Study Page</p>
-
-    <p *ngIf="!(isLoaded$ | async)">Loading...</p>
-
-    <ng-container *ngIf="isStudyLoadedAndValid$ && isLoaded$ | async">
-      <p>{{ study$ | async | json}}</p>
-      <ul>
-        <li *ngFor="let subject of (subjects$ | async)">
-          <button [routerLink]="['subject', subject.subjectId]">
+    <app-toolbar>
+      <div start>
+        <button [routerLink]="['/']" md-icon-button>
+          <i class="material-icons">arrow_back</i>
+        </button>
+        <div class="title">Study {{studyId}}</div>
+      </div>
+      <div end>
+        <button md-icon-button><i class="material-icons">more_vert</i></button>
+      </div>
+    </app-toolbar>
+    <div class="content">
+      <p *ngIf="!(isLoaded$ | async)">Loading...</p>
+      <ng-container *ngIf="isStudyLoadedAndValid$ && isLoaded$ | async">
+        <p>{{ study$ | async | json}}</p>
+        <p *ngFor="let subject of (subjects$ | async)">
+          <button [routerLink]="['subject', subject.subjectId]" md-raised-button>
             ID: {{ subject.subjectId }} | Active: {{ subject.active }}
           </button>
-        </li>
-      </ul>
-    </ng-container>
-
-    <div *ngIf="!(isStudyLoadedAndValid$ | async) && (isLoaded$ | async)">
-      <p>Study "{{studyId}}" not found.</p>
-      <p><button [routerLink]="['/']" >Go to the overview page</button></p>
+        </p>
+      </ng-container>
+      <div *ngIf="!(isStudyLoadedAndValid$ | async) && (isLoaded$ | async)">
+        <p>Study "{{studyId}}" not found.</p>
+        <p>
+          <button [routerLink]="['/']">Go to the overview page</button>
+        </p>
+      </div>
     </div>
   `,
   styleUrls: ['./study.component.scss'],
@@ -43,12 +52,13 @@ import { TakeUntilDestroy } from '../../shared/utils/TakeUntilDestroy'
 @TakeUntilDestroy
 export class StudyPageComponent implements OnInit {
 
-  takeUntilDestroy // from TakeUntilDestroy
   studyId: string
   study$: Observable<Study>
   isStudyLoadedAndValid$: Observable<boolean>
   isLoaded$: Observable<boolean>
   subjects$: Observable<Subject[]>
+
+  private takeUntilDestroy // from TakeUntilDestroy
 
   constructor (
     private route: ActivatedRoute,

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core'
 import { HttpModule } from '@angular/http'
 import { RouterModule } from '@angular/router'
 
+import { ToolbarModule } from '../../components/toolbar/toolbar.module'
 import { StudyService } from '../../shared/store/study/study.service'
 import { OverviewPageComponent } from './overview.component'
 import { routes } from './overview.routing'
@@ -11,7 +12,8 @@ import { routes } from './overview.routing'
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    HttpModule
+    HttpModule,
+    ToolbarModule
   ],
   declarations: [
     OverviewPageComponent

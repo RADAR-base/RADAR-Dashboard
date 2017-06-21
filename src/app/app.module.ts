@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core'
 import { HttpModule } from '@angular/http'
-import { MdButtonModule, MdToolbarModule } from '@angular/material'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { EffectsModule } from '@ngrx/effects'
@@ -8,7 +7,6 @@ import { StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { AppComponent } from './app.component'
 import { AppRoutingModule } from './app.routing'
-import { ToolbarComponent } from './components/toolbar/toolbar.component'
 import { NotFoundPageModule } from './pages/not-found/not-found.module'
 
 import { OverviewPageModule } from './pages/overview/overview.module'
@@ -24,17 +22,12 @@ import { SubjectEffects } from './shared/store/subject/subject.effects'
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ToolbarComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     BrowserAnimationsModule,
-
-    // Material 2
-    MdToolbarModule,
-    MdButtonModule,
 
     // ngrx/store
     StoreModule.provideStore(reducer),

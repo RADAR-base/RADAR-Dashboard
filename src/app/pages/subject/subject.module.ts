@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router'
 
 import { SourceListModule } from '../../components/source-list/source-list.module'
 import { TileModule } from '../../components/tile/tile.module'
+import { ToolbarModule } from '../../components/toolbar/toolbar.module'
 import { SubjectPageComponent } from './subject.component'
 import { routes } from './subject.routing'
 
@@ -16,7 +17,8 @@ import { routes } from './subject.routing'
     RouterModule.forChild(routes),
     MdGridListModule,
     SourceListModule,
-    TileModule
+    TileModule,
+    ToolbarModule
   ],
   declarations: [
     SubjectPageComponent
