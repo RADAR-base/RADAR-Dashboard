@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
 import 'rxjs/add/operator/takeUntil'
+import 'rxjs/add/operator/publishReplay'
 import { Observable } from 'rxjs/Observable'
 
 import * as fromRoot from '../../shared/store/index'
@@ -32,9 +33,7 @@ import { TakeUntilDestroy } from '../../shared/utils/TakeUntilDestroy'
         </md-grid-tile>
         <md-grid-tile colspan="6">
           <app-tile title="Graphs">
-            <div tile-content>
-              <p>GRAPHS</p>
-            </div>
+            <app-source-graph [sources]="sources$ | async" tile-content></app-source-graph>
           </app-tile>
         </md-grid-tile>
       </md-grid-list>
@@ -70,6 +69,7 @@ export class SubjectPageComponent implements OnInit {
     this.store.dispatch(new sourceAction.GetAll(this.subjectId))
     this.sourceIsLoaded$ = this.store.select(fromRoot.getSourceIsLoaded)
     this.sources$ = this.store.select(fromRoot.getSourceAll)
+      .publishReplay().refCount()
   }
 
 }

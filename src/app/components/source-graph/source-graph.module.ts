@@ -9,6 +9,9 @@ import { SourceGraphComponent } from './source-graph.component'
   ],
   declarations: [
     SourceGraphComponent
+  ],
+  exports: [
+    SourceGraphComponent
   ]
 })
 export class SourceGraphModule {}
