@@ -1,21 +1,17 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 
 @Component({
   selector: 'app-source-list',
   template: `
-    <div>SOURCE LIST</div>
+    <div *ngFor="let source of sources">
+      <p>{{source.id}} | {{source.type}}</p>
+    </div>
   `,
   styleUrls: ['./source-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SourceListComponent implements OnInit {
+export class SourceListComponent {
 
-  constructor () {
-    // inject service for sources
-  }
-
-  ngOnInit () {
-    // load data for sources
-  }
+  @Input() sources
 
 }
