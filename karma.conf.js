@@ -16,7 +16,20 @@ module.exports = function (config) {
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
-    files: [{ pattern: './src/test.ts', watched: false }],
+    files: [
+      {
+        pattern: './src/test.ts',
+        watched: false
+      },
+      // Include a Material theme in the test suite.
+      // NOTE: Not a final solution as it should use the global styles in main.scss instead
+      // https://github.com/angular/material2/issues/4056
+      {
+        pattern: './node_modules/@angular/material/prebuilt-themes/indigo-pink.css',
+        included: true,
+        watched: true
+      }
+    ],
     preprocessors: {
       './src/test.ts': ['@angular/cli']
     },

@@ -6,6 +6,7 @@
         "label": {
           "EN": "Accelerometer"
         },
+        "unit": "G",
         "keys": [
           {
             "key": "x",
@@ -34,25 +35,29 @@
         "doc": "Battery level in percentage as unit.",
         "label": {
           "EN": "Battery"
-        }
+        },
+        "unit": "PERCENTAGE"
       },
       "BLOOD_VOLUME_PULSE": {
         "doc": "Blood volumne pulse from photoplethysmograph expressed in light absorption (nW).",
         "label": {
           "EN": "Blood Volume Pulse"
-        }
+        },
+        "unit": "NANOWATT"
       },
       "ELECTRODERMAL_ACTIVITY": {
         "doc": "Electrodermal activity in microsiemens (µS) as unit.",
         "label": {
           "EN": "Electrodermal Activity"
-        }
+        },
+        "unit": "MICROSIEMENS"
       },
       "INTER_BEAT_INTERVAL": {
         "doc": "Time between individal heat beats.",
         "label": {
           "EN": "Inter Beat Interval"
-        }
+        },
+        "unit": "BEATS_PER_MIN"
       },
       "HEART_RATE": {
         "doc": "Heart Rate resulting from data aggregation. It is computed as (60 / ibi)",
@@ -66,13 +71,15 @@
               "EN": "Heart Rate"
             }
           }
-        ]
+        ],
+        "unit": "BEATS_PER_MIN"
       },
       "THERMOMETER": {
         "doc": "Temperature value expressed in Celsius (°C) scale",
         "label": {
           "EN": "Thermometer"
-        }
+        },
+        "unit": "CELSIUS"
       }
     },
     "stats": {
@@ -211,50 +218,15 @@
       }
     },
     "specs": {
-      "EMPATICA": {
-        "BATTERY": {
-          "name": "BATTERY",
-          "dataType": "RAW",
-          "frequency": 1,
-          "unit": "PERCENTAGE"
-        },
-        "INTER_BEAT_INTERVAL": {
-          "name": "INTER_BEAT_INTERVAL",
-          "dataType": "RAW",
-          "frequency": 1,
-          "unit": "BEATS_PER_MIN"
-        },
-        "HEART_RATE": {
-          "name": "HEART_RATE",
-          "dataType": "RADAR",
-          "frequency": 1,
-          "unit": "BEATS_PER_MIN"
-        },
-        "THERMOMETER": {
-          "name": "THERMOMETER",
-          "dataType": "RAW",
-          "frequency": 4,
-          "unit": "CELSIUS"
-        },
-        "ACCELEROMETER": {
-          "name": "ACCELEROMETER",
-          "dataType": "RAW",
-          "frequency": 32,
-          "unit": "G"
-        },
-        "ELECTRODERMAL_ACTIVITY": {
-          "name": "ELECTRODERMAL_ACTIVITY",
-          "dataType": "RAW",
-          "frequency": 4,
-          "unit": "MICROSIEMENS"
-        },
-        "BLOOD_VOLUME_PULSE": {
-          "name": "BLOOD_VOLUME_PULSE",
-          "dataType": "RAW",
-          "frequency": 64,
-          "unit": "NANOWATT"
-        }
-      }
+      "EMPATICA": [
+        "BATTERY",
+        "INTER_BEAT_INTERVAL",
+        "HEART_RATE",
+        "THERMOMETER",
+        "ACCELEROMETER",
+        "ELECTRODERMAL_ACTIVITY",
+        "BLOOD_VOLUME_PULSE"
+      ]
     }
   }
 }

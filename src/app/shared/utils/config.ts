@@ -2,6 +2,7 @@ import { ChartGradientColors, ChartMargin } from '../../components/charts/chart.
 import { Config } from '../store/config/config.model'
 
 export class AppConfig {
+  static language = 'EN'
   static config: Config
   static charts: ConfigCharts = {
     MARGIN: {
