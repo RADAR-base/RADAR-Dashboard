@@ -1,26 +1,17 @@
 export interface Config {
-  sensor: {
-    [id: string]: {
-      keys?: Key[],
-      label: Label
-    }
+  sensors: {
+    [id: string]: Sensor
   }
-  stat: {
-    [id: string]: {
-      label: Label
-    }
+  units: {
+    [id: string]: Unit
   }
-  timeInterval: {
-    [id: string]: {
-      value: number,
-      label: Label
-    }
+  stats: {
+    [id: string]: Stat
   }
-  unit: {
-    [id: string]: {
-      label: Label
-    }
+  timeIntervals: {
+    [id: string]: TimeInterval
   }
+  specs: string[]
 }
 
 interface Key {
@@ -30,4 +21,23 @@ interface Key {
 
 interface Label {
   EN: string
+}
+
+export interface Unit {
+  label: Label
+}
+
+export interface Stat {
+  label: Label
+}
+
+export interface TimeInterval {
+  value: number
+  label: Label
+}
+
+export interface Sensor {
+  keys?: Key[],
+  unit: string,
+  label: Label
 }

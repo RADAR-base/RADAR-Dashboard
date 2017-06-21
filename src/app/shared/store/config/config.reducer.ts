@@ -7,10 +7,11 @@ export interface State extends Config {
 
 const initialState: State = {
   loading: false,
-  stat: {},
-  sensor: {},
-  timeInterval: {},
-  unit: {}
+  stats: {},
+  sensors: {},
+  timeIntervals: {},
+  units: {},
+  specs: []
 }
 
 export function reducer (state = initialState, action: config.Actions): State {
