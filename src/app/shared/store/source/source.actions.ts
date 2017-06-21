@@ -1,20 +1,21 @@
 import { Action } from '@ngrx/store'
+import { Source } from './source.model'
 
-export const LOAD = '[Source] Load'
-export const LOAD_SUCCESS = '[Source] Load Success'
+export const GET_ALL = '[Source] GET_ALL'
+export const GET_ALL_SUCCESS = '[Source] Load GET_ALL_SUCCESS'
 
-export class Load implements Action {
-  readonly type = LOAD
+export class GetAll implements Action {
+  readonly type = GET_ALL
 
   constructor (public payload: string) {}
 }
 
-export class LoadSuccess implements Action {
-  readonly type = LOAD_SUCCESS
+export class GetAllSuccess implements Action {
+  readonly type = GET_ALL_SUCCESS
 
-  constructor (public payload: any) {}
+  constructor (public payload: Source[]) {}
 }
 
 export type Actions
-  = Load
-  | LoadSuccess
+  = GetAll
+  | GetAllSuccess
