@@ -1,8 +1,10 @@
 import { Label } from '../config/config.model'
 
 export interface Sensor {
-  keys?: Key[],
-  unit: string,
+  id?: string
+  source?: string
+  keys?: Key[]
+  unit: string
   label: Label
 }
 
