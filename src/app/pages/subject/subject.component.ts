@@ -68,7 +68,7 @@ export class SubjectPageComponent implements OnInit {
     // Get sources from server
     this.store.dispatch(new sourceAction.GetAll(this.subjectId))
     this.sourceIsLoaded$ = this.store.select(fromRoot.getSourceIsLoaded)
-    this.sources$ = this.store.select(fromRoot.getSourceAll)
+    this.sources$ = this.store.select(fromRoot.getSourceAllWithSensors)
       .publishReplay().refCount()
   }
 
