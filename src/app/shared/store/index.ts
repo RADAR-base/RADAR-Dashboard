@@ -5,22 +5,25 @@ import { createSelector } from 'reselect'
 
 import { environment } from '../../../environments/environment'
 import * as fromConfig from './config/config.reducer'
+import * as fromSensors from './sensors/sensors.reducer'
 import * as fromSource from './source/source.reducer'
 import * as fromStudy from './study/study.reducer'
 import * as fromSubject from './subject/subject.reducer'
 
 export interface State {
+  config: fromConfig.State
+  sensors: fromSensors.State
+  source: fromSource.State
   study: fromStudy.State
   subject: fromSubject.State
-  source: fromSource.State
-  config: fromConfig.State
 }
 
 const reducers = {
-  study: fromStudy.reducer,
-  subject: fromSubject.reducer,
+  config: fromConfig.reducer,
+  sensors: fromSensors.reducer,
   source: fromSource.reducer,
-  config: fromConfig.reducer
+  study: fromStudy.reducer,
+  subject: fromSubject.reducer
 }
 
 const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers)
