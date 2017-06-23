@@ -18,7 +18,6 @@ export class SensorsEffects {
       return this.sensorsService.getAll(payload)
         .map((data: Sensor[]) => new sensorsAction.GetAllSuccess(data))
     })
-    .do(d => console.log('sensorsAction.GET_ALL', d))
 
   constructor (
     private actions$: Actions,
