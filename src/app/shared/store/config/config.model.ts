@@ -1,3 +1,5 @@
+import { Sensor } from '../sensors/sensors.model'
+
 export interface Config {
   sensors: {
     [id: string]: Sensor
@@ -14,12 +16,7 @@ export interface Config {
   specs: string[]
 }
 
-interface Key {
-  key: string
-  label: Label
-}
-
-interface Label {
+export interface Label {
   EN: string
 }
 
@@ -33,11 +30,5 @@ export interface Stat {
 
 export interface TimeInterval {
   value: number
-  label: Label
-}
-
-export interface Sensor {
-  keys?: Key[],
-  unit: string,
   label: Label
 }
