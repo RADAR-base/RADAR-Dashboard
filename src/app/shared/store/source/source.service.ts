@@ -21,8 +21,8 @@ export class SourceService {
           : []
       })
       .map(this.removeNonSupportedTypes)
-      .map(this.addVisibleProp)
-      .map(this.addSensors)
+      // .map(this.addVisibleProp)
+      // .map(this.addSensors)
       .catch(ErrorService.handleError)
   }
 
