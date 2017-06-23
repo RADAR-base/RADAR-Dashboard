@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect'
+import * as uuid from 'uuid/v4'
 
 import * as sensors from './sensors.actions'
 import { Sensor } from './sensors.model'
@@ -21,7 +22,6 @@ export function reducer (state = initialState, action: sensors.Actions): State {
   switch (action.type) {
 
     case sensors.GET_ALL: {
-      console.log('sensors.GET_ALL', action)
       return {
         ...state,
         isLoaded: false
@@ -30,20 +30,31 @@ export function reducer (state = initialState, action: sensors.Actions): State {
 
     case sensors.GET_ALL_SUCCESS: {
       const payload = action.payload
-      console.log('sensors.GET_ALL_SUCCESS', payload)
-      // const ids = payload.map(source => source.id)
-      // const entities = payload.reduce((accumulator, source) => {
-      //   return { ...accumulator, [source.id]: source }
-      // }, {})
-      // console.log(entities)
-      // return {
-      //   ...state,
-      //   isLoaded: true,
-      //   ids,
-      //   entities
-      // }
+      const ids = []
+      const sensors = payload.map(source =>
+        source.sensors.reduce((acc, sensor) => {
+          const id = uuid()
+          const sensorWithId = {
+            ...sensor,
+            visible: true,
+            source: source.id,
+            id
+          }
+          ids.push(id)
 
-      return state
+          return { ...acc, [id]: sensorWithId }
+        }, {})
+      )
+      const entities = sensors.reduce((acc, sensor) => {
+        return { ...acc, ...sensor }
+      }, {})
+
+      return {
+        ...state,
+        isLoaded: true,
+        ids,
+        entities
+      }
     }
 
     default:
