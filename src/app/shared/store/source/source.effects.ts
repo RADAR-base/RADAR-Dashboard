@@ -24,7 +24,7 @@ export class SourceEffects {
   getAllSuccess$: Observable<Action> = this.actions$
     .ofType(sourceAction.GET_ALL_SUCCESS)
     .map(toPayload)
-    .map(data => new sensorsAction.GetAll(data))
+    .map(payload => new sensorsAction.GetAll(payload))
 
   constructor (
     private actions$: Actions,

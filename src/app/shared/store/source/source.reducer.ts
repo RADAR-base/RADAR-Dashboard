@@ -28,8 +28,8 @@ export function reducer (state = initialState, action: source.Actions): State {
     case source.GET_ALL_SUCCESS: {
       const payload = action.payload
       const ids = payload.map(source => source.id)
-      const entities = payload.reduce((accumulator, source) => {
-        return { ...accumulator, [source.id]: source }
+      const entities = payload.reduce((acc, source) => {
+        return { ...acc, [source.id]: source }
       }, {})
 
       return {
