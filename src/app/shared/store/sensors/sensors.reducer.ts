@@ -34,13 +34,14 @@ export function reducer (state = initialState, action: sensors.Actions): State {
       const sensors = payload.map(source =>
         source.sensors.reduce((acc, sensor) => {
           const id = uuid()
+          ids.push(id)
+
           const sensorWithId = {
             ...sensor,
             visible: true,
             source: source.id,
             id
           }
-          ids.push(id)
 
           return { ...acc, [id]: sensorWithId }
         }, {})
