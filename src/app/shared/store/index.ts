@@ -60,3 +60,27 @@ export const getSourceState = (state: State) => state.source
 export const getSourceIsLoaded = createSelector(getSourceState, fromSource.getIsLoaded)
 export const getSourceEntities = createSelector(getSourceState, fromSource.getEntities)
 export const getSourceAll = createSelector(getSourceState, fromSource.getAll)
+
+// Sensors Selectors
+export const getSensorsState = (state: State) => state.sensors
+export const getSensorsIsLoaded = createSelector(getSensorsState, fromSensors.getIsLoaded)
+export const getSensorsEntities = createSelector(getSensorsState, fromSensors.getEntities)
+export const getSensorsAll = createSelector(getSensorsState, fromSensors.getAll)
+
+// Source + Sensor Selector
+export const getSourceAllWithSensors = createSelector(
+  getSourceAll, getSensorsAll, (sources, sensors) => {
+    if (sensors.length) {
+      const sensorsBySource = sources.reduce((acc, source) => {
+        return { ...acc, [source.id]: [] }
+      }, {})
+
+      sensors.map(sensor => {
+        sensorsBySource[sensor.source].push(sensor)
+      })
+
+      return sources.map(source => {
+        return { ...source, sensors: sensorsBySource[source.id] }
+      })
+    }
+  })
