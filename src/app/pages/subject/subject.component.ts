@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
-import 'rxjs/add/operator/takeUntil'
 import 'rxjs/add/operator/publishReplay'
+import 'rxjs/add/operator/takeUntil'
 import { Observable } from 'rxjs/Observable'
 
 import * as fromRoot from '../../shared/store/index'
@@ -28,12 +28,15 @@ import { TakeUntilDestroy } from '../../shared/utils/TakeUntilDestroy'
       <md-grid-list cols="8" rowHeight="fit">
         <md-grid-tile colspan="2">
           <app-tile title="Sources">
-            <app-source-list [sources]="sources$ | async" tile-content></app-source-list>
+            <app-source-list
+              [sources]="sources$ | async" tile-content></app-source-list>
           </app-tile>
         </md-grid-tile>
         <md-grid-tile colspan="6">
           <app-tile title="Graphs">
-            <app-source-graph [sources]="sources$ | async" tile-content></app-source-graph>
+            <app-source-graphs
+              [sources]="sources$ | async"
+              [subjectId]="subjectId" tile-content></app-source-graphs>
           </app-tile>
         </md-grid-tile>
       </md-grid-list>
