@@ -4,7 +4,7 @@ import { HttpModule } from '@angular/http'
 import { MdGridListModule } from '@angular/material'
 import { RouterModule } from '@angular/router'
 
-import { SourceGraphModule } from '../../components/source-graph/source-graph.module'
+import { SourceGraphsModule } from '../../components/source-graphs/source-graphs.module'
 import { SourceListModule } from '../../components/source-list/source-list.module'
 import { TileModule } from '../../components/tile/tile.module'
 import { ToolbarModule } from '../../components/toolbar/toolbar.module'
@@ -21,7 +21,7 @@ import { SubjectService } from '../../shared/store/subject/subject.service'
     RouterModule.forChild(routes),
     MdGridListModule,
     SourceListModule,
-    SourceGraphModule,
+    SourceGraphsModule,
     TileModule,
     ToolbarModule
   ],
