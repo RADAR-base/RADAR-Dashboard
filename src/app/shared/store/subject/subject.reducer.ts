@@ -29,8 +29,8 @@ export function reducer (state = initialState, action: subject.Actions): State {
     case subject.GET_ALL_SUCCESS: {
       const payload = action.payload
       const ids = payload.map(subject => subject.subjectId)
-      const entities = payload.reduce((accumulator, subject) => {
-        return Object.assign(accumulator, { [subject.subjectId]: subject })
+      const entities = payload.reduce((acc, subject) => {
+        return Object.assign(acc, { [subject.subjectId]: subject })
       }, {})
 
       return Object.assign({}, state, {
