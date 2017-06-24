@@ -5,16 +5,16 @@ import { TimeSeries } from '../../../shared/models/time-series.model'
 import { GraphBaseComponent } from '../graph-base/graph-base.component'
 
 @Component({
-  selector: 'app-graph-heart-rate',
+  selector: 'app-graph-single-line',
   template: `
     <app-chart-base-line
       [chartData]="data$ | async"
       [gradientEnabled]="true"></app-chart-base-line>
   `,
-  styleUrls: ['./graph-heart-rate.component.scss'],
+  styleUrls: ['./graph-single-line.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GraphHeartRateComponent extends GraphBaseComponent {
+export class GraphSingleLineComponent extends GraphBaseComponent {
 
   sensor
   language
@@ -22,7 +22,7 @@ export class GraphHeartRateComponent extends GraphBaseComponent {
   data$: Observable<TimeSeries[]>
 
   getData () {
-    this.data$ = this.service.getHRData(
+    this.data$ = this.service.getSingleValueData(
       this.sensor.type,
       this.subjectId,
       this.sensor.source

@@ -8,8 +8,8 @@ import { Source } from '../../shared/store/source/source.model'
       <p>SOURCE {{ source.id }}</p>
       <div *ngFor="let sensor of source.sensors">
         <div [ngSwitch]="sensor.type">
-          <app-graph-heart-rate *ngSwitchCase="CHART_TYPE.HEART_RATE"
-            [sensor]="sensor" [subjectId]="subjectId"></app-graph-heart-rate>
+          <app-graph-single-line *ngSwitchCase="CHART_TYPE.HEART_RATE"
+            [sensor]="sensor" [subjectId]="subjectId"></app-graph-single-line>
           <p *ngSwitchDefault="" class="font-small">
             {{ sensor.type }} is not associated to any graph!</p>
         </div>

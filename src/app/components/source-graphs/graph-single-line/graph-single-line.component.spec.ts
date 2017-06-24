@@ -3,11 +3,11 @@ import { HttpModule } from '@angular/http'
 
 import { ChartsModule } from '../../charts/charts.module'
 import { SourceGraphsService } from '../source-graphs.service'
-import { GraphHeartRateComponent } from './graph-heart-rate.component'
+import { GraphSingleLineComponent } from './graph-single-line.component'
 
-describe('GraphHeartRateComponent', () => {
-  let component: GraphHeartRateComponent
-  let fixture: ComponentFixture<GraphHeartRateComponent>
+describe('GraphSingleLineComponent', () => {
+  let component: GraphSingleLineComponent
+  let fixture: ComponentFixture<GraphSingleLineComponent>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -17,14 +17,14 @@ describe('GraphHeartRateComponent', () => {
       ],
       providers: [SourceGraphsService],
       declarations: [
-        GraphHeartRateComponent
+        GraphSingleLineComponent
       ]
     })
       .compileComponents()
   }))
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GraphHeartRateComponent)
+    fixture = TestBed.createComponent(GraphSingleLineComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
   })

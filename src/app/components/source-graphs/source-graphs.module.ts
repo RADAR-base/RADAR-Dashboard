@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core'
 
 import { ChartsModule } from '../charts/charts.module'
 import { GraphBaseComponent } from './graph-base/graph-base.component'
-import { GraphHeartRateComponent } from './graph-heart-rate/graph-heart-rate.component'
+import { GraphSingleLineComponent } from './graph-single-line/graph-single-line.component'
 import { SourceGraphsComponent } from './source-graphs.component'
 import { SourceGraphsService } from './source-graphs.service'
 
@@ -14,7 +14,7 @@ import { SourceGraphsService } from './source-graphs.service'
   ],
   declarations: [
     SourceGraphsComponent,
-    GraphHeartRateComponent,
+    GraphSingleLineComponent,
     GraphBaseComponent
   ],
   providers: [

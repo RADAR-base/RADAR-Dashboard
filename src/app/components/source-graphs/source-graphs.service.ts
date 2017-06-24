@@ -12,16 +12,16 @@ export class SourceGraphsService {
 
   constructor (private http: Http) {}
 
-  getHRData (type, subject, source): Observable<TimeSeries[]> {
+  getSingleValueData (type, subject, source): Observable<TimeSeries[]> {
     const url = this.parseURL(type, subject, source)
 
     return this.http.get(url)
       .map(res => res.json() || [])
-      .map(this.parseHRData)
+      .map(this.parseSingleValueData)
       .catch(ErrorService.handleError)
   }
 
-  private parseHRData (res) {
+  private parseSingleValueData (res) {
     return res.dataset
       .map(data => {
         return {
