@@ -5,13 +5,13 @@ import { Source } from '../../shared/store/source/source.model'
   selector: 'app-source-graphs',
   template: `
     <div *ngFor="let source of sources">
-      <p>---- {{ source.id }} ----</p>
+      <p>SOURCE {{ source.id }}</p>
       <div *ngFor="let sensor of source.sensors">
         <div [ngSwitch]="sensor.type">
           <app-graph-heart-rate *ngSwitchCase="CHART_TYPE.HEART_RATE"
             [sensor]="sensor" [subjectId]="subjectId"></app-graph-heart-rate>
-          <p *ngSwitchDefault
-            class="font-small">{{ sensor.type }} is not associated to any graph!</p>
+          <p *ngSwitchDefault="" class="font-small">
+            {{ sensor.type }} is not associated to any graph!</p>
         </div>
       </div>
     </div>

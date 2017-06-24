@@ -12,14 +12,12 @@ export class SourceGraphsService {
 
   constructor (private http: Http) {}
 
-  getHRData (type, stat, interval, subject, source): Observable<TimeSeries[]> {
-    const url = this.parseURL(type, stat, interval, subject, source)
-    console.log(url)
+  getHRData (type, subject, source): Observable<TimeSeries[]> {
+    const url = this.parseURL(type, subject, source)
 
     return this.http.get(url)
       .map(res => res.json() || [])
       .map(this.parseHRData)
-      .do(console.log)
       .catch(ErrorService.handleError)
   }
 
@@ -33,7 +31,8 @@ export class SourceGraphsService {
       })
   }
 
-  private parseURL (type, stat, interval, subject, source) {
+  // TODO: setup 'AVERAGE' & 'TEN_SECOND'
+  private parseURL (type, subject, source, stat = 'AVERAGE', interval = 'TEN_SECOND') {
     return `${this.URL}/${type}/${stat}/${interval}/${subject}/${source}`
   }
 

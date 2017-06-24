@@ -16,15 +16,15 @@ export class GraphBaseComponent {
   private _sensor: Sensor
 
   @Input()
+  get sensor () {
+    return this._sensor
+  }
+
   set sensor (val) {
     if (val) {
       this._sensor = val
       this.getData()
     }
-  }
-
-  get sensor () {
-    return this._sensor
   }
 
   constructor (

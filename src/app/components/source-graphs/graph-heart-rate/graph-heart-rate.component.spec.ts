@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 import { HttpModule } from '@angular/http'
+
 import { ChartsModule } from '../../charts/charts.module'
 import { SourceGraphsService } from '../source-graphs.service'
 import { GraphHeartRateComponent } from './graph-heart-rate.component'

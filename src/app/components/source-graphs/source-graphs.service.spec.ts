@@ -1,7 +1,7 @@
 import { inject, TestBed } from '@angular/core/testing'
+import { HttpModule } from '@angular/http'
 
 import { SourceGraphsService } from './source-graphs.service'
-import { HttpModule } from '@angular/http'
 
 describe('SourceGraphsService', () => {
   beforeEach(() => {
