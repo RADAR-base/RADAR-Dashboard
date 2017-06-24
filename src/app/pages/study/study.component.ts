@@ -9,7 +9,6 @@ import { Observable } from 'rxjs/Observable'
 
 import * as fromRoot from '../../shared/store/index'
 import * as studyAction from '../../shared/store/study/study.actions'
-import { Study } from '../../shared/store/study/study.model'
 import * as subjectAction from '../../shared/store/subject/subject.actions'
 import { Subject } from '../../shared/store/subject/subject.model'
 import { TakeUntilDestroy } from '../../shared/utils/TakeUntilDestroy'
@@ -31,7 +30,6 @@ import { TakeUntilDestroy } from '../../shared/utils/TakeUntilDestroy'
     <div class="content">
       <p *ngIf="!(isLoaded$ | async)">Loading...</p>
       <ng-container *ngIf="isStudyLoadedAndValid$ && isLoaded$ | async">
-        <p>{{ study$ | async | json}}</p>
         <p *ngFor="let subject of (subjects$ | async)">
           <button [routerLink]="['subject', subject.subjectId]" md-raised-button>
             ID: {{ subject.subjectId }} | Active: {{ subject.active }}
@@ -53,7 +51,6 @@ import { TakeUntilDestroy } from '../../shared/utils/TakeUntilDestroy'
 export class StudyPageComponent implements OnInit {
 
   studyId: string
-  study$: Observable<Study>
   isStudyLoadedAndValid$: Observable<boolean>
   isLoaded$: Observable<boolean>
   subjects$: Observable<Subject[]>
@@ -88,7 +85,6 @@ export class StudyPageComponent implements OnInit {
     this.isLoaded$ = this.store.select(fromRoot.getStudyIsLoaded)
       .publishReplay().refCount()
 
-    this.study$ = this.store.select(fromRoot.getStudySelected)
     this.subjects$ = this.store.select(fromRoot.getSubjectAll)
   }
 
