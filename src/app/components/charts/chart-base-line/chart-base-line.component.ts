@@ -64,10 +64,10 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
 
     this.yScale = d3.scaleLinear()
       .range([this.height, 0])
-      .domain([0, d3.max(this.data, d => d.value)])
+      .domain(d3.extent(this.data, d => d.value))
 
     this.xAxis
-      .attr('transform', `translate(0, ${this.yScale(0)})`)
+      .attr('transform', `translate(0, ${this.height})`)
       .call(d3.axisBottom(this.xScale))
 
     this.yAxis.call(
