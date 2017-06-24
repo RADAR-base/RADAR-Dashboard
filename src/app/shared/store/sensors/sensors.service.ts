@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs/Observable'
+
 import { AppConfig } from '../../utils/config'
 import { Source } from '../source/source.model'
 
@@ -12,7 +13,10 @@ export class SensorsService {
     return Observable.of(
       sources.map((d: Source) => {
         const sensorList = AppConfig.config.specs[d.type]
-        const sensors = sensorList.map(sensor => AppConfig.config.sensors[sensor])
+        const sensors = sensorList.map(sensor => ({
+          ...AppConfig.config.sensors[sensor],
+          type: sensor
+        }))
 
         return sensors
           ? { ...d, sensors }
