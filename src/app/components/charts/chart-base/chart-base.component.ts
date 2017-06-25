@@ -25,32 +25,43 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   @ViewChild('svg') svgRef: ElementRef
 
   data: any
-
-  @Input()
-  set chartData (value) {
-    this.data = value
-    this.beforeUpdate()
-  }
-
-  get chartData () {
-    return this.data
-  }
-
-  @Input()
-  margin = AppConfig.charts.MARGIN
-
   svg: any
   chart: any
   width: number
   height: number
   xAxis: any
   yAxis: any
-
   window$: Subscription
+
+  @Input() margin = AppConfig.charts.MARGIN
+
+  @Input()
+  get chartData () {
+    return this.data
+  }
+
+  set chartData (value) {
+    this.data = value
+    this.beforeUpdate()
+  }
 
   ngAfterViewInit () {
     this.svg = d3.select(this.svgRef.nativeElement)
     this.beforeInit()
+  }
+
+  init () {
+    this.beforeUpdate()
+  }
+
+  update () {
+    this.beforeDraw()
+  }
+
+  draw () {}
+
+  ngOnDestroy () {
+    this.window$.unsubscribe()
   }
 
   private beforeInit () {
@@ -74,18 +85,10 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
     this.init()
   }
 
-  init () {
-    this.beforeUpdate()
-  }
-
   private beforeUpdate () {
     if (this.chart && this.data) {
       this.update()
     }
-  }
-
-  update () {
-    this.beforeDraw()
   }
 
   private beforeDraw () {
@@ -101,12 +104,6 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
       .attr('height', this.height)
 
     this.draw()
-  }
-
-  draw () {}
-
-  ngOnDestroy () {
-    this.window$.unsubscribe()
   }
 
 }
