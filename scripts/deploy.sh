@@ -19,7 +19,7 @@ if [${BRANCH} == "master"]; then
 
 else
   # add base-href with build path
-  npm run build -- --base-href /builds/${TRAVIS_BUILD_NUMBER}
+  npm run build -- --base-href /builds/${TRAVIS_BUILD_NUMBER}/
 
   rsync -rvz --delete-after \
     ${TRAVIS_BUILD_DIR}/dist/ \
