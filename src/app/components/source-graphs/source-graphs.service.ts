@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable'
 
 import { TimeSeries } from '../../shared/models/time-series.model'
 import { ErrorService } from '../../shared/services/error.service'
-// import { AppConfig } from '../../shared/utils/config'
+import { AppConfig } from '../../shared/utils/config'
 
 @Injectable()
 export class SourceGraphsService {
@@ -18,11 +18,10 @@ export class SourceGraphsService {
 
     return this.http.get(url)
       .map(res => res.json() || [])
-      // .map(res => timeHoles
-      //   ? this.parseTimeHoles(res)
-      //   : this.parseSingleValueData(res)
-      // )
-      .map(this.parseSingleValueData)
+      .map(res => timeHoles
+        ? this.parseTimeHoles(res)
+        : this.parseSingleValueData(res)
+      )
       .catch(ErrorService.handleError)
   }
 
@@ -36,30 +35,30 @@ export class SourceGraphsService {
       })
   }
 
-  // private parseTimeHoles (res) {
-  //   const interval = AppConfig.config.timeIntervals[res.header.timeFrame].value
-  //   const timeFrame = res.header.effectiveTimeFrame
-  //   const data = res.dataset
-  //
-  //   const dataWithIds = data.reduce((acc, val) => {
-  //     const time = new Date(val.startDateTime).getTime()
-  //     return Object.assign(acc, { [time]: val.sample })
-  //   }, {})
-  //
-  //   const startTime = new Date(timeFrame.startDateTime).getTime()
-  //   const endTime = new Date(timeFrame.endDateTime).getTime()
-  //   const iterations = (endTime - startTime) / interval
-  //
-  //   const newData = []
-  //
-  //   for (let i = 0; i <= iterations; i++) {
-  //     const date = new Date(startTime + interval * i)
-  //     const value = dataWithIds[date.getTime()] || null
-  //     newData.push({ date, value: value && value.value })
-  //   }
-  //
-  //   return newData
-  // }
+  private parseTimeHoles (res) {
+    const interval = AppConfig.config.timeIntervals[res.header.timeFrame].value
+    const timeFrame = res.header.effectiveTimeFrame
+    const data = res.dataset
+
+    const dataWithIds = data.reduce((acc, val) => {
+      const time = new Date(val.startDateTime).getTime()
+      return Object.assign(acc, { [time]: val.sample })
+    }, {})
+
+    const startTime = new Date(timeFrame.startDateTime).getTime()
+    const endTime = new Date(timeFrame.endDateTime).getTime()
+    const iterations = (endTime - startTime) / interval
+
+    const newData = []
+
+    for (let i = 0; i <= iterations; i++) {
+      const date = new Date(startTime + interval * i)
+      const value = dataWithIds[date.getTime()] || null
+      newData.push({ date, value: value && value.value })
+    }
+
+    return newData
+  }
 
   // TODO: setup 'AVERAGE' & 'TEN_SECOND'
   private parseURL (type, subject, source, stat = 'AVERAGE', interval = 'TEN_SECOND') {
