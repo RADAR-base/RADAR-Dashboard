@@ -12,6 +12,7 @@ export class GraphBaseComponent {
   language = AppConfig.language
 
   @Input() subjectId
+  @Input() timeHoles = true
 
   private _sensor: Sensor
 

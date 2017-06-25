@@ -11,7 +11,7 @@ import { Source } from '../../shared/store/source/source.model'
           <app-graph-single-line *ngSwitchCase="CHART_TYPE.HEART_RATE"
             [sensor]="sensor" [subjectId]="subjectId" [gradient]="true"></app-graph-single-line>
           <app-graph-single-line *ngSwitchCase="CHART_TYPE.BATTERY"
-            [sensor]="sensor" [subjectId]="subjectId"></app-graph-single-line>
+            [sensor]="sensor" [subjectId]="subjectId" [timeHoles]="false"></app-graph-single-line>
           <app-graph-single-line *ngSwitchCase="CHART_TYPE.BLOOD_VOLUME_PULSE"
             [sensor]="sensor" [subjectId]="subjectId"></app-graph-single-line>
           <app-graph-single-line *ngSwitchCase="CHART_TYPE.ELECTRODERMAL_ACTIVITY"
