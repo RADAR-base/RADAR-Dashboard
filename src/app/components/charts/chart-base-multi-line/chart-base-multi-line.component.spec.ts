@@ -1,10 +1,7 @@
 import { DebugElement } from '@angular/core'
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing'
 
-import {
-  MockMultiTimeSeriesData,
-  parseMockMultiTimeSeriesData
-} from '../../../shared/testing/mocks/mock-multi-timeseries-data'
+import { MockMultiTimeSeriesData } from '../../../shared/testing/mocks/mock-multi-timeseries-data'
 import { ChartBaseMultiLineComponent } from './chart-base-multi-line.component'
 
 describe('ChartBaseMultiLineComponent', () => {
@@ -41,7 +38,7 @@ describe('ChartBaseMultiLineComponent', () => {
     expect(component.chartData).toBeFalsy()
 
     // with data // needs to be parsed //
-    component.chartData = parseMockMultiTimeSeriesData(MockMultiTimeSeriesData)
+    component.chartData = MockMultiTimeSeriesData
     expect(component.width).toBeGreaterThan(0)
     expect(component.height).toBeGreaterThan(0)
   })
@@ -56,7 +53,7 @@ describe('ChartBaseMultiLineComponent', () => {
     })
 
     // with data // needs to be parsed //
-    component.chartData = parseMockMultiTimeSeriesData(MockMultiTimeSeriesData)
+    component.chartData = MockMultiTimeSeriesData
 
     // wait for transition
     tick(500)
