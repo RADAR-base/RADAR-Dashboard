@@ -28,7 +28,8 @@ export class GraphSingleLineComponent extends GraphBaseComponent {
     this.data$ = this.service.getSingleValueData(
       this.sensor.type,
       this.subjectId,
-      this.sensor.source
+      this.sensor.source,
+      this.timeHoles
     )
   }
 

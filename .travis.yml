@@ -39,11 +39,10 @@ before_deploy:
   - eval "$(ssh-agent -s)"
   - chmod 600 deploy_key.pem
   - ssh-add deploy_key.pem
-  - npm run build
 
 deploy:
-  provider: script
-  skip_cleanup: true
-  script: ./scripts/deploy.sh
-  on:
-    branch: master
+  - provider: script
+    skip_cleanup: true
+    script: ./scripts/deploy.sh $TRAVIS_BRANCH
+    on:
+      all_branches: true

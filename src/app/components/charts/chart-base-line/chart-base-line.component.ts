@@ -53,6 +53,7 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
 
     this.line = d3.line()
       .curve(d3.curveBasis)
+      .defined((d: any) => d.value)
 
     super.init()
   }
