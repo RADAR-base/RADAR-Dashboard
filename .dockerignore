@@ -1,4 +1,6 @@
-.*
+.git
+.gitignore
+.env*
 node_modules
 dist
 docs

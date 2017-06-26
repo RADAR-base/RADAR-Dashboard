@@ -60,6 +60,5 @@
       "changeDetection": "OnPush",
       "inlineTemplate": true
     }
-  },
-  "packageManager": "yarn"
+  }
 }

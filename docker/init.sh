@@ -5,7 +5,7 @@ echo '==' && echo "==> Enviroment variables"
     echo PROJ=${PROJ}
     echo PROJ_FOLDER=${PROJ_FOLDER}
 
-    API_URI=${API_URI:-'http://radar-restapi.eu-west-1.elasticbeanstalk.com/api'}
+    API_URI=${API_URI:-'https://radar-cns.ddns.net/api'}
     echo API_URI=${API_URI}
 
 echo '==' && echo "==> Replace API_URI"
