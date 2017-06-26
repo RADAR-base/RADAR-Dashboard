@@ -10,7 +10,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM node:7.4
+FROM node:8
 
 MAINTAINER Maximilian Kerz @kerzmaximilian, Amos Folarin @afolarin, Herculano Campos @herkulano
 
@@ -23,12 +23,8 @@ ENV PROJ_FOLDER="/opt/${PROJ}"
 
 # install git nginx yarn
 RUN echo && echo "==> Installing Components" \
-    && curl -sS http://dl.yarnpkg.com/debian/pubkey.gpg \
-        | apt-key add - \
-    && echo "deb http://dl.yarnpkg.com/debian/ stable main" \
-        | tee /etc/apt/sources.list.d/yarn.list \
     && apt-get update -qq \
-    && apt-get install -y git nginx yarn \
+    && apt-get install -y nginx \
     && echo
 
 # forward request and error logs to docker log collector
@@ -47,8 +43,9 @@ RUN echo && echo "==> Copy files to build ${PROJ}"
 # yarn install and build
 RUN echo && echo "==> Installing dependencies and building App" \
     && cd ${PROJ_FOLDER} \
-    && yarn \
-    && yarn build \
+    && npm i --silent \
+    && npm run ng -- --version \
+    && npm run build \
     && rm -rf /var/www/* \
     && cp -a ${PROJ_FOLDER}/dist/. /var/www \
     && echo
