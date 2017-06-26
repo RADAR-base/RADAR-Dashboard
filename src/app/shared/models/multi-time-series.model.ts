@@ -1,6 +1,7 @@
-import { TimeSeries } from './time-series.model'
+import { Key } from '../store/sensors/sensors.model'
 
 export interface MultiTimeSeries {
-  id: string
-  values: TimeSeries[]
+  keys: Key[]
+  values: { [key: string]: number[] }
+  dates: Date[]
 }
