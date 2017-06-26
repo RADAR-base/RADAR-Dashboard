@@ -11,7 +11,7 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
   styleUrls: ['./chart-base-multi-line.component.scss']
 })
 export class ChartBaseMultiLineComponent extends ChartBaseComponent {
-  data: MultiTimeSeries[]
+  data: MultiTimeSeries
 
   @Input() lineColors = AppConfig.charts.CATEGORICAL_COLORS
 
@@ -31,27 +31,28 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
   init () {
     this.line = d3.line()
       .curve(d3.curveBasis)
+      .defined((d: any) => d)
 
     super.init()
   }
 
   draw () {
-    const minDate = d3.min(this.data, row => d3.min(row.values, d => d.date))
-    const maxDate = d3.max(this.data, row => d3.max(row.values, d => d.date))
+    const minDate = d3.min(this.data.dates)
+    const maxDate = d3.max(this.data.dates)
 
     this.xScale = d3.scaleTime()
       .range([0, this.width])
       .domain([minDate, maxDate])
 
-    const minValue = d3.min(this.data, row => d3.min(row.values, d => d.value))
-    const maxValue = d3.max(this.data, row => d3.max(row.values, d => d.value))
+    const minValue = d3.min(this.data.keys.map(k => d3.min(this.data.values[k.key])))
+    const maxValue = d3.max(this.data.keys.map(k => d3.max(this.data.values[k.key])))
 
     this.yScale = d3.scaleLinear()
       .range([this.height, 0])
       .domain([minValue, maxValue])
 
     this.zScale = d3.scaleOrdinal()
-      .domain(this.data.map(d => d.id))
+      .domain(this.data.keys.map(k => k.key))
       .range(this.lineColors)
 
     this.xAxis
@@ -64,18 +65,18 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
     )
 
     this.line
-      .x(d => this.xScale(d.date))
-      .y(d => this.yScale(d.value))
+      .x((d, i) => this.xScale(this.data.dates[i]))
+      .y(d => this.yScale(d))
 
     this.lines = this.chart.selectAll('.line')
-      .data(this.data, d => d.id)
+      .data(this.data.keys, k => k.key)
 
     this.lines.enter().append('path')
       .attr('class', 'line')
       .merge(this.lines)
       .transition()
-      .attr('d', d => this.line(d.values))
-      .style('stroke', d => this.zScale(d.id))
+      .attr('d', k => this.line(this.data.values[k.key]))
+      .style('stroke', k => this.zScale(k.key))
 
     this.lines.exit().remove()
   }
