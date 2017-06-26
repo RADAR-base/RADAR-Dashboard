@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core'
 import { Http } from '@angular/http'
 import { Observable } from 'rxjs/Observable'
 
+import { MultiTimeSeries } from '../../shared/models/multi-time-series.model'
 import { TimeSeries } from '../../shared/models/time-series.model'
 import { ErrorService } from '../../shared/services/error.service'
 import { AppConfig } from '../../shared/utils/config'
@@ -25,6 +26,18 @@ export class SourceGraphsService {
       .catch(ErrorService.handleError)
   }
 
+  getMultiValueData (type, subject, source, keys, timeHoles = true): Observable<MultiTimeSeries> {
+    const url = this.parseURL(type, subject, source)
+
+    return this.http.get(url)
+      .map(res => res.json() || [])
+      .map(res => timeHoles
+        ? this.parseMultiValueData(this.parseTimeHoles(res, true), keys, timeHoles)
+        : this.parseMultiValueData(res.dataset, keys, timeHoles)
+      )
+      .catch(ErrorService.handleError)
+  }
+
   private parseSingleValueData (res) {
     return res.dataset
       .map(data => {
@@ -35,7 +48,23 @@ export class SourceGraphsService {
       })
   }
 
-  private parseTimeHoles (res) {
+  private parseMultiValueData (dataset, keys, timeHoles) {
+    const dates: Date[] = []
+    const values: { [key: string]: number[] } = keys.reduce(
+      (acc, k) => ({ ...acc, [k.key]: [] }), {}
+    )
+
+    dataset.map(data => {
+      keys.map(k => values[k.key].push(data.sample && data.sample[k.key] || null))
+      dates.push(timeHoles
+        ? data.date
+        : new Date(data.startDateTime))
+    })
+
+    return { keys, values, dates }
+  }
+
+  private parseTimeHoles (res, multi = false) {
     const interval = AppConfig.config.timeIntervals[res.header.timeFrame].value
     const timeFrame = res.header.effectiveTimeFrame
     const data = res.dataset
@@ -53,8 +82,11 @@ export class SourceGraphsService {
 
     for (let i = 0; i <= iterations; i++) {
       const date = new Date(startTime + interval * i)
-      const value = dataWithIds[date.getTime()] || null
-      newData.push({ date, value: value && value.value })
+      const sample = dataWithIds[date.getTime()] || null
+
+      multi
+        ? newData.push({ date, sample })
+        : newData.push({ date, value: sample && sample.value })
     }
 
     return newData
