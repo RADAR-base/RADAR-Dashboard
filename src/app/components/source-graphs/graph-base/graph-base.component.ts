@@ -11,6 +11,7 @@ export class GraphBaseComponent {
 
   language = AppConfig.language
 
+  @Input() time
   @Input() subjectId
   @Input() timeHoles = true
 

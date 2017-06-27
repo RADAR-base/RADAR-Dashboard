@@ -29,6 +29,7 @@ export class GraphSingleLineComponent extends GraphBaseComponent {
       this.sensor.type,
       this.subjectId,
       this.sensor.source,
+      this.time,
       this.timeHoles
     )
   }

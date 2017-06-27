@@ -9,19 +9,21 @@ import { Source } from '../../shared/store/source/source.model'
       <div *ngFor="let sensor of source.sensors">
         <div [ngSwitch]="sensor.type">
           <app-graph-single-line *ngSwitchCase="CHART_TYPE.HEART_RATE"
-            [sensor]="sensor" [subjectId]="subjectId" [gradient]="true"></app-graph-single-line>
+            [time]="time" [sensor]="sensor" [subjectId]="subjectId"
+            [gradient]="true"></app-graph-single-line>
           <app-graph-multi-line *ngSwitchCase="CHART_TYPE.ACCELEROMETER"
-            [sensor]="sensor" [subjectId]="subjectId"></app-graph-multi-line>
+            [time]="time" [sensor]="sensor" [subjectId]="subjectId"></app-graph-multi-line>
           <app-graph-single-line *ngSwitchCase="CHART_TYPE.BATTERY"
-            [sensor]="sensor" [subjectId]="subjectId" [timeHoles]="false"></app-graph-single-line>
+            [time]="time" [sensor]="sensor" [subjectId]="subjectId"
+            [timeHoles]="false"></app-graph-single-line>
           <app-graph-single-line *ngSwitchCase="CHART_TYPE.BLOOD_VOLUME_PULSE"
-            [sensor]="sensor" [subjectId]="subjectId"></app-graph-single-line>
+            [time]="time" [sensor]="sensor" [subjectId]="subjectId"></app-graph-single-line>
           <app-graph-single-line *ngSwitchCase="CHART_TYPE.ELECTRODERMAL_ACTIVITY"
-            [sensor]="sensor" [subjectId]="subjectId"></app-graph-single-line>
+            [time]="time" [sensor]="sensor" [subjectId]="subjectId"></app-graph-single-line>
           <app-graph-single-line *ngSwitchCase="CHART_TYPE.INTER_BEAT_INTERVAL"
-            [sensor]="sensor" [subjectId]="subjectId"></app-graph-single-line>
+            [time]="time" [sensor]="sensor" [subjectId]="subjectId"></app-graph-single-line>
           <app-graph-single-line *ngSwitchCase="CHART_TYPE.THERMOMETER"
-            [sensor]="sensor" [subjectId]="subjectId"></app-graph-single-line>
+            [time]="time" [sensor]="sensor" [subjectId]="subjectId"></app-graph-single-line>
           <p *ngSwitchDefault="" class="font-small">
             {{ sensor.type }} is not associated to any graph!</p>
         </div>
@@ -43,6 +45,7 @@ export class SourceGraphsComponent implements OnInit {
     THERMOMETER: 'THERMOMETER'
   }
 
+  @Input() time
   @Input() sources: Source[]
   @Input() subjectId: string
 

@@ -36,7 +36,8 @@ import { TakeUntilDestroy } from '../../shared/utils/TakeUntilDestroy'
           <app-tile title="Graphs">
             <app-source-graphs
               [sources]="sources$ | async"
-              [subjectId]="subjectId" tile-content></app-source-graphs>
+              [subjectId]="subjectId"
+              [time]="time" tile-content></app-source-graphs>
           </app-tile>
         </md-grid-tile>
       </md-grid-list>
@@ -48,6 +49,7 @@ import { TakeUntilDestroy } from '../../shared/utils/TakeUntilDestroy'
 @TakeUntilDestroy
 export class SubjectPageComponent implements OnInit {
 
+  time = { start: null, end: null }
   studyId: string
   subjectId: string
   sources$: Observable<Source[]>
@@ -66,6 +68,10 @@ export class SubjectPageComponent implements OnInit {
       .subscribe(params => {
         this.studyId = params.studyId
         this.subjectId = params.subjectId
+        this.time.start = +params.startTime || null
+        this.time.end = +params.endTime || null
+
+        console.log(this.time)
       })
 
     // Get sources from server
