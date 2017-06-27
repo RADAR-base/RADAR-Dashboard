@@ -74,7 +74,7 @@
     "protractor": "^5.1.2",
     "sass-mq": "^3.3.2",
     "stylefmt": "^6.0.0",
-    "stylelint": "^7.11.1",
+    "stylelint": "^7.12.0",
     "stylelint-config-standard": "^16.0.0",
     "ts-node": "^3.1.0",
     "tslint": "^5.4.3",
