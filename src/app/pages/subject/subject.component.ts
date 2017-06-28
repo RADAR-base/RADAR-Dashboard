@@ -70,8 +70,6 @@ export class SubjectPageComponent implements OnInit {
         this.subjectId = params.subjectId
         this.time.start = +params.startTime || null
         this.time.end = +params.endTime || null
-
-        console.log(this.time)
       })
 
     // Get sources from server
