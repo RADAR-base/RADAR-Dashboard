@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { Store } from '@ngrx/store'
+import 'rxjs/add/operator/take'
 import { Observable } from 'rxjs/Observable'
 
 import * as fromRoot from './shared/store/'
@@ -29,10 +30,12 @@ export class AppComponent implements OnInit {
     this.store.dispatch(new configAction.Load())
 
     // Wait until load is complete
-    this.isLoadingConfig$ = this.store.select(fromRoot.getConfigLoading)
+    this.isLoadingConfig$ = this.store.select(fromRoot.getConfigIsLoaded)
 
     // Set config to global AppConfig
     this.store.select(fromRoot.getConfigState)
+      .filter(d => d.isLoaded && d.isValid)
+      .take(1)
       .subscribe(config => AppConfig.config = config)
   }
 }
