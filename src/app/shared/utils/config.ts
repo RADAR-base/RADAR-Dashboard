@@ -2,9 +2,9 @@ import { ChartGradientColors, ChartMargin } from '../../components/charts/chart.
 import { Config } from '../store/config/config.model'
 
 export class AppConfig {
-  static time = {}
   static language = 'EN'
   static config: Config
+  static timeFrame = { start: null, end: null }
   static charts: ConfigCharts = {
     MARGIN: {
       top: 16, right: 16, bottom: 32, left: 48
