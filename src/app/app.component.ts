@@ -10,7 +10,7 @@ import { AppConfig } from './shared/utils/config'
 @Component({
   selector: 'app-root',
   template: `
-    <p *ngIf="isLoadingConfig$ | async; else pages">Loading...</p>
+    <p *ngIf="!(isLoadedConfig$ | async); else pages">Loading...</p>
     <ng-template #pages>
       <router-outlet></router-outlet>
     </ng-template>
@@ -19,7 +19,7 @@ import { AppConfig } from './shared/utils/config'
 })
 export class AppComponent implements OnInit {
 
-  isLoadingConfig$: Observable<boolean>
+  isLoadedConfig$: Observable<boolean>
 
   constructor (
     private store: Store<fromRoot.State>
@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
     this.store.dispatch(new configAction.Load())
 
     // Wait until load is complete
-    this.isLoadingConfig$ = this.store.select(fromRoot.getConfigIsLoaded)
+    this.isLoadedConfig$ = this.store.select(fromRoot.getConfigIsLoaded)
 
     // Set config to global AppConfig
     this.store.select(fromRoot.getConfigState)
