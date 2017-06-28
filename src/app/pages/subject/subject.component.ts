@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/Observable'
 import * as fromRoot from '../../shared/store/index'
 import * as sourceAction from '../../shared/store/source/source.actions'
 import { Source } from '../../shared/store/source/source.model'
+import { AppConfig } from '../../shared/utils/config'
 import { TakeUntilDestroy } from '../../shared/utils/TakeUntilDestroy'
 
 @Component({
@@ -66,6 +67,8 @@ export class SubjectPageComponent implements OnInit {
       .subscribe(params => {
         this.studyId = params.studyId
         this.subjectId = params.subjectId
+        AppConfig.timeFrame.start = +params.startTime || null
+        AppConfig.timeFrame.end = +params.endTime || null
       })
 
     // Get sources from server

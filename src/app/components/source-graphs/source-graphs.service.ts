@@ -14,11 +14,18 @@ export class SourceGraphsService {
 
   constructor (private http: Http) {}
 
-  getSingleValueData (type, subject, source, timeHoles = true): Observable<TimeSeries[]> {
+  getSingleValueData (
+    type, subject, source, timeHoles = true
+  ): Observable<TimeSeries[]> {
     const url = this.parseURL(type, subject, source)
 
     return this.http.get(url)
-      .map(res => res.json() || [])
+      .map(res => {
+        return res.status === 200
+          ? res.json() || []
+          : []
+      })
+      .filter(res => !res.length)
       .map(res => timeHoles
         ? this.parseTimeHoles(res)
         : this.parseSingleValueData(res)
@@ -26,11 +33,18 @@ export class SourceGraphsService {
       .catch(ErrorService.handleError)
   }
 
-  getMultiValueData (type, subject, source, keys, timeHoles = true): Observable<MultiTimeSeries> {
+  getMultiValueData (
+    type, subject, source, keys, timeHoles = true
+  ): Observable<MultiTimeSeries> {
     const url = this.parseURL(type, subject, source)
 
     return this.http.get(url)
-      .map(res => res.json() || [])
+      .map(res => {
+        return res.status === 200
+          ? res.json() || []
+          : []
+      })
+      .filter(res => !res.length)
       .map(res => timeHoles
         ? this.parseMultiValueData(this.parseTimeHoles(res, true), keys, timeHoles)
         : this.parseMultiValueData(res.dataset, keys, timeHoles)
@@ -94,7 +108,11 @@ export class SourceGraphsService {
 
   // TODO: setup 'AVERAGE' & 'TEN_SECOND'
   private parseURL (type, subject, source, stat = 'AVERAGE', interval = 'TEN_SECOND') {
-    return `${this.URL}/${type}/${stat}/${interval}/${subject}/${source}`
+    const url = `${this.URL}/${type}/${stat}/${interval}/${subject}/${source}`
+
+    return AppConfig.timeFrame && AppConfig.timeFrame.start && AppConfig.timeFrame.end
+      ? `${url}/${AppConfig.timeFrame.start}/${AppConfig.timeFrame.end}`
+      : url
   }
 
 }

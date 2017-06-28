@@ -2,11 +2,13 @@ import * as config from './config.actions'
 import { Config } from './config.model'
 
 export interface State extends Config {
-  loading?: boolean
+  isLoaded?: boolean
+  isValid?: boolean
 }
 
 const initialState: State = {
-  loading: false,
+  isLoaded: false,
+  isValid: false,
   stats: {},
   sensors: {},
   timeIntervals: {},
@@ -19,13 +21,19 @@ export function reducer (state = initialState, action: config.Actions): State {
 
     case config.LOAD: {
       return Object.assign({}, state, {
-        loading: true
+        isLoaded: false
       })
     }
 
     case config.LOAD_SUCCESS: {
-      return Object.assign({}, action.payload, {
-        loading: false
+      const payload: Config = action.payload
+      const isValid = !!payload.sensors
+        && !!payload.specs && !!payload.timeIntervals
+        && !!payload.stats && !!payload.units
+
+      return Object.assign({}, payload, {
+        isLoaded: true,
+        isValid
       })
     }
 
@@ -34,4 +42,4 @@ export function reducer (state = initialState, action: config.Actions): State {
   }
 }
 
-export const getLoading = (state: State) => state.loading
+export const getIsLoaded = (state: State) => state.isLoaded

@@ -39,7 +39,7 @@ export function reducer (state: any, action: any) {
 
 // Config Selectors
 export const getConfigState = (state: State) => state.config
-export const getConfigLoading = createSelector(getConfigState, fromConfig.getLoading)
+export const getConfigIsLoaded = createSelector(getConfigState, fromConfig.getIsLoaded)
 
 // Study Selectors
 export const getStudyState = (state: State) => state.study
