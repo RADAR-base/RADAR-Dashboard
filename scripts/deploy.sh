@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BRANCH=$1
+BRANCH=$0
 
 if [${BRANCH} == "master"]; then
   # build project without base-href
