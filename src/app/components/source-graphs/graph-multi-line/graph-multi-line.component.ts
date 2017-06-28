@@ -30,7 +30,6 @@ export class GraphMultiLineComponent extends GraphBaseComponent {
       this.subjectId,
       this.sensor.source,
       AppConfig.config.sensors[this.sensor.type].keys,
-      this.time,
       this.timeHoles
     )
   }

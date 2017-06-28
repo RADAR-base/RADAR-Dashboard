@@ -15,10 +15,10 @@ export class SourceGraphsService {
   constructor (private http: Http) {}
 
   getSingleValueData (
-    type, subject, source, time, timeHoles = true
+    type, subject, source, timeHoles = true
   ): Observable<TimeSeries[]> {
-    const url = this.parseURL(type, subject, source, time)
-    // console.log(url, time)
+    const url = this.parseURL(type, subject, source)
+
     return this.http.get(url)
       .map(res => {
         return res.status === 200
@@ -26,7 +26,6 @@ export class SourceGraphsService {
           : []
       })
       .filter(res => !res.length)
-      .do(console.log)
       .map(res => timeHoles
         ? this.parseTimeHoles(res)
         : this.parseSingleValueData(res)
@@ -35,10 +34,10 @@ export class SourceGraphsService {
   }
 
   getMultiValueData (
-    type, subject, source, keys, time, timeHoles = true
+    type, subject, source, keys, timeHoles = true
   ): Observable<MultiTimeSeries> {
-    const url = this.parseURL(type, subject, source, time)
-    // console.log(url, time)
+    const url = this.parseURL(type, subject, source)
+
     return this.http.get(url)
       .map(res => {
         return res.status === 200
@@ -46,7 +45,6 @@ export class SourceGraphsService {
           : []
       })
       .filter(res => !res.length)
-      .do(console.log)
       .map(res => timeHoles
         ? this.parseMultiValueData(this.parseTimeHoles(res, true), keys, timeHoles)
         : this.parseMultiValueData(res.dataset, keys, timeHoles)
@@ -109,10 +107,12 @@ export class SourceGraphsService {
   }
 
   // TODO: setup 'AVERAGE' & 'TEN_SECOND'
-  private parseURL (type, subject, source, time, stat = 'AVERAGE', interval = 'TEN_SECOND') {
-    return time && time.start && time.end
-      ? `${this.URL}/${type}/${stat}/${interval}/${subject}/${source}/${time.start}/${time.end}`
-      : `${this.URL}/${type}/${stat}/${interval}/${subject}/${source}`
+  private parseURL (type, subject, source, stat = 'AVERAGE', interval = 'TEN_SECOND') {
+    const url = `${this.URL}/${type}/${stat}/${interval}/${subject}/${source}`
+
+    return AppConfig.timeFrame && AppConfig.timeFrame.start && AppConfig.timeFrame.end
+      ? `${url}/${AppConfig.timeFrame.start}/${AppConfig.timeFrame.end}`
+      : url
   }
 
 }
