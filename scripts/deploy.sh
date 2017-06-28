@@ -2,7 +2,7 @@
 
 BRANCH=$1
 
-if [${BRANCH} == "master"]; then
+if [[ ${BRANCH} == "master" ]]; then
   # build project without base-href
   npm run build
 
