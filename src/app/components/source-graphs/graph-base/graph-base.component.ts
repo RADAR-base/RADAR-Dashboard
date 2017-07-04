@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { ChangeDetectorRef, Component, Input } from '@angular/core'
 
 import { Sensor } from '../../../shared/store/sensors/sensors.model'
 import { AppConfig } from '../../../shared/utils/config'
@@ -29,7 +29,8 @@ export class GraphBaseComponent {
   }
 
   constructor (
-    public service: SourceGraphsService
+    public service: SourceGraphsService,
+    public changeDetectorRef: ChangeDetectorRef
   ) {}
 
   getData () {
