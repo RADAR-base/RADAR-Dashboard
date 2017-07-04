@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
 import 'rxjs/add/operator/publishReplay'
@@ -6,6 +6,7 @@ import 'rxjs/add/operator/takeUntil'
 import { Observable } from 'rxjs/Observable'
 
 import * as fromRoot from '../../shared/store/index'
+import * as sensorsAction from '../../shared/store/sensors/sensors.actions'
 import * as sourceAction from '../../shared/store/source/source.actions'
 import { Source } from '../../shared/store/source/source.model'
 import { AppConfig } from '../../shared/utils/config'
@@ -47,7 +48,7 @@ import { TakeUntilDestroy } from '../../shared/utils/TakeUntilDestroy'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 @TakeUntilDestroy
-export class SubjectPageComponent implements OnInit {
+export class SubjectPageComponent implements OnInit, OnDestroy {
 
   studyId: string
   subjectId: string
@@ -76,6 +77,10 @@ export class SubjectPageComponent implements OnInit {
     this.sourceIsLoaded$ = this.store.select(fromRoot.getSourceIsLoaded)
     this.sources$ = this.store.select(fromRoot.getSourceAllWithSensors)
       .publishReplay().refCount()
+  }
+
+  ngOnDestroy () {
+    this.store.dispatch(new sensorsAction.Destroy())
   }
 
 }
