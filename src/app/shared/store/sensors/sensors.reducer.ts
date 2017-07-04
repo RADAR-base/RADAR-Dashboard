@@ -58,6 +58,15 @@ export function reducer (state = initialState, action: sensors.Actions): State {
       }
     }
 
+    case sensors.DESTROY: {
+      return {
+        ids: [],
+        entities: {},
+        visible: [],
+        isLoaded: false
+      }
+    }
+
     default:
       return state
   }
