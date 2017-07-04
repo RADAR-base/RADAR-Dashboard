@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
-import { Observable } from 'rxjs/Observable'
+import { Component, Input } from '@angular/core'
 
 import { TimeSeries } from '../../../shared/models/time-series.model'
 import { GraphBaseComponent } from '../graph-base/graph-base.component'
@@ -8,29 +7,41 @@ import { GraphBaseComponent } from '../graph-base/graph-base.component'
   selector: 'app-graph-single-line',
   template: `
     <p class="font-small">{{ sensor?.label[language] }}</p>
-    <app-chart-base-line
-      [chartData]="data$ | async"
+    <div class="loading" *ngIf="!isLoaded">
+      <p>Loading...</p>
+    </div>
+    <app-chart-base-line *ngIf="data && isLoaded"
+      [chartData]="data"
       [gradientEnabled]="gradient"></app-chart-base-line>
+    <div class="nodata" *ngIf="!(data) && isLoaded">
+      <p>No data found for this timeframe.</p>
+    </div>
   `,
-  styleUrls: ['./graph-single-line.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./graph-single-line.component.scss']
 })
 export class GraphSingleLineComponent extends GraphBaseComponent {
 
   sensor
   language
 
-  data$: Observable<TimeSeries[]>
+  data: TimeSeries[]
+  isLoaded = false
 
   @Input() gradient = false
 
   getData () {
-    this.data$ = this.service.getSingleValueData(
+    this.service.getSingleValueData(
       this.sensor.type,
       this.subjectId,
       this.sensor.source,
       this.timeHoles
     )
+      .subscribe(d => {
+        this.data = d
+        this.isLoaded = true
+
+        this.changeDetectorRef.markForCheck()
+      })
   }
 
 }
