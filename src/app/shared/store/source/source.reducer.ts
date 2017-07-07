@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
 
-import * as source from './source.actions'
+import * as sourceActions from './source.actions'
 import { Source } from './source.model'
 
 export interface State {
@@ -15,17 +15,17 @@ const initialState: State = {
   isLoaded: false
 }
 
-export function reducer (state = initialState, action: source.Actions): State {
+export function reducer (state = initialState, action: sourceActions.Actions): State {
   switch (action.type) {
 
-    case source.GET_ALL: {
+    case sourceActions.GET_ALL: {
       return {
         ...state,
         isLoaded: false
       }
     }
 
-    case source.GET_ALL_SUCCESS: {
+    case sourceActions.GET_ALL_SUCCESS: {
       const payload = action.payload
       const ids = payload.map(source => source.id)
       const entities = payload.reduce((acc, source) => {

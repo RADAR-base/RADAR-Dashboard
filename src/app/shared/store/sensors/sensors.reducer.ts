@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect'
 import * as uuid from 'uuid/v4'
 
-import * as sensors from './sensors.actions'
+import * as sensorsActions from './sensors.actions'
 import { Sensor } from './sensors.model'
 
 export interface State {
@@ -18,17 +18,17 @@ const initialState: State = {
   isLoaded: false
 }
 
-export function reducer (state = initialState, action: sensors.Actions): State {
+export function reducer (state = initialState, action: sensorsActions.Actions): State {
   switch (action.type) {
 
-    case sensors.GET_ALL: {
+    case sensorsActions.GET_ALL: {
       return {
         ...state,
         isLoaded: false
       }
     }
 
-    case sensors.GET_ALL_SUCCESS: {
+    case sensorsActions.GET_ALL_SUCCESS: {
       const payload = action.payload
       const ids = []
       const sensors = payload.map(source =>
@@ -58,7 +58,7 @@ export function reducer (state = initialState, action: sensors.Actions): State {
       }
     }
 
-    case sensors.DESTROY: {
+    case sensorsActions.DESTROY: {
       return {
         ids: [],
         entities: {},

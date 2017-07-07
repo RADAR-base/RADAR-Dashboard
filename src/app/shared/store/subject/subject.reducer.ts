@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
 
-import * as subject from './subject.actions'
+import * as subjectActions from './subject.actions'
 import { Subject } from './subject.model'
 
 export interface State {
@@ -17,16 +17,16 @@ const initialState: State = {
   isLoaded: false
 }
 
-export function reducer (state = initialState, action: subject.Actions): State {
+export function reducer (state = initialState, action: subjectActions.Actions): State {
   switch (action.type) {
 
-    case subject.GET_ALL: {
+    case subjectActions.GET_ALL: {
       return Object.assign({}, state, {
         isLoaded: false
       })
     }
 
-    case subject.GET_ALL_SUCCESS: {
+    case subjectActions.GET_ALL_SUCCESS: {
       const payload = action.payload
       const ids = payload.map(subject => subject.subjectId)
       const entities = payload.reduce((acc, subject) => {

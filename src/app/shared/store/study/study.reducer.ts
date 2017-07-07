@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect'
-import * as study from './study.actions'
+
+import * as studyActions from './study.actions'
 import { Study } from './study.model'
 
 export interface State {
@@ -16,17 +17,17 @@ const initialState: State = {
   isLoaded: false
 }
 
-export function reducer (state = initialState, action: study.Actions): State {
+export function reducer (state = initialState, action: studyActions.Actions): State {
   switch (action.type) {
 
-    case study.GET_ALL:
-    case study.GET_BY_ID: {
+    case studyActions.GET_ALL:
+    case studyActions.GET_BY_ID: {
       return Object.assign({}, state, {
         isLoaded: false
       })
     }
 
-    case study.GET_ALL_SUCCESS: {
+    case studyActions.GET_ALL_SUCCESS: {
       const payload = action.payload
       const ids = payload.map(study => study.id)
       const entities = payload.reduce((acc, study) => {
@@ -40,7 +41,7 @@ export function reducer (state = initialState, action: study.Actions): State {
       })
     }
 
-    case study.GET_BY_ID_SUCCESS: {
+    case studyActions.GET_BY_ID_SUCCESS: {
       const payload = action.payload
       let index
       let ids
@@ -70,7 +71,7 @@ export function reducer (state = initialState, action: study.Actions): State {
       })
     }
 
-    case study.SELECT: {
+    case studyActions.SELECT: {
       return Object.assign({}, state, {
         selectedId: action.payload
       })
