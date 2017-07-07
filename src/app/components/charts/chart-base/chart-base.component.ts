@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, Input, OnDestroy, ViewChild } from '@angular/core'
 import * as d3 from 'd3'
+import 'rxjs/add/observable/fromEvent'
 import 'rxjs/add/operator/debounceTime'
 import { Observable } from 'rxjs/Observable'
 import { Subscription } from 'rxjs/Subscription'
