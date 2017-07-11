@@ -1,10 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
-import '@ngrx/core/add/operator/select'
 import { Store } from '@ngrx/store'
-import 'rxjs/add/operator/publishReplay'
-import 'rxjs/add/operator/share'
-import 'rxjs/add/operator/takeUntil'
 import { Observable } from 'rxjs/Observable'
 
 import * as fromRoot from '../../shared/store/index'

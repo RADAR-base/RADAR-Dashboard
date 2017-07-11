@@ -22,14 +22,18 @@ export class SourceGraphsService {
     return this.http.get(url)
       .map(res => {
         return res.status === 200
-          ? res.json() || []
-          : []
+          ? res.json() || null
+          : null
       })
-      .filter(res => !res.length)
-      .map(res => timeHoles
-        ? this.parseTimeHoles(res)
-        : this.parseSingleValueData(res)
-      )
+      .map(res => {
+        if (res) {
+          return timeHoles
+            ? this.parseTimeHoles(res)
+            : this.parseSingleValueData(res)
+        } else {
+          return null
+        }
+      })
       .catch(ErrorService.handleError)
   }
 
@@ -41,14 +45,18 @@ export class SourceGraphsService {
     return this.http.get(url)
       .map(res => {
         return res.status === 200
-          ? res.json() || []
-          : []
+          ? res.json() || null
+          : null
       })
-      .filter(res => !res.length)
-      .map(res => timeHoles
-        ? this.parseMultiValueData(this.parseTimeHoles(res, true), keys, timeHoles)
-        : this.parseMultiValueData(res.dataset, keys, timeHoles)
-      )
+      .map(res => {
+        if (res) {
+          return timeHoles
+            ? this.parseMultiValueData(this.parseTimeHoles(res, true), keys, timeHoles)
+            : this.parseMultiValueData(res.dataset, keys, timeHoles)
+        } else {
+          return null
+        }
+      })
       .catch(ErrorService.handleError)
   }
 

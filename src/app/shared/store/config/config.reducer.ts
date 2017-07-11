@@ -1,4 +1,4 @@
-import * as config from './config.actions'
+import * as configActions from './config.actions'
 import { Config } from './config.model'
 
 export interface State extends Config {
@@ -16,16 +16,16 @@ const initialState: State = {
   specs: []
 }
 
-export function reducer (state = initialState, action: config.Actions): State {
+export function reducer (state = initialState, action: configActions.Actions): State {
   switch (action.type) {
 
-    case config.LOAD: {
+    case configActions.LOAD: {
       return Object.assign({}, state, {
         isLoaded: false
       })
     }
 
-    case config.LOAD_SUCCESS: {
+    case configActions.LOAD_SUCCESS: {
       const payload: Config = action.payload
       const isValid = !!payload.sensors
         && !!payload.specs && !!payload.timeIntervals
