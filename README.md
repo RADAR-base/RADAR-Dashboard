@@ -9,7 +9,7 @@ Install [Node.js](https://nodejs.org/) and [NPM](https://www.npmjs.com/).
 
 We use [angular-cli](https://github.com/angular/angular-cli) so you can use all of it's commands, like the generator. Please read its documentation for further information.
 
-If you and want to use angular-cli's commands globally install it:
+If want to use angular-cli's commands you need to install it globally:
 ```
 $ npm i -g @angular/cli
 ```
@@ -54,7 +54,7 @@ Run docker image locally:
 $ docker run -d -p 3030:80 --name radar-dashboard radarcns/radar-dashboard:latest
 ```
 
-The dashboard will be running at http://localhost:3030
+The dashboard will be running at `http://localhost:3030`
 
 ### Docker environment parameters
 
@@ -62,15 +62,15 @@ The environment parameters are set in `docker run` so they can be overridden by 
 
 ```bash
 # to change the URI of the API
-API_URI='http://radar-restapi.eu-west-1.elasticbeanstalk.com/api'
+API_URI='https://radar-cns.ddns.net/api'
 ```
 
 The parameters are replaced in `index.html` and are global to the application.
 ```html
 <script>
   const PARAMS = {
-    API_URI: 'http://radar-restapi.eu-west-1.elasticbeanstalk.com/api'
-  };
+    API_URI: 'https://radar-cns.ddns.net/api'
+  }
 </script>
 ```
 
