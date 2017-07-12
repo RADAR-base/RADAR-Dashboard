@@ -60,18 +60,14 @@ The dashboard will be running at `http://localhost:3030`
 
 The environment parameters are set in `docker run` so they can be overridden by `docker-compose`. More information in [https://docs.docker.com](https://docs.docker.com/compose/environment-variables/#/setting-environment-variables-in-containers).
 
+Change `BASE_HREF` if the application is running under a subfolder, e.g., `https://radar-cns.org/dashboard`
 ```bash
-# to change the URI of the API
-API_URI='https://radar-cns.ddns.net/api'
+BASE_HREF='/dashboard/'
 ```
 
-The parameters are replaced in `index.html` and are global to the application.
-```html
-<script>
-  const PARAMS = {
-    API_URI: 'https://radar-cns.ddns.net/api'
-  }
-</script>
+Change `API_URI` to set the API endpoint of the application
+```bash
+API_URI='https://radar-cns.ddns.net/api'
 ```
 
 ## Supporting Partners
