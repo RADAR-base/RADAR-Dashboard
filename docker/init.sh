@@ -8,7 +8,7 @@ echo '==' && echo "==> Enviroment variables"
     API_URI=${API_URI:-'https://radar-cns.ddns.net/api'}
     echo API_URI=${API_URI}
 
-    BASE_HREF=${BASE_HREF:-'/dashboard/'}
+    BASE_HREF=${BASE_HREF:-'/'}
     echo BASE_HREF=${BASE_HREF}
 
 echo '==' && echo "==> Replace API_URI & BASE_HREF"
