@@ -17,10 +17,6 @@ module.exports = function (config) {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     files: [
-      {
-        pattern: './src/test.ts',
-        watched: false
-      },
       // Include a Material theme in the test suite.
       // NOTE: Not a final solution as it should use the global styles in main.scss instead
       // https://github.com/angular/material2/issues/4056
@@ -30,11 +26,8 @@ module.exports = function (config) {
         watched: true
       }
     ],
-    preprocessors: {
-      './src/test.ts': ['@angular/cli']
-    },
-    mime: {
-      'text/x-typescript': ['ts', 'tsx']
+    angularCli: {
+      environment: 'dev'
     },
     coverageIstanbulReporter: {
       reports: ['html', 'lcovonly'],
@@ -44,11 +37,7 @@ module.exports = function (config) {
       config: './.angular-cli.json',
       environment: 'dev'
     },
-    reporters: (
-      config.angularCli && config.angularCli.codeCoverage
-        ? ['progress', 'coverage-istanbul']
-        : ['progress', 'kjhtml']
-    ),
+    reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
