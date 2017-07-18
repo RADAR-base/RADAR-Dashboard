@@ -2,7 +2,7 @@
 // https://github.com/angular/protractor/blob/master/lib/config.ts
 
 /* global jasmine */
-const { SpecReporter } = require('jasmine-spec-reporter')
+const {SpecReporter} = require('jasmine-spec-reporter')
 
 // TODO: use browserstack when we have a proper e2e test setup
 exports.config = {
@@ -19,14 +19,14 @@ exports.config = {
     defaultTimeoutInterval: 30000,
     print: function () {}
   },
-  beforeLaunch: function () {
+  onPrepare () {
     require('ts-node').register({
       project: 'e2e/tsconfig.e2e.json'
     })
-  },
-  onPrepare () {
     jasmine
       .getEnv()
-      .addReporter(new SpecReporter({ spec: { displayStacktrace: true } }))
+      .addReporter(new SpecReporter(
+        {spec: {displayStacktrace: true}}
+      ))
   }
 }
