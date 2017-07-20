@@ -7,9 +7,9 @@
 }
 
 .table-container md-table {
-  width: 100%;
   float: left;
   clear: none;
+  width: 100%;
 }
 
 .mat-table {
@@ -34,5 +34,6 @@ md-row:hover {
 
 md-paginator {
   @include font-body();
+
   background-color: $cl-base-20;
 }
