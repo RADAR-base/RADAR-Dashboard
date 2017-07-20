@@ -1,9 +1,15 @@
 @import '../../../../styles/common';
 
 .table-container {
-  display: flex;
-  flex-direction: column;
-  width: 152%;
+  float: left;
+  clear: none;
+  overflow: hidden;
+}
+
+.table-container md-table {
+  width: 100%;
+  float: left;
+  clear: none;
 }
 
 .mat-table {
@@ -27,5 +33,6 @@ md-row:hover {
 }
 
 md-paginator {
+  @include font-body();
   background-color: $cl-base-20;
 }
