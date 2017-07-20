@@ -35,7 +35,10 @@ $ npm run fix:css
 ```
 
 ## Contributing
-[Read CONTRIBUTING.md](https://github.com/RADAR-CNS/RADAR-Dashboard/blob/master/CONTRIBUTING.md)
+[Read /docs/CONTRIBUTING.md](https://github.com/RADAR-CNS/RADAR-Dashboard/blob/master/docs/CONTRIBUTING.md)
+
+## Code of Conduct
+[Read /docs/CODE_OF_CONDUCT.md](https://github.com/RADAR-CNS/RADAR-Dashboard/blob/master/docs/CODE_OF_CONDUCT.md)
 
 ## Docker
 
