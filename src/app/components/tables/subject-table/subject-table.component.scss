@@ -1,0 +1,37 @@
+@import '../../../../styles/common';
+
+.table-container {
+  clear: none;
+  overflow: hidden;
+}
+
+.table-container md-table {
+  clear: none;
+  width: 100%;
+}
+
+.mat-table {
+  overflow: auto;
+  width: 100%;
+  background-color: $cl-base-10;
+}
+
+md-header-row {
+  border-color: $cl-base-20;
+  background-color: $cl-base-10;
+}
+
+md-row {
+  overflow-y: scroll;
+  border-color: $cl-base-20;
+}
+
+md-row:hover {
+  background-color: $cl-base-20;
+}
+
+md-paginator {
+  @include font-body();
+
+  background-color: $cl-base-20;
+}

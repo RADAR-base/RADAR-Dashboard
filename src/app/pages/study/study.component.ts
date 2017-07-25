@@ -11,35 +11,7 @@ import { TakeUntilDestroy } from '../../shared/utils/TakeUntilDestroy'
 
 @Component({
   selector: 'app-study-page',
-  template: `
-    <app-toolbar>
-      <div start>
-        <button [routerLink]="['/']" md-icon-button>
-          <i class="material-icons">arrow_back</i>
-        </button>
-        <div class="title">Study {{studyId}}</div>
-      </div>
-      <div end>
-        <button md-icon-button><i class="material-icons">more_vert</i></button>
-      </div>
-    </app-toolbar>
-    <div class="content">
-      <p *ngIf="!(isLoaded$ | async)">Loading...</p>
-      <ng-container *ngIf="isStudyLoadedAndValid$ && isLoaded$ | async">
-        <p *ngFor="let subject of (subjects$ | async)">
-          <button [routerLink]="['subject', subject.subjectId]" md-raised-button>
-            ID: {{ subject.subjectId }} | Active: {{ subject.active }}
-          </button>
-        </p>
-      </ng-container>
-      <div *ngIf="!(isStudyLoadedAndValid$ | async) && (isLoaded$ | async)">
-        <p>Study "{{studyId}}" not found.</p>
-        <p>
-          <button [routerLink]="['/']">Go to the overview page</button>
-        </p>
-      </div>
-    </div>
-  `,
+  templateUrl: './study.component.html',
   styleUrls: ['./study.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -59,6 +31,7 @@ export class StudyPageComponent implements OnInit {
   ) {}
 
   ngOnInit () {
+
     // Get `studyId` from route and then get Study by `studyId`
     this.route.params
       .takeUntil(this.takeUntilDestroy())
