@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core'
 import { MdTableModule, MdPaginatorModule } from '@angular/material'
 import { CdkTableModule } from '@angular/cdk'
 
-import { PatientTableComponent } from './patient-table.component'
+import { SubjectTableComponent } from './subject-table.component'
 
 @NgModule({
   imports: [
@@ -12,7 +12,7 @@ import { PatientTableComponent } from './patient-table.component'
     MdTableModule,
     MdPaginatorModule
   ],
-  declarations: [PatientTableComponent],
-  exports: [PatientTableComponent]
+  declarations: [SubjectTableComponent],
+  exports: [SubjectTableComponent]
 })
-export class PatientTableModule {}
+export class SubjectTableModule {}
