@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core'
 import { HttpModule } from '@angular/http'
 import { MdGridListModule } from '@angular/material'
 import { RouterModule } from '@angular/router'
-import { PatientTableModule } from '../../components/tables/patient-table/patient-table.module'
+import { SubjectTableModule } from '../../components/tables/subject-table/subject-table.module'
 
 import { TileModule } from '../../components/tile/tile.module'
 import { ToolbarModule } from '../../components/toolbar/toolbar.module'
@@ -21,7 +21,7 @@ import { SourceService } from '../../shared/store/source/source.service'
     TileModule,
     ToolbarModule,
     MdGridListModule,
-    PatientTableModule
+    SubjectTableModule
   ],
   declarations: [
     StudyPageComponent
