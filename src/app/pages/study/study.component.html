@@ -12,11 +12,6 @@
     <div class="content">
     <p *ngIf="!(isLoaded$ | async)">Loading...</p>
       <ng-container *ngIf="isStudyLoadedAndValid$ && isLoaded$ | async">
-        <!--<p *ngFor="let subject of (subjects$ | async)">
-          <button [routerLink]="['subject', subject.subjectId]" md-raised-button>
-            ID: {{ subject.subjectId }} | Active: {{ subject.active }}
-          </button>
-        </p>-->
       <md-grid-list cols="6">
         <md-grid-tile colspan="2" rowspan="1">
           <app-tile title="SCORES">
@@ -25,7 +20,7 @@
         <md-grid-tile colspan="4" rowspan="2">
           <app-tile title="Patients"> 
             <div tile-content>
-              <app-patient-table [subjects]="subjects$"></app-patient-table>
+              <app-subject-table [subjects]="subjects$"></app-subject-table>
             </div>
           </app-tile>
         </md-grid-tile>
