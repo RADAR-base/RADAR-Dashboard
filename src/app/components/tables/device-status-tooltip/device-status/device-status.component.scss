@@ -1,0 +1,35 @@
+@import '../../../../../styles/common';
+
+@mixin circle($size: 50px, $background-color: null) {
+  @if type-of($background-color) == 'color' {
+    background-color: $background-color;
+  }
+
+  width: $size;
+  height: $size;
+  border-radius: round($size/2);
+}
+
+.connected {
+  @include circle(11px);
+
+  display: inline-block;
+  margin-right: 4px;
+  margin-bottom: -2px;
+  background-color: #73e686;
+}
+
+.disconnected {
+  @include circle(11px);
+
+  display: inline-block;
+  margin-right: 4px;
+  margin-bottom: -2px;
+  background-color: #ff8;
+}
+
+td {
+  padding: 5px;
+  padding-right: 15px;
+  border-bottom: 1px solid $cl-base;
+}

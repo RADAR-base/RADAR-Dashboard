@@ -9,6 +9,7 @@ import * as fromSensors from './sensors/sensors.reducer'
 import * as fromSource from './source/source.reducer'
 import * as fromStudy from './study/study.reducer'
 import * as fromSubject from './subject/subject.reducer'
+import * as fromSubjectTable from './subject-table/subject-table.reducer'
 
 export interface State {
   config: fromConfig.State
@@ -16,6 +17,7 @@ export interface State {
   source: fromSource.State
   study: fromStudy.State
   subject: fromSubject.State
+  subjecttable: fromSubjectTable.State
 }
 
 const reducers = {
@@ -23,7 +25,8 @@ const reducers = {
   sensors: fromSensors.reducer,
   source: fromSource.reducer,
   study: fromStudy.reducer,
-  subject: fromSubject.reducer
+  subject: fromSubject.reducer,
+  subjecttable: fromSubjectTable.reducer
 }
 
 const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers)
@@ -84,3 +87,7 @@ export const getSourceAllWithSensors = createSelector(
       })
     }
   })
+
+// Subject Table Selectors
+export const getSubjectTableState = (state: State) => state.subjecttable
+export const getSubjectTableAll = createSelector(getSubjectTableState, fromSubjectTable.getAll)

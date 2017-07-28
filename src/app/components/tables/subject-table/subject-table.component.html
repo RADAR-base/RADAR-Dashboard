@@ -16,20 +16,20 @@
     <!-- Effective Time Frame Start Column -->
     <ng-container cdkColumnDef="startdate">
       <md-header-cell *cdkHeaderCellDef> Start Date Time </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{ row.effectiveTimeFrame.endDateTime | date: 'medium' }} </md-cell>
+      <md-cell *cdkCellDef="let row"> {{ row.effectiveTimeFrame.endDateTime | date: 'short' }} </md-cell>
     </ng-container>
 
     <!-- Effective Time Frame End Column -->
     <ng-container cdkColumnDef="enddate">
       <md-header-cell *cdkHeaderCellDef> End Date Time </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{ row.effectiveTimeFrame.startDateTime | date: 'medium' }} </md-cell>
+      <md-cell *cdkCellDef="let row"> {{ row.effectiveTimeFrame.startDateTime | date: 'short' }} </md-cell>
     </ng-container>
 
     <!-- Sources Column -->
     <ng-container cdkColumnDef="sources">
       <md-header-cell *cdkHeaderCellDef> Sources </md-header-cell>s
       <md-cell *cdkCellDef="let row">
-        <p *ngFor="let source of row.sources">{{ source.type }}</p>
+        <app-device-status-tooltip [subjectId]="row.subjectId" [sources]="row.sources"></app-device-status-tooltip>  
       </md-cell>
     </ng-container>
 

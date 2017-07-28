@@ -1,0 +1,12 @@
+@import '../../../../styles/common';
+
+table {
+  @include font-small;
+
+  margin-top: 20px;
+  margin-left: -80px;
+  padding: 2px;
+  border-radius: 3px;
+  background-color: $cl-base-80;
+  color: $cl-font-light;
+}
