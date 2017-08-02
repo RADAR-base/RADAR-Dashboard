@@ -4,13 +4,15 @@ import { MdTableModule, MdPaginatorModule } from '@angular/material'
 import { CdkTableModule } from '@angular/cdk'
 
 import { SubjectTableComponent } from './subject-table.component'
+import { CompliancePlotTableModule } from '../../compliance-plot-table/compliance-plot-table.module'
 
 @NgModule({
   imports: [
     CommonModule,
     CdkTableModule,
     MdTableModule,
-    MdPaginatorModule
+    MdPaginatorModule,
+    CompliancePlotTableModule
   ],
   declarations: [SubjectTableComponent],
   exports: [SubjectTableComponent]

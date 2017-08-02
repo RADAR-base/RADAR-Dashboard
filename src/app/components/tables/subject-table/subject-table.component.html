@@ -15,14 +15,14 @@
   <!-- Effective Time Frame Start Column -->
   <ng-container cdkColumnDef="startdate">
     <md-header-cell *cdkHeaderCellDef>Start Date Time</md-header-cell>
-    <md-cell *cdkCellDef="let row"> {{ row.effectiveTimeFrame.endDateTime | date: 'medium' }}
+    <md-cell *cdkCellDef="let row"> {{ row.effectiveTimeFrame.endDateTime | date: 'short' }}
     </md-cell>
   </ng-container>
 
   <!-- Effective Time Frame End Column -->
   <ng-container cdkColumnDef="enddate">
     <md-header-cell *cdkHeaderCellDef>End Date Time</md-header-cell>
-    <md-cell *cdkCellDef="let row"> {{ row.effectiveTimeFrame.startDateTime | date: 'medium' }}
+    <md-cell *cdkCellDef="let row"> {{ row.effectiveTimeFrame.startDateTime | date: 'short' }}
     </md-cell>
   </ng-container>
 
@@ -31,6 +31,14 @@
     <md-header-cell *cdkHeaderCellDef>Sources</md-header-cell>
     <md-cell *cdkCellDef="let row">
       <span *ngFor="let source of row.sources">{{ source.type }} | </span>
+    </md-cell>
+  </ng-container>
+
+  <!-- Compliance Column -->
+  <ng-container cdkColumnDef="compliance">
+    <md-header-cell *cdkHeaderCellDef>Compliance</md-header-cell>
+    <md-cell *cdkCellDef="let row">
+      <app-compliance-plot-table [subjectId]="row.subjectId"></app-compliance-plot-table>
     </md-cell>
   </ng-container>
 

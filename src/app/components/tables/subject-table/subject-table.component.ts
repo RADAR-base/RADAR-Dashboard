@@ -20,7 +20,7 @@ import { SubjectDB } from './subject-db'
 })
 export class SubjectTableComponent implements OnInit, OnDestroy {
 
-  displayedColumns = ['subjectId', 'active', 'startdate', 'enddate', 'sources']
+  displayedColumns = ['subjectId', 'active', 'startdate', 'enddate', 'sources', 'compliance']
   dataSource: SubjectDataSource | null
   subjectDB = new SubjectDB()
 
