@@ -12,7 +12,7 @@
 <div class="content">
   <p *ngIf="!(isLoaded$ | async)">Loading...</p>
   <ng-container *ngIf="isStudyLoadedAndValid$ && isLoaded$ | async">
-    <md-grid-list cols="6">
+    <md-grid-list cols="6" rowHeight="fit">
       <md-grid-tile colspan="2" rowspan="1">
         <app-tile title="SCORES">
         </app-tile>
