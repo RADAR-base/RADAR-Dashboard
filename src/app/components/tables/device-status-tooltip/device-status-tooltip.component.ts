@@ -11,7 +11,7 @@ import { Component, Input, OnInit } from '@angular/core'
       </tr>
     </table>
   </mde-popover>
-  <p [mdePopoverTriggerFor]="appPopover">Status</p>
+  <span [mdePopoverTriggerFor]="appPopover">Status</span>
   `,
   styleUrls: ['device-status-tooltip.component.scss']
 })
