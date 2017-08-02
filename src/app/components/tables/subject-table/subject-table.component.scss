@@ -1,18 +1,13 @@
 @import '../../../../styles/common';
 
-.table-container {
-  clear: none;
-  overflow: hidden;
-}
-
-.table-container md-table {
-  clear: none;
-  width: 100%;
+:host {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
 }
 
 .mat-table {
-  overflow: auto;
-  width: 100%;
+  flex: 1 1 0;
   background-color: $cl-base-10;
 }
 
@@ -27,6 +22,22 @@ md-row {
 
 md-row:hover {
   background-color: $cl-base-20;
+}
+
+md-header-cell,
+md-cell {
+  flex: 5;
+}
+
+md-cell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mat-column-subjectId,
+.mat-column-active {
+  flex: 3;
 }
 
 md-paginator {

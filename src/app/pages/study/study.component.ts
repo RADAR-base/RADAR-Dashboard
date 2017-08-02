@@ -31,7 +31,6 @@ export class StudyPageComponent implements OnInit {
   ) {}
 
   ngOnInit () {
-
     // Get `studyId` from route and then get Study by `studyId`
     this.route.params
       .takeUntil(this.takeUntilDestroy())

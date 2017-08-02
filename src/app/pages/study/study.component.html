@@ -1,63 +1,63 @@
-    <app-toolbar>
-      <div start>
-        <button [routerLink]="['/']" md-icon-button>
-          <i class="material-icons">arrow_back</i>
-        </button>
-        <div class="title">Study {{studyId}}</div>
-      </div>
-      <div end>
-        <button md-icon-button><i class="material-icons">more_vert</i></button>
-      </div>
-    </app-toolbar>
-    <div class="content">
-    <p *ngIf="!(isLoaded$ | async)">Loading...</p>
-      <ng-container *ngIf="isStudyLoadedAndValid$ && isLoaded$ | async">
-      <md-grid-list cols="6">
-        <md-grid-tile colspan="2" rowspan="1">
-          <app-tile title="SCORES">
-          </app-tile>
-        </md-grid-tile>
-        <md-grid-tile colspan="4" rowspan="2">
-          <app-tile title="Patients"> 
-            <div tile-content>
-              <app-subject-table [subjects]="subjects$"></app-subject-table>
-            </div>
-          </app-tile>
-        </md-grid-tile>
-        <md-grid-tile colspan="1" rowspan="1">
-          <app-tile title="SYSTEM"> 
-          </app-tile>
-        </md-grid-tile>
-        <md-grid-tile colspan="1" rowspan="1">
-          <app-tile title="DEVICES"> 
-          </app-tile>
-        </md-grid-tile>
-        <md-grid-tile colspan="1" rowspan="1">
-          <app-tile title="HOT STORAGE"> 
-          </app-tile>
-        </md-grid-tile>
-        <md-grid-tile colspan="1" rowspan="1">
-          <app-tile title="COLD STORAGE"> 
-          </app-tile>
-        </md-grid-tile>
-        <md-grid-tile colspan="4" rowspan="2">
-          <app-tile title="Compliance"> 
-          </app-tile>
-        </md-grid-tile>
-        <md-grid-tile colspan="1" rowspan="1">
-          <app-tile title="KAFKA TOPICS"> 
-          </app-tile>
-        </md-grid-tile>
-        <md-grid-tile colspan="1" rowspan="1">
-          <app-tile title="QUESTIONS"> 
-          </app-tile>
-        </md-grid-tile> 
-     </md-grid-list>
-    </ng-container> 
-      <div *ngIf="!(isStudyLoadedAndValid$ | async) && (isLoaded$ | async)">
-        <p>Study "{{studyId}}" not found.</p>
-        <p>
-          <button [routerLink]="['/']">Go to the overview page</button>
-        </p>
-      </div>
-    </div>
+<app-toolbar>
+  <div start>
+    <button [routerLink]="['/']" md-icon-button>
+      <i class="material-icons">arrow_back</i>
+    </button>
+    <div class="title">Study {{studyId}}</div>
+  </div>
+  <div end>
+    <button md-icon-button><i class="material-icons">more_vert</i></button>
+  </div>
+</app-toolbar>
+<div class="content">
+  <p *ngIf="!(isLoaded$ | async)">Loading...</p>
+  <ng-container *ngIf="isStudyLoadedAndValid$ && isLoaded$ | async">
+    <md-grid-list cols="6" rowHeight="fit">
+      <md-grid-tile colspan="2" rowspan="1">
+        <app-tile title="SCORES">
+        </app-tile>
+      </md-grid-tile>
+      <md-grid-tile colspan="4" rowspan="2">
+        <app-tile title="Patients">
+          <div tile-content>
+            <app-subject-table [subjects]="subjects$ | async"></app-subject-table>
+          </div>
+        </app-tile>
+      </md-grid-tile>
+      <md-grid-tile colspan="1" rowspan="1">
+        <app-tile title="SYSTEM">
+        </app-tile>
+      </md-grid-tile>
+      <md-grid-tile colspan="1" rowspan="1">
+        <app-tile title="DEVICES">
+        </app-tile>
+      </md-grid-tile>
+      <md-grid-tile colspan="1" rowspan="1">
+        <app-tile title="HOT STORAGE">
+        </app-tile>
+      </md-grid-tile>
+      <md-grid-tile colspan="1" rowspan="1">
+        <app-tile title="COLD STORAGE">
+        </app-tile>
+      </md-grid-tile>
+      <md-grid-tile colspan="4" rowspan="2">
+        <app-tile title="Compliance">
+        </app-tile>
+      </md-grid-tile>
+      <md-grid-tile colspan="1" rowspan="1">
+        <app-tile title="KAFKA TOPICS">
+        </app-tile>
+      </md-grid-tile>
+      <md-grid-tile colspan="1" rowspan="1">
+        <app-tile title="QUESTIONS">
+        </app-tile>
+      </md-grid-tile>
+    </md-grid-list>
+  </ng-container>
+  <div *ngIf="!(isStudyLoadedAndValid$ | async) && (isLoaded$ | async)">
+    <p>Study "{{studyId}}" not found.</p>
+    <p>
+      <button [routerLink]="['/']">Go to the overview page</button>
+    </p>
+  </div>
+</div>
