@@ -2,20 +2,20 @@ import { DebugElement } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 
 import { MockComplianceData } from '../../../shared/testing/mocks/mock-compliance-data'
-import { ChartBaseMultiBarComponent } from './chart-base-multi-bar.component'
+import { ChartBaseMultiBarTableComponent } from './chart-base-multi-bar-table.component'
 
-describe('ChartBaseMultiBarComponent', () => {
-  let component: ChartBaseMultiBarComponent
-  let fixture: ComponentFixture<ChartBaseMultiBarComponent>
+describe('ChartBaseMultiBarTableComponent', () => {
+  let component: ChartBaseMultiBarTableComponent
+  let fixture: ComponentFixture<ChartBaseMultiBarTableComponent>
   let element: HTMLElement
   let de: DebugElement
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ChartBaseMultiBarComponent]
+      declarations: [ChartBaseMultiBarTableComponent]
     })
 
-    fixture = TestBed.createComponent(ChartBaseMultiBarComponent)
+    fixture = TestBed.createComponent(ChartBaseMultiBarTableComponent)
     component = fixture.componentInstance
     element = fixture.nativeElement
     de = fixture.debugElement

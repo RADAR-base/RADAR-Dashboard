@@ -52,5 +52,5 @@ export const MockComplianceData: Compliance[] = [
         compliance: .02167
       }
     ]
-  } 
-];
+  }
+]

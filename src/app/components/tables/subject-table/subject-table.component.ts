@@ -7,7 +7,7 @@ import {
   ViewChild
 } from '@angular/core'
 import { MdPaginator } from '@angular/material'
-import { Router } from '@angular/router' 
+import { Router } from '@angular/router'
 
 import { SubjectDataSource } from './subject-data-source'
 import { SubjectDB } from './subject-db'
