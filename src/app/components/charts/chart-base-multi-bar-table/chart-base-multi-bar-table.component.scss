@@ -1,0 +1,17 @@
+@import '../../../../styles/common';
+@import '../charts.common';
+
+:host /deep/ {
+  .backbar {
+    fill: $cl-lighter;
+    opacity: 0.1;
+  }
+
+  .special {
+    fill: $cl-graph-4;
+  }
+
+  .simple {
+    fill: $cl-graph-3;
+  }
+}

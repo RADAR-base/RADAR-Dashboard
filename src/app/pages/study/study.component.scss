@@ -10,3 +10,48 @@
 button {
   color: $cl-white-80;
 }
+
+.legendtop {
+  @include font-small;
+  background-color: $cl-base-10;
+}
+
+.legendtop td{
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+@mixin circle($size: 50px, $background-color: null) {
+    width: $size;
+    height: $size;
+    border-radius: round($size/2);
+
+    @if type-of($background-color) == 'color' {
+        background-color: $background-color;
+    }
+}
+
+.special {
+    @include circle(11px);
+    background-color: $cl-graph-4;
+    display: inline-block;
+    margin-right: 4px;
+    margin-bottom: -2px;
+}
+
+.simple {
+    @include circle(11px);
+    background-color: $cl-graph-3;
+    display: inline-block;
+    margin-right: 4px;
+    margin-bottom: -2px;
+}
+
+.notanswered {
+    @include circle(11px);
+    background-color: $cl-lighter;
+    opacity: 0.1;
+    display: inline-block;
+    margin-right: 4px;
+    margin-bottom: -2px;
+}

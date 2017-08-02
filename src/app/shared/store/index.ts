@@ -9,6 +9,7 @@ import * as fromSensors from './sensors/sensors.reducer'
 import * as fromSource from './source/source.reducer'
 import * as fromStudy from './study/study.reducer'
 import * as fromSubject from './subject/subject.reducer'
+import * as fromCompliance from './compliance/compliance.reducer'
 
 export interface State {
   config: fromConfig.State
@@ -16,6 +17,7 @@ export interface State {
   source: fromSource.State
   study: fromStudy.State
   subject: fromSubject.State
+  compliance: fromCompliance.State
 }
 
 const reducers = {
@@ -23,7 +25,8 @@ const reducers = {
   sensors: fromSensors.reducer,
   source: fromSource.reducer,
   study: fromStudy.reducer,
-  subject: fromSubject.reducer
+  subject: fromSubject.reducer,
+  compliance: fromCompliance.reducer
 }
 
 const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers)
@@ -84,3 +87,10 @@ export const getSourceAllWithSensors = createSelector(
       })
     }
   })
+
+// Compliance Selectors
+export const getComplianceState = (state: State) => state.compliance
+export const getComplianceAll = createSelector(getComplianceState, fromCompliance.getAll)
+export const getComplianceIsLoaded = createSelector(getComplianceState, fromCompliance.getIsLoaded)
+export const getComplianceIsLoadedAndValid = createSelector(getComplianceState, fromCompliance.getIsLoadedAndValid)
+export const getComplianceSelected = createSelector(getComplianceState, fromCompliance.getSelected)

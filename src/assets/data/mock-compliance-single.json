@@ -1,0 +1,14 @@
+{ "dataset": [
+  {
+    "date": "2 Jan",
+    "compliances": [
+      { "type": "Simple",
+        "compliance": ".55167"
+      },
+      { "type": "Special",
+        "compliance": ".28167"
+      }
+    ]
+  }
+]
+}

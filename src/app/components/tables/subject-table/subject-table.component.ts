@@ -7,6 +7,7 @@ import {
   ViewChild
 } from '@angular/core'
 import { MdPaginator } from '@angular/material'
+import { Router } from '@angular/router' 
 
 import { SubjectDataSource } from './subject-data-source'
 import { SubjectDB } from './subject-db'
@@ -25,10 +26,13 @@ export class SubjectTableComponent implements OnInit, OnDestroy {
 
   @ViewChild(MdPaginator) paginator: MdPaginator
 
+  @Input() studyId
   @Input()
   set subjects (value) {
     this.subjectDB.data = value
   }
+
+  constructor (private router: Router) {}
 
   ngOnInit () {
     this.dataSource = new SubjectDataSource(this.subjectDB, this.paginator)

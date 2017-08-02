@@ -1,0 +1,311 @@
+{ "dataset": [
+  {
+    "date": "2 Jan",
+    "compliances": [
+      { "type": "Simple",
+        "compliance": ".15167"
+      },
+      { "type": "Special",
+        "compliance": ".28167"
+      }
+    ]
+  },
+  {
+    "date": "9 Jan",
+    "compliances": [
+      { "type": "Simple",
+        "compliance": ".23167"
+      },
+      { "type": "Special",
+        "compliance": ".1167"
+      }
+    ]
+  },
+  {
+    "date": "16 Jan",
+    "compliances": [
+      { "type": "Simple",
+        "compliance": ".31167"
+      },
+      { "type": "Special",
+        "compliance": ".38167"
+      }
+    ]
+  },
+  {
+    "date": "23 Jan",
+    "compliances": [
+      { "type": "Simple",
+        "compliance": ".35167"
+      },
+      { "type": "Special",
+        "compliance": ".32167"
+      }
+    ]
+  },
+  {
+    "date": "30 Jan",
+    "compliances": [
+      { "type": "Simple",
+        "compliance": ".35167"
+      },
+      { "type": "Special",
+        "compliance": ".32167"
+      }
+    ]
+  },
+  {
+    "date": "6 Feb",
+    "compliances": [
+      { "type": "Simple",
+        "compliance": ".35167"
+      },
+      { "type": "Special",
+        "compliance": ".32167"
+      }
+    ]
+  },
+  {
+    "date": "13 Feb",
+    "compliances": [
+      { "type": "Simple",
+        "compliance": ".35167"
+      },
+      { "type": "Special",
+        "compliance": ".32167"
+      }
+    ]
+  },
+  {
+    "date": "20 Feb",
+    "compliances": [
+      { "type": "Simple",
+        "compliance": ".15167"
+      },
+      { "type": "Special",
+        "compliance": ".28167"
+      }
+    ]
+  },
+  {
+    "date": "27 Feb",
+    "compliances": [
+      { "type": "Simple",
+        "compliance": ".23167"
+      },
+      { "type": "Special",
+        "compliance": ".1167"
+      }
+    ]
+  },
+  {
+    "date": "6 March",
+    "compliances": [
+      { "type": "Simple",
+        "compliance": ".31167"
+      },
+      { "type": "Special",
+        "compliance": ".38167"
+      }
+    ]
+  },
+  {
+    "date": "13 March",
+    "compliances": [
+      { "type": "Simple",
+        "compliance": ".35167"
+      },
+      { "type": "Special",
+        "compliance": ".32167"
+      }
+    ]
+  },
+  {
+    "date": "20 March",
+    "compliances": [
+      { "type": "Simple",
+        "compliance": ".35167"
+      },
+      { "type": "Special",
+        "compliance": ".32167"
+      }
+    ]
+  },
+  {
+    "date": "27 March",
+    "compliances": [
+      { "type": "Simple",
+        "compliance": ".35167"
+      },
+      { "type": "Special",
+        "compliance": ".32167"
+      }
+    ]
+  },
+  {
+    "date": "3 April",
+    "compliances": [
+      { "type": "Simple",
+        "compliance": ".35167"
+      },
+      { "type": "Special",
+        "compliance": ".32167"
+      }
+    ]
+  },
+  {
+      "date": "3 April",
+    "compliances": [      
+      { "type": "Simple",
+        "compliance": ".15167"
+      },
+      { "type": "Special",
+        "compliance": ".28167"
+      }
+    ]
+  },
+  {
+    "date": "10 April",
+    "compliances": [
+      { "type": "Simple",
+        "compliance": ".23167"
+      },
+      { "type": "Special",
+        "compliance": ".1167"
+      }
+    ]
+  },
+  {
+    "date": "17 April",
+    "compliances": [
+      { "type": "Simple",
+        "compliance": ".31167"
+      },
+      { "type": "Special",
+        "compliance": ".38167"
+      }
+    ]
+  },
+  {
+    "date": "24 April",
+    "compliances": [
+      { "type": "Simple",
+        "compliance": ".35167"
+      },
+      { "type": "Special",
+        "compliance": ".32167"
+      }
+    ]
+  },
+  {
+    "date": "1 May",
+    "compliances": [
+      { "type": "Simple",
+        "compliance": ".35167"
+      },
+      { "type": "Special",
+        "compliance": ".32167"
+      }
+    ]
+  },
+  { 
+    "date": "8 May",
+    "compliances": [
+      { "type": "Simple",
+        "compliance": ".35167"
+      },
+      { "type": "Special",
+        "compliance": ".32167"
+      }
+    ]
+  },
+  {
+    "date": "15 May",
+    "compliances": [
+      { "type": "Simple",
+        "compliance": ".35167"
+      },
+      { "type": "Special",
+        "compliance": ".32167"
+      }
+    ]
+  },
+  {
+    "date": "22 May",
+    "compliances": [
+      { "type": "Simple",
+        "compliance": ".15167"
+      },
+      { "type": "Special",
+        "compliance": ".28167"
+      }
+    ]
+  },
+  {
+    "date": "29 May",
+    "compliances": [
+      { "type": "Simple",
+        "compliance": ".23167"
+      },
+      { "type": "Special",
+        "compliance": ".1167"
+      }
+    ]
+  },
+  {
+    "date": "5 June",
+    "compliances": [
+      { "type": "Simple",
+        "compliance": ".31167"
+      },
+      { "type": "Special",
+        "compliance": ".38167"
+      }
+    ]
+  },
+  {
+    "date": "12 June",
+    "compliances": [
+      { "type": "Simple",
+        "compliance": ".35167"
+      },
+      { "type": "Special",
+        "compliance": ".32167"
+      }
+    ]
+  },
+  {
+    "date": "19 June",
+    "compliances": [
+      { "type": "Simple",
+        "compliance": ".35167"
+      },
+      { "type": "Special",
+        "compliance": ".32167"
+      }
+    ]
+  },
+  {
+    "date": "26 June",
+    "compliances": [
+      { "type": "Simple",
+        "compliance": ".35167"
+      },
+      { "type": "Special",
+        "compliance": ".32167"
+      }
+    ]
+  },
+  {
+    "date": "3 July",
+    "compliances": [
+      { "type": "Simple",
+        "compliance": ".35167"
+      },
+      { "type": "Special",
+        "compliance": ".32167"
+      }
+    ]
+  }      
+]
+}
