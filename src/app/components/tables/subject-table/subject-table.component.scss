@@ -1,0 +1,47 @@
+@import '../../../../styles/common';
+
+:host {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+}
+
+.mat-table {
+  flex: 1 1 0;
+  background-color: $cl-base-10;
+}
+
+md-header-row {
+  border-color: $cl-base-20;
+  background-color: $cl-base-10;
+}
+
+md-row {
+  border-color: $cl-base-20;
+}
+
+md-row:hover {
+  background-color: $cl-base-20;
+}
+
+md-header-cell,
+md-cell {
+  flex: 5;
+}
+
+md-cell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mat-column-subjectId,
+.mat-column-active {
+  flex: 3;
+}
+
+md-paginator {
+  @include font-body();
+
+  background-color: $cl-base-20;
+}

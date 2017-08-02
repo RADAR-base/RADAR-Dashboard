@@ -24,41 +24,6 @@ p {
   margin: 16px;
 }
 
-// MD2 Select
-// TODO: change style for new MD2 values
-md-select.mat-select {
-  @include font-small;
-
-  padding: 0 8px;
-  border-radius: 4px;
-  background: rgba(white, 0.05);
-
-  &:focus .mat-select-trigger,
-  &:focus:not(.mat-select-disabled) .mat-select-trigger,
-  .mat-select-trigger {
-    border: none;
-  }
-
-  .mat-select-trigger {
-    height: 24px;
-    font-size: 14px;
-  }
-
-  .mat-select-value {
-    top: initial;
-    color: $cl-white-80;
-  }
-}
-
-.mat-select-content {
-  background: $cl-lighter;
-}
-
-// MD2 Checkbox
-.mat-checkbox-inner-container {
-  opacity: 0.6;
-}
-
 // Fonts
 .font-title {
   @include font-title;
