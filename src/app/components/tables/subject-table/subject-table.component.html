@@ -3,31 +3,33 @@
 
     <!-- Patient ID Column -->
     <ng-container cdkColumnDef="subjectId">
-      <md-header-cell *cdkHeaderCellDef> Patient ID </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{ row.subjectId }} </md-cell>
+      <md-header-cell *cdkHeaderCellDef> Patient ID</md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{ row.subjectId }}</md-cell>
     </ng-container>
 
     <!-- Active Column -->
     <ng-container cdkColumnDef="active">
-      <md-header-cell *cdkHeaderCellDef> Active </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{ row.active }} </md-cell>
+      <md-header-cell *cdkHeaderCellDef> Active</md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{ row.active }}</md-cell>
     </ng-container>
 
     <!-- Effective Time Frame Start Column -->
     <ng-container cdkColumnDef="startdate">
-      <md-header-cell *cdkHeaderCellDef> Start Date Time </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{ row.effectiveTimeFrame.endDateTime | date: 'medium' }} </md-cell>
+      <md-header-cell *cdkHeaderCellDef> Start Date Time</md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{ row.effectiveTimeFrame.endDateTime | date: 'medium' }}
+      </md-cell>
     </ng-container>
 
     <!-- Effective Time Frame End Column -->
     <ng-container cdkColumnDef="enddate">
-      <md-header-cell *cdkHeaderCellDef> End Date Time </md-header-cell>
-      <md-cell *cdkCellDef="let row"> {{ row.effectiveTimeFrame.startDateTime | date: 'medium' }} </md-cell>
+      <md-header-cell *cdkHeaderCellDef> End Date Time</md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{ row.effectiveTimeFrame.startDateTime | date: 'medium' }}
+      </md-cell>
     </ng-container>
 
     <!-- Sources Column -->
     <ng-container cdkColumnDef="sources">
-      <md-header-cell *cdkHeaderCellDef> Sources </md-header-cell>s
+      <md-header-cell *cdkHeaderCellDef> Sources</md-header-cell>
       <md-cell *cdkCellDef="let row">
         <p *ngFor="let source of row.sources">{{ source.type }}</p>
       </md-cell>
@@ -38,9 +40,9 @@
   </md-table>
 
   <md-paginator #paginator
-                [length]="dataSource.data.length"
-                [pageIndex]="0"
-                [pageSize]="10"
-                [pageSizeOptions]="[5, 10, 25, 100]">
+    [length]="subjectDB.data.length"
+    [pageIndex]="0"
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 25, 100]">
   </md-paginator>
 </div>

@@ -1,30 +1,44 @@
-import { Component, ViewChild, Input, OnInit } from '@angular/core'
+import {
+  ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit,
+  ViewChild
+} from '@angular/core'
 import { MdPaginator } from '@angular/material'
-import 'rxjs/add/operator/startWith'
-import 'rxjs/add/observable/merge'
-import 'rxjs/add/operator/map'
 
 import { SubjectDataSource } from './subject-data-source'
+import { SubjectDB } from './subject-db'
 
 @Component({
   selector: 'app-subject-table',
   styleUrls: ['subject-table.component.scss'],
-  templateUrl: 'subject-table.component.html'
+  templateUrl: 'subject-table.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SubjectTableComponent implements OnInit {
+export class SubjectTableComponent implements OnInit, OnDestroy {
 
-  @Input() subjects
   displayedColumns = ['subjectId', 'active', 'startdate', 'enddate', 'sources']
   dataSource: SubjectDataSource | null
 
   @ViewChild(MdPaginator) paginator: MdPaginator
 
+  private subjectDB = new SubjectDB()
+
+  @Input()
+  set subjects (value) {
+    this.subjectDB.data = value
+  }
+
   ngOnInit () {
-    this.dataSource = new SubjectDataSource(this.subjects, this.paginator)
+    this.dataSource = new SubjectDataSource(this.subjectDB, this.paginator)
+  }
+
+  ngOnDestroy () {
+    this.dataSource.disconnect()
   }
 
   trackById (index, subject) {
-    return subject ? subject.subjectId : undefined
+    return subject
+      ? subject.subjectId
+      : undefined
   }
 
 }
