@@ -48,4 +48,8 @@ export class SubjectTableComponent implements OnInit, OnDestroy {
       : undefined
   }
 
+  redirectSubject (event, subjectId) {
+    this.router.navigateByUrl('/study/' + this.studyId + '/subject/' + subjectId)
+  }
+
 }
