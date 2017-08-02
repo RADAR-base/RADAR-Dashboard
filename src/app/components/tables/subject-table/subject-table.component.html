@@ -30,7 +30,7 @@
   <ng-container cdkColumnDef="sources">
     <md-header-cell *cdkHeaderCellDef>Sources</md-header-cell>
     <md-cell *cdkCellDef="let row">
-      <span *ngFor="let source of row.sources">{{ source.type }} | </span>
+      <app-device-status-tooltip [subjectId]="row.subjectId" [sources]="row.sources"></app-device-status-tooltip>  
     </md-cell>
   </ng-container>
 

@@ -31,6 +31,7 @@ import { SensorsEffects } from './shared/store/sensors/sensors.effects'
 import { SourceEffects } from './shared/store/source/source.effects'
 import { StudyEffects } from './shared/store/study/study.effects'
 import { SubjectEffects } from './shared/store/subject/subject.effects'
+import { SubjectTableEffects } from './shared/store/subject-table/subject-table.effects'
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { SubjectEffects } from './shared/store/subject/subject.effects'
     EffectsModule.run(SubjectEffects),
     EffectsModule.run(SourceEffects),
     EffectsModule.run(SensorsEffects),
+    EffectsModule.run(SubjectTableEffects),
 
     // App modules
     StudyPageModule,
