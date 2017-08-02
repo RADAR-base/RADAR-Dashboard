@@ -1,5 +1,9 @@
 import {
-  ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit,
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
   ViewChild
 } from '@angular/core'
 import { MdPaginator } from '@angular/material'
@@ -17,10 +21,9 @@ export class SubjectTableComponent implements OnInit, OnDestroy {
 
   displayedColumns = ['subjectId', 'active', 'startdate', 'enddate', 'sources']
   dataSource: SubjectDataSource | null
+  subjectDB = new SubjectDB()
 
   @ViewChild(MdPaginator) paginator: MdPaginator
-
-  private subjectDB = new SubjectDB()
 
   @Input()
   set subjects (value) {
