@@ -10,7 +10,9 @@ import * as complianceAction from '../../shared/store/compliance/compliance.acti
 @Component({
   selector: 'app-compliance-plot-table',
   template: `
+          <div *ngIf="isComplianceSelectedLoaded$ | async">
           <app-chart-base-multi-bar-table [chartData]="data$ | async"></app-chart-base-multi-bar-table>
+          </div>
   `,
   styleUrls: ['./compliance-plot-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -19,16 +21,15 @@ export class CompliancePlotTableComponent implements OnInit {
 
   @Input() subjectId
   data$: Observable<any>
+  isComplianceSelectedLoaded$: Observable<boolean>
 
-  // constructor (public complianceDataService: CompliancePlotTableService) {}
   constructor (
     public service: ComplianceService,
     private store: Store<fromRoot.State>
   ) {}
 
   ngOnInit () {
-    // this.data$ = this.complianceDataService.getAll()
-    // this.isComplianceLoaded$ = this.store.select(fromRoot.getComplianceIsLoaded)
+    this.isComplianceSelectedLoaded$ = this.store.select(fromRoot.getComplianceSelectedIsLoaded)
     this.store.dispatch(new complianceAction.GetSelected(this.subjectId))
     this.data$ = this.store.select(fromRoot.getComplianceSelected)
         .publishReplay().refCount()

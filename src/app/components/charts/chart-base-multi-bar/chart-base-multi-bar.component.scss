@@ -2,6 +2,11 @@
 @import '../charts.common';
 
 :host /deep/ {
+  display: flex;
+  flex: 1 1 inherit;
+  flex-direction: row;
+  height: inherit;
+
   .backbar {
     opacity: 0.1;
     fill: $cl-lighter;

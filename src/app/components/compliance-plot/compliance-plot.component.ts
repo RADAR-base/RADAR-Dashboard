@@ -22,16 +22,14 @@ export class CompliancePlotComponent implements OnInit {
 
   @Input() studyId
   data$: Observable<any>
-  isComplianceLoaded$: Observable<any>
+  isComplianceLoaded$: Observable<boolean>
 
-  // constructor (public complianceDataService: CompliancePlotService) {}
   constructor (
     public service: ComplianceService,
     private store: Store<fromRoot.State>
   ) {}
 
   ngOnInit () {
-    // this.data$ = this.complianceDataService.getAll()
     this.isComplianceLoaded$ = this.store.select(fromRoot.getComplianceIsLoaded)
     this.store.dispatch(new complianceAction.GetAll(this.studyId))
     this.data$ = this.store.select(fromRoot.getComplianceAll)

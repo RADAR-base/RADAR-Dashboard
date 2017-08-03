@@ -11,17 +11,6 @@ button {
   color: $cl-white-80;
 }
 
-.legendtop {
-  @include font-small;
-
-  background-color: $cl-base-10;
-}
-
-.legendtop td {
-  padding-right: 10px;
-  padding-left: 10px;
-}
-
 @mixin circle($size: 50px, $background-color: null) {
   @if type-of($background-color) == 'color' {
     background-color: $background-color;
@@ -36,8 +25,7 @@ button {
   @include circle(11px);
 
   display: inline-block;
-  margin-right: 4px;
-  margin-bottom: -2px;
+  margin: 0 4px -2px 10px;
   background-color: $cl-graph-4;
 }
 
@@ -45,8 +33,7 @@ button {
   @include circle(11px);
 
   display: inline-block;
-  margin-right: 4px;
-  margin-bottom: -2px;
+  margin: 0 4px -2px 10px;
   background-color: $cl-graph-3;
 }
 
@@ -54,8 +41,28 @@ button {
   @include circle(11px);
 
   display: inline-block;
-  margin-right: 4px;
-  margin-bottom: -2px;
+  margin: 0 4px -2px 10px;
   background-color: $cl-lighter;
   opacity: 0.1;
 }
+
+.chart {
+  height: 100%;
+}
+
+.legend {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin: -7px 0 -7px 0;
+}
+
+.legend p {
+  @include font-small;
+
+  padding-right: 10px;
+  height: 100%;
+  border-radius: 3px;
+  background-color: $cl-base-20;
+}
+

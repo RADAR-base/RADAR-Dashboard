@@ -42,13 +42,15 @@
       </md-grid-tile>
       <md-grid-tile colspan="4" rowspan="2">
         <app-tile title="Compliance">
-          <div tile-content chart>
-            <tr class="legendtop">
-              <td><span class="simple"></span>Simple</td>
-              <td><span class="special"></span>Special</td>
-              <td><span class="notanswered"></span>Not Answered</td>
-            </tr>
-            <app-compliance-plot [studyId]="studyId"></app-compliance-plot>
+          <div tile-content>
+            <div class="legend">
+                <p><span class="simple"></span>Simple
+                <span class="special"></span>Special
+                <span class="notanswered"></span>Not Answered</p>
+            </div>
+            <div class="chart">
+              <app-compliance-plot [studyId]="studyId"></app-compliance-plot>
+            </div>
           </div>          
         </app-tile>
       </md-grid-tile>
