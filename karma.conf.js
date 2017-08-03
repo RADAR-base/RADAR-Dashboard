@@ -11,21 +11,22 @@ module.exports = function (config) {
       require('karma-chrome-launcher'),
       require('karma-coverage-istanbul-reporter'),
       require('karma-jasmine-html-reporter'),
-      require('@angular/cli/plugins/karma')
+      require('@angular/cli/plugins/karma'),
+      require('karma-scss-preprocessor')
     ],
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     files: [
-      // Include a Material theme in the test suite.
-      // NOTE: Not a final solution as it should use the global styles in main.scss instead
-      // https://github.com/angular/material2/issues/4056
       {
-        pattern: './node_modules/@angular/material/prebuilt-themes/indigo-pink.css',
+        pattern: './src/styles/main.scss',
         included: true,
         watched: true
       }
     ],
+    preprocessors: {
+      './src/styles/main.scss': ['scss']
+    },
     angularCli: {
       environment: 'dev'
     },
