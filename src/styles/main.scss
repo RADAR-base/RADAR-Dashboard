@@ -2,22 +2,6 @@
 @import 'theme';
 
 // Main
-html,
-body {
-  width: 100%;
-  height: 100%;
-}
-
-body {
-  @include font;
-
-  overflow: hidden;
-  margin: 0;
-  background-image: linear-gradient(-180deg, #467487 20%, #6b9db3 100%);
-  font-size: 100%;
-  line-height: 1.25em;
-}
-
 p {
   @include font-large;
 
