@@ -1,4 +1,4 @@
-import { createSelector } from 'reselect'
+import { createSelector } from '@ngrx/store'
 
 import * as sourceActions from './source.actions'
 import { Source } from './source.model'
