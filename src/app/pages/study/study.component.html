@@ -20,7 +20,7 @@
       <md-grid-tile colspan="4" rowspan="2">
         <app-tile title="Patients">
           <div tile-content>
-            <app-subject-table [subjects]="subjects$ | async"></app-subject-table>
+            <app-subject-table [subjects]="subjects$ | async" [studyId]="studyId"></app-subject-table>
           </div>
         </app-tile>
       </md-grid-tile>
@@ -42,6 +42,16 @@
       </md-grid-tile>
       <md-grid-tile colspan="4" rowspan="2">
         <app-tile title="Compliance">
+          <div tile-content>
+            <div class="legend">
+                <p><span class="simple"></span>Simple
+                <span class="special"></span>Special
+                <span class="notanswered"></span>Not Answered</p>
+            </div>
+            <div class="chart">
+              <app-compliance-plot [studyId]="studyId"></app-compliance-plot>
+            </div>
+          </div>          
         </app-tile>
       </md-grid-tile>
       <md-grid-tile colspan="1" rowspan="1">

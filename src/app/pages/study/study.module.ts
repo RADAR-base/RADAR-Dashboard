@@ -3,8 +3,9 @@ import { NgModule } from '@angular/core'
 import { HttpModule } from '@angular/http'
 import { MdGridListModule } from '@angular/material'
 import { RouterModule } from '@angular/router'
-import { SubjectTableModule } from '../../components/tables/subject-table/subject-table.module'
 
+import { CompliancePlotModule } from '../../components/compliance-plot/compliance-plot.module'
+import { SubjectTableModule } from '../../components/tables/subject-table/subject-table.module'
 import { TileModule } from '../../components/tile/tile.module'
 import { ToolbarModule } from '../../components/toolbar/toolbar.module'
 import { SourceService } from '../../shared/store/source/source.service'
@@ -21,7 +22,8 @@ import { routes } from './study.routing'
     TileModule,
     ToolbarModule,
     MdGridListModule,
-    SubjectTableModule
+    SubjectTableModule,
+    CompliancePlotModule
   ],
   declarations: [
     StudyPageComponent

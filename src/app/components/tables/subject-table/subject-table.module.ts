@@ -4,6 +4,7 @@ import { MdTableModule, MdPaginatorModule } from '@angular/material'
 import { CdkTableModule } from '@angular/cdk'
 
 import { SubjectTableComponent } from './subject-table.component'
+import { SimpleBarComponent } from '../../../components/simple-bar/simple-bar.component'
 
 @NgModule({
   imports: [
@@ -12,7 +13,10 @@ import { SubjectTableComponent } from './subject-table.component'
     MdTableModule,
     MdPaginatorModule
   ],
-  declarations: [SubjectTableComponent],
+  declarations: [
+    SubjectTableComponent,
+    SimpleBarComponent
+  ],
   exports: [SubjectTableComponent]
 })
 export class SubjectTableModule {}

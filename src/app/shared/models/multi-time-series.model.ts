@@ -1,4 +1,4 @@
-import { Key } from '../store/sensors/sensors.model'
+import { Key } from '../store/config/config.model'
 
 export interface MultiTimeSeries {
   keys: Key[]

@@ -15,14 +15,14 @@
   <!-- Effective Time Frame Start Column -->
   <ng-container cdkColumnDef="startdate">
     <md-header-cell *cdkHeaderCellDef>Start Date Time</md-header-cell>
-    <md-cell *cdkCellDef="let row"> {{ row.effectiveTimeFrame.endDateTime | date: 'medium' }}
+    <md-cell *cdkCellDef="let row"> {{ row.effectiveTimeFrame.endDateTime | date: 'short' }}
     </md-cell>
   </ng-container>
 
   <!-- Effective Time Frame End Column -->
   <ng-container cdkColumnDef="enddate">
     <md-header-cell *cdkHeaderCellDef>End Date Time</md-header-cell>
-    <md-cell *cdkCellDef="let row"> {{ row.effectiveTimeFrame.startDateTime | date: 'medium' }}
+    <md-cell *cdkCellDef="let row"> {{ row.effectiveTimeFrame.startDateTime | date: 'short' }}
     </md-cell>
   </ng-container>
 
@@ -34,8 +34,16 @@
     </md-cell>
   </ng-container>
 
+  <!-- Compliance Column -->
+  <ng-container cdkColumnDef="compliance">
+    <md-header-cell *cdkHeaderCellDef>Compliance</md-header-cell>
+    <md-cell *cdkCellDef="let row">
+      <app-simple-bar *ngFor="let data of sampleComplianceData" [data]="data"></app-simple-bar>
+    </md-cell>
+  </ng-container>
+
   <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
-  <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
+  <md-row *cdkRowDef="let row; columns: displayedColumns;" (click)="redirectSubject($event, row.subjectId)"></md-row>
 </md-table>
 
 <md-paginator #paginator

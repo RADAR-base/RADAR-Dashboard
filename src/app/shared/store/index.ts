@@ -1,7 +1,8 @@
 import { ActionReducer, ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store'
 import { storeFreeze } from 'ngrx-store-freeze'
-import { environment } from '../../../environments/environment'
 
+import { environment } from '../../../environments/environment'
+import * as fromCompliance from './compliance/compliance.reducer'
 import * as fromConfig from './config/config.reducer'
 import * as fromSensors from './sensors/sensors.reducer'
 import * as fromSource from './source/source.reducer'
@@ -14,6 +15,7 @@ export interface State {
   source: fromSource.State
   study: fromStudy.State
   subject: fromSubject.State
+  compliance: fromCompliance.State
 }
 
 export const reducers: ActionReducerMap<State> = {
@@ -21,7 +23,8 @@ export const reducers: ActionReducerMap<State> = {
   sensors: fromSensors.reducer,
   source: fromSource.reducer,
   study: fromStudy.reducer,
-  subject: fromSubject.reducer
+  subject: fromSubject.reducer,
+  compliance: fromCompliance.reducer
 }
 
 export const metaReducers: ActionReducer<any, any>[] = !environment.PROD
@@ -75,3 +78,8 @@ export const getSourceAllWithSensors = createSelector(
       })
     }
   })
+
+// Compliance Selectors
+export const getComplianceState = createFeatureSelector<fromCompliance.State>('compliance')
+export const getComplianceAll = createSelector(getComplianceState, fromCompliance.getAll)
+export const getComplianceIsLoaded = createSelector(getComplianceState, fromCompliance.getIsLoaded)
