@@ -83,7 +83,3 @@ export const getSourceAllWithSensors = createSelector(
 export const getComplianceState = createFeatureSelector<fromCompliance.State>('compliance')
 export const getComplianceAll = createSelector(getComplianceState, fromCompliance.getAll)
 export const getComplianceIsLoaded = createSelector(getComplianceState, fromCompliance.getIsLoaded)
-export const getComplianceIsLoadedAndValid = createSelector(
-  getComplianceState,
-  fromCompliance.getIsLoadedAndValid
-)

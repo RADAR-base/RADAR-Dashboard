@@ -3,16 +3,12 @@ import { createSelector } from '@ngrx/store'
 import * as compliance from './compliance.actions'
 
 export interface State {
-  ids: string[]
-  entities: any
-  selectedId: string
+  data: any
   isLoaded: boolean
 }
 
 const initialState: State = {
-  ids: [],
-  entities: [],
-  selectedId: '',
+  data: [],
   isLoaded: false
 }
 
@@ -27,13 +23,11 @@ export function reducer (state = initialState, action: compliance.Actions): Stat
 
     case compliance.GET_ALL_SUCCESS: {
       const payload = action.payload
-      const ids = payload
-      const entities = payload
+      const data = payload
 
       return Object.assign({}, state, {
         isLoaded: true,
-        ids,
-        entities
+        data
       })
     }
 
@@ -43,21 +37,9 @@ export function reducer (state = initialState, action: compliance.Actions): Stat
 }
 
 export const getIsLoaded = (state: State) => state.isLoaded
-export const getIds = (state: State) => state.ids
-export const getEntities = (state: State) => state.entities
-export const getSelectedId = (state: State) => state.selectedId
-
-export const getIsLoadedAndValid = createSelector(
-  getIsLoaded, getEntities, getSelectedId, (loaded, entities, selectedId) => {
-    return loaded && !!entities[selectedId]
-  })
-
-export const getSelected = createSelector(
-  getEntities, getSelectedId, (entities, selectedId) => {
-    return selectedId
-  })
+export const getData = (state: State) => state.data
 
 export const getAll = createSelector(
-  getEntities, getIds, (entities, ids) => {
-    return entities
+  getData, (data) => {
+    return data
   })
