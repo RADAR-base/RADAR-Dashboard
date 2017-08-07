@@ -25,13 +25,13 @@ import { SubjectPageModule } from './pages/subject/subject.module'
 import { StudyGuard } from './shared/guards/study.guard'
 import { ErrorService } from './shared/services/error.service'
 import { metaReducers, reducers } from './shared/store'
+import { ComplianceEffects } from './shared/store/compliance/compliance.effects'
 import { ConfigEffects } from './shared/store/config/config.effects'
 import { ConfigService } from './shared/store/config/config.service'
 import { SensorsEffects } from './shared/store/sensors/sensors.effects'
 import { SourceEffects } from './shared/store/source/source.effects'
 import { StudyEffects } from './shared/store/study/study.effects'
 import { SubjectEffects } from './shared/store/subject/subject.effects'
-import { ComplianceEffects } from './shared/store/compliance/compliance.effects'
 
 @NgModule({
   declarations: [
@@ -57,7 +57,8 @@ import { ComplianceEffects } from './shared/store/compliance/compliance.effects'
       StudyEffects,
       SubjectEffects,
       SourceEffects,
-      SensorsEffects
+      SensorsEffects,
+      ComplianceEffects
     ]),
 
     // App modules
