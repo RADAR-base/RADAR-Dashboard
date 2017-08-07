@@ -1,4 +1,4 @@
-import { createSelector } from 'reselect'
+import { createSelector } from '@ngrx/store'
 import * as uuid from 'uuid/v4'
 
 import * as sensorsActions from './sensors.actions'

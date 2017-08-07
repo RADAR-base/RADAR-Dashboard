@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ActivatedRoute, Router } from '@angular/router'
 import { StoreModule } from '@ngrx/store'
 
-import { reducer } from '../../shared/store'
+import { reducers } from '../../shared/store'
 import { ActivatedRouteStub, RouterStub } from '../../shared/testing/router-stubs'
 import { OverviewPageComponent } from './overview.component'
 import { OverviewPageModule } from './overview.module'
@@ -20,7 +20,7 @@ describe('OverviewPageComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         OverviewPageModule,
-        StoreModule.provideStore(reducer)
+        StoreModule.forRoot(reducers)
       ],
       providers: [
         { provide: Router, useClass: RouterStub },
