@@ -12,7 +12,6 @@ import { StudyService } from '../../shared/store/study/study.service'
 import { SubjectService } from '../../shared/store/subject/subject.service'
 import { StudyPageComponent } from './study.component'
 import { routes } from './study.routing'
-import { SourceService } from '../../shared/store/source/source.service'
 
 @NgModule({
   imports: [

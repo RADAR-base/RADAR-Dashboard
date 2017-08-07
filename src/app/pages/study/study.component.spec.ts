@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 import { ActivatedRoute, Router } from '@angular/router'
 import { StoreModule } from '@ngrx/store'
 
-import { reducer } from '../../shared/store'
+import { reducers } from '../../shared/store'
 import { ActivatedRouteStub, RouterStub } from '../../shared/testing/router-stubs'
 import { StudyPageComponent } from './study.component'
 import { StudyPageModule } from './study.module'
@@ -21,7 +21,7 @@ describe('StudyPageComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         StudyPageModule,
-        StoreModule.provideStore(reducer)
+        StoreModule.forRoot(reducers)
       ],
       providers: [
         { provide: Router, useClass: RouterStub },
