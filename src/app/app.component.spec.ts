@@ -1,4 +1,3 @@
-import { DebugElement } from '@angular/core'
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 import { RouterTestingModule } from '@angular/router/testing'
 
@@ -9,8 +8,6 @@ import { routes } from './app.routing'
 describe('AppComponent', () => {
   let component: AppComponent
   let fixture: ComponentFixture<AppComponent>
-  let element: HTMLElement
-  let de: DebugElement
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -19,16 +16,12 @@ describe('AppComponent', () => {
         RouterTestingModule.withRoutes(routes)
       ]
     })
-
-    fixture = TestBed.createComponent(AppComponent)
-    component = fixture.componentInstance
-    element = fixture.nativeElement
-    de = fixture.debugElement
-
-    fixture.detectChanges()
+      .compileComponents()
   }))
 
   it('should create the app', async(() => {
+    fixture = TestBed.createComponent(AppComponent)
+    component = fixture.componentInstance
     expect(component).toBeTruthy()
   }))
 
