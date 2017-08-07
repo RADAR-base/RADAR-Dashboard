@@ -1,7 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core'
 import { Observable } from 'rxjs/Observable'
-
-// import { CompliancePlotService } from './compliance-plot.service'
 import { Store } from '@ngrx/store'
 
 import { ComplianceService } from '../../shared/store/compliance/compliance.service'
@@ -21,8 +19,29 @@ import * as complianceAction from '../../shared/store/compliance/compliance.acti
 export class CompliancePlotComponent implements OnInit {
 
   @Input() studyId
+  @Input() timeHoles = true
   data$: Observable<any>
   isComplianceLoaded$: Observable<boolean>
+  payload: any
+
+  // TODO: Part of config
+  complianceKeys =
+    [
+      {
+        'key': 'simple',
+        'doc': 'Simple compliance.',
+        'label': {
+          'EN': 'Simple Compliance'
+        }
+      },
+      {
+        'key': 'special',
+        'doc': 'Special Compliance',
+        'label': {
+          'EN': 'Special Compliance'
+        }
+      }
+    ]
 
   constructor (
     public service: ComplianceService,
@@ -30,8 +49,9 @@ export class CompliancePlotComponent implements OnInit {
   ) {}
 
   ngOnInit () {
+    this.payload = {studyId: this.studyId, keys: this.complianceKeys, timeHoles: this.timeHoles}
     this.isComplianceLoaded$ = this.store.select(fromRoot.getComplianceIsLoaded)
-    this.store.dispatch(new complianceAction.GetAll(this.studyId))
+    this.store.dispatch(new complianceAction.GetAll(this.payload))
     this.data$ = this.store.select(fromRoot.getComplianceAll)
         .publishReplay().refCount()
   }

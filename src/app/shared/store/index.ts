@@ -93,5 +93,3 @@ export const getComplianceState = (state: State) => state.compliance
 export const getComplianceAll = createSelector(getComplianceState, fromCompliance.getAll)
 export const getComplianceIsLoaded = createSelector(getComplianceState, fromCompliance.getIsLoaded)
 export const getComplianceIsLoadedAndValid = createSelector(getComplianceState, fromCompliance.getIsLoadedAndValid)
-export const getComplianceSelected = createSelector(getComplianceState, fromCompliance.getSelected)
-export const getComplianceSelectedIsLoaded = createSelector(getComplianceState, fromCompliance.getSelectedIdIsLoaded)

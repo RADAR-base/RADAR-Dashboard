@@ -1,11 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnDestroy,
-  OnInit,
-  ViewChild
-} from '@angular/core'
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { MdPaginator } from '@angular/material'
 import { Router } from '@angular/router'
 
@@ -19,6 +12,9 @@ import { SubjectDB } from './subject-db'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SubjectTableComponent implements OnInit, OnDestroy {
+
+  // TODO: Fix with service and API
+  sampleComplianceData = [ { 'type': 'simple', 'value': 0.2 }, { 'type': 'special', 'value': 0.3 }]
 
   displayedColumns = ['subjectId', 'active', 'startdate', 'enddate', 'sources', 'compliance']
   dataSource: SubjectDataSource | null

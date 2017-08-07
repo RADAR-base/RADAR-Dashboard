@@ -1,56 +1,14 @@
-export interface Compliance {
-  date: string,
-  compliances: Values[]
-}
-
-export interface Values {
-  type: string,
-  compliance: number
-}
-
-export const MockComplianceData: Compliance[] = [
-  {
-    date: 'A',
-    compliances: [
-      { type: 'Simple',
-        compliance: .05167
-      },
-      { type: 'Special',
-        compliance: .08167
-      }
-    ]
-  },
-  {
-    date: 'B',
-    compliances: [
-      { type: 'Simple',
-        compliance: .03167
-      },
-      { type: 'Special',
-        compliance: .1167
-      }
-    ]
-  },
-  {
-    date: 'C',
-    compliances: [
-      { type: 'Simple',
-        compliance: .01167
-      },
-      { type: 'Special',
-        compliance: .08167
-      }
-    ]
-  },
-  {
-    date: 'D',
-    compliances: [
-      { type: 'Simple',
-        compliance: .05167
-      },
-      { type: 'Special',
-        compliance: .02167
-      }
-    ]
+export const MockComplianceData = {
+  keys: [
+    { key: 'simple', label: { 'EN': '' } },
+    { key: 'special', label: { 'EN': '' } }
+  ],
+  dates: [
+    new Date('2016-10-27T20:02:20.000Z'),
+    new Date('2016-10-27T20:03:00.000Z')
+  ],
+  values: {
+    simple: [0.5, 0.1],
+    special: [0.23, 0.123]
   }
-]
+}

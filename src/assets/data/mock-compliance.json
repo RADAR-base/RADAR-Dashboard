@@ -1,311 +1,248 @@
-{ "dataset": [
-  {
-    "date": "2 Jan",
-    "compliances": [
-      { "type": "Simple",
-        "compliance": ".15167"
-      },
-      { "type": "Special",
-        "compliance": ".28167"
-      }
-    ]
+{
+  "header": {
+    "subjectId": "KCLTest0",
+    "sourceId": "00:07:80:1F:52:F3",
+    "source": "EMPATICA",
+    "sensor": "COMPLIANCE",
+    "descriptiveStatistic": "AVERAGE",
+    "unit": "G",
+    "timeFrame": "ONE_DAY",
+    "effectiveTimeFrame": {
+      "startDateTime": "2017-02-27T11:46:00Z",
+      "endDateTime": "2017-03-27T16:15:30Z"
+    }
   },
-  {
-    "date": "9 Jan",
-    "compliances": [
-      { "type": "Simple",
-        "compliance": ".23167"
+  "dataset": [
+    {
+      "sample": {
+        "simple": 0.2348,
+        "special": 0
       },
-      { "type": "Special",
-        "compliance": ".1167"
-      }
-    ]
-  },
-  {
-    "date": "16 Jan",
-    "compliances": [
-      { "type": "Simple",
-        "compliance": ".31167"
+      "startDateTime": "2017-02-27T11:46:00Z"
+    },
+    {
+      "sample": {
+        "simple": 0.7348,
+        "special": 0.823
       },
-      { "type": "Special",
-        "compliance": ".38167"
-      }
-    ]
-  },
-  {
-    "date": "23 Jan",
-    "compliances": [
-      { "type": "Simple",
-        "compliance": ".35167"
+      "startDateTime": "2017-03-01T11:46:00Z"
+    },
+    {
+      "sample": {
+        "simple": 0.3348,
+        "special": 0.323
       },
-      { "type": "Special",
-        "compliance": ".32167"
-      }
-    ]
-  },
-  {
-    "date": "30 Jan",
-    "compliances": [
-      { "type": "Simple",
-        "compliance": ".35167"
+      "startDateTime": "2017-03-02T11:46:00Z"
+    },
+    {
+      "sample": {
+        "simple": 0.2348,
+        "special": 0.123
       },
-      { "type": "Special",
-        "compliance": ".32167"
-      }
-    ]
-  },
-  {
-    "date": "6 Feb",
-    "compliances": [
-      { "type": "Simple",
-        "compliance": ".35167"
+      "startDateTime": "2017-03-03T11:46:00Z"
+    },
+    {
+      "sample": {
+        "simple": 0.2348,
+        "special": 0.123
       },
-      { "type": "Special",
-        "compliance": ".32167"
-      }
-    ]
-  },
-  {
-    "date": "13 Feb",
-    "compliances": [
-      { "type": "Simple",
-        "compliance": ".35167"
+      "startDateTime": "2017-03-04T11:46:00Z"
+    },
+    {
+      "sample": {
+        "simple": 0.2348,
+        "special": 0.123
       },
-      { "type": "Special",
-        "compliance": ".32167"
-      }
-    ]
-  },
-  {
-    "date": "20 Feb",
-    "compliances": [
-      { "type": "Simple",
-        "compliance": ".15167"
+      "startDateTime": "2017-03-05T11:46:00Z"
+    },
+    {
+      "sample": {
+        "simple": 0.2348,
+        "special": 0.123
       },
-      { "type": "Special",
-        "compliance": ".28167"
-      }
-    ]
-  },
-  {
-    "date": "27 Feb",
-    "compliances": [
-      { "type": "Simple",
-        "compliance": ".23167"
+      "startDateTime": "2017-03-06T11:46:00Z"
+    },
+    {
+      "sample": {
+        "simple": 0.2348,
+        "special": 0.123
       },
-      { "type": "Special",
-        "compliance": ".1167"
-      }
-    ]
-  },
-  {
-    "date": "6 March",
-    "compliances": [
-      { "type": "Simple",
-        "compliance": ".31167"
+      "startDateTime": "2017-03-07T11:46:00Z"
+    },
+    {
+      "sample": {
+        "simple": 0.2348,
+        "special": 0.123
       },
-      { "type": "Special",
-        "compliance": ".38167"
-      }
-    ]
-  },
-  {
-    "date": "13 March",
-    "compliances": [
-      { "type": "Simple",
-        "compliance": ".35167"
+      "startDateTime": "2017-03-08T11:46:00Z"
+    },
+    {
+      "sample": {
+        "simple": 0.2348,
+        "special": 0.123
       },
-      { "type": "Special",
-        "compliance": ".32167"
-      }
-    ]
-  },
-  {
-    "date": "20 March",
-    "compliances": [
-      { "type": "Simple",
-        "compliance": ".35167"
+      "startDateTime": "2017-03-09T11:46:00Z"
+    },
+    {
+      "sample": {
+        "simple": 0.2348,
+        "special": 0.123
       },
-      { "type": "Special",
-        "compliance": ".32167"
-      }
-    ]
-  },
-  {
-    "date": "27 March",
-    "compliances": [
-      { "type": "Simple",
-        "compliance": ".35167"
+      "startDateTime": "2017-03-10T11:46:00Z"
+    },
+    {
+      "sample": {
+        "simple": 0.2348,
+        "special": 0.123
       },
-      { "type": "Special",
-        "compliance": ".32167"
-      }
-    ]
-  },
-  {
-    "date": "3 April",
-    "compliances": [
-      { "type": "Simple",
-        "compliance": ".35167"
+      "startDateTime": "2017-03-11T11:46:00Z"
+    },
+    {
+      "sample": {
+        "simple": 0.2348,
+        "special": 0.123
       },
-      { "type": "Special",
-        "compliance": ".32167"
-      }
-    ]
-  },
-  {
-      "date": "3 April",
-    "compliances": [      
-      { "type": "Simple",
-        "compliance": ".15167"
+      "startDateTime": "2017-03-12T11:46:00Z"
+    },
+    {
+      "sample": {
+        "simple": 0.2348,
+        "special": 0.123
       },
-      { "type": "Special",
-        "compliance": ".28167"
-      }
-    ]
-  },
-  {
-    "date": "10 April",
-    "compliances": [
-      { "type": "Simple",
-        "compliance": ".23167"
+      "startDateTime": "2017-03-13T11:46:00Z"
+    },
+    {
+      "sample": {
+        "simple": 0.2348,
+        "special": 0.123
       },
-      { "type": "Special",
-        "compliance": ".1167"
-      }
-    ]
-  },
-  {
-    "date": "17 April",
-    "compliances": [
-      { "type": "Simple",
-        "compliance": ".31167"
+      "startDateTime": "2017-03-14T11:46:00Z"
+    },
+    {
+      "sample": {
+        "simple": 0.2348,
+        "special": 0.123
       },
-      { "type": "Special",
-        "compliance": ".38167"
-      }
-    ]
-  },
-  {
-    "date": "24 April",
-    "compliances": [
-      { "type": "Simple",
-        "compliance": ".35167"
+      "startDateTime": "2017-03-15T11:46:00Z"
+    },
+    {
+      "sample": {
+        "simple": 0.2348,
+        "special": 0.123
       },
-      { "type": "Special",
-        "compliance": ".32167"
-      }
-    ]
-  },
-  {
-    "date": "1 May",
-    "compliances": [
-      { "type": "Simple",
-        "compliance": ".35167"
+      "startDateTime": "2017-03-16T11:46:00Z"
+    },
+    {
+      "sample": {
+        "simple": 0.2348,
+        "special": 0.123
       },
-      { "type": "Special",
-        "compliance": ".32167"
-      }
-    ]
-  },
-  { 
-    "date": "8 May",
-    "compliances": [
-      { "type": "Simple",
-        "compliance": ".35167"
+      "startDateTime": "2017-03-17T11:46:00Z"
+    },
+    {
+      "sample": {
+        "simple": 0.2348,
+        "special": 0.123
       },
-      { "type": "Special",
-        "compliance": ".32167"
-      }
-    ]
-  },
-  {
-    "date": "15 May",
-    "compliances": [
-      { "type": "Simple",
-        "compliance": ".35167"
+      "startDateTime": "2017-03-18T11:46:00Z"
+    },
+    {
+      "sample": {
+        "simple": 0.2348,
+        "special": 0.123
       },
-      { "type": "Special",
-        "compliance": ".32167"
-      }
-    ]
-  },
-  {
-    "date": "22 May",
-    "compliances": [
-      { "type": "Simple",
-        "compliance": ".15167"
+      "startDateTime": "2017-03-19T11:46:00Z"
+    },
+    {
+      "sample": {
+        "simple": 0.2348,
+        "special": 0.123
       },
-      { "type": "Special",
-        "compliance": ".28167"
-      }
-    ]
-  },
-  {
-    "date": "29 May",
-    "compliances": [
-      { "type": "Simple",
-        "compliance": ".23167"
+      "startDateTime": "2017-03-20T11:46:00Z"
+    },
+    {
+      "sample": {
+        "simple": 0.2348,
+        "special": 0.123
       },
-      { "type": "Special",
-        "compliance": ".1167"
-      }
-    ]
-  },
-  {
-    "date": "5 June",
-    "compliances": [
-      { "type": "Simple",
-        "compliance": ".31167"
+      "startDateTime": "2017-03-21T11:46:00Z"
+    },
+    {
+      "sample": {
+        "simple": 0.2348,
+        "special": 0.123
       },
-      { "type": "Special",
-        "compliance": ".38167"
-      }
-    ]
-  },
-  {
-    "date": "12 June",
-    "compliances": [
-      { "type": "Simple",
-        "compliance": ".35167"
+      "startDateTime": "2017-03-22T11:46:00Z"
+    },
+    {
+      "sample": {
+        "simple": 0.2348,
+        "special": 0.123
       },
-      { "type": "Special",
-        "compliance": ".32167"
-      }
-    ]
-  },
-  {
-    "date": "19 June",
-    "compliances": [
-      { "type": "Simple",
-        "compliance": ".35167"
+      "startDateTime": "2017-03-23T11:46:00Z"
+    },
+    {
+      "sample": {
+        "simple": 0.2348,
+        "special": 0.123
       },
-      { "type": "Special",
-        "compliance": ".32167"
-      }
-    ]
-  },
-  {
-    "date": "26 June",
-    "compliances": [
-      { "type": "Simple",
-        "compliance": ".35167"
+      "startDateTime": "2017-03-24T11:46:00Z"
+    },
+    {
+      "sample": {
+        "simple": 0.2348,
+        "special": 0.123
       },
-      { "type": "Special",
-        "compliance": ".32167"
-      }
-    ]
-  },
-  {
-    "date": "3 July",
-    "compliances": [
-      { "type": "Simple",
-        "compliance": ".35167"
+      "startDateTime": "2017-03-25T11:46:00Z"
+    },
+    {
+      "sample": {
+        "simple": 0.2348,
+        "special": 0.123
       },
-      { "type": "Special",
-        "compliance": ".32167"
-      }
-    ]
-  }      
+      "startDateTime": "2017-03-26T11:46:00Z"
+    },
+    {
+      "sample": {
+        "simple": 0.2348,
+        "special": 0.123
+      },
+      "startDateTime": "2017-03-27T11:46:00Z"
+    },
+    {
+      "sample": {
+        "simple": 0.2348,
+        "special": 0.123
+      },
+      "startDateTime": "2017-03-28T11:46:00Z"
+    },
+    {
+      "sample": {
+        "simple": 0.2348,
+        "special": 0.123
+      },
+      "startDateTime": "2017-03-29T11:46:00Z"
+    },
+    {
+      "sample": {
+        "simple": 0.2348,
+        "special": 0.123
+      },
+      "startDateTime": "2017-03-30T11:46:00Z"
+    },
+    {
+      "sample": {
+        "simple": 0.2348,
+        "special": 0.123
+      },
+      "startDateTime": "2017-03-31T11:46:00Z"
+    },
+    {
+      "sample": {
+        "simple": 0.2348,
+        "special": 0.123
+      },
+      "startDateTime": "2017-04-01T11:46:00Z"
+    }
 ]
 }

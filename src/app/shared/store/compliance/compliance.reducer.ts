@@ -7,16 +7,13 @@ export interface State {
   entities: any
   selectedId: string
   isLoaded: boolean
-  isSelectedIdLoaded: boolean
 }
 
 const initialState: State = {
   ids: [],
   entities: [],
   selectedId: '',
-  isLoaded: false,
-  isSelectedIdLoaded: false
-
+  isLoaded: false
 }
 
 export function reducer (state = initialState, action: compliance.Actions): State {
@@ -40,22 +37,6 @@ export function reducer (state = initialState, action: compliance.Actions): Stat
       })
     }
 
-    case compliance.GET_SELECTED: {
-      return Object.assign({}, state, {
-        isLoaded: false
-      })
-    }
-
-    case compliance.GET_SELECTED_SUCCESS: {
-      const payload = action.payload
-      const selectedId = payload
-
-      return Object.assign({}, state, {
-        isSelectedIdLoaded: true,
-        selectedId
-      })
-    }
-
     default:
       return state
   }
@@ -65,16 +46,10 @@ export const getIsLoaded = (state: State) => state.isLoaded
 export const getIds = (state: State) => state.ids
 export const getEntities = (state: State) => state.entities
 export const getSelectedId = (state: State) => state.selectedId
-export const getSelectedIdIsLoaded = (state: State) => state.isSelectedIdLoaded
 
 export const getIsLoadedAndValid = createSelector(
   getIsLoaded, getEntities, getSelectedId, (loaded, entities, selectedId) => {
     return loaded && !!entities[selectedId]
-  })
-
-export const getIsSelectedIdLoaded = createSelector(
-  getSelectedIdIsLoaded, (isSelectedIdLoaded) => {
-    return isSelectedIdLoaded
   })
 
 export const getSelected = createSelector(

@@ -38,7 +38,7 @@
   <ng-container cdkColumnDef="compliance">
     <md-header-cell *cdkHeaderCellDef>Compliance</md-header-cell>
     <md-cell *cdkCellDef="let row">
-      <app-compliance-plot-table [subjectId]="row.subjectId"></app-compliance-plot-table>
+      <app-simple-bar *ngFor="let data of sampleComplianceData" [data]="data"></app-simple-bar>
     </md-cell>
   </ng-container>
 
