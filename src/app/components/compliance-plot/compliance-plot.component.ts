@@ -24,25 +24,6 @@ export class CompliancePlotComponent implements OnInit {
   data$: Observable<any>
   isComplianceLoaded$: Observable<boolean>
 
-  // TODO: Part of config
-  complianceKeys =
-    [
-      {
-        'key': 'simple',
-        'doc': 'Simple compliance.',
-        'label': {
-          'EN': 'Simple Compliance'
-        }
-      },
-      {
-        'key': 'special',
-        'doc': 'Special Compliance',
-        'label': {
-          'EN': 'Special Compliance'
-        }
-      }
-    ]
-
   constructor (
     public service: ComplianceService,
     private store: Store<fromRoot.State>
@@ -53,7 +34,7 @@ export class CompliancePlotComponent implements OnInit {
 
     this.store.dispatch(new complianceAction.GetAll({
       studyId: this.studyId,
-      keys: this.complianceKeys,
+      keys: AppConfig.config.compliance.keys,
       timeHoles: this.timeHoles
     }))
 

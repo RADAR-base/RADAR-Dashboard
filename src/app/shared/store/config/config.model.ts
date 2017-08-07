@@ -14,10 +14,18 @@ export interface Config {
     [id: string]: TimeInterval
   }
   specs: string[]
+  compliance: {
+    keys: Key[]
+  }
 }
 
 export interface Label {
   EN: string
+}
+
+export interface Key {
+  key: string
+  label: Label
 }
 
 export interface Unit {
