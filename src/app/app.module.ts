@@ -34,9 +34,7 @@ import { StudyEffects } from './shared/store/study/study.effects'
 import { SubjectEffects } from './shared/store/subject/subject.effects'
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     HttpModule,
@@ -47,9 +45,7 @@ import { SubjectEffects } from './shared/store/subject/subject.effects'
 
     // Redux Devtools
     // https://github.com/zalmoxisus/redux-devtools-extension
-    !environment.PROD
-      ? StoreDevtoolsModule.instrument()
-      : [],
+    !environment.PROD ? StoreDevtoolsModule.instrument() : [],
 
     // Setup ngrx/effects
     EffectsModule.forRoot([
@@ -70,11 +66,7 @@ import { SubjectEffects } from './shared/store/subject/subject.effects'
     // Routing
     AppRoutingModule
   ],
-  providers: [
-    ConfigService,
-    ErrorService,
-    StudyGuard
-  ],
+  providers: [ConfigService, ErrorService, StudyGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

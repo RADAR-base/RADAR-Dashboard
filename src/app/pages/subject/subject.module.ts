@@ -25,13 +25,7 @@ import { SubjectService } from '../../shared/store/subject/subject.service'
     TileModule,
     ToolbarModule
   ],
-  declarations: [
-    SubjectPageComponent
-  ],
-  providers: [
-    SubjectService,
-    SourceService,
-    SensorsService
-  ]
+  declarations: [SubjectPageComponent],
+  providers: [SubjectService, SourceService, SensorsService]
 })
 export class SubjectPageModule {}

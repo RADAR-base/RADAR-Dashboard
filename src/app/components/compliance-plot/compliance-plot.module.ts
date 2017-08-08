@@ -6,16 +6,9 @@ import { ChartsModule } from '../charts/charts.module'
 import { ComplianceService } from '../../shared/store/compliance/compliance.service'
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ChartsModule
-  ],
-  declarations: [
-    CompliancePlotComponent
-  ],
-  providers: [
-    ComplianceService
-  ],
+  imports: [CommonModule, ChartsModule],
+  declarations: [CompliancePlotComponent],
+  providers: [ComplianceService],
   exports: [CompliancePlotComponent]
 })
 export class CompliancePlotModule {}

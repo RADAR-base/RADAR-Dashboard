@@ -11,7 +11,10 @@ describe('SourceGraphsService', () => {
     })
   })
 
-  it('should be created', inject([SourceGraphsService], (service: SourceGraphsService) => {
-    expect(service).toBeTruthy()
-  }))
+  it(
+    'should be created',
+    inject([SourceGraphsService], (service: SourceGraphsService) => {
+      expect(service).toBeTruthy()
+    })
+  )
 })

@@ -11,7 +11,10 @@ describe('SourceService', () => {
     })
   })
 
-  it('should be created', inject([SourceService], (service: SourceService) => {
-    expect(service).toBeTruthy()
-  }))
+  it(
+    'should be created',
+    inject([SourceService], (service: SourceService) => {
+      expect(service).toBeTruthy()
+    })
+  )
 })

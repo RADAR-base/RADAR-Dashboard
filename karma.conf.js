@@ -1,7 +1,7 @@
 // Karma configuration file, see link for more information
 // https://karma-runner.github.io/0.13/config/configuration-file.html
 
-module.exports = function (config) {
+module.exports = function(config) {
   config.set({
     basePath: '',
     frameworks: ['jasmine', '@angular/cli'],
@@ -33,10 +33,6 @@ module.exports = function (config) {
     coverageIstanbulReporter: {
       reports: ['html', 'lcovonly'],
       fixWebpackSourcePaths: true
-    },
-    angularCli: {
-      config: './.angular-cli.json',
-      environment: 'dev'
     },
     reporters: ['progress', 'kjhtml'],
     port: 9876,
@@ -94,7 +90,8 @@ module.exports = function (config) {
 
   if (process.env['TRAVIS']) {
     config.browserStack.tunnelIdentifier = process.env.TRAVIS_JOB_NUMBER
-    config.browserStack.build = 'Karma Travis #' +
+    config.browserStack.build =
+      'Karma Travis #' +
       process.env.TRAVIS_BUILD_NUMBER +
       ' [' +
       process.env.TRAVIS_BUILD_ID +

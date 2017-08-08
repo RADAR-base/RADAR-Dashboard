@@ -37,16 +37,12 @@ import { Study } from '../../shared/store/study/study.model'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OverviewPageComponent implements OnInit {
-
   studies$: Observable<Study[]>
 
-  constructor (
-    private store: Store<fromRoot.State>
-  ) {}
+  constructor(private store: Store<fromRoot.State>) {}
 
-  ngOnInit () {
+  ngOnInit() {
     this.store.dispatch(new studyAction.GetAll())
     this.studies$ = this.store.select(fromRoot.getStudyAll)
   }
-
 }

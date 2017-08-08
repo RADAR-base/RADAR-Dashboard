@@ -20,7 +20,6 @@ import { GraphBaseComponent } from '../graph-base/graph-base.component'
   styleUrls: ['./graph-multi-line.component.scss']
 })
 export class GraphMultiLineComponent extends GraphBaseComponent {
-
   sensor
   language
 
@@ -29,14 +28,15 @@ export class GraphMultiLineComponent extends GraphBaseComponent {
 
   @Input() gradient = false
 
-  getData () {
-    this.service.getMultiValueData(
-      this.sensor.type,
-      this.subjectId,
-      this.sensor.source,
-      AppConfig.config.sensors[this.sensor.type].keys,
-      this.timeHoles
-    )
+  getData() {
+    this.service
+      .getMultiValueData(
+        this.sensor.type,
+        this.subjectId,
+        this.sensor.source,
+        AppConfig.config.sensors[this.sensor.type].keys,
+        this.timeHoles
+      )
       .subscribe(d => {
         this.data = d
         this.isLoaded = true
@@ -44,5 +44,4 @@ export class GraphMultiLineComponent extends GraphBaseComponent {
         this.changeDetectorRef.markForCheck()
       })
   }
-
 }

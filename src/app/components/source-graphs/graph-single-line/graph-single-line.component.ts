@@ -20,7 +20,6 @@ import { GraphBaseComponent } from '../graph-base/graph-base.component'
   styleUrls: ['./graph-single-line.component.scss']
 })
 export class GraphSingleLineComponent extends GraphBaseComponent {
-
   sensor
   language
 
@@ -29,13 +28,14 @@ export class GraphSingleLineComponent extends GraphBaseComponent {
 
   @Input() gradient = false
 
-  getData () {
-    this.service.getSingleValueData(
-      this.sensor.type,
-      this.subjectId,
-      this.sensor.source,
-      this.timeHoles
-    )
+  getData() {
+    this.service
+      .getSingleValueData(
+        this.sensor.type,
+        this.subjectId,
+        this.sensor.source,
+        this.timeHoles
+      )
       .subscribe(d => {
         this.data = d
         this.isLoaded = true
@@ -43,5 +43,4 @@ export class GraphSingleLineComponent extends GraphBaseComponent {
         this.changeDetectorRef.markForCheck()
       })
   }
-
 }

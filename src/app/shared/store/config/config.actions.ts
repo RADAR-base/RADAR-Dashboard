@@ -11,9 +11,7 @@ export class Load implements Action {
 export class LoadSuccess implements Action {
   readonly type = LOAD_SUCCESS
 
-  constructor (public payload: Config) {}
+  constructor(public payload: Config) {}
 }
 
-export type Actions
-  = Load
-  | LoadSuccess
+export type Actions = Load | LoadSuccess

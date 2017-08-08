@@ -6,12 +6,13 @@ describe('SourceListComponent', () => {
   let component: SourceListComponent
   let fixture: ComponentFixture<SourceListComponent>
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [SourceListComponent]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [SourceListComponent]
+      }).compileComponents()
     })
-      .compileComponents()
-  }))
+  )
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SourceListComponent)

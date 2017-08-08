@@ -6,16 +6,15 @@ import { SubjectService } from './subject.service'
 describe('SubjectService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpModule
-      ],
-      providers: [
-        SubjectService
-      ]
+      imports: [HttpModule],
+      providers: [SubjectService]
     })
   })
 
-  it('should be created', inject([SubjectService], (service: SubjectService) => {
-    expect(service).toBeTruthy()
-  }))
+  it(
+    'should be created',
+    inject([SubjectService], (service: SubjectService) => {
+      expect(service).toBeTruthy()
+    })
+  )
 })

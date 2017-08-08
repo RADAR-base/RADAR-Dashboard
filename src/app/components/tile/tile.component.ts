@@ -15,7 +15,5 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TileComponent {
-
   @Input() title: string
-
 }

@@ -17,14 +17,11 @@ import { AppConfig } from './shared/utils/config'
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-
   isLoadedConfig$: Observable<boolean>
 
-  constructor (
-    private store: Store<fromRoot.State>
-  ) {}
+  constructor(private store: Store<fromRoot.State>) {}
 
-  ngOnInit () {
+  ngOnInit() {
     // Load config from firebase
     this.store.dispatch(new configAction.Load())
 
@@ -32,9 +29,10 @@ export class AppComponent implements OnInit {
     this.isLoadedConfig$ = this.store.select(fromRoot.getConfigIsLoaded)
 
     // Set config to global AppConfig
-    this.store.select(fromRoot.getConfigState)
+    this.store
+      .select(fromRoot.getConfigState)
       .filter(d => d.isLoaded && d.isValid)
       .take(1)
-      .subscribe(config => AppConfig.config = config)
+      .subscribe(config => (AppConfig.config = config))
   }
 }

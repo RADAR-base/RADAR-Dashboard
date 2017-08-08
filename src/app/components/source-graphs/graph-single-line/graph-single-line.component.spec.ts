@@ -9,19 +9,15 @@ describe('GraphSingleLineComponent', () => {
   let component: GraphSingleLineComponent
   let fixture: ComponentFixture<GraphSingleLineComponent>
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        HttpModule,
-        ChartsModule
-      ],
-      providers: [SourceGraphsService],
-      declarations: [
-        GraphSingleLineComponent
-      ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        imports: [HttpModule, ChartsModule],
+        providers: [SourceGraphsService],
+        declarations: [GraphSingleLineComponent]
+      }).compileComponents()
     })
-      .compileComponents()
-  }))
+  )
 
   beforeEach(() => {
     fixture = TestBed.createComponent(GraphSingleLineComponent)

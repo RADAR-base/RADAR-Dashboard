@@ -9,19 +9,15 @@ describe('GraphMultiLineComponent', () => {
   let component: GraphMultiLineComponent
   let fixture: ComponentFixture<GraphMultiLineComponent>
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        HttpModule,
-        ChartsModule
-      ],
-      providers: [SourceGraphsService],
-      declarations: [
-        GraphMultiLineComponent
-      ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        imports: [HttpModule, ChartsModule],
+        providers: [SourceGraphsService],
+        declarations: [GraphMultiLineComponent]
+      }).compileComponents()
     })
-      .compileComponents()
-  }))
+  )
 
   beforeEach(() => {
     fixture = TestBed.createComponent(GraphMultiLineComponent)

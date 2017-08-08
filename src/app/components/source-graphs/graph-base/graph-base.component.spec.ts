@@ -8,14 +8,15 @@ describe('GraphBaseComponent', () => {
   let component: GraphBaseComponent
   let fixture: ComponentFixture<GraphBaseComponent>
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [HttpModule],
-      providers: [SourceGraphsService],
-      declarations: [GraphBaseComponent]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        imports: [HttpModule],
+        providers: [SourceGraphsService],
+        declarations: [GraphBaseComponent]
+      }).compileComponents()
     })
-      .compileComponents()
-  }))
+  )
 
   beforeEach(() => {
     fixture = TestBed.createComponent(GraphBaseComponent)

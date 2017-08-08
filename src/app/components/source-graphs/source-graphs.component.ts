@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit
+} from '@angular/core'
 import { Source } from '../../shared/store/source/source.model'
 
 @Component({
@@ -34,7 +39,6 @@ import { Source } from '../../shared/store/source/source.model'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SourceGraphsComponent implements OnInit {
-
   CHART_TYPE = {
     HEART_RATE: 'HEART_RATE',
     ACCELEROMETER: 'ACCELEROMETER',
@@ -48,8 +52,7 @@ export class SourceGraphsComponent implements OnInit {
   @Input() sources: Source[]
   @Input() subjectId: string
 
-  constructor () { }
+  constructor() {}
 
-  ngOnInit () { }
-
+  ngOnInit() {}
 }

@@ -9,12 +9,12 @@ import { StudyService } from './study.service'
 
 @Injectable()
 export class StudyEffects {
-
   @Effect()
   getAll$: Observable<Action> = this.actions$
     .ofType(studyAction.GET_ALL)
     .switchMap(() => {
-      return this.studyService.getAll()
+      return this.studyService
+        .getAll()
         .map((data: Study[]) => new studyAction.GetAllSuccess(data))
     })
 
@@ -23,12 +23,10 @@ export class StudyEffects {
     .ofType(studyAction.GET_BY_ID)
     .map(toPayload)
     .switchMap(payload => {
-      return this.studyService.getById(payload)
+      return this.studyService
+        .getById(payload)
         .map((data: Study) => new studyAction.GetByIdSuccess(data))
     })
 
-  constructor (
-    private actions$: Actions,
-    private studyService: StudyService
-  ) { }
+  constructor(private actions$: Actions, private studyService: StudyService) {}
 }

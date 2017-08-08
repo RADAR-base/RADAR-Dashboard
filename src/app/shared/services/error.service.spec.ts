@@ -10,7 +10,10 @@ describe('ErrorLoggerServiceService', () => {
     })
   })
 
-  it('should ...', inject([ErrorService], (service: ErrorService) => {
-    expect(service).toBeTruthy()
-  }))
+  it(
+    'should ...',
+    inject([ErrorService], (service: ErrorService) => {
+      expect(service).toBeTruthy()
+    })
+  )
 })

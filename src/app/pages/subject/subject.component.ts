@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit
+} from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
@@ -47,7 +52,6 @@ import { TakeUntilDestroy } from '../../shared/utils/TakeUntilDestroy'
 })
 @TakeUntilDestroy
 export class SubjectPageComponent implements OnInit, OnDestroy {
-
   studyId: string
   subjectId: string
   sources$: Observable<Source[]>
@@ -55,30 +59,29 @@ export class SubjectPageComponent implements OnInit, OnDestroy {
 
   private takeUntilDestroy
 
-  constructor (
+  constructor(
     private route: ActivatedRoute,
     private store: Store<fromRoot.State>
   ) {}
 
-  ngOnInit () {
-    this.route.params
-      .takeUntil(this.takeUntilDestroy())
-      .subscribe(params => {
-        this.studyId = params.studyId
-        this.subjectId = params.subjectId
-        AppConfig.timeFrame.start = +params.startTime || null
-        AppConfig.timeFrame.end = +params.endTime || null
-      })
+  ngOnInit() {
+    this.route.params.takeUntil(this.takeUntilDestroy()).subscribe(params => {
+      this.studyId = params.studyId
+      this.subjectId = params.subjectId
+      AppConfig.timeFrame.start = +params.startTime || null
+      AppConfig.timeFrame.end = +params.endTime || null
+    })
 
     // Get sources from server
     this.store.dispatch(new sourceAction.GetAll(this.subjectId))
     this.sourceIsLoaded$ = this.store.select(fromRoot.getSourceIsLoaded)
-    this.sources$ = this.store.select(fromRoot.getSourceAllWithSensors)
-      .publishReplay().refCount()
+    this.sources$ = this.store
+      .select(fromRoot.getSourceAllWithSensors)
+      .publishReplay()
+      .refCount()
   }
 
-  ngOnDestroy () {
+  ngOnDestroy() {
     this.store.dispatch(new sensorsAction.Destroy())
   }
-
 }

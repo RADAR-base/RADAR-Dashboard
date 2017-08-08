@@ -11,21 +11,22 @@ import { ParseMultiValueData } from '../../shared/utils/ParseMultiValueData'
 
 @Injectable()
 export class SourceGraphsService {
-
   private URL = `${PARAMS.API_URI}/data`
 
-  constructor (private http: Http) {}
+  constructor(private http: Http) {}
 
-  getSingleValueData (
-    type, subject, source, timeHoles = true
+  getSingleValueData(
+    type,
+    subject,
+    source,
+    timeHoles = true
   ): Observable<TimeSeries[]> {
     const url = this.parseURL(type, subject, source)
 
-    return this.http.get(url)
+    return this.http
+      .get(url)
       .map(res => {
-        return res.status === 200
-          ? res.json() || null
-          : null
+        return res.status === 200 ? res.json() || null : null
       })
       .map(res => {
         if (res) {
@@ -39,16 +40,19 @@ export class SourceGraphsService {
       .catch(ErrorService.handleError)
   }
 
-  getMultiValueData (
-    type, subject, source, keys, timeHoles = true
+  getMultiValueData(
+    type,
+    subject,
+    source,
+    keys,
+    timeHoles = true
   ): Observable<MultiTimeSeries> {
     const url = this.parseURL(type, subject, source)
 
-    return this.http.get(url)
+    return this.http
+      .get(url)
       .map(res => {
-        return res.status === 200
-          ? res.json() || null
-          : null
+        return res.status === 200 ? res.json() || null : null
       })
       .map(res => {
         if (res) {
@@ -62,23 +66,29 @@ export class SourceGraphsService {
       .catch(ErrorService.handleError)
   }
 
-  private parseSingleValueData (res) {
-    return res.dataset
-      .map(data => {
-        return {
-          value: data.sample.value,
-          date: new Date(data.startDateTime)
-        }
-      })
+  private parseSingleValueData(res) {
+    return res.dataset.map(data => {
+      return {
+        value: data.sample.value,
+        date: new Date(data.startDateTime)
+      }
+    })
   }
 
   // TODO: setup 'AVERAGE' & 'TEN_SECOND'
-  private parseURL (type, subject, source, stat = 'AVERAGE', interval = 'TEN_SECOND') {
+  private parseURL(
+    type,
+    subject,
+    source,
+    stat = 'AVERAGE',
+    interval = 'TEN_SECOND'
+  ) {
     const url = `${this.URL}/${type}/${stat}/${interval}/${subject}/${source}`
 
-    return AppConfig.timeFrame && AppConfig.timeFrame.start && AppConfig.timeFrame.end
+    return AppConfig.timeFrame &&
+    AppConfig.timeFrame.start &&
+    AppConfig.timeFrame.end
       ? `${url}/${AppConfig.timeFrame.start}/${AppConfig.timeFrame.end}`
       : url
   }
-
 }

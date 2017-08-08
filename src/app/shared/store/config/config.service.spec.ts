@@ -11,7 +11,10 @@ describe('ConfigService', () => {
     })
   })
 
-  it('should ...', inject([ConfigService], (service: ConfigService) => {
-    expect(service).toBeTruthy()
-  }))
+  it(
+    'should ...',
+    inject([ConfigService], (service: ConfigService) => {
+      expect(service).toBeTruthy()
+    })
+  )
 })

@@ -1,6 +1,6 @@
 import { AppConfig } from '../../shared/utils/config'
 
-export function ParseTimeHoles (res, multi = false) {
+export function ParseTimeHoles(res, multi = false) {
   const interval = AppConfig.config.timeIntervals[res.header.timeFrame].value
   const timeFrame = res.header.effectiveTimeFrame
   const data = res.dataset

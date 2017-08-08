@@ -61,7 +61,7 @@ describe('ChartBaseBarComponent', () => {
 
       const rectElements: any = element.querySelectorAll('rect.bar')
 
-      Object.getOwnPropertyNames(rectElements).forEach((prop) => {
+      Object.getOwnPropertyNames(rectElements).forEach(prop => {
         expect(rectElements[prop].getAttribute('x')).toBeTruthy()
         expect(rectElements[prop].getAttribute('y')).toBeTruthy()
       })

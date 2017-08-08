@@ -7,14 +7,14 @@ import { StudyGuard } from './study.guard'
 describe('StudyGuard', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        StudyGuard,
-        { provide: Router, useClass: RouterStub }
-      ]
+      providers: [StudyGuard, { provide: Router, useClass: RouterStub }]
     })
   })
 
-  it('should ...', inject([StudyGuard], (guard: StudyGuard) => {
-    expect(guard).toBeTruthy()
-  }))
+  it(
+    'should ...',
+    inject([StudyGuard], (guard: StudyGuard) => {
+      expect(guard).toBeTruthy()
+    })
+  )
 })

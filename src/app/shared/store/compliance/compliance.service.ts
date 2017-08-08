@@ -8,17 +8,15 @@ import { ParseMultiValueData } from '../../../shared/utils/ParseMultiValueData'
 
 @Injectable()
 export class ComplianceService {
+  constructor(private http: Http) {}
 
-  constructor (private http: Http) {}
-
-  getAll (studyId, keys, timeHoles = true): Observable<any> {
+  getAll(studyId, keys, timeHoles = true): Observable<any> {
     // TODO: Change when API is ready
-    return this.http.get(`${PARAMS.API_LOCAL}/mock-compliance.json`)
+    return this.http
+      .get(`${PARAMS.API_LOCAL}/mock-compliance.json`)
       .delay(1000)
       .map(res => {
-        return res.status === 200
-          ? res.json() || null
-          : null
+        return res.status === 200 ? res.json() || null : null
       })
       .map(res => {
         if (res) {

@@ -12,9 +12,11 @@ const initialState: State = {
   isLoaded: false
 }
 
-export function reducer (state = initialState, action: compliance.Actions): State {
+export function reducer(
+  state = initialState,
+  action: compliance.Actions
+): State {
   switch (action.type) {
-
     case compliance.GET_ALL: {
       return Object.assign({}, state, {
         isLoaded: false
@@ -39,7 +41,6 @@ export function reducer (state = initialState, action: compliance.Actions): Stat
 export const getIsLoaded = (state: State) => state.isLoaded
 export const getData = (state: State) => state.data
 
-export const getAll = createSelector(
-  getData, (data) => {
-    return data
-  })
+export const getAll = createSelector(getData, data => {
+  return data
+})
