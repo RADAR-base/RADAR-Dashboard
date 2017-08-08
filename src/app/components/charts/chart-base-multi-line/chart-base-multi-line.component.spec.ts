@@ -1,8 +1,8 @@
 import { DebugElement } from '@angular/core'
 import {
   ComponentFixture,
-  fakeAsync,
   TestBed,
+  fakeAsync,
   tick
 } from '@angular/core/testing'
 

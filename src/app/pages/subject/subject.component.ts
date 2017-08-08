@@ -8,10 +8,10 @@ import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
-import * as fromRoot from '../../shared/store/index'
 import * as sensorsAction from '../../shared/store/sensors/sensors.actions'
 import * as sourceAction from '../../shared/store/source/source.actions'
 import { Source } from '../../shared/store/source/source.model'
+import * as fromRoot from '../../shared/store/index'
 import { AppConfig } from '../../shared/utils/config'
 import { TakeUntilDestroy } from '../../shared/utils/TakeUntilDestroy'
 

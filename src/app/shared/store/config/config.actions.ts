@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store'
+
 import { Config } from './config.model'
 
 export const LOAD = '[Config] Load'

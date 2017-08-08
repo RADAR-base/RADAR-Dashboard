@@ -1,10 +1,10 @@
+import { CdkTableModule } from '@angular/cdk'
 import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
-import { MdTableModule, MdPaginatorModule } from '@angular/material'
-import { CdkTableModule } from '@angular/cdk'
+import { MdPaginatorModule, MdTableModule } from '@angular/material'
 
-import { SubjectTableComponent } from './subject-table.component'
 import { SimpleBarComponent } from '../../../components/simple-bar/simple-bar.component'
+import { SubjectTableComponent } from './subject-table.component'
 
 @NgModule({
   imports: [CommonModule, CdkTableModule, MdTableModule, MdPaginatorModule],

@@ -1,6 +1,7 @@
+import 'rxjs/add/observable/merge'
+
 import { DataSource } from '@angular/cdk'
 import { MdPaginator } from '@angular/material'
-import 'rxjs/add/observable/merge'
 import { Observable } from 'rxjs/Observable'
 
 import { Subject } from '../../../shared/store/subject/subject.model'

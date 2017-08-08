@@ -3,10 +3,10 @@ import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
-import * as fromRoot from '../../shared/store/index'
 import * as studyAction from '../../shared/store/study/study.actions'
 import * as subjectAction from '../../shared/store/subject/subject.actions'
 import { Subject } from '../../shared/store/subject/subject.model'
+import * as fromRoot from '../../shared/store/index'
 import { TakeUntilDestroy } from '../../shared/utils/TakeUntilDestroy'
 
 @Component({

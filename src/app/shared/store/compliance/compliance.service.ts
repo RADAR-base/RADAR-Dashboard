@@ -3,8 +3,8 @@ import { Http } from '@angular/http'
 import { Observable } from 'rxjs/Observable'
 
 import { ErrorService } from '../../../shared/services/error.service'
-import { ParseTimeHoles } from '../../../shared/utils/ParseTimeHoles'
 import { ParseMultiValueData } from '../../../shared/utils/ParseMultiValueData'
+import { ParseTimeHoles } from '../../../shared/utils/ParseTimeHoles'
 
 @Injectable()
 export class ComplianceService {

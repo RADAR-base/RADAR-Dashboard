@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store'
+
 import { Source } from './source.model'
 
 export const GET_ALL = '[Source] GET_ALL'

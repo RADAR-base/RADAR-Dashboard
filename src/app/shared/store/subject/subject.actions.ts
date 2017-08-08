@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store'
+
 import { Subject } from './subject.model'
 
 export const GET_ALL = '[Subject] GET_ALL'

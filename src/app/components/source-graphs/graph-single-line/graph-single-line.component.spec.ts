@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing'
+import { ComponentFixture, TestBed, async } from '@angular/core/testing'
 import { HttpModule } from '@angular/http'
 
 import { ChartsModule } from '../../charts/charts.module'

@@ -1,5 +1,5 @@
 import { DebugElement } from '@angular/core'
-import { async, ComponentFixture, TestBed } from '@angular/core/testing'
+import { ComponentFixture, TestBed, async } from '@angular/core/testing'
 
 import { ToolbarComponent } from './toolbar.component'
 import { ToolbarModule } from './toolbar.module'

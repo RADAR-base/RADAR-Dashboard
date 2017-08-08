@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
+
 import { AppConfig } from '../../shared/utils/config'
 
 @Component({

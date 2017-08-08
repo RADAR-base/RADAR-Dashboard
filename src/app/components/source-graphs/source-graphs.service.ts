@@ -6,8 +6,8 @@ import { MultiTimeSeries } from '../../shared/models/multi-time-series.model'
 import { TimeSeries } from '../../shared/models/time-series.model'
 import { ErrorService } from '../../shared/services/error.service'
 import { AppConfig } from '../../shared/utils/config'
-import { ParseTimeHoles } from '../../shared/utils/ParseTimeHoles'
 import { ParseMultiValueData } from '../../shared/utils/ParseMultiValueData'
+import { ParseTimeHoles } from '../../shared/utils/ParseTimeHoles'
 
 @Injectable()
 export class SourceGraphsService {

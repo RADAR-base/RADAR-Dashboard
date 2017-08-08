@@ -6,8 +6,8 @@ import {
 } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
-import * as complianceAction from '../../shared/store/compliance/compliance.actions'
 
+import * as complianceAction from '../../shared/store/compliance/compliance.actions'
 import { ComplianceService } from '../../shared/store/compliance/compliance.service'
 import * as fromRoot from '../../shared/store/index'
 import { AppConfig } from '../../shared/utils/config'

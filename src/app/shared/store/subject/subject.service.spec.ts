@@ -1,4 +1,4 @@
-import { inject, TestBed } from '@angular/core/testing'
+import { TestBed, inject } from '@angular/core/testing'
 import { HttpModule } from '@angular/http'
 
 import { SubjectService } from './subject.service'

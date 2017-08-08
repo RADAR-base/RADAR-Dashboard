@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
-import * as fromRoot from './shared/store/'
 import * as configAction from './shared/store/config/config.actions'
+import * as fromRoot from './shared/store/'
 import { AppConfig } from './shared/utils/config'
 
 @Component({
