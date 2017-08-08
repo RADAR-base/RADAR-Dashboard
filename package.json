@@ -9,11 +9,12 @@
     "hmr": "ng serve --hmr -e=hmr",
     "build": "ng build --prod",
     "build:dev": "ng build",
-    "all": "npm run fix:css && npm run fix:code && npm run lint && npm run test:coverage && npm run e2e",
-    "lint": "npm run lint:ng && npm run lint:css",
+    "all": "npm run fix:sort && npm run fix:css && npm run fix:code && npm run lint && npm run test:coverage && npm run e2e",
+    "lint": "npm run lint:ng && npm run lint:css && lint:prettier && npm run lint:sort",
     "lint:ng": "ng lint --type-check",
     "lint:css": "stylelint \"src/**/*.scss\"",
     "lint:prettier": "prettier --single-quote --no-semi --list-different \"**/*(*.js|*.ts|*.json)\"",
+    "lint:sort": "import-sort -d -s src/app",
     "test": "ng test",
     "test:ci": "ng test --code-coverage --watch=false",
     "test:coverage": "ng test --code-coverage --watch=false && open coverage/index.html",
@@ -22,7 +23,8 @@
     "fix:stylefmt": "postcss -r \"src/**/*.scss\"",
     "fix:stylelint": "stylelint --fix \"src/**/*.scss\"",
     "fix:code": "npm run fix:prettier",
-    "fix:prettier": "prettier --single-quote --no-semi --write \"**/*(*.js|*.ts|*.json)\""
+    "fix:prettier": "prettier --single-quote --no-semi --write \"**/*(*.js|*.ts|*.json)\"",
+    "fix:sort": "import-sort -o src/app"
   },
   "private": true,
   "dependencies": {
@@ -62,6 +64,10 @@
     "codelyzer": "^3.1.2",
     "coveralls": "^2.13.1",
     "enhanced-resolve": "^3.4.1",
+    "import-sort-cli": "^3.3.0",
+    "import-sort-parser-babylon": "^3.2.0",
+    "import-sort-parser-typescript": "^3.2.0",
+    "import-sort-style-module": "^3.0.0",
     "jasmine-core": "^2.7.0",
     "jasmine-spec-reporter": "^4.2.0",
     "karma": "^1.7.0",
@@ -88,5 +94,15 @@
     "tslint-config-standard": "^6.0.1",
     "tslint-language-service": "^0.9.6",
     "typescript": "^2.4.2"
+  },
+  "importSort": {
+    ".js": {
+      "parser": "babylon",
+      "style": "module"
+    },
+    ".ts": {
+      "parser": "typescript",
+      "style": "module"
+    }
   }
 }

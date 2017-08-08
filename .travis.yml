@@ -32,6 +32,7 @@ script:
   - npm run lint:ng
   - npm run lint:css
   - npm run lint:prettier
+  - npm run lint:sort
 
   # run unit tests
   - npm run test:ci

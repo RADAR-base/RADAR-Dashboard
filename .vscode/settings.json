@@ -12,5 +12,6 @@
     "folderExclude": [".vscode", "node_modules", "coverage", "dist"],
     "markers": ["TODO:", "NOTE:", "FIXME:"]
   },
+  "sortImports.onSave": true,
   "eslint.enable": false
 }
