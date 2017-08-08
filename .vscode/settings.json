@@ -1,0 +1,16 @@
+{
+  "editor.formatOnSave": true,
+  "tslint.autoFixOnSave": true,
+  "prettier.printWidth": 80,
+  "prettier.semi": false,
+  "prettier.singleQuote": true,
+  "prettier.javascriptEnable": ["javascript", "javascriptreact"],
+  "prettier.typescriptEnable": ["typescript", "typescriptreact"],
+  "prettier.jsonEnable": ["json"],
+  "TodoParser": {
+    "include": ["js", "html", "css", "scss", "ts"],
+    "folderExclude": [".vscode", "node_modules", "coverage", "dist"],
+    "markers": ["TODO:", "NOTE:", "FIXME:"]
+  },
+  "eslint.enable": false
+}
