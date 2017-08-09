@@ -10,6 +10,7 @@
     "CoenraadS.bracket-pair-colorizer",
     "christian-kohler.path-intellisense",
     "natewallace.angular2-inline",
-    "shinnn.stylelint"
+    "shinnn.stylelint",
+    "mrmlnc.vscode-scss"
   ]
 }
