@@ -7,4 +7,20 @@
     stroke-width: 3px;
     stroke-linejoin: round;
   }
+
+  .d3-line-chunked-defined {
+    fill: none;
+    stroke-width: 3px;
+    stroke-linejoin: round;
+  }
+
+  .d3-line-chunked-undefined {
+    fill: none;
+    stroke-width: 3px;
+    stroke-linejoin: round;
+  }
+
+  .d3-line-chunked-defined-point {
+    opacity: 0;
+  }
 }
