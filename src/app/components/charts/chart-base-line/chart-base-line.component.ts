@@ -82,7 +82,7 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
     this.lineChunked = lineChunked()
         .x(d => this.xScale(d.date))
         .y(d => this.yScale(d.value))
-        .curve(d3.curveBasis)
+        .curve(d3.curveLinear)
         .defined((d: any) => d.value)
 
     this.lineEl

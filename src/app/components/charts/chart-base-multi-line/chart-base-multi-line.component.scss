@@ -2,25 +2,10 @@
 @import '../charts.common';
 
 :host /deep/ {
-  .line {
-    fill: none;
-    stroke-width: 3px;
-    stroke-linejoin: round;
-  }
-
-  .d3-line-chunked-defined {
-    fill: none;
-    stroke-width: 3px;
-    stroke-linejoin: round;
-  }
-
+  .d3-line-chunked-defined,
   .d3-line-chunked-undefined {
     fill: none;
-    stroke-width: 3px;
+    stroke-width: 2px;
     stroke-linejoin: round;
-  }
-
-  .d3-line-chunked-defined-point {
-    opacity: 0;
   }
 }

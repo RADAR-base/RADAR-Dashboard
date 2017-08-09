@@ -67,14 +67,15 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
 
     this.chart.selectAll('.line').remove()
 
+    const colorsFunction = (d, i) => this.zScale(keys[i])
+
     this.lineChunked = lineChunked()
         .x((d) => this.xScale(d.x))
         .y((d) => this.yScale(d.y))
-        .curve(d3.curveBasis)
+        .curve(d3.curveLinear)
         .defined(function (d) { return d.y != null })
-        .lineStyles({
-          stroke: (d, i) => this.zScale(keys[i])
-        })
+        .lineStyles({ stroke: colorsFunction })
+        .pointStyles({ fill: colorsFunction })
 
     this.newData = this.data.keys.map(k => k.key).map((d) => this.data.values[d]).map((d) => d.map(
                                   function (e, i) { return { x: dates[i], y: e } } ))
