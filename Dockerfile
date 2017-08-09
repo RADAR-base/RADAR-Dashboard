@@ -14,31 +14,13 @@ FROM node:8
 
 MAINTAINER Maximilian Kerz @kerzmaximilian, Amos Folarin @afolarin, Herculano Campos @herkulano
 
-LABEL org="RADAR-CNS"
-LABEL name="RADAR-Dashboard"
-LABEL version="1.0"
-
 ENV PROJ="RADAR-Dashboard"
 ENV PROJ_FOLDER="/opt/${PROJ}"
 
-# install git nginx yarn
-RUN echo && echo "==> Installing Components" \
-    && apt-get update -qq \
-    && apt-get install -y nginx \
-    && echo
-
-# forward request and error logs to docker log collector
-RUN echo && echo "==> Setup nginx" \
-    && ln -sf /dev/stdout /var/log/nginx/access.log \
-    && ln -sf /dev/stderr /var/log/nginx/error.log \
-    && echo
-
-    # override default nginx config
-    COPY ./docker/default.nginx /etc/nginx/sites-available/default
-
 # copy project files to build
 RUN echo && echo "==> Copy files to build ${PROJ}"
-    COPY ./ ${PROJ_FOLDER}
+    COPY *.json *.js ${PROJ_FOLDER}/
+    COPY src ${PROJ_FOLDER}/src
 
 # yarn install and build
 RUN echo && echo "==> Installing dependencies and building App" \
@@ -46,12 +28,22 @@ RUN echo && echo "==> Installing dependencies and building App" \
     && npm i --silent \
     && npm run ng -- --version \
     && npm run build \
-    && rm -rf /var/www/* \
-    && cp -a ${PROJ_FOLDER}/dist/. /var/www \
     && echo
 
+FROM nginx:1.13.1-alpine
+
+LABEL org="RADAR-CNS"
+LABEL name="RADAR-Dashboard"
+LABEL version="1.0"
+
+ENV PROJ="RADAR-Dashboard"
+ENV PROJ_FOLDER="/opt/${PROJ}"
+
 # add init script
+COPY ./docker/default.nginx /etc/nginx/conf.d/default.conf
 COPY ./docker/init.sh .
+
+COPY --from=0 ${PROJ_FOLDER}/dist /var/www
 
 # expose internal port:80 and run init.sh
 EXPOSE 80
