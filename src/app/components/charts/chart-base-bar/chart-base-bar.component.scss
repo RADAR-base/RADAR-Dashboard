@@ -3,10 +3,10 @@
 
 :host /deep/ {
   .bar {
-    fill: #7fcdbb;
+    fill: $cl-graph-3;
   }
 
   .bar:hover {
-    fill: #fcaf0a;
+    fill: $cl-graph-hover;
   }
 }
