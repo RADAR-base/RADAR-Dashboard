@@ -1,11 +1,2 @@
 @import '../../../../styles/common';
 @import '../charts.common';
-
-:host /deep/ {
-  .d3-line-chunked-defined,
-  .d3-line-chunked-undefined {
-    fill: none;
-    stroke-width: 2px;
-    stroke-linejoin: round;
-  }
-}

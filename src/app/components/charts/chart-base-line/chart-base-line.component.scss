@@ -1,27 +1,2 @@
 @import '../../../../styles/common';
 @import '../charts.common';
-
-:host /deep/ {
-  .d3-line-chunked-defined,
-  .d3-line-chunked-undefined {
-    fill: none;
-    stroke: $cl-graph-3;
-    stroke-width: 2px;
-    stroke-linejoin: round;
-  }
-
-  .d3-line-chunked-defined-point {
-    fill: $cl-graph-3;
-  }
-
-  .hr-gradient {
-    .d3-line-chunked-defined,
-    .d3-line-chunked-undefined {
-      stroke: url(#hr-gradient);
-    }
-
-    .d3-line-chunked-defined-point {
-      fill: url(#hr-gradient);
-    }
-  }
-}
