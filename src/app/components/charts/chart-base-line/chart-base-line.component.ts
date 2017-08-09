@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core'
 import * as d3 from 'd3'
+import { lineChunked } from 'd3-line-chunked'
 
 import { TimeSeries } from '../../../shared/models/time-series.model'
 import { AppConfig } from '../../../shared/utils/config'
@@ -28,6 +29,7 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
   line: any
   lineEl: any
   gradient: any
+  lineChunked: any
 
   init () {
     // Add HR Gradient
@@ -47,13 +49,7 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
         .attr('stop-color', d => d.color)
     }
 
-    this.lineEl = this.chart
-      .append('path')
-      .attr('class', 'line')
-
-    this.line = d3.line()
-      .curve(d3.curveBasis)
-      .defined((d: any) => d.value)
+    this.lineEl = this.chart.append('g')
 
     super.init()
   }
@@ -83,13 +79,15 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
         .attr('y2', this.yScale(this.gradientStops.y2))
     }
 
-    this.line
-      .x(d => this.xScale(d.date))
-      .y(d => this.yScale(d.value))
+    this.lineChunked = lineChunked()
+        .x(d => this.xScale(d.date))
+        .y(d => this.yScale(d.value))
+        .curve(d3.curveBasis)
+        .defined((d: any) => d.value)
 
     this.lineEl
-      .datum(this.data)
-      .transition()
-      .attr('d', this.line)
+        .datum(this.data)
+        .call(this.lineChunked)
+
   }
 }

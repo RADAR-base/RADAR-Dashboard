@@ -2,14 +2,29 @@
 @import '../charts.common';
 
 :host /deep/ {
-  .line {
+  .d3-line-chunked-defined {
     fill: none;
     stroke: $cl-graph-3;
     stroke-width: 3px;
     stroke-linejoin: round;
   }
 
-  .hr-gradient .line {
+  .d3-line-chunked-undefined {
+    fill: none;
+    stroke: $cl-graph-3;
+    stroke-width: 3px;
+    stroke-linejoin: round;
+  }
+
+  .d3-line-chunked-defined-point {
+    opacity: 0;
+  }
+
+  .hr-gradient .d3-line-chunked-defined {
+    stroke: url(#hr-gradient);
+  }
+
+  .hr-gradient .d3-line-chunked-undefined {
     stroke: url(#hr-gradient);
   }
 }
