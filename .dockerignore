@@ -1,8 +1,14 @@
 .git
 .gitignore
 .env*
+.dockerignore
+Dockerfile
+README.md
+LICENSE
 node_modules
 dist
 docs
 e2e
 scripts
+CONTRIBUTING.md
+CODE_OF_CONDUCT.md
