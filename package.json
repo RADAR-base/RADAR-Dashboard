@@ -10,7 +10,7 @@
     "build": "ng build --prod",
     "build:dev": "ng build",
     "all": "npm run fix:sort && npm run fix:css && npm run fix:code && npm run lint && npm run test:coverage && npm run e2e",
-    "lint": "npm run lint:ng && npm run lint:css && lint:prettier && npm run lint:sort",
+    "lint": "npm run lint:ng && npm run lint:css && npm run lint:prettier && npm run lint:sort",
     "lint:ng": "ng lint --type-check",
     "lint:css": "stylelint \"src/**/*.scss\"",
     "lint:prettier": "prettier --single-quote --no-semi --list-different \"**/*(*.js|*.ts|*.json)\"",
