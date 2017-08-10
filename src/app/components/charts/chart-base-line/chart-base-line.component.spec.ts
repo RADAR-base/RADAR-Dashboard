@@ -49,7 +49,7 @@ describe('ChartBaseLineComponent', () => {
       expect(component.height).toBeGreaterThan(0)
     })
 
-    it('should contain path when data changes', (done) => {
+    it('should contain path when data changes', done => {
       const lineEl = element.querySelector('g')
       const inner = lineEl.querySelectorAll('g')[2].getElementsByTagName('path')
 

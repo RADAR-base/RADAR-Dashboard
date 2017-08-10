@@ -58,10 +58,7 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
       .range([this.height, 0])
       .domain([minValue, maxValue])
 
-    this.zScale = d3
-      .scaleOrdinal()
-      .domain(keys)
-      .range(this.lineColors)
+    this.zScale = d3.scaleOrdinal().domain(keys).range(this.lineColors)
 
     this.xAxis
       .attr('transform', `translate(0, ${this.height})`)
@@ -74,25 +71,30 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
     const colorsFunction = (d, i) => this.zScale(keys[i])
 
     this.lineChunked = lineChunked()
-        .x((d) => this.xScale(d.x))
-        .y((d) => this.yScale(d.y))
-        .curve(d3.curveLinear)
-        .defined(function (d) { return d.y != null })
-        .lineStyles({ stroke: colorsFunction })
-        .pointStyles({ fill: colorsFunction })
+      .x(d => this.xScale(d.x))
+      .y(d => this.yScale(d.y))
+      .curve(d3.curveLinear)
+      .defined(function(d) {
+        return d.y != null
+      })
+      .lineStyles({ stroke: colorsFunction })
+      .pointStyles({ fill: colorsFunction })
 
-    this.newData = this.data.keys.map(k => k.key).map((d) => this.data.values[d]).map((d) => d.map(
-                                  function (e, i) { return { x: dates[i], y: e } } ))
+    this.newData = this.data.keys
+      .map(k => k.key)
+      .map(d => this.data.values[d])
+      .map(d =>
+        d.map(function(e, i) {
+          return { x: dates[i], y: e }
+        })
+      )
 
     this.lines = this.chart.selectAll('.line').data(this.newData)
 
     this.line = this.lines.enter().append('g')
 
-    this.lines.merge(this.line)
-              .attr('class', 'line')
-              .call(this.lineChunked)
+    this.lines.merge(this.line).attr('class', 'line').call(this.lineChunked)
 
     this.lines.exit().remove()
-
   }
 }
