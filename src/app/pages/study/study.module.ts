@@ -25,13 +25,7 @@ import { routes } from './study.routing'
     SubjectTableModule,
     CompliancePlotModule
   ],
-  declarations: [
-    StudyPageComponent
-  ],
-  providers: [
-    StudyService,
-    SubjectService,
-    SourceService
-  ]
+  declarations: [StudyPageComponent],
+  providers: [StudyService, SubjectService, SourceService]
 })
 export class StudyPageModule {}

@@ -6,7 +6,7 @@ import { Study } from './study.model'
 export interface State {
   ids: string[]
   entities: { [id: string]: Study }
-  selectedId: string,
+  selectedId: string
   isLoaded: boolean
 }
 
@@ -17,9 +17,11 @@ const initialState: State = {
   isLoaded: false
 }
 
-export function reducer (state = initialState, action: studyActions.Actions): State {
+export function reducer(
+  state = initialState,
+  action: studyActions.Actions
+): State {
   switch (action.type) {
-
     case studyActions.GET_ALL:
     case studyActions.GET_BY_ID: {
       return Object.assign({}, state, {
@@ -51,9 +53,7 @@ export function reducer (state = initialState, action: studyActions.Actions): St
 
       if (payload && payload.id) {
         index = state.ids.findIndex(id => id === payload.id.toString())
-        ids = index > -1
-          ? [...state.ids]
-          : [...state.ids, payload.id]
+        ids = index > -1 ? [...state.ids] : [...state.ids, payload.id]
         entity = { [payload.id]: payload }
         entities = Object.assign({}, state.entities, entity)
         selectedId = payload.id
@@ -88,16 +88,22 @@ export const getEntities = (state: State) => state.entities
 export const getSelectedId = (state: State) => state.selectedId
 
 export const getIsLoadedAndValid = createSelector(
-  getIsLoaded, getEntities, getSelectedId, (loaded, entities, selectedId) => {
+  getIsLoaded,
+  getEntities,
+  getSelectedId,
+  (loaded, entities, selectedId) => {
     return loaded && !!entities[selectedId]
-  })
+  }
+)
 
 export const getSelected = createSelector(
-  getEntities, getSelectedId, (entities, selectedId) => {
+  getEntities,
+  getSelectedId,
+  (entities, selectedId) => {
     return entities[selectedId]
-  })
+  }
+)
 
-export const getAll = createSelector(
-  getEntities, getIds, (entities, ids) => {
-    return ids.map(id => entities[id])
-  })
+export const getAll = createSelector(getEntities, getIds, (entities, ids) => {
+  return ids.map(id => entities[id])
+})

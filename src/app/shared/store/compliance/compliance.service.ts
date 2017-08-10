@@ -3,22 +3,20 @@ import { Http } from '@angular/http'
 import { Observable } from 'rxjs/Observable'
 
 import { ErrorService } from '../../../shared/services/error.service'
-import { ParseTimeHoles } from '../../../shared/utils/ParseTimeHoles'
 import { ParseMultiValueData } from '../../../shared/utils/ParseMultiValueData'
+import { ParseTimeHoles } from '../../../shared/utils/ParseTimeHoles'
 
 @Injectable()
 export class ComplianceService {
+  constructor(private http: Http) {}
 
-  constructor (private http: Http) {}
-
-  getAll (studyId, keys, timeHoles = true): Observable<any> {
+  getAll(studyId, keys, timeHoles = true): Observable<any> {
     // TODO: Change when API is ready
-    return this.http.get(`${PARAMS.API_LOCAL}/mock-compliance.json`)
+    return this.http
+      .get(`${PARAMS.API_LOCAL}/mock-compliance.json`)
       .delay(1000)
       .map(res => {
-        return res.status === 200
-          ? res.json() || null
-          : null
+        return res.status === 200 ? res.json() || null : null
       })
       .map(res => {
         if (res) {

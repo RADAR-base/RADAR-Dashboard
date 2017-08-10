@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing'
+import { ComponentFixture, TestBed, async } from '@angular/core/testing'
 import { HttpModule } from '@angular/http'
 
 import { ChartsModule } from '../../charts/charts.module'
@@ -9,19 +9,15 @@ describe('GraphSingleLineComponent', () => {
   let component: GraphSingleLineComponent
   let fixture: ComponentFixture<GraphSingleLineComponent>
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        HttpModule,
-        ChartsModule
-      ],
-      providers: [SourceGraphsService],
-      declarations: [
-        GraphSingleLineComponent
-      ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        imports: [HttpModule, ChartsModule],
+        providers: [SourceGraphsService],
+        declarations: [GraphSingleLineComponent]
+      }).compileComponents()
     })
-      .compileComponents()
-  }))
+  )
 
   beforeEach(() => {
     fixture = TestBed.createComponent(GraphSingleLineComponent)

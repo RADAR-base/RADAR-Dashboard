@@ -11,7 +11,6 @@ import { Component, Input, OnInit } from '@angular/core'
   styleUrls: ['./simple-bar.component.scss']
 })
 export class SimpleBarComponent implements OnInit {
-
   @Input() data
   type: any
   value: any
@@ -20,10 +19,9 @@ export class SimpleBarComponent implements OnInit {
   width = 90
   height = 4
 
-  ngOnInit () {
+  ngOnInit() {
     this.type = this.data.type
     this.value = this.data.value
     this.actualWidth = this.value * this.width
   }
-
 }

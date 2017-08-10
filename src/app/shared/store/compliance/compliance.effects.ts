@@ -8,17 +8,17 @@ import { ComplianceService } from './compliance.service'
 
 @Injectable()
 export class ComplianceEffects {
-
   @Effect()
   getAll$: Observable<Action> = this.actions$
     .ofType(complianceAction.GET_ALL)
     .map(toPayload)
     .switchMap(payload => {
-      return this.complianceService.getAll(payload.studyId, payload.keys, payload.timeHoles)
+      return this.complianceService
+        .getAll(payload.studyId, payload.keys, payload.timeHoles)
         .map((data: any) => new complianceAction.GetAllSuccess(data))
     })
 
-  constructor (
+  constructor(
     private actions$: Actions,
     private complianceService: ComplianceService
   ) {}

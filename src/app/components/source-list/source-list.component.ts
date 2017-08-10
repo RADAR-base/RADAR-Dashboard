@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
+
 import { AppConfig } from '../../shared/utils/config'
 
 @Component({
@@ -16,9 +17,7 @@ import { AppConfig } from '../../shared/utils/config'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SourceListComponent {
-
   @Input() sources
 
   language = AppConfig.language
-
 }

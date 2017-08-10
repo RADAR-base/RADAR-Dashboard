@@ -10,13 +10,13 @@ import { SourceService } from './source.service'
 
 @Injectable()
 export class SourceEffects {
-
   @Effect()
   getAll$: Observable<Action> = this.actions$
     .ofType(sourceAction.GET_ALL)
     .map(toPayload)
     .switchMap(payload => {
-      return this.sourceService.getAll(payload)
+      return this.sourceService
+        .getAll(payload)
         .map((data: Source[]) => new sourceAction.GetAllSuccess(data))
     })
 
@@ -26,7 +26,7 @@ export class SourceEffects {
     .map(toPayload)
     .map(payload => new sensorsAction.GetAll(payload))
 
-  constructor (
+  constructor(
     private actions$: Actions,
     private sourceService: SourceService
   ) {}

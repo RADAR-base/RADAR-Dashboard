@@ -1,7 +1,15 @@
-import { AfterViewInit, Component, ElementRef, Input, OnDestroy, ViewChild } from '@angular/core'
-import * as d3 from 'd3'
 import 'rxjs/add/observable/fromEvent'
 import 'rxjs/add/operator/debounceTime'
+
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Input,
+  OnDestroy,
+  ViewChild
+} from '@angular/core'
+import * as d3 from 'd3'
 import { Observable } from 'rxjs/Observable'
 import { Subscription } from 'rxjs/Subscription'
 
@@ -37,35 +45,35 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   @Input() margin = AppConfig.charts.MARGIN
 
   @Input()
-  get chartData () {
+  get chartData() {
     return this.data
   }
 
-  set chartData (value) {
+  set chartData(value) {
     this.data = value
     this.beforeUpdate()
   }
 
-  ngAfterViewInit () {
+  ngAfterViewInit() {
     this.svg = d3.select(this.svgRef.nativeElement)
     this.beforeInit()
   }
 
-  init () {
+  init() {
     this.beforeUpdate()
   }
 
-  update () {
+  update() {
     this.beforeDraw()
   }
 
-  draw () {}
+  draw() {}
 
-  ngOnDestroy () {
+  ngOnDestroy() {
     this.window$.unsubscribe()
   }
 
-  private beforeInit () {
+  private beforeInit() {
     // Observe window resize and debounce events
     this.window$ = Observable.fromEvent(window, 'resize')
       .debounceTime(150)
@@ -73,26 +81,25 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
         this.beforeUpdate()
       })
 
-    this.chart = this.svg.append('g')
+    this.chart = this.svg
+      .append('g')
       .attr('class', 'chart')
       .attr('transform', `translate(${this.margin.left}, ${this.margin.top})`)
 
-    this.xAxis = this.chart.append('g')
-      .attr('class', 'axis axis--x')
+    this.xAxis = this.chart.append('g').attr('class', 'axis axis--x')
 
-    this.yAxis = this.chart.append('g')
-      .attr('class', 'axis axis--y')
+    this.yAxis = this.chart.append('g').attr('class', 'axis axis--y')
 
     this.init()
   }
 
-  private beforeUpdate () {
+  private beforeUpdate() {
     if (this.chart && this.data) {
       this.update()
     }
   }
 
-  private beforeDraw () {
+  private beforeDraw() {
     const svgEl = this.svg.node()
     const width = svgEl.clientWidth || svgEl.parentNode.clientWidth
     const height = svgEl.clientHeight || svgEl.parentNode.clientHeight
@@ -100,11 +107,8 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
     this.width = width - this.margin.left - this.margin.right
     this.height = height - this.margin.top - this.margin.bottom
 
-    this.chart
-      .attr('width', this.width)
-      .attr('height', this.height)
+    this.chart.attr('width', this.width).attr('height', this.height)
 
     this.draw()
   }
-
 }

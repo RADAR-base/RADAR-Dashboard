@@ -1,4 +1,4 @@
-import { inject, TestBed } from '@angular/core/testing'
+import { TestBed, inject } from '@angular/core/testing'
 import { HttpModule } from '@angular/http'
 
 import { SourceService } from './source.service'
@@ -11,7 +11,10 @@ describe('SourceService', () => {
     })
   })
 
-  it('should be created', inject([SourceService], (service: SourceService) => {
-    expect(service).toBeTruthy()
-  }))
+  it(
+    'should be created',
+    inject([SourceService], (service: SourceService) => {
+      expect(service).toBeTruthy()
+    })
+  )
 })

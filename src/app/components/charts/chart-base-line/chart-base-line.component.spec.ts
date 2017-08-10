@@ -84,10 +84,11 @@ describe('ChartBaseLineComponent', () => {
     it('linearGradient should have attributes "y1, y2" when data changes', () => {
       // with data // needs to be parsed //
       component.chartData = parseMockTimeSeriesData(MockTimeSeriesData)
-      const gradient = de.nativeElement.querySelector('linearGradient#hr-gradient')
+      const gradient = de.nativeElement.querySelector(
+        'linearGradient#hr-gradient'
+      )
       expect(gradient.getAttribute('y1')).toBeGreaterThan(0)
       expect(gradient.getAttribute('y2')).toBeGreaterThan(0)
     })
   })
-
 })

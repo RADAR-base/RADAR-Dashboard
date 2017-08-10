@@ -41,7 +41,7 @@ describe('ChartBaseMultiBarComponent', () => {
       expect(component.chartData).toBeFalsy()
 
       // with data // needs to be parsed //
-      component.chartData = (MockComplianceData)
+      component.chartData = MockComplianceData
       expect(component.width).toBeGreaterThan(0)
       expect(component.height).toBeGreaterThan(0)
     })
@@ -51,14 +51,14 @@ describe('ChartBaseMultiBarComponent', () => {
       expect(element.querySelector('rect.bar')).toBeFalsy()
 
       // with data // needs to be parsed //
-      component.chartData = (MockComplianceData)
+      component.chartData = MockComplianceData
 
       // select element again as they'll be instantiated
       expect(element.querySelector('rect.backbar')).toBeTruthy()
 
       const rectElements: any = element.querySelectorAll('rect.bar')
 
-      Object.getOwnPropertyNames(rectElements).forEach((prop) => {
+      Object.getOwnPropertyNames(rectElements).forEach(prop => {
         expect(rectElements[prop].getAttribute('x')).toBeTruthy()
         expect(rectElements[prop].getAttribute('y')).toBeTruthy()
       })

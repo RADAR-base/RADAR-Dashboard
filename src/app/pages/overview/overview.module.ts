@@ -15,11 +15,7 @@ import { routes } from './overview.routing'
     HttpModule,
     ToolbarModule
   ],
-  declarations: [
-    OverviewPageComponent
-  ],
-  providers: [
-    StudyService
-  ]
+  declarations: [OverviewPageComponent],
+  providers: [StudyService]
 })
 export class OverviewPageModule {}

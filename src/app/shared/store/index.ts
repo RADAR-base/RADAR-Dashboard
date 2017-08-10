@@ -1,4 +1,9 @@
-import { ActionReducer, ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store'
+import {
+  ActionReducer,
+  ActionReducerMap,
+  createFeatureSelector,
+  createSelector
+} from '@ngrx/store'
 import { storeFreeze } from 'ngrx-store-freeze'
 
 import { environment } from '../../../environments/environment'
@@ -33,37 +38,76 @@ export const metaReducers: ActionReducer<any, any>[] = !environment.PROD
 
 // Config Selectors
 export const getConfigState = createFeatureSelector<fromConfig.State>('config')
-export const getConfigIsLoaded = createSelector(getConfigState, fromConfig.getIsLoaded)
+export const getConfigIsLoaded = createSelector(
+  getConfigState,
+  fromConfig.getIsLoaded
+)
 
 // Study Selectors
 export const getStudyState = createFeatureSelector<fromStudy.State>('study')
-export const getStudyIsLoaded = createSelector(getStudyState, fromStudy.getIsLoaded)
-export const getStudyIsLoadedAndValid = createSelector(getStudyState, fromStudy.getIsLoadedAndValid)
-export const getStudyEntities = createSelector(getStudyState, fromStudy.getEntities)
-export const getStudySelected = createSelector(getStudyState, fromStudy.getSelected)
+export const getStudyIsLoaded = createSelector(
+  getStudyState,
+  fromStudy.getIsLoaded
+)
+export const getStudyIsLoadedAndValid = createSelector(
+  getStudyState,
+  fromStudy.getIsLoadedAndValid
+)
+export const getStudyEntities = createSelector(
+  getStudyState,
+  fromStudy.getEntities
+)
+export const getStudySelected = createSelector(
+  getStudyState,
+  fromStudy.getSelected
+)
 export const getStudyAll = createSelector(getStudyState, fromStudy.getAll)
 
 // Subject Selectors
-export const getSubjectState = createFeatureSelector<fromSubject.State>('subject')
-export const getSubjectIsLoaded = createSelector(getSubjectState, fromSubject.getIsLoaded)
-export const getSubjectEntities = createSelector(getSubjectState, fromSubject.getEntities)
+export const getSubjectState = createFeatureSelector<fromSubject.State>(
+  'subject'
+)
+export const getSubjectIsLoaded = createSelector(
+  getSubjectState,
+  fromSubject.getIsLoaded
+)
+export const getSubjectEntities = createSelector(
+  getSubjectState,
+  fromSubject.getEntities
+)
 export const getSubjectAll = createSelector(getSubjectState, fromSubject.getAll)
 
 // Source Selectors
 export const getSourceState = createFeatureSelector<fromSource.State>('source')
-export const getSourceIsLoaded = createSelector(getSourceState, fromSource.getIsLoaded)
-export const getSourceEntities = createSelector(getSourceState, fromSource.getEntities)
+export const getSourceIsLoaded = createSelector(
+  getSourceState,
+  fromSource.getIsLoaded
+)
+export const getSourceEntities = createSelector(
+  getSourceState,
+  fromSource.getEntities
+)
 export const getSourceAll = createSelector(getSourceState, fromSource.getAll)
 
 // Sensors Selectors
-export const getSensorsState = createFeatureSelector<fromSensors.State>('sensors')
-export const getSensorsIsLoaded = createSelector(getSensorsState, fromSensors.getIsLoaded)
-export const getSensorsEntities = createSelector(getSensorsState, fromSensors.getEntities)
+export const getSensorsState = createFeatureSelector<fromSensors.State>(
+  'sensors'
+)
+export const getSensorsIsLoaded = createSelector(
+  getSensorsState,
+  fromSensors.getIsLoaded
+)
+export const getSensorsEntities = createSelector(
+  getSensorsState,
+  fromSensors.getEntities
+)
 export const getSensorsAll = createSelector(getSensorsState, fromSensors.getAll)
 
 // Source + Sensor Selector
 export const getSourceAllWithSensors = createSelector(
-  getSourceAll, getSensorsAll, (sources, sensors) => {
+  getSourceAll,
+  getSensorsAll,
+  (sources, sensors) => {
     if (sensors.length) {
       const sensorsBySource = sources.reduce((acc, source) => {
         return { ...acc, [source.id]: [] }
@@ -77,9 +121,18 @@ export const getSourceAllWithSensors = createSelector(
         return { ...source, sensors: sensorsBySource[source.id] }
       })
     }
-  })
+  }
+)
 
 // Compliance Selectors
-export const getComplianceState = createFeatureSelector<fromCompliance.State>('compliance')
-export const getComplianceAll = createSelector(getComplianceState, fromCompliance.getAll)
-export const getComplianceIsLoaded = createSelector(getComplianceState, fromCompliance.getIsLoaded)
+export const getComplianceState = createFeatureSelector<fromCompliance.State>(
+  'compliance'
+)
+export const getComplianceAll = createSelector(
+  getComplianceState,
+  fromCompliance.getAll
+)
+export const getComplianceIsLoaded = createSelector(
+  getComplianceState,
+  fromCompliance.getIsLoaded
+)
