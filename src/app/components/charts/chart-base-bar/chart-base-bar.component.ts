@@ -27,38 +27,40 @@ export class ChartBaseBarComponent extends ChartBaseComponent {
   yScale: any
   bar: any
 
-  init () {
+  init() {
     super.init()
   }
 
-  draw () {
-    this.xScaleOrdinal = d3.scaleBand()
+  draw() {
+    this.xScaleOrdinal = d3
+      .scaleBand()
       .rangeRound([0, this.width])
       .paddingInner(0.2)
       .paddingOuter(0.2)
 
     if (this.categorical) {
-      this.xScaleOrdinal
-        .domain(this.data.map((d: Categorical) => d.name))
+      this.xScaleOrdinal.domain(this.data.map((d: Categorical) => d.name))
 
-      this.yScale = d3.scaleLinear()
+      this.yScale = d3
+        .scaleLinear()
         .range([this.height, 0])
         .domain([0, d3.max(this.data, (d: Categorical) => d.value)])
 
       this.xAxis
         .attr('transform', `translate(0, ${this.yScale(0)})`)
         .call(d3.axisBottom(this.xScaleOrdinal))
-
     } else {
       this.xScaleOrdinal
         .paddingOuter(0)
         .domain(this.data.map((d: TimeSeries) => d.date))
 
-      this.xScaleTime = d3.scaleTime()
+      this.xScaleTime = d3
+        .scaleTime()
         .range([0, this.width])
         .domain(d3.extent(this.data, (d: TimeSeries) => d.date))
 
-      this.yScale = d3.scaleLinear()
+      this.yScale = d3
+        .scaleLinear()
         .range([this.height, 0])
         .domain([0, d3.max(this.data, (d: TimeSeries) => d.value)])
 
@@ -67,21 +69,17 @@ export class ChartBaseBarComponent extends ChartBaseComponent {
         .call(d3.axisBottom(this.xScaleTime))
     }
 
-    this.yAxis.call(
-      d3.axisLeft(this.yScale)
-        .tickSize(-this.width)
-    )
+    this.yAxis.call(d3.axisLeft(this.yScale).tickSize(-this.width))
 
     this.chart.selectAll('rect').remove()
 
-    this.bar = this.chart.selectAll('bar')
-      .data(this.data)
+    this.bar = this.chart.selectAll('bar').data(this.data)
 
-    this.bar.enter().append('rect')
+    this.bar
+      .enter()
+      .append('rect')
       .attr('class', 'bar')
-      .attr('x', d => this.xScaleOrdinal(
-        this.categorical ? d.name : d.date
-      ))
+      .attr('x', d => this.xScaleOrdinal(this.categorical ? d.name : d.date))
       .attr('width', this.xScaleOrdinal.bandwidth())
       .attr('y', d => this.yScale(d.value))
       .attr('height', d => this.height - this.yScale(d.value))

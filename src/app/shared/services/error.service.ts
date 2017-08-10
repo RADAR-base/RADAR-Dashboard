@@ -4,8 +4,7 @@ import { Observable } from 'rxjs/Observable'
 
 @Injectable()
 export class ErrorService {
-
-  static handleError (error: Response | any) {
+  static handleError(error: Response | any) {
     // TODO: add remote error logging
     return Observable.throw(error)
   }

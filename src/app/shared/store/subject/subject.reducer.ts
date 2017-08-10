@@ -17,9 +17,11 @@ const initialState: State = {
   isLoaded: false
 }
 
-export function reducer (state = initialState, action: subjectActions.Actions): State {
+export function reducer(
+  state = initialState,
+  action: subjectActions.Actions
+): State {
   switch (action.type) {
-
     case subjectActions.GET_ALL: {
       return Object.assign({}, state, {
         isLoaded: false
@@ -51,11 +53,13 @@ export const getEntities = (state: State) => state.entities
 export const getSelectedId = (state: State) => state.selectedId
 
 export const getSelected = createSelector(
-  getEntities, getSelectedId, (entities, selectedId) => {
+  getEntities,
+  getSelectedId,
+  (entities, selectedId) => {
     return entities[selectedId]
-  })
+  }
+)
 
-export const getAll = createSelector(
-  getEntities, getIds, (entities, ids) => {
-    return ids.map(id => entities[id])
-  })
+export const getAll = createSelector(getEntities, getIds, (entities, ids) => {
+  return ids.map(id => entities[id])
+})

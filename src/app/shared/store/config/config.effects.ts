@@ -9,16 +9,16 @@ import { ConfigService } from './config.service'
 
 @Injectable()
 export class ConfigEffects {
-
   @Effect()
   load$: Observable<Action> = this.actions$
     .ofType(configAction.LOAD)
     .switchMap(() => {
-      return this.configService.get()
+      return this.configService
+        .get()
         .map((config: Config) => new configAction.LoadSuccess(config))
     })
 
-  constructor (
+  constructor(
     private actions$: Actions,
     private configService: ConfigService
   ) {}

@@ -11,7 +11,10 @@ describe('SubjectTableService', () => {
     })
   })
 
-  it('should be created', inject([ComplianceService], (service: ComplianceService) => {
-    expect(service).toBeTruthy()
-  }))
+  it(
+    'should be created',
+    inject([ComplianceService], (service: ComplianceService) => {
+      expect(service).toBeTruthy()
+    })
+  )
 })

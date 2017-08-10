@@ -4,7 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { StoreModule } from '@ngrx/store'
 
 import { reducers } from '../../shared/store'
-import { ActivatedRouteStub, RouterStub } from '../../shared/testing/router-stubs'
+import {
+  ActivatedRouteStub,
+  RouterStub
+} from '../../shared/testing/router-stubs'
 import { OverviewPageComponent } from './overview.component'
 import { OverviewPageModule } from './overview.module'
 
@@ -18,10 +21,7 @@ describe('OverviewPageComponent', () => {
     const activatedRoute = new ActivatedRouteStub()
 
     TestBed.configureTestingModule({
-      imports: [
-        OverviewPageModule,
-        StoreModule.forRoot(reducers)
-      ],
+      imports: [OverviewPageModule, StoreModule.forRoot(reducers)],
       providers: [
         { provide: Router, useClass: RouterStub },
         { provide: ActivatedRoute, useValue: activatedRoute }

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing'
+import { ComponentFixture, TestBed, async } from '@angular/core/testing'
 
 import { SourceGraphsComponent } from './source-graphs.component'
 import { SourceGraphsModule } from './source-graphs.module'
@@ -7,12 +7,13 @@ describe('SourceGraphsComponent', () => {
   let component: SourceGraphsComponent
   let fixture: ComponentFixture<SourceGraphsComponent>
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [SourceGraphsModule]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        imports: [SourceGraphsModule]
+      }).compileComponents()
     })
-      .compileComponents()
-  }))
+  )
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SourceGraphsComponent)

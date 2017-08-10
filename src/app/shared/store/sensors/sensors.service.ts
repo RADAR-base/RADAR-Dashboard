@@ -6,10 +6,9 @@ import { Source } from '../source/source.model'
 
 @Injectable()
 export class SensorsService {
+  constructor() {}
 
-  constructor () {}
-
-  getAll (sources): Observable<Source[]> {
+  getAll(sources): Observable<Source[]> {
     return Observable.of(
       sources.map((d: Source) => {
         const sensorList = AppConfig.config.specs[d.type]
@@ -18,11 +17,8 @@ export class SensorsService {
           type: sensor
         }))
 
-        return sensors
-          ? { ...d, sensors }
-          : d
+        return sensors ? { ...d, sensors } : d
       })
     )
   }
-
 }

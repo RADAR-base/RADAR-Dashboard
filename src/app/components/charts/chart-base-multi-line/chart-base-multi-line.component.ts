@@ -28,30 +28,35 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
   line: any
   firstDraw = true
 
-  init () {
-    this.line = d3.line()
-      .curve(d3.curveBasis)
-      .defined((d: any) => d)
+  init() {
+    this.line = d3.line().curve(d3.curveBasis).defined((d: any) => d)
 
     super.init()
   }
 
-  draw () {
+  draw() {
     const minDate = d3.min(this.data.dates)
     const maxDate = d3.max(this.data.dates)
 
-    this.xScale = d3.scaleTime()
+    this.xScale = d3
+      .scaleTime()
       .range([0, this.width])
       .domain([minDate, maxDate])
 
-    const minValue = d3.min(this.data.keys.map(k => d3.min(this.data.values[k.key])))
-    const maxValue = d3.max(this.data.keys.map(k => d3.max(this.data.values[k.key])))
+    const minValue = d3.min(
+      this.data.keys.map(k => d3.min(this.data.values[k.key]))
+    )
+    const maxValue = d3.max(
+      this.data.keys.map(k => d3.max(this.data.values[k.key]))
+    )
 
-    this.yScale = d3.scaleLinear()
+    this.yScale = d3
+      .scaleLinear()
       .range([this.height, 0])
       .domain([minValue, maxValue])
 
-    this.zScale = d3.scaleOrdinal()
+    this.zScale = d3
+      .scaleOrdinal()
       .domain(this.data.keys.map(k => k.key))
       .range(this.lineColors)
 
@@ -59,19 +64,17 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
       .attr('transform', `translate(0, ${this.height})`)
       .call(d3.axisBottom(this.xScale))
 
-    this.yAxis.call(
-      d3.axisLeft(this.yScale)
-        .tickSize(-this.width)
-    )
+    this.yAxis.call(d3.axisLeft(this.yScale).tickSize(-this.width))
 
     this.line
       .x((d, i) => this.xScale(this.data.dates[i]))
       .y(d => this.yScale(d))
 
-    this.lines = this.chart.selectAll('.line')
-      .data(this.data.keys, k => k.key)
+    this.lines = this.chart.selectAll('.line').data(this.data.keys, k => k.key)
 
-    this.lines.enter().append('path')
+    this.lines
+      .enter()
+      .append('path')
       .attr('class', 'line')
       .merge(this.lines)
       .transition()

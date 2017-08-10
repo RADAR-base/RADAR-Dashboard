@@ -7,19 +7,20 @@ import { Study } from './study.model'
 
 @Injectable()
 export class StudyService {
+  constructor(private http: Http) {}
 
-  constructor (private http: Http) {}
-
-  getAll (): Observable<Study[]> {
+  getAll(): Observable<Study[]> {
     // TODO: Change when API is ready
-    return this.http.get(`${PARAMS.API_LOCAL}/mock-all-studies.json`)
+    return this.http
+      .get(`${PARAMS.API_LOCAL}/mock-all-studies.json`)
       .map(res => res.json().dataset || [])
       .catch(ErrorService.handleError)
   }
 
-  getById (id): Observable<Study> {
+  getById(id): Observable<Study> {
     // TODO: Change when API is ready
-    return this.http.get(`${PARAMS.API_LOCAL}/mock-all-studies.json`)
+    return this.http
+      .get(`${PARAMS.API_LOCAL}/mock-all-studies.json`)
       .map(res => res.json().dataset || [])
       .map(res => res.filter((data: Study) => data.id === id)[0] || null)
       .catch(ErrorService.handleError)

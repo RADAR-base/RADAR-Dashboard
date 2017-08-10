@@ -1,5 +1,10 @@
 import { DebugElement } from '@angular/core'
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing'
+import {
+  ComponentFixture,
+  TestBed,
+  fakeAsync,
+  tick
+} from '@angular/core/testing'
 
 import { MockMultiTimeSeriesData } from '../../../shared/testing/mocks/mock-multi-timeseries-data'
 import { ChartBaseMultiLineComponent } from './chart-base-multi-line.component'
@@ -43,22 +48,25 @@ describe('ChartBaseMultiLineComponent', () => {
     expect(component.height).toBeGreaterThan(0)
   })
 
-  it('path.line should have attribute "d" when data changes (fakeAsync)', fakeAsync(() => {
-    const lineElements = element.querySelectorAll('path.line')
-    const attr = 'd'
+  it(
+    'path.line should have attribute "d" when data changes (fakeAsync)',
+    fakeAsync(() => {
+      const lineElements = element.querySelectorAll('path.line')
+      const attr = 'd'
 
-    // without data
-    Object.getOwnPropertyNames(lineElements).forEach((prop) => {
-      expect(lineElements[prop].getAttribute(attr)).toBeFalsy()
+      // without data
+      Object.getOwnPropertyNames(lineElements).forEach(prop => {
+        expect(lineElements[prop].getAttribute(attr)).toBeFalsy()
+      })
+
+      // with data // needs to be parsed //
+      component.chartData = MockMultiTimeSeriesData
+
+      // wait for transition
+      tick(500)
+      Object.getOwnPropertyNames(lineElements).forEach(prop => {
+        expect(lineElements[prop].getAttribute(attr)).toBeTruthy()
+      })
     })
-
-    // with data // needs to be parsed //
-    component.chartData = MockMultiTimeSeriesData
-
-    // wait for transition
-    tick(500)
-    Object.getOwnPropertyNames(lineElements).forEach((prop) => {
-      expect(lineElements[prop].getAttribute(attr)).toBeTruthy()
-    })
-  }))
+  )
 })

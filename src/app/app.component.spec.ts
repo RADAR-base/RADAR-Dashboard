@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing'
+import { ComponentFixture, TestBed, async } from '@angular/core/testing'
 import { RouterTestingModule } from '@angular/router/testing'
 
 import { AppComponent } from './app.component'
@@ -9,20 +9,20 @@ describe('AppComponent', () => {
   let component: AppComponent
   let fixture: ComponentFixture<AppComponent>
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        AppModule,
-        RouterTestingModule.withRoutes(routes)
-      ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        imports: [AppModule, RouterTestingModule.withRoutes(routes)]
+      }).compileComponents()
     })
-      .compileComponents()
-  }))
+  )
 
-  it('should create the app', async(() => {
-    fixture = TestBed.createComponent(AppComponent)
-    component = fixture.componentInstance
-    expect(component).toBeTruthy()
-  }))
-
+  it(
+    'should create the app',
+    async(() => {
+      fixture = TestBed.createComponent(AppComponent)
+      component = fixture.componentInstance
+      expect(component).toBeTruthy()
+    })
+  )
 })

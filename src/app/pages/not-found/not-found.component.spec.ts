@@ -2,7 +2,10 @@ import { DebugElement } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ActivatedRoute, Router } from '@angular/router'
 
-import { ActivatedRouteStub, RouterStub } from '../../shared/testing/router-stubs'
+import {
+  ActivatedRouteStub,
+  RouterStub
+} from '../../shared/testing/router-stubs'
 import { NotFoundPageComponent } from './not-found.component'
 import { NotFoundPageModule } from './not-found.module'
 
@@ -16,9 +19,7 @@ describe('NotFoundPageComponent', () => {
     const activatedRoute = ActivatedRouteStub
 
     TestBed.configureTestingModule({
-      imports: [
-        NotFoundPageModule
-      ],
+      imports: [NotFoundPageModule],
       providers: [
         { provide: Router, useClass: RouterStub },
         { provide: ActivatedRoute, useValue: activatedRoute }

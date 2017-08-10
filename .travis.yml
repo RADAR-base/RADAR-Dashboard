@@ -15,6 +15,7 @@ env:
     - secure: "SgTangl7e6v11NAkge5aZJxazUbAuMkHFxwa0AnouToBm5Jerrkky2xvWraO7PMnmzz2bjrXfTKL+tBHtfcoZpz1+OGumLF6lGSfZxRGphILZA4A6ZFPlYzHlha57THxWJfvnHXJ667GTPKXwJas/7VcGb/WdOe1thn0hDkaOtoiveufeDVr2ku77mhFROtD8+ewkefkcArdIMnM99qddiM4KFeEKU/vmjEsItvbfM73jZfIfjZZfVroBMeS08Mu0tKt4iCjsO0LeOmc3bPQv1XgNGqJsYF//gFm+HUdyVOTJehBGCXVlkdoI8+lwp7Zr37ySVF+JD/Dz4Kdy2Pz4+rArOOO96pyQJHqTKolFYbwgGtbwskD8VaIyQ6rZfUuh57wz23/2X651gvxFGrjuzHia5cYX/6UReKA9XkMgmVFrW59T5T3exkTqZyREOJDgl8mPUMWMR22YaPd4EGHyZJLwzmO0gwtOTcujldmgQBVQo/1krHNseFEf0YkzACgvaquGrNfKoB3Uw6qlg4c/Eh843hwTtS1xZ57t4PzSXw27gHvu7oBg9lE1IE1qQwMYJTAK1IQOfACdYEZXerhm4VOU92+NoxIUddGsUYFC1rfRAAfdGrE176i45MEfIQwZYgh55VEVzbB0/3TOQwQUkyGzQ9n0eUBjDmBZZ2eZEM="
 
 before_install:
+  # install chrome stable
   - export CHROME_BIN=/usr/bin/google-chrome
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
@@ -27,14 +28,24 @@ before_script:
   - echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 
 script:
-  - npm run lint
+  # run linters
+  - npm run lint:ng
   - npm run lint:css
+  - npm run lint:prettier
+  - npm run lint:sort
+
+  # run unit tests
   - npm run test:ci
+
+  # send coverage info
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
   - cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage
+
+  # run e2e tests
   - npm run e2e
 
 before_deploy:
+  # add certificates
   - openssl aes-256-cbc -K $encrypted_03759da18559_key -iv $encrypted_03759da18559_iv -in ./scripts/deploy_key.enc -out deploy_key.pem -d
   - eval "$(ssh-agent -s)"
   - chmod 600 deploy_key.pem

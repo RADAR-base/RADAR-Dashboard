@@ -8,7 +8,6 @@ import { SourceGraphsService } from '../source-graphs.service'
   template: `<p>This should not be shown!</p>`
 })
 export class GraphBaseComponent {
-
   language = AppConfig.language
 
   @Input() subjectId
@@ -17,24 +16,23 @@ export class GraphBaseComponent {
   private _sensor: Sensor
 
   @Input()
-  get sensor () {
+  get sensor() {
     return this._sensor
   }
 
-  set sensor (val) {
+  set sensor(val) {
     if (val) {
       this._sensor = val
       this.getData()
     }
   }
 
-  constructor (
+  constructor(
     public service: SourceGraphsService,
     public changeDetectorRef: ChangeDetectorRef
   ) {}
 
-  getData () {
+  getData() {
     // called when sensor is updated --> override
   }
-
 }

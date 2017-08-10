@@ -2,9 +2,9 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
-import * as fromRoot from '../../shared/store/index'
 import * as studyAction from '../../shared/store/study/study.actions'
 import { Study } from '../../shared/store/study/study.model'
+import * as fromRoot from '../../shared/store/index'
 
 @Component({
   selector: 'app-overview-page',
@@ -37,16 +37,12 @@ import { Study } from '../../shared/store/study/study.model'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OverviewPageComponent implements OnInit {
-
   studies$: Observable<Study[]>
 
-  constructor (
-    private store: Store<fromRoot.State>
-  ) {}
+  constructor(private store: Store<fromRoot.State>) {}
 
-  ngOnInit () {
+  ngOnInit() {
     this.store.dispatch(new studyAction.GetAll())
     this.studies$ = this.store.select(fromRoot.getStudyAll)
   }
-
 }

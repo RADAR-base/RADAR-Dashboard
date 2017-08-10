@@ -5,15 +5,10 @@ import { RouterModule } from '@angular/router'
 import { NotFoundPageComponent } from './not-found.component'
 import { routes } from './not-found.routing'
 
-const COMPONENTS = [
-  NotFoundPageComponent
-]
+const COMPONENTS = [NotFoundPageComponent]
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes)
-  ],
+  imports: [CommonModule, RouterModule.forChild(routes)],
   declarations: COMPONENTS,
   exports: COMPONENTS
 })

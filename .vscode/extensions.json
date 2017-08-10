@@ -1,0 +1,16 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "minhthai.vscode-todo-parser",
+    "johnpapa.Angular2",
+    "Angular.ng-template",
+    "EditorConfig.EditorConfig",
+    "eg2.tslint",
+    "msjsdiag.debugger-for-chrome",
+    "CoenraadS.bracket-pair-colorizer",
+    "christian-kohler.path-intellisense",
+    "natewallace.angular2-inline",
+    "shinnn.stylelint",
+    "mrmlnc.vscode-scss"
+  ]
+}
