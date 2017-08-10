@@ -16,7 +16,7 @@ export function ParseTimeHoles(res, multi = false) {
 
   const newData = []
 
-  for (let i = 0; i <= iterations; i++) {
+  for (let i = 0; i < iterations; i++) {
     const date = new Date(startTime + interval * i)
     const sample = dataWithIds[date.getTime()] || null
 
@@ -24,5 +24,6 @@ export function ParseTimeHoles(res, multi = false) {
       ? newData.push({ date, sample })
       : newData.push({ date, value: sample && sample.value })
   }
+
   return newData
 }

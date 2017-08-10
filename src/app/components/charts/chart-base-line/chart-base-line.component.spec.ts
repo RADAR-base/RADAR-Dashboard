@@ -49,19 +49,19 @@ describe('ChartBaseLineComponent', () => {
       expect(component.height).toBeGreaterThan(0)
     })
 
-    it('path.line should have attribute "d" when data changes', done => {
-      const lineEl = element.querySelector('path.line')
-      const attr = 'd'
+    it('should contain path when data changes', done => {
+      const lineEl = element.querySelector('g')
+      const inner = lineEl.querySelectorAll('g')[2].getElementsByTagName('path')
 
       // without data
-      expect(lineEl.getAttribute(attr)).toBeFalsy()
+      expect(inner.length).toEqual(0)
 
       // with data // needs to be parsed //
       component.chartData = parseMockTimeSeriesData(MockTimeSeriesData)
 
       // wait for transition
       setTimeout(() => {
-        expect(lineEl.getAttribute(attr)).toBeTruthy()
+        expect(inner.length).toBeGreaterThan(0)
         done()
       }, 500)
     })
