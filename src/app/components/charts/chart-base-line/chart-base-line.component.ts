@@ -87,11 +87,6 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
       .curve(d3.curveLinear)
       .defined((d: any) => d.value)
 
-    this.lineEl
-      .datum(this.data)
-      .transition()
-      .attr('d', this.line)
-      .datum(this.data)
-      .call(this.lineChunked)
+    this.lineEl.datum(this.data).call(this.lineChunked)
   }
 }
