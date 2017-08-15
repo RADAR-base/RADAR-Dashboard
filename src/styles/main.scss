@@ -2,6 +2,20 @@
 @import 'theme';
 
 // Main
+*::-webkit-scrollbar-track {
+  border: none;
+  background-color: $cl-white-20;
+}
+
+*::-webkit-scrollbar {
+  width: 12px;
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: $cl-white-20;
+}
+
 p {
   @include font-large;
 }

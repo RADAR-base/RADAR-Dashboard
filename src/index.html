@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <title>RADAR Dashboard</title>
@@ -16,6 +17,19 @@
 
   <!-- Initial style before angular loads -->
   <style>
+    *,
+    *:before,
+    *:after {
+      box-sizing: inherit;
+    }
+
+    html {
+      -webkit-font-smoothing: antialiased;
+      -ms-overflow-style: none;
+      box-sizing: border-box;
+      overflow: auto;
+    }
+
     html,
     body {
       width: 100%;
@@ -54,9 +68,11 @@
     }
   </script>
 </head>
+
 <body>
-<app-root>
-  <p>Loading...</p>
-</app-root>
+  <app-root>
+    <p>Loading...</p>
+  </app-root>
 </body>
+
 </html>
