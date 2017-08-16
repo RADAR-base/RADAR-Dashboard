@@ -9,21 +9,14 @@ import { SourceGraphsComponent } from './source-graphs.component'
 import { SourceGraphsService } from './source-graphs.service'
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ChartsModule
-  ],
+  imports: [CommonModule, ChartsModule],
   declarations: [
     SourceGraphsComponent,
     GraphSingleLineComponent,
     GraphMultiLineComponent,
     GraphBaseComponent
   ],
-  providers: [
-    SourceGraphsService
-  ],
-  exports: [
-    SourceGraphsComponent
-  ]
+  providers: [SourceGraphsService],
+  exports: [SourceGraphsComponent]
 })
 export class SourceGraphsModule {}

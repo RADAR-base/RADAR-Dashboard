@@ -4,7 +4,7 @@ export interface Subject {
   subjectId: string
   active: boolean
   effectiveTimeFrame: {
-    endDateTime: string,
+    endDateTime: string
     startDateTime: string
   }
   sources: Source[]

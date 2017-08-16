@@ -1,6 +1,7 @@
-import { inject, TestBed } from '@angular/core/testing'
-import { ErrorService } from './error.service'
+import { TestBed, inject } from '@angular/core/testing'
 import { HttpModule } from '@angular/http'
+
+import { ErrorService } from './error.service'
 
 describe('ErrorLoggerServiceService', () => {
   beforeEach(() => {
@@ -10,7 +11,10 @@ describe('ErrorLoggerServiceService', () => {
     })
   })
 
-  it('should ...', inject([ErrorService], (service: ErrorService) => {
-    expect(service).toBeTruthy()
-  }))
+  it(
+    'should ...',
+    inject([ErrorService], (service: ErrorService) => {
+      expect(service).toBeTruthy()
+    })
+  )
 })

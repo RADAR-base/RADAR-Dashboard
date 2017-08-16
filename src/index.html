@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <title>RADAR Dashboard</title>
@@ -14,6 +15,49 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+  <!-- Initial style before angular loads -->
+  <style>
+    *,
+    *:before,
+    *:after {
+      box-sizing: inherit;
+    }
+
+    html {
+      -webkit-font-smoothing: antialiased;
+      -ms-overflow-style: none;
+      box-sizing: border-box;
+      overflow: auto;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      font-size: 100%;
+      line-height: 1.25em;
+      color: white;
+    }
+
+    app-root {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(-180deg, #467487 20%, #6b9db3 100%);
+    }
+
+    p {
+      display: inline-block;
+      font-size: 18px;
+      margin: 16px;
+    }
+  </style>
+
   <script>
     // GLOBAL PARAMS
     // This object can be changed in `docker run` by setting an environment parameter
@@ -24,9 +68,11 @@
     }
   </script>
 </head>
+
 <body>
-<app-root>
-  <p>Loading...</p>
-</app-root>
+  <app-root>
+    <p>Loading...</p>
+  </app-root>
 </body>
+
 </html>

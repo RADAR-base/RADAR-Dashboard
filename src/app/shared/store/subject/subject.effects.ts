@@ -9,17 +9,17 @@ import { SubjectService } from './subject.service'
 
 @Injectable()
 export class SubjectEffects {
-
   @Effect()
   getAll$: Observable<Action> = this.actions$
     .ofType(subjectAction.GET_ALL)
     .map(toPayload)
     .switchMap(payload => {
-      return this.subjectService.getAll(payload)
+      return this.subjectService
+        .getAll(payload)
         .map((data: Subject[]) => new subjectAction.GetAllSuccess(data))
     })
 
-  constructor (
+  constructor(
     private actions$: Actions,
     private subjectService: SubjectService
   ) {}

@@ -14,7 +14,7 @@
 
   .axis--x path,
   .axis--x line {
-    stroke: $cl-white-40;
+    stroke: $cl-white-80;
   }
 
   .axis--x line {
@@ -28,5 +28,28 @@
 
   .axis--y path {
     stroke: none;
+  }
+
+  .d3-line-chunked-defined,
+  .d3-line-chunked-undefined {
+    fill: none;
+    stroke: $cl-graph-3;
+    stroke-width: 2px;
+    stroke-linejoin: round;
+  }
+
+  .d3-line-chunked-defined-point {
+    fill: $cl-graph-3;
+  }
+
+  .hr-gradient {
+    .d3-line-chunked-defined,
+    .d3-line-chunked-undefined {
+      stroke: url(#hr-gradient);
+    }
+
+    .d3-line-chunked-defined-point {
+      fill: url(#hr-gradient);
+    }
   }
 }

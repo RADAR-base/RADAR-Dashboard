@@ -13,12 +13,15 @@ const initialState: State = {
   sensors: {},
   timeIntervals: {},
   units: {},
-  specs: []
+  specs: [],
+  compliance: { keys: [] }
 }
 
-export function reducer (state = initialState, action: configActions.Actions): State {
+export function reducer(
+  state = initialState,
+  action: configActions.Actions
+): State {
   switch (action.type) {
-
     case configActions.LOAD: {
       return Object.assign({}, state, {
         isLoaded: false
@@ -27,9 +30,13 @@ export function reducer (state = initialState, action: configActions.Actions): S
 
     case configActions.LOAD_SUCCESS: {
       const payload: Config = action.payload
-      const isValid = !!payload.sensors
-        && !!payload.specs && !!payload.timeIntervals
-        && !!payload.stats && !!payload.units
+      const isValid =
+        !!payload.sensors &&
+        !!payload.specs &&
+        !!payload.timeIntervals &&
+        !!payload.stats &&
+        !!payload.units &&
+        !!payload.compliance
 
       return Object.assign({}, payload, {
         isLoaded: true,

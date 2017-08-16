@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing'
+import { ComponentFixture, TestBed, async } from '@angular/core/testing'
 
 import { SourceListComponent } from './source-list.component'
 
@@ -6,12 +6,13 @@ describe('SourceListComponent', () => {
   let component: SourceListComponent
   let fixture: ComponentFixture<SourceListComponent>
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [SourceListComponent]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [SourceListComponent]
+      }).compileComponents()
     })
-      .compileComponents()
-  }))
+  )
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SourceListComponent)

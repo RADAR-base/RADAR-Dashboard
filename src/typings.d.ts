@@ -7,7 +7,7 @@ interface NodeModule {
 
 /* GLOBAL PARAMS */
 declare const PARAMS: {
-  API_URI,
-  API_LOCAL,
+  API_URI
+  API_LOCAL
   API_FIREBASE
 }

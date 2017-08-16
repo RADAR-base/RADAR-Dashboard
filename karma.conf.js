@@ -1,7 +1,7 @@
 // Karma configuration file, see link for more information
 // https://karma-runner.github.io/0.13/config/configuration-file.html
 
-module.exports = function (config) {
+module.exports = function(config) {
   config.set({
     basePath: '',
     frameworks: ['jasmine', '@angular/cli'],
@@ -11,31 +11,28 @@ module.exports = function (config) {
       require('karma-chrome-launcher'),
       require('karma-coverage-istanbul-reporter'),
       require('karma-jasmine-html-reporter'),
-      require('@angular/cli/plugins/karma')
+      require('@angular/cli/plugins/karma'),
+      require('karma-scss-preprocessor')
     ],
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     files: [
-      // Include a Material theme in the test suite.
-      // NOTE: Not a final solution as it should use the global styles in main.scss instead
-      // https://github.com/angular/material2/issues/4056
       {
-        pattern: './node_modules/@angular/material/prebuilt-themes/indigo-pink.css',
+        pattern: './src/styles/main.scss',
         included: true,
         watched: true
       }
     ],
+    preprocessors: {
+      './src/styles/main.scss': ['scss']
+    },
     angularCli: {
       environment: 'dev'
     },
     coverageIstanbulReporter: {
       reports: ['html', 'lcovonly'],
       fixWebpackSourcePaths: true
-    },
-    angularCli: {
-      config: './.angular-cli.json',
-      environment: 'dev'
     },
     reporters: ['progress', 'kjhtml'],
     port: 9876,
@@ -93,7 +90,8 @@ module.exports = function (config) {
 
   if (process.env['TRAVIS']) {
     config.browserStack.tunnelIdentifier = process.env.TRAVIS_JOB_NUMBER
-    config.browserStack.build = 'Karma Travis #' +
+    config.browserStack.build =
+      'Karma Travis #' +
       process.env.TRAVIS_BUILD_NUMBER +
       ' [' +
       process.env.TRAVIS_BUILD_ID +

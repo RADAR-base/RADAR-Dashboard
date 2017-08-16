@@ -1,6 +1,6 @@
 import { RadarPagesTest } from './app.po'
 
-describe('radar-dashboard App', function () {
+describe('radar-dashboard App', function() {
   let page: RadarPagesTest
 
   beforeEach(() => {

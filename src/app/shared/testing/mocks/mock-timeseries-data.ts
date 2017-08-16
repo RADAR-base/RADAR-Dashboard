@@ -7,7 +7,7 @@ export const MockTimeSeriesData = [
   { value: 122, date: '2016-10-30T20:02:20Z' }
 ]
 
-export function parseMockTimeSeriesData (data): TimeSeries[] {
+export function parseMockTimeSeriesData(data): TimeSeries[] {
   return data.map(d => ({
     value: d.value,
     date: new Date(d.date)

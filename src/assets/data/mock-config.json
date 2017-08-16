@@ -227,6 +227,24 @@
         "ELECTRODERMAL_ACTIVITY",
         "BLOOD_VOLUME_PULSE"
       ]
+    },
+    "compliance": {
+      "keys": [
+        {
+          "key": "simple",
+          "doc": "Simple compliance.",
+          "label": {
+            "EN": "Simple Compliance"
+          }
+        },
+        {
+          "key": "special",
+          "doc": "Special Compliance",
+          "label": {
+            "EN": "Special Compliance"
+          }
+        }
+      ]
     }
   }
 }

@@ -1,5 +1,3 @@
-
-
 $mq-responsive: true;
 
 // Name your breakpoints in a way that creates a ubiquitous language
@@ -17,4 +15,4 @@ $mq-breakpoints: (
 // to this list, ordered by width, e.g. (mobile, tablet, desktop).
 //$mq-show-breakpoints: (mobile, tablet, desktop);
 
-@import '~sass-mq/mq';
+@import '../../node_modules/sass-mq/mq';

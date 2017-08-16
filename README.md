@@ -1,6 +1,6 @@
 # RADAR-CNS Frontend Dashboard App
 
-[![Build Status](https://travis-ci.org/RADAR-CNS/RADAR-Dashboard.svg?branch=master)](https://travis-ci.org/RADAR-CNS/RADAR-Dashboard) [![bitHound Dependencies](https://www.bithound.io/github/RADAR-CNS/RADAR-Dashboard/badges/dependencies.svg)](https://www.bithound.io/github/RADAR-CNS/RADAR-Dashboard/master/dependencies/npm) [![bitHound Dev Dependencies](https://www.bithound.io/github/RADAR-CNS/RADAR-Dashboard/badges/devDependencies.svg)](https://www.bithound.io/github/RADAR-CNS/RADAR-Dashboard/master/dependencies/npm) [![Coverage Status](https://coveralls.io/repos/github/RADAR-CNS/RADAR-Dashboard/badge.svg?branch=master)](https://coveralls.io/github/RADAR-CNS/RADAR-Dashboard?branch=master)
+[![Build Status](https://travis-ci.org/RADAR-CNS/RADAR-Dashboard.svg?branch=develop)](https://travis-ci.org/RADAR-CNS/RADAR-Dashboard) [![bitHound Dependencies](https://www.bithound.io/github/RADAR-CNS/RADAR-Dashboard/badges/dependencies.svg)](https://www.bithound.io/github/RADAR-CNS/RADAR-Dashboard/develop/dependencies/npm) [![bitHound Dev Dependencies](https://www.bithound.io/github/RADAR-CNS/RADAR-Dashboard/badges/devDependencies.svg)](https://www.bithound.io/github/RADAR-CNS/RADAR-Dashboard/develop/dependencies/npm) [![Coverage Status](https://coveralls.io/repos/github/RADAR-CNS/RADAR-Dashboard/badge.svg?branch=develop)](https://coveralls.io/github/RADAR-CNS/RADAR-Dashboard?branch=develop)
 
 An [Angular](https://angular.io/) and [D3](https://d3js.org/) web application to manage and monitor research data from the [RADAR-CNS Platform](http://radar-cns.org/).
 
@@ -35,7 +35,10 @@ $ npm run fix:css
 ```
 
 ## Contributing
-[Read CONTRIBUTING.md](https://github.com/RADAR-CNS/RADAR-Dashboard/blob/master/CONTRIBUTING.md)
+[Read /docs/CONTRIBUTING.md](https://github.com/RADAR-CNS/RADAR-Dashboard/blob/develop/docs/CONTRIBUTING.md)
+
+## Code of Conduct
+[Read /docs/CODE_OF_CONDUCT.md](https://github.com/RADAR-CNS/RADAR-Dashboard/blob/develop/docs/CODE_OF_CONDUCT.md)
 
 ## Docker
 
@@ -73,4 +76,4 @@ API_URI='https://radar-cns.ddns.net/api'
 ## Supporting Partners
 We thank our supporting partners who have been a tremendous help in streamlining our development process.
 
-![Browserstack_logo](https://raw.githubusercontent.com/RADAR-CNS/RADAR-Dashboard/master/docs/supportive-partners-src/brwsrstck.png)
+![Browserstack_logo](https://raw.githubusercontent.com/RADAR-CNS/RADAR-Dashboard/develop/docs/supportive-partners-src/brwsrstck.png)

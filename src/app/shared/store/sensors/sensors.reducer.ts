@@ -1,4 +1,4 @@
-import { createSelector } from 'reselect'
+import { createSelector } from '@ngrx/store'
 import * as uuid from 'uuid/v4'
 
 import * as sensorsActions from './sensors.actions'
@@ -18,9 +18,11 @@ const initialState: State = {
   isLoaded: false
 }
 
-export function reducer (state = initialState, action: sensorsActions.Actions): State {
+export function reducer(
+  state = initialState,
+  action: sensorsActions.Actions
+): State {
   switch (action.type) {
-
     case sensorsActions.GET_ALL: {
       return {
         ...state,
@@ -76,7 +78,6 @@ export const getIsLoaded = (state: State) => state.isLoaded
 export const getIds = (state: State) => state.ids
 export const getEntities = (state: State) => state.entities
 
-export const getAll = createSelector(
-  getEntities, getIds, (entities, ids) => {
-    return ids.map(id => entities[id])
-  })
+export const getAll = createSelector(getEntities, getIds, (entities, ids) => {
+  return ids.map(id => entities[id])
+})

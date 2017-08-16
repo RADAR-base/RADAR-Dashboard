@@ -2,7 +2,26 @@
 
 :host {
   display: block;
-  overflow: hidden;
   width: 100%;
   height: 100%;
+}
+
+:host /deep/ {
+  // Pages content
+  .content {
+    display: flex;
+    flex: 1 1 auto;
+    overflow: auto;
+    padding: 16px;
+  }
+
+  // MD2 Grid
+  .mat-grid-list {
+    width: 100%;
+  }
+
+  // MD2 Checkbox
+  .mat-checkbox-inner-container {
+    opacity: 0.6;
+  }
 }

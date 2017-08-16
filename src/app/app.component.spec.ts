@@ -1,38 +1,28 @@
-import { DebugElement } from '@angular/core'
-import { async, ComponentFixture, TestBed } from '@angular/core/testing'
+import { ComponentFixture, TestBed, async } from '@angular/core/testing'
 import { RouterTestingModule } from '@angular/router/testing'
-import { StoreModule } from '@ngrx/store'
 
 import { AppComponent } from './app.component'
 import { AppModule } from './app.module'
 import { routes } from './app.routing'
-import { reducer } from './shared/store'
 
 describe('AppComponent', () => {
   let component: AppComponent
   let fixture: ComponentFixture<AppComponent>
-  let element: HTMLElement
-  let de: DebugElement
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        AppModule,
-        RouterTestingModule.withRoutes(routes),
-        StoreModule.provideStore(reducer)
-      ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        imports: [AppModule, RouterTestingModule.withRoutes(routes)]
+      }).compileComponents()
     })
+  )
 
-    fixture = TestBed.createComponent(AppComponent)
-    component = fixture.componentInstance
-    element = fixture.nativeElement
-    de = fixture.debugElement
-
-    fixture.detectChanges()
-  }))
-
-  it('should create the app', async(() => {
-    expect(component).toBeTruthy()
-  }))
-
+  it(
+    'should create the app',
+    async(() => {
+      fixture = TestBed.createComponent(AppComponent)
+      component = fixture.componentInstance
+      expect(component).toBeTruthy()
+    })
+  )
 })

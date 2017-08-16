@@ -1,4 +1,4 @@
-import { Label } from '../config/config.model'
+import { Key, Label } from '../config/config.model'
 
 export interface Sensor {
   id?: string
@@ -6,10 +6,5 @@ export interface Sensor {
   keys?: Key[]
   type?: string
   unit: string
-  label: Label
-}
-
-export interface Key {
-  key: string
   label: Label
 }

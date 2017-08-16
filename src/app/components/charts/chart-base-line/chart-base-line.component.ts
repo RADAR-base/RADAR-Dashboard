@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core'
 import * as d3 from 'd3'
+import { lineChunked } from 'd3-line-chunked'
 
 import { TimeSeries } from '../../../shared/models/time-series.model'
 import { AppConfig } from '../../../shared/utils/config'
@@ -28,8 +29,9 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
   line: any
   lineEl: any
   gradient: any
+  lineChunked: any
 
-  init () {
+  init() {
     // Add HR Gradient
     if (this.gradientEnabled) {
       this.chart.classed('hr-gradient', true)
@@ -42,28 +44,27 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
         .attr('x2', 0)
         .selectAll('stop')
         .data(this.gradientColors)
-        .enter().append('stop')
+        .enter()
+        .append('stop')
         .attr('offset', d => d.offset)
         .attr('stop-color', d => d.color)
     }
 
-    this.lineEl = this.chart
-      .append('path')
-      .attr('class', 'line')
+    this.lineEl = this.chart.append('path').attr('class', 'line')
 
-    this.line = d3.line()
-      .curve(d3.curveBasis)
-      .defined((d: any) => d.value)
+    this.lineEl = this.chart.append('g')
 
     super.init()
   }
 
-  draw () {
-    this.xScale = d3.scaleTime()
+  draw() {
+    this.xScale = d3
+      .scaleTime()
       .range([0, this.width])
       .domain(d3.extent(this.data, d => d.date))
 
-    this.yScale = d3.scaleLinear()
+    this.yScale = d3
+      .scaleLinear()
       .range([this.height, 0])
       .domain(d3.extent(this.data, d => d.value))
 
@@ -71,10 +72,7 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
       .attr('transform', `translate(0, ${this.height})`)
       .call(d3.axisBottom(this.xScale))
 
-    this.yAxis.call(
-      d3.axisLeft(this.yScale)
-        .tickSize(-this.width)
-    )
+    this.yAxis.call(d3.axisLeft(this.yScale).tickSize(-this.width))
 
     // Add HR Gradient
     if (this.gradientEnabled) {
@@ -83,13 +81,12 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
         .attr('y2', this.yScale(this.gradientStops.y2))
     }
 
-    this.line
+    this.lineChunked = lineChunked()
       .x(d => this.xScale(d.date))
       .y(d => this.yScale(d.value))
+      .curve(d3.curveLinear)
+      .defined((d: any) => d.value)
 
-    this.lineEl
-      .datum(this.data)
-      .transition()
-      .attr('d', this.line)
+    this.lineEl.datum(this.data).call(this.lineChunked)
   }
 }
