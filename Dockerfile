@@ -12,7 +12,7 @@
 
 FROM node:8
 
-MAINTAINER Maximilian Kerz @kerzmaximilian, Amos Folarin @afolarin, Herculano Campos @herkulano
+MAINTAINER Maximilian Kerz @kerzmaximilian, Amos Folarin @afolarin, Joris Borgdorff @blootsvoets, Herculano Campos @herkulano
 
 ENV PROJ="RADAR-Dashboard"
 ENV PROJ_FOLDER="/opt/${PROJ}"
@@ -22,7 +22,7 @@ RUN echo && echo "==> Copy files to build ${PROJ}"
     COPY *.json *.js ${PROJ_FOLDER}/
     COPY src ${PROJ_FOLDER}/src
 
-# yarn install and build
+# install and build
 RUN echo && echo "==> Installing dependencies and building App" \
     && cd ${PROJ_FOLDER} \
     && npm i --silent \
@@ -34,7 +34,7 @@ FROM nginx:1.13.1-alpine
 
 LABEL org="RADAR-CNS"
 LABEL name="RADAR-Dashboard"
-LABEL version="1.0"
+LABEL version="2.1.0"
 
 ENV PROJ="RADAR-Dashboard"
 ENV PROJ_FOLDER="/opt/${PROJ}"
