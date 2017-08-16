@@ -30,6 +30,18 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
   lineEl: any
   gradient: any
   lineChunked: any
+  xAxisBrush: any
+  context: any
+  lineChunkedBrush: any
+  heightBrush: any
+  yScaleBrush: any
+  zoom: any
+  xAxisCall: any
+  brush: any
+  lineElBrush: any
+  xScaleBrush: any
+  yAxisBrush: any
+  xAxisCallBrush: any
 
   init() {
     // Add HR Gradient
@@ -50,9 +62,7 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
         .attr('stop-color', d => d.color)
     }
 
-    this.lineEl = this.chart.append('path').attr('class', 'line')
-
-    this.lineEl = this.chart.append('g')
+    this.lineEl = this.chart.append('g').attr('clip-path', 'url(#clip)')
 
     super.init()
   }
@@ -68,10 +78,12 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
       .range([this.height, 0])
       .domain(d3.extent(this.data, d => d.value))
 
-    this.xAxis
-      .attr('transform', `translate(0, ${this.height})`)
-      .call(d3.axisBottom(this.xScale))
+    this.xScaleBrush = d3
+      .scaleTime()
+      .range([0, this.width])
+      .domain(d3.extent(this.data, d => d.date))
 
+    this.xAxis.remove()
     this.yAxis.call(d3.axisLeft(this.yScale).tickSize(-this.width))
 
     // Add HR Gradient
@@ -87,6 +99,50 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
       .curve(d3.curveLinear)
       .defined((d: any) => d.value)
 
-    this.lineEl.datum(this.data).call(this.lineChunked)
+    this.lineEl.selectAll('.main').remove()
+
+    this.lineEl
+      .append('g')
+      .datum(this.data)
+      .call(this.lineChunked)
+      .attr('class', 'main')
+
+    this.zoom = d3
+      .zoom()
+      .scaleExtent([1, 10])
+      .translateExtent([[0, 0], [this.width, this.height]])
+      .extent([[0, 0], [this.width, this.height]])
+      .on('zoom', d => this.zoomed(this.xScale, this.xScaleBrush, this.brush))
+
+    this.brush = d3.brushX().extent([[0, 0], [this.width, this.height]])
+
+    this.svg.call(this.zoom).call(this.zoom.transform, d3.zoomIdentity)
+  }
+
+  zoomed(xScale, xScaleBrush, brush) {
+    if (d3.event.sourceEvent && d3.event.sourceEvent.type === 'brush') return
+    const svg = d3.selectAll('svg')
+    const xaxis = svg.selectAll('.axis--x')
+    const t = d3.event.transform
+    const newBrushPosition = xScale.range().map(t.invertX, t)
+
+    newBrushPosition[0] = Math.max(xScale.range()[0], newBrushPosition[0])
+    newBrushPosition[1] = Math.min(xScale.range()[1], newBrushPosition[1])
+    svg.select('.brush').call(brush.move, newBrushPosition)
+
+    svg
+      .selectAll('.main')
+      .attr(
+        'transform',
+        'translate(' +
+          d3.event.transform.x +
+          ',0) scale(' +
+          d3.event.transform.k +
+          ',1)'
+      )
+    svg.selectAll('circle').attr('r', 3 / t.k)
+
+    xScale.domain(t.rescaleX(xScaleBrush).domain())
+    xaxis.call(d3.axisBottom(xScale))
   }
 }
