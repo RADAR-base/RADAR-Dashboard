@@ -17,13 +17,10 @@ export class ChartExternalXAxisComponent extends ChartBaseComponent {
   width: number
   height: number
   xAxis: any
+  xScale: any
   xScaleBrush: any
-  xAxisCallBrush: any
   zoom: any
   brush: any
-  heightBrush: any
-  xScale: any
-  xAxisCall: any
 
   init() {
     super.init()
@@ -40,15 +37,12 @@ export class ChartExternalXAxisComponent extends ChartBaseComponent {
       .range([0, this.width])
       .domain(d3.extent(this.data, d => d.date))
 
-    this.xAxisCall = d3.axisBottom(this.xScale)
-    this.xAxisCallBrush = d3.axisBottom(this.xScaleBrush)
-
     this.xAxisBrush
       .attr('transform', 'translate(0, 0)')
       .call(d3.axisBottom(this.xScaleBrush))
 
     this.xAxis
-      .attr('transform', 'translate(0,0)')
+      .attr('transform', 'translate(0, 20)')
       .call(d3.axisBottom(this.xScaleBrush))
 
     this.zoom = d3
@@ -56,29 +50,13 @@ export class ChartExternalXAxisComponent extends ChartBaseComponent {
       .scaleExtent([1, 10])
       .translateExtent([[0, 0], [this.width, this.height]])
       .extent([[0, 0], [this.width, this.height]])
-      .on('zoom', d =>
-        this.zoomed(
-          this.xScale,
-          this.xScaleBrush,
-          this.xAxisCallBrush,
-          this.brush,
-          this.xAxis,
-          this.chart,
-          this.context
-        )
-      )
+      .on('zoom', d => this.zoomed(this.xScale, this.xScaleBrush, this.brush))
 
     this.brush = d3
       .brushX()
       .extent([[0, 0], [this.width, this.height]])
       .on('brush end', () =>
-        this.brushed(
-          this.xScale,
-          this.xScaleBrush,
-          this.zoom,
-          this.xAxisCallBrush,
-          this.xAxisCall
-        )
+        this.brushed(this.xScale, this.xScaleBrush, this.zoom)
       )
 
     this.context.selectAll('.brush').remove()
@@ -101,10 +79,10 @@ export class ChartExternalXAxisComponent extends ChartBaseComponent {
       )
       .call(this.zoom)
 
-    this.svg.call(this.zoom).call(this.zoom.transform, d3.zoomIdentity)
+    this.chart.call(this.zoom).call(this.zoom.transform, d3.zoomIdentity)
   }
 
-  brushed(xScale, xScaleBrush, zoom, xAxisCallBrush, xAxisCall) {
+  brushed(xScale, xScaleBrush, zoom) {
     if (d3.event.sourceEvent && d3.event.sourceEvent.type === 'zoom') return
     const s = d3.event.selection || xScale.range()
     const svg = d3.selectAll('svg')
@@ -132,13 +110,11 @@ export class ChartExternalXAxisComponent extends ChartBaseComponent {
       )
   }
 
-  zoomed(xScale, xScaleBrush, xAxisCall, brush, xAxis, chart, context) {
+  zoomed(xScale, xScaleBrush, brush) {
     if (d3.event.sourceEvent && d3.event.sourceEvent.type === 'brush') return
     const svg = d3.selectAll('svg')
     const t = d3.event.transform
     const xaxis = svg.selectAll('.axis--x')
-    xScale.domain(t.rescaleX(xScaleBrush).domain())
-    xaxis.call(d3.axisBottom(this.xScale))
 
     const newBrushPosition = xScale.range().map(t.invertX, t)
     newBrushPosition[0] = Math.max(xScale.range()[0], newBrushPosition[0])
@@ -157,5 +133,7 @@ export class ChartExternalXAxisComponent extends ChartBaseComponent {
 
     svg.selectAll('circle').attr('r', 3 / t.k)
     svg.select('.brush').call(brush.move, newBrushPosition)
+    xScale.domain(t.rescaleX(xScaleBrush).domain())
+    xaxis.call(d3.axisBottom(this.xScale))
   }
 }
