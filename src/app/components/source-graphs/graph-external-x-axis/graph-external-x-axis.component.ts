@@ -7,8 +7,9 @@ import { GraphBaseComponent } from '../graph-base/graph-base.component'
   selector: 'app-graph-external-x-axis',
   template: `
     <div class="axis">
-    <app-chart-external-x-axis *ngIf="data && isLoaded" [chartData]="data">
-    </app-chart-external-x-axis></div>
+      <app-chart-external-x-axis *ngIf="data && isLoaded" [chartData]="data">
+      </app-chart-external-x-axis>
+    </div>
   `,
   styleUrls: ['./graph-external-x-axis.component.scss']
 })

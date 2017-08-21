@@ -2,12 +2,21 @@
 @import '../charts.common';
 
 :host /deep/ {
-  margin-top: 50px;
-  height: 70px;
+  margin-top: -5px;
+  margin-bottom: 10px;
+  height: 100%;
 
   .zoom {
     cursor: move;
     pointer-events: all;
     fill: none;
+  }
+
+  .area {
+    fill: $cl-base-80;
+  }
+
+  .brush {
+    fill: $cl-base-40;
   }
 }

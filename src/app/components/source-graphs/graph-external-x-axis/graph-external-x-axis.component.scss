@@ -4,5 +4,10 @@
 .axis {
   flex: 1 1 0;
   width: inherit;
-  background-color: $cl-base-60;
+  height: 100%;
+  background-color: $cl-base-20;
+}
+
+.font-small {
+  @include font-small;
 }

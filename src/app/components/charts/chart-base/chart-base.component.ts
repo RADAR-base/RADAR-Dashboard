@@ -40,9 +40,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   height: number
   xAxis: any
   yAxis: any
-  xAxisBrush: any
   window$: Subscription
-  context: any
   clipPath: any
 
   @Input() margin = AppConfig.charts.MARGIN
@@ -95,15 +93,6 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
     this.yAxis = this.chart.append('g').attr('class', 'axis axis--y')
 
     this.clipPath = this.chart.append('clipPath').attr('id', 'clip')
-
-    this.context = this.svg
-      .append('g')
-      .attr('class', 'context')
-      .attr('transform', `translate(${this.margin.left}, 0)`)
-
-    this.xAxisBrush = this.context
-      .append('g')
-      .attr('class', 'axis axis--x-brush')
 
     this.init()
   }

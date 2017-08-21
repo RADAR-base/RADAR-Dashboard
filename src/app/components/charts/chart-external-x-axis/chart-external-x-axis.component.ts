@@ -13,20 +13,33 @@ export class ChartExternalXAxisComponent extends ChartBaseComponent {
   data: TimeSeries[]
 
   svg: any
+  context: any
   chart: any
   width: number
   height: number
   xAxis: any
   xScale: any
+  yScale: any
   xScaleBrush: any
   zoom: any
   brush: any
+  area: any
 
   init() {
+    this.context = this.svg
+      .append('g')
+      .attr('class', 'context')
+      .attr('transform', `translate(${this.margin.left}, 0)`)
+
     super.init()
   }
 
   draw() {
+    this.yScale = d3
+      .scaleLinear()
+      .range([this.height, 0])
+      .domain(d3.extent(this.data, d => d.value))
+
     this.xScaleBrush = d3
       .scaleTime()
       .range([0, this.width])
@@ -37,12 +50,8 @@ export class ChartExternalXAxisComponent extends ChartBaseComponent {
       .range([0, this.width])
       .domain(d3.extent(this.data, d => d.date))
 
-    this.xAxisBrush
-      .attr('transform', 'translate(0, 0)')
-      .call(d3.axisBottom(this.xScaleBrush))
-
     this.xAxis
-      .attr('transform', 'translate(0, 20)')
+      .attr('transform', 'translate(0, -10)')
       .call(d3.axisBottom(this.xScaleBrush))
 
     this.zoom = d3
@@ -60,26 +69,39 @@ export class ChartExternalXAxisComponent extends ChartBaseComponent {
       )
 
     this.context.selectAll('.brush').remove()
+    this.context.selectAll('path').remove()
+    this.context.selectAll('.axis--x-brush').remove()
+
     this.svg.selectAll('rect').remove()
+
+    this.area = d3
+      .area()
+      .curve(d3.curveLinear)
+      .x(d => this.xScaleBrush(d['date']))
+      .y0(this.height)
+      .y1(d => this.yScale(d['value']))
+
+    this.context
+      .append('path')
+      .datum(this.data)
+      .attr('class', 'area')
+      .attr('transform', 'translate(0, 30)')
+      .attr('d', this.area)
 
     this.context
       .append('g')
       .attr('class', 'brush')
+      .attr('transform', 'translate(0, 30)')
       .call(this.brush)
       .call(this.brush.move, this.xScaleBrush.range())
 
-    this.svg
-      .append('rect')
-      .attr('class', 'zoom')
-      .attr('width', this.width)
-      .attr('height', this.height)
-      .attr(
-        'transform',
-        'translate(' + this.margin.left + ',' + this.margin.top + ')'
-      )
-      .call(this.zoom)
+    this.context
+      .append('g')
+      .attr('class', 'axis axis--x-brush')
+      .attr('transform', 'translate(0, 130)')
+      .call(d3.axisBottom(this.xScaleBrush))
 
-    this.chart.call(this.zoom).call(this.zoom.transform, d3.zoomIdentity)
+    this.context.call(this.zoom).call(this.zoom.transform, d3.zoomIdentity)
   }
 
   brushed(xScale, xScaleBrush, zoom) {

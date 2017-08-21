@@ -29,10 +29,6 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
   lines: any
   line: any
   newData: any
-  firstDraw = true
-  xScaleBrush: any
-  zoom: any
-  brush: any
   lineEl: any
 
   init() {
@@ -65,11 +61,6 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
       .domain([minValue, maxValue])
 
     this.zScale = d3.scaleOrdinal().domain(keys).range(this.lineColors)
-
-    this.xScaleBrush = d3
-      .scaleTime()
-      .range([0, this.width])
-      .domain([minDate, maxDate])
 
     this.xAxis.remove()
 
@@ -111,44 +102,6 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
 
     this.lines.merge(this.line).attr('class', 'line').call(this.lineChunked)
 
-    this.zoom = d3
-      .zoom()
-      .scaleExtent([1, 10])
-      .translateExtent([[0, 0], [this.width, this.height]])
-      .extent([[0, 0], [this.width, this.height]])
-      .on('zoom', d => this.zoomed(this.xScale, this.xScaleBrush, this.brush))
-
-    this.brush = d3.brushX().extent([[0, 0], [this.width, this.height]])
-
-    this.svg.call(this.zoom).call(this.zoom.transform, d3.zoomIdentity)
-
     this.lines.exit().remove()
-  }
-
-  zoomed(xScale, xScaleBrush, brush) {
-    if (d3.event.sourceEvent && d3.event.sourceEvent.type === 'brush') return
-    const svg = d3.selectAll('svg')
-    const xaxis = svg.selectAll('.axis--x')
-    const t = d3.event.transform
-    const newBrushPosition = xScale.range().map(t.invertX, t)
-
-    newBrushPosition[0] = Math.max(xScale.range()[0], newBrushPosition[0])
-    newBrushPosition[1] = Math.min(xScale.range()[1], newBrushPosition[1])
-    svg.select('.brush').call(brush.move, newBrushPosition)
-
-    svg
-      .selectAll('.main')
-      .attr(
-        'transform',
-        'translate(' +
-          d3.event.transform.x +
-          ',0) scale(' +
-          d3.event.transform.k +
-          ',1)'
-      )
-    svg.selectAll('circle').attr('r', 3 / t.k)
-
-    xScale.domain(t.rescaleX(xScaleBrush).domain())
-    xaxis.call(d3.axisBottom(xScale))
   }
 }

@@ -35,9 +35,10 @@ import { Source } from '../../shared/store/source/source.model'
         </div>
       </div>
     </div>
-    <div *ngIf="sources && sources[0].sensors[0]" class="axis">
-      <app-graph-external-x-axis [sensor]="sources[0].sensors[0]"
-      [subjectId]="subjectId"></app-graph-external-x-axis>
+    <div *ngIf="sources && sources[1].sensors[6]" class="axis">
+      <app-graph-external-x-axis [sensor]="sources[1].sensors[6]"
+      [subjectId]="subjectId">
+      </app-graph-external-x-axis>
     </div>
   `,
   styleUrls: ['./source-graphs.component.scss'],
