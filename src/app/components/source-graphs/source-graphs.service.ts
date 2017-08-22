@@ -15,6 +15,36 @@ export class SourceGraphsService {
 
   constructor(private http: Http) {}
 
+  getSingleValueDataWithDate(
+    type,
+    subject,
+    source,
+    timeHoles = true,
+    startTime,
+    endTime
+  ): Observable<TimeSeries[]> {
+    const url = `${this
+      .URL}/${type}/AVERAGE/TEN_SECOND/${subject}/${source}/${startTime}/${endTime}`
+
+    return this.http
+      .get(url)
+      .map(res => {
+        return res.status === 200 ? res.json() || null : null
+      })
+      .map(res => {
+        if (res) {
+          res.header.effectiveTimeFrame.startDateTime =
+            new Date(startTime).toISOString().split('.')[0] + 'Z'
+          res.header.effectiveTimeFrame.endDateTime =
+            new Date(endTime).toISOString().split('.')[0] + 'Z'
+          return ParseTimeHoles(res)
+        } else {
+          return null
+        }
+      })
+      .catch(ErrorService.handleError)
+  }
+
   getSingleValueData(
     type,
     subject,
@@ -33,6 +63,37 @@ export class SourceGraphsService {
           return timeHoles
             ? ParseTimeHoles(res)
             : this.parseSingleValueData(res)
+        } else {
+          return null
+        }
+      })
+      .catch(ErrorService.handleError)
+  }
+
+  getMultiValueDataWithDate(
+    type,
+    subject,
+    source,
+    keys,
+    timeHoles = true,
+    startTime,
+    endTime
+  ): Observable<MultiTimeSeries> {
+    const url = `${this
+      .URL}/${type}/AVERAGE/TEN_SECOND/${subject}/${source}/${startTime}/${endTime}`
+
+    return this.http
+      .get(url)
+      .map(res => {
+        return res.status === 200 ? res.json() || null : null
+      })
+      .map(res => {
+        if (res) {
+          res.header.effectiveTimeFrame.startDateTime =
+            new Date(startTime).toISOString().split('.')[0] + 'Z'
+          res.header.effectiveTimeFrame.endDateTime =
+            new Date(endTime).toISOString().split('.')[0] + 'Z'
+          return ParseMultiValueData(ParseTimeHoles(res, true), keys, timeHoles)
         } else {
           return null
         }

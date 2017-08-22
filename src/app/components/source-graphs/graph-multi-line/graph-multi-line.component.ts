@@ -26,16 +26,24 @@ export class GraphMultiLineComponent extends GraphBaseComponent {
   data: MultiTimeSeries
   isLoaded = false
 
+  // TODO: Replace with API getting last available datapoint
+  endTime = 1497689980000
+  startTime = new Date(this.endTime).setDate(
+    new Date(this.endTime).getDate() - 1
+  )
+
   @Input() gradient = false
 
   getData() {
     this.service
-      .getMultiValueData(
+      .getMultiValueDataWithDate(
         this.sensor.type,
         this.subjectId,
         this.sensor.source,
         AppConfig.config.sensors[this.sensor.type].keys,
-        this.timeHoles
+        this.timeHoles,
+        this.startTime,
+        this.endTime
       )
       .subscribe(d => {
         this.data = d
