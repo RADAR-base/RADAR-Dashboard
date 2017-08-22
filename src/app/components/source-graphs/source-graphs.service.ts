@@ -127,6 +127,35 @@ export class SourceGraphsService {
       .catch(ErrorService.handleError)
   }
 
+  getAggregateMessagesWithDate(
+    type,
+    subject,
+    source,
+    timeHoles = true,
+    startTime,
+    endTime
+  ): Observable<TimeSeries[]> {
+    const url = `${PARAMS.API_LOCAL}/mock-aggregate-messages.json`
+
+    return this.http
+      .get(url)
+      .map(res => {
+        return res.status === 200 ? res.json() || null : null
+      })
+      .map(res => {
+        if (res) {
+          res.header.effectiveTimeFrame.startDateTime =
+            new Date(startTime).toISOString().split('.')[0] + 'Z'
+          res.header.effectiveTimeFrame.endDateTime =
+            new Date(endTime).toISOString().split('.')[0] + 'Z'
+          return ParseTimeHoles(res)
+        } else {
+          return null
+        }
+      })
+      .catch(ErrorService.handleError)
+  }
+
   private parseSingleValueData(res) {
     return res.dataset.map(data => {
       return {
