@@ -12,6 +12,8 @@ export class GraphBaseComponent {
 
   @Input() subjectId
   @Input() timeHoles = true
+  @Input() startTime
+  @Input() endTime
 
   private _sensor: Sensor
 

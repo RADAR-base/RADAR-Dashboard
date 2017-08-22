@@ -16,20 +16,25 @@ import { Source } from '../../shared/store/source/source.model'
         <div [ngSwitch]="sensor.type">
           <app-graph-single-line *ngSwitchCase="CHART_TYPE.HEART_RATE"
             [sensor]="sensor" [subjectId]="subjectId"
-            [gradient]="true"></app-graph-single-line>
+            [gradient]="true" [startTime]="startTime" [endTime]="endTime"></app-graph-single-line>
           <app-graph-multi-line *ngSwitchCase="CHART_TYPE.ACCELEROMETER"
-            [sensor]="sensor" [subjectId]="subjectId"></app-graph-multi-line>
+            [sensor]="sensor" [subjectId]="subjectId"
+            [startTime]="startTime" [endTime]="endTime"></app-graph-multi-line>
           <app-graph-single-line *ngSwitchCase="CHART_TYPE.BATTERY"
             [sensor]="sensor" [subjectId]="subjectId"
-            [timeHoles]="false"></app-graph-single-line>
+            [timeHoles]="false" [startTime]="startTime" [endTime]="endTime"></app-graph-single-line>
           <app-graph-single-line *ngSwitchCase="CHART_TYPE.BLOOD_VOLUME_PULSE"
-            [sensor]="sensor" [subjectId]="subjectId"></app-graph-single-line>
+            [sensor]="sensor" [subjectId]="subjectId"
+            [startTime]="startTime" [endTime]="endTime"></app-graph-single-line>
           <app-graph-single-line *ngSwitchCase="CHART_TYPE.ELECTRODERMAL_ACTIVITY"
-            [sensor]="sensor" [subjectId]="subjectId"></app-graph-single-line>
+            [sensor]="sensor" [subjectId]="subjectId"
+            [startTime]="startTime" [endTime]="endTime"></app-graph-single-line>
           <app-graph-single-line *ngSwitchCase="CHART_TYPE.INTER_BEAT_INTERVAL"
-            [sensor]="sensor" [subjectId]="subjectId"></app-graph-single-line>
+            [sensor]="sensor" [subjectId]="subjectId"
+            [startTime]="startTime" [endTime]="endTime"></app-graph-single-line>
           <app-graph-single-line *ngSwitchCase="CHART_TYPE.THERMOMETER"
-            [sensor]="sensor" [subjectId]="subjectId"></app-graph-single-line>
+            [sensor]="sensor" [subjectId]="subjectId"
+            [startTime]="startTime" [endTime]="endTime"></app-graph-single-line>
           <p *ngSwitchDefault="" class="font-small">
             {{ sensor.type }} is not associated to any graph!</p>
         </div>
@@ -37,7 +42,7 @@ import { Source } from '../../shared/store/source/source.model'
     </div>
     <div *ngIf="sources && sources[1].sensors[6]" class="axis">
       <app-graph-external-x-axis [sensor]="sources[1].sensors[6]"
-      [subjectId]="subjectId">
+      [subjectId]="subjectId" [startTime]="startTime" [endTime]="endTime">
       </app-graph-external-x-axis>
     </div>
   `,
@@ -57,8 +62,16 @@ export class SourceGraphsComponent implements OnInit {
 
   @Input() sources: Source[]
   @Input() subjectId: string
+  endTime: any
+  startTime: any
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    // TODO: Replace with API getting last available datapoint
+    this.endTime = 1497689980000
+    this.startTime = new Date(this.endTime).setDate(
+      new Date(this.endTime).getDate() - 1
+    )
+  }
 }

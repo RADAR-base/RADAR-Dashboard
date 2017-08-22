@@ -26,12 +26,6 @@ export class GraphSingleLineComponent extends GraphBaseComponent {
   data: TimeSeries[]
   isLoaded = false
 
-  // TODO: Replace with API getting last available datapoint
-  endTime = 1497689980000
-  startTime = new Date(this.endTime).setDate(
-    new Date(this.endTime).getDate() - 1
-  )
-
   @Input() gradient = false
 
   getData() {
