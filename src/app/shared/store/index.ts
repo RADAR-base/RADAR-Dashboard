@@ -1,6 +1,6 @@
 import {
-  ActionReducer,
   ActionReducerMap,
+  MetaReducer,
   createFeatureSelector,
   createSelector
 } from '@ngrx/store'
@@ -32,7 +32,7 @@ export const reducers: ActionReducerMap<State> = {
   compliance: fromCompliance.reducer
 }
 
-export const metaReducers: ActionReducer<any, any>[] = !environment.PROD
+export const metaReducers: MetaReducer<State>[] = !environment.PROD
   ? [storeFreeze]
   : []
 

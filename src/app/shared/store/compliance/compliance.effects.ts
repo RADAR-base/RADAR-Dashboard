@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { Actions, Effect, toPayload } from '@ngrx/effects'
 import { Action } from '@ngrx/store'
-import { Observable } from 'rxjs/Rx'
+import { Observable } from 'rxjs/Observable'
 
 import * as complianceAction from './compliance.actions'
 import { ComplianceService } from './compliance.service'
