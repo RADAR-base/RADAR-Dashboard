@@ -1,5 +1,3 @@
-import 'rxjs/add/operator/delay'
-
 import { Injectable } from '@angular/core'
 import { Actions, Effect, toPayload } from '@ngrx/effects'
 import { Action } from '@ngrx/store'
