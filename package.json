@@ -7,7 +7,7 @@
     "start": "ng serve",
     "start:host": "ng serve --host 0.0.0.0",
     "hmr": "ng serve --hmr -e=hmr",
-    "build": "ng build --prod",
+    "build": "ng build --prod --build-optimizer",
     "build:dev": "ng build",
     "all": "npm run fix:sort && npm run fix:css && npm run fix:code && npm run lint && npm run test:coverage && npm run e2e",
     "lint": "npm run lint:ng && npm run lint:css && npm run lint:prettier && npm run lint:sort",
