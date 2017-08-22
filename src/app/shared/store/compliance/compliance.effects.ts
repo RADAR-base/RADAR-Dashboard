@@ -1,8 +1,9 @@
+import 'rxjs/add/operator/delay'
+
 import { Injectable } from '@angular/core'
 import { Actions, Effect, toPayload } from '@ngrx/effects'
 import { Action } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
-import 'rxjs/add/operator/delay'
 
 import * as complianceAction from './compliance.actions'
 import { ComplianceService } from './compliance.service'
