@@ -135,6 +135,7 @@ export class SourceGraphsService {
     startTime,
     endTime
   ): Observable<TimeSeries[]> {
+    // TODO: Change when API is ready
     const url = `${PARAMS.API_LOCAL}/mock-aggregate-messages.json`
 
     return this.http

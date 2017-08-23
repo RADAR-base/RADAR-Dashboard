@@ -54,19 +54,19 @@ export class ChartExternalXAxisComponent extends ChartBaseComponent {
       .attr('transform', 'translate(0, -10)')
       .call(d3.axisBottom(this.xScaleBrush))
 
-    this.zoom = d3
-      .zoom()
-      .scaleExtent([1, 10])
-      .translateExtent([[0, 0], [this.width, this.height]])
-      .extent([[0, 0], [this.width, this.height]])
-      .on('zoom', d => this.zoomed(this.xScale, this.xScaleBrush, this.brush))
-
     this.brush = d3
       .brushX()
       .extent([[0, 0], [this.width, this.height]])
       .on('brush end', () =>
         this.brushed(this.xScale, this.xScaleBrush, this.zoom)
       )
+
+    this.zoom = d3
+      .zoom()
+      .scaleExtent([1, 10])
+      .translateExtent([[0, 0], [this.width, this.height]])
+      .extent([[0, 0], [this.width, this.height]])
+      .on('zoom', d => this.zoomed(this.xScale, this.xScaleBrush, this.brush))
 
     this.context.selectAll('.brush').remove()
     this.context.selectAll('path').remove()
@@ -111,7 +111,7 @@ export class ChartExternalXAxisComponent extends ChartBaseComponent {
 
     xScale.domain(s.map(xScaleBrush.invert, xScaleBrush))
     svg.selectAll('.main').attr('transform', d3.event.transform)
-    svg.select('.axis--x').call(d3.axisBottom(this.xScale))
+    svg.select('.axis--x').call(d3.axisBottom(xScale))
 
     svg
       .selectAll('.main')
@@ -124,12 +124,10 @@ export class ChartExternalXAxisComponent extends ChartBaseComponent {
           ', 0)'
       )
 
-    svg
-      .select('.zoom')
-      .call(
-        zoom.transform,
-        d3.zoomIdentity.scale(this.width / (s[1] - s[0])).translate(-s[0], 0)
-      )
+    this.context.call(
+      zoom.transform,
+      d3.zoomIdentity.scale(this.width / (s[1] - s[0])).translate(-s[0], 0)
+    )
   }
 
   zoomed(xScale, xScaleBrush, brush) {
@@ -156,6 +154,6 @@ export class ChartExternalXAxisComponent extends ChartBaseComponent {
     svg.selectAll('circle').attr('r', 3 / t.k)
     svg.select('.brush').call(brush.move, newBrushPosition)
     xScale.domain(t.rescaleX(xScaleBrush).domain())
-    xaxis.call(d3.axisBottom(this.xScale))
+    xaxis.call(d3.axisBottom(xScale))
   }
 }
