@@ -15,7 +15,7 @@ import { AppConfig } from '../../shared/utils/config'
   template: `
     <div *ngFor="let source of sources">
       <div (click)="toggleSource(source.id)"><p>
-        <i class="material-icons" style="font-size:14px"
+        <i class="icon material-icons"
         [class.toggleOn]="isSourceVisible(source.id)">play_arrow</i> {{source.id}} | {{source.type}}
       </p></div>
       <div *ngIf="isSourceVisible(source.id)">
