@@ -13,6 +13,8 @@ We follow the git-flow standard for branching:
 - Please keep your changes succinct in scope. Large pull requests with multiple changes to the codebase (i.e. multiple features) may be asked to be broken into multiple smaller pull requests.
 - Please add unit tests for new features or functionality.
 
+## Test and lint scripts
+
 Use this command to run all checks:
 ```
 $ npm run all
