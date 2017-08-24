@@ -52,11 +52,14 @@ export function reducer(
         return { ...acc, ...sensor }
       }, {})
 
+      const visible = ids
+
       return {
         ...state,
         isLoaded: true,
         ids,
-        entities
+        entities,
+        visible
       }
     }
 
@@ -66,6 +69,27 @@ export function reducer(
         entities: {},
         visible: [],
         isLoaded: false
+      }
+    }
+
+    case sensorsActions.TOGGLE_VISIBILITY: {
+      const id = action.payload
+      let visible = state.visible.slice()
+      state.entities[id]['visible']
+        ? visible.splice(visible.indexOf(id), 1)
+        : (visible = visible.concat(id))
+
+      const entity = {
+        ...state.entities[id],
+        visible: !state.entities[id]['visible']
+      }
+      const entities = { ...state.entities, [id]: entity }
+
+      return {
+        ids: state.ids,
+        entities: entities,
+        visible: visible,
+        isLoaded: state.isLoaded
       }
     }
 
