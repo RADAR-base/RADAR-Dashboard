@@ -26,16 +26,8 @@ export class SourceGraphsComponent implements OnInit {
 
   @Input() sources: Source[]
   @Input() subjectId: string
-  endTime: any
-  startTime: any
 
   constructor() {}
 
-  ngOnInit() {
-    // TODO: Replace with API getting last available datapoint
-    this.endTime = 1497689980000
-    this.startTime = new Date(this.endTime).setDate(
-      new Date(this.endTime).getDate() - 1
-    )
-  }
+  ngOnInit() {}
 }
