@@ -10,16 +10,14 @@ import { SourceGraphsService } from '../source-graphs.service'
 export class GraphBaseComponent {
   language = AppConfig.language
 
-  @Input() subjectId
-  @Input() timeHoles = true
-
   private _sensor: Sensor
 
+  @Input() subjectId
+  @Input() timeHoles = true
   @Input()
   get sensor() {
     return this._sensor
   }
-
   set sensor(val) {
     if (val) {
       this._sensor = val
