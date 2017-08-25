@@ -44,14 +44,15 @@
         <app-tile title="Compliance">
           <div tile-content>
             <div class="legend">
-                <p><span class="simple"></span>Simple
+              <p><span class="simple"></span>Simple
                 <span class="special"></span>Special
                 <span class="notanswered"></span>Not Answered</p>
             </div>
             <div class="chart">
-              <app-compliance-plot [studyId]="studyId"></app-compliance-plot>
+              <app-compliance-plot [data]="complianceData$|async" [isComplianceLoaded]="isComplianceLoaded$|async">
+              </app-compliance-plot>
             </div>
-          </div>          
+          </div>
         </app-tile>
       </md-grid-tile>
       <md-grid-tile colspan="1" rowspan="1">

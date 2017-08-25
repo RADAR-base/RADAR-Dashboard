@@ -5,9 +5,11 @@ import { Observable } from 'rxjs/Observable'
 
 import * as studyAction from '../../shared/store/study/study.actions'
 import * as subjectAction from '../../shared/store/subject/subject.actions'
+import * as complianceAction from '../../shared/store/compliance/compliance.actions'
 import { Subject } from '../../shared/store/subject/subject.model'
 import * as fromRoot from '../../shared/store/index'
 import { TakeUntilDestroy } from '../../shared/utils/TakeUntilDestroy'
+import { AppConfig } from '../../shared/utils/config'
 
 @Component({
   selector: 'app-study-page',
@@ -21,6 +23,9 @@ export class StudyPageComponent implements OnInit {
   isStudyLoadedAndValid$: Observable<boolean>
   isLoaded$: Observable<boolean>
   subjects$: Observable<Subject[]>
+  isComplianceLoaded$: Observable<boolean>
+  complianceData$: Observable<any>
+  timeHoles = true
 
   private takeUntilDestroy // from TakeUntilDestroy
 
@@ -55,5 +60,21 @@ export class StudyPageComponent implements OnInit {
       .refCount()
 
     this.subjects$ = this.store.select(fromRoot.getSubjectAll)
+
+    // Check if compliance is loaded
+    this.isComplianceLoaded$ = this.store.select(fromRoot.getComplianceIsLoaded)
+
+    this.store.dispatch(
+      new complianceAction.GetAll({
+        studyId: this.studyId,
+        keys: AppConfig.config.compliance.keys,
+        timeHoles: this.timeHoles
+      })
+    )
+
+    this.complianceData$ = this.store
+      .select(fromRoot.getComplianceAll)
+      .publishReplay()
+      .refCount()
   }
 }

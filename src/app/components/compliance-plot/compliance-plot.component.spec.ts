@@ -12,8 +12,6 @@ import { MockComplianceData } from '../../shared/testing/mocks/mock-compliance-d
 describe('CompliancePlotComponent', () => {
   let component: CompliancePlotComponent
   let fixture: ComponentFixture<CompliancePlotComponent>
-  let element: HTMLElement
-  let de: DebugElement
 
   beforeEach(
     async(() => {
@@ -26,10 +24,6 @@ describe('CompliancePlotComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CompliancePlotComponent)
     component = fixture.componentInstance
-    component.studyId = '0'
-    element = fixture.nativeElement
-    de = fixture.debugElement
-    console.log(component)
     fixture.detectChanges()
   })
 
