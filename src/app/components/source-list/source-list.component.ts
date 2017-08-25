@@ -12,49 +12,31 @@ import { AppConfig } from '../../shared/utils/config'
 
 @Component({
   selector: 'app-source-list',
-  template: `
-    <div *ngFor="let source of sources">
-      <div (click)="toggleSource(source.id)"><p>
-        <i class="icon material-icons"
-        [class.toggleOn]="isSourceVisible(source.id)">play_arrow</i> {{source.id}} | {{source.type}}
-      </p></div>
-      <div *ngIf="isSourceVisible(source.id)">
-        <div *ngFor="let sensor of source.sensors">
-          <div (click)="toggleSensor(sensor.id)"><p class="font-small">
-            <i class="icon material-icons"
-            [class.inactive]="!sensor.visible">remove_red_eye</i> {{sensor.label[language]}}
-          </p></div>
-        </div>
-      </div>
-    </div>
-
-  `,
+  templateUrl: './source-list.component.html',
   styleUrls: ['./source-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SourceListComponent implements OnInit {
-  @Input() sources
-  sourceVisible: any
-
   language = AppConfig.language
+  collapsed = []
+
+  @Input() sources
 
   constructor(private store: Store<fromRoot.State>) {}
 
-  ngOnInit() {
-    this.sourceVisible = []
-  }
+  ngOnInit() {}
 
   toggleSensor(sensorId) {
     this.store.dispatch(new sensorsAction.ToggleVisibility(sensorId))
   }
 
   toggleSource(sourceId) {
-    this.sourceVisible.indexOf(sourceId) > -1
-      ? this.sourceVisible.splice(this.sourceVisible.indexOf(sourceId), 1)
-      : this.sourceVisible.push(sourceId)
+    const index = this.collapsed.indexOf(sourceId)
+
+    index > -1 ? this.collapsed.splice(index, 1) : this.collapsed.push(sourceId)
   }
 
-  isSourceVisible(sourceId) {
-    return this.sourceVisible.indexOf(sourceId) > -1
+  isSourceOn(sourceId) {
+    return this.collapsed.indexOf(sourceId) === -1
   }
 }

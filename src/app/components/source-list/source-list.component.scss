@@ -1,19 +1,42 @@
 @import '../../../styles/common';
 
-:host {
-  display: block;
-  width: 100%;
-  height: 100%;
+.toggleOn {
+  transform: rotate(90deg);
+}
 
-  .toggleOn {
-    transform: rotate(90deg);
-  }
+.icon {
+  padding: 0 4px 2px 0;
+  vertical-align: middle;
+  font-size: 16px;
+}
 
-  .inactive {
-    opacity: 0.3;
-  }
+.source,
+.sensor {
+  overflow: hidden;
+  padding: 4px 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: default;
+  user-select: none;
+}
+
+.source {
+  @include font-body-light;
+
+  margin-top: 12px;
+  margin-left: 12px;
 
   .icon {
-    font-size: 14px;
+    padding-right: 0;
+  }
+}
+
+.sensor {
+  @include font-small;
+
+  margin-left: 32px;
+
+  &.inactive {
+    opacity: 0.3;
   }
 }
