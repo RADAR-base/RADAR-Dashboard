@@ -56,7 +56,8 @@
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 
   svg {
