@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing'
+import { StoreModule } from '@ngrx/store'
 
+import { reducers } from '../../shared/store'
 import { SourceListComponent } from './source-list.component'
 
 describe('SourceListComponent', () => {
@@ -9,6 +11,7 @@ describe('SourceListComponent', () => {
   beforeEach(
     async(() => {
       TestBed.configureTestingModule({
+        imports: [StoreModule.forRoot(reducers)],
         declarations: [SourceListComponent]
       }).compileComponents()
     })
