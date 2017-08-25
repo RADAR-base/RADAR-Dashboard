@@ -13,5 +13,7 @@
     "markers": ["TODO:", "NOTE:", "FIXME:"]
   },
   "sortImports.onSave": true,
-  "eslint.enable": false
+  "eslint.enable": false,
+  "html.format.enable": false,
+  "angular-template-formatter.indentWidth": 2
 }
