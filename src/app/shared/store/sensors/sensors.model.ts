@@ -5,6 +5,7 @@ export interface Sensor {
   source?: string
   keys?: Key[]
   type?: string
+  visible?: boolean
   unit: string
   label: Label
 }
