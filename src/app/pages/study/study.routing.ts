@@ -5,7 +5,7 @@ import { StudyPageComponent } from './study.component'
 
 export const routes: Routes = [
   {
-    path: 'study/:studyId',
+    path: '',
     component: StudyPageComponent,
     canActivate: [StudyGuard]
   }

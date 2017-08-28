@@ -8,9 +8,7 @@ import { CompliancePlotModule } from '../../components/compliance-plot/complianc
 import { SubjectTableModule } from '../../components/tables/subject-table/subject-table.module'
 import { TileModule } from '../../components/tile/tile.module'
 import { ToolbarModule } from '../../components/toolbar/toolbar.module'
-import { SourceService } from '../../shared/store/source/source.service'
-import { StudyService } from '../../shared/store/study/study.service'
-import { SubjectService } from '../../shared/store/subject/subject.service'
+import { StudyGuard } from '../../shared/guards/study.guard'
 import { StudyPageComponent } from './study.component'
 import { routes } from './study.routing'
 
@@ -26,6 +24,6 @@ import { routes } from './study.routing'
     CompliancePlotModule
   ],
   declarations: [StudyPageComponent],
-  providers: [StudyService, SubjectService, SourceService]
+  providers: [StudyGuard]
 })
 export class StudyPageModule {}
