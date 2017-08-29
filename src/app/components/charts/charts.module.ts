@@ -17,7 +17,7 @@ const COMPONENTS = [
 
 @NgModule({
   imports: [CommonModule],
-  declarations: [...COMPONENTS],
-  exports: [...COMPONENTS]
+  declarations: COMPONENTS,
+  exports: COMPONENTS
 })
 export class ChartsModule {}

@@ -34,7 +34,7 @@ describe('StudyPageComponent', () => {
       component = fixture.componentInstance
       element = fixture.nativeElement
       de = fixture.debugElement
-      console.log(component)
+
       fixture.detectChanges()
     })
   )

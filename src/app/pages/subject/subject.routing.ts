@@ -4,11 +4,11 @@ import { SubjectPageComponent } from './subject.component'
 
 export const routes: Routes = [
   {
-    path: 'study/:studyId/subject/:subjectId',
+    path: '',
     component: SubjectPageComponent
   },
   {
-    path: 'study/:studyId/subject/:subjectId/:startTime/:endTime',
+    path: ':startTime/:endTime',
     component: SubjectPageComponent
   }
 ]
