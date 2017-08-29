@@ -3,7 +3,7 @@ import { HttpModule } from '@angular/http'
 
 import { ComplianceService } from './compliance.service'
 
-describe('SubjectTableService', () => {
+describe('ComplianceService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpModule],

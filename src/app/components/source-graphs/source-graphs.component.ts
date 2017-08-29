@@ -5,6 +5,7 @@ import {
   OnInit
 } from '@angular/core'
 
+import { Sensor } from '../../shared/store/sensors/sensors.model'
 import { Source } from '../../shared/store/source/source.model'
 
 @Component({
@@ -37,5 +38,13 @@ export class SourceGraphsComponent implements OnInit {
     this.startTime = new Date(this.endTime).setDate(
       new Date(this.endTime).getDate() - 1
     )
+  }
+
+  trackBySourceId(index: number, source: Source) {
+    return source.id
+  }
+
+  trackBySensorId(index: number, sensor: Sensor) {
+    return sensor.id
   }
 }

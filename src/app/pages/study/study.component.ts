@@ -3,10 +3,12 @@ import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
+import * as complianceAction from '../../shared/store/compliance/compliance.actions'
 import * as studyAction from '../../shared/store/study/study.actions'
 import * as subjectAction from '../../shared/store/subject/subject.actions'
 import { Subject } from '../../shared/store/subject/subject.model'
 import * as fromRoot from '../../shared/store/index'
+import { AppConfig } from '../../shared/utils/config'
 import { TakeUntilDestroy } from '../../shared/utils/TakeUntilDestroy'
 
 @Component({
@@ -21,6 +23,9 @@ export class StudyPageComponent implements OnInit {
   isStudyLoadedAndValid$: Observable<boolean>
   isLoaded$: Observable<boolean>
   subjects$: Observable<Subject[]>
+  isComplianceLoaded$: Observable<boolean>
+  complianceData$: Observable<any>
+  timeHoles = true
 
   private takeUntilDestroy // from TakeUntilDestroy
 
@@ -41,6 +46,13 @@ export class StudyPageComponent implements OnInit {
       .do(isLoadedAndValid => {
         if (isLoadedAndValid) {
           this.store.dispatch(new subjectAction.GetAll(this.studyId))
+          this.store.dispatch(
+            new complianceAction.GetAll({
+              studyId: this.studyId,
+              keys: AppConfig.config.compliance.keys,
+              timeHoles: this.timeHoles
+            })
+          )
         } else {
           this.store.dispatch(new studyAction.GetById(this.studyId))
         }
@@ -55,5 +67,13 @@ export class StudyPageComponent implements OnInit {
       .refCount()
 
     this.subjects$ = this.store.select(fromRoot.getSubjectAll)
+
+    // Check if compliance is loaded
+    this.isComplianceLoaded$ = this.store.select(fromRoot.getComplianceIsLoaded)
+
+    this.complianceData$ = this.store
+      .select(fromRoot.getComplianceAll)
+      .publishReplay()
+      .refCount()
   }
 }

@@ -1,5 +1,4 @@
 import { createSelector } from '@ngrx/store'
-import * as uuid from 'uuid/v4'
 
 import * as sensorsActions from './sensors.actions'
 import { Sensor } from './sensors.model'
@@ -7,14 +6,12 @@ import { Sensor } from './sensors.model'
 export interface State {
   ids: string[]
   entities: { [id: string]: Sensor }
-  visible: string[]
   isLoaded: boolean
 }
 
 const initialState: State = {
   ids: [],
   entities: {},
-  visible: [],
   isLoaded: false
 }
 
@@ -31,11 +28,12 @@ export function reducer(
     }
 
     case sensorsActions.GET_ALL_SUCCESS: {
+      let counter = 0
       const payload = action.payload
       const ids = []
       const sensors = payload.map(source =>
         source.sensors.reduce((acc, sensor) => {
-          const id = uuid()
+          const id = counter++
           ids.push(id)
 
           const sensorWithId = {
@@ -64,8 +62,22 @@ export function reducer(
       return {
         ids: [],
         entities: {},
-        visible: [],
         isLoaded: false
+      }
+    }
+
+    case sensorsActions.TOGGLE_VISIBILITY: {
+      const id = action.payload
+      const entity = {
+        ...state.entities[id],
+        visible: !state.entities[id].visible
+      }
+      const entities = { ...state.entities, [id]: entity }
+
+      return {
+        ids: state.ids,
+        entities: entities,
+        isLoaded: state.isLoaded
       }
     }
 

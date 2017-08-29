@@ -17,36 +17,7 @@ import { TakeUntilDestroy } from '../../shared/utils/TakeUntilDestroy'
 
 @Component({
   selector: 'app-patient-page',
-  template: `
-    <app-toolbar>
-      <div start>
-        <button [routerLink]="['/study', studyId]" md-icon-button>
-          <i class="material-icons">arrow_back</i>
-        </button>
-        <div class="title">Subject {{subjectId}}</div>
-      </div>
-      <div end>
-        <button md-icon-button><i class="material-icons">more_vert</i></button>
-      </div>
-    </app-toolbar>
-    <div class="content">
-      <md-grid-list cols="8" rowHeight="fit">
-        <md-grid-tile colspan="2">
-          <app-tile title="Sources">
-            <app-source-list
-              [sources]="sources$ | async" tile-content></app-source-list>
-          </app-tile>
-        </md-grid-tile>
-        <md-grid-tile colspan="6">
-          <app-tile title="Graphs">
-            <app-source-graphs
-              [sources]="sources$ | async"
-              [subjectId]="subjectId" tile-content></app-source-graphs>
-          </app-tile>
-        </md-grid-tile>
-      </md-grid-list>
-    </div>
-  `,
+  templateUrl: './subject.component.html',
   styleUrls: ['./subject.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })

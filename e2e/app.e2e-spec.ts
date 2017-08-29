@@ -1,3 +1,5 @@
+import '../src/rxjs.imports'
+
 import { RadarPagesTest } from './app.po'
 
 describe('radar-dashboard App', function() {
