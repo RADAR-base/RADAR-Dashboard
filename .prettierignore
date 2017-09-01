@@ -1,0 +1,6 @@
+dist/
+coverage/
+docker/
+scripts/
+docs/
+package.json
