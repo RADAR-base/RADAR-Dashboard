@@ -38,7 +38,10 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
 
     this.xScaleInner = d3.scaleBand().paddingInner(0.3)
 
-    this.xScaleOuter = d3.scaleBand().rangeRound([0, this.width]).padding(0.4)
+    this.xScaleOuter = d3
+      .scaleBand()
+      .rangeRound([0, this.width])
+      .padding(0.4)
 
     this.yScale = d3.scaleLinear().rangeRound([this.height, 0])
 
@@ -110,17 +113,20 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
         return height - yScale(values[d.key][this.parentNode.id])
       })
 
-    this.rects.nodes().filter(d => d.id === 'null').forEach(function(d) {
-      d3
-        .select(d.parentNode)
-        .append('text')
-        .attr('class', 'nullSymbol')
-        .attr('fill', '#fff')
-        .attr('x', xScaleInner(d.className.baseVal))
-        .attr('y', height - height / 40)
-        .style('font-size', width / 70)
-        .text('x')
-    })
+    this.rects
+      .nodes()
+      .filter(d => d.id === 'null')
+      .forEach(function(d) {
+        d3
+          .select(d.parentNode)
+          .append('text')
+          .attr('class', 'nullSymbol')
+          .attr('fill', '#fff')
+          .attr('x', xScaleInner(d.className.baseVal))
+          .attr('y', height - height / 40)
+          .style('font-size', width / 70)
+          .text('x')
+      })
 
     this.bar
       .selectAll('rects')

@@ -97,11 +97,21 @@ export const getSensorsIsLoaded = createSelector(
   getSensorsState,
   fromSensors.getIsLoaded
 )
+
+export const getSensorsIsDataLoaded = createSelector(
+  getSensorsState,
+  fromSensors.getIsDataLoaded
+)
 export const getSensorsEntities = createSelector(
   getSensorsState,
   fromSensors.getEntities
 )
 export const getSensorsAll = createSelector(getSensorsState, fromSensors.getAll)
+
+export const getSensorsData = createSelector(
+  getSensorsState,
+  fromSensors.getAllData
+)
 
 // Source + Sensor Selector
 export const getSourceAllWithSensors = createSelector(

@@ -5,7 +5,6 @@ import { Observable } from 'rxjs/Observable'
 
 import * as sensorsAction from '../sensors/sensors.actions'
 import * as sourceAction from './source.actions'
-import { Source } from './source.model'
 import { SourceService } from './source.service'
 
 @Injectable()
@@ -17,7 +16,10 @@ export class SourceEffects {
     .switchMap(payload => {
       return this.sourceService
         .getAll(payload)
-        .map((data: Source[]) => new sourceAction.GetAllSuccess(data))
+        .map(
+          data =>
+            new sourceAction.GetAllSuccess({ subjectId: payload, data: data })
+        )
     })
 
   @Effect()

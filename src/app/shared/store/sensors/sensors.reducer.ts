@@ -6,13 +6,17 @@ import { Sensor } from './sensors.model'
 export interface State {
   ids: string[]
   entities: { [id: string]: Sensor }
+  data: any
   isLoaded: boolean
+  isDataLoaded: boolean
 }
 
 const initialState: State = {
   ids: [],
   entities: {},
-  isLoaded: false
+  data: {},
+  isLoaded: false,
+  isDataLoaded: false
 }
 
 export function reducer(
@@ -29,7 +33,7 @@ export function reducer(
 
     case sensorsActions.GET_ALL_SUCCESS: {
       let counter = 0
-      const payload = action.payload
+      const payload = action.payload.data
       const ids = []
       const sensors = payload.map(source =>
         source.sensors.reduce((acc, sensor) => {
@@ -58,11 +62,34 @@ export function reducer(
       }
     }
 
+    case sensorsActions.GET_ALL_DATA: {
+      return {
+        ...state,
+        isDataLoaded: false
+      }
+    }
+
+    case sensorsActions.GET_ALL_DATA_SUCCESS: {
+      const payload = action.payload
+      const id = payload.id
+      const data = payload.data
+      const dataWithIds = { ...state.data, [id]: data }
+
+      console.log(action.payload)
+      return {
+        ...state,
+        data: dataWithIds,
+        isDataLoaded: true
+      }
+    }
+
     case sensorsActions.DESTROY: {
       return {
         ids: [],
         entities: {},
-        isLoaded: false
+        data: {},
+        isLoaded: false,
+        isDataLoaded: false
       }
     }
 
@@ -75,9 +102,8 @@ export function reducer(
       const entities = { ...state.entities, [id]: entity }
 
       return {
-        ids: state.ids,
-        entities: entities,
-        isLoaded: state.isLoaded
+        ...state,
+        entities: entities
       }
     }
 
@@ -87,9 +113,15 @@ export function reducer(
 }
 
 export const getIsLoaded = (state: State) => state.isLoaded
+export const getIsDataLoaded = (state: State) => state.isDataLoaded
 export const getIds = (state: State) => state.ids
 export const getEntities = (state: State) => state.entities
+export const getData = (state: State) => state.data
 
 export const getAll = createSelector(getEntities, getIds, (entities, ids) => {
   return ids.map(id => entities[id])
+})
+
+export const getAllData = createSelector(getData, getIds, (data, ids) => {
+  return ids.map(id => data[id])
 })

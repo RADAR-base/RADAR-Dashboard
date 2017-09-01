@@ -1,4 +1,4 @@
-import { DataSource } from '@angular/cdk'
+import { DataSource } from '@angular/cdk/table'
 import { MdPaginator } from '@angular/material'
 import { Observable } from 'rxjs/Observable'
 
