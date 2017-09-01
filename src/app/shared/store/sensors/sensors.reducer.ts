@@ -1,12 +1,14 @@
 import { createSelector } from '@ngrx/store'
 
+import { MultiTimeSeries } from '../../models/multi-time-series.model'
+import { TimeSeries } from '../../models/time-series.model'
 import * as sensorsActions from './sensors.actions'
 import { Sensor } from './sensors.model'
 
 export interface State {
   ids: string[]
   entities: { [id: string]: Sensor }
-  data: any
+  data: { [id: number]: TimeSeries[] | MultiTimeSeries[] }
   isLoaded: boolean
   isDataLoaded: boolean
 }
@@ -75,7 +77,6 @@ export function reducer(
       const data = payload.data
       const dataWithIds = { ...state.data, [id]: data }
 
-      console.log(action.payload)
       return {
         ...state,
         data: dataWithIds,
