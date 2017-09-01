@@ -8,17 +8,17 @@ import { Sensor } from './sensors.model'
 export interface State {
   ids: string[]
   entities: { [id: string]: Sensor }
-  data: { [id: number]: TimeSeries[] | MultiTimeSeries[] }
   isLoaded: boolean
-  isDataLoaded: boolean
+  data: { [id: number]: TimeSeries[] | MultiTimeSeries[] }
+  isDataLoaded: boolean[]
 }
 
 const initialState: State = {
   ids: [],
   entities: {},
-  data: {},
   isLoaded: false,
-  isDataLoaded: false
+  data: {},
+  isDataLoaded: []
 }
 
 export function reducer(
@@ -67,7 +67,7 @@ export function reducer(
     case sensorsActions.GET_ALL_DATA: {
       return {
         ...state,
-        isDataLoaded: false
+        isDataLoaded: []
       }
     }
 
@@ -80,7 +80,7 @@ export function reducer(
       return {
         ...state,
         data: dataWithIds,
-        isDataLoaded: true
+        isDataLoaded: { ...state.isDataLoaded, [id]: true }
       }
     }
 
@@ -90,7 +90,7 @@ export function reducer(
         entities: {},
         data: {},
         isLoaded: false,
-        isDataLoaded: false
+        isDataLoaded: []
       }
     }
 
@@ -118,6 +118,14 @@ export const getIsDataLoaded = (state: State) => state.isDataLoaded
 export const getIds = (state: State) => state.ids
 export const getEntities = (state: State) => state.entities
 export const getData = (state: State) => state.data
+
+export const getLabels = createSelector(
+  getEntities,
+  getIds,
+  (entities, ids) => {
+    return ids.map(id => entities[id].label)
+  }
+)
 
 export const getAll = createSelector(getEntities, getIds, (entities, ids) => {
   return ids.map(id => entities[id])

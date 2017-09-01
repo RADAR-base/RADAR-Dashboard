@@ -106,6 +106,12 @@ export const getSensorsEntities = createSelector(
   getSensorsState,
   fromSensors.getEntities
 )
+
+export const getSensorsLabels = createSelector(
+  getSensorsState,
+  fromSensors.getLabels
+)
+
 export const getSensorsAll = createSelector(getSensorsState, fromSensors.getAll)
 
 export const getSensorsData = createSelector(
