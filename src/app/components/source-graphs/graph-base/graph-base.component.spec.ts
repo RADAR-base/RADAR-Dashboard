@@ -1,7 +1,5 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing'
-import { HttpModule } from '@angular/http'
 
-import { SourceGraphsService } from '../source-graphs.service'
 import { GraphBaseComponent } from './graph-base.component'
 
 describe('GraphBaseComponent', () => {
@@ -11,8 +9,6 @@ describe('GraphBaseComponent', () => {
   beforeEach(
     async(() => {
       TestBed.configureTestingModule({
-        imports: [HttpModule],
-        providers: [SourceGraphsService],
         declarations: [GraphBaseComponent]
       }).compileComponents()
     })

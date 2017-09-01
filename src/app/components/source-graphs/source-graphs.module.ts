@@ -6,7 +6,6 @@ import { GraphBaseComponent } from './graph-base/graph-base.component'
 import { GraphMultiLineComponent } from './graph-multi-line/graph-multi-line.component'
 import { GraphSingleLineComponent } from './graph-single-line/graph-single-line.component'
 import { SourceGraphsComponent } from './source-graphs.component'
-import { SourceGraphsService } from './source-graphs.service'
 
 const COMPONENTS = [
   SourceGraphsComponent,
@@ -17,7 +16,6 @@ const COMPONENTS = [
 
 @NgModule({
   imports: [CommonModule, ChartsModule],
-  providers: [SourceGraphsService],
   declarations: COMPONENTS,
   exports: COMPONENTS
 })
