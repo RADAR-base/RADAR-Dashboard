@@ -4,7 +4,9 @@ import { Action, Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
 import * as fromRoot from '../../../shared/store/index'
+import { AppConfig } from '../../utils/config'
 import * as sensorsAction from './sensors.actions'
+import { DataTypes } from './sensors.model'
 import { SensorsService } from './sensors.service'
 
 @Injectable()
@@ -43,22 +45,19 @@ export class SensorsEffects {
     .ofType(sensorsAction.GET_ALL_DATA)
     .map(toPayload)
     .mergeMap(payload => {
-      if (payload.data.type !== 'ACCELEROMETER') {
-        return this.sensorsService.getDataSingle(payload).map(
-          res =>
-            new sensorsAction.GetAllDataSuccess({
-              id: payload.data.id,
-              data: res
-            })
-        )
+      const serviceMapFn = res =>
+        new sensorsAction.GetAllDataSuccess({
+          id: payload.data.id,
+          data: res
+        })
+
+      if (
+        AppConfig.config.sensors[payload.data.type].dataType ===
+        DataTypes.single
+      ) {
+        return this.sensorsService.getDataSingle(payload).map(serviceMapFn)
       } else {
-        return this.sensorsService.getDataMulti(payload).map(
-          res =>
-            new sensorsAction.GetAllDataSuccess({
-              id: payload.data.id,
-              data: res
-            })
-        )
+        return this.sensorsService.getDataMulti(payload).map(serviceMapFn)
       }
     })
 
