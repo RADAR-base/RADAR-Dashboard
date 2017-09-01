@@ -2,6 +2,8 @@
   "config": {
     "sensors": {
       "ACCELEROMETER": {
+        "dataType": "multi",
+        "chartType": "line",
         "doc":
           "Acceleration item for a dataset with gravitational constant g as unit.",
         "label": {
@@ -33,6 +35,8 @@
         ]
       },
       "BATTERY": {
+        "dataType": "single",
+        "chartType": "line",
         "doc": "Battery level in percentage as unit.",
         "label": {
           "EN": "Battery"
@@ -40,6 +44,8 @@
         "unit": "PERCENTAGE"
       },
       "BLOOD_VOLUME_PULSE": {
+        "dataType": "single",
+        "chartType": "line",
         "doc":
           "Blood volumne pulse from photoplethysmograph expressed in light absorption (nW).",
         "label": {
@@ -48,6 +54,8 @@
         "unit": "NANOWATT"
       },
       "ELECTRODERMAL_ACTIVITY": {
+        "dataType": "single",
+        "chartType": "line",
         "doc": "Electrodermal activity in microsiemens (µS) as unit.",
         "label": {
           "EN": "Electrodermal Activity"
@@ -55,6 +63,8 @@
         "unit": "MICROSIEMENS"
       },
       "INTER_BEAT_INTERVAL": {
+        "dataType": "single",
+        "chartType": "line",
         "doc": "Time between individal heat beats.",
         "label": {
           "EN": "Inter Beat Interval"
@@ -62,6 +72,8 @@
         "unit": "BEATS_PER_MIN"
       },
       "HEART_RATE": {
+        "dataType": "single",
+        "chartType": "line",
         "doc":
           "Heart Rate resulting from data aggregation. It is computed as (60 / ibi)",
         "label": {
@@ -78,6 +90,8 @@
         "unit": "BEATS_PER_MIN"
       },
       "THERMOMETER": {
+        "dataType": "single",
+        "chartType": "line",
         "doc": "Temperature value expressed in Celsius (°C) scale",
         "label": {
           "EN": "Thermometer"
