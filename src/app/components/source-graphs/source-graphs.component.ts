@@ -26,7 +26,9 @@ export class SourceGraphsComponent implements OnInit {
   }
 
   @Input() sources: Source[]
-  @Input() subjectId: string
+  @Input() isDataLoaded
+  @Input() data
+  @Input() labels
 
   constructor() {}
 

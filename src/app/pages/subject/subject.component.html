@@ -31,7 +31,9 @@
       <app-tile title="Graphs">
         <app-source-graphs
           [sources]="sources$ | async"
-          [subjectId]="subjectId"
+          [data]="sensorsData$ | async"
+          [isDataLoaded]="sensorsIsDataLoaded$ | async"
+          [labels]="sensorsLabels$ | async"
           tile-content
         ></app-source-graphs>
       </app-tile>

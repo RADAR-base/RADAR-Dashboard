@@ -1,8 +1,6 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing'
-import { HttpModule } from '@angular/http'
 
 import { ChartsModule } from '../../charts/charts.module'
-import { SourceGraphsService } from '../source-graphs.service'
 import { GraphMultiLineComponent } from './graph-multi-line.component'
 
 describe('GraphMultiLineComponent', () => {
@@ -12,8 +10,7 @@ describe('GraphMultiLineComponent', () => {
   beforeEach(
     async(() => {
       TestBed.configureTestingModule({
-        imports: [HttpModule, ChartsModule],
-        providers: [SourceGraphsService],
+        imports: [ChartsModule],
         declarations: [GraphMultiLineComponent]
       }).compileComponents()
     })
@@ -22,6 +19,8 @@ describe('GraphMultiLineComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(GraphMultiLineComponent)
     component = fixture.componentInstance
+    component.isLoaded = false
+    component.label = ''
     fixture.detectChanges()
   })
 
