@@ -44,12 +44,12 @@ export function reducer(
         let value = {}
         if (data[d][0]) {
           value = data[d].filter(k => k.date.getTime() === date.getTime())[0]
+          value = value ? { value: value['value'] } : { value: null }
         } else {
           const index = data[d].dates.findIndex(
             k => k.getTime() === date.getTime()
           )
           value = {
-            date: date,
             value: data[d].keys.map(k => {
               return { [k.key]: data[d].values[k.key][index] }
             })
