@@ -9,6 +9,7 @@ import { storeFreeze } from 'ngrx-store-freeze'
 import { environment } from '../../../environments/environment'
 import * as fromCompliance from './compliance/compliance.reducer'
 import * as fromConfig from './config/config.reducer'
+import * as fromSensorsTooltip from './sensors-tooltip/sensors-tooltip.reducer'
 import * as fromSensors from './sensors/sensors.reducer'
 import * as fromSource from './source/source.reducer'
 import * as fromStudy from './study/study.reducer'
@@ -17,6 +18,7 @@ import * as fromSubject from './subject/subject.reducer'
 export interface State {
   config: fromConfig.State
   sensors: fromSensors.State
+  sensorsTooltip: fromSensorsTooltip.State
   source: fromSource.State
   study: fromStudy.State
   subject: fromSubject.State
@@ -26,6 +28,7 @@ export interface State {
 export const reducers: ActionReducerMap<State> = {
   config: fromConfig.reducer,
   sensors: fromSensors.reducer,
+  sensorsTooltip: fromSensorsTooltip.reducer,
   source: fromSource.reducer,
   study: fromStudy.reducer,
   subject: fromSubject.reducer,
@@ -149,6 +152,19 @@ export const getComplianceAll = createSelector(
   fromCompliance.getAll
 )
 export const getComplianceIsLoaded = createSelector(
+  getComplianceState,
+  fromCompliance.getIsLoaded
+)
+
+// Sensors Tooltip Selectors
+export const getSensorsTooltipState = createFeatureSelector<
+  fromCompliance.State
+>('compliance')
+export const getSensorsTooltipAll = createSelector(
+  getComplianceState,
+  fromCompliance.getAll
+)
+export const getSensorsTooltipIsLoaded = createSelector(
   getComplianceState,
   fromCompliance.getIsLoaded
 )
