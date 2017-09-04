@@ -5,7 +5,9 @@ import {
   fakeAsync,
   tick
 } from '@angular/core/testing'
+import { StoreModule } from '@ngrx/store'
 
+import { reducers } from '../../../shared/store'
 import { MockMultiTimeSeriesData } from '../../../shared/testing/mocks/mock-multi-timeseries-data'
 import { ChartBaseMultiLineComponent } from './chart-base-multi-line.component'
 
@@ -17,6 +19,7 @@ describe('ChartBaseMultiLineComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [StoreModule.forRoot(reducers)],
       declarations: [ChartBaseMultiLineComponent]
     })
 

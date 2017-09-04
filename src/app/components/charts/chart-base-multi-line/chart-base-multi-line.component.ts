@@ -1,8 +1,11 @@
 import { Component, Input } from '@angular/core'
+import { Store } from '@ngrx/store'
 import * as d3 from 'd3'
 import { lineChunked } from 'd3-line-chunked'
 
 import { MultiTimeSeries } from '../../../shared/models/multi-time-series.model'
+import * as sensorsTooltipAction from '../../../shared/store/sensors-tooltip/sensors-tooltip.actions'
+import * as fromRoot from '../../../shared/store/index'
 import { AppConfig } from '../../../shared/utils/config'
 import { ChartBaseComponent } from '../chart-base/chart-base.component'
 
@@ -12,6 +15,10 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
   styleUrls: ['./chart-base-multi-line.component.scss']
 })
 export class ChartBaseMultiLineComponent extends ChartBaseComponent {
+  constructor(private store: Store<fromRoot.State>) {
+    super()
+  }
+
   data: MultiTimeSeries
 
   @Input() lineColors = AppConfig.charts.CATEGORICAL_COLORS
@@ -29,7 +36,7 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
   lines: any
   line: any
   newData: any
-  firstDraw = true
+  tipBox: any
 
   init() {
     super.init()
@@ -102,5 +109,17 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
       .call(this.lineChunked)
 
     this.lines.exit().remove()
+
+    this.tipBox = this.chart
+      .append('rect')
+      .attr('width', this.width)
+      .attr('height', this.height)
+      .attr('opacity', 0)
+      .on('mousemove', () => this.drawTooltip(this.xScale))
+  }
+
+  drawTooltip(xScale) {
+    const date = xScale.invert(d3.mouse(this.tipBox.node())[0])
+    this.store.dispatch(new sensorsTooltipAction.GetAll(date))
   }
 }
