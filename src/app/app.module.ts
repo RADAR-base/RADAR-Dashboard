@@ -15,6 +15,7 @@ import { ComplianceEffects } from './shared/store/compliance/compliance.effects'
 import { ComplianceService } from './shared/store/compliance/compliance.service'
 import { ConfigEffects } from './shared/store/config/config.effects'
 import { ConfigService } from './shared/store/config/config.service'
+import { SensorsTooltipEffects } from './shared/store/sensors-tooltip/sensors-tooltip.effects'
 import { SensorsEffects } from './shared/store/sensors/sensors.effects'
 import { SensorsService } from './shared/store/sensors/sensors.service'
 import { SourceEffects } from './shared/store/source/source.effects'
@@ -46,6 +47,7 @@ import { metaReducers, reducers } from './shared/store'
       SubjectEffects,
       SourceEffects,
       SensorsEffects,
+      SensorsTooltipEffects,
       ComplianceEffects
     ]),
 
