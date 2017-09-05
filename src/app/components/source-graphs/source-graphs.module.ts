@@ -1,21 +1,15 @@
 import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
+import { MdProgressSpinnerModule } from '@angular/material'
 
 import { ChartsModule } from '../charts/charts.module'
-import { GraphBaseComponent } from './graph-base/graph-base.component'
-import { GraphMultiLineComponent } from './graph-multi-line/graph-multi-line.component'
-import { GraphSingleLineComponent } from './graph-single-line/graph-single-line.component'
+import { SourceGraphComponent } from './source-graph/source-graph.component'
 import { SourceGraphsComponent } from './source-graphs.component'
 
-const COMPONENTS = [
-  SourceGraphsComponent,
-  GraphSingleLineComponent,
-  GraphMultiLineComponent,
-  GraphBaseComponent
-]
+const COMPONENTS = [SourceGraphsComponent, SourceGraphComponent]
 
 @NgModule({
-  imports: [CommonModule, ChartsModule],
+  imports: [CommonModule, ChartsModule, MdProgressSpinnerModule],
   declarations: COMPONENTS,
   exports: COMPONENTS
 })

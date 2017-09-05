@@ -1,21 +1,21 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing'
 
-import { GraphBaseComponent } from './graph-base.component'
+import { SourceGraphComponent } from './source-graph.component'
 
-describe('GraphBaseComponent', () => {
-  let component: GraphBaseComponent
-  let fixture: ComponentFixture<GraphBaseComponent>
+describe('SourceGraphComponent', () => {
+  let component: SourceGraphComponent
+  let fixture: ComponentFixture<SourceGraphComponent>
 
   beforeEach(
     async(() => {
       TestBed.configureTestingModule({
-        declarations: [GraphBaseComponent]
+        declarations: [SourceGraphComponent]
       }).compileComponents()
     })
   )
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GraphBaseComponent)
+    fixture = TestBed.createComponent(SourceGraphComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
   })
