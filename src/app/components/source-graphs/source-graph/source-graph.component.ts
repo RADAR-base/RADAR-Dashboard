@@ -22,7 +22,7 @@ import { AppConfig } from '../../../shared/utils/config'
       *ngIf="data && isLoaded && isSingle"
       [chartData]="data"
       [gradientEnabled]="gradientEnabled"
-      (action)="actionDispatch($event)"
+      (onMove)="onMoveHandler($event)"
     ></app-chart-base-line>
 
     <app-chart-base-multi-line
@@ -52,7 +52,7 @@ export class SourceGraphComponent {
 
   constructor(private store: Store<fromRoot.State>) {}
 
-  actionDispatch(event) {
+  onMoveHandler(event) {
     this.store.dispatch(new tooltipAction.GetAll(event))
   }
 }
