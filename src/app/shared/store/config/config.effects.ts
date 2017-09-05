@@ -3,7 +3,7 @@ import { Actions, Effect } from '@ngrx/effects'
 import { Action } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
-import * as configAction from './config.actions'
+import * as actions from './config.actions'
 import { Config } from './config.model'
 import { ConfigService } from './config.service'
 
@@ -11,11 +11,11 @@ import { ConfigService } from './config.service'
 export class ConfigEffects {
   @Effect()
   load$: Observable<Action> = this.actions$
-    .ofType(configAction.LOAD)
+    .ofType<actions.Load>(actions.LOAD)
     .switchMap(() => {
       return this.configService
         .get()
-        .map((config: Config) => new configAction.LoadSuccess(config))
+        .map((config: Config) => new actions.LoadSuccess(config))
     })
 
   constructor(

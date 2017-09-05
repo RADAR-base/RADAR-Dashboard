@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core'
-import { Actions, Effect, toPayload } from '@ngrx/effects'
+import { Actions, Effect } from '@ngrx/effects'
 import { Action, Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
 import * as fromRoot from '../../../shared/store/index'
 import { AppConfig } from '../../utils/config'
-import * as sensorsAction from './sensors.actions'
+import * as actions from './sensors.actions'
 import { DataTypes } from './sensors.model'
 import { SensorsService } from './sensors.service'
 
@@ -13,12 +13,12 @@ import { SensorsService } from './sensors.service'
 export class SensorsEffects {
   @Effect()
   getAll$: Observable<Action> = this.actions$
-    .ofType(sensorsAction.GET_ALL)
-    .map(toPayload)
+    .ofType<actions.GetAll>(actions.GET_ALL)
+    .map(action => action.payload)
     .switchMap(payload => {
       return this.sensorsService.getAll(payload.data).map(
         res =>
-          new sensorsAction.GetAllSuccess({
+          new actions.GetAllSuccess({
             subjectId: payload.subjectId,
             data: res
           })
@@ -27,13 +27,13 @@ export class SensorsEffects {
 
   @Effect()
   getAllData$ = this.actions$
-    .ofType(sensorsAction.GET_ALL_SUCCESS)
-    .map(toPayload)
+    .ofType<actions.GetAllSuccess>(actions.GET_ALL_SUCCESS)
+    .map(action => action.payload)
     .withLatestFrom(this.store$)
     .switchMap(([payload, store]) => {
       const entities = store.sensors.entities
       return Object.keys(entities).map(key => {
-        return new sensorsAction.GetAllData({
+        return new actions.GetAllData({
           subjectId: payload.subjectId,
           data: entities[key]
         })
@@ -42,11 +42,11 @@ export class SensorsEffects {
 
   @Effect()
   getAllDataSuccess$: Observable<Action> = this.actions$
-    .ofType(sensorsAction.GET_ALL_DATA)
-    .map(toPayload)
+    .ofType<actions.GetAllData>(actions.GET_ALL_DATA)
+    .map(action => action.payload)
     .mergeMap(payload => {
       const serviceMapFn = res =>
-        new sensorsAction.GetAllDataSuccess({
+        new actions.GetAllDataSuccess({
           id: payload.data.id,
           data: res
         })

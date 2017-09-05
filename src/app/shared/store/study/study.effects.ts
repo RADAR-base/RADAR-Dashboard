@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core'
-import { Actions, Effect, toPayload } from '@ngrx/effects'
+import { Actions, Effect } from '@ngrx/effects'
 import { Action } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
-import * as studyAction from './study.actions'
+import * as actions from './study.actions'
 import { Study } from './study.model'
 import { StudyService } from './study.service'
 
@@ -11,21 +11,21 @@ import { StudyService } from './study.service'
 export class StudyEffects {
   @Effect()
   getAll$: Observable<Action> = this.actions$
-    .ofType(studyAction.GET_ALL)
+    .ofType<actions.GetAll>(actions.GET_ALL)
     .switchMap(() => {
       return this.studyService
         .getAll()
-        .map((data: Study[]) => new studyAction.GetAllSuccess(data))
+        .map((data: Study[]) => new actions.GetAllSuccess(data))
     })
 
   @Effect()
   getById$: Observable<Action> = this.actions$
-    .ofType(studyAction.GET_BY_ID)
-    .map(toPayload)
+    .ofType<actions.GetById>(actions.GET_BY_ID)
+    .map(action => action.payload)
     .switchMap(payload => {
       return this.studyService
         .getById(payload)
-        .map((data: Study) => new studyAction.GetByIdSuccess(data))
+        .map((data: Study) => new actions.GetByIdSuccess(data))
     })
 
   constructor(private actions$: Actions, private studyService: StudyService) {}
