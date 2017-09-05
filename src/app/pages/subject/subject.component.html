@@ -6,7 +6,7 @@
     >
       <i class="material-icons">arrow_back</i>
     </button>
-    <div class="title">Subject {{subjectId}}</div>
+    <div class="label">Subject {{subjectId}}</div>
   </div>
   <div end>
     <button md-icon-button>
@@ -14,26 +14,28 @@
     </button>
   </div>
 </app-toolbar>
-<div class="content">
+<div
+  *ngIf="sources$ | async as sources"
+  class="content"
+>
   <md-grid-list
     cols="8"
     rowHeight="fit"
   >
     <md-grid-tile colspan="2">
-      <app-tile title="Sources">
+      <app-tile label="Sources">
         <app-source-list
-          [sources]="sources$ | async"
+          [sources]="sources"
           tile-content
         ></app-source-list>
       </app-tile>
     </md-grid-tile>
     <md-grid-tile colspan="6">
-      <app-tile title="Graphs">
+      <app-tile label="Graphs">
         <app-source-graphs
-          [sources]="sources$ | async"
+          [sources]="sources"
           [data]="sensorsData$ | async"
           [isDataLoaded]="sensorsIsDataLoaded$ | async"
-          [labels]="sensorsLabels$ | async"
           tile-content
         ></app-source-graphs>
       </app-tile>
