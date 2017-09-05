@@ -8,4 +8,16 @@ export interface Sensor {
   visible?: boolean
   unit: string
   label: Label
+  dataType: DataTypes
+  chartType: ChartTypes
+}
+
+export enum DataTypes {
+  multi = 'multi',
+  single = 'single'
+}
+
+export enum ChartTypes {
+  line = 'line',
+  bar = 'bar'
 }

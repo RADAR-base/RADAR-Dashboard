@@ -4,9 +4,11 @@ import { MdButtonModule, MdToolbarModule } from '@angular/material'
 
 import { ToolbarComponent } from './toolbar.component'
 
+const COMPONENTS = [ToolbarComponent]
+
 @NgModule({
   imports: [CommonModule, MdToolbarModule, MdButtonModule],
-  declarations: [ToolbarComponent],
-  exports: [MdButtonModule, ToolbarComponent]
+  declarations: COMPONENTS,
+  exports: [...COMPONENTS, MdButtonModule]
 })
 export class ToolbarModule {}

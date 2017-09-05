@@ -5,54 +5,46 @@
       <div [ngSwitch]="sensor.type">
         <app-graph-single-line
           *ngSwitchCase="CHART_TYPE.HEART_RATE"
-          [sensor]="sensor"
-          [subjectId]="subjectId"
           [gradient]="true"
-          [startTime]="startTime"
-          [endTime]="endTime"
+          [data]="data[sensor.id]"
+          [label]="labels[sensor.id]"
+          [isLoaded]="isDataLoaded[sensor.id]"
         ></app-graph-single-line>
         <app-graph-multi-line
           *ngSwitchCase="CHART_TYPE.ACCELEROMETER"
-          [sensor]="sensor"
-          [subjectId]="subjectId"
-          [startTime]="startTime"
-          [endTime]="endTime"
+          [data]="data[sensor.id]"
+          [label]="labels[sensor.id]"
+          [isLoaded]="isDataLoaded[sensor.id]"
         ></app-graph-multi-line>
         <app-graph-single-line
           *ngSwitchCase="CHART_TYPE.BATTERY"
-          [sensor]="sensor"
-          [subjectId]="subjectId"
-          [timeHoles]="false"
-          [startTime]="startTime"
-          [endTime]="endTime"
+          [data]="data[sensor.id]"
+          [label]="labels[sensor.id]"
+          [isLoaded]="isDataLoaded[sensor.id]"
         ></app-graph-single-line>
         <app-graph-single-line
           *ngSwitchCase="CHART_TYPE.BLOOD_VOLUME_PULSE"
-          [sensor]="sensor"
-          [subjectId]="subjectId"
-          [startTime]="startTime"
-          [endTime]="endTime"
+          [data]="data[sensor.id]"
+          [label]="labels[sensor.id]"
+          [isLoaded]="isDataLoaded[sensor.id]"
         ></app-graph-single-line>
         <app-graph-single-line
           *ngSwitchCase="CHART_TYPE.ELECTRODERMAL_ACTIVITY"
-          [sensor]="sensor"
-          [subjectId]="subjectId"
-          [startTime]="startTime"
-          [endTime]="endTime"
+          [data]="data[sensor.id]"
+          [label]="labels[sensor.id]"
+          [isLoaded]="isDataLoaded[sensor.id]"
         ></app-graph-single-line>
         <app-graph-single-line
           *ngSwitchCase="CHART_TYPE.INTER_BEAT_INTERVAL"
-          [sensor]="sensor"
-          [subjectId]="subjectId"
-          [startTime]="startTime"
-          [endTime]="endTime"
+          [data]="data[sensor.id]"
+          [label]="labels[sensor.id]"
+          [isLoaded]="isDataLoaded[sensor.id]"
         ></app-graph-single-line>
         <app-graph-single-line
           *ngSwitchCase="CHART_TYPE.THERMOMETER"
-          [sensor]="sensor"
-          [subjectId]="subjectId"
-          [startTime]="startTime"
-          [endTime]="endTime"
+          [data]="data[sensor.id]"
+          [label]="labels[sensor.id]"
+          [isLoaded]="isDataLoaded[sensor.id]"
         ></app-graph-single-line>
         <p
           *ngSwitchDefault
@@ -64,7 +56,14 @@
     </div>
   </div>
 </div>
-<div *ngIf="sources && sources[1].sensors[6]" class="axis">
-  <app-graph-external-x-axis [sensor]="sources[1].sensors[6]" [subjectId]="subjectId" [startTime]="startTime" [endTime]="endTime">
+<div
+  *ngIf="sources && sources[1].sensors[6]"
+  class="axis"
+>
+  <app-graph-external-x-axis
+    [data]="data[0]"
+    [label]="labels[0]"
+    [isLoaded]="isDataLoaded[0]"
+  >
   </app-graph-external-x-axis>
 </div>

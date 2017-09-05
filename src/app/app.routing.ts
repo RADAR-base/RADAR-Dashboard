@@ -1,22 +1,24 @@
 import { NgModule } from '@angular/core'
 import { NoPreloading, RouterModule, Routes } from '@angular/router'
 
+import { NotFoundPageComponent } from './pages/not-found/not-found.component'
+
 export const routes: Routes = [
-  {
-    path: 'study/:studyId',
-    loadChildren: './pages/study/study.module#StudyPageModule'
-  },
   {
     path: 'study/:studyId/subject/:subjectId',
     loadChildren: './pages/subject/subject.module#SubjectPageModule'
   },
   {
-    path: 'not-found',
-    loadChildren: './pages/not-found/not-found.module#NotFoundPageModule'
+    path: 'study/:studyId',
+    loadChildren: './pages/study/study.module#StudyPageModule'
   },
   {
     path: '',
     loadChildren: './pages/overview/overview.module#OverviewPageModule'
+  },
+  {
+    path: 'not-found',
+    component: NotFoundPageComponent
   },
   {
     path: '**',
@@ -26,7 +28,11 @@ export const routes: Routes = [
 ]
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { preloadingStrategy: NoPreloading })],
+  imports: [
+    RouterModule.forRoot(routes, {
+      preloadingStrategy: NoPreloading
+    })
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}

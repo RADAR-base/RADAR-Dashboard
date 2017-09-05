@@ -60,7 +60,10 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
       .range([this.height, 0])
       .domain([minValue, maxValue])
 
-    this.zScale = d3.scaleOrdinal().domain(keys).range(this.lineColors)
+    this.zScale = d3
+      .scaleOrdinal()
+      .domain(keys)
+      .range(this.lineColors)
 
     this.xAxis.remove()
 
@@ -100,7 +103,10 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
 
     this.line = this.lines.enter().append('g')
 
-    this.lines.merge(this.line).attr('class', 'line').call(this.lineChunked)
+    this.lines
+      .merge(this.line)
+      .attr('class', 'line')
+      .call(this.lineChunked)
 
     this.lines.exit().remove()
   }

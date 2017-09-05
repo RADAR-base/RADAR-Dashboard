@@ -3,9 +3,11 @@ import { NgModule } from '@angular/core'
 
 import { TileComponent } from './tile.component'
 
+const COMPONENTS = [TileComponent]
+
 @NgModule({
   imports: [CommonModule],
-  declarations: [TileComponent],
-  exports: [TileComponent]
+  declarations: COMPONENTS,
+  exports: COMPONENTS
 })
 export class TileModule {}
