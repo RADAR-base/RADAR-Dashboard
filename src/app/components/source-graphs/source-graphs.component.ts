@@ -26,18 +26,15 @@ export class SourceGraphsComponent implements OnInit {
   }
 
   @Input() sources: Source[]
-  @Input() subjectId: string
-  endTime: any
-  startTime: any
   @Input() isDataLoaded
   @Input() data
   @Input() labels
+  endTime: any
+  startTime: any
 
   constructor() {}
 
-  ngOnInit() {
-    // TODO: Replace with API getting last available datapoint
-  }
+  ngOnInit() {}
 
   trackBySourceId(index: number, source: Source) {
     return source.id

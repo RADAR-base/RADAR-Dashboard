@@ -9,6 +9,7 @@ export class GraphBaseComponent {
   language = AppConfig.language
 
   @Input() data = []
+  @Input() dates
   @Input() isLoaded
   @Input() label
 }

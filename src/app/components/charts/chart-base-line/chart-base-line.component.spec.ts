@@ -4,9 +4,9 @@ import { StoreModule } from '@ngrx/store'
 
 import { reducers } from '../../../shared/store'
 import {
-  MockTimeSeriesData,
-  parseMockTimeSeriesData
-} from '../../../shared/testing/mocks/mock-timeseries-data'
+  MockTimeSeriesDataDates,
+  MockTimeSeriesDataValues
+} from '../../../shared/testing/mocks/mock-timeseries-data2'
 import { ChartBaseLineComponent } from './chart-base-line.component'
 
 describe('ChartBaseLineComponent', () => {
@@ -47,7 +47,8 @@ describe('ChartBaseLineComponent', () => {
       expect(component.chartData).toBeFalsy()
 
       // with data // needs to be parsed //
-      component.chartData = parseMockTimeSeriesData(MockTimeSeriesData)
+      component.dates = MockTimeSeriesDataDates
+      component.chartData = MockTimeSeriesDataValues
       expect(component.width).toBeGreaterThan(0)
       expect(component.height).toBeGreaterThan(0)
     })
@@ -60,7 +61,8 @@ describe('ChartBaseLineComponent', () => {
       expect(inner.length).toEqual(0)
 
       // with data // needs to be parsed //
-      component.chartData = parseMockTimeSeriesData(MockTimeSeriesData)
+      component.dates = MockTimeSeriesDataDates
+      component.chartData = MockTimeSeriesDataValues
 
       // wait for transition
       setTimeout(() => {
@@ -86,7 +88,9 @@ describe('ChartBaseLineComponent', () => {
 
     it('linearGradient should have attributes "y1, y2" when data changes', () => {
       // with data // needs to be parsed //
-      component.chartData = parseMockTimeSeriesData(MockTimeSeriesData)
+      component.dates = MockTimeSeriesDataDates
+      component.chartData = MockTimeSeriesDataValues
+
       const gradient = de.nativeElement.querySelector(
         'linearGradient#hr-gradient'
       )

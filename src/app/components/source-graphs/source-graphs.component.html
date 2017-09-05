@@ -1,48 +1,55 @@
 <div *ngFor="let source of sources; trackBy: trackBySourceId">
   <p>SOURCE {{ source.id }}</p>
   <div *ngFor="let sensor of source.sensors; trackBy: trackBySensorId">
-    <div *ngIf="sensor.visible">
+    <div *ngIf="sensor.visible && isDataLoaded[sensor.id]">
       <div [ngSwitch]="sensor.type">
         <app-graph-single-line
           *ngSwitchCase="CHART_TYPE.HEART_RATE"
           [gradient]="true"
-          [data]="data[sensor.id]"
+          [data]="data.values[sensor.id]"
+          [dates]="data.dates"
           [label]="labels[sensor.id]"
           [isLoaded]="isDataLoaded[sensor.id]"
         ></app-graph-single-line>
         <app-graph-multi-line
           *ngSwitchCase="CHART_TYPE.ACCELEROMETER"
-          [data]="data[sensor.id]"
+          [data]="data.values[sensor.id]"
+          [dates]="data.dates"
           [label]="labels[sensor.id]"
           [isLoaded]="isDataLoaded[sensor.id]"
         ></app-graph-multi-line>
         <app-graph-single-line
           *ngSwitchCase="CHART_TYPE.BATTERY"
-          [data]="data[sensor.id]"
+          [data]="data.values[sensor.id]"
+          [dates]="data.dates"
           [label]="labels[sensor.id]"
           [isLoaded]="isDataLoaded[sensor.id]"
         ></app-graph-single-line>
         <app-graph-single-line
           *ngSwitchCase="CHART_TYPE.BLOOD_VOLUME_PULSE"
-          [data]="data[sensor.id]"
+          [data]="data.values[sensor.id]"
+          [dates]="data.dates"
           [label]="labels[sensor.id]"
           [isLoaded]="isDataLoaded[sensor.id]"
         ></app-graph-single-line>
         <app-graph-single-line
           *ngSwitchCase="CHART_TYPE.ELECTRODERMAL_ACTIVITY"
-          [data]="data[sensor.id]"
+          [data]="data.values[sensor.id]"
+          [dates]="data.dates"
           [label]="labels[sensor.id]"
           [isLoaded]="isDataLoaded[sensor.id]"
         ></app-graph-single-line>
         <app-graph-single-line
           *ngSwitchCase="CHART_TYPE.INTER_BEAT_INTERVAL"
-          [data]="data[sensor.id]"
+          [data]="data.values[sensor.id]"
+          [dates]="data.dates"
           [label]="labels[sensor.id]"
           [isLoaded]="isDataLoaded[sensor.id]"
         ></app-graph-single-line>
         <app-graph-single-line
           *ngSwitchCase="CHART_TYPE.THERMOMETER"
-          [data]="data[sensor.id]"
+          [data]="data.values[sensor.id]"
+          [dates]="data.dates"
           [label]="labels[sensor.id]"
           [isLoaded]="isDataLoaded[sensor.id]"
         ></app-graph-single-line>
@@ -57,11 +64,12 @@
   </div>
 </div>
 <div
-  *ngIf="sources && sources[1].sensors[6]"
+  *ngIf="sources && isDataLoaded[0] && data.dates"
   class="axis"
 >
   <app-graph-external-x-axis
-    [data]="data[0]"
+    [data]="data.values[0]"
+    [dates]="data.dates"
     [label]="labels[0]"
     [isLoaded]="isDataLoaded[0]"
   >

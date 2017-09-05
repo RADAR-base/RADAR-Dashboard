@@ -41,6 +41,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   clipPath: any
 
   @Input() margin = AppConfig.charts.MARGIN
+  @Input() dates
 
   @Input()
   get chartData() {

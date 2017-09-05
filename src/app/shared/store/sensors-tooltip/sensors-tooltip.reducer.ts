@@ -28,7 +28,8 @@ export function reducer(
     case sensorsTooltip.GET_ALL_SUCCESS: {
       const payload = action.payload
       const entities = payload.entities
-      const data = payload.data
+      const data = payload.data.values
+      const dates = payload.data.dates
       const filteredData = []
 
       const date = new Date(payload.date)
@@ -42,13 +43,10 @@ export function reducer(
 
       visibleIds.map(function(d) {
         let value = {}
-        if (data[d][0]) {
-          value = data[d].filter(k => k.date.getTime() === date.getTime())[0]
-          value = value ? { value: value['value'] } : { value: null }
+        const index = dates.findIndex(k => k.getTime() === date.getTime())
+        if (!data[d].keys[0]) {
+          value = data[d][index] ? { value: data[d][index] } : { value: null }
         } else {
-          const index = data[d].dates.findIndex(
-            k => k.getTime() === date.getTime()
-          )
           value = {
             value: data[d].keys.map(k => {
               return { [k.key]: data[d].values[k.key][index] }

@@ -3,7 +3,6 @@ import { Store } from '@ngrx/store'
 import * as d3 from 'd3'
 import { lineChunked } from 'd3-line-chunked'
 
-import { TimeSeries } from '../../../shared/models/time-series.model'
 import * as sensorsTooltipAction from '../../../shared/store/sensors-tooltip/sensors-tooltip.actions'
 import * as fromRoot from '../../../shared/store/index'
 import { AppConfig } from '../../../shared/utils/config'
@@ -19,7 +18,8 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
     super()
   }
 
-  data: TimeSeries[]
+  data: number[]
+  dates: Date[]
 
   @Input() gradientEnabled = false
   @Input() gradientColors = AppConfig.charts.GRADIENT_COLORS
@@ -64,15 +64,20 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
   }
 
   draw() {
+    const data = this.data
+    const newData = this.dates.map(function(d, i) {
+      return { date: d, value: data[i] }
+    })
+
     this.xScale = d3
       .scaleTime()
       .range([0, this.width])
-      .domain(d3.extent(this.data, d => d.date))
+      .domain(d3.extent(this.dates))
 
     this.yScale = d3
       .scaleLinear()
       .range([this.height, 0])
-      .domain(d3.extent(this.data, d => d.value))
+      .domain(d3.extent(this.data))
 
     this.xAxis.remove()
     this.yAxis.call(d3.axisLeft(this.yScale).tickSize(-this.width))
@@ -94,7 +99,7 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
 
     this.lineEl
       .append('g')
-      .datum(this.data)
+      .datum(newData)
       .call(this.lineChunked)
       .attr('class', 'main')
 
@@ -108,6 +113,7 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
 
   drawTooltip(xScale) {
     const date = xScale.invert(d3.mouse(this.tipBox.node())[0])
+    console.log(date)
     this.store.dispatch(new sensorsTooltipAction.GetAll(date))
   }
 }

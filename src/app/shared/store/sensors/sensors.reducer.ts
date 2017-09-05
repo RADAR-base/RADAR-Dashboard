@@ -75,11 +75,25 @@ export function reducer(
       const payload = action.payload
       const id = payload.id
       const data = payload.data
-      const dataWithIds = { ...state.data, [id]: data }
-
+      let dataWithIds = {}
+      if (data[0]) {
+        dataWithIds = { ...state.data['values'], [id]: data.map(d => d.value) }
+      } else {
+        dataWithIds = {
+          ...state.data['values'],
+          [id]: { keys: data.keys, values: data.values }
+        }
+      }
+      let dataWithDates = {}
+      if (state.data['dates']) {
+        dataWithDates = { dates: state.data['dates'], values: dataWithIds }
+      } else {
+        const dates = data.map(d => d.date)
+        dataWithDates = { dates: dates, values: dataWithIds }
+      }
       return {
         ...state,
-        data: dataWithIds,
+        data: dataWithDates,
         isDataLoaded: { ...state.isDataLoaded, [id]: true }
       }
     }
@@ -132,5 +146,5 @@ export const getAll = createSelector(getEntities, getIds, (entities, ids) => {
 })
 
 export const getAllData = createSelector(getData, getIds, (data, ids) => {
-  return ids.map(id => data[id])
+  return data
 })

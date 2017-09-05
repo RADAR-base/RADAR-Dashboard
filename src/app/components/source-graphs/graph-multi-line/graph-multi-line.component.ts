@@ -10,7 +10,7 @@ import { GraphBaseComponent } from '../graph-base/graph-base.component'
       <p>Loading...</p>
     </div>
     <app-chart-base-multi-line *ngIf="data && isLoaded"
-      [chartData]="data"></app-chart-base-multi-line>
+      [chartData]="data" [dates]="dates"></app-chart-base-multi-line>
     <div class="nodata" *ngIf="!(data) && isLoaded">
       <p>No data found for this timeframe.</p>
     </div>

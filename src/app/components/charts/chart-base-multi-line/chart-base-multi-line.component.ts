@@ -3,7 +3,6 @@ import { Store } from '@ngrx/store'
 import * as d3 from 'd3'
 import { lineChunked } from 'd3-line-chunked'
 
-import { MultiTimeSeries } from '../../../shared/models/multi-time-series.model'
 import * as sensorsTooltipAction from '../../../shared/store/sensors-tooltip/sensors-tooltip.actions'
 import * as fromRoot from '../../../shared/store/index'
 import { AppConfig } from '../../../shared/utils/config'
@@ -19,7 +18,8 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
     super()
   }
 
-  data: MultiTimeSeries
+  data: { keys: any; values: any }
+  dates: Date[]
 
   @Input() lineColors = AppConfig.charts.CATEGORICAL_COLORS
 
@@ -46,9 +46,9 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
   }
 
   draw() {
-    const minDate = d3.min(this.data.dates)
-    const maxDate = d3.max(this.data.dates)
-    const dates = this.data.dates
+    const minDate = d3.min(this.dates)
+    const maxDate = d3.max(this.dates)
+    const dates = this.dates
     const keys = this.data.keys.map(k => k.key)
 
     this.xScale = d3
@@ -56,11 +56,11 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
       .range([0, this.width])
       .domain([minDate, maxDate])
 
-    const minValue = d3.min(
-      this.data.keys.map(k => d3.min(this.data.values[k.key]))
+    const minValue = Number(
+      d3.min(this.data.keys.map(k => d3.min(this.data.values[k.key])))
     )
-    const maxValue = d3.max(
-      this.data.keys.map(k => d3.max(this.data.values[k.key]))
+    const maxValue = Number(
+      d3.max(this.data.keys.map(k => d3.max(this.data.values[k.key])))
     )
 
     this.yScale = d3
@@ -84,7 +84,7 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
     this.lineChunked = lineChunked()
       .x(d => this.xScale(d.x))
       .y(d => this.yScale(d.y))
-      .curve(d3.curveLinear)
+      .curve(d3.curveBasis)
       .defined(function(d) {
         return d.y != null
       })

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core'
 import * as d3 from 'd3'
 
-import { TimeSeries } from '../../../shared/models/time-series.model'
 import { ChartBaseComponent } from '../chart-base/chart-base.component'
 
 @Component({
@@ -10,7 +9,8 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
   styleUrls: ['./chart-external-x-axis.component.scss']
 })
 export class ChartExternalXAxisComponent extends ChartBaseComponent {
-  data: TimeSeries[]
+  data: any
+  dates: Date[]
 
   svg: any
   context: any
@@ -35,20 +35,25 @@ export class ChartExternalXAxisComponent extends ChartBaseComponent {
   }
 
   draw() {
+    const data = this.data
+    const newData = this.dates.map(function(d, i) {
+      return { date: d, value: data[i] }
+    })
+
     this.yScale = d3
       .scaleLinear()
       .range([this.height, 0])
-      .domain(d3.extent(this.data, d => d.value))
+      .domain(d3.extent(this.dates))
 
     this.xScaleBrush = d3
       .scaleTime()
       .range([0, this.width])
-      .domain(d3.extent(this.data, d => d.date))
+      .domain(d3.extent(this.dates))
 
     this.xScale = d3
       .scaleTime()
       .range([0, this.width])
-      .domain(d3.extent(this.data, d => d.date))
+      .domain(d3.extent(this.dates))
 
     this.xAxis
       .attr('transform', 'translate(0, -10)')
@@ -83,7 +88,7 @@ export class ChartExternalXAxisComponent extends ChartBaseComponent {
 
     this.context
       .append('path')
-      .datum(this.data)
+      .datum(newData)
       .attr('class', 'area')
       .attr('transform', 'translate(0, 30)')
       .attr('d', this.area)
