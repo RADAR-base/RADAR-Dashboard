@@ -11,7 +11,7 @@
 
 // Common styles for all charts
 :host /deep/ {
-  .header {
+  .tile-header {
     @include font-small;
 
     display: flex;
@@ -34,18 +34,18 @@
     }
   }
 
-  .title {
+  .tile-label {
     flex: 1 0 auto;
     margin: 0 16px;
   }
 
-  .divider {
+  .tile-divider {
     width: 1px;
     height: 24px;
     background-color: $cl-white-20;
   }
 
-  .container {
+  .tile-container {
     display: flex;
     flex: 1 1 auto;
     overflow: auto;
