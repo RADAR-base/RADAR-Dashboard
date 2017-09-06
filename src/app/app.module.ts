@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { HttpModule } from '@angular/http'
 import { BrowserModule } from '@angular/platform-browser'
@@ -10,11 +11,10 @@ import { environment } from '../environments/environment'
 import { AppComponent } from './app.component'
 import { AppRoutingModule } from './app.routing'
 import { NotFoundPageComponent } from './pages/not-found/not-found.component'
+import { ConfigService } from './shared/services/config.service'
 import { ErrorService } from './shared/services/error.service'
 import { ComplianceEffects } from './shared/store/compliance/compliance.effects'
 import { ComplianceService } from './shared/store/compliance/compliance.service'
-import { ConfigEffects } from './shared/store/config/config.effects'
-import { ConfigService } from './shared/store/config/config.service'
 import { SensorsTooltipEffects } from './shared/store/sensors-tooltip/sensors-tooltip.effects'
 import { SensorsEffects } from './shared/store/sensors/sensors.effects'
 import { SensorsService } from './shared/store/sensors/sensors.service'
@@ -31,6 +31,7 @@ import { metaReducers, reducers } from './shared/store'
   imports: [
     BrowserModule,
     HttpModule,
+    HttpClientModule,
     BrowserAnimationsModule,
 
     // ngrx/store
@@ -42,7 +43,6 @@ import { metaReducers, reducers } from './shared/store'
 
     // Setup ngrx/effects
     EffectsModule.forRoot([
-      ConfigEffects,
       StudyEffects,
       SubjectEffects,
       SourceEffects,
