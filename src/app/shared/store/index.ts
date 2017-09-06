@@ -148,13 +148,13 @@ export const getComplianceIsLoaded = createSelector(
 
 // Sensors Tooltip Selectors
 export const getSensorsTooltipState = createFeatureSelector<
-  fromCompliance.State
->('compliance')
+  fromSensorsTooltip.State
+>('sensorsTooltip')
 export const getSensorsTooltipAll = createSelector(
-  getComplianceState,
-  fromCompliance.getAll
+  getSensorsTooltipState,
+  fromSensorsTooltip.getAll
 )
 export const getSensorsTooltipIsLoaded = createSelector(
-  getComplianceState,
-  fromCompliance.getIsLoaded
+  getSensorsTooltipState,
+  fromSensorsTooltip.getIsLoaded
 )
