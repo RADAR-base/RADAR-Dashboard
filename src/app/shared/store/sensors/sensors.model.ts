@@ -9,7 +9,12 @@ export interface Sensor {
   unit: string
   label: Label
   dataType: DataTypes
-  chartType: ChartTypes
+  chart: ChartOptions
+}
+
+export interface ChartOptions {
+  type: ChartTypes
+  gradient: boolean
 }
 
 export enum DataTypes {

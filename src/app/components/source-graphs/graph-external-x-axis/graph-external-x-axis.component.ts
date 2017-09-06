@@ -1,7 +1,5 @@
 import { Component, Input } from '@angular/core'
 
-import { GraphBaseComponent } from '../graph-base/graph-base.component'
-
 @Component({
   selector: 'app-graph-external-x-axis',
   template: `
@@ -12,7 +10,11 @@ import { GraphBaseComponent } from '../graph-base/graph-base.component'
   `,
   styleUrls: ['./graph-external-x-axis.component.scss']
 })
-export class GraphExternalXAxisComponent extends GraphBaseComponent {
+export class GraphExternalXAxisComponent {
   language
   @Input() gradient = false
+  @Input() isLoaded
+  @Input() data = []
+  @Input() dates
+  @Input() type
 }

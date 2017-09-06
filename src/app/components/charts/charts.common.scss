@@ -30,6 +30,10 @@
     stroke: none;
   }
 
+  .tooltip-box {
+    opacity: 0;
+  }
+
   .d3-line-chunked-defined,
   .d3-line-chunked-undefined {
     fill: none;

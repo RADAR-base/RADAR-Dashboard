@@ -28,7 +28,6 @@ export class SubjectPageComponent implements OnInit, OnDestroy {
   sources$: Observable<Source[]>
   sourceIsLoaded$: Observable<boolean>
   sensorsIsDataLoaded$: any
-  sensorsLabels$: any
   sensorsData$: any
 
   private takeUntilDestroy
@@ -49,20 +48,13 @@ export class SubjectPageComponent implements OnInit, OnDestroy {
     // Get sources from server
     this.store.dispatch(new sourceAction.GetAll(this.subjectId))
     this.sourceIsLoaded$ = this.store.select(fromRoot.getSourceIsLoaded)
-    this.sources$ = this.store
-      .select(fromRoot.getSourceAllWithSensors)
-      .publishReplay()
-      .refCount()
+    this.sources$ = this.store.select(fromRoot.getSourceAllWithSensors)
 
     // Get sensor data from server
     this.sensorsIsDataLoaded$ = this.store.select(
       fromRoot.getSensorsIsDataLoaded
     )
-    this.sensorsLabels$ = this.store.select(fromRoot.getSensorsLabels)
-    this.sensorsData$ = this.store
-      .select(fromRoot.getSensorsData)
-      .publishReplay()
-      .refCount()
+    this.sensorsData$ = this.store.select(fromRoot.getSensorsData)
   }
 
   ngOnDestroy() {

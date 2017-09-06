@@ -33,9 +33,6 @@ export function reducer(
       const filteredData = []
 
       const date = new Date(payload.date)
-      const seconds = Math.round(date.getSeconds() / 10) * 10
-      date.setSeconds(seconds)
-      date.setMilliseconds(0)
 
       const visibleIds = Object.keys(entities).filter(
         d => entities[d].visible === true

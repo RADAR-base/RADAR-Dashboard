@@ -11,8 +11,8 @@ import * as fromRoot from '../../shared/store/index'
   template: `
     <app-toolbar>
       <div start>
-        <img class="logo" src="assets/radar-logo.svg" alt="RADAR-CNS Logo">
-        <div class="title">
+        <img class="logo" src="assets/radar-logo.svg" alt="RADAR-CNS Logo" >
+        <div class="label">
           <div class="font-body-light">RADAR-CNS</div>
           <div class="font-title">Mental Health</div>
         </div>

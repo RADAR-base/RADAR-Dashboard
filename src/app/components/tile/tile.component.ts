@@ -3,11 +3,11 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 @Component({
   selector: 'app-tile',
   template: `
-    <div class="header">
-      <div class="title">{{title}}</div>
+    <div class="tile-header">
+      <div class="tile-label">{{ label }}</div>
       <ng-content select="[header-content]"></ng-content>
     </div>
-    <div class="container">
+    <div class="tile-container">
       <ng-content select="[tile-content]"></ng-content>
     </div>
   `,
@@ -15,5 +15,5 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TileComponent {
-  @Input() title: string
+  @Input() label: string
 }

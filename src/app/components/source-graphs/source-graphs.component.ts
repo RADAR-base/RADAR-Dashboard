@@ -15,26 +15,18 @@ import { Source } from '../../shared/store/source/source.model'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SourceGraphsComponent implements OnInit {
-  CHART_TYPE = {
-    HEART_RATE: 'HEART_RATE',
-    ACCELEROMETER: 'ACCELEROMETER',
-    BATTERY: 'BATTERY',
-    BLOOD_VOLUME_PULSE: 'BLOOD_VOLUME_PULSE',
-    ELECTRODERMAL_ACTIVITY: 'ELECTRODERMAL_ACTIVITY',
-    INTER_BEAT_INTERVAL: 'INTER_BEAT_INTERVAL',
-    THERMOMETER: 'THERMOMETER'
-  }
-
   @Input() sources: Source[]
   @Input() isDataLoaded
   @Input() data
   @Input() labels
-  endTime: any
-  startTime: any
 
   constructor() {}
 
   ngOnInit() {}
+
+  dispatchAction(event) {
+    console.log(event)
+  }
 
   trackBySourceId(index: number, source: Source) {
     return source.id

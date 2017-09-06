@@ -10,7 +10,7 @@ export interface State {
   entities: { [id: string]: Sensor }
   isLoaded: boolean
   data: { [id: number]: TimeSeries[] | MultiTimeSeries[] }
-  isDataLoaded: boolean[]
+  isDataLoaded: { [id: number]: boolean }
 }
 
 const initialState: State = {
@@ -18,7 +18,7 @@ const initialState: State = {
   entities: {},
   isLoaded: false,
   data: {},
-  isDataLoaded: []
+  isDataLoaded: {}
 }
 
 export function reducer(
@@ -104,7 +104,7 @@ export function reducer(
         entities: {},
         data: {},
         isLoaded: false,
-        isDataLoaded: []
+        isDataLoaded: {}
       }
     }
 
