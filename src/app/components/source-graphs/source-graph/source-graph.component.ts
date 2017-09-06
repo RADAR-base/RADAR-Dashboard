@@ -38,6 +38,7 @@ import { AppConfig } from '../../../shared/utils/config'
       [chartData]="data[sensorId]"
       [dates]="dates"
       [tooltipData]="tooltipData$| async"
+      (onMove)="onMoveHandler($event)"
     ></app-chart-base-multi-line>
   `,
   styleUrls: ['./source-graph.component.scss'],
