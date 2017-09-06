@@ -1,8 +1,4 @@
-import {
-  ChartGradientColors,
-  ChartMargin
-} from '../../components/charts/chart.model'
-import { Config } from '../store/config/config.model'
+import { Config, ConfigCharts } from '../models/config.model'
 
 export class AppConfig {
   static language = 'EN'
@@ -34,11 +30,4 @@ export class AppConfig {
       '#0c2c84'
     ]
   }
-}
-
-interface ConfigCharts {
-  MARGIN: ChartMargin
-  GRADIENT_COLORS: ChartGradientColors[]
-  GRADIENT_STOPS: any
-  CATEGORICAL_COLORS: string[]
 }

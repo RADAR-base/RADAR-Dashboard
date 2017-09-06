@@ -39,21 +39,23 @@ export class SourceGraphComponent {
   @Input() type
 
   get gradientEnabled() {
-    if (AppConfig.config) {
-      return AppConfig.config.sensors[this.type].chart.gradient
-    }
+    return (
+      AppConfig.config && AppConfig.config.sensors[this.type].chart.gradient
+    )
   }
 
   get isSingle() {
-    if (AppConfig.config) {
-      return AppConfig.config.sensors[this.type].dataType === DataTypes.single
-    }
+    return (
+      AppConfig.config &&
+      AppConfig.config.sensors[this.type].dataType === DataTypes.single
+    )
   }
 
   get label() {
-    if (AppConfig.config) {
-      return AppConfig.config.sensors[this.type].label[AppConfig.language]
-    }
+    return (
+      AppConfig.config &&
+      AppConfig.config.sensors[this.type].label[AppConfig.language]
+    )
   }
 
   constructor(private store: Store<fromRoot.State>) {}

@@ -1,4 +1,4 @@
-import { Key } from '../store/config/config.model'
+import { Key } from './config.model'
 
 export interface MultiTimeSeries {
   keys: Key[]
