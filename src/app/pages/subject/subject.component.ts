@@ -48,7 +48,10 @@ export class SubjectPageComponent implements OnInit, OnDestroy {
     // Get sources from server
     this.store.dispatch(new sourceAction.GetAll(this.subjectId))
     this.sourceIsLoaded$ = this.store.select(fromRoot.getSourceIsLoaded)
-    this.sources$ = this.store.select(fromRoot.getSourceAllWithSensors)
+    this.sources$ = this.store
+      .select(fromRoot.getSourceAllWithSensors)
+      .publishReplay()
+      .refCount()
 
     // Get sensor data from server
     this.sensorsIsDataLoaded$ = this.store.select(
