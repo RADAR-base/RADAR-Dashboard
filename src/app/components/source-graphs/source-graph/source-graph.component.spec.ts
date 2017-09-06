@@ -1,5 +1,8 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing'
+import { StoreModule } from '@ngrx/store'
 
+import { reducers } from '../../../shared/store'
+import { SourceGraphsModule } from '../source-graphs.module'
 import { SourceGraphComponent } from './source-graph.component'
 
 describe('SourceGraphComponent', () => {
@@ -9,7 +12,7 @@ describe('SourceGraphComponent', () => {
   beforeEach(
     async(() => {
       TestBed.configureTestingModule({
-        declarations: [SourceGraphComponent]
+        imports: [SourceGraphsModule, StoreModule.forRoot(reducers)]
       }).compileComponents()
     })
   )
