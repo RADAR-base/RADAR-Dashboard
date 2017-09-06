@@ -116,6 +116,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
       .append('rect')
       .attr('class', 'tooltip-box')
       .on('mousemove', () => this.tooltipMouseMove())
+      .on('mouseout', () => this.tooltipMouseOut())
 
     this.init()
   }
@@ -132,12 +133,24 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
     this.onMove.emit(date)
 
     if (this.tooltipData) {
+      const pos = d3.mouse(this.tooltip.node())[0]
+      this.tooltipInfo
+        .style('opacity', '1')
+        .style('position', 'absolute')
+        .style('left', pos + 'px')
+      console.log(d3.mouse(this.tooltip.node())[0])
       let t = ''
       const data = this.tooltipData.data
       Object.keys(this.tooltipData.data).map(function(d) {
         t = t + data[d].label['EN'] + ' : ' + data[d].value + '<br>'
       })
       this.tooltipInfo.html(date + '<br>' + t)
+    }
+  }
+
+  private tooltipMouseOut() {
+    if (this.tooltipInfo) {
+      this.tooltipInfo.style('opacity', '0')
     }
   }
 
