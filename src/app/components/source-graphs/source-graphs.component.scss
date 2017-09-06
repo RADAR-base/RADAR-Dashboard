@@ -4,4 +4,18 @@
   display: block;
   width: 100%;
   height: 100%;
+
+  .axis {
+    width: inherit;
+    height: 200px;
+  }
+
+  .tooltip {
+    @include font-small;
+
+    position: absolute;
+    top: 0;
+    padding: 10px;
+    background-color: $cl-base-40;
+  }
 }

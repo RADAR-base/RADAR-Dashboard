@@ -1,0 +1,12 @@
+@import '../../../../styles/common';
+
+.axis {
+  flex: 1 1 0;
+  width: inherit;
+  height: 100%;
+  background-color: $cl-base-20;
+}
+
+.font-small {
+  @include font-small;
+}

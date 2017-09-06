@@ -32,20 +32,33 @@ export class SensorsService {
   getDataSingle(payload) {
     const sensor = payload.data
     const subjectId = payload.subjectId
+    const endTime = 1497689980000
+    const startTime = new Date(endTime).setDate(new Date(endTime).getDate() - 1)
 
-    return this.getSingleValueData(sensor.type, subjectId, sensor.source, true)
+    return this.getSingleValueDataWithDate(
+      sensor.type,
+      subjectId,
+      sensor.source,
+      true,
+      startTime,
+      endTime
+    )
   }
 
   getDataMulti(payload) {
     const sensor = payload.data
     const subjectId = payload.subjectId
+    const endTime = 1497689980000
+    const startTime = new Date(endTime).setDate(new Date(endTime).getDate() - 1)
 
-    return this.getMultiValueData(
+    return this.getMultiValueDataWithDate(
       sensor.type,
       subjectId,
       sensor.source,
       AppConfig.config.sensors[sensor.type].keys,
-      true
+      true,
+      startTime,
+      endTime
     )
   }
 
@@ -74,6 +87,36 @@ export class SensorsService {
       .catch(ErrorService.handleError)
   }
 
+  getSingleValueDataWithDate(
+    type,
+    subject,
+    source,
+    timeHoles = true,
+    startTime,
+    endTime
+  ): Observable<TimeSeries[]> {
+    const url = `${this
+      .URL}/${type}/AVERAGE/TEN_SECOND/${subject}/${source}/${startTime}/${endTime}`
+
+    return this.http
+      .get(url)
+      .map(res => {
+        return res.status === 200 ? res.json() || null : null
+      })
+      .map(res => {
+        if (res) {
+          res.header.effectiveTimeFrame.startDateTime =
+            new Date(startTime).toISOString().split('.')[0] + 'Z'
+          res.header.effectiveTimeFrame.endDateTime =
+            new Date(endTime).toISOString().split('.')[0] + 'Z'
+          return ParseTimeHoles(res)
+        } else {
+          return null
+        }
+      })
+      .catch(ErrorService.handleError)
+  }
+
   getMultiValueData(
     type,
     subject,
@@ -93,6 +136,67 @@ export class SensorsService {
           return timeHoles
             ? ParseMultiValueData(ParseTimeHoles(res, true), keys, timeHoles)
             : ParseMultiValueData(res.dataset, keys, timeHoles)
+        } else {
+          return null
+        }
+      })
+      .catch(ErrorService.handleError)
+  }
+
+  getMultiValueDataWithDate(
+    type,
+    subject,
+    source,
+    keys,
+    timeHoles = true,
+    startTime,
+    endTime
+  ): Observable<MultiTimeSeries> {
+    const url = `${this
+      .URL}/${type}/AVERAGE/TEN_SECOND/${subject}/${source}/${startTime}/${endTime}`
+
+    return this.http
+      .get(url)
+      .map(res => {
+        return res.status === 200 ? res.json() || null : null
+      })
+      .map(res => {
+        if (res) {
+          res.header.effectiveTimeFrame.startDateTime =
+            new Date(startTime).toISOString().split('.')[0] + 'Z'
+          res.header.effectiveTimeFrame.endDateTime =
+            new Date(endTime).toISOString().split('.')[0] + 'Z'
+          return ParseMultiValueData(ParseTimeHoles(res, true), keys, timeHoles)
+        } else {
+          return null
+        }
+      })
+      .catch(ErrorService.handleError)
+  }
+
+  getAggregateMessagesWithDate(
+    type,
+    subject,
+    source,
+    timeHoles = true,
+    startTime,
+    endTime
+  ): Observable<TimeSeries[]> {
+    // TODO: Change when API is ready
+    const url = `${PARAMS.API_LOCAL}/mock-aggregate-messages.json`
+
+    return this.http
+      .get(url)
+      .map(res => {
+        return res.status === 200 ? res.json() || null : null
+      })
+      .map(res => {
+        if (res) {
+          res.header.effectiveTimeFrame.startDateTime =
+            new Date(startTime).toISOString().split('.')[0] + 'Z'
+          res.header.effectiveTimeFrame.endDateTime =
+            new Date(endTime).toISOString().split('.')[0] + 'Z'
+          return ParseTimeHoles(res)
         } else {
           return null
         }

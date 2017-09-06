@@ -2,7 +2,6 @@ import { Component, Input } from '@angular/core'
 import * as d3 from 'd3'
 import { lineChunked } from 'd3-line-chunked'
 
-import { TimeSeries } from '../../../shared/models/time-series.model'
 import { AppConfig } from '../../../shared/utils/config'
 import { ChartBaseComponent } from '../chart-base/chart-base.component'
 
@@ -12,11 +11,13 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
   styleUrls: ['./chart-base-line.component.scss']
 })
 export class ChartBaseLineComponent extends ChartBaseComponent {
+  data: number[]
+  dates: Date[]
+
   @Input() gradientEnabled = false
   @Input() gradientColors = AppConfig.charts.GRADIENT_COLORS
   @Input() gradientStops = AppConfig.charts.GRADIENT_STOPS
 
-  data: TimeSeries[]
   svg: any
   chart: any
   width: number
@@ -49,28 +50,28 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
         .attr('stop-color', d => d.color)
     }
 
-    this.lineEl = this.chart.append('path').attr('class', 'line')
-
-    this.lineEl = this.chart.append('g')
+    this.lineEl = this.chart.append('g').attr('clip-path', 'url(#clip)')
 
     super.init()
   }
 
   draw() {
+    const data = this.data
+    const newData = this.dates.map(function(d, i) {
+      return { date: d, value: data[i] }
+    })
+
     this.xScale = d3
       .scaleTime()
       .range([0, this.width])
-      .domain(d3.extent(this.data, d => d.date))
+      .domain(d3.extent(this.dates))
 
     this.yScale = d3
       .scaleLinear()
       .range([this.height, 0])
-      .domain(d3.extent(this.data, d => d.value))
+      .domain(d3.extent(this.data))
 
-    this.xAxis
-      .attr('transform', `translate(0, ${this.height})`)
-      .call(d3.axisBottom(this.xScale))
-
+    this.xAxis.remove()
     this.yAxis.call(d3.axisLeft(this.yScale).tickSize(-this.width))
 
     // Add HR Gradient
@@ -86,6 +87,12 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
       .curve(d3.curveLinear)
       .defined((d: any) => d.value)
 
-    this.lineEl.datum(this.data).call(this.lineChunked)
+    this.lineEl.selectAll('.main').remove()
+
+    this.lineEl
+      .append('g')
+      .datum(newData)
+      .call(this.lineChunked)
+      .attr('class', 'main')
   }
 }

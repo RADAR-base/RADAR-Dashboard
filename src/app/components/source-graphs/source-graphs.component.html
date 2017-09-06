@@ -4,8 +4,28 @@
     <div *ngIf="sensor.visible">
       <app-source-graph
         [type]="sensor.type"
-        [data]="data[sensor.id]"
-        [isLoaded]="isDataLoaded[sensor.id]"></app-source-graph>
+        [dates]="data.dates"
+        [data]="data.values"
+        [isLoaded]="isDataLoaded[sensor.id]"
+        [sensorId]="sensor.id"
+      ></app-source-graph>
     </div>
   </div>
 </div>
+
+<div
+  *ngIf="sources && isDataLoaded[0] && data.dates"
+  class="axis"
+>
+  <app-graph-external-x-axis
+    [data]="data.values[0]"
+    [dates]="data.dates"
+    [isLoaded]="isDataLoaded[0]"
+  >
+  </app-graph-external-x-axis>
+</div>
+
+<div
+  id="tooltip"
+  class="tooltip"
+></div>

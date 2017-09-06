@@ -46,7 +46,11 @@ describe('ChartBaseMultiLineComponent', () => {
     expect(component.chartData).toBeFalsy()
 
     // with data // needs to be parsed //
-    component.chartData = MockMultiTimeSeriesData
+    component.dates = MockMultiTimeSeriesData.dates
+    component.chartData = {
+      keys: MockMultiTimeSeriesData.keys,
+      values: MockMultiTimeSeriesData.values
+    }
     expect(component.width).toBeGreaterThan(0)
     expect(component.height).toBeGreaterThan(0)
   })
@@ -63,8 +67,11 @@ describe('ChartBaseMultiLineComponent', () => {
       })
 
       // with data // needs to be parsed //
-      component.chartData = MockMultiTimeSeriesData
-
+      component.dates = MockMultiTimeSeriesData.dates
+      component.chartData = {
+        keys: MockMultiTimeSeriesData.keys,
+        values: MockMultiTimeSeriesData.values
+      }
       // wait for transition
       tick(500)
       Object.getOwnPropertyNames(lineElements).forEach(prop => {

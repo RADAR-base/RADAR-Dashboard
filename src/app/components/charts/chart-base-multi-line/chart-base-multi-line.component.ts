@@ -28,15 +28,18 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
   lines: any
   line: any
   newData: any
+  lineEl: any
 
   init() {
+    this.lineEl = this.chart.append('g').attr('clip-path', 'url(#clip)')
+
     super.init()
   }
 
   draw() {
-    const minDate = d3.min(this.data.dates)
-    const maxDate = d3.max(this.data.dates)
-    const dates = this.data.dates
+    const minDate = d3.min(this.dates)
+    const maxDate = d3.max(this.dates)
+    const dates = this.dates
     const keys = this.data.keys.map(k => k.key)
 
     this.xScale = d3
@@ -44,11 +47,11 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
       .range([0, this.width])
       .domain([minDate, maxDate])
 
-    const minValue = d3.min(
-      this.data.keys.map(k => d3.min(this.data.values[k.key]))
+    const minValue = Number(
+      d3.min(this.data.keys.map(k => d3.min(this.data.values[k.key])))
     )
-    const maxValue = d3.max(
-      this.data.keys.map(k => d3.max(this.data.values[k.key]))
+    const maxValue = Number(
+      d3.max(this.data.keys.map(k => d3.max(this.data.values[k.key])))
     )
 
     this.yScale = d3
@@ -61,9 +64,7 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
       .domain(keys)
       .range(this.lineColors)
 
-    this.xAxis
-      .attr('transform', `translate(0, ${this.height})`)
-      .call(d3.axisBottom(this.xScale))
+    this.xAxis.remove()
 
     this.yAxis.call(d3.axisLeft(this.yScale).tickSize(-this.width))
 
@@ -74,7 +75,7 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
     this.lineChunked = lineChunked()
       .x(d => this.xScale(d.x))
       .y(d => this.yScale(d.y))
-      .curve(d3.curveLinear)
+      .curve(d3.curveBasis)
       .defined(function(d) {
         return d.y != null
       })
@@ -90,7 +91,14 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
         })
       )
 
-    this.lines = this.chart.selectAll('.line').data(this.newData)
+    this.lineEl.selectAll('.main').remove()
+
+    this.lineEl.append('g').attr('class', 'main')
+
+    this.lines = this.lineEl
+      .select('.main')
+      .selectAll('.line')
+      .data(this.newData)
 
     this.line = this.lines.enter().append('g')
 
