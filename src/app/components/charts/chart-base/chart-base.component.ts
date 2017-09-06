@@ -131,12 +131,14 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
     ]
     this.onMove.emit(date)
 
-    let t = ''
-    const data = this.tooltipData.data
-    Object.keys(this.tooltipData.data).map(function(d) {
-      t = t + data[d].label['EN'] + ' : ' + data[d].value + '<br>'
-    })
-    this.tooltipInfo.html(date + '<br>' + t)
+    if (this.tooltipData) {
+      let t = ''
+      const data = this.tooltipData.data
+      Object.keys(this.tooltipData.data).map(function(d) {
+        t = t + data[d].label['EN'] + ' : ' + data[d].value + '<br>'
+      })
+      this.tooltipInfo.html(date + '<br>' + t)
+    }
   }
 
   private beforeUpdate() {

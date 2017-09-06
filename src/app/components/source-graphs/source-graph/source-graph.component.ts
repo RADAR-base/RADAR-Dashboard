@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit
+} from '@angular/core'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
@@ -38,7 +43,7 @@ import { AppConfig } from '../../../shared/utils/config'
   styleUrls: ['./source-graph.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SourceGraphComponent {
+export class SourceGraphComponent implements OnInit {
   @Input() isLoaded
   @Input() data = []
   @Input() dates
@@ -68,11 +73,13 @@ export class SourceGraphComponent {
 
   constructor(private store: Store<fromRoot.State>) {}
 
-  onMoveHandler(event) {
-    this.store.dispatch(new tooltipAction.GetAll(event))
+  ngOnInit() {
     this.tooltipData$ = this.store
       .select(fromRoot.getSensorsTooltipAll)
       .publishReplay()
       .refCount()
+  }
+  onMoveHandler(event) {
+    this.store.dispatch(new tooltipAction.GetAll(event))
   }
 }
