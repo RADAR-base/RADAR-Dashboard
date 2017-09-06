@@ -73,7 +73,8 @@ export function reducer(
 
 export const getIsLoaded = (state: State) => state.isLoaded
 export const getData = (state: State) => state.data
+export const getDate = (state: State) => state.date
 
-export const getAll = createSelector(getData, data => {
-  return data
+export const getAll = createSelector(getData, getDate, (data, date) => {
+  return { date: date, data: data }
 })
