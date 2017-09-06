@@ -1,4 +1,8 @@
-import { Sensor } from '../sensors/sensors.model'
+import {
+  ChartGradientColors,
+  ChartMargin
+} from '../../components/charts/chart.model'
+import { Sensor } from '../store/sensors/sensors.model'
 
 export interface Config {
   sensors: {
@@ -17,6 +21,13 @@ export interface Config {
   compliance: {
     keys: Key[]
   }
+}
+
+export interface ConfigCharts {
+  MARGIN: ChartMargin
+  GRADIENT_COLORS: ChartGradientColors[]
+  GRADIENT_STOPS: any
+  CATEGORICAL_COLORS: string[]
 }
 
 export interface Label {

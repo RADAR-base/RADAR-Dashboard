@@ -1,4 +1,4 @@
-import { AppConfig } from '../../shared/utils/config'
+import { AppConfig } from './config'
 
 export function ParseTimeHoles(res, multi = false) {
   const interval = AppConfig.config.timeIntervals[res.header.timeFrame].value

@@ -1,4 +1,4 @@
-import { Key, Label } from '../config/config.model'
+import { Key, Label } from '../../models/config.model'
 
 export interface Sensor {
   id?: string
