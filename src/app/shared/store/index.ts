@@ -8,7 +8,6 @@ import { storeFreeze } from 'ngrx-store-freeze'
 
 import { environment } from '../../../environments/environment'
 import * as fromCompliance from './compliance/compliance.reducer'
-import * as fromConfig from './config/config.reducer'
 import * as fromSensorsTooltip from './sensors-tooltip/sensors-tooltip.reducer'
 import * as fromSensors from './sensors/sensors.reducer'
 import * as fromSource from './source/source.reducer'
@@ -16,7 +15,6 @@ import * as fromStudy from './study/study.reducer'
 import * as fromSubject from './subject/subject.reducer'
 
 export interface State {
-  config: fromConfig.State
   sensors: fromSensors.State
   sensorsTooltip: fromSensorsTooltip.State
   source: fromSource.State
@@ -26,7 +24,6 @@ export interface State {
 }
 
 export const reducers: ActionReducerMap<State> = {
-  config: fromConfig.reducer,
   sensors: fromSensors.reducer,
   sensorsTooltip: fromSensorsTooltip.reducer,
   source: fromSource.reducer,
@@ -38,13 +35,6 @@ export const reducers: ActionReducerMap<State> = {
 export const metaReducers: MetaReducer<State>[] = !environment.PROD
   ? [storeFreeze]
   : []
-
-// Config Selectors
-export const getConfigState = createFeatureSelector<fromConfig.State>('config')
-export const getConfigIsLoaded = createSelector(
-  getConfigState,
-  fromConfig.getIsLoaded
-)
 
 // Study Selectors
 export const getStudyState = createFeatureSelector<fromStudy.State>('study')
@@ -158,13 +148,13 @@ export const getComplianceIsLoaded = createSelector(
 
 // Sensors Tooltip Selectors
 export const getSensorsTooltipState = createFeatureSelector<
-  fromSensorsTooltip.State
->('sensorsTooltip')
+  fromCompliance.State
+>('compliance')
 export const getSensorsTooltipAll = createSelector(
-  getSensorsTooltipState,
-  fromSensorsTooltip.getAll
+  getComplianceState,
+  fromCompliance.getAll
 )
 export const getSensorsTooltipIsLoaded = createSelector(
-  getSensorsTooltipState,
-  fromSensorsTooltip.getIsLoaded
+  getComplianceState,
+  fromCompliance.getIsLoaded
 )
