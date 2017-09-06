@@ -56,6 +56,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   xAxis: any
   yAxis: any
   window$: Subscription
+  bisect: any
 
   ngAfterViewInit() {
     this.svg = d3.select(this.svgRef.nativeElement)
@@ -86,6 +87,10 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
 
     const chartTranslate = `translate(${this.margin.left}, ${this.margin.top})`
 
+    this.bisect = d3.bisector(function(d) {
+      return d['date']
+    }).right
+
     this.chart = this.svg
       .append('g')
       .attr('class', 'chart')
@@ -108,7 +113,14 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   private tooltipMouseMove() {
     if (!this.xScale) return
 
-    const date = this.xScale.invert(d3.mouse(this.tooltip.node())[0])
+    const dates = this.data.map(d => d.date)
+    const date =
+      dates[
+        this.bisect(
+          this.data,
+          this.xScale.invert(d3.mouse(this.tooltip.node())[0])
+        )
+      ]
     this.onMove.emit(date)
   }
 

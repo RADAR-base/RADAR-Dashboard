@@ -32,9 +32,6 @@ export function reducer(
       const filteredData = []
 
       const date = new Date(payload.date)
-      const seconds = Math.round(date.getSeconds() / 10) * 10
-      date.setSeconds(seconds)
-      date.setMilliseconds(0)
 
       const visibleIds = Object.keys(entities).filter(
         d => entities[d].visible === true
@@ -75,7 +72,8 @@ export function reducer(
 
 export const getIsLoaded = (state: State) => state.isLoaded
 export const getData = (state: State) => state.data
+export const getDate = (state: State) => state.date
 
-export const getAll = createSelector(getData, data => {
-  return data
+export const getAll = createSelector(getData, getDate, (data, date) => {
+  return { date: date, data: data }
 })
