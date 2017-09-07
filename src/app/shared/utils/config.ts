@@ -1,9 +1,10 @@
 import { Config, ConfigCharts } from '../models/config.model'
 
 export class AppConfig {
+  // TODO: move remote config and language to store (not constants)
   static language = 'EN'
   static config: Config
-  static timeFrame = { start: null, end: null }
+
   static charts: ConfigCharts = {
     MARGIN: {
       top: 16,
