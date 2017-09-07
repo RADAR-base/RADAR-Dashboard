@@ -1,4 +1,4 @@
-export function ParseMultiValueData(dataset, keys, timeHoles) {
+export function ParseMultiValueData(dataset, keys, timeHoles = true) {
   const dates: Date[] = []
   const values: { [key: string]: number[] } = keys.reduce(
     (acc, k) => ({ ...acc, [k.key]: [] }),
