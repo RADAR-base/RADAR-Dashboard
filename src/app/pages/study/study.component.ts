@@ -38,6 +38,7 @@ export class StudyPageComponent implements OnInit {
     // Get `studyId` from route and then get Study by `studyId`
     this.route.params.takeUntil(this.takeUntilDestroy()).subscribe(params => {
       this.studyId = params['studyId']
+      this.store.dispatch(new studyAction.SetSelectedId(this.studyId))
     })
 
     // If study is not loaded and not valid then fetch it
