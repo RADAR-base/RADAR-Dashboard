@@ -28,7 +28,7 @@ export function reducer(
     }
 
     case sourceActions.GET_ALL_SUCCESS: {
-      const payload = action.payload.data
+      const payload = action.payload
       const ids = payload.map(source => source.id)
       const entities = payload.reduce((acc, source) => {
         return { ...acc, [source.id]: source }

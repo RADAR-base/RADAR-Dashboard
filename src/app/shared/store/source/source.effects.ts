@@ -16,10 +16,7 @@ export class SourceEffects {
     .switchMap(payload => {
       return this.sourceService
         .getAll(payload)
-        .map(
-          data =>
-            new sourceActions.GetAllSuccess({ subjectId: payload, data: data })
-        )
+        .map(res => new sourceActions.GetAllSuccess(res))
     })
 
   @Effect()

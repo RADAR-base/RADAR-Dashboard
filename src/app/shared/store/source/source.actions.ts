@@ -14,7 +14,7 @@ export class GetAll implements Action {
 export class GetAllSuccess implements Action {
   readonly type = GET_ALL_SUCCESS
 
-  constructor(public payload: { subjectId: String; data: Source[] }) {}
+  constructor(public payload: Source[]) {}
 }
 
 export type Actions = GetAll | GetAllSuccess
