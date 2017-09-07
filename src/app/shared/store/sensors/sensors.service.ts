@@ -1,26 +1,29 @@
+import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { Http } from '@angular/http'
+import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
-import { MultiTimeSeries } from '../../../shared/models/multi-time-series.model'
-import { TimeSeries } from '../../../shared/models/time-series.model'
-import { ErrorService } from '../../../shared/services/error.service'
-import { ParseMultiValueData } from '../../../shared/utils/ParseMultiValueData'
-import { ParseTimeHoles } from '../../../shared/utils/ParseTimeHoles'
+import { MultiTimeSeries } from '../../models/multi-time-series.model'
+import { TimeSeries } from '../../models/time-series.model'
+import { ErrorService } from '../../services/error.service'
 import { AppConfig } from '../../utils/config'
+import { ParseMultiValueData } from '../../utils/ParseMultiValueData'
+import { ParseTimeHoles } from '../../utils/ParseTimeHoles'
 import { Source } from '../source/source.model'
+import * as fromRoot from '../'
+import { DataTypes } from './sensors.model'
 
 @Injectable()
 export class SensorsService {
   private URL = `${PARAMS.API_URI}/data`
 
-  constructor(private http: Http) {}
+  constructor(private http: HttpClient, private store: Store<fromRoot.State>) {}
 
-  getAll(sources): Observable<Source[]> {
+  addSpecsToSources(sources): Observable<Source[]> {
     return Observable.of(
       sources.map((d: Source) => {
-        const sensorList = AppConfig.config.specs[d.type]
-        const sensors = sensorList.map(sensor => ({
+        const sensorSpecs = AppConfig.config.specs[d.type]
+        const sensors = sensorSpecs.map(sensor => ({
           ...AppConfig.config.sensors[sensor],
           type: sensor
         }))
@@ -29,204 +32,44 @@ export class SensorsService {
     )
   }
 
-  getDataSingle(payload) {
-    const sensor = payload.data
-    const subjectId = payload.subjectId
-    const endTime = 1497689980000
-    const startTime = new Date(endTime).setDate(new Date(endTime).getDate() - 1)
+  getData(
+    sensor,
+    subjectId,
+    timeFrame,
+    dataType
+  ): Observable<TimeSeries[] | MultiTimeSeries[]> {
+    const url = this.parseURL(sensor, subjectId, timeFrame)
 
-    return this.getSingleValueDataWithDate(
+    return this.http
+      .get(url)
+      .withLatestFrom(this.store.select(fromRoot.getSensorsPristine))
+      .takeWhile(([res, pristine]) => !pristine)
+      .map(([res, _]) => res)
+      .map((res: any) => {
+        // TODO: Remove ugly hack
+        // API is not returning the expected timeFrame
+        res.header.effectiveTimeFrame = {
+          startDateTime: timeFrame.start.toISOString(),
+          endDateTime: timeFrame.end.toISOString()
+        }
+
+        return dataType === DataTypes.single
+          ? ParseTimeHoles(res)
+          : ParseMultiValueData(ParseTimeHoles(res, true), sensor.keys)
+      })
+      .catch(ErrorService.handleError)
+  }
+
+  // TODO: setup 'AVERAGE' & 'TEN_SECOND' when API is ready
+  private parseURL(sensor, subjectId, timeFrame) {
+    return [
+      this.URL,
       sensor.type,
+      'AVERAGE/TEN_SECOND',
       subjectId,
       sensor.source,
-      true,
-      startTime,
-      endTime
-    )
-  }
-
-  getDataMulti(payload) {
-    const sensor = payload.data
-    const subjectId = payload.subjectId
-    const endTime = 1497689980000
-    const startTime = new Date(endTime).setDate(new Date(endTime).getDate() - 1)
-
-    return this.getMultiValueDataWithDate(
-      sensor.type,
-      subjectId,
-      sensor.source,
-      AppConfig.config.sensors[sensor.type].keys,
-      true,
-      startTime,
-      endTime
-    )
-  }
-
-  getSingleValueData(
-    type,
-    subject,
-    source,
-    timeHoles = true
-  ): Observable<TimeSeries[]> {
-    const url = this.parseURL(type, subject, source)
-
-    return this.http
-      .get(url)
-      .map(res => {
-        return res.status === 200 ? res.json() || null : null
-      })
-      .map(res => {
-        if (res) {
-          return timeHoles
-            ? ParseTimeHoles(res)
-            : this.parseSingleValueData(res)
-        } else {
-          return null
-        }
-      })
-      .catch(ErrorService.handleError)
-  }
-
-  getSingleValueDataWithDate(
-    type,
-    subject,
-    source,
-    timeHoles = true,
-    startTime,
-    endTime
-  ): Observable<TimeSeries[]> {
-    const url = `${this
-      .URL}/${type}/AVERAGE/TEN_SECOND/${subject}/${source}/${startTime}/${endTime}`
-
-    return this.http
-      .get(url)
-      .map(res => {
-        return res.status === 200 ? res.json() || null : null
-      })
-      .map(res => {
-        if (res) {
-          res.header.effectiveTimeFrame.startDateTime =
-            new Date(startTime).toISOString().split('.')[0] + 'Z'
-          res.header.effectiveTimeFrame.endDateTime =
-            new Date(endTime).toISOString().split('.')[0] + 'Z'
-          return ParseTimeHoles(res)
-        } else {
-          return null
-        }
-      })
-      .catch(ErrorService.handleError)
-  }
-
-  getMultiValueData(
-    type,
-    subject,
-    source,
-    keys,
-    timeHoles = true
-  ): Observable<MultiTimeSeries> {
-    const url = this.parseURL(type, subject, source)
-
-    return this.http
-      .get(url)
-      .map(res => {
-        return res.status === 200 ? res.json() || null : null
-      })
-      .map(res => {
-        if (res) {
-          return timeHoles
-            ? ParseMultiValueData(ParseTimeHoles(res, true), keys, timeHoles)
-            : ParseMultiValueData(res.dataset, keys, timeHoles)
-        } else {
-          return null
-        }
-      })
-      .catch(ErrorService.handleError)
-  }
-
-  getMultiValueDataWithDate(
-    type,
-    subject,
-    source,
-    keys,
-    timeHoles = true,
-    startTime,
-    endTime
-  ): Observable<MultiTimeSeries> {
-    const url = `${this
-      .URL}/${type}/AVERAGE/TEN_SECOND/${subject}/${source}/${startTime}/${endTime}`
-
-    return this.http
-      .get(url)
-      .map(res => {
-        return res.status === 200 ? res.json() || null : null
-      })
-      .map(res => {
-        if (res) {
-          res.header.effectiveTimeFrame.startDateTime =
-            new Date(startTime).toISOString().split('.')[0] + 'Z'
-          res.header.effectiveTimeFrame.endDateTime =
-            new Date(endTime).toISOString().split('.')[0] + 'Z'
-          return ParseMultiValueData(ParseTimeHoles(res, true), keys, timeHoles)
-        } else {
-          return null
-        }
-      })
-      .catch(ErrorService.handleError)
-  }
-
-  getAggregateMessagesWithDate(
-    type,
-    subject,
-    source,
-    timeHoles = true,
-    startTime,
-    endTime
-  ): Observable<TimeSeries[]> {
-    // TODO: Change when API is ready
-    const url = `${PARAMS.API_LOCAL}/mock-aggregate-messages.json`
-
-    return this.http
-      .get(url)
-      .map(res => {
-        return res.status === 200 ? res.json() || null : null
-      })
-      .map(res => {
-        if (res) {
-          res.header.effectiveTimeFrame.startDateTime =
-            new Date(startTime).toISOString().split('.')[0] + 'Z'
-          res.header.effectiveTimeFrame.endDateTime =
-            new Date(endTime).toISOString().split('.')[0] + 'Z'
-          return ParseTimeHoles(res)
-        } else {
-          return null
-        }
-      })
-      .catch(ErrorService.handleError)
-  }
-
-  private parseSingleValueData(res) {
-    return res.dataset.map(data => {
-      return {
-        value: data.sample.value,
-        date: new Date(data.startDateTime)
-      }
-    })
-  }
-
-  // TODO: setup 'AVERAGE' & 'TEN_SECOND'
-  private parseURL(
-    type,
-    subject,
-    source,
-    stat = 'AVERAGE',
-    interval = 'TEN_SECOND'
-  ) {
-    const url = `${this.URL}/${type}/${stat}/${interval}/${subject}/${source}`
-
-    return AppConfig.timeFrame &&
-    AppConfig.timeFrame.start &&
-    AppConfig.timeFrame.end
-      ? `${url}/${AppConfig.timeFrame.start}/${AppConfig.timeFrame.end}`
-      : url
+      timeFrame.start.valueOf(),
+      timeFrame.end.valueOf()
+    ].join('/')
   }
 }
