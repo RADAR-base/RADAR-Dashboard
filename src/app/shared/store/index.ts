@@ -50,6 +50,10 @@ export const getStudyEntities = createSelector(
   getStudyState,
   fromStudy.getEntities
 )
+export const getStudySelectedId = createSelector(
+  getStudyState,
+  fromStudy.getSelectedId
+)
 export const getStudySelected = createSelector(
   getStudyState,
   fromStudy.getSelected
@@ -69,6 +73,14 @@ export const getSubjectEntities = createSelector(
   fromSubject.getEntities
 )
 export const getSubjectAll = createSelector(getSubjectState, fromSubject.getAll)
+export const getSubjectSelected = createSelector(
+  getSubjectState,
+  fromSubject.getSelected
+)
+export const getSubjectSelectedId = createSelector(
+  getSubjectState,
+  fromSubject.getSelectedId
+)
 
 // Source Selectors
 export const getSourceState = createFeatureSelector<fromSource.State>('source')
@@ -90,7 +102,6 @@ export const getSensorsIsLoaded = createSelector(
   getSensorsState,
   fromSensors.getIsLoaded
 )
-
 export const getSensorsIsDataLoaded = createSelector(
   getSensorsState,
   fromSensors.getIsDataLoaded
@@ -99,17 +110,22 @@ export const getSensorsEntities = createSelector(
   getSensorsState,
   fromSensors.getEntities
 )
-
 export const getSensorsLabels = createSelector(
   getSensorsState,
   fromSensors.getLabels
 )
-
 export const getSensorsAll = createSelector(getSensorsState, fromSensors.getAll)
-
 export const getSensorsData = createSelector(
   getSensorsState,
   fromSensors.getAllData
+)
+export const getSensorsTimeFrame = createSelector(
+  getSensorsState,
+  fromSensors.getTimeFrame
+)
+export const getSensorsPristine = createSelector(
+  getSensorsState,
+  fromSensors.getPristine
 )
 
 // Source + Sensor Selector
