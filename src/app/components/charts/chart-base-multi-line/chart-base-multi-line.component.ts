@@ -31,7 +31,7 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
   lineEl: any
 
   init() {
-    this.lineEl = this.chart.append('g').attr('clip-path', 'url(#clip)')
+    this.lineEl = this.chart.append('g')
 
     super.init()
   }

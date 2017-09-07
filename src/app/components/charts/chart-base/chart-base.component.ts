@@ -36,6 +36,21 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   @Input() dates: Date[]
   @Input() tooltipData
 
+  @Output() onMove = new EventEmitter<Date>()
+
+  data: any
+  svg: any
+  chart: any
+  tooltip: any
+  width: number
+  height: number
+  xScale: any
+  yScale: any
+  xAxis: any
+  yAxis: any
+  bisect: any
+  window$: Subscription
+
   @Input()
   get chartData() {
     return this.data
@@ -45,23 +60,6 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
     this.data = value
     this.beforeUpdate()
   }
-
-  @Output() onMove = new EventEmitter<Date>()
-
-  data: any
-  svg: any
-  chart: any
-  tooltip: any
-  tooltipInfo: any
-  width: number
-  height: number
-  xScale: any
-  yScale: any
-  xAxis: any
-  yAxis: any
-  window$: Subscription
-  clipPath: any
-  bisect: any
 
   ngAfterViewInit() {
     this.svg = d3.select(this.svgRef.nativeElement)
@@ -93,22 +91,13 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
 
     const chartTranslate = `translate(${this.margin.left}, ${this.margin.top})`
 
-    this.bisect = d3.bisector(function(d) {
-      return d
-    }).right
-
     this.chart = this.svg
       .append('g')
       .attr('class', 'chart')
       .attr('transform', chartTranslate)
 
-    this.tooltipInfo = d3.selectAll('#tooltip')
-
     this.xAxis = this.chart.append('g').attr('class', 'axis axis--x')
-
     this.yAxis = this.chart.append('g').attr('class', 'axis axis--y')
-
-    this.clipPath = this.chart.append('clipPath').attr('id', 'clip')
 
     this.tooltip = this.svg
       .append('g')
@@ -116,7 +105,8 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
       .append('rect')
       .attr('class', 'tooltip-box')
       .on('mousemove', () => this.tooltipMouseMove())
-      .on('mouseout', () => this.tooltipMouseOut())
+
+    this.bisect = d3.bisector(d => d).right
 
     this.init()
   }
@@ -124,34 +114,14 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   private tooltipMouseMove() {
     if (!this.xScale) return
 
-    const date = this.dates[
-      this.bisect(
-        this.dates,
-        this.xScale.invert(d3.mouse(this.tooltip.node())[0])
-      )
-    ]
-    this.onMove.emit(date)
+    const dateIndex = this.bisect(
+      this.dates,
+      this.xScale.invert(d3.mouse(this.tooltip.node())[0])
+    )
 
-    if (this.tooltipData) {
-      const pos = d3.mouse(this.tooltip.node())[0]
-      this.tooltipInfo
-        .style('opacity', '1')
-        .style('position', 'absolute')
-        .style('left', pos + 'px')
-      console.log(d3.mouse(this.tooltip.node())[0])
-      let t = ''
-      const data = this.tooltipData.data
-      Object.keys(this.tooltipData.data).map(function(d) {
-        t = t + data[d].label['EN'] + ' : ' + data[d].value + '<br>'
-      })
-      this.tooltipInfo.html(date + '<br>' + t)
-    }
-  }
+    const date = this.dates[dateIndex]
 
-  private tooltipMouseOut() {
-    if (this.tooltipInfo) {
-      this.tooltipInfo.style('opacity', '0')
-    }
+    // this.onMove.emit(date)
   }
 
   private beforeUpdate() {
@@ -170,13 +140,6 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
 
     this.chart.attr('width', this.width).attr('height', this.height)
     this.tooltip.attr('width', this.width).attr('height', this.height)
-
-    this.clipPath.selectAll('rect').remove()
-
-    this.clipPath
-      .append('rect')
-      .attr('width', this.width)
-      .attr('height', this.height)
 
     this.draw()
   }

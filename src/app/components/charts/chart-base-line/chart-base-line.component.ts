@@ -50,7 +50,7 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
         .attr('stop-color', d => d.color)
     }
 
-    this.lineEl = this.chart.append('g').attr('clip-path', 'url(#clip)')
+    this.lineEl = this.chart.append('g')
 
     super.init()
   }
