@@ -1,6 +1,7 @@
 import { createSelector } from '@ngrx/store'
 
 import { MultiTimeSeries } from '../../models/multi-time-series.model'
+import { TimeFrame } from '../../models/time-frame.model'
 import { TimeSeries } from '../../models/time-series.model'
 import * as sensorsActions from './sensors.actions'
 import { Sensor } from './sensors.model'
@@ -10,7 +11,11 @@ export interface State {
   entities: { [id: string]: Sensor }
   isLoaded: boolean
   data: { [id: number]: TimeSeries[] | MultiTimeSeries[] }
-  isDataLoaded: { [id: number]: boolean }
+  dataLoaded: { [id: number]: boolean }
+  dates: number[]
+  tooltipIndex: number
+  timeFrame: TimeFrame
+  pristine: boolean
 }
 
 const initialState: State = {
@@ -18,7 +23,11 @@ const initialState: State = {
   entities: {},
   isLoaded: false,
   data: {},
-  isDataLoaded: {}
+  dataLoaded: {},
+  dates: [],
+  tooltipIndex: -1,
+  timeFrame: { start: null, end: null },
+  pristine: true
 }
 
 export function reducer(
@@ -29,13 +38,14 @@ export function reducer(
     case sensorsActions.GET_ALL: {
       return {
         ...state,
-        isLoaded: false
+        isLoaded: false,
+        pristine: false
       }
     }
 
     case sensorsActions.GET_ALL_SUCCESS: {
       let counter = 0
-      const payload = action.payload.data
+      const payload = action.payload
       const ids = []
       const sensors = payload.map(source =>
         source.sensors.reduce((acc, sensor) => {
@@ -67,44 +77,44 @@ export function reducer(
     case sensorsActions.GET_ALL_DATA: {
       return {
         ...state,
-        isDataLoaded: []
+        dataLoaded: {}
       }
     }
 
     case sensorsActions.GET_ALL_DATA_SUCCESS: {
-      const payload = action.payload
-      const id = payload.id
-      const data = payload.data
-      let dataWithIds = {}
-      if (data[0]) {
-        dataWithIds = { ...state.data['values'], [id]: data.map(d => d.value) }
-      } else {
-        dataWithIds = {
-          ...state.data['values'],
-          [id]: { keys: data.keys, values: data.values }
-        }
+      // const payload = action.payload
+      // const id = payload.id
+      // const data = action.payload
+
+      // console.table(action.payload)
+
+      // const sensorData = {}
+
+      // if (data[0]) {
+      //   dataWithIds = { ...state.data['values'], [id]: data.map(d =>
+      // d.value) } } else { dataWithIds = { ...state.data['values'], [id]: {
+      // keys: data.keys, values: data.values } } }  let dataWithDates = {} if
+      // (state.data['dates']) { dataWithDates = { dates: state.data['dates'],
+      // values: dataWithIds } } else { const dates = data.map(d => d.date)
+      // dataWithDates = { dates: dates, values: dataWithIds } }
+
+      return {
+        ...state
+        // data: dataWithDates,
+        // dataLoaded: { ...state.dataLoaded, [id]: true }
       }
-      let dataWithDates = {}
-      if (state.data['dates']) {
-        dataWithDates = { dates: state.data['dates'], values: dataWithIds }
-      } else {
-        const dates = data.map(d => d.date)
-        dataWithDates = { dates: dates, values: dataWithIds }
-      }
+    }
+
+    case sensorsActions.SET_TIME_FRAME: {
       return {
         ...state,
-        data: dataWithDates,
-        isDataLoaded: { ...state.isDataLoaded, [id]: true }
+        timeFrame: action.payload
       }
     }
 
     case sensorsActions.DESTROY: {
       return {
-        ids: [],
-        entities: {},
-        data: {},
-        isLoaded: false,
-        isDataLoaded: {}
+        ...initialState
       }
     }
 
@@ -128,10 +138,12 @@ export function reducer(
 }
 
 export const getIsLoaded = (state: State) => state.isLoaded
-export const getIsDataLoaded = (state: State) => state.isDataLoaded
+export const getIsDataLoaded = (state: State) => state.dataLoaded
 export const getIds = (state: State) => state.ids
 export const getEntities = (state: State) => state.entities
 export const getData = (state: State) => state.data
+export const getPristine = (state: State) => state.pristine
+export const getTimeFrame = (state: State) => state.timeFrame
 
 export const getLabels = createSelector(
   getEntities,
