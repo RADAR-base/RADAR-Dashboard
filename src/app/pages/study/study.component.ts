@@ -57,23 +57,15 @@ export class StudyPageComponent implements OnInit {
           this.store.dispatch(new studyAction.GetById(this.studyId))
         }
       })
-      .publishReplay()
-      .refCount()
 
     // Check if study is loaded
-    this.isLoaded$ = this.store
-      .select(fromRoot.getStudyIsLoaded)
-      .publishReplay()
-      .refCount()
+    this.isLoaded$ = this.store.select(fromRoot.getStudyIsLoaded)
 
     this.subjects$ = this.store.select(fromRoot.getSubjectAll)
 
     // Check if compliance is loaded
     this.isComplianceLoaded$ = this.store.select(fromRoot.getComplianceIsLoaded)
 
-    this.complianceData$ = this.store
-      .select(fromRoot.getComplianceAll)
-      .publishReplay()
-      .refCount()
+    this.complianceData$ = this.store.select(fromRoot.getComplianceAll)
   }
 }

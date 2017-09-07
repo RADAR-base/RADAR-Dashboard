@@ -10,65 +10,49 @@
   </div>
 </app-toolbar>
 <div class="content">
-  <p *ngIf="!(isLoaded$ | async)">Loading...</p>
-  <ng-container *ngIf="isStudyLoadedAndValid$ && isLoaded$ | async">
+  <p *ngIf="!(isLoaded$ | async); else loaded">Loading...</p>
+
+  <ng-template #loaded
+    *ngIf="!(isStudyLoadedAndValid$ | async); else loadedAndValid">
+    <div>
+      <p>Study "{{studyId}}" not found.</p>
+      <p>
+        <button [routerLink]="['/']">Go to the overview page</button>
+      </p>
+    </div>
+  </ng-template>
+
+  <ng-template #loadedAndValid>
     <md-grid-list cols="6" rowHeight="fit">
-      <md-grid-tile colspan="2" rowspan="1">
-        <app-tile label="SCORES">
-        </app-tile>
-      </md-grid-tile>
-      <md-grid-tile colspan="4" rowspan="2">
+      <md-grid-tile colspan="6" rowspan="2">
         <app-tile label="Patients">
           <div tile-content>
-            <app-subject-table [subjects]="subjects$ | async" [studyId]="studyId"></app-subject-table>
+            <app-subject-table
+              [subjects]="subjects$ | async"
+              [studyId]="studyId"
+            ></app-subject-table>
           </div>
         </app-tile>
       </md-grid-tile>
-      <md-grid-tile colspan="1" rowspan="1">
-        <app-tile label="SYSTEM">
-        </app-tile>
-      </md-grid-tile>
-      <md-grid-tile colspan="1" rowspan="1">
-        <app-tile label="DEVICES">
-        </app-tile>
-      </md-grid-tile>
-      <md-grid-tile colspan="1" rowspan="1">
-        <app-tile label="HOT STORAGE">
-        </app-tile>
-      </md-grid-tile>
-      <md-grid-tile colspan="1" rowspan="1">
-        <app-tile label="COLD STORAGE">
-        </app-tile>
-      </md-grid-tile>
-      <md-grid-tile colspan="4" rowspan="2">
+      <md-grid-tile colspan="6" rowspan="2">
         <app-tile label="Compliance">
           <div tile-content>
             <div class="legend">
-              <p><span class="simple"></span>Simple
+              <p>
+                <span class="simple"></span>Simple
                 <span class="special"></span>Special
-                <span class="notanswered"></span>Not Answered</p>
+                <span class="notanswered"></span>Not Answered
+              </p>
             </div>
             <div class="chart">
-              <app-compliance-plot [data]="complianceData$|async" [isComplianceLoaded]="isComplianceLoaded$|async">
-              </app-compliance-plot>
+              <app-compliance-plot
+                [data]="complianceData$ | async"
+                [isComplianceLoaded]="isComplianceLoaded$ | async"
+              ></app-compliance-plot>
             </div>
           </div>
         </app-tile>
       </md-grid-tile>
-      <md-grid-tile colspan="1" rowspan="1">
-        <app-tile label="KAFKA TOPICS">
-        </app-tile>
-      </md-grid-tile>
-      <md-grid-tile colspan="1" rowspan="1">
-        <app-tile label="QUESTIONS">
-        </app-tile>
-      </md-grid-tile>
     </md-grid-list>
-  </ng-container>
-  <div *ngIf="!(isStudyLoadedAndValid$ | async) && (isLoaded$ | async)">
-    <p>Study "{{studyId}}" not found.</p>
-    <p>
-      <button [routerLink]="['/']">Go to the overview page</button>
-    </p>
-  </div>
+  </ng-template>
 </div>
