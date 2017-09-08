@@ -1,27 +1,33 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { Store } from '@ngrx/store'
+import { Actions } from '@ngrx/effects'
+import { Action, Store } from '@ngrx/store'
 import { WebWorkerService } from 'angular2-web-worker'
 import { Observable } from 'rxjs/Observable'
+import * as fromRoot from '../'
 
 import { MultiTimeSeries } from '../../models/multi-time-series.model'
 import { TimeSeries } from '../../models/time-series.model'
-import { ErrorService } from '../../services/error.service'
-import { ParseTimeHolesWorker } from '../../utils/ParseTimeHoles.worker'
 import { AppConfig } from '../../utils/config'
+import { ParseTimeHolesWorker } from '../../utils/ParseTimeHoles.worker'
 import { Source } from '../source/source.model'
-import * as fromRoot from '../'
-import { DataTypes } from './sensors.model'
+import * as sensorsActions from './sensors.actions'
+import { DataType, DescriptiveStatistic, TimeInterval } from './sensors.model'
 
 @Injectable()
 export class SensorsService {
   private URL = `${PARAMS.API_URI}/data`
+  private destroy$: Observable<Action>
+  private webWorkerPromise: Promise<any>
 
   constructor(
     private http: HttpClient,
     private store: Store<fromRoot.State>,
+    private actions$: Actions,
     private webWorkerService: WebWorkerService
-  ) {}
+  ) {
+    this.destroy$ = this.actions$.ofType(sensorsActions.DESTROY)
+  }
 
   addSensorSpecsToSources(sources): Observable<Source[]> {
     return Observable.of(
@@ -40,39 +46,60 @@ export class SensorsService {
     sensor,
     subjectId,
     timeFrame,
+    timeInterval,
+    descriptiveStatistic,
     dataType
   ): Observable<TimeSeries[] | MultiTimeSeries[]> {
-    const url = this.parseURL(sensor, subjectId, timeFrame)
+    const url = this.parseURL(
+      sensor,
+      subjectId,
+      timeFrame,
+      timeInterval,
+      descriptiveStatistic
+    )
 
     return this.http
-      .get(url)
-      .withLatestFrom(this.store.select(fromRoot.getSensorsPristine))
-      .takeWhile(([res, pristine]) => !pristine)
-      .map(([res, _]) => res)
-      .switchMap((res: any) => {
+      .get<any>(url)
+      .takeUntil(this.destroy$)
+      .filter(d => d !== null)
+      .switchMap(res => {
         // Object needs to be constructed from Object literals only
         // https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm
         const dataObject = {
           timeFrame,
-          interval: AppConfig.config.timeIntervals[res.header.timeFrame].value,
-          isSingle: dataType === DataTypes.single,
+          timeInterval,
+          isSingle: dataType === DataType.single,
           keys: sensor.keys,
           dataset: res.dataset
         }
 
-        return Observable.fromPromise(
-          this.webWorkerService.run(ParseTimeHolesWorker, dataObject)
+        this.webWorkerPromise = this.webWorkerService.run(
+          ParseTimeHolesWorker,
+          dataObject
         )
+        return Observable.fromPromise(this.webWorkerPromise)
       })
-      .catch(ErrorService.handleError)
+  }
+
+  terminateWorker() {
+    return Observable.fromPromise(
+      this.webWorkerService.terminate(this.webWorkerPromise)
+    )
   }
 
   // TODO: setup 'AVERAGE' & 'TEN_SECOND' when API is ready
-  private parseURL(sensor, subjectId, timeFrame) {
+  private parseURL(
+    sensor,
+    subjectId,
+    timeFrame,
+    timeInterval,
+    descriptiveStatistic
+  ) {
     return [
       this.URL,
       sensor.type,
-      'AVERAGE/TEN_SECOND',
+      DescriptiveStatistic[descriptiveStatistic],
+      TimeInterval[timeInterval],
       subjectId,
       sensor.source,
       timeFrame.start,
