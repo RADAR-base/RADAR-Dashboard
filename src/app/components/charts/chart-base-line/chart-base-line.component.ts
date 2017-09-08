@@ -11,13 +11,12 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
   styleUrls: ['./chart-base-line.component.scss']
 })
 export class ChartBaseLineComponent extends ChartBaseComponent {
-  data: number[]
-  dates: Date[]
-
   @Input() gradientEnabled = false
   @Input() gradientColors = AppConfig.charts.GRADIENT_COLORS
   @Input() gradientStops = AppConfig.charts.GRADIENT_STOPS
 
+  data: number[]
+  dates: Date[]
   svg: any
   chart: any
   width: number
@@ -56,10 +55,7 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
   }
 
   draw() {
-    const data = this.data
-    const newData = this.dates.map(function(d, i) {
-      return { date: d, value: data[i] }
-    })
+    const data = this.dates.map((date, i) => ({ date, value: this.data[i] }))
 
     this.xScale = d3
       .scaleTime()
@@ -85,13 +81,13 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
       .x(d => this.xScale(d.date))
       .y(d => this.yScale(d.value))
       .curve(d3.curveLinear)
-      .defined((d: any) => d.value)
+      .defined(d => d.value)
 
     this.lineEl.selectAll('.main').remove()
 
     this.lineEl
       .append('g')
-      .datum(newData)
+      .datum(data)
       .call(this.lineChunked)
       .attr('class', 'main')
   }
