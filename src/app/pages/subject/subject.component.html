@@ -19,7 +19,7 @@
     <md-grid-tile colspan="2">
       <app-tile label="Sources">
         <app-source-list
-          [sources]="sources$ | async"
+          [sources]="sources"
           tile-content
         ></app-source-list>
       </app-tile>
@@ -27,8 +27,9 @@
     <md-grid-tile colspan="6">
       <app-tile label="Graphs">
         <app-source-graphs
-          [sources]="sources$ | async"
-          [data]="sensorsData$ | async"
+          [sources]="sources"
+          [sensorsData]="sensorsData$ | async"
+          [dates]="dates$ | async"
           [isDataLoaded]="sensorsIsDataLoaded$ | async"
           tile-content
         ></app-source-graphs>

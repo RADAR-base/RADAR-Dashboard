@@ -7,14 +7,18 @@ import {
 import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
+import { Subscription } from 'rxjs/Subscription'
 
+import * as fromRoot from '../../shared/store/index'
 import * as sensorsAction from '../../shared/store/sensors/sensors.actions'
+import {
+  DescriptiveStatistic,
+  TimeInterval
+} from '../../shared/store/sensors/sensors.model'
 import * as sourceAction from '../../shared/store/source/source.actions'
 import { Source } from '../../shared/store/source/source.model'
 import * as studyAction from '../../shared/store/study/study.actions'
 import * as subjectAction from '../../shared/store/subject/subject.actions'
-import * as fromRoot from '../../shared/store/index'
-import { AppConfig } from '../../shared/utils/config'
 import { TakeUntilDestroy } from '../../shared/utils/TakeUntilDestroy'
 
 @Component({
@@ -25,10 +29,12 @@ import { TakeUntilDestroy } from '../../shared/utils/TakeUntilDestroy'
 })
 @TakeUntilDestroy
 export class SubjectPageComponent implements OnInit, OnDestroy {
+  sources: Source[]
   studyId: string
   subjectId: string
-  sources$: Observable<Source[]>
+  sources$: Subscription
   sourceIsLoaded$: Observable<boolean>
+  dates$: Observable<Date[]>
   sensorsIsDataLoaded$: any
   sensorsData$: any
 
@@ -48,7 +54,13 @@ export class SubjectPageComponent implements OnInit, OnDestroy {
       this.store.dispatch(new subjectAction.SetSelectedId(this.subjectId))
     })
 
-    // TODO: move to Brush component
+    // TODO: move whole block to Volume||Brush component -->
+    this.store.dispatch(
+      new sensorsAction.SetTimeInterval(TimeInterval.TEN_SECOND)
+    )
+    this.store.dispatch(
+      new sensorsAction.SetDescriptiveStatistic(DescriptiveStatistic.AVERAGE)
+    )
     const endTimeFrame = 1497689980000
     const endMinusOneday = new Date(endTimeFrame).setDate(
       new Date(endTimeFrame).getDate() - 1
@@ -59,20 +71,24 @@ export class SubjectPageComponent implements OnInit, OnDestroy {
         end: endTimeFrame
       })
     )
+    // <-- end
 
     // Get sources from server
     this.store.dispatch(new sourceAction.GetAll(this.subjectId))
     this.sourceIsLoaded$ = this.store.select(fromRoot.getSourceIsLoaded)
     this.sources$ = this.store
       .select(fromRoot.getSourceAllWithSensors)
-      .publishReplay()
-      .refCount()
+      .takeUntil(this.takeUntilDestroy())
+      .subscribe(sources => (this.sources = sources))
 
     // Get sensor data from server
     this.sensorsIsDataLoaded$ = this.store.select(
       fromRoot.getSensorsIsDataLoaded
     )
     this.sensorsData$ = this.store.select(fromRoot.getSensorsData)
+
+    this.dates$ = this.store
+      .select(fromRoot.getSensorsDates)
   }
 
   ngOnDestroy() {
