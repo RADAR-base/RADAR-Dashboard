@@ -36,4 +36,9 @@ export class SetSelectedId implements Action {
   constructor(public payload: string) {}
 }
 
-export type Actions = GetAll | GetAllSuccess | GetById | GetByIdSuccess | SetSelectedId
+export type Actions =
+  | GetAll
+  | GetAllSuccess
+  | GetById
+  | GetByIdSuccess
+  | SetSelectedId
