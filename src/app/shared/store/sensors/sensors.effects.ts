@@ -11,42 +11,58 @@ import { SensorsService } from './sensors.service'
 @Injectable()
 export class SensorsEffects {
   @Effect()
-  getAll$: Observable<Action> = this.actions$
-    .ofType<actions.GetAll>(actions.GET_ALL)
+  getSensors$: Observable<Action> = this.actions$
+    .ofType<actions.GetSensors>(actions.GET_SENSORS)
     .map(action => action.payload)
     .switchMap(payload => {
       return this.sensorsService
         .addSensorSpecsToSources(payload)
-        .map(d => new actions.GetAllSuccess(d))
+        .map(d => new actions.GetSensorsSuccess(d))
     })
 
   @Effect()
-  getAllData$ = this.actions$
-    .ofType<actions.GetAllSuccess>(actions.GET_ALL_SUCCESS)
-    .map(action => action.payload)
-    .withLatestFrom(this.store.select(fromRoot.getSensorsAll))
-    .switchMap(([payload, sensors]) =>
-      sensors.map(sensor => new actions.GetAllData(sensor))
+  getSensorsSuccess$ = this.actions$
+    .ofType<actions.GetSensorsSuccess>(actions.GET_SENSORS_SUCCESS)
+    .map(_ => new actions.UpdateDates())
+
+  @Effect()
+  updateDates$ = this.actions$
+    .ofType<actions.UpdateDates>(actions.UPDATE_DATES)
+    .withLatestFrom(this.store.select(fromRoot.getSensors))
+    .concatMap(([_, sensors]) =>
+      sensors.map(sensor => new actions.GetSensorsData(sensor))
     )
 
   @Effect()
-  getAllDataSuccess$: Observable<Action> = this.actions$
-    .ofType<actions.GetAllData>(actions.GET_ALL_DATA)
+  getSensorsDataSuccess$: Observable<Action> = this.actions$
+    .ofType<actions.GetSensorsData>(actions.GET_SENSORS_DATA)
     .map(action => action.payload)
     .withLatestFrom(
       this.store.select(fromRoot.getSubjectSelectedId),
-      this.store.select(fromRoot.getSensorsTimeFrame)
+      this.store.select(fromRoot.getSensorsTimeFrame),
+      this.store.select(fromRoot.getSensorsTimeInterval),
+      this.store.select(fromRoot.getSensorsDescriptiveStatistic)
     )
-    .mergeMap(([payload, subjectId, timeFrame]) =>
-      this.sensorsService
-        .getData(
-          payload,
-          subjectId,
-          timeFrame,
-          AppConfig.config.sensors[payload.type].dataType
-        )
-        .map(d => new actions.GetAllDataSuccess(d))
+    .mergeMap(
+      ([sensor, subjectId, timeFrame, timeInterval, descriptiveStatistic]) =>
+        this.sensorsService
+          .getData(
+            sensor,
+            subjectId,
+            timeFrame,
+            timeInterval,
+            descriptiveStatistic,
+            AppConfig.config.sensors[sensor.type].dataType
+          )
+          .map(
+            data => new actions.GetSensorsDataSuccess({ data, sensor })
+          )
     )
+
+  @Effect({ dispatch: false })
+  destroy$ = this.actions$
+    .ofType<actions.Destroy>(actions.DESTROY)
+    .map(_ => this.sensorsService.terminateWorker())
 
   constructor(
     private actions$: Actions,
