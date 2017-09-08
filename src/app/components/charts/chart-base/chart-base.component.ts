@@ -34,11 +34,11 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
 
   @Input() margin = AppConfig.charts.MARGIN
   @Input() dates: Date[]
-  @Input() tooltipData
+  @Input() keys: any[]
 
   @Output() onMove = new EventEmitter<Date>()
 
-  data: any
+  data: any[]
   svg: any
   chart: any
   tooltip: any
@@ -111,6 +111,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
     this.init()
   }
 
+  // TODO: debounce event
   private tooltipMouseMove() {
     if (!this.xScale) return
 
@@ -119,9 +120,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
       this.xScale.invert(d3.mouse(this.tooltip.node())[0])
     )
 
-    const date = this.dates[dateIndex]
-
-    // this.onMove.emit(date)
+    // this.onMove.emit(dateIndex)
   }
 
   private beforeUpdate() {
