@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { EffectsModule } from '@ngrx/effects'
 import { StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
+import { WebWorkerService } from 'angular2-web-worker'
 
 import { environment } from '../environments/environment'
 import { AppComponent } from './app.component'
@@ -25,7 +26,6 @@ import { StudyService } from './shared/store/study/study.service'
 import { SubjectEffects } from './shared/store/subject/subject.effects'
 import { SubjectService } from './shared/store/subject/subject.service'
 import { metaReducers, reducers } from './shared/store'
-import { WebWorkerService } from 'angular2-web-worker'
 
 @NgModule({
   declarations: [AppComponent, NotFoundPageComponent],

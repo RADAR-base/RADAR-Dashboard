@@ -3,14 +3,14 @@ import { Injectable } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { WebWorkerService } from 'angular2-web-worker'
 import { Observable } from 'rxjs/Observable'
-import * as fromRoot from '../'
 
 import { MultiTimeSeries } from '../../models/multi-time-series.model'
 import { TimeSeries } from '../../models/time-series.model'
 import { ErrorService } from '../../services/error.service'
-import { AppConfig } from '../../utils/config'
 import { ParseTimeHolesWorker } from '../../utils/ParseTimeHoles.worker'
+import { AppConfig } from '../../utils/config'
 import { Source } from '../source/source.model'
+import * as fromRoot from '../'
 import { DataTypes } from './sensors.model'
 
 @Injectable()
