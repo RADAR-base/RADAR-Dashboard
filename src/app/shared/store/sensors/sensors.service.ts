@@ -1,25 +1,29 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Store } from '@ngrx/store'
+import { WebWorkerService } from 'angular2-web-worker'
 import { Observable } from 'rxjs/Observable'
+import * as fromRoot from '../'
 
 import { MultiTimeSeries } from '../../models/multi-time-series.model'
 import { TimeSeries } from '../../models/time-series.model'
 import { ErrorService } from '../../services/error.service'
 import { AppConfig } from '../../utils/config'
-import { ParseMultiValueData } from '../../utils/ParseMultiValueData'
-import { ParseTimeHoles } from '../../utils/ParseTimeHoles'
+import { ParseTimeHolesWorker } from '../../utils/ParseTimeHoles.worker'
 import { Source } from '../source/source.model'
-import * as fromRoot from '../'
 import { DataTypes } from './sensors.model'
 
 @Injectable()
 export class SensorsService {
   private URL = `${PARAMS.API_URI}/data`
 
-  constructor(private http: HttpClient, private store: Store<fromRoot.State>) {}
+  constructor(
+    private http: HttpClient,
+    private store: Store<fromRoot.State>,
+    private webWorkerService: WebWorkerService
+  ) {}
 
-  addSpecsToSources(sources): Observable<Source[]> {
+  addSensorSpecsToSources(sources): Observable<Source[]> {
     return Observable.of(
       sources.map((d: Source) => {
         const sensorSpecs = AppConfig.config.specs[d.type]
@@ -45,17 +49,20 @@ export class SensorsService {
       .withLatestFrom(this.store.select(fromRoot.getSensorsPristine))
       .takeWhile(([res, pristine]) => !pristine)
       .map(([res, _]) => res)
-      .map((res: any) => {
-        // TODO: Remove ugly hack
-        // API is not returning the expected timeFrame
-        res.header.effectiveTimeFrame = {
-          startDateTime: timeFrame.start.toISOString(),
-          endDateTime: timeFrame.end.toISOString()
+      .switchMap((res: any) => {
+        // Object needs to be constructed from Object literals only
+        // https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm
+        const dataObject = {
+          timeFrame,
+          interval: AppConfig.config.timeIntervals[res.header.timeFrame].value,
+          isSingle: dataType === DataTypes.single,
+          keys: sensor.keys,
+          dataset: res.dataset
         }
 
-        return dataType === DataTypes.single
-          ? ParseTimeHoles(res)
-          : ParseMultiValueData(ParseTimeHoles(res, true), sensor.keys)
+        return Observable.fromPromise(
+          this.webWorkerService.run(ParseTimeHolesWorker, dataObject)
+        )
       })
       .catch(ErrorService.handleError)
   }
@@ -68,8 +75,8 @@ export class SensorsService {
       'AVERAGE/TEN_SECOND',
       subjectId,
       sensor.source,
-      timeFrame.start.valueOf(),
-      timeFrame.end.valueOf()
+      timeFrame.start,
+      timeFrame.end
     ].join('/')
   }
 }
