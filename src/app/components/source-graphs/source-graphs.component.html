@@ -1,15 +1,15 @@
 <div *ngFor="let source of sources; trackBy: trackBySourceId">
-    <p>SOURCE {{ source.id }}</p>
-    <div *ngFor="let sensor of source.sensors; trackBy: trackBySensorId">
-        <div *ngIf="sensor.visible">
-            <app-source-graph [type]="sensor.type" [dates]="data.dates" [data]="data.values" [isLoaded]="isDataLoaded[sensor.id]" [sensorId]="sensor.id"></app-source-graph>
-        </div>
+  <p>SOURCE {{ source.id }}</p>
+  <div *ngFor="let sensor of source.sensors; trackBy: trackBySensorId">
+    <div *ngIf="sensor.visible">
+      <app-source-graph
+        [type]="sensor.type"
+        [dates]="dates"
+        [sensorData]="sensorsData[sensor.id]"
+        [isLoaded]="isDataLoaded[sensor.id]"
+        [sensorId]="sensor.id"
+        [keys]="sensor?.keys"
+      ></app-source-graph>
     </div>
+  </div>
 </div>
-
-<div *ngIf="sources && isDataLoaded[0] && data.dates" class="axis">
-    <app-graph-external-x-axis [data]="data.values[0]" [dates]="data.dates" [isLoaded]="isDataLoaded[0]">
-    </app-graph-external-x-axis>
-</div>
-
-<div id="tooltip" class="tooltip"></div>

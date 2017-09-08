@@ -17,16 +17,15 @@ import { Source } from '../../shared/store/source/source.model'
 export class SourceGraphsComponent implements OnInit {
   @Input() sources: Source[]
   @Input() isDataLoaded
-  @Input() data
+  @Input() sensorsData
   @Input() labels
+  @Input() dates
 
   constructor() {}
 
   ngOnInit() {}
 
-  dispatchAction(event) {
-    console.log(event)
-  }
+  dispatchAction(event) {}
 
   trackBySourceId(index: number, source: Source) {
     return source.id
