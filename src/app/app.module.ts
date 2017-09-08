@@ -1,6 +1,5 @@
-import { HttpClientModule } from '@angular/common/http'
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
-import { HttpModule } from '@angular/http'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { EffectsModule } from '@ngrx/effects'
@@ -14,6 +13,7 @@ import { AppRoutingModule } from './app.routing'
 import { NotFoundPageComponent } from './pages/not-found/not-found.component'
 import { ConfigService } from './shared/services/config.service'
 import { ErrorService } from './shared/services/error.service'
+import { RadarServicesInterceptor } from './shared/services/radar-services.interceptor'
 import { ComplianceEffects } from './shared/store/compliance/compliance.effects'
 import { ComplianceService } from './shared/store/compliance/compliance.service'
 import { SensorsTooltipEffects } from './shared/store/sensors-tooltip/sensors-tooltip.effects'
@@ -31,7 +31,6 @@ import { metaReducers, reducers } from './shared/store'
   declarations: [AppComponent, NotFoundPageComponent],
   imports: [
     BrowserModule,
-    HttpModule,
     HttpClientModule,
     BrowserAnimationsModule,
 
@@ -56,6 +55,11 @@ import { metaReducers, reducers } from './shared/store'
     AppRoutingModule
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RadarServicesInterceptor,
+      multi: true
+    },
     WebWorkerService,
     ConfigService,
     ErrorService,

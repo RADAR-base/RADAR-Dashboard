@@ -1,28 +1,27 @@
+import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { Http } from '@angular/http'
 import { Observable } from 'rxjs/Observable'
 
-import { ErrorService } from '../../services/error.service'
 import { Study } from './study.model'
 
 @Injectable()
 export class StudyService {
-  constructor(private http: Http) {}
+  constructor(private http: HttpClient) {}
 
   getAll(): Observable<Study[]> {
     // TODO: Change when API is ready
     return this.http
-      .get(`${PARAMS.API_LOCAL}/mock-all-studies.json`)
-      .map(res => res.json().dataset || [])
-      .catch(ErrorService.handleError)
+      .get<any>(`${PARAMS.API_LOCAL}/mock-all-studies.json`)
+      .filter(d => d !== null)
+      .map(res => res.dataset)
   }
 
   getById(id): Observable<Study> {
     // TODO: Change when API is ready
     return this.http
-      .get(`${PARAMS.API_LOCAL}/mock-all-studies.json`)
-      .map(res => res.json().dataset || [])
+      .get<any>(`${PARAMS.API_LOCAL}/mock-all-studies.json`)
+      .filter(d => d !== null)
+      .map(res => res.dataset)
       .map(res => res.filter((data: Study) => data.id === id)[0] || null)
-      .catch(ErrorService.handleError)
   }
 }

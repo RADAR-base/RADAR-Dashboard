@@ -1,32 +1,27 @@
+import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { Http } from '@angular/http'
 import { Observable } from 'rxjs/Observable'
-
-import { ErrorService } from '../../../shared/services/error.service'
-import { ParseMultiValueData } from '../../../shared/utils/ParseMultiValueData'
-import { ParseTimeHoles } from '../../../shared/utils/ParseTimeHoles'
 
 @Injectable()
 export class ComplianceService {
-  constructor(private http: Http) {}
+  constructor(private http: HttpClient) {}
 
   getAll(studyId, keys, timeHoles = true): Observable<any> {
     // TODO: Change when API is ready
     return this.http
-      .get(`${PARAMS.API_LOCAL}/mock-compliance.json`)
+      .get<any>(`${PARAMS.API_LOCAL}/mock-compliance.json`)
       .delay(1000)
+      .filter(d => d !== null)
       .map(res => {
-        return res.status === 200 ? res.json() || null : null
+        // FIXME: change to worker
+        // if (res) {
+        //   return timeHoles
+        //     ? ParseMultiValueData(ParseTimeHoles(res, true), keys, timeHoles)
+        //     : ParseMultiValueData(res.dataset, keys, timeHoles)
+        // } else {
+        //   return null
+        // }
+        return null
       })
-      .map(res => {
-        if (res) {
-          return timeHoles
-            ? ParseMultiValueData(ParseTimeHoles(res, true), keys, timeHoles)
-            : ParseMultiValueData(res.dataset, keys, timeHoles)
-        } else {
-          return null
-        }
-      })
-      .catch(ErrorService.handleError)
   }
 }
