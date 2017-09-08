@@ -13,7 +13,7 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
 export class ChartBaseBarComponent extends ChartBaseComponent {
   @Input() categorical = false
 
-  // data can be TimeSeries[] or Categorical[]
+  // TODO: implement dates like others for consistency
   data: any
 
   svg: any

@@ -11,6 +11,7 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
 export class ChartBaseMultiBarComponent extends ChartBaseComponent {
   @Input() categorical = false
 
+  // TODO: implement dates like others for consistency
   data: any
   svg: any
   chart: any
