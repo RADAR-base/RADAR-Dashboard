@@ -9,7 +9,6 @@ import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 import { Subscription } from 'rxjs/Subscription'
 
-import * as fromRoot from '../../shared/store/index'
 import * as sensorsAction from '../../shared/store/sensors/sensors.actions'
 import {
   DescriptiveStatistic,
@@ -19,6 +18,7 @@ import * as sourceAction from '../../shared/store/source/source.actions'
 import { Source } from '../../shared/store/source/source.model'
 import * as studyAction from '../../shared/store/study/study.actions'
 import * as subjectAction from '../../shared/store/subject/subject.actions'
+import * as fromRoot from '../../shared/store/index'
 import { TakeUntilDestroy } from '../../shared/utils/TakeUntilDestroy'
 
 @Component({
@@ -87,8 +87,7 @@ export class SubjectPageComponent implements OnInit, OnDestroy {
     )
     this.sensorsData$ = this.store.select(fromRoot.getSensorsData)
 
-    this.dates$ = this.store
-      .select(fromRoot.getSensorsDates)
+    this.dates$ = this.store.select(fromRoot.getSensorsDates)
   }
 
   ngOnDestroy() {

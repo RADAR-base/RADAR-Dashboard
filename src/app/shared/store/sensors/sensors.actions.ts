@@ -43,7 +43,7 @@ export class GetSensorsDataSuccess implements Action {
   readonly type = GET_SENSORS_DATA_SUCCESS
 
   constructor(
-    public payload: { data: TimeSeries[] | MultiTimeSeries[], sensor: Sensor }
+    public payload: { data: TimeSeries[] | MultiTimeSeries[]; sensor: Sensor }
   ) {}
 }
 

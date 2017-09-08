@@ -5,10 +5,10 @@ import {
   OnInit
 } from '@angular/core'
 import { Store } from '@ngrx/store'
-import * as fromRoot from '../../../shared/store/index'
 
 import * as tooltipAction from '../../../shared/store/sensors-tooltip/sensors-tooltip.actions'
 import { DataType } from '../../../shared/store/sensors/sensors.model'
+import * as fromRoot from '../../../shared/store/index'
 import { AppConfig } from '../../../shared/utils/config'
 
 @Component({

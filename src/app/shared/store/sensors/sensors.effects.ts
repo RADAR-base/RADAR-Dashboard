@@ -54,9 +54,7 @@ export class SensorsEffects {
             descriptiveStatistic,
             AppConfig.config.sensors[sensor.type].dataType
           )
-          .map(
-            data => new actions.GetSensorsDataSuccess({ data, sensor })
-          )
+          .map(data => new actions.GetSensorsDataSuccess({ data, sensor }))
     )
 
   @Effect({ dispatch: false })
