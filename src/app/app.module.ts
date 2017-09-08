@@ -25,6 +25,7 @@ import { StudyService } from './shared/store/study/study.service'
 import { SubjectEffects } from './shared/store/subject/subject.effects'
 import { SubjectService } from './shared/store/subject/subject.service'
 import { metaReducers, reducers } from './shared/store'
+import { WebWorkerService } from 'angular2-web-worker'
 
 @NgModule({
   declarations: [AppComponent, NotFoundPageComponent],
@@ -55,6 +56,7 @@ import { metaReducers, reducers } from './shared/store'
     AppRoutingModule
   ],
   providers: [
+    WebWorkerService,
     ConfigService,
     ErrorService,
     StudyService,
