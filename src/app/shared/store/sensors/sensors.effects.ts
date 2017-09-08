@@ -16,7 +16,7 @@ export class SensorsEffects {
     .map(action => action.payload)
     .switchMap(payload => {
       return this.sensorsService
-        .addSpecsToSources(payload)
+        .addSensorSpecsToSources(payload)
         .map(d => new actions.GetAllSuccess(d))
     })
 
