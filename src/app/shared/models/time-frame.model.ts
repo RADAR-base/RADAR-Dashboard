@@ -1,4 +1,4 @@
 export interface TimeFrame {
-  start: Date
-  end: Date
+  start: number
+  end: number
 }

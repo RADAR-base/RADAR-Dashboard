@@ -48,15 +48,15 @@ export class SubjectPageComponent implements OnInit, OnDestroy {
       this.store.dispatch(new subjectAction.SetSelectedId(this.subjectId))
     })
 
-    // TODO: move to Brush
+    // TODO: move to Brush component
     const endTimeFrame = 1497689980000
-    const startTimeFrame = new Date(1497689980000).setDate(
+    const endMinusOneday = new Date(endTimeFrame).setDate(
       new Date(endTimeFrame).getDate() - 1
     )
     this.store.dispatch(
       new sensorsAction.SetTimeFrame({
-        start: new Date(startTimeFrame),
-        end: new Date(endTimeFrame)
+        start: endMinusOneday,
+        end: endTimeFrame
       })
     )
 
