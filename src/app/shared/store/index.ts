@@ -110,28 +110,36 @@ export const getSensorsEntities = createSelector(
   getSensorsState,
   fromSensors.getEntities
 )
-export const getSensorsLabels = createSelector(
+export const getSensorsDates = createSelector(
   getSensorsState,
-  fromSensors.getLabels
+  fromSensors.getDates
 )
-export const getSensorsAll = createSelector(getSensorsState, fromSensors.getAll)
+export const getSensors = createSelector(
+  getSensorsState,
+  fromSensors.getSensors
+)
 export const getSensorsData = createSelector(
   getSensorsState,
-  fromSensors.getAllData
+  fromSensors.getData
 )
 export const getSensorsTimeFrame = createSelector(
   getSensorsState,
   fromSensors.getTimeFrame
 )
-export const getSensorsPristine = createSelector(
+export const getSensorsTimeInterval = createSelector(
   getSensorsState,
-  fromSensors.getPristine
+  fromSensors.getTimeInterval
+)
+
+export const getSensorsDescriptiveStatistic = createSelector(
+  getSensorsState,
+  fromSensors.getDescriptiveStatistic
 )
 
 // Source + Sensor Selector
 export const getSourceAllWithSensors = createSelector(
   getSourceAll,
-  getSensorsAll,
+  getSensors,
   (sources, sensors) => {
     if (sensors.length) {
       const sensorsBySource = sources.reduce((acc, source) => {
