@@ -1,7 +1,3 @@
-import {
-  ChartGradientColors,
-  ChartMargin
-} from '../../components/charts/chart.model'
 import { Sensor } from '../store/sensors/sensors.model'
 
 export interface Config {
@@ -9,45 +5,38 @@ export interface Config {
     [id: string]: Sensor
   }
   units: {
-    [id: string]: Unit
+    [id: string]: ConfigUnit
   }
   stats: {
-    [id: string]: Stat
+    [id: string]: ConfigStat
   }
   timeIntervals: {
-    [id: string]: TimeInterval
+    [id: string]: ConfigTimeInterval
   }
   specs: string[]
   compliance: {
-    keys: Key[]
+    keys: ConfigKey[]
   }
 }
 
-export interface ConfigCharts {
-  MARGIN: ChartMargin
-  GRADIENT_COLORS: ChartGradientColors[]
-  GRADIENT_STOPS: any
-  CATEGORICAL_COLORS: string[]
-}
-
-export interface Label {
+export interface ConfigLabel {
   EN: string
 }
 
-export interface Key {
+export interface ConfigKey {
   key: string
-  label: Label
+  label: ConfigLabel
 }
 
-export interface Unit {
-  label: Label
+export interface ConfigUnit {
+  label: ConfigLabel
 }
 
-export interface Stat {
-  label: Label
+export interface ConfigStat {
+  label: ConfigLabel
 }
 
-export interface TimeInterval {
+export interface ConfigTimeInterval {
   value: number
-  label: Label
+  label: ConfigLabel
 }

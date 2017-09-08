@@ -1,4 +1,8 @@
-import { Config, ConfigCharts } from '../models/config.model'
+import {
+  ChartGradientColors,
+  ChartMargin
+} from '../../components/charts/chart.model'
+import { Config } from '../models/config.model'
 
 export class AppConfig {
   // TODO: move remote config and language to store (not constants)
@@ -31,4 +35,11 @@ export class AppConfig {
       '#0c2c84'
     ]
   }
+}
+
+export interface ConfigCharts {
+  MARGIN: ChartMargin
+  GRADIENT_COLORS: ChartGradientColors[]
+  GRADIENT_STOPS: any
+  CATEGORICAL_COLORS: string[]
 }
