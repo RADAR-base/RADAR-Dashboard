@@ -26,7 +26,7 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
   xScale: any
   yScale: any
   line: any
-  lineEl: any
+  lineGroup: any
   gradient: any
   lineChunked: any
 
@@ -49,14 +49,21 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
         .attr('stop-color', d => d.color)
     }
 
-    this.lineEl = this.chart.append('g')
+    this.lineGroup = this.chart.append('g')
+
+    // TODO: Add this as an option for x and y (hasXAxis)
+    this.xAxis.remove()
+
+    this.lineChunked = lineChunked()
+      .x(d => this.xScale(d.date))
+      .y(d => this.yScale(d.value))
+      .curve(d3.curveLinear)
+      .defined(d => d.value)
 
     super.init()
   }
 
   draw() {
-    const data = this.dates.map((date, i) => ({ date, value: this.data[i] }))
-
     this.xScale = d3
       .scaleTime()
       .range([0, this.width])
@@ -65,9 +72,8 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
     this.yScale = d3
       .scaleLinear()
       .range([this.height, 0])
-      .domain(d3.extent(this.data))
+      .domain(d3.extent(this.data, (d: any) => d.value))
 
-    this.xAxis.remove()
     this.yAxis.call(d3.axisLeft(this.yScale).tickSize(-this.width))
 
     // Add HR Gradient
@@ -77,18 +83,11 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
         .attr('y2', this.yScale(this.gradientStops.y2))
     }
 
-    this.lineChunked = lineChunked()
-      .x(d => this.xScale(d.date))
-      .y(d => this.yScale(d.value))
-      .curve(d3.curveLinear)
-      .defined(d => d.value)
+    this.lineGroup.selectAll('.line').remove()
 
-    this.lineEl.selectAll('.main').remove()
-
-    this.lineEl
-      .append('g')
-      .datum(data)
+    this.lineGroup
+      .datum(this.data)
       .call(this.lineChunked)
-      .attr('class', 'main')
+      .attr('class', 'line')
   }
 }
