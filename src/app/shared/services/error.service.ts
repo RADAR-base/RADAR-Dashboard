@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable'
 export class ErrorService {
   static handleError(error: HttpErrorResponse | any) {
     // TODO: add remote error logging
-    console.warn(error)
+    console.warn('ERROR in HttpResponse', error)
     return Observable.throw(error)
   }
 }
