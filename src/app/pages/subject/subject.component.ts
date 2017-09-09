@@ -9,15 +9,16 @@ import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 import { Subscription } from 'rxjs/Subscription'
 
-import * as sensorsAction from '../../shared/store/sensors/sensors.actions'
+import * as pagesActions from '../../shared/store/pages/pages.actions'
+import * as sensorsActions from '../../shared/store/sensors/sensors.actions'
 import {
   DescriptiveStatistic,
   TimeInterval
 } from '../../shared/store/sensors/sensors.model'
-import * as sourceAction from '../../shared/store/source/source.actions'
+import * as sourceActions from '../../shared/store/source/source.actions'
 import { Source } from '../../shared/store/source/source.model'
-import * as studyAction from '../../shared/store/study/study.actions'
-import * as subjectAction from '../../shared/store/subject/subject.actions'
+import * as studyActions from '../../shared/store/study/study.actions'
+import * as subjectActions from '../../shared/store/subject/subject.actions'
 import * as fromRoot from '../../shared/store/index'
 import { TakeUntilDestroy } from '../../shared/utils/TakeUntilDestroy'
 
@@ -50,23 +51,23 @@ export class SubjectPageComponent implements OnInit, OnDestroy {
       this.studyId = params.studyId
       this.subjectId = params.subjectId
 
-      this.store.dispatch(new studyAction.SetSelectedId(this.studyId))
-      this.store.dispatch(new subjectAction.SetSelectedId(this.subjectId))
+      this.store.dispatch(new studyActions.SetSelectedId(this.studyId))
+      this.store.dispatch(new subjectActions.SetSelectedId(this.subjectId))
     })
 
     // TODO: move whole block to Volume||Brush component -->
     this.store.dispatch(
-      new sensorsAction.SetTimeInterval(TimeInterval.TEN_SECOND)
+      new sensorsActions.SetTimeInterval(TimeInterval.TEN_SECOND)
     )
     this.store.dispatch(
-      new sensorsAction.SetDescriptiveStatistic(DescriptiveStatistic.AVERAGE)
+      new sensorsActions.SetDescriptiveStatistic(DescriptiveStatistic.AVERAGE)
     )
-    const endTimeFrame = 1497689980000
+    const endTimeFrame = 1497628000000
     const endMinusOneday = new Date(endTimeFrame).setDate(
-      new Date(endTimeFrame).getDate() - 1
+      new Date(endTimeFrame).getDate() - 0.45
     )
     this.store.dispatch(
-      new sensorsAction.SetTimeFrame({
+      new sensorsActions.SetTimeFrame({
         start: endMinusOneday,
         end: endTimeFrame
       })
@@ -74,7 +75,7 @@ export class SubjectPageComponent implements OnInit, OnDestroy {
     // <-- end
 
     // Get sources from server
-    this.store.dispatch(new sourceAction.GetAll(this.subjectId))
+    this.store.dispatch(new sourceActions.GetAll(this.subjectId))
     this.sourceIsLoaded$ = this.store.select(fromRoot.getSourceIsLoaded)
     this.sources$ = this.store
       .select(fromRoot.getSourceAllWithSensors)
@@ -91,6 +92,6 @@ export class SubjectPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.store.dispatch(new sensorsAction.Destroy())
+    this.store.dispatch(new pagesActions.SubjectDestroy())
   }
 }
