@@ -3,8 +3,7 @@ import { Actions, Effect } from '@ngrx/effects'
 import { Action, Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
-import * as fromRoot from '../../../shared/store/index'
-import { AppConfig } from '../../utils/config'
+import * as fromRoot from '../'
 import * as actions from './sensors.actions'
 import { SensorsService } from './sensors.service'
 
@@ -28,10 +27,11 @@ export class SensorsEffects {
   @Effect()
   updateDates$ = this.actions$
     .ofType<actions.UpdateDates>(actions.UPDATE_DATES)
-    .withLatestFrom(this.store.select(fromRoot.getSensors))
-    .concatMap(([_, sensors]) =>
-      sensors.map(sensor => new actions.GetSensorsData(sensor))
+    .withLatestFrom(
+      this.store.select(fromRoot.getSensors),
+      this.store.select(fromRoot.getSensorsIsPristine)
     )
+    .map(([, sensors]) => new actions.GetSensorsData(sensors))
 
   @Effect()
   getSensorsDataSuccess$: Observable<Action> = this.actions$
@@ -43,24 +43,22 @@ export class SensorsEffects {
       this.store.select(fromRoot.getSensorsTimeInterval),
       this.store.select(fromRoot.getSensorsDescriptiveStatistic)
     )
-    .mergeMap(
-      ([sensor, subjectId, timeFrame, timeInterval, descriptiveStatistic]) =>
+    .switchMap(
+      ([sensors, subjectId, timeFrame, timeInterval, descriptiveStatistic]) =>
         this.sensorsService
-          .getData(
-            sensor,
+          .getData(sensors, {
             subjectId,
             timeFrame,
             timeInterval,
-            descriptiveStatistic,
-            AppConfig.config.sensors[sensor.type].dataType
-          )
-          .map(data => new actions.GetSensorsDataSuccess({ data, sensor }))
+            descriptiveStatistic
+          })
+          .map(data => new actions.GetSensorsDataSuccess(data))
     )
 
   @Effect({ dispatch: false })
   destroy$ = this.actions$
     .ofType<actions.Destroy>(actions.DESTROY)
-    .map(_ => this.sensorsService.terminateWorker())
+    .do(_ => this.sensorsService.destroy())
 
   constructor(
     private actions$: Actions,

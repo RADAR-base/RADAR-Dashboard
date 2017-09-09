@@ -36,7 +36,7 @@ export class UpdateDates implements Action {
 export class GetSensorsData implements Action {
   readonly type = GET_SENSORS_DATA
 
-  constructor(public payload: Sensor) {}
+  constructor(public payload: Sensor[]) {}
 }
 
 export class GetSensorsDataSuccess implements Action {
