@@ -120,7 +120,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
       this.xScale.invert(d3.mouse(this.tooltip.node())[0])
     )
 
-    // this.onMove.emit(dateIndex)
+    this.onMove.emit(dateIndex)
   }
 
   private beforeUpdate() {
