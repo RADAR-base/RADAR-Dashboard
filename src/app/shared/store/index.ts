@@ -93,6 +93,10 @@ export const getSourceEntities = createSelector(
   fromSource.getEntities
 )
 export const getSourceAll = createSelector(getSourceState, fromSource.getAll)
+export const getSourceIsPristine = createSelector(
+  getSourceState,
+  fromSource.getIsPristine
+)
 
 // Sensors Selectors
 export const getSensorsState = createFeatureSelector<fromSensors.State>(
@@ -130,7 +134,10 @@ export const getSensorsTimeInterval = createSelector(
   getSensorsState,
   fromSensors.getTimeInterval
 )
-
+export const getSensorsIsPristine = createSelector(
+  getSensorsState,
+  fromSensors.getIsPristine
+)
 export const getSensorsDescriptiveStatistic = createSelector(
   getSensorsState,
   fromSensors.getDescriptiveStatistic
