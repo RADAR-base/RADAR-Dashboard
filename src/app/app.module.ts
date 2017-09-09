@@ -16,6 +16,7 @@ import { ErrorService } from './shared/services/error.service'
 import { RadarServicesInterceptor } from './shared/services/radar-services.interceptor'
 import { ComplianceEffects } from './shared/store/compliance/compliance.effects'
 import { ComplianceService } from './shared/store/compliance/compliance.service'
+import { PagesEffects } from './shared/store/pages/pages.effects'
 import { SensorsTooltipEffects } from './shared/store/sensors-tooltip/sensors-tooltip.effects'
 import { SensorsEffects } from './shared/store/sensors/sensors.effects'
 import { SensorsService } from './shared/store/sensors/sensors.service'
@@ -43,6 +44,7 @@ import { metaReducers, reducers } from './shared/store'
 
     // Setup ngrx/effects
     EffectsModule.forRoot([
+      PagesEffects,
       StudyEffects,
       SubjectEffects,
       SourceEffects,
