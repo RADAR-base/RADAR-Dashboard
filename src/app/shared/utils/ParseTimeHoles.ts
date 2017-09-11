@@ -1,7 +1,5 @@
-import { AppConfig } from './config'
-
-export function ParseTimeHoles(res, multi = false) {
-  const interval = AppConfig.config.timeIntervals[res.header.timeFrame].value
+export function ParseTimeHoles(res, config, multi = false) {
+  const interval = config.timeIntervals[res.header.timeFrame].value
   const timeFrame = res.header.effectiveTimeFrame
   const data = res.dataset
 

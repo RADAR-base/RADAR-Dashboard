@@ -13,6 +13,7 @@ import { Source } from '../source/source.model'
 @Injectable()
 export class SensorsService {
   private URL = `${PARAMS.API_URI}/data`
+  config = AppConfig.config
 
   constructor(private http: Http) {}
 
@@ -46,6 +47,7 @@ export class SensorsService {
   }
 
   getDataMulti(payload) {
+    if (!this.config) this.config = AppConfig.config
     const sensor = payload.data
     const subjectId = payload.subjectId
     const endTime = 1497689980000
@@ -55,7 +57,7 @@ export class SensorsService {
       sensor.type,
       subjectId,
       sensor.source,
-      AppConfig.config.sensors[sensor.type].keys,
+      this.config.sensors[sensor.type].keys,
       true,
       startTime,
       endTime
@@ -69,7 +71,6 @@ export class SensorsService {
     timeHoles = true
   ): Observable<TimeSeries[]> {
     const url = this.parseURL(type, subject, source)
-
     return this.http
       .get(url)
       .map(res => {
@@ -78,7 +79,7 @@ export class SensorsService {
       .map(res => {
         if (res) {
           return timeHoles
-            ? ParseTimeHoles(res)
+            ? ParseTimeHoles(res, this.config)
             : this.parseSingleValueData(res)
         } else {
           return null
@@ -109,7 +110,7 @@ export class SensorsService {
             new Date(startTime).toISOString().split('.')[0] + 'Z'
           res.header.effectiveTimeFrame.endDateTime =
             new Date(endTime).toISOString().split('.')[0] + 'Z'
-          return ParseTimeHoles(res)
+          return ParseTimeHoles(res, this.config)
         } else {
           return null
         }
@@ -134,7 +135,11 @@ export class SensorsService {
       .map(res => {
         if (res) {
           return timeHoles
-            ? ParseMultiValueData(ParseTimeHoles(res, true), keys, timeHoles)
+            ? ParseMultiValueData(
+                ParseTimeHoles(res, this.config, true),
+                keys,
+                timeHoles
+              )
             : ParseMultiValueData(res.dataset, keys, timeHoles)
         } else {
           return null
@@ -166,7 +171,11 @@ export class SensorsService {
             new Date(startTime).toISOString().split('.')[0] + 'Z'
           res.header.effectiveTimeFrame.endDateTime =
             new Date(endTime).toISOString().split('.')[0] + 'Z'
-          return ParseMultiValueData(ParseTimeHoles(res, true), keys, timeHoles)
+          return ParseMultiValueData(
+            ParseTimeHoles(res, this.config, true),
+            keys,
+            timeHoles
+          )
         } else {
           return null
         }
@@ -196,7 +205,7 @@ export class SensorsService {
             new Date(startTime).toISOString().split('.')[0] + 'Z'
           res.header.effectiveTimeFrame.endDateTime =
             new Date(endTime).toISOString().split('.')[0] + 'Z'
-          return ParseTimeHoles(res)
+          return ParseTimeHoles(res, this.config)
         } else {
           return null
         }
