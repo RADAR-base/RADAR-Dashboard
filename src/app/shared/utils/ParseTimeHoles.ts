@@ -1,4 +1,4 @@
-export function ParseTimeHoles({ dataset, timeFrame, timeInterval }) {
+export function ParseTimeHoles(dataset, timeFrame, timeInterval) {
   const startTime = timeFrame.start
   const endTime = timeFrame.end
 

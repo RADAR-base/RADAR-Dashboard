@@ -63,15 +63,14 @@ export class SensorsService {
         }
 
         if (response) {
-          // Object needs to be constructed from Object literals only
-          // https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm
-          const dataObject = {
-            dataset: response.dataset,
-            timeFrame: this.options.timeFrame,
-            timeInterval: this.options.timeInterval
-          }
-
-          this.queue$.next({ data: ParseTimeHoles(dataObject), sensor })
+          this.queue$.next({
+            data: ParseTimeHoles(
+              response.dataset,
+              this.options.timeFrame,
+              this.options.timeInterval
+            ),
+            sensor
+          })
         } else {
           this.queue$.next({ data: null, sensor })
         }
