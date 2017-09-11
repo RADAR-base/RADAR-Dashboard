@@ -4,10 +4,8 @@ import {
   Input,
   OnInit
 } from '@angular/core'
-import { Store } from '@ngrx/store'
 
 import { DataType } from '../../../shared/store/sensors/sensors.model'
-import * as fromRoot from '../../../shared/store/index'
 import { AppConfig } from '../../../shared/utils/config'
 
 @Component({
@@ -66,7 +64,7 @@ export class SourceGraphComponent implements OnInit {
     )
   }
 
-  constructor(private store: Store<fromRoot.State>) {}
+  constructor() {}
 
   ngOnInit() {}
 

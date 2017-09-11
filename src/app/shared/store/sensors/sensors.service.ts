@@ -16,7 +16,6 @@ import { DescriptiveStatistic, Sensor, TimeInterval } from './sensors.model'
 export class SensorsService {
   private URL = `${PARAMS.API_URI}/data`
   private destroy$: Observable<Action>
-  private webWorkerPromise: Promise<any>
   private queue$ = new Subject<any>()
   private sensors$ = new Subject<Sensor>()
   private sensors: Sensor[] = []

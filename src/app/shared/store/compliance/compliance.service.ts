@@ -10,10 +10,11 @@ export class ComplianceService {
     // TODO: Change when API is ready
     return this.http
       .get<any>(`${PARAMS.API_LOCAL}/mock-compliance.json`)
+      .take(1)
       .delay(1000)
       .filter(d => d !== null)
       .map(res => {
-        // FIXME: change to worker
+        // FIXME: change to new Parser
         // if (res) {
         //   return timeHoles
         //     ? ParseMultiValueData(ParseTimeHoles(res, true), keys, timeHoles)

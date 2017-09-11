@@ -12,8 +12,8 @@ import * as d3 from 'd3'
 import { Observable } from 'rxjs/Observable'
 import { Subscription } from 'rxjs/Subscription'
 
+import { ChartData } from '../../../shared/models/chart-data.model'
 import { AppConfig } from '../../../shared/utils/config'
-import { ChartData } from '../chart.model'
 
 /**
  *  BaseComponent to be extended by chart components
