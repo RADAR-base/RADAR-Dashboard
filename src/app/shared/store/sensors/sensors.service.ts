@@ -2,12 +2,11 @@ import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Actions } from '@ngrx/effects'
 import { Action } from '@ngrx/store'
-import { WebWorkerService } from 'angular2-web-worker'
 import { Observable } from 'rxjs/Observable'
 import { Subject } from 'rxjs/Subject'
 
-import { ParseTimeHolesWorker } from '../../utils/ParseTimeHoles.worker'
 import { AppConfig } from '../../utils/config'
+import { ParseTimeHoles } from '../../utils/ParseTimeHoles'
 import { Source } from '../source/source.model'
 import * as actions from './sensors.actions'
 import { DescriptiveStatistic, Sensor, TimeInterval } from './sensors.model'
@@ -22,11 +21,7 @@ export class SensorsService {
   private sensors: Sensor[] = []
   private options: any = {}
 
-  constructor(
-    private http: HttpClient,
-    private actions$: Actions,
-    private webWorkerService: WebWorkerService
-  ) {
+  constructor(private http: HttpClient, private actions$: Actions) {
     this.destroy$ = this.actions$.ofType(actions.DESTROY)
     this.sensors$.subscribe(sensor => {
       this.getNextSensorData(sensor)
@@ -55,10 +50,6 @@ export class SensorsService {
     return this.queue$.asObservable() // subscribed in the @effects
   }
 
-  destroy() {
-    this.webWorkerService.terminate(this.webWorkerPromise)
-  }
-
   private getNextSensorData(sensor) {
     const url = this.parseURL(sensor)
 
@@ -80,11 +71,7 @@ export class SensorsService {
             timeInterval: this.options.timeInterval
           }
 
-          this.webWorkerPromise = this.webWorkerService
-            .run(ParseTimeHolesWorker, dataObject)
-            .then(data => {
-              this.queue$.next({ data, sensor }) // send back data to @effects
-            })
+          this.queue$.next({ data: ParseTimeHoles(dataObject), sensor })
         } else {
           this.queue$.next({ data: null, sensor })
         }

@@ -27,10 +27,7 @@ export class SensorsEffects {
   @Effect()
   updateDates$ = this.actions$
     .ofType<actions.UpdateDates>(actions.UPDATE_DATES)
-    .withLatestFrom(
-      this.store.select(fromRoot.getSensors),
-      this.store.select(fromRoot.getSensorsIsPristine)
-    )
+    .withLatestFrom(this.store.select(fromRoot.getSensors))
     .map(([, sensors]) => new actions.GetSensorsData(sensors))
 
   @Effect()
@@ -54,11 +51,6 @@ export class SensorsEffects {
           })
           .map(data => new actions.GetSensorsDataSuccess(data))
     )
-
-  @Effect({ dispatch: false })
-  destroy$ = this.actions$
-    .ofType<actions.Destroy>(actions.DESTROY)
-    .do(_ => this.sensorsService.destroy())
 
   constructor(
     private actions$: Actions,

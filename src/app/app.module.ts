@@ -5,7 +5,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { EffectsModule } from '@ngrx/effects'
 import { StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
-import { WebWorkerService } from 'angular2-web-worker'
 
 import { environment } from '../environments/environment'
 import { AppComponent } from './app.component'
@@ -62,7 +61,6 @@ import { metaReducers, reducers } from './shared/store'
       useClass: RadarServicesInterceptor,
       multi: true
     },
-    WebWorkerService,
     ConfigService,
     ErrorService,
     StudyService,
