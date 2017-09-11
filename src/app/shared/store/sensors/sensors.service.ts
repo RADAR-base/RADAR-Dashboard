@@ -5,6 +5,7 @@ import { Action } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 import { Subject } from 'rxjs/Subject'
 
+import { RadarAPISampleModel } from '../../models/radar-api.model'
 import { AppConfig } from '../../utils/config'
 import { ParseTimeHoles } from '../../utils/ParseTimeHoles'
 import { Source } from '../source/source.model'
@@ -54,7 +55,7 @@ export class SensorsService {
     const url = this.parseURL(sensor)
 
     this.http
-      .get<any>(url)
+      .get<RadarAPISampleModel>(url)
       .take(1)
       .takeUntil(this.destroy$)
       .subscribe(response => {
