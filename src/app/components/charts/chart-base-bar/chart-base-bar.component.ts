@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core'
 import * as d3 from 'd3'
 
+import { Categorical, ChartData } from '../../../shared/models/chart-data.model'
 import { ChartBaseComponent } from '../chart-base/chart-base.component'
-import { Categorical, ChartData } from '../chart.model'
 
 @Component({
   selector: 'app-chart-base-bar',

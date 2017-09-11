@@ -4,9 +4,11 @@ import { StoreModule } from '@ngrx/store'
 
 import { reducers } from '../../../shared/store'
 import {
-  MockTimeSeriesDataDates,
-  MockTimeSeriesDataValues
-} from '../../../shared/testing/mocks/mock-timeseries-data2'
+  MockAPISampleDataset,
+  MockTimeFrame,
+  MockTimeInterval
+} from '../../../shared/testing/mocks/mock-chart-data'
+import { ParseTimeHoles } from '../../../shared/utils/ParseTimeHoles'
 import { ChartBaseLineComponent } from './chart-base-line.component'
 
 describe('ChartBaseLineComponent', () => {
@@ -47,8 +49,12 @@ describe('ChartBaseLineComponent', () => {
       expect(component.chartData).toBeFalsy()
 
       // with data // needs to be parsed //
-      component.dates = MockTimeSeriesDataDates
-      component.chartData = MockTimeSeriesDataValues
+      component.chartData = ParseTimeHoles(
+        MockAPISampleDataset,
+        MockTimeFrame,
+        MockTimeInterval
+      )
+
       expect(component.width).toBeGreaterThan(0)
       expect(component.height).toBeGreaterThan(0)
     })
@@ -61,8 +67,12 @@ describe('ChartBaseLineComponent', () => {
       expect(inner.length).toEqual(0)
 
       // with data // needs to be parsed //
-      component.dates = MockTimeSeriesDataDates
-      component.chartData = MockTimeSeriesDataValues
+      // FIXME: removed dates // component needs to be fixed to new parser
+      component.chartData = ParseTimeHoles(
+        MockAPISampleDataset,
+        MockTimeFrame,
+        MockTimeInterval
+      )
 
       // wait for transition
       setTimeout(() => {
@@ -88,8 +98,12 @@ describe('ChartBaseLineComponent', () => {
 
     it('linearGradient should have attributes "y1, y2" when data changes', () => {
       // with data // needs to be parsed //
-      component.dates = MockTimeSeriesDataDates
-      component.chartData = MockTimeSeriesDataValues
+      // FIXME: removed dates // component needs to be fixed to new parser
+      component.chartData = ParseTimeHoles(
+        MockAPISampleDataset,
+        MockTimeFrame,
+        MockTimeInterval
+      )
 
       const gradient = de.nativeElement.querySelector(
         'linearGradient#hr-gradient'

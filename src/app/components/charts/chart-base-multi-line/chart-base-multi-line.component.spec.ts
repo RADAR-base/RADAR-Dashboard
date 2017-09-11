@@ -8,7 +8,12 @@ import {
 import { StoreModule } from '@ngrx/store'
 
 import { reducers } from '../../../shared/store'
-import { MockMultiTimeSeriesData } from '../../../shared/testing/mocks/mock-multi-timeseries-data'
+import {
+  MockAPISampleDataset,
+  MockTimeFrame,
+  MockTimeInterval
+} from '../../../shared/testing/mocks/mock-chart-data'
+import { ParseTimeHoles } from '../../../shared/utils/ParseTimeHoles'
 import { ChartBaseMultiLineComponent } from './chart-base-multi-line.component'
 
 describe('ChartBaseMultiLineComponent', () => {
@@ -46,11 +51,12 @@ describe('ChartBaseMultiLineComponent', () => {
     expect(component.chartData).toBeFalsy()
 
     // with data // needs to be parsed //
-    component.dates = MockMultiTimeSeriesData.dates
-    component.chartData = {
-      keys: MockMultiTimeSeriesData.keys,
-      values: MockMultiTimeSeriesData.values
-    }
+    component.chartData = ParseTimeHoles(
+      MockAPISampleDataset,
+      MockTimeFrame,
+      MockTimeInterval
+    )
+
     expect(component.width).toBeGreaterThan(0)
     expect(component.height).toBeGreaterThan(0)
   })
@@ -67,11 +73,12 @@ describe('ChartBaseMultiLineComponent', () => {
       })
 
       // with data // needs to be parsed //
-      component.dates = MockMultiTimeSeriesData.dates
-      component.chartData = {
-        keys: MockMultiTimeSeriesData.keys,
-        values: MockMultiTimeSeriesData.values
-      }
+      component.chartData = ParseTimeHoles(
+        MockAPISampleDataset,
+        MockTimeFrame,
+        MockTimeInterval
+      )
+
       // wait for transition
       tick(500)
       Object.getOwnPropertyNames(lineElements).forEach(prop => {

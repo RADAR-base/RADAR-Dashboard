@@ -1,7 +1,12 @@
 import { DebugElement } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { MockComplianceData } from '../../../shared/testing/mocks/mock-compliance-data'
+import {
+  MockAPISampleDataset,
+  MockTimeFrame,
+  MockTimeInterval
+} from '../../../shared/testing/mocks/mock-chart-data'
+import { ParseTimeHoles } from '../../../shared/utils/ParseTimeHoles'
 import { ChartBaseMultiBarComponent } from './chart-base-multi-bar.component'
 
 describe('ChartBaseMultiBarComponent', () => {
@@ -41,7 +46,11 @@ describe('ChartBaseMultiBarComponent', () => {
       expect(component.chartData).toBeFalsy()
 
       // with data // needs to be parsed //
-      component.chartData = MockComplianceData
+      component.chartData = ParseTimeHoles(
+        MockAPISampleDataset,
+        MockTimeFrame,
+        MockTimeInterval
+      )
       expect(component.width).toBeGreaterThan(0)
       expect(component.height).toBeGreaterThan(0)
     })
@@ -51,7 +60,11 @@ describe('ChartBaseMultiBarComponent', () => {
       expect(element.querySelector('rect.bar')).toBeFalsy()
 
       // with data // needs to be parsed //
-      component.chartData = MockComplianceData
+      component.chartData = ParseTimeHoles(
+        MockAPISampleDataset,
+        MockTimeFrame,
+        MockTimeInterval
+      )
 
       // select element again as they'll be instantiated
       expect(element.querySelector('rect.backbar')).toBeTruthy()

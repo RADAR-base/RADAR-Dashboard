@@ -2,9 +2,9 @@ import { Component, Input } from '@angular/core'
 import * as d3 from 'd3'
 import { lineChunked } from 'd3-line-chunked'
 
+import { ChartData } from '../../../shared/models/chart-data.model'
 import { AppConfig } from '../../../shared/utils/config'
 import { ChartBaseComponent } from '../chart-base/chart-base.component'
-import { ChartData } from '../chart.model'
 
 @Component({
   selector: 'app-chart-base-multi-line',
