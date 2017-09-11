@@ -4,6 +4,7 @@ import { lineChunked } from 'd3-line-chunked'
 
 import { AppConfig } from '../../../shared/utils/config'
 import { ChartBaseComponent } from '../chart-base/chart-base.component'
+import { ChartData } from '../chart.model'
 
 @Component({
   selector: 'app-chart-base-multi-line',
@@ -13,8 +14,7 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
 export class ChartBaseMultiLineComponent extends ChartBaseComponent {
   @Input() lineColors = AppConfig.charts.CATEGORICAL_COLORS
 
-  dates: Date[]
-  data: any[]
+  data: ChartData[]
   keys: any[]
   svg: any
   chart: any
@@ -43,10 +43,10 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
 
     this.keys.map(k => {
       this.lineChunkedFunctions[k.key] = lineChunked()
-        .x(d => this.xScale(d.date))
-        .y(d => this.yScale(d.value[k.key]))
+        .x((d: ChartData) => this.xScale(d.date))
+        .y((d: ChartData) => this.yScale(d.value[k.key]))
         .curve(d3.curveBasis)
-        .defined(d => d.value)
+        .defined((d: ChartData) => d.value)
         .lineStyles({ stroke: this.colorScale(k.key) })
         .pointStyles({ fill: this.colorScale(k.key) })
     })
@@ -58,14 +58,18 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
     this.xScale = d3
       .scaleTime()
       .range([0, this.width])
-      .domain(d3.extent(this.dates))
+      .domain(d3.extent(this.data, (d: ChartData) => d.date))
 
     const minValue = d3.min(
-      this.keys.map(k => d3.min(this.data, d => d.value && d.value[k.key]))
+      this.keys.map(k =>
+        d3.min(this.data, (d: ChartData) => d.value && d.value[k.key])
+      )
     )
 
     const maxValue = d3.max(
-      this.keys.map(k => d3.max(this.data, d => d.value && d.value[k.key]))
+      this.keys.map(k =>
+        d3.max(this.data, (d: ChartData) => d.value && d.value[k.key])
+      )
     )
 
     this.yScale = d3

@@ -13,6 +13,7 @@ import { Observable } from 'rxjs/Observable'
 import { Subscription } from 'rxjs/Subscription'
 
 import { AppConfig } from '../../../shared/utils/config'
+import { ChartData } from '../chart.model'
 
 /**
  *  BaseComponent to be extended by chart components
@@ -33,12 +34,11 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   @ViewChild('svg') svgRef: ElementRef
 
   @Input() margin = AppConfig.charts.MARGIN
-  @Input() dates: Date[]
   @Input() keys: any[]
 
   @Output() onMove = new EventEmitter<Date>()
 
-  data: any[]
+  data: ChartData[]
   svg: any
   chart: any
   tooltip: any
@@ -115,12 +115,12 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   private tooltipMouseMove() {
     if (!this.xScale) return
 
-    const dateIndex = this.bisect(
-      this.dates,
-      this.xScale.invert(d3.mouse(this.tooltip.node())[0])
-    )
+    // const dateIndex = this.bisect(
+    //   this.dates,
+    //   this.xScale.invert(d3.mouse(this.tooltip.node())[0])
+    // )
 
-    this.onMove.emit(dateIndex)
+    // this.onMove.emit(dateIndex)
   }
 
   private beforeUpdate() {

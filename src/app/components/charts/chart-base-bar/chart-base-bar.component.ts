@@ -1,9 +1,8 @@
 import { Component, Input } from '@angular/core'
 import * as d3 from 'd3'
 
-import { Categorical } from '../../../shared/models/categorical.model'
-import { TimeSeries } from '../../../shared/models/time-series.model'
 import { ChartBaseComponent } from '../chart-base/chart-base.component'
+import { Categorical, ChartData } from '../chart.model'
 
 @Component({
   selector: 'app-chart-base-bar',
@@ -13,9 +12,7 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
 export class ChartBaseBarComponent extends ChartBaseComponent {
   @Input() categorical = false
 
-  // TODO: implement dates like others for consistency
   data: any
-
   svg: any
   chart: any
   width: number
@@ -52,17 +49,17 @@ export class ChartBaseBarComponent extends ChartBaseComponent {
     } else {
       this.xScaleOrdinal
         .paddingOuter(0)
-        .domain(this.data.map((d: TimeSeries) => d.date))
+        .domain(this.data.map((d: ChartData) => d.date))
 
       this.xScaleTime = d3
         .scaleTime()
         .range([0, this.width])
-        .domain(d3.extent(this.data, (d: TimeSeries) => d.date))
+        .domain(d3.extent(this.data, (d: ChartData) => d.date))
 
       this.yScale = d3
         .scaleLinear()
         .range([this.height, 0])
-        .domain([0, d3.max(this.data, (d: TimeSeries) => d.value)])
+        .domain([0, d3.max(this.data, (d: ChartData) => d.value as number)])
 
       this.xAxis
         .attr('transform', `translate(0, ${this.yScale(0)})`)

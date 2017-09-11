@@ -4,6 +4,7 @@ import { lineChunked } from 'd3-line-chunked'
 
 import { AppConfig } from '../../../shared/utils/config'
 import { ChartBaseComponent } from '../chart-base/chart-base.component'
+import { ChartData } from '../chart.model'
 
 @Component({
   selector: 'app-chart-base-line',
@@ -15,8 +16,7 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
   @Input() gradientColors = AppConfig.charts.GRADIENT_COLORS
   @Input() gradientStops = AppConfig.charts.GRADIENT_STOPS
 
-  data: number[]
-  dates: Date[]
+  data: any
   svg: any
   chart: any
   width: number
@@ -55,10 +55,10 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
     this.xAxis.remove()
 
     this.lineChunked = lineChunked()
-      .x(d => this.xScale(d.date))
-      .y(d => this.yScale(d.value))
+      .x((d: ChartData) => this.xScale(d.date))
+      .y((d: ChartData) => this.yScale(d.value))
       .curve(d3.curveLinear)
-      .defined(d => d.value)
+      .defined((d: ChartData) => d.value)
 
     super.init()
   }
@@ -67,12 +67,12 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
     this.xScale = d3
       .scaleTime()
       .range([0, this.width])
-      .domain(d3.extent(this.dates))
+      .domain(d3.extent(this.data, (d: ChartData) => d.date))
 
     this.yScale = d3
       .scaleLinear()
       .range([this.height, 0])
-      .domain(d3.extent(this.data, (d: any) => d.value))
+      .domain(d3.extent(this.data, (d: ChartData) => d.value as number))
 
     this.yAxis.call(d3.axisLeft(this.yScale).tickSize(-this.width))
 

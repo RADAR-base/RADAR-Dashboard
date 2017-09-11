@@ -11,7 +11,6 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
 export class ChartBaseMultiBarComponent extends ChartBaseComponent {
   @Input() categorical = false
 
-  // TODO: implement dates like others for consistency
   data: any
   svg: any
   chart: any
@@ -35,8 +34,6 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
   }
 
   draw() {
-    // Axis
-
     this.xScaleInner = d3.scaleBand().paddingInner(0.3)
 
     this.xScaleOuter = d3
@@ -75,7 +72,6 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
     )
 
     // Bars
-
     let j = 0
     const xScaleOuter = this.xScaleOuter
     const xScaleInner = this.xScaleInner
