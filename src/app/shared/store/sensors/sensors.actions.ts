@@ -1,8 +1,7 @@
 import { Action } from '@ngrx/store'
 
-import { MultiTimeSeries } from '../../models/multi-time-series.model'
+import { ChartData } from '../../models/chart-data.model'
 import { TimeFrame } from '../../models/time-frame.model'
-import { TimeSeries } from '../../models/time-series.model'
 import { Source } from '../source/source.model'
 import { DescriptiveStatistic, Sensor, TimeInterval } from './sensors.model'
 
@@ -42,9 +41,7 @@ export class GetSensorsData implements Action {
 export class GetSensorsDataSuccess implements Action {
   readonly type = GET_SENSORS_DATA_SUCCESS
 
-  constructor(
-    public payload: { data: TimeSeries[] | MultiTimeSeries[]; sensor: Sensor }
-  ) {}
+  constructor(public payload: { data: ChartData[]; sensor: Sensor }) {}
 }
 
 export class SetTimeFrame implements Action {

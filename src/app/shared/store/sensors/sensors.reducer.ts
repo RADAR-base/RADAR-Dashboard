@@ -1,8 +1,7 @@
 import { createSelector } from '@ngrx/store'
 
-import { MultiTimeSeries } from '../../models/multi-time-series.model'
+import { ChartData } from '../../models/chart-data.model'
 import { TimeFrame } from '../../models/time-frame.model'
-import { TimeSeries } from '../../models/time-series.model'
 import * as sensorsActions from './sensors.actions'
 import { DescriptiveStatistic, Sensor, TimeInterval } from './sensors.model'
 
@@ -10,7 +9,7 @@ export interface State {
   ids: string[]
   entities: { [id: string]: Sensor }
   isLoaded: boolean
-  data: { [id: number]: TimeSeries[] | MultiTimeSeries[] }
+  data: { [id: number]: ChartData[] }
   dataLoaded: { [id: number]: boolean }
   dates: Date[]
   tooltipIndex: number
