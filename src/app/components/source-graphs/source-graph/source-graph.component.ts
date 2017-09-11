@@ -6,7 +6,6 @@ import {
 } from '@angular/core'
 import { Store } from '@ngrx/store'
 
-import * as tooltipAction from '../../../shared/store/sensors-tooltip/sensors-tooltip.actions'
 import { DataType } from '../../../shared/store/sensors/sensors.model'
 import * as fromRoot from '../../../shared/store/index'
 import { AppConfig } from '../../../shared/utils/config'
@@ -26,7 +25,6 @@ import { AppConfig } from '../../../shared/utils/config'
     <app-chart-base-line
       *ngIf="sensorData && isLoaded && isSingle"
       [chartData]="sensorData"
-      [dates]="dates"
       [gradientEnabled]="gradientEnabled"
       (onMove)="onMoveHandler($event)"
     ></app-chart-base-line>
@@ -34,7 +32,6 @@ import { AppConfig } from '../../../shared/utils/config'
     <app-chart-base-multi-line
       *ngIf="sensorData && isLoaded && !(isSingle)"
       [chartData]="sensorData"
-      [dates]="dates"
       [keys]="keys"
       (onMove)="onMoveHandler($event)"
     ></app-chart-base-multi-line>
@@ -45,7 +42,6 @@ import { AppConfig } from '../../../shared/utils/config'
 export class SourceGraphComponent implements OnInit {
   @Input() isLoaded
   @Input() sensorData = []
-  @Input() dates
   @Input() type
   @Input() sensorId
   @Input() keys
@@ -74,7 +70,5 @@ export class SourceGraphComponent implements OnInit {
 
   ngOnInit() {}
 
-  onMoveHandler(event) {
-    this.store.dispatch(new tooltipAction.GetAll(event))
-  }
+  onMoveHandler(event) {}
 }

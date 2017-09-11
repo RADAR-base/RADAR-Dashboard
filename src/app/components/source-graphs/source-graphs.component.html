@@ -4,7 +4,6 @@
     <div *ngIf="sensor.visible">
       <app-source-graph
         [type]="sensor.type"
-        [dates]="dates"
         [sensorData]="sensorsData[sensor.id]"
         [isLoaded]="isDataLoaded[sensor.id]"
         [sensorId]="sensor.id"

@@ -19,7 +19,6 @@ export class SourceGraphsComponent implements OnInit {
   @Input() isDataLoaded
   @Input() sensorsData
   @Input() labels
-  @Input() dates
 
   constructor() {}
 
