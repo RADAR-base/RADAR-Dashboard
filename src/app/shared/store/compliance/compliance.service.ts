@@ -5,9 +5,12 @@ import { Observable } from 'rxjs/Observable'
 import { ErrorService } from '../../../shared/services/error.service'
 import { ParseMultiValueData } from '../../../shared/utils/ParseMultiValueData'
 import { ParseTimeHoles } from '../../../shared/utils/ParseTimeHoles'
+import { AppConfig } from '../../utils/config'
 
 @Injectable()
 export class ComplianceService {
+  config = AppConfig.config
+
   constructor(private http: Http) {}
 
   getAll(studyId, keys, timeHoles = true): Observable<any> {
@@ -21,7 +24,11 @@ export class ComplianceService {
       .map(res => {
         if (res) {
           return timeHoles
-            ? ParseMultiValueData(ParseTimeHoles(res, true), keys, timeHoles)
+            ? ParseMultiValueData(
+                ParseTimeHoles(res, this.config, true),
+                keys,
+                timeHoles
+              )
             : ParseMultiValueData(res.dataset, keys, timeHoles)
         } else {
           return null
