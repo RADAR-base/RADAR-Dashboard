@@ -3,32 +3,30 @@ export function ParseTimeHoles(dataset, timeFrame, timeInterval) {
   const endTime = timeFrame.end
 
   return dataset.reduce((acc, d, i, arr) => {
+    const prev = acc[acc.length - 1]
     const date = new Date(d.startDateTime)
     const value = d.sample.value || d.sample
+    const dateBefore = date.getTime() - timeInterval
+    const dateCheck = prev && prev.date.getTime() === dateBefore
 
-    if (i === 0) {
-      // --> First value
-      if (date.getTime() !== startTime) {
-        acc.push({ date: new Date(startTime), value: null })
-      }
-      acc.push({ date, value })
-    } else if (i < arr.length - 1) {
-      // --> In-between values
-      const prev = acc[acc.length - 1]
-      const prevDateCheck = date.getTime() - timeInterval
-      const dateCheck = prev.date.getTime() === prevDateCheck
-
-      if (prev.value && !dateCheck) {
-        acc.push({ date: new Date(prevDateCheck), value: null })
-      }
-      acc.push({ date, value })
-    } else {
-      // --> Last value
-      acc.push({ date, value })
-      if (date.getTime() !== endTime) {
-        acc.push({ date: new Date(endTime), value: null })
-      }
+    // --> Add first timehole
+    if (!prev && date.getTime() !== startTime) {
+      acc.push({ date: new Date(startTime), value: null })
     }
+
+    // --> Add timeholes
+    if (prev && prev.value && !dateCheck) {
+      acc.push({ date: new Date(dateBefore), value: null })
+    }
+
+    // --> Add the current dataset value
+    acc.push({ date, value })
+
+    // --> Add last timehole
+    if (i === arr.length - 1 && date.getTime() !== endTime) {
+      acc.push({ date: new Date(endTime), value: null })
+    }
+
     return acc
   }, [])
 }
