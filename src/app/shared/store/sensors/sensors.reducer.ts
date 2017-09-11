@@ -17,7 +17,6 @@ export interface State {
   timeFrame: TimeFrame
   timeInterval: TimeInterval
   descriptiveStatistic: DescriptiveStatistic
-  isPristine: boolean
 }
 
 const initialState: State = {
@@ -30,8 +29,7 @@ const initialState: State = {
   tooltipIndex: -1,
   timeFrame: { start: null, end: null },
   timeInterval: TimeInterval.TEN_SECOND,
-  descriptiveStatistic: DescriptiveStatistic.AVERAGE,
-  isPristine: true
+  descriptiveStatistic: DescriptiveStatistic.AVERAGE
 }
 
 export function reducer(
@@ -42,8 +40,7 @@ export function reducer(
     case sensorsActions.GET_SENSORS: {
       return {
         ...state,
-        isLoaded: false,
-        isPristine: false
+        isLoaded: false
       }
     }
 
@@ -171,7 +168,6 @@ export const getData = (state: State) => state.data
 export const getDates = (state: State) => state.dates
 export const getTimeFrame = (state: State) => state.timeFrame
 export const getTimeInterval = (state: State) => state.timeInterval
-export const getIsPristine = (state: State) => state.isPristine
 export const getDescriptiveStatistic = (state: State) =>
   state.descriptiveStatistic
 

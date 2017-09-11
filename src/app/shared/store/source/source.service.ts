@@ -20,6 +20,7 @@ export class SourceService {
 
     return this.http
       .get<any>(url)
+      .take(1)
       .takeUntil(this.destroy$)
       .filter(d => d !== null)
       .map(res => res.sources)

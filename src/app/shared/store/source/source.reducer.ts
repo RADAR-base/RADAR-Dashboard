@@ -7,14 +7,12 @@ export interface State {
   ids: string[]
   entities: { [id: string]: Source }
   isLoaded: boolean
-  isPristine: boolean
 }
 
 const initialState: State = {
   ids: [],
   entities: {},
-  isLoaded: false,
-  isPristine: true
+  isLoaded: false
 }
 
 export function reducer(state = initialState, action: actions.Actions): State {
@@ -22,8 +20,7 @@ export function reducer(state = initialState, action: actions.Actions): State {
     case actions.GET_ALL: {
       return {
         ...state,
-        isLoaded: false,
-        isPristine: false
+        isLoaded: false
       }
     }
 
@@ -56,7 +53,6 @@ export function reducer(state = initialState, action: actions.Actions): State {
 export const getIsLoaded = (state: State) => state.isLoaded
 export const getIds = (state: State) => state.ids
 export const getEntities = (state: State) => state.entities
-export const getIsPristine = (state: State) => state.isPristine
 
 export const getAll = createSelector(getEntities, getIds, (entities, ids) => {
   return ids.map(id => entities[id])
