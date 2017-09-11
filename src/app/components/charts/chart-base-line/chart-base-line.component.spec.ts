@@ -59,30 +59,23 @@ describe('ChartBaseLineComponent', () => {
       expect(component.height).toBeGreaterThan(0)
     })
 
-    it('should contain path when data changes', done => {
-      const lineEl = element.querySelector('g')
-      const inner = lineEl.querySelectorAll('g')[2].getElementsByTagName('path')
-
+    it('should contain path when data changes', () => {
       // without data
-      expect(inner.length).toEqual(0)
+      expect(element.querySelectorAll('g.chart .line path').length).toEqual(0)
 
       // with data // needs to be parsed //
-      // FIXME: removed dates // component needs to be fixed to new parser
       component.chartData = ParseTimeHoles(
         MockAPISampleDataset,
         MockTimeFrame,
         MockTimeInterval
       )
-
-      // wait for transition
-      setTimeout(() => {
-        expect(inner.length).toBeGreaterThan(0)
-        done()
-      }, 500)
+      expect(
+        element.querySelectorAll('g.chart .line path').length
+      ).toBeGreaterThan(0)
     })
 
     it('should not have a linearGradient', () => {
-      expect(element.querySelector('linearGradient#hr-gradient')).toBeFalsy()
+      expect(element.querySelector('linearGradient[id^="hr-gradient"]')).toBeFalsy()
     })
   })
 
@@ -93,12 +86,11 @@ describe('ChartBaseLineComponent', () => {
     })
 
     it('should have a linearGradient', () => {
-      expect(element.querySelector('linearGradient#hr-gradient')).toBeTruthy()
+      expect(element.querySelector('linearGradient[id^="hr-gradient"]')).toBeTruthy()
     })
 
     it('linearGradient should have attributes "y1, y2" when data changes', () => {
       // with data // needs to be parsed //
-      // FIXME: removed dates // component needs to be fixed to new parser
       component.chartData = ParseTimeHoles(
         MockAPISampleDataset,
         MockTimeFrame,
@@ -106,7 +98,7 @@ describe('ChartBaseLineComponent', () => {
       )
 
       const gradient = de.nativeElement.querySelector(
-        'linearGradient#hr-gradient'
+        'linearGradient[id^="hr-gradient"]'
       )
       expect(gradient.getAttribute('y1')).toBeGreaterThan(0)
       expect(gradient.getAttribute('y2')).toBeGreaterThan(0)

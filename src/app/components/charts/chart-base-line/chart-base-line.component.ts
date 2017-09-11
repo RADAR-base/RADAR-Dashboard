@@ -36,6 +36,7 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
       this.chart.classed('hr-gradient', true)
 
       this.gradient = this.svg.append('linearGradient')
+      // FIXME: .attr('id', 'hr-gradient') needs to be dynamic for multiple charts
       this.gradient
         .attr('id', 'hr-gradient')
         .attr('gradientUnits', 'userSpaceOnUse')
