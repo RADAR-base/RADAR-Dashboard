@@ -15,6 +15,7 @@ import {
 } from '../../../shared/testing/mocks/mock-chart-data'
 import { ParseTimeHoles } from '../../../shared/utils/ParseTimeHoles'
 import { ChartBaseMultiLineComponent } from './chart-base-multi-line.component'
+import { MockSensorMulti } from '../../../shared/testing/mocks/mock-sensor-data'
 
 describe('ChartBaseMultiLineComponent', () => {
   let component: ChartBaseMultiLineComponent
@@ -32,6 +33,8 @@ describe('ChartBaseMultiLineComponent', () => {
     component = fixture.componentInstance
     element = fixture.nativeElement
     de = fixture.debugElement
+
+    component.keys = MockSensorMulti.keys
 
     fixture.detectChanges()
   })
