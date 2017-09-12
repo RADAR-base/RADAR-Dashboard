@@ -12,7 +12,7 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
   styleUrls: ['./chart-base-multi-line.component.scss']
 })
 export class ChartBaseMultiLineComponent extends ChartBaseComponent {
-  @Input() lineColors = AppConfig.charts.CATEGORICAL_COLORS
+  @Input() lineColors = AppConfig.CATEGORICAL_COLORS
 
   data: ChartData[]
   keys: any[]

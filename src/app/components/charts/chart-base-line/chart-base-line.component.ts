@@ -13,8 +13,8 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
 })
 export class ChartBaseLineComponent extends ChartBaseComponent {
   @Input() gradientEnabled = false
-  @Input() gradientColors = AppConfig.charts.GRADIENT_COLORS
-  @Input() gradientStops = AppConfig.charts.GRADIENT_STOPS
+  @Input() gradientColors = AppConfig.GRADIENT_COLORS
+  @Input() gradientStops = AppConfig.GRADIENT_STOPS
 
   data: any
   svg: any
@@ -36,9 +36,8 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
       this.chart.classed('hr-gradient', true)
 
       this.gradient = this.svg.append('linearGradient')
-      // FIXME: .attr('id', 'hr-gradient') needs to be dynamic for multiple charts
       this.gradient
-        .attr('id', 'hr-gradient')
+        .attr('id', 'hr-gradient-' + this.uid)
         .attr('gradientUnits', 'userSpaceOnUse')
         .attr('x1', 0)
         .attr('x2', 0)
@@ -77,6 +76,13 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
 
     this.yAxis.call(d3.axisLeft(this.yScale).tickSize(-this.width))
 
+    this.lineGroup.selectAll('.line').remove()
+
+    const lines = this.lineGroup
+      .datum(this.data)
+      .call(this.lineChunked)
+      .attr('class', 'line')
+
     // Add HR Gradient
     if (this.gradientEnabled) {
       this.gradient
@@ -84,11 +90,22 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
         .attr('y2', this.yScale(this.gradientStops.y2))
     }
 
-    this.lineGroup.selectAll('.line').remove()
+    lines
+      .selectAll('circle')
+      .attr(
+        'fill',
+        this.gradientEnabled
+          ? `url(#hr-gradient-${this.uid})`
+          : AppConfig.CHART_COLORS.c3
+      )
 
-    this.lineGroup
-      .datum(this.data)
-      .call(this.lineChunked)
-      .attr('class', 'line')
+    lines
+      .selectAll('path')
+      .attr(
+        'stroke',
+        this.gradientEnabled
+          ? `url(#hr-gradient-${this.uid})`
+          : AppConfig.CHART_COLORS.c3
+      )
   }
 }
