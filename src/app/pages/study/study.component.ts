@@ -8,7 +8,6 @@ import * as studyAction from '../../shared/store/study/study.actions'
 import * as subjectAction from '../../shared/store/subject/subject.actions'
 import { Subject } from '../../shared/store/subject/subject.model'
 import * as fromRoot from '../../shared/store/index'
-import { AppConfig } from '../../shared/utils/config'
 import { TakeUntilDestroy } from '../../shared/utils/TakeUntilDestroy'
 
 @Component({
@@ -47,13 +46,7 @@ export class StudyPageComponent implements OnInit {
       .do(isLoadedAndValid => {
         if (isLoadedAndValid) {
           this.store.dispatch(new subjectAction.GetAll(this.studyId))
-          this.store.dispatch(
-            new complianceAction.GetAll({
-              studyId: this.studyId,
-              keys: AppConfig.config.compliance.keys,
-              timeHoles: this.timeHoles
-            })
-          )
+          this.store.dispatch(new complianceAction.GetAll(this.studyId))
         } else {
           this.store.dispatch(new studyAction.GetById(this.studyId))
         }
