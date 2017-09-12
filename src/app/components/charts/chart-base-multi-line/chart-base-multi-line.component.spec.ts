@@ -10,8 +10,8 @@ import { StoreModule } from '@ngrx/store'
 import { reducers } from '../../../shared/store'
 import {
   MockAPISampleDataset,
-  MockTimeFrame,
-  MockTimeInterval
+  MockTimeFrameChartData,
+  MockTimeIntervalChartData
 } from '../../../shared/testing/mocks/mock-chart-data'
 import { MockSensorMulti } from '../../../shared/testing/mocks/mock-sensor-data'
 import { ParseTimeHoles } from '../../../shared/utils/ParseTimeHoles'
@@ -56,8 +56,8 @@ describe('ChartBaseMultiLineComponent', () => {
     // with data // needs to be parsed //
     component.chartData = ParseTimeHoles(
       MockAPISampleDataset,
-      MockTimeFrame,
-      MockTimeInterval
+      MockTimeFrameChartData,
+      MockTimeIntervalChartData
     )
 
     expect(component.width).toBeGreaterThan(0)
@@ -78,8 +78,8 @@ describe('ChartBaseMultiLineComponent', () => {
       // with data // needs to be parsed //
       component.chartData = ParseTimeHoles(
         MockAPISampleDataset,
-        MockTimeFrame,
-        MockTimeInterval
+        MockTimeFrameChartData,
+        MockTimeIntervalChartData
       )
 
       // wait for transition

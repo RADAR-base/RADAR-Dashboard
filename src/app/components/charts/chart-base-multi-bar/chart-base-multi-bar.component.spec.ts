@@ -3,8 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing'
 
 import {
   MockAPISampleDataset,
-  MockTimeFrame,
-  MockTimeInterval
+  MockTimeFrameChartData,
+  MockTimeIntervalChartData
 } from '../../../shared/testing/mocks/mock-chart-data'
 import { ParseTimeHoles } from '../../../shared/utils/ParseTimeHoles'
 import { ChartBaseMultiBarComponent } from './chart-base-multi-bar.component'
@@ -48,8 +48,8 @@ describe('ChartBaseMultiBarComponent', () => {
       // with data // needs to be parsed //
       component.chartData = ParseTimeHoles(
         MockAPISampleDataset,
-        MockTimeFrame,
-        MockTimeInterval
+        MockTimeFrameChartData,
+        MockTimeIntervalChartData
       )
       expect(component.width).toBeGreaterThan(0)
       expect(component.height).toBeGreaterThan(0)
@@ -62,8 +62,8 @@ describe('ChartBaseMultiBarComponent', () => {
       // with data // needs to be parsed //
       component.chartData = ParseTimeHoles(
         MockAPISampleDataset,
-        MockTimeFrame,
-        MockTimeInterval
+        MockTimeFrameChartData,
+        MockTimeIntervalChartData
       )
 
       // select element again as they'll be instantiated

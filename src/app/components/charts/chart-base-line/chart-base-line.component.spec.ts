@@ -5,8 +5,8 @@ import { StoreModule } from '@ngrx/store'
 import { reducers } from '../../../shared/store'
 import {
   MockAPISampleDataset,
-  MockTimeFrame,
-  MockTimeInterval
+  MockTimeFrameChartData,
+  MockTimeIntervalChartData
 } from '../../../shared/testing/mocks/mock-chart-data'
 import { ParseTimeHoles } from '../../../shared/utils/ParseTimeHoles'
 import { ChartBaseLineComponent } from './chart-base-line.component'
@@ -51,8 +51,8 @@ describe('ChartBaseLineComponent', () => {
       // with data // needs to be parsed //
       component.chartData = ParseTimeHoles(
         MockAPISampleDataset,
-        MockTimeFrame,
-        MockTimeInterval
+        MockTimeFrameChartData,
+        MockTimeIntervalChartData
       )
 
       expect(component.width).toBeGreaterThan(0)
@@ -66,8 +66,8 @@ describe('ChartBaseLineComponent', () => {
       // with data // needs to be parsed //
       component.chartData = ParseTimeHoles(
         MockAPISampleDataset,
-        MockTimeFrame,
-        MockTimeInterval
+        MockTimeFrameChartData,
+        MockTimeIntervalChartData
       )
       expect(
         element.querySelectorAll('g.chart .line path').length
@@ -97,8 +97,8 @@ describe('ChartBaseLineComponent', () => {
       // with data // needs to be parsed //
       component.chartData = ParseTimeHoles(
         MockAPISampleDataset,
-        MockTimeFrame,
-        MockTimeInterval
+        MockTimeFrameChartData,
+        MockTimeIntervalChartData
       )
 
       const gradient = de.nativeElement.querySelector(

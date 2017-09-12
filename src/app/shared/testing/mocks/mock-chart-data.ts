@@ -12,15 +12,12 @@ export const MockAPISampleDataset = [
   { startDateTime: '2017-06-16T10:49:00.000Z', sample: { value: 159 } }
 ]
 
-const startDate = new Date(MockAPISampleDataset[0].startDateTime).getTime()
-const endDate = new Date(
-  MockAPISampleDataset[MockAPISampleDataset.length - 1].startDateTime
-).getTime()
-
-export const MockTimeInterval = TimeInterval.TEN_SECOND
-export const MockTimeFrame = {
-  start: startDate,
-  end: endDate
+export const MockTimeIntervalChartData = TimeInterval.TEN_SECOND
+export const MockTimeFrameChartData = {
+  start: new Date(MockAPISampleDataset[0].startDateTime).getTime(),
+  end: new Date(
+    MockAPISampleDataset[MockAPISampleDataset.length - 1].startDateTime
+  ).getTime()
 }
 
 export const MockChartDataExpected: ChartData[] = [
@@ -38,13 +35,16 @@ export const MockChartDataExpected: ChartData[] = [
   { date: new Date('2017-06-16T10:49:00.000Z'), value: 159 }
 ]
 
-export const MockTimeFrameWithStartEndHoles = {
-  start: startDate - MockTimeInterval * 2,
-  end: endDate + MockTimeInterval * 4
+export const MockTimeFrameChartDataWithStartEndHoles = {
+  start: MockTimeFrameChartData.start - TimeInterval.TEN_SECOND * 4,
+  end: MockTimeFrameChartData.end + TimeInterval.TEN_SECOND * 4
 }
 
 export const MockChartDataWithStartEndHolesExpected: ChartData[] = [
-  { date: new Date(MockTimeFrameWithStartEndHoles.start), value: null },
+  {
+    date: new Date(MockTimeFrameChartDataWithStartEndHoles.start),
+    value: null
+  },
   ...MockChartDataExpected,
-  { date: new Date(MockTimeFrameWithStartEndHoles.end), value: null }
+  { date: new Date(MockTimeFrameChartDataWithStartEndHoles.end), value: null }
 ]
