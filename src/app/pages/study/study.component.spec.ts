@@ -10,6 +10,7 @@ import {
 } from '../../shared/testing/router-stubs'
 import { StudyPageComponent } from './study.component'
 import { StudyPageModule } from './study.module'
+import { MockConfig } from '../../shared/testing/mocks/mock-config'
 
 describe('StudyPageComponent', () => {
   let component: StudyPageComponent
@@ -34,7 +35,6 @@ describe('StudyPageComponent', () => {
       component = fixture.componentInstance
       element = fixture.nativeElement
       de = fixture.debugElement
-
       fixture.detectChanges()
     })
   )
