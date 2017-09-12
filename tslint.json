@@ -15,10 +15,21 @@
       true,
       {
         "order": [
-          "static-field",
-          "instance-field",
-          "static-method",
-          "instance-method"
+          "public-static-field",
+          "protected-static-field",
+          "private-static-field",
+          "public-instance-field",
+          "protected-instance-field",
+          "private-instance-field",
+          "public-constructor",
+          "protected-constructor",
+          "private-constructor",
+          "public-static-method",
+          "protected-static-method",
+          "private-static-method",
+          "public-instance-method",
+          "protected-instance-method",
+          "private-instance-method"
         ]
       }
     ],
@@ -54,6 +65,15 @@
     "no-access-missing-member": true,
     "templates-use-public": true,
     "invoke-injectable": true,
+    "banana-in-box": true,
+    "templates-no-negated-async": true,
+    "use-view-encapsulation": true,
+    "angular-whitespace": [
+      true,
+      "check-semicolon",
+      "check-interpolation",
+      "check-pipe"
+    ],
     "rxjs-add": {
       "options": [
         {
