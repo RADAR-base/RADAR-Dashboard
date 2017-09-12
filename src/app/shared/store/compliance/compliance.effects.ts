@@ -14,7 +14,7 @@ export class ComplianceEffects {
     .map(action => action.payload)
     .switchMap(payload => {
       return this.complianceService
-        .getAll(payload.studyId, payload.keys, payload.timeHoles)
+        .getAll(payload)
         .map((data: any) => new actions.GetAllSuccess(data))
     })
 
