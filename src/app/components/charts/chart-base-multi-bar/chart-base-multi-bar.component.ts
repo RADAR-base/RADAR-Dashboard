@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core'
 import * as d3 from 'd3'
 
+import { ChartData } from '../../../shared/models/chart-data.model'
 import { ChartBaseComponent } from '../chart-base/chart-base.component'
 
 @Component({
@@ -11,7 +12,7 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
 export class ChartBaseMultiBarComponent extends ChartBaseComponent {
   @Input() categorical = false
 
-  data: any
+  data: ChartData[]
   svg: any
   chart: any
   width: number
@@ -24,7 +25,7 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
   yScale: any
   legend: any
   dates: any
-  keys: any
+  keys: any[]
   rects: any
 
   tickValues = [0, 0.25, 0.5, 0.75, 1]
@@ -43,12 +44,10 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
 
     this.yScale = d3.scaleLinear().rangeRound([this.height, 0])
 
-    this.dates = this.data.dates
-    this.keys = this.data.keys.map(k => k.key)
+    this.xScaleOuter.domain(this.data.map(d => d.date))
 
-    this.xScaleOuter.domain(this.dates)
     this.xScaleInner
-      .domain(this.keys)
+      .domain(this.keys.map(d => d.key))
       .rangeRound([0, this.xScaleOuter.bandwidth()])
     this.yScale.domain([0, 1])
 
@@ -73,69 +72,76 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
 
     // Bars
     let j = 0
-    const xScaleOuter = this.xScaleOuter
-    const xScaleInner = this.xScaleInner
     const yScale = this.yScale
-    const values = this.data.values
     const height = this.height
-    const width = this.width
+    const data = this.data
 
     this.chart.selectAll('rect').remove()
-    this.chart.selectAll('.nullSymbol').remove()
+    this.chart.selectAll('.null-symbol').remove()
 
     this.bar = this.chart
       .selectAll('bar')
-      .data(this.data.dates)
+      .data(this.data)
       .enter()
       .append('g')
       .attr('class', 'g')
       .attr('id', d => j++)
-      .attr('transform', d => `translate(${xScaleOuter(d)}, 0)`)
+      .attr('transform', d => `translate(${this.xScaleOuter(d.date)}, 0)`)
 
     this.rects = this.bar
       .selectAll('g')
-      .data(this.data.keys, k => k.key)
+      .data(this.keys)
       .enter()
       .append('rect')
-      .attr('width', xScaleInner.bandwidth())
+      .attr('width', this.xScaleInner.bandwidth())
       .attr('class', d => d.key)
       .attr('id', function(d) {
-        return values[d.key][this.parentNode.id] === null ? 'null' : 'notnull'
+        return data[this.parentNode.id].value[d.key] === undefined
+          ? 'null'
+          : 'not-null'
       })
-      .attr('x', d => xScaleInner(d.key))
+      .attr('x', d => this.xScaleInner(d.key))
       .attr('y', function(d) {
-        return yScale(values[d.key][this.parentNode.id])
+        return this.id !== 'null'
+          ? yScale(data[this.parentNode.id].value[d.key])
+          : 0
       })
       .attr('height', function(d) {
-        return height - yScale(values[d.key][this.parentNode.id])
+        return this.id !== 'null'
+          ? height - yScale(data[this.parentNode.id].value[d.key])
+          : 0
       })
 
+    // Null Symbol
     this.rects
       .nodes()
       .filter(d => d.id === 'null')
-      .forEach(function(d) {
+      .forEach(d =>
         d3
           .select(d.parentNode)
           .append('text')
-          .attr('class', 'nullSymbol')
+          .attr('class', 'null-symbol')
           .attr('fill', '#fff')
-          .attr('x', xScaleInner(d.className.baseVal))
+          .attr('x', this.xScaleInner(d.className.baseVal))
           .attr('y', height - height / 40)
-          .style('font-size', width / 70)
+          .style('font-size', this.width / 70)
           .text('x')
-      })
+      )
 
+    // Gray Background Bar
     this.bar
       .selectAll('rects')
-      .data(this.data.keys, k => k.key)
+      .data(this.keys, k => k.key)
       .enter()
       .append('rect')
-      .attr('width', xScaleInner.bandwidth())
+      .attr('width', this.xScaleInner.bandwidth())
       .attr('class', 'backbar')
-      .attr('x', d => xScaleInner(d.key))
+      .attr('x', d => this.xScaleInner(d.key))
       .attr('y', yScale(1))
       .attr('height', function(d) {
-        return yScale(values[d.key][this.parentNode.id])
+        return this.id === 'null'
+          ? yScale(data[this.parentNode.id].value[d.key])
+          : height
       })
 
     this.bar.exit().remove()
