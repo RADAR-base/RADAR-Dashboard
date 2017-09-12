@@ -2,11 +2,14 @@ import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs/Observable'
 
+import { AppConfig } from '../../utils/config'
+import { ParseTimeHoles } from '../../utils/ParseTimeHoles'
+
 @Injectable()
 export class ComplianceService {
   constructor(private http: HttpClient) {}
 
-  getAll(studyId, keys, timeHoles = true): Observable<any> {
+  getAll(studyId): Observable<any> {
     // TODO: Change when API is ready
     return this.http
       .get<any>(`${PARAMS.API_LOCAL}/mock-compliance.json`)
@@ -14,15 +17,20 @@ export class ComplianceService {
       .delay(1000)
       .filter(d => d !== null)
       .map(res => {
-        // FIXME: change to new Parser
-        // if (res) {
-        //   return timeHoles
-        //     ? ParseMultiValueData(ParseTimeHoles(res, true), keys, timeHoles)
-        //     : ParseMultiValueData(res.dataset, keys, timeHoles)
-        // } else {
-        //   return null
-        // }
-        return null
+        if (res) {
+          return ParseTimeHoles(
+            res.dataset,
+            {
+              start: new Date(
+                res.header.effectiveTimeFrame.startDateTime
+              ).getTime(),
+              end: new Date(res.header.effectiveTimeFrame.endDateTime).getTime()
+            },
+            AppConfig.config.timeIntervals[res.header.timeFrame].value
+          )
+        } else {
+          return null
+        }
       })
   }
 }
