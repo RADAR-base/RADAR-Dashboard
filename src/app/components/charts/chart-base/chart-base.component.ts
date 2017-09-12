@@ -11,6 +11,7 @@ import {
 import * as d3 from 'd3'
 import { Observable } from 'rxjs/Observable'
 import { Subscription } from 'rxjs/Subscription'
+import * as shortid from 'shortid'
 
 import { ChartData } from '../../../shared/models/chart-data.model'
 import { AppConfig } from '../../../shared/utils/config'
@@ -33,11 +34,12 @@ import { AppConfig } from '../../../shared/utils/config'
 export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   @ViewChild('svg') svgRef: ElementRef
 
-  @Input() margin = AppConfig.charts.MARGIN
+  @Input() margin = AppConfig.MARGIN
   @Input() keys: any[]
 
   @Output() onMove = new EventEmitter<Date>()
 
+  uid: string
   data: ChartData[]
   svg: any
   chart: any
@@ -62,6 +64,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
+    this.uid = shortid.generate()
     this.svg = d3.select(this.svgRef.nativeElement)
 
     this.beforeInit()
@@ -106,21 +109,13 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
       .attr('class', 'tooltip-box')
       .on('mousemove', () => this.tooltipMouseMove())
 
-    this.bisect = d3.bisector(d => d).right
-
     this.init()
   }
 
   // TODO: debounce event
   private tooltipMouseMove() {
     if (!this.xScale) return
-
-    // const dateIndex = this.bisect(
-    //   this.dates,
-    //   this.xScale.invert(d3.mouse(this.tooltip.node())[0])
-    // )
-
-    // this.onMove.emit(dateIndex)
+    this.onMove.emit(this.xScale.invert(d3.mouse(this.tooltip.node())[0]))
   }
 
   private beforeUpdate() {
