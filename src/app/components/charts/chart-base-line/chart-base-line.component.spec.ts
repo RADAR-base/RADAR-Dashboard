@@ -75,7 +75,9 @@ describe('ChartBaseLineComponent', () => {
     })
 
     it('should not have a linearGradient', () => {
-      expect(element.querySelector('linearGradient[id^="hr-gradient"]')).toBeFalsy()
+      expect(
+        element.querySelector('linearGradient[id^="hr-gradient"]')
+      ).toBeFalsy()
     })
   })
 
@@ -86,7 +88,9 @@ describe('ChartBaseLineComponent', () => {
     })
 
     it('should have a linearGradient', () => {
-      expect(element.querySelector('linearGradient[id^="hr-gradient"]')).toBeTruthy()
+      expect(
+        element.querySelector('linearGradient[id^="hr-gradient"]')
+      ).toBeTruthy()
     })
 
     it('linearGradient should have attributes "y1, y2" when data changes', () => {

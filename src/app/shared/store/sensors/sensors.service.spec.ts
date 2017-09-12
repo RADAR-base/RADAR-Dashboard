@@ -1,9 +1,9 @@
 import { HttpClientModule } from '@angular/common/http'
 import { TestBed, inject } from '@angular/core/testing'
+import { provideMockActions } from '@ngrx/effects/testing'
+import { Observable } from 'rxjs/Observable'
 
 import { SensorsService } from './sensors.service'
-import { Observable } from 'rxjs/Observable'
-import { provideMockActions } from '@ngrx/effects/testing'
 
 describe('SensorsService', () => {
   const actions: Observable<any> = Observable.of()

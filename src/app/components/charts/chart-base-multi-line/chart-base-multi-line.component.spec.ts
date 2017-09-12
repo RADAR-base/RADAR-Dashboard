@@ -13,9 +13,9 @@ import {
   MockTimeFrame,
   MockTimeInterval
 } from '../../../shared/testing/mocks/mock-chart-data'
+import { MockSensorMulti } from '../../../shared/testing/mocks/mock-sensor-data'
 import { ParseTimeHoles } from '../../../shared/utils/ParseTimeHoles'
 import { ChartBaseMultiLineComponent } from './chart-base-multi-line.component'
-import { MockSensorMulti } from '../../../shared/testing/mocks/mock-sensor-data'
 
 describe('ChartBaseMultiLineComponent', () => {
   let component: ChartBaseMultiLineComponent
