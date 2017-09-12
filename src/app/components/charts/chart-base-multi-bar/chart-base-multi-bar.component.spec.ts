@@ -2,9 +2,9 @@ import { DebugElement } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 
 import { MockComplianceData } from '../../../shared/testing/mocks/mock-compliance-data'
+import { MockConfig } from '../../../shared/testing/mocks/mock-config'
 import { ParseTimeHoles } from '../../../shared/utils/ParseTimeHoles'
 import { ChartBaseMultiBarComponent } from './chart-base-multi-bar.component'
-import { MockConfig } from '../../../shared/testing/mocks/mock-config'
 
 describe('ChartBaseMultiBarComponent', () => {
   let component: ChartBaseMultiBarComponent
