@@ -3,8 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing'
 
 import {
   MockAPISampleDataset,
-  MockTimeFrame,
-  MockTimeInterval
+  MockTimeFrameChartData,
+  MockTimeIntervalChartData
 } from '../../../shared/testing/mocks/mock-chart-data'
 import { ParseTimeHoles } from '../../../shared/utils/ParseTimeHoles'
 import { ChartBaseComponent } from './chart-base.component'
@@ -50,8 +50,8 @@ describe('ChartBaseComponent', () => {
     // with data // needs to be parsed //
     component.chartData = ParseTimeHoles(
       MockAPISampleDataset,
-      MockTimeFrame,
-      MockTimeInterval
+      MockTimeFrameChartData,
+      MockTimeIntervalChartData
     )
     expect(component.width).toBeGreaterThan(0)
     expect(component.height).toBeGreaterThan(0)

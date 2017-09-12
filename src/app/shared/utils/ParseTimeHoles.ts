@@ -5,7 +5,7 @@ export function ParseTimeHoles(dataset, timeFrame, timeInterval) {
   return dataset.reduce((acc, d, i, arr) => {
     const prev = acc[acc.length - 1]
     const date = new Date(d.startDateTime)
-    const value = d.sample.value || d.sample
+    const value = d.sample.value || d.sample // single || multi
     const dateBefore = date.getTime() - timeInterval
     const dateCheck = prev && prev.date.getTime() === dateBefore
 
