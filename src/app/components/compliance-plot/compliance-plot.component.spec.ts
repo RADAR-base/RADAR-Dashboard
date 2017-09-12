@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed, async } from '@angular/core/testing'
 
 import { CompliancePlotComponent } from './compliance-plot.component'
 import { CompliancePlotModule } from './compliance-plot.module'
+import { MockConfig } from '../../shared/testing/mocks/mock-config'
 
 describe('CompliancePlotComponent', () => {
   let component: CompliancePlotComponent
@@ -18,6 +19,7 @@ describe('CompliancePlotComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CompliancePlotComponent)
     component = fixture.componentInstance
+    component.keys = MockConfig.config.compliance.keys
     fixture.detectChanges()
   })
 
