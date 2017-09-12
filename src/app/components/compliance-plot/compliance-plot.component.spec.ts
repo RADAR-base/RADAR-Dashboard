@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing'
 
+import { MockConfig } from '../../shared/testing/mocks/mock-config'
 import { CompliancePlotComponent } from './compliance-plot.component'
 import { CompliancePlotModule } from './compliance-plot.module'
-import { MockConfig } from '../../shared/testing/mocks/mock-config'
 
 describe('CompliancePlotComponent', () => {
   let component: CompliancePlotComponent
