@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core'
 import * as d3 from 'd3'
 
 import { ChartData } from '../../../shared/models/chart-data.model'
+import { AppConfig } from '../../../shared/utils/config'
 import { ChartBaseComponent } from '../chart-base/chart-base.component'
 
 @Component({
@@ -12,6 +13,7 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
 export class ChartBaseMultiBarComponent extends ChartBaseComponent {
   @Input() categorical = false
   @Input() yTicks
+  @Input() barColors
 
   data: ChartData[]
   svg: any
@@ -28,8 +30,21 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
   dates: any
   keys: any[]
   rects: any
+  colorScale: any
 
   init() {
+    this.barColors = this.barColors
+      ? AppConfig.CATEGORICAL_COLORS.slice(
+          this.barColors[0] - 1,
+          this.barColors[1]
+        )
+      : AppConfig.CATEGORICAL_COLORS
+
+    this.colorScale = d3
+      .scaleOrdinal()
+      .domain(this.keys.map(k => k.key))
+      .range(this.barColors)
+
     super.init()
   }
 
@@ -43,12 +58,13 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
 
     this.yScale = d3.scaleLinear().rangeRound([this.height, 0])
 
+    this.yScale.domain([0, 1])
+
     this.xScaleOuter.domain(this.data.map(d => d.date))
 
     this.xScaleInner
       .domain(this.keys.map(d => d.key))
       .rangeRound([0, this.xScaleOuter.bandwidth()])
-    this.yScale.domain([0, 1])
 
     this.xAxis.attr('transform', `translate(0, ${this.height})`).call(
       d3
@@ -93,7 +109,7 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
       .enter()
       .append('rect')
       .attr('width', this.xScaleInner.bandwidth())
-      .attr('class', d => d.key)
+      .style('fill', d => this.colorScale(d.key))
       .attr('id', function(d) {
         return data[this.parentNode.id].value[d.key] === undefined
           ? 'null'
@@ -134,7 +150,7 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
       .enter()
       .append('rect')
       .attr('width', this.xScaleInner.bandwidth())
-      .attr('class', 'backbar')
+      .attr('class', 'back-bar')
       .attr('x', d => this.xScaleInner(d.key))
       .attr('y', yScale(1))
       .attr('height', height)
