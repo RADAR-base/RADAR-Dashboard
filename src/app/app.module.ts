@@ -16,7 +16,6 @@ import { RadarServicesInterceptor } from './shared/services/radar-services.inter
 import { ComplianceEffects } from './shared/store/compliance/compliance.effects'
 import { ComplianceService } from './shared/store/compliance/compliance.service'
 import { PagesEffects } from './shared/store/pages/pages.effects'
-import { SensorsTooltipEffects } from './shared/store/sensors-tooltip/sensors-tooltip.effects'
 import { SensorsEffects } from './shared/store/sensors/sensors.effects'
 import { SensorsService } from './shared/store/sensors/sensors.service'
 import { SourceEffects } from './shared/store/source/source.effects'
@@ -25,7 +24,7 @@ import { StudyEffects } from './shared/store/study/study.effects'
 import { StudyService } from './shared/store/study/study.service'
 import { SubjectEffects } from './shared/store/subject/subject.effects'
 import { SubjectService } from './shared/store/subject/subject.service'
-import { metaReducers, reducers } from './shared/store'
+import { reducers } from './shared/store'
 
 @NgModule({
   declarations: [AppComponent, NotFoundPageComponent],
@@ -35,10 +34,12 @@ import { metaReducers, reducers } from './shared/store'
     BrowserAnimationsModule,
 
     // ngrx/store
-    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreModule.forRoot(reducers),
 
     // Redux Devtools
     // https://github.com/zalmoxisus/redux-devtools-extension
+    // NOTE: Beware of the performance cost!
+    // https://github.com/ngrx/store-devtools/issues/45
     !environment.PROD ? StoreDevtoolsModule.instrument() : [],
 
     // Setup ngrx/effects
@@ -48,7 +49,6 @@ import { metaReducers, reducers } from './shared/store'
       SubjectEffects,
       SourceEffects,
       SensorsEffects,
-      SensorsTooltipEffects,
       ComplianceEffects
     ]),
 
