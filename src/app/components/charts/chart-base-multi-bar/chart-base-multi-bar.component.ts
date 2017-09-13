@@ -137,11 +137,7 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
       .attr('class', 'backbar')
       .attr('x', d => this.xScaleInner(d.key))
       .attr('y', yScale(1))
-      .attr('height', function(d) {
-        return this.id === 'null'
-          ? yScale(data[this.parentNode.id].value[d.key])
-          : height
-      })
+      .attr('height', height)
 
     this.bar.exit().remove()
   }
