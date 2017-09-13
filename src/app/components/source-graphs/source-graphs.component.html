@@ -1,4 +1,15 @@
-<div *ngFor="let source of sources; trackBy: trackBySourceId">
+<app-tooltip
+  #tooltip
+  [data]="tooltipData$ | async"
+  [style.transform]="'translate('+ tooltipX +'px, '+ tooltipY +'px)'"
+  [style.opacity]="tooltipShow"
+></app-tooltip>
+
+<div
+  *ngFor="let source of sources; trackBy: trackBySourceId"
+  (mousemove)="onMouseMove($event)"
+  (mouseleave)="onMouseLeave($event)"
+>
   <p>SOURCE {{ source.id }}</p>
   <div *ngFor="let sensor of source.sensors; trackBy: trackBySensorId">
     <div *ngIf="sensor.visible">

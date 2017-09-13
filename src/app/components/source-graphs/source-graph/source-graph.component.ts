@@ -1,11 +1,9 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnInit
-} from '@angular/core'
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
+import { Store } from '@ngrx/store'
 
+import * as sensorsActions from '../../../shared/store/sensors/sensors.actions'
 import { DataType } from '../../../shared/store/sensors/sensors.model'
+import * as fromRoot from '../../../shared/store/'
 import { AppConfig } from '../../../shared/utils/config'
 
 @Component({
@@ -39,11 +37,11 @@ import { AppConfig } from '../../../shared/utils/config'
   styleUrls: ['./source-graph.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SourceGraphComponent implements OnInit {
+export class SourceGraphComponent {
   @Input() isLoaded
   @Input() sensorData = []
-  @Input() type
   @Input() sensorId
+  @Input() type
   @Input() keys
 
   get gradientEnabled() {
@@ -66,9 +64,9 @@ export class SourceGraphComponent implements OnInit {
     )
   }
 
-  constructor() {}
+  constructor(private store: Store<fromRoot.State>) {}
 
-  ngOnInit() {}
-
-  onMoveHandler(event) {}
+  onMoveHandler(date: Date) {
+    this.store.dispatch(new sensorsActions.SetTooltipDate(date))
+  }
 }
