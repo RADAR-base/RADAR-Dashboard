@@ -1,13 +1,13 @@
-import { ConfigKey, ConfigLabel } from '../../models/config.model'
+import { ConfigKey, Label } from '../../models/config.model'
 
 export interface Sensor {
-  id?: string
+  id?: number
   source?: string
   keys?: ConfigKey[]
   type?: string
   visible?: boolean
   unit: string
-  label: ConfigLabel
+  label: Label
   dataType: DataType
   chart: ChartOptions
 }
