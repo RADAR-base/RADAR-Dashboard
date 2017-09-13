@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 import * as d3 from 'd3'
 
 import { Categorical, ChartData } from '../../../shared/models/chart-data.model'
@@ -7,7 +7,8 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
 @Component({
   selector: 'app-chart-base-bar',
   templateUrl: '../charts.common.html',
-  styleUrls: ['./chart-base-bar.component.scss']
+  styleUrls: ['./chart-base-bar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChartBaseBarComponent extends ChartBaseComponent {
   @Input() categorical = false

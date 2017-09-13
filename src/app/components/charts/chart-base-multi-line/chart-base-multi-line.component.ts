@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 import * as d3 from 'd3'
 import { lineChunked } from 'd3-line-chunked'
 
@@ -9,7 +9,8 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
 @Component({
   selector: 'app-chart-base-multi-line',
   templateUrl: '../charts.common.html',
-  styleUrls: ['./chart-base-multi-line.component.scss']
+  styleUrls: ['./chart-base-multi-line.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChartBaseMultiLineComponent extends ChartBaseComponent {
   @Input() lineColors = AppConfig.CATEGORICAL_COLORS

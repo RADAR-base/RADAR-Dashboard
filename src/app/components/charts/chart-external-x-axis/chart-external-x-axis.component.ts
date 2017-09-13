@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { ChangeDetectionStrategy, Component } from '@angular/core'
 import * as d3 from 'd3'
 
 import { ChartBaseComponent } from '../chart-base/chart-base.component'
@@ -6,7 +6,8 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
 @Component({
   selector: 'app-chart-external-x-axis',
   templateUrl: '../charts.common.html',
-  styleUrls: ['./chart-external-x-axis.component.scss']
+  styleUrls: ['./chart-external-x-axis.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChartExternalXAxisComponent extends ChartBaseComponent {
   data: any

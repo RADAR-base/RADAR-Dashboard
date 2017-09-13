@@ -1,5 +1,6 @@
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   EventEmitter,
@@ -29,7 +30,8 @@ import { AppConfig } from '../../../shared/utils/config'
  *  3. draw() use to draw the chart elements
  */
 @Component({
-  templateUrl: '../charts.common.html'
+  templateUrl: '../charts.common.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   @ViewChild('svg') svgRef: ElementRef
@@ -118,10 +120,10 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
     this.init()
   }
 
-  // TODO: debounce event
   private tooltipMouseMove() {
-    if (!this.xScale) return
-    this.onMove.emit(this.xScale.invert(d3.mouse(this.tooltip.node())[0]))
+    if (this.xScale) {
+      this.onMove.emit(this.xScale.invert(d3.mouse(this.tooltip.node())[0]))
+    }
   }
 
   private beforeUpdate() {
