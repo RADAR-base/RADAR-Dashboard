@@ -21,6 +21,8 @@ describe('ChartBaseMultiBarComponent', () => {
     component = fixture.componentInstance
     element = fixture.nativeElement
     de = fixture.debugElement
+
+    component.keys = MockConfig.config.compliance.keys
   })
 
   describe('=> without @Input', () => {
@@ -64,7 +66,6 @@ describe('ChartBaseMultiBarComponent', () => {
         MockConfig.config.timeIntervals[MockComplianceData.header.timeFrame]
           .value
       )
-      component.keys = MockConfig.config.compliance.keys
       fixture.detectChanges()
     })
 
@@ -85,7 +86,7 @@ describe('ChartBaseMultiBarComponent', () => {
     it('rect should have attribute x and y when data changes', () => {
       // with data
       // select element again as they'll be instantiated
-      expect(element.querySelector('rect.backbar')).toBeTruthy()
+      expect(element.querySelector('rect.back-bar')).toBeTruthy()
 
       const rectElements: any = element.querySelectorAll('rect.bar')
 
