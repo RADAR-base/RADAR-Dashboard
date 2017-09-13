@@ -11,7 +11,7 @@ import { SensorsService } from './sensors.service'
 export class SensorsEffects {
   @Effect()
   getSensors$: Observable<Action> = this.actions$
-    .ofType<actions.GetSensors>(actions.GET_SENSORS)
+    .ofType<actions.GetSensors>(actions.LOAD_SENSORS)
     .map(action => action.payload)
     .switchMap(payload => {
       return this.sensorsService
@@ -21,7 +21,7 @@ export class SensorsEffects {
 
   @Effect()
   getSensorsSuccess$ = this.actions$
-    .ofType<actions.GetSensorsSuccess>(actions.GET_SENSORS_SUCCESS)
+    .ofType<actions.GetSensorsSuccess>(actions.LOAD_SENSORS_SUCCESS)
     .map(_ => new actions.UpdateDates())
 
   @Effect()
@@ -32,7 +32,7 @@ export class SensorsEffects {
 
   @Effect()
   getSensorsDataSuccess$: Observable<Action> = this.actions$
-    .ofType<actions.GetSensorsData>(actions.GET_SENSORS_DATA)
+    .ofType<actions.GetSensorsData>(actions.LOAD_SENSORS_DATA)
     .map(action => action.payload)
     .withLatestFrom(
       this.store.select(fromRoot.getSubjectSelectedId),
