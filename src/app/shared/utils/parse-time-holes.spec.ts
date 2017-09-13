@@ -13,7 +13,7 @@ import {
   MockTimeFrameCompliance,
   MockTimeFrameComplianceWithStartEndHoles
 } from '../testing/mocks/mock-compliance-data'
-import { ParseTimeHoles } from './ParseTimeHoles'
+import { ParseTimeHoles } from './parse-time-holes'
 
 describe('ParseTimeHoles', () => {
   it('Sensor Data > 10s Interval > TimeFrame === Data', () => {
