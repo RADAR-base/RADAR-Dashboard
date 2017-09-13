@@ -7,7 +7,7 @@ import { Subject } from 'rxjs/Subject'
 
 import { RadarAPISampleModel } from '../../models/radar-api.model'
 import { AppConfig } from '../../utils/config'
-import { ParseTimeHoles } from '../../utils/ParseTimeHoles'
+import { ParseTimeHoles } from '../../utils/parse-time-holes'
 import { Source } from '../source/source.model'
 import * as actions from './sensors.actions'
 import { DescriptiveStatistic, Sensor, TimeInterval } from './sensors.model'
