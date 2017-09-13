@@ -8,7 +8,7 @@ import * as studyAction from '../../shared/store/study/study.actions'
 import * as subjectAction from '../../shared/store/subject/subject.actions'
 import { Subject } from '../../shared/store/subject/subject.model'
 import * as fromRoot from '../../shared/store/index'
-import { TakeUntilDestroy } from '../../shared/utils/TakeUntilDestroy'
+import { TakeUntilDestroy } from '../../shared/utils/take-until-destroy'
 
 @Component({
   selector: 'app-study-page',

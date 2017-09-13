@@ -20,7 +20,7 @@ import { Source } from '../../shared/store/source/source.model'
 import * as studyActions from '../../shared/store/study/study.actions'
 import * as subjectActions from '../../shared/store/subject/subject.actions'
 import * as fromRoot from '../../shared/store/index'
-import { TakeUntilDestroy } from '../../shared/utils/TakeUntilDestroy'
+import { TakeUntilDestroy } from '../../shared/utils/take-until-destroy'
 
 @Component({
   selector: 'app-patient-page',
@@ -37,7 +37,7 @@ export class SubjectPageComponent implements OnInit, OnDestroy {
   sourceIsLoaded$: Observable<boolean>
   dates$: Observable<Date[]>
   sensorsIsDataLoaded$: any
-  sensorsData$: any
+  sensorsData$: Observable<any>
 
   private takeUntilDestroy
 
@@ -88,6 +88,7 @@ export class SubjectPageComponent implements OnInit, OnDestroy {
     )
     this.sensorsData$ = this.store.select(fromRoot.getSensorsData)
 
+    // Dates for Volume Graph
     this.dates$ = this.store.select(fromRoot.getSensorsDates)
   }
 

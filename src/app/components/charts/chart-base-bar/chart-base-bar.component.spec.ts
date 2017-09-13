@@ -6,7 +6,7 @@ import {
   MockTimeFrameChartData,
   MockTimeIntervalChartData
 } from '../../../shared/testing/mocks/mock-chart-data'
-import { ParseTimeHoles } from '../../../shared/utils/ParseTimeHoles'
+import { ParseTimeHoles } from '../../../shared/utils/parse-time-holes'
 import { ChartBaseBarComponent } from './chart-base-bar.component'
 
 describe('ChartBaseBarComponent', () => {

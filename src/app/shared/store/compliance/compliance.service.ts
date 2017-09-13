@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs/Observable'
 
 import { AppConfig } from '../../utils/config'
-import { ParseTimeHoles } from '../../utils/ParseTimeHoles'
+import { ParseTimeHoles } from '../../utils/parse-time-holes'
 
 @Injectable()
 export class ComplianceService {

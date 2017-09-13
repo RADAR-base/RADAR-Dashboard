@@ -1,13 +1,13 @@
 export interface ChartData {
   date: Date
-  value: number | MultiValueObject
+  value: number | ChartMultiValueObject | null
 }
 
-export interface MultiValueObject {
+export interface ChartMultiValueObject {
   [key: string]: number
 }
 
 export interface Categorical {
   name: string
-  value: number
+  value: number | null
 }
