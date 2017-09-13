@@ -10,17 +10,14 @@
   </div>
 </app-toolbar>
 <div class="content">
-  <p *ngIf="!(isLoaded$ | async); else loaded">Loading...</p>
+  <p *ngIf="(isLoaded$ | async) === false">Loading...</p>
 
-  <ng-template #loaded
-    *ngIf="!(isStudyLoadedAndValid$ | async); else loadedAndValid">
-    <div>
-      <p>Study "{{studyId}}" not found.</p>
-      <p>
-        <button [routerLink]="['/']">Go to the overview page</button>
-      </p>
-    </div>
-  </ng-template>
+  <div *ngIf="(isStudyLoadedAndValid$ | async) === false; else loadedAndValid">
+    <p>Study "{{studyId}}" not found.</p>
+    <p>
+      <button [routerLink]="['/']">Go to the overview page</button>
+    </p>
+  </div>
 
   <ng-template #loadedAndValid>
     <md-grid-list cols="6" rowHeight="fit">
