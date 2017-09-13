@@ -11,6 +11,7 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
 })
 export class ChartBaseMultiBarComponent extends ChartBaseComponent {
   @Input() categorical = false
+  @Input() yTicks
 
   data: ChartData[]
   svg: any
@@ -27,8 +28,6 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
   dates: any
   keys: any[]
   rects: any
-
-  tickValues = [0, 0.25, 0.5, 0.75, 1]
 
   init() {
     super.init()
@@ -67,7 +66,7 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
         .axisLeft(this.yScale)
         .tickSize(-this.width)
         .ticks(4, '%')
-        .tickValues(this.tickValues)
+        .tickValues(this.yTicks)
     )
 
     // Bars
