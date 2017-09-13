@@ -1,14 +1,10 @@
 import {
   ActionReducerMap,
-  MetaReducer,
   createFeatureSelector,
   createSelector
 } from '@ngrx/store'
-import { storeFreeze } from 'ngrx-store-freeze'
 
-import { environment } from '../../../environments/environment'
 import * as fromCompliance from './compliance/compliance.reducer'
-import * as fromSensorsTooltip from './sensors-tooltip/sensors-tooltip.reducer'
 import * as fromSensors from './sensors/sensors.reducer'
 import * as fromSource from './source/source.reducer'
 import * as fromStudy from './study/study.reducer'
@@ -16,7 +12,6 @@ import * as fromSubject from './subject/subject.reducer'
 
 export interface State {
   sensors: fromSensors.State
-  sensorsTooltip: fromSensorsTooltip.State
   source: fromSource.State
   study: fromStudy.State
   subject: fromSubject.State
@@ -25,16 +20,11 @@ export interface State {
 
 export const reducers: ActionReducerMap<State> = {
   sensors: fromSensors.reducer,
-  sensorsTooltip: fromSensorsTooltip.reducer,
   source: fromSource.reducer,
   study: fromStudy.reducer,
   subject: fromSubject.reducer,
   compliance: fromCompliance.reducer
 }
-
-export const metaReducers: MetaReducer<State>[] = !environment.PROD
-  ? [storeFreeze]
-  : []
 
 // Study Selectors
 export const getStudyState = createFeatureSelector<fromStudy.State>('study')
@@ -106,6 +96,7 @@ export const getSensorsIsDataLoaded = createSelector(
   getSensorsState,
   fromSensors.getIsDataLoaded
 )
+export const getSensorsIds = createSelector(getSensorsState, fromSensors.getIds)
 export const getSensorsEntities = createSelector(
   getSensorsState,
   fromSensors.getEntities
@@ -133,6 +124,10 @@ export const getSensorsTimeInterval = createSelector(
 export const getSensorsDescriptiveStatistic = createSelector(
   getSensorsState,
   fromSensors.getDescriptiveStatistic
+)
+export const getSensorsTooltipValues = createSelector(
+  getSensorsState,
+  fromSensors.getTooltipValues
 )
 
 // Source + Sensor Selector
@@ -167,17 +162,4 @@ export const getComplianceAll = createSelector(
 export const getComplianceIsLoaded = createSelector(
   getComplianceState,
   fromCompliance.getIsLoaded
-)
-
-// Sensors Tooltip Selectors
-export const getSensorsTooltipState = createFeatureSelector<
-  fromSensorsTooltip.State
->('sensorsTooltip')
-export const getSensorsTooltipAll = createSelector(
-  getSensorsTooltipState,
-  fromSensorsTooltip.getAll
-)
-export const getSensorsTooltipIsLoaded = createSelector(
-  getSensorsTooltipState,
-  fromSensorsTooltip.getIsLoaded
 )
