@@ -51,9 +51,6 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
 
     this.lineGroup = this.chart.append('g')
 
-    // TODO: Add this as an option for x and y (hasXAxis)
-    this.xAxis.remove()
-
     this.lineChunked = lineChunked()
       .x((d: ChartData) => this.xScale(d.date))
       .y((d: ChartData) => this.yScale(d.value))
@@ -69,12 +66,16 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
       .range([0, this.width])
       .domain(d3.extent(this.data, (d: ChartData) => d.date))
 
+    if (this.hasXAxis) this.xAxis.call(d3.axisBottom(this.xScale))
+
     this.yScale = d3
       .scaleLinear()
       .range([this.height, 0])
       .domain(d3.extent(this.data, (d: ChartData) => d.value as number))
 
-    this.yAxis.call(d3.axisLeft(this.yScale).tickSize(-this.width))
+    if (this.hasYAxis) {
+      this.yAxis.call(d3.axisLeft(this.yScale).tickSize(-this.width))
+    }
 
     this.lineGroup.selectAll('.line').remove()
 

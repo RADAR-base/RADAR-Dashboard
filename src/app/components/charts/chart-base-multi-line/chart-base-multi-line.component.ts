@@ -33,9 +33,6 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
   init() {
     this.lineGroup = this.chart.append('g')
 
-    // TODO: Add this as an option for x and y (hasXAxis)
-    this.xAxis.remove()
-
     this.colorScale = d3
       .scaleOrdinal()
       .domain(this.keys.map(k => k.key))
@@ -60,6 +57,8 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
       .range([0, this.width])
       .domain(d3.extent(this.data, (d: ChartData) => d.date))
 
+    if (this.hasXAxis) this.xAxis.call(d3.axisBottom(this.xScale))
+
     const minValue = d3.min(
       this.keys.map(k =>
         d3.min(this.data, (d: ChartData) => d.value && d.value[k.key])
@@ -77,7 +76,9 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
       .range([this.height, 0])
       .domain([minValue, maxValue])
 
-    this.yAxis.call(d3.axisLeft(this.yScale).tickSize(-this.width))
+    if (this.hasYAxis) {
+      this.yAxis.call(d3.axisLeft(this.yScale).tickSize(-this.width))
+    }
 
     this.lineGroup.selectAll('.line').remove()
 

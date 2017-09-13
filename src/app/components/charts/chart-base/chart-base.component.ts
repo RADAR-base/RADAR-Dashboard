@@ -36,6 +36,8 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
 
   @Input() margin = AppConfig.MARGIN
   @Input() keys: any[]
+  @Input() hasYAxis = true
+  @Input() hasXAxis = true
 
   @Output() onMove = new EventEmitter<Date>()
 
@@ -99,8 +101,12 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
       .attr('class', 'chart')
       .attr('transform', chartTranslate)
 
-    this.xAxis = this.chart.append('g').attr('class', 'axis axis--x')
-    this.yAxis = this.chart.append('g').attr('class', 'axis axis--y')
+    if (this.hasXAxis) {
+      this.xAxis = this.chart.append('g').attr('class', 'axis axis--x')
+    }
+    if (this.hasYAxis) {
+      this.yAxis = this.chart.append('g').attr('class', 'axis axis--y')
+    }
 
     this.tooltip = this.svg
       .append('g')

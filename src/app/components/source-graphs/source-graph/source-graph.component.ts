@@ -24,6 +24,7 @@ import { AppConfig } from '../../../shared/utils/config'
       *ngIf="sensorData && isLoaded && isSingle"
       [chartData]="sensorData"
       [gradientEnabled]="gradientEnabled"
+      [hasXAxis]="false"
       (onMove)="onMoveHandler($event)"
     ></app-chart-base-line>
 
@@ -31,6 +32,7 @@ import { AppConfig } from '../../../shared/utils/config'
       *ngIf="sensorData && isLoaded && !(isSingle)"
       [chartData]="sensorData"
       [keys]="keys"
+      [hasXAxis]="false"
       (onMove)="onMoveHandler($event)"
     ></app-chart-base-multi-line>
   `,
