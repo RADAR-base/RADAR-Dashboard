@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 import * as d3 from 'd3'
 
-import { Categorical, ChartData } from '../../../shared/models/chart-data.model'
+import { ChartData } from '../../../shared/models/chart-data.model'
 import { ChartBaseComponent } from '../chart-base/chart-base.component'
 
 @Component({
@@ -12,17 +12,19 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
 })
 export class ChartBaseBarComponent extends ChartBaseComponent {
   @Input() categorical = false
+  @Input() paddingInner = 0.2
+  @Input() paddingOuter = 0.2
 
-  data: any
+  data: ChartData[]
   svg: any
   chart: any
   width: number
   height: number
   xAxis: any
   yAxis: any
+  yScale: any
   xScaleTime: any
   xScaleOrdinal: any
-  yScale: any
   bar: any
 
   init() {
@@ -33,41 +35,33 @@ export class ChartBaseBarComponent extends ChartBaseComponent {
     this.xScaleOrdinal = d3
       .scaleBand()
       .rangeRound([0, this.width])
-      .paddingInner(0.2)
-      .paddingOuter(0.2)
+      .paddingInner(this.paddingInner)
+      .paddingOuter(this.categorical ? this.paddingOuter : 0)
+
+    this.yScale = d3
+      .scaleLinear()
+      .range([this.height, 0])
+      .domain([0, d3.max(this.data, d => d.value as number)])
 
     if (this.categorical) {
-      this.xScaleOrdinal.domain(this.data.map((d: Categorical) => d.name))
-
-      this.yScale = d3
-        .scaleLinear()
-        .range([this.height, 0])
-        .domain([0, d3.max(this.data, (d: Categorical) => d.value)])
-
-      this.xAxis
-        .attr('transform', `translate(0, ${this.yScale(0)})`)
-        .call(d3.axisBottom(this.xScaleOrdinal))
+      this.xScaleOrdinal.domain(this.data.map(d => d.name))
     } else {
-      this.xScaleOrdinal
-        .paddingOuter(0)
-        .domain(this.data.map((d: ChartData) => d.date))
-
+      this.xScaleOrdinal.domain(this.data.map(d => d.date))
       this.xScaleTime = d3
         .scaleTime()
         .range([0, this.width])
-        .domain(d3.extent(this.data, (d: ChartData) => d.date))
-
-      this.yScale = d3
-        .scaleLinear()
-        .range([this.height, 0])
-        .domain([0, d3.max(this.data, (d: ChartData) => d.value as number)])
-
-      this.xAxis
-        .attr('transform', `translate(0, ${this.yScale(0)})`)
-        .call(d3.axisBottom(this.xScaleTime))
+        .domain(d3.extent(this.data, d => d.date))
     }
 
-    this.yAxis.call(d3.axisLeft(this.yScale).tickSize(-this.width))
+    this.hasXAxis &&
+      this.xAxis
+        .attr('transform', `translate(0, ${this.yScale(0)})`)
+        .call(
+          d3.axisBottom(this.categorical ? this.xScaleOrdinal : this.xScaleTime)
+        )
+
+    this.hasYAxis &&
+      this.yAxis.call(d3.axisLeft(this.yScale).tickSize(-this.width))
 
     this.chart.selectAll('rect').remove()
 
