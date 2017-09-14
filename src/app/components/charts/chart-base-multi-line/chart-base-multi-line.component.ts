@@ -1,9 +1,8 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
+import { ChangeDetectionStrategy, Component } from '@angular/core'
 import * as d3 from 'd3'
 import { lineChunked } from 'd3-line-chunked'
 
 import { ChartData } from '../../../shared/models/chart-data.model'
-import { AppConfig } from '../../../shared/utils/config'
 import { ChartBaseComponent } from '../chart-base/chart-base.component'
 
 @Component({
@@ -13,8 +12,6 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChartBaseMultiLineComponent extends ChartBaseComponent {
-  @Input() lineColors = AppConfig.CATEGORICAL_COLORS
-
   data: ChartData[]
   keys: any[]
   svg: any
@@ -37,7 +34,7 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
     this.colorScale = d3
       .scaleOrdinal()
       .domain(this.keys.map(k => k.key))
-      .range(this.lineColors)
+      .range(this.colors)
 
     this.keys.map(k => {
       this.lineChunkedFunctions[k.key] = lineChunked()

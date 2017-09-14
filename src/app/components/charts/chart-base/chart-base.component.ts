@@ -16,7 +16,7 @@ import * as shortid from 'shortid'
 
 import { ChartData } from '../../../shared/models/chart-data.model'
 import { ConfigKey } from '../../../shared/models/config.model'
-import { ChartMargin } from '../chart.model'
+import { ChartColors } from '../chart.model'
 
 /**
  *  BaseComponent to be extended by chart components
@@ -37,7 +37,17 @@ import { ChartMargin } from '../chart.model'
 export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   @ViewChild('svg') svgRef: ElementRef
 
-  @Input() margin: ChartMargin = { top: 16, right: 16, bottom: 32, left: 48 }
+  @Input() margin = { top: 16, right: 16, bottom: 32, left: 48 }
+  @Input() color: string = ChartColors.c3
+  @Input()
+  colors: string[] = [
+    ChartColors.c1,
+    ChartColors.c2,
+    ChartColors.c3,
+    ChartColors.c4,
+    ChartColors.c5,
+    ChartColors.c6
+  ]
   @Input() keys: ConfigKey[]
   @Input() hasYAxis = true
   @Input() hasXAxis = true

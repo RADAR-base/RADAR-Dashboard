@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 import * as d3 from 'd3'
 
 import { ChartData } from '../../../shared/models/chart-data.model'
-import { AppConfig } from '../../../shared/utils/config'
 import { ChartBaseComponent } from '../chart-base/chart-base.component'
 
 @Component({
@@ -13,8 +12,9 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
 })
 export class ChartBaseMultiBarComponent extends ChartBaseComponent {
   @Input() categorical = false
-  @Input() yTicks
-  @Input() barColors
+  @Input() yTicks = [0, 0.25, 0.5, 0.75, 1]
+  @Input() paddingInner = 0.3
+  @Input() paddingOuter = 0.4
 
   data: ChartData[]
   svg: any
@@ -34,28 +34,21 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
   colorScale: any
 
   init() {
-    this.barColors = this.barColors
-      ? AppConfig.CATEGORICAL_COLORS.slice(
-          this.barColors[0] - 1,
-          this.barColors[1]
-        )
-      : AppConfig.CATEGORICAL_COLORS
-
     this.colorScale = d3
       .scaleOrdinal()
       .domain(this.keys.map(k => k.key))
-      .range(this.barColors)
+      .range(this.colors)
 
     super.init()
   }
 
   draw() {
-    this.xScaleInner = d3.scaleBand().paddingInner(0.3)
+    this.xScaleInner = d3.scaleBand().paddingInner(this.paddingInner)
 
     this.xScaleOuter = d3
       .scaleBand()
       .rangeRound([0, this.width])
-      .padding(0.4)
+      .padding(this.paddingOuter)
 
     this.yScale = d3.scaleLinear().rangeRound([this.height, 0])
 

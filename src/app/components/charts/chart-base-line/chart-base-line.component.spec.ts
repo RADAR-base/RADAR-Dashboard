@@ -81,9 +81,9 @@ describe('ChartBaseLineComponent', () => {
     })
   })
 
-  describe('=> with @Input: gradientEnabled', () => {
+  describe('=> with @Input: hasGradient', () => {
     beforeEach(() => {
-      component.gradientEnabled = true
+      component.hasGradient = true
       fixture.detectChanges()
     })
 

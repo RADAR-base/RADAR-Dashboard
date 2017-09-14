@@ -3,7 +3,6 @@ import * as d3 from 'd3'
 import { lineChunked } from 'd3-line-chunked'
 
 import { ChartData } from '../../../shared/models/chart-data.model'
-import { AppConfig } from '../../../shared/utils/config'
 import { ChartBaseComponent } from '../chart-base/chart-base.component'
 
 @Component({
@@ -13,9 +12,18 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChartBaseLineComponent extends ChartBaseComponent {
-  @Input() gradientEnabled = false
-  @Input() gradientColors = AppConfig.GRADIENT_COLORS
-  @Input() gradientStops = AppConfig.GRADIENT_STOPS
+  @Input() hasGradient = false
+  @Input()
+  gradientColors = [
+    { offset: '0%', color: '#2ED8E5' },
+    { offset: '50%', color: '#F8E81C' },
+    { offset: '100%', color: '#FF9100' }
+  ]
+  @Input()
+  gradientStops = {
+    y1: 60,
+    y2: 120
+  }
 
   data: any
   svg: any
@@ -33,7 +41,7 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
 
   init() {
     // Add HR Gradient
-    if (this.gradientEnabled) {
+    if (this.hasGradient) {
       this.chart.classed('hr-gradient', true)
 
       this.gradient = this.svg.append('linearGradient')
@@ -53,10 +61,10 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
     this.lineGroup = this.chart.append('g')
 
     this.lineChunked = lineChunked()
-      .x((d: ChartData) => this.xScale(d.date))
-      .y((d: ChartData) => this.yScale(d.value))
+      .x(d => this.xScale(d.date))
+      .y(d => this.yScale(d.value))
       .curve(d3.curveLinear)
-      .defined((d: ChartData) => d.value)
+      .defined(d => d.value)
 
     super.init()
   }
@@ -67,16 +75,14 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
       .range([0, this.width])
       .domain(d3.extent(this.data, (d: ChartData) => d.date))
 
-    if (this.hasXAxis) this.xAxis.call(d3.axisBottom(this.xScale))
-
     this.yScale = d3
       .scaleLinear()
       .range([this.height, 0])
       .domain(d3.extent(this.data, (d: ChartData) => d.value as number))
 
-    if (this.hasYAxis) {
+    this.hasXAxis && this.xAxis.call(d3.axisBottom(this.xScale))
+    this.hasYAxis &&
       this.yAxis.call(d3.axisLeft(this.yScale).tickSize(-this.width))
-    }
 
     this.lineGroup.selectAll('.line').remove()
 
@@ -86,7 +92,7 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
       .attr('class', 'line')
 
     // Add HR Gradient
-    if (this.gradientEnabled) {
+    if (this.hasGradient) {
       this.gradient
         .attr('y1', this.yScale(this.gradientStops.y1))
         .attr('y2', this.yScale(this.gradientStops.y2))
@@ -96,18 +102,14 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
       .selectAll('circle')
       .attr(
         'fill',
-        this.gradientEnabled
-          ? `url(#hr-gradient-${this.uid})`
-          : AppConfig.CHART_COLORS.c3
+        this.hasGradient ? `url(#hr-gradient-${this.uid})` : this.color
       )
 
     lines
       .selectAll('path')
       .attr(
         'stroke',
-        this.gradientEnabled
-          ? `url(#hr-gradient-${this.uid})`
-          : AppConfig.CHART_COLORS.c3
+        this.hasGradient ? `url(#hr-gradient-${this.uid})` : this.color
       )
   }
 }

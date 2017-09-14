@@ -21,7 +21,7 @@ import { AppConfig } from '../../../shared/utils/config'
     <app-chart-base-line
       *ngIf="sensorData && isLoaded && isSingle"
       [chartData]="sensorData"
-      [gradientEnabled]="gradientEnabled"
+      [hasGradient]="gradientEnabled"
       [hasXAxis]="false"
       (onMove)="onMoveHandler($event)"
     ></app-chart-base-line>
