@@ -21,14 +21,11 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
   @Input() xTickEvery = 2
 
   keys: ConfigKey[]
-  dates: Date[]
   bar: any
+  rects: any
   xScaleOuter: any
   xScaleInner: any
-  legend: any
-  bars: any
   colorScale: any
-  rects: any
   nullSymbolYPos: any
   nullSymbolSize: any
 
