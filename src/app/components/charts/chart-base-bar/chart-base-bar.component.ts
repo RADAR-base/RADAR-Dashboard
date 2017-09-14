@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 import * as d3 from 'd3'
 
-import { ChartData } from '../../../shared/models/chart-data.model'
 import { ChartBaseComponent } from '../chart-base/chart-base.component'
 
 @Component({
@@ -15,14 +14,6 @@ export class ChartBaseBarComponent extends ChartBaseComponent {
   @Input() paddingInner = 0.2
   @Input() paddingOuter = 0.2
 
-  data: ChartData[]
-  svg: any
-  chart: any
-  width: number
-  height: number
-  xAxis: any
-  yAxis: any
-  yScale: any
   xScaleTime: any
   xScaleOrdinal: any
   bar: any

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 import * as d3 from 'd3'
 
-import { ChartData } from '../../../shared/models/chart-data.model'
+import { ConfigKey } from '../../../shared/models/config.model'
 import { ChartBaseComponent } from '../chart-base/chart-base.component'
 
 @Component({
@@ -16,20 +16,12 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
   @Input() paddingInner = 0.3
   @Input() paddingOuter = 0.4
 
-  data: ChartData[]
-  svg: any
-  chart: any
-  width: number
-  height: number
-  xAxis: any
-  yAxis: any
+  keys: ConfigKey[]
+  dates: Date[]
   bar: any
   xScaleOuter: any
   xScaleInner: any
-  yScale: any
   legend: any
-  dates: any
-  keys: any[]
   rects: any
   colorScale: any
 

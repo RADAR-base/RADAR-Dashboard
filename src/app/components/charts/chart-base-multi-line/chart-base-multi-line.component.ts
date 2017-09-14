@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core'
 import * as d3 from 'd3'
 import { lineChunked } from 'd3-line-chunked'
 
-import { ChartData } from '../../../shared/models/chart-data.model'
+import { ConfigKey } from '../../../shared/models/config.model'
 import { ChartBaseComponent } from '../chart-base/chart-base.component'
 
 @Component({
@@ -12,17 +12,8 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChartBaseMultiLineComponent extends ChartBaseComponent {
-  data: ChartData[]
-  keys: any[]
-  svg: any
-  chart: any
-  width: number
-  height: number
-  xScale: any
-  yScale: any
+  keys: ConfigKey[]
   colorScale: any
-  xAxis: any
-  yAxis: any
   lineChunkedFunctions: { [key: string]: Function } = {}
   lines: any
   line: any
@@ -38,10 +29,10 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
 
     this.keys.map(k => {
       this.lineChunkedFunctions[k.key] = lineChunked()
-        .x((d: ChartData) => this.xScale(d.date))
-        .y((d: ChartData) => this.yScale(d.value[k.key]))
+        .x(d => this.xScale(d.date))
+        .y(d => this.yScale(d.value[k.key]))
         .curve(d3.curveBasis)
-        .defined((d: ChartData) => d.value)
+        .defined(d => d.value)
         .lineStyles({ stroke: this.colorScale(k.key) })
         .pointStyles({ fill: this.colorScale(k.key) })
     })
@@ -53,20 +44,16 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
     this.xScale = d3
       .scaleTime()
       .range([0, this.width])
-      .domain(d3.extent(this.data, (d: ChartData) => d.date))
+      .domain(d3.extent(this.data, d => d.date))
 
     if (this.hasXAxis) this.xAxis.call(d3.axisBottom(this.xScale))
 
     const minValue = d3.min(
-      this.keys.map(k =>
-        d3.min(this.data, (d: ChartData) => d.value && d.value[k.key])
-      )
+      this.keys.map(k => d3.min(this.data, d => d.value && d.value[k.key]))
     )
 
     const maxValue = d3.max(
-      this.keys.map(k =>
-        d3.max(this.data, (d: ChartData) => d.value && d.value[k.key])
-      )
+      this.keys.map(k => d3.max(this.data, d => d.value && d.value[k.key]))
     )
 
     this.yScale = d3

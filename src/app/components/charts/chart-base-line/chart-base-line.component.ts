@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 import * as d3 from 'd3'
 import { lineChunked } from 'd3-line-chunked'
 
-import { ChartData } from '../../../shared/models/chart-data.model'
 import { ChartBaseComponent } from '../chart-base/chart-base.component'
 
 @Component({
@@ -25,15 +24,6 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
     y2: 120
   }
 
-  data: any
-  svg: any
-  chart: any
-  width: number
-  height: number
-  xAxis: any
-  yAxis: any
-  xScale: any
-  yScale: any
   line: any
   lineGroup: any
   gradient: any
@@ -73,12 +63,12 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
     this.xScale = d3
       .scaleTime()
       .range([0, this.width])
-      .domain(d3.extent(this.data, (d: ChartData) => d.date))
+      .domain(d3.extent(this.data, d => d.date))
 
     this.yScale = d3
       .scaleLinear()
       .range([this.height, 0])
-      .domain(d3.extent(this.data, (d: ChartData) => d.value as number))
+      .domain(d3.extent(this.data, d => d.value as number))
 
     this.hasXAxis && this.xAxis.call(d3.axisBottom(this.xScale))
     this.hasYAxis &&
