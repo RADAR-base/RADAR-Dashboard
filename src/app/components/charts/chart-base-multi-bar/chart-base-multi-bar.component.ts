@@ -79,6 +79,8 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
       )
 
     // Bars
+    if (this.bar) this.bar.remove()
+
     this.bar = this.chart
       .append('g')
       .selectAll('g')
