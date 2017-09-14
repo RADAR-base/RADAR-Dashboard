@@ -19,24 +19,24 @@ export interface Config {
   }
 }
 
-export interface Label {
+export interface ConfigLabel {
   EN: string
 }
 
 export interface ConfigKey {
   key: string
-  label: Label
+  label: ConfigLabel
 }
 
 export interface ConfigUnit {
-  label: Label
+  label: ConfigLabel
 }
 
 export interface ConfigStat {
-  label: Label
+  label: ConfigLabel
 }
 
 export interface ConfigTimeInterval {
   value: number
-  label: Label
+  label: ConfigLabel
 }

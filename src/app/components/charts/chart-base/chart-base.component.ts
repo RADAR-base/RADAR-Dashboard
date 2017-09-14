@@ -15,7 +15,8 @@ import { Subscription } from 'rxjs/Subscription'
 import * as shortid from 'shortid'
 
 import { ChartData } from '../../../shared/models/chart-data.model'
-import { AppConfig } from '../../../shared/utils/config'
+import { ConfigKey } from '../../../shared/models/config.model'
+import { ChartMargin } from '../chart.model'
 
 /**
  *  BaseComponent to be extended by chart components
@@ -36,8 +37,8 @@ import { AppConfig } from '../../../shared/utils/config'
 export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   @ViewChild('svg') svgRef: ElementRef
 
-  @Input() margin = AppConfig.MARGIN
-  @Input() keys: any[]
+  @Input() margin: ChartMargin = { top: 16, right: 16, bottom: 32, left: 48 }
+  @Input() keys: ConfigKey[]
   @Input() hasYAxis = true
   @Input() hasXAxis = true
 
@@ -54,7 +55,6 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   yScale: any
   xAxis: any
   yAxis: any
-  bisect: any
   window$: Subscription
 
   @Input()

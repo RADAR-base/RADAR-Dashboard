@@ -1,7 +1,4 @@
-import {
-  ChartGradientColors,
-  ChartMargin
-} from '../../components/charts/chart.model'
+import { ChartGradientColors } from '../../components/charts/chart.model'
 import { Config } from '../models/config.model'
 
 export class AppConfig {
@@ -9,12 +6,6 @@ export class AppConfig {
   static language = 'EN'
   static config: Config
 
-  static MARGIN: ChartMargin = {
-    top: 16,
-    right: 16,
-    bottom: 32,
-    left: 48
-  }
   static GRADIENT_COLORS: ChartGradientColors[] = [
     { offset: '0%', color: '#2ED8E5' },
     { offset: '50%', color: '#F8E81C' },
