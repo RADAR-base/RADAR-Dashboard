@@ -26,8 +26,11 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
   xScaleOuter: any
   xScaleInner: any
   legend: any
-  rects: any
+  bars: any
   colorScale: any
+  rects: any
+  nullSymbolYPos: any
+  nullSymbolSize: any
 
   init() {
     this.colorScale = d3
@@ -39,6 +42,9 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
   }
 
   draw() {
+    this.nullSymbolYPos = this.height - this.height / 40
+    this.nullSymbolSize = this.width / 70
+
     this.xScaleInner = d3.scaleBand().paddingInner(this.paddingInner)
 
     this.xScaleOuter = d3
@@ -76,60 +82,46 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
       )
 
     // Bars
-    let j = 0
-    const yScale = this.yScale
-    const height = this.height
-    const data = this.data
-
-    this.chart.selectAll('rect').remove()
-    this.chart.selectAll('.null-symbol').remove()
-
     this.bar = this.chart
-      .selectAll('bar')
+      .append('g')
+      .selectAll('g')
       .data(this.data)
       .enter()
       .append('g')
-      .attr('class', 'g')
-      .attr('id', d => j++)
-      .attr('transform', d => `translate(${this.xScaleOuter(d.date)}, 0)`)
+      .attr('transform', d => `translate(${this.xScaleOuter(d.date)} ,0)`)
 
     this.rects = this.bar
       .selectAll('g')
-      .data(this.keys)
+      .data(d =>
+        this.keys.map(k => ({
+          key: k.key,
+          value: d.value[k.key] === undefined ? -1 : d.value[k.key]
+        }))
+      )
       .enter()
       .append('rect')
-      .attr('width', this.xScaleInner.bandwidth())
-      .style('fill', d => this.colorScale(d.key))
-      .attr('id', function(d) {
-        return data[this.parentNode.id].value[d.key] === undefined
-          ? 'null'
-          : 'not-null'
-      })
       .attr('x', d => this.xScaleInner(d.key))
-      .attr('y', function(d) {
-        return this.id !== 'null'
-          ? yScale(data[this.parentNode.id].value[d.key])
-          : 0
-      })
-      .attr('height', function(d) {
-        return this.id !== 'null'
-          ? height - yScale(data[this.parentNode.id].value[d.key])
-          : 0
-      })
+      .attr('y', d => (d.value === -1 ? -1 : this.yScale(d.value)))
+      .attr('width', this.xScaleInner.bandwidth())
+      .attr(
+        'height',
+        d => (d.value === -1 ? 0 : this.height - this.yScale(d.value))
+      )
+      .attr('fill', d => this.colorScale(d.key))
 
     // Null Symbol
     this.rects
       .nodes()
-      .filter(d => d.id === 'null')
+      .filter(d => d.getAttribute('y') === '-1')
       .forEach(d =>
         d3
           .select(d.parentNode)
           .append('text')
           .attr('class', 'null-symbol')
           .attr('fill', '#fff')
-          .attr('x', this.xScaleInner(d.className.baseVal))
-          .attr('y', height - height / 40) // TODO: remove harcoded value
-          .style('font-size', this.width / 70) // TODO: remove harcoded value
+          .attr('x', d.getAttribute('x'))
+          .attr('y', this.nullSymbolYPos)
+          .style('font-size', this.nullSymbolSize)
           .text('x')
       )
 
@@ -142,8 +134,8 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
       .attr('width', this.xScaleInner.bandwidth())
       .attr('class', 'back-bar')
       .attr('x', d => this.xScaleInner(d.key))
-      .attr('y', yScale(this.yScaleDomain[this.yScaleDomain.length - 1]))
-      .attr('height', height)
+      .attr('y', this.yScale(this.yScaleDomain[this.yScaleDomain.length - 1]))
+      .attr('height', this.height)
 
     this.bar.exit().remove()
   }
