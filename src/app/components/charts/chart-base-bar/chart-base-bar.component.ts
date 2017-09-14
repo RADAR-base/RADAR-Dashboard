@@ -1,30 +1,21 @@
-import { Component, Input } from '@angular/core'
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 import * as d3 from 'd3'
 
-import { Categorical } from '../../../shared/models/categorical.model'
-import { TimeSeries } from '../../../shared/models/time-series.model'
 import { ChartBaseComponent } from '../chart-base/chart-base.component'
 
 @Component({
   selector: 'app-chart-base-bar',
   templateUrl: '../charts.common.html',
-  styleUrls: ['./chart-base-bar.component.scss']
+  styleUrls: ['./chart-base-bar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChartBaseBarComponent extends ChartBaseComponent {
   @Input() categorical = false
+  @Input() paddingInner = 0.2
+  @Input() paddingOuter = 0.2
 
-  // data can be TimeSeries[] or Categorical[]
-  data: any
-
-  svg: any
-  chart: any
-  width: number
-  height: number
-  xAxis: any
-  yAxis: any
   xScaleTime: any
   xScaleOrdinal: any
-  yScale: any
   bar: any
 
   init() {
@@ -35,41 +26,33 @@ export class ChartBaseBarComponent extends ChartBaseComponent {
     this.xScaleOrdinal = d3
       .scaleBand()
       .rangeRound([0, this.width])
-      .paddingInner(0.2)
-      .paddingOuter(0.2)
+      .paddingInner(this.paddingInner)
+      .paddingOuter(this.categorical ? this.paddingOuter : 0)
+
+    this.yScale = d3
+      .scaleLinear()
+      .range([this.height, 0])
+      .domain([0, d3.max(this.data, d => d.value as number)])
 
     if (this.categorical) {
-      this.xScaleOrdinal.domain(this.data.map((d: Categorical) => d.name))
-
-      this.yScale = d3
-        .scaleLinear()
-        .range([this.height, 0])
-        .domain([0, d3.max(this.data, (d: Categorical) => d.value)])
-
-      this.xAxis
-        .attr('transform', `translate(0, ${this.yScale(0)})`)
-        .call(d3.axisBottom(this.xScaleOrdinal))
+      this.xScaleOrdinal.domain(this.data.map(d => d.name))
     } else {
-      this.xScaleOrdinal
-        .paddingOuter(0)
-        .domain(this.data.map((d: TimeSeries) => d.date))
-
+      this.xScaleOrdinal.domain(this.data.map(d => d.date))
       this.xScaleTime = d3
         .scaleTime()
         .range([0, this.width])
-        .domain(d3.extent(this.data, (d: TimeSeries) => d.date))
-
-      this.yScale = d3
-        .scaleLinear()
-        .range([this.height, 0])
-        .domain([0, d3.max(this.data, (d: TimeSeries) => d.value)])
-
-      this.xAxis
-        .attr('transform', `translate(0, ${this.yScale(0)})`)
-        .call(d3.axisBottom(this.xScaleTime))
+        .domain(d3.extent(this.data, d => d.date))
     }
 
-    this.yAxis.call(d3.axisLeft(this.yScale).tickSize(-this.width))
+    this.hasXAxis &&
+      this.xAxis
+        .attr('transform', `translate(0, ${this.yScale(0)})`)
+        .call(
+          d3.axisBottom(this.categorical ? this.xScaleOrdinal : this.xScaleTime)
+        )
+
+    this.hasYAxis &&
+      this.yAxis.call(d3.axisLeft(this.yScale).tickSize(-this.width))
 
     this.chart.selectAll('rect').remove()
 

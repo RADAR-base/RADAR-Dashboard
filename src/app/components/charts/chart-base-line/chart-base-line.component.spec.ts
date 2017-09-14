@@ -4,9 +4,11 @@ import { StoreModule } from '@ngrx/store'
 
 import { reducers } from '../../../shared/store'
 import {
-  MockTimeSeriesDataDates,
-  MockTimeSeriesDataValues
-} from '../../../shared/testing/mocks/mock-timeseries-data2'
+  MockAPISampleDataset,
+  MockTimeFrameChartData,
+  MockTimeIntervalChartData
+} from '../../../shared/testing/mocks/mock-chart-data'
+import { ParseTimeHoles } from '../../../shared/utils/parse-time-holes'
 import { ChartBaseLineComponent } from './chart-base-line.component'
 
 describe('ChartBaseLineComponent', () => {
@@ -47,52 +49,60 @@ describe('ChartBaseLineComponent', () => {
       expect(component.chartData).toBeFalsy()
 
       // with data // needs to be parsed //
-      component.dates = MockTimeSeriesDataDates
-      component.chartData = MockTimeSeriesDataValues
+      component.chartData = ParseTimeHoles(
+        MockAPISampleDataset,
+        MockTimeFrameChartData,
+        MockTimeIntervalChartData
+      )
+
       expect(component.width).toBeGreaterThan(0)
       expect(component.height).toBeGreaterThan(0)
     })
 
-    it('should contain path when data changes', done => {
-      const lineEl = element.querySelector('g')
-      const inner = lineEl.querySelectorAll('g')[2].getElementsByTagName('path')
-
+    it('should contain path when data changes', () => {
       // without data
-      expect(inner.length).toEqual(0)
+      expect(element.querySelectorAll('g.chart .line path').length).toEqual(0)
 
       // with data // needs to be parsed //
-      component.dates = MockTimeSeriesDataDates
-      component.chartData = MockTimeSeriesDataValues
-
-      // wait for transition
-      setTimeout(() => {
-        expect(inner.length).toBeGreaterThan(0)
-        done()
-      }, 500)
+      component.chartData = ParseTimeHoles(
+        MockAPISampleDataset,
+        MockTimeFrameChartData,
+        MockTimeIntervalChartData
+      )
+      expect(
+        element.querySelectorAll('g.chart .line path').length
+      ).toBeGreaterThan(0)
     })
 
     it('should not have a linearGradient', () => {
-      expect(element.querySelector('linearGradient#hr-gradient')).toBeFalsy()
+      expect(
+        element.querySelector('linearGradient[id^="hr-gradient"]')
+      ).toBeFalsy()
     })
   })
 
-  describe('=> with @Input: gradientEnabled', () => {
+  describe('=> with @Input: hasGradient', () => {
     beforeEach(() => {
-      component.gradientEnabled = true
+      component.hasGradient = true
       fixture.detectChanges()
     })
 
     it('should have a linearGradient', () => {
-      expect(element.querySelector('linearGradient#hr-gradient')).toBeTruthy()
+      expect(
+        element.querySelector('linearGradient[id^="hr-gradient"]')
+      ).toBeTruthy()
     })
 
     it('linearGradient should have attributes "y1, y2" when data changes', () => {
       // with data // needs to be parsed //
-      component.dates = MockTimeSeriesDataDates
-      component.chartData = MockTimeSeriesDataValues
+      component.chartData = ParseTimeHoles(
+        MockAPISampleDataset,
+        MockTimeFrameChartData,
+        MockTimeIntervalChartData
+      )
 
       const gradient = de.nativeElement.querySelector(
-        'linearGradient#hr-gradient'
+        'linearGradient[id^="hr-gradient"]'
       )
       expect(gradient.getAttribute('y1')).toBeGreaterThan(0)
       expect(gradient.getAttribute('y2')).toBeGreaterThan(0)

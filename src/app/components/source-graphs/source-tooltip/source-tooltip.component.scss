@@ -1,0 +1,31 @@
+@import '../../../../styles/common';
+
+:host {
+  @include font-small;
+
+  position: fixed;
+  top: 16px;
+  left: 0;
+  z-index: 10;
+  display: block;
+  padding: 8px 16px;
+  border-radius: 4px;
+  background-color: $cl-base-90;
+  pointer-events: none;
+}
+
+.item {
+  overflow: hidden;
+  padding-top: 6px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.label {
+  line-height: 1em;
+}
+
+.value {
+  font-weight: bold;
+  line-height: 1em;
+}

@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http'
 import { TestBed, inject } from '@angular/core/testing'
 // Make sure to include the Response object from '@angular/http'
 import {
@@ -18,6 +19,7 @@ describe('StudyService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [HttpClientModule],
       providers: [
         MockBackend,
         BaseRequestOptions,

@@ -1,44 +1,30 @@
+import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { Http } from '@angular/http'
+import { Actions } from '@ngrx/effects'
+import { Action } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
-import { ErrorService } from '../../services/error.service'
-import { AppConfig } from '../../utils/config'
+import * as actions from './source.actions'
 import { Source } from './source.model'
 
 @Injectable()
 export class SourceService {
-  constructor(private http: Http) {}
+  private destroy$: Observable<Action>
+
+  constructor(private http: HttpClient, private actions$: Actions) {
+    this.destroy$ = this.actions$.ofType(actions.DESTROY)
+  }
 
   getAll(subjectId): Observable<Source[]> {
     const url = `${PARAMS.API_URI}/source/getAllSources/${subjectId}`
 
-    return (
-      this.http
-        .get(url)
-        .map(res => {
-          return res.status === 200 ? res.json().sources || [] : []
-        })
-        .map(this.removeNonSupportedTypes)
-        // .map(this.addVisibleProp)
-        // .map(this.addSensors)
-        .catch(ErrorService.handleError)
-    )
-  }
-
-  // Inject visible prop
-  addVisibleProp(res) {
-    return res.map((d: Source) => ({ ...d, visible: true }))
-  }
-
-  // Inject sensors
-  addSensors(res) {
-    return res.map((d: Source) => {
-      const sensorList = AppConfig.config.specs[d.type]
-      const sensors = sensorList.map(sensor => AppConfig.config.sensors[sensor])
-
-      return sensors ? { ...d, sensors } : { ...d, sensors: {} }
-    })
+    return this.http
+      .get<any>(url)
+      .take(1)
+      .takeUntil(this.destroy$)
+      .filter(d => d !== null)
+      .map(res => res.sources)
+      .map(this.removeNonSupportedTypes)
   }
 
   // TODO: remove filter when API and data are ready

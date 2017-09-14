@@ -16,17 +16,14 @@ export class SourceEffects {
     .switchMap(payload => {
       return this.sourceService
         .getAll(payload)
-        .map(
-          data =>
-            new sourceActions.GetAllSuccess({ subjectId: payload, data: data })
-        )
+        .map(d => new sourceActions.GetAllSuccess(d))
     })
 
   @Effect()
   getAllSuccess$: Observable<Action> = this.actions$
     .ofType<sourceActions.GetAllSuccess>(sourceActions.GET_ALL_SUCCESS)
     .map(action => action.payload)
-    .map(payload => new sensorsActions.GetAll(payload))
+    .map(payload => new sensorsActions.GetSensors(payload))
 
   constructor(
     private actions$: Actions,

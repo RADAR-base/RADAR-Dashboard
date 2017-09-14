@@ -1,5 +1,6 @@
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   EventEmitter,
@@ -11,8 +12,11 @@ import {
 import * as d3 from 'd3'
 import { Observable } from 'rxjs/Observable'
 import { Subscription } from 'rxjs/Subscription'
+import * as shortid from 'shortid'
 
-import { AppConfig } from '../../../shared/utils/config'
+import { ChartData } from '../../../shared/models/chart-data.model'
+import { ConfigKey } from '../../../shared/models/config.model'
+import { ChartColors } from '../chart.model'
 
 /**
  *  BaseComponent to be extended by chart components
@@ -27,14 +31,41 @@ import { AppConfig } from '../../../shared/utils/config'
  *  3. draw() use to draw the chart elements
  */
 @Component({
-  templateUrl: '../charts.common.html'
+  templateUrl: '../charts.common.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   @ViewChild('svg') svgRef: ElementRef
 
-  @Input() margin = AppConfig.charts.MARGIN
-  @Input() dates: Date[]
-  @Input() tooltipData
+  @Input() margin = { top: 16, right: 16, bottom: 32, left: 48 }
+  @Input() color: string = ChartColors.c3
+  @Input()
+  colors: string[] = [
+    ChartColors.c1,
+    ChartColors.c2,
+    ChartColors.c3,
+    ChartColors.c4,
+    ChartColors.c5,
+    ChartColors.c6
+  ]
+  @Input() keys: ConfigKey[]
+  @Input() hasYAxis = true
+  @Input() hasXAxis = true
+
+  @Output() onMove = new EventEmitter<Date>()
+
+  uid: string
+  data: ChartData[]
+  svg: any
+  chart: any
+  tooltip: any
+  width: number
+  height: number
+  xScale: any
+  yScale: any
+  xAxis: any
+  yAxis: any
+  window$: Subscription
 
   @Input()
   get chartData() {
@@ -46,24 +77,8 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
     this.beforeUpdate()
   }
 
-  @Output() onMove = new EventEmitter<Date>()
-
-  data: any
-  svg: any
-  chart: any
-  tooltip: any
-  tooltipInfo: any
-  width: number
-  height: number
-  xScale: any
-  yScale: any
-  xAxis: any
-  yAxis: any
-  window$: Subscription
-  clipPath: any
-  bisect: any
-
   ngAfterViewInit() {
+    this.uid = shortid.generate()
     this.svg = d3.select(this.svgRef.nativeElement)
 
     this.beforeInit()
@@ -93,22 +108,17 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
 
     const chartTranslate = `translate(${this.margin.left}, ${this.margin.top})`
 
-    this.bisect = d3.bisector(function(d) {
-      return d
-    }).right
-
     this.chart = this.svg
       .append('g')
       .attr('class', 'chart')
       .attr('transform', chartTranslate)
 
-    this.tooltipInfo = d3.selectAll('#tooltip')
-
-    this.xAxis = this.chart.append('g').attr('class', 'axis axis--x')
-
-    this.yAxis = this.chart.append('g').attr('class', 'axis axis--y')
-
-    this.clipPath = this.chart.append('clipPath').attr('id', 'clip')
+    if (this.hasXAxis) {
+      this.xAxis = this.chart.append('g').attr('class', 'axis axis--x')
+    }
+    if (this.hasYAxis) {
+      this.yAxis = this.chart.append('g').attr('class', 'axis axis--y')
+    }
 
     this.tooltip = this.svg
       .append('g')
@@ -116,41 +126,13 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
       .append('rect')
       .attr('class', 'tooltip-box')
       .on('mousemove', () => this.tooltipMouseMove())
-      .on('mouseout', () => this.tooltipMouseOut())
 
     this.init()
   }
 
   private tooltipMouseMove() {
-    if (!this.xScale) return
-
-    const date = this.dates[
-      this.bisect(
-        this.dates,
-        this.xScale.invert(d3.mouse(this.tooltip.node())[0])
-      )
-    ]
-    this.onMove.emit(date)
-
-    if (this.tooltipData) {
-      const pos = d3.mouse(this.tooltip.node())[0]
-      this.tooltipInfo
-        .style('opacity', '1')
-        .style('position', 'absolute')
-        .style('left', pos + 'px')
-      console.log(d3.mouse(this.tooltip.node())[0])
-      let t = ''
-      const data = this.tooltipData.data
-      Object.keys(this.tooltipData.data).map(function(d) {
-        t = t + data[d].label['EN'] + ' : ' + data[d].value + '<br>'
-      })
-      this.tooltipInfo.html(date + '<br>' + t)
-    }
-  }
-
-  private tooltipMouseOut() {
-    if (this.tooltipInfo) {
-      this.tooltipInfo.style('opacity', '0')
+    if (this.xScale) {
+      this.onMove.emit(this.xScale.invert(d3.mouse(this.tooltip.node())[0]))
     }
   }
 
@@ -170,13 +152,6 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
 
     this.chart.attr('width', this.width).attr('height', this.height)
     this.tooltip.attr('width', this.width).attr('height', this.height)
-
-    this.clipPath.selectAll('rect').remove()
-
-    this.clipPath
-      .append('rect')
-      .attr('width', this.width)
-      .attr('height', this.height)
 
     this.draw()
   }

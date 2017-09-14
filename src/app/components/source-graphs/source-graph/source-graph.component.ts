@@ -1,15 +1,9 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnInit
-} from '@angular/core'
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 import { Store } from '@ngrx/store'
-import { Observable } from 'rxjs/Observable'
 
-import * as tooltipAction from '../../../shared/store/sensors-tooltip/sensors-tooltip.actions'
-import { DataTypes } from '../../../shared/store/sensors/sensors.model'
-import * as fromRoot from '../../../shared/store/index'
+import * as sensorsActions from '../../../shared/store/sensors/sensors.actions'
+import { DataType } from '../../../shared/store/sensors/sensors.model'
+import * as fromRoot from '../../../shared/store/'
 import { AppConfig } from '../../../shared/utils/config'
 
 @Component({
@@ -20,37 +14,35 @@ import { AppConfig } from '../../../shared/utils/config'
     <div class="loading" *ngIf="!isLoaded">
       <md-spinner></md-spinner>
     </div>
-    <div class="nodata" *ngIf="!(data) && isLoaded">
+    <div class="nodata" *ngIf="!(sensorData) && isLoaded">
       <p>No data found for this timeframe.</p>
     </div>
 
     <app-chart-base-line
-      *ngIf="data && isLoaded && isSingle"
-      [chartData]="data[sensorId]"
-      [dates]="dates"
-      [gradientEnabled]="gradientEnabled"
-      [tooltipData]="tooltipData$| async"
+      *ngIf="sensorData && isLoaded && isSingle"
+      [chartData]="sensorData"
+      [hasGradient]="gradientEnabled"
+      [hasXAxis]="false"
       (onMove)="onMoveHandler($event)"
     ></app-chart-base-line>
 
     <app-chart-base-multi-line
-      *ngIf="data && isLoaded && !(isSingle)"
-      [chartData]="data[sensorId]"
-      [dates]="dates"
-      [tooltipData]="tooltipData$| async"
+      *ngIf="sensorData && isLoaded && !(isSingle)"
+      [chartData]="sensorData"
+      [keys]="keys"
+      [hasXAxis]="false"
       (onMove)="onMoveHandler($event)"
     ></app-chart-base-multi-line>
   `,
   styleUrls: ['./source-graph.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SourceGraphComponent implements OnInit {
+export class SourceGraphComponent {
   @Input() isLoaded
-  @Input() data = []
-  @Input() dates
-  @Input() type
+  @Input() sensorData = []
   @Input() sensorId
-  tooltipData$: Observable<any>
+  @Input() type
+  @Input() keys
 
   get gradientEnabled() {
     return (
@@ -61,7 +53,7 @@ export class SourceGraphComponent implements OnInit {
   get isSingle() {
     return (
       AppConfig.config &&
-      AppConfig.config.sensors[this.type].dataType === DataTypes.single
+      AppConfig.config.sensors[this.type].dataType === DataType.single
     )
   }
 
@@ -74,13 +66,7 @@ export class SourceGraphComponent implements OnInit {
 
   constructor(private store: Store<fromRoot.State>) {}
 
-  ngOnInit() {
-    this.tooltipData$ = this.store
-      .select(fromRoot.getSensorsTooltipAll)
-      .publishReplay()
-      .refCount()
-  }
-  onMoveHandler(event) {
-    this.store.dispatch(new tooltipAction.GetAll(event))
+  onMoveHandler(date: Date) {
+    this.store.dispatch(new sensorsActions.SetTooltipDate(date))
   }
 }

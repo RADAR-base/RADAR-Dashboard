@@ -3,7 +3,8 @@ import { Action } from '@ngrx/store'
 import { Source } from './source.model'
 
 export const GET_ALL = '[Source] GET_ALL'
-export const GET_ALL_SUCCESS = '[Source] Load GET_ALL_SUCCESS'
+export const GET_ALL_SUCCESS = '[Source] GET_ALL_SUCCESS'
+export const DESTROY = '[Source] DESTROY'
 
 export class GetAll implements Action {
   readonly type = GET_ALL
@@ -14,7 +15,11 @@ export class GetAll implements Action {
 export class GetAllSuccess implements Action {
   readonly type = GET_ALL_SUCCESS
 
-  constructor(public payload: { subjectId: String; data: Source[] }) {}
+  constructor(public payload: Source[]) {}
 }
 
-export type Actions = GetAll | GetAllSuccess
+export class Destroy implements Action {
+  readonly type = DESTROY
+}
+
+export type Actions = GetAll | GetAllSuccess | Destroy

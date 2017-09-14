@@ -183,7 +183,6 @@
       }
     },
     "units": {
-      "doc": "All possible units requested data is returned as.",
       "BEATS_PER_MIN": {
         "doc": "Number of events (heart beats) per minute.",
         "label": {
@@ -206,7 +205,6 @@
       }
     },
     "timeIntervals": {
-      "doc": "Available time intervals in which requested data is returned.",
       "TEN_SECOND": {
         "doc": "10 seconds time interval",
         "value": 10000,
@@ -272,14 +270,12 @@
       "keys": [
         {
           "key": "simple",
-          "doc": "Simple compliance.",
           "label": {
             "EN": "Simple Compliance"
           }
         },
         {
           "key": "special",
-          "doc": "Special Compliance",
           "label": {
             "EN": "Special Compliance"
           }

@@ -155,7 +155,7 @@ export const MockConfig = {
       },
       INTERQUARTILE_RANGE: {
         doc:
-          'A measure of statistical dispersion, being equal to the difference between 75th and 25th',
+          'A measure of statistical dispersion, being equal to the difference between 75th quartiles.',
         label: {
           EN: 'Interquartile Range'
         }
@@ -176,14 +176,13 @@ export const MockConfig = {
       },
       QUARTILES: {
         doc:
-          'The quartiles of a ranked set of data values are the three points that divide the data set',
+          'The quartiles of a ranked set of data values are the three points that divide the data',
         label: {
           EN: 'Quartiles'
         }
       }
     },
     units: {
-      doc: 'All possible units requested data is returned as.',
       BEATS_PER_MIN: {
         doc: 'Number of events (heart beats) per minute.',
         label: {

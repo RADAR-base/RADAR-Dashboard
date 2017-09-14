@@ -1,6 +1,6 @@
 import { createSelector } from '@ngrx/store'
 
-import * as sourceActions from './source.actions'
+import * as actions from './source.actions'
 import { Source } from './source.model'
 
 export interface State {
@@ -15,20 +15,17 @@ const initialState: State = {
   isLoaded: false
 }
 
-export function reducer(
-  state = initialState,
-  action: sourceActions.Actions
-): State {
+export function reducer(state = initialState, action: actions.Actions): State {
   switch (action.type) {
-    case sourceActions.GET_ALL: {
+    case actions.GET_ALL: {
       return {
         ...state,
         isLoaded: false
       }
     }
 
-    case sourceActions.GET_ALL_SUCCESS: {
-      const payload = action.payload.data
+    case actions.GET_ALL_SUCCESS: {
+      const payload = action.payload
       const ids = payload.map(source => source.id)
       const entities = payload.reduce((acc, source) => {
         return { ...acc, [source.id]: source }
@@ -39,6 +36,12 @@ export function reducer(
         isLoaded: true,
         ids,
         entities
+      }
+    }
+
+    case actions.DESTROY: {
+      return {
+        ...initialState
       }
     }
 

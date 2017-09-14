@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { ChangeDetectionStrategy, Component } from '@angular/core'
 
 @Component({
   selector: 'app-toolbar',
@@ -9,6 +9,7 @@ import { Component } from '@angular/core'
       <ng-content select="[end]"></ng-content>
     </md-toolbar>
   `,
-  styleUrls: ['./toolbar.component.scss']
+  styleUrls: ['./toolbar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ToolbarComponent {}

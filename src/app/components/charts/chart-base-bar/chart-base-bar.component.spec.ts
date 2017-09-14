@@ -2,9 +2,11 @@ import { DebugElement } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 
 import {
-  MockTimeSeriesData,
-  parseMockTimeSeriesData
-} from '../../../shared/testing/mocks/mock-timeseries-data'
+  MockAPISampleDataset,
+  MockTimeFrameChartData,
+  MockTimeIntervalChartData
+} from '../../../shared/testing/mocks/mock-chart-data'
+import { ParseTimeHoles } from '../../../shared/utils/parse-time-holes'
 import { ChartBaseBarComponent } from './chart-base-bar.component'
 
 describe('ChartBaseBarComponent', () => {
@@ -44,7 +46,12 @@ describe('ChartBaseBarComponent', () => {
       expect(component.chartData).toBeFalsy()
 
       // with data // needs to be parsed //
-      component.chartData = parseMockTimeSeriesData(MockTimeSeriesData)
+      component.chartData = ParseTimeHoles(
+        MockAPISampleDataset,
+        MockTimeFrameChartData,
+        MockTimeIntervalChartData
+      )
+
       expect(component.width).toBeGreaterThan(0)
       expect(component.height).toBeGreaterThan(0)
     })
@@ -54,7 +61,11 @@ describe('ChartBaseBarComponent', () => {
       expect(element.querySelector('rect.bar')).toBeFalsy()
 
       // with data // needs to be parsed //
-      component.chartData = parseMockTimeSeriesData(MockTimeSeriesData)
+      component.chartData = ParseTimeHoles(
+        MockAPISampleDataset,
+        MockTimeFrameChartData,
+        MockTimeIntervalChartData
+      )
 
       // select element again as they'll be instantiated
       expect(element.querySelector('rect.bar')).toBeTruthy()

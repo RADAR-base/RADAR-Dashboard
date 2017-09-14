@@ -1,16 +1,22 @@
 import { createSelector } from '@ngrx/store'
 
-import { MultiTimeSeries } from '../../models/multi-time-series.model'
-import { TimeSeries } from '../../models/time-series.model'
-import * as sensorsActions from './sensors.actions'
-import { Sensor } from './sensors.model'
+import { ChartData } from '../../models/chart-data.model'
+import { TimeFrame } from '../../models/time-frame.model'
+import { roundToNearest } from '../../utils/round-to-nearest'
+import * as actions from './sensors.actions'
+import { DescriptiveStatistic, Sensor, TimeInterval } from './sensors.model'
 
 export interface State {
-  ids: string[]
+  ids: number[]
   entities: { [id: string]: Sensor }
   isLoaded: boolean
-  data: { [id: number]: TimeSeries[] | MultiTimeSeries[] }
-  isDataLoaded: { [id: number]: boolean }
+  data: { [id: number]: ChartData[] }
+  dataLoaded: { [id: number]: boolean }
+  dates: Date[]
+  tooltipDate: Date
+  timeFrame: TimeFrame
+  timeInterval: TimeInterval
+  descriptiveStatistic: DescriptiveStatistic
 }
 
 const initialState: State = {
@@ -18,24 +24,26 @@ const initialState: State = {
   entities: {},
   isLoaded: false,
   data: {},
-  isDataLoaded: {}
+  dataLoaded: {},
+  dates: [],
+  tooltipDate: null,
+  timeFrame: { start: null, end: null },
+  timeInterval: TimeInterval.TEN_SECOND,
+  descriptiveStatistic: DescriptiveStatistic.AVERAGE
 }
 
-export function reducer(
-  state = initialState,
-  action: sensorsActions.Actions
-): State {
+export function reducer(state = initialState, action: actions.Actions): State {
   switch (action.type) {
-    case sensorsActions.GET_ALL: {
+    case actions.LOAD_SENSORS: {
       return {
         ...state,
         isLoaded: false
       }
     }
 
-    case sensorsActions.GET_ALL_SUCCESS: {
+    case actions.LOAD_SENSORS_SUCCESS: {
       let counter = 0
-      const payload = action.payload.data
+      const payload = action.payload
       const ids = []
       const sensors = payload.map(source =>
         source.sensors.reduce((acc, sensor) => {
@@ -64,51 +72,82 @@ export function reducer(
       }
     }
 
-    case sensorsActions.GET_ALL_DATA: {
+    case actions.UPDATE_DATES: {
+      const iterations =
+        (state.timeFrame.end - state.timeFrame.start) / state.timeInterval
+
+      const dates = []
+      for (let i = 0; i < iterations; i++) {
+        dates[i] = new Date(state.timeFrame.start + state.timeInterval * i)
+      }
+
       return {
         ...state,
-        isDataLoaded: []
+        dates
       }
     }
 
-    case sensorsActions.GET_ALL_DATA_SUCCESS: {
-      const payload = action.payload
-      const id = payload.id
-      const data = payload.data
-      let dataWithIds = {}
-      if (data[0]) {
-        dataWithIds = { ...state.data['values'], [id]: data.map(d => d.value) }
-      } else {
-        dataWithIds = {
-          ...state.data['values'],
-          [id]: { keys: data.keys, values: data.values }
+    case actions.LOAD_SENSORS_DATA: {
+      return {
+        ...state,
+        dataLoaded: {}
+      }
+    }
+
+    case actions.LOAD_SENSORS_DATA_SUCCESS: {
+      const data = action.payload.data
+      const id = action.payload.sensor.id
+
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          [id]: data
+        },
+        dataLoaded: {
+          ...state.dataLoaded,
+          [id]: true
         }
       }
-      let dataWithDates = {}
-      if (state.data['dates']) {
-        dataWithDates = { dates: state.data['dates'], values: dataWithIds }
-      } else {
-        const dates = data.map(d => d.date)
-        dataWithDates = { dates: dates, values: dataWithIds }
-      }
+    }
+
+    case actions.SET_TOOLTIP_DATE: {
+      // round to interval
+      const date = roundToNearest(action.payload.getTime(), state.timeInterval)
       return {
         ...state,
-        data: dataWithDates,
-        isDataLoaded: { ...state.isDataLoaded, [id]: true }
+        tooltipDate: new Date(date)
       }
     }
 
-    case sensorsActions.DESTROY: {
+    case actions.SET_TIME_FRAME: {
       return {
-        ids: [],
-        entities: {},
-        data: {},
-        isLoaded: false,
-        isDataLoaded: {}
+        ...state,
+        timeFrame: action.payload
       }
     }
 
-    case sensorsActions.TOGGLE_VISIBILITY: {
+    case actions.SET_TIME_INTERVAL: {
+      return {
+        ...state,
+        timeInterval: action.payload
+      }
+    }
+
+    case actions.SET_DESCRIPTIVE_STATISTIC: {
+      return {
+        ...state,
+        descriptiveStatistic: action.payload
+      }
+    }
+
+    case actions.DESTROY: {
+      return {
+        ...initialState
+      }
+    }
+
+    case actions.TOGGLE_VISIBILITY: {
       const id = action.payload
       const entity = {
         ...state.entities[id],
@@ -128,23 +167,47 @@ export function reducer(
 }
 
 export const getIsLoaded = (state: State) => state.isLoaded
-export const getIsDataLoaded = (state: State) => state.isDataLoaded
+export const getIsDataLoaded = (state: State) => state.dataLoaded
 export const getIds = (state: State) => state.ids
 export const getEntities = (state: State) => state.entities
 export const getData = (state: State) => state.data
+export const getDates = (state: State) => state.dates
+export const getTimeFrame = (state: State) => state.timeFrame
+export const getTimeInterval = (state: State) => state.timeInterval
+export const getTooltipDate = (state: State) => state.tooltipDate
+export const getDescriptiveStatistic = (state: State) =>
+  state.descriptiveStatistic
 
-export const getLabels = createSelector(
+export const getSensors = createSelector(
   getEntities,
   getIds,
   (entities, ids) => {
-    return ids.map(id => entities[id].label)
+    return ids.map(id => entities[id])
   }
 )
 
-export const getAll = createSelector(getEntities, getIds, (entities, ids) => {
-  return ids.map(id => entities[id])
-})
+export const getTooltipValues = createSelector(
+  getIds,
+  getEntities,
+  getData,
+  getTooltipDate,
+  (ids, sensors, data, date) => {
+    if (!date) return []
 
-export const getAllData = createSelector(getData, getIds, (data, ids) => {
-  return data
-})
+    return ids.reduce((acc, id) => {
+      const index =
+        data[id] && data[id].findIndex(d => d.date.getTime() === date.getTime())
+
+      return [
+        ...acc,
+        {
+          id: id,
+          label: sensors[id].label,
+          dataType: sensors[id].dataType,
+          keys: sensors[id].keys || null,
+          value: data[id] && index > -1 ? data[id][index].value : null
+        }
+      ]
+    }, [])
+  }
+)

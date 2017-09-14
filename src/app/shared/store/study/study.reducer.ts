@@ -71,7 +71,7 @@ export function reducer(
       })
     }
 
-    case studyActions.SELECT: {
+    case studyActions.SET_SELECTED_ID: {
       return Object.assign({}, state, {
         selectedId: action.payload
       })

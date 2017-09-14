@@ -7,20 +7,12 @@
   flex-direction: row;
   height: inherit;
 
-  .backbar {
+  .back-bar {
     opacity: 0.1;
     fill: $cl-lighter;
   }
 
-  .special {
-    fill: $cl-graph-4;
-  }
-
-  .simple {
-    fill: $cl-graph-3;
-  }
-
-  .nullSymbol {
+  .null-symbol {
     color: #fff;
     opacity: 0.4;
   }
