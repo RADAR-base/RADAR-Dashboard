@@ -1,32 +1,36 @@
+import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { Http } from '@angular/http'
 import { Observable } from 'rxjs/Observable'
 
-import { ErrorService } from '../../../shared/services/error.service'
-import { ParseMultiValueData } from '../../../shared/utils/ParseMultiValueData'
-import { ParseTimeHoles } from '../../../shared/utils/ParseTimeHoles'
+import { AppConfig } from '../../utils/config'
+import { ParseTimeHoles } from '../../utils/parse-time-holes'
 
 @Injectable()
 export class ComplianceService {
-  constructor(private http: Http) {}
+  constructor(private http: HttpClient) {}
 
-  getAll(studyId, keys, timeHoles = true): Observable<any> {
+  getAll(studyId): Observable<any> {
     // TODO: Change when API is ready
     return this.http
-      .get(`${PARAMS.API_LOCAL}/mock-compliance.json`)
+      .get<any>(`${PARAMS.API_LOCAL}/mock-compliance.json`)
+      .take(1)
       .delay(1000)
-      .map(res => {
-        return res.status === 200 ? res.json() || null : null
-      })
+      .filter(d => d !== null)
       .map(res => {
         if (res) {
-          return timeHoles
-            ? ParseMultiValueData(ParseTimeHoles(res, true), keys, timeHoles)
-            : ParseMultiValueData(res.dataset, keys, timeHoles)
+          return ParseTimeHoles(
+            res.dataset,
+            {
+              start: new Date(
+                res.header.effectiveTimeFrame.startDateTime
+              ).getTime(),
+              end: new Date(res.header.effectiveTimeFrame.endDateTime).getTime()
+            },
+            AppConfig.config.timeIntervals[res.header.timeFrame].value
+          )
         } else {
           return null
         }
       })
-      .catch(ErrorService.handleError)
   }
 }

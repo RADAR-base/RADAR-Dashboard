@@ -11,6 +11,7 @@ $cl-base-20: rgba(#0b4a59, 0.2);
 $cl-base-40: rgba(#0b4a59, 0.4);
 $cl-base-60: rgba(#0b4a59, 0.6);
 $cl-base-80: rgba(#0b4a59, 0.8);
+$cl-base-90: rgba(#0b4a59, 0.9);
 
 // Font
 $cl-font: white;
@@ -24,6 +25,7 @@ $cl-white-60: rgba(white, 0.6);
 $cl-white-80: rgba(white, 0.8);
 
 // Graph Colors
+// NOTE: Keep in sync with AppConfig!!
 $cl-graph-1: #ffc;
 $cl-graph-2: #c7e9b4;
 $cl-graph-3: #7fcdbb;

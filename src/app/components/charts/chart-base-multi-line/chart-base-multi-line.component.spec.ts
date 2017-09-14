@@ -5,8 +5,16 @@ import {
   fakeAsync,
   tick
 } from '@angular/core/testing'
+import { StoreModule } from '@ngrx/store'
 
-import { MockMultiTimeSeriesData } from '../../../shared/testing/mocks/mock-multi-timeseries-data'
+import { reducers } from '../../../shared/store'
+import {
+  MockAPISampleDataset,
+  MockTimeFrameChartData,
+  MockTimeIntervalChartData
+} from '../../../shared/testing/mocks/mock-chart-data'
+import { MockSensorMulti } from '../../../shared/testing/mocks/mock-sensor-data'
+import { ParseTimeHoles } from '../../../shared/utils/parse-time-holes'
 import { ChartBaseMultiLineComponent } from './chart-base-multi-line.component'
 
 describe('ChartBaseMultiLineComponent', () => {
@@ -17,6 +25,7 @@ describe('ChartBaseMultiLineComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [StoreModule.forRoot(reducers)],
       declarations: [ChartBaseMultiLineComponent]
     })
 
@@ -24,6 +33,8 @@ describe('ChartBaseMultiLineComponent', () => {
     component = fixture.componentInstance
     element = fixture.nativeElement
     de = fixture.debugElement
+
+    component.keys = MockSensorMulti.keys
 
     fixture.detectChanges()
   })
@@ -43,7 +54,12 @@ describe('ChartBaseMultiLineComponent', () => {
     expect(component.chartData).toBeFalsy()
 
     // with data // needs to be parsed //
-    component.chartData = MockMultiTimeSeriesData
+    component.chartData = ParseTimeHoles(
+      MockAPISampleDataset,
+      MockTimeFrameChartData,
+      MockTimeIntervalChartData
+    )
+
     expect(component.width).toBeGreaterThan(0)
     expect(component.height).toBeGreaterThan(0)
   })
@@ -60,7 +76,11 @@ describe('ChartBaseMultiLineComponent', () => {
       })
 
       // with data // needs to be parsed //
-      component.chartData = MockMultiTimeSeriesData
+      component.chartData = ParseTimeHoles(
+        MockAPISampleDataset,
+        MockTimeFrameChartData,
+        MockTimeIntervalChartData
+      )
 
       // wait for transition
       tick(500)

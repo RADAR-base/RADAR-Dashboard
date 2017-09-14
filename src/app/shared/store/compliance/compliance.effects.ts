@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core'
-import { Actions, Effect, toPayload } from '@ngrx/effects'
+import { Actions, Effect } from '@ngrx/effects'
 import { Action } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
-import * as complianceAction from './compliance.actions'
+import * as actions from './compliance.actions'
 import { ComplianceService } from './compliance.service'
 
 @Injectable()
 export class ComplianceEffects {
   @Effect()
   getAll$: Observable<Action> = this.actions$
-    .ofType(complianceAction.GET_ALL)
-    .map(toPayload)
+    .ofType<actions.GetAll>(actions.GET_ALL)
+    .map(action => action.payload)
     .switchMap(payload => {
       return this.complianceService
-        .getAll(payload.studyId, payload.keys, payload.timeHoles)
-        .map((data: any) => new complianceAction.GetAllSuccess(data))
+        .getAll(payload)
+        .map((data: any) => new actions.GetAllSuccess(data))
     })
 
   constructor(

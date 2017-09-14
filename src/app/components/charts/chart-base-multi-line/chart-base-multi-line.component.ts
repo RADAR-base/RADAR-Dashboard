@@ -1,56 +1,59 @@
-import { Component, Input } from '@angular/core'
+import { ChangeDetectionStrategy, Component } from '@angular/core'
 import * as d3 from 'd3'
 import { lineChunked } from 'd3-line-chunked'
 
-import { MultiTimeSeries } from '../../../shared/models/multi-time-series.model'
-import { AppConfig } from '../../../shared/utils/config'
+import { ConfigKey } from '../../../shared/models/config.model'
 import { ChartBaseComponent } from '../chart-base/chart-base.component'
 
 @Component({
   selector: 'app-chart-base-multi-line',
   templateUrl: '../charts.common.html',
-  styleUrls: ['./chart-base-multi-line.component.scss']
+  styleUrls: ['./chart-base-multi-line.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChartBaseMultiLineComponent extends ChartBaseComponent {
-  data: MultiTimeSeries
-
-  @Input() lineColors = AppConfig.charts.CATEGORICAL_COLORS
-
-  svg: any
-  chart: any
-  width: number
-  height: number
-  xScale: any
-  yScale: any
-  zScale: any
-  xAxis: any
-  yAxis: any
-  lineChunked: any
+  keys: ConfigKey[]
+  colorScale: any
+  lineChunkedFunctions: { [key: string]: Function } = {}
   lines: any
   line: any
-  newData: any
-  firstDraw = true
+  lineGroup: any
 
   init() {
+    this.lineGroup = this.chart.append('g')
+
+    this.colorScale = d3
+      .scaleOrdinal()
+      .domain(this.keys.map(k => k.key))
+      .range(this.colors)
+
+    this.keys.map(k => {
+      this.lineChunkedFunctions[k.key] = lineChunked()
+        .x(d => this.xScale(d.date))
+        .y(d => this.yScale(d.value[k.key]))
+        .curve(d3.curveBasis)
+        .defined(d => d.value)
+        .lineStyles({ stroke: this.colorScale(k.key) })
+        .pointStyles({ fill: this.colorScale(k.key) })
+    })
+
     super.init()
   }
 
   draw() {
-    const minDate = d3.min(this.data.dates)
-    const maxDate = d3.max(this.data.dates)
-    const dates = this.data.dates
-    const keys = this.data.keys.map(k => k.key)
-
     this.xScale = d3
       .scaleTime()
       .range([0, this.width])
-      .domain([minDate, maxDate])
+      .domain(d3.extent(this.data, d => d.date))
+
+    if (this.hasXAxis) this.xAxis.call(d3.axisBottom(this.xScale))
 
     const minValue = d3.min(
-      this.data.keys.map(k => d3.min(this.data.values[k.key]))
+      this.keys.map(k => d3.min(this.data, d => d.value && d.value[k.key]))
     )
+
     const maxValue = d3.max(
-      this.data.keys.map(k => d3.max(this.data.values[k.key]))
+      this.keys.map(k => d3.max(this.data, d => d.value && d.value[k.key]))
     )
 
     this.yScale = d3
@@ -58,49 +61,18 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
       .range([this.height, 0])
       .domain([minValue, maxValue])
 
-    this.zScale = d3
-      .scaleOrdinal()
-      .domain(keys)
-      .range(this.lineColors)
+    if (this.hasYAxis) {
+      this.yAxis.call(d3.axisLeft(this.yScale).tickSize(-this.width))
+    }
 
-    this.xAxis
-      .attr('transform', `translate(0, ${this.height})`)
-      .call(d3.axisBottom(this.xScale))
+    this.lineGroup.selectAll('.line').remove()
 
-    this.yAxis.call(d3.axisLeft(this.yScale).tickSize(-this.width))
-
-    this.chart.selectAll('.line').remove()
-
-    const colorsFunction = (d, i) => this.zScale(keys[i])
-
-    this.lineChunked = lineChunked()
-      .x(d => this.xScale(d.x))
-      .y(d => this.yScale(d.y))
-      .curve(d3.curveLinear)
-      .defined(function(d) {
-        return d.y != null
-      })
-      .lineStyles({ stroke: colorsFunction })
-      .pointStyles({ fill: colorsFunction })
-
-    this.newData = this.data.keys
-      .map(k => k.key)
-      .map(d => this.data.values[d])
-      .map(d =>
-        d.map(function(e, i) {
-          return { x: dates[i], y: e }
-        })
-      )
-
-    this.lines = this.chart.selectAll('.line').data(this.newData)
-
-    this.line = this.lines.enter().append('g')
-
-    this.lines
-      .merge(this.line)
-      .attr('class', 'line')
-      .call(this.lineChunked)
-
-    this.lines.exit().remove()
+    this.keys.map(k => {
+      this.lineGroup
+        .append('g')
+        .attr('class', `line ${k.key}`)
+        .datum(this.data)
+        .call(this.lineChunkedFunctions[k.key])
+    })
   }
 }

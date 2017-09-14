@@ -1,2 +1,10 @@
 @import '../../../../styles/common';
 @import '../charts.common';
+
+:host /deep/ {
+  .zoom {
+    cursor: move;
+    pointer-events: all;
+    fill: none;
+  }
+}

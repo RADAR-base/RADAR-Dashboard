@@ -1,0 +1,269 @@
+{
+  "header": {
+    "subjectId": "MRC01",
+    "sourceId": "00:07:80:1F:52:F3",
+    "source": "EMPATICA",
+    "sensor": "BATTERY",
+    "descriptiveStatistic": "RECEIVED_MESSAGES",
+    "unit": "PERCENTAGE",
+    "timeFrame": "TEN_SECOND",
+    "effectiveTimeFrame": {
+      "startDateTime": "2017-06-16T08:59:40Z",
+      "endDateTime": "2017-06-16T12:04:20Z"
+    }
+  },
+  "dataset": [
+    {
+      "sample": {
+        "value": 14
+      },
+      "startDateTime": "2017-06-16T08:59:40Z"
+    },
+    {
+      "sample": {
+        "value": 13
+      },
+      "startDateTime": "2017-06-16T09:05:10Z"
+    },
+    {
+      "sample": {
+        "value": 12
+      },
+      "startDateTime": "2017-06-16T09:07:40Z"
+    },
+    {
+      "sample": {
+        "value": 11
+      },
+      "startDateTime": "2017-06-16T09:08:30Z"
+    },
+    {
+      "sample": {
+        "value": 1
+      },
+      "startDateTime": "2017-06-16T09:12:00Z"
+    },
+    {
+      "sample": {
+        "value": 126
+      },
+      "startDateTime": "2017-06-16T09:16:40Z"
+    },
+    {
+      "sample": {
+        "value": 112
+      },
+      "startDateTime": "2017-06-16T09:21:20Z"
+    },
+    {
+      "sample": {
+        "value": 98
+      },
+      "startDateTime": "2017-06-16T09:26:00Z"
+    },
+    {
+      "sample": {
+        "value": 6
+      },
+      "startDateTime": "2017-06-16T09:30:10Z"
+    },
+    {
+      "sample": {
+        "value": 7
+      },
+      "startDateTime": "2017-06-16T09:34:50Z"
+    },
+    {
+      "sample": {
+        "value": 56
+      },
+      "startDateTime": "2017-06-16T09:39:30Z"
+    },
+    {
+      "sample": {
+        "value": 42
+      },
+      "startDateTime": "2017-06-16T09:44:10Z"
+    },
+    {
+      "sample": {
+        "value": 28
+      },
+      "startDateTime": "2017-06-16T09:48:50Z"
+    },
+    {
+      "sample": {
+        "value": 14
+      },
+      "startDateTime": "2017-06-16T09:53:30Z"
+    },
+    {
+      "sample": {
+        "value": 84
+      },
+      "startDateTime": "2017-06-16T09:58:10Z"
+    },
+    {
+      "sample": {
+        "value": 7
+      },
+      "startDateTime": "2017-06-16T10:02:50Z"
+    },
+    {
+      "sample": {
+        "value": 56
+      },
+      "startDateTime": "2017-06-16T10:07:30Z"
+    },
+    {
+      "sample": {
+        "value": 42
+      },
+      "startDateTime": "2017-06-16T10:12:10Z"
+    },
+    {
+      "sample": {
+        "value": 28
+      },
+      "startDateTime": "2017-06-16T10:16:50Z"
+    },
+    {
+      "sample": {
+        "value": 14
+      },
+      "startDateTime": "2017-06-16T10:21:30Z"
+    },
+    {
+      "sample": {
+        "value": 98
+      },
+      "startDateTime": "2017-06-16T10:26:10Z"
+    },
+    {
+      "sample": {
+        "value": 84
+      },
+      "startDateTime": "2017-06-16T10:30:50Z"
+    },
+    {
+      "sample": {
+        "value": 7
+      },
+      "startDateTime": "2017-06-16T10:35:30Z"
+    },
+    {
+      "sample": {
+        "value": 56
+      },
+      "startDateTime": "2017-06-16T10:40:10Z"
+    },
+    {
+      "sample": {
+        "value": 42
+      },
+      "startDateTime": "2017-06-16T10:44:50Z"
+    },
+    {
+      "sample": {
+        "value": 28
+      },
+      "startDateTime": "2017-06-16T10:49:30Z"
+    },
+    {
+      "sample": {
+        "value": 14
+      },
+      "startDateTime": "2017-06-16T10:54:10Z"
+    },
+    {
+      "sample": {
+        "value": 98
+      },
+      "startDateTime": "2017-06-16T10:58:50Z"
+    },
+    {
+      "sample": {
+        "value": 84
+      },
+      "startDateTime": "2017-06-16T11:03:30Z"
+    },
+    {
+      "sample": {
+        "value": 7
+      },
+      "startDateTime": "2017-06-16T11:08:10Z"
+    },
+    {
+      "sample": {
+        "value": 56
+      },
+      "startDateTime": "2017-06-16T11:12:50Z"
+    },
+    {
+      "sample": {
+        "value": 42
+      },
+      "startDateTime": "2017-06-16T11:17:30Z"
+    },
+    {
+      "sample": {
+        "value": 28
+      },
+      "startDateTime": "2017-06-16T11:22:10Z"
+    },
+    {
+      "sample": {
+        "value": 14
+      },
+      "startDateTime": "2017-06-16T11:26:50Z"
+    },
+    {
+      "sample": {
+        "value": 84
+      },
+      "startDateTime": "2017-06-16T11:31:30Z"
+    },
+    {
+      "sample": {
+        "value": 7
+      },
+      "startDateTime": "2017-06-16T11:36:10Z"
+    },
+    {
+      "sample": {
+        "value": 56
+      },
+      "startDateTime": "2017-06-16T11:40:50Z"
+    },
+    {
+      "sample": {
+        "value": 42
+      },
+      "startDateTime": "2017-06-16T11:45:30Z"
+    },
+    {
+      "sample": {
+        "value": 28
+      },
+      "startDateTime": "2017-06-16T11:50:10Z"
+    },
+    {
+      "sample": {
+        "value": 14
+      },
+      "startDateTime": "2017-06-16T11:54:50Z"
+    },
+    {
+      "sample": {
+        "value": 168
+      },
+      "startDateTime": "2017-06-16T11:59:30Z"
+    },
+    {
+      "sample": {
+        "value": 154
+      },
+      "startDateTime": "2017-06-16T12:04:10Z"
+    }
+  ]
+}

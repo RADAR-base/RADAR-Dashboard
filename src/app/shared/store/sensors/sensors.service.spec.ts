@@ -1,13 +1,17 @@
+import { HttpClientModule } from '@angular/common/http'
 import { TestBed, inject } from '@angular/core/testing'
-import { HttpModule } from '@angular/http'
+import { provideMockActions } from '@ngrx/effects/testing'
+import { Observable } from 'rxjs/Observable'
 
 import { SensorsService } from './sensors.service'
 
 describe('SensorsService', () => {
+  const actions: Observable<any> = Observable.of()
+
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpModule],
-      providers: [SensorsService]
+      imports: [HttpClientModule],
+      providers: [SensorsService, provideMockActions(() => actions)]
     })
   })
 

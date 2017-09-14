@@ -1,16 +1,22 @@
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
+  EventEmitter,
   Input,
   OnDestroy,
+  Output,
   ViewChild
 } from '@angular/core'
 import * as d3 from 'd3'
 import { Observable } from 'rxjs/Observable'
 import { Subscription } from 'rxjs/Subscription'
+import * as shortid from 'shortid'
 
-import { AppConfig } from '../../../shared/utils/config'
+import { ChartData } from '../../../shared/models/chart-data.model'
+import { ConfigKey } from '../../../shared/models/config.model'
+import { ChartColors } from '../chart.model'
 
 /**
  *  BaseComponent to be extended by chart components
@@ -25,21 +31,41 @@ import { AppConfig } from '../../../shared/utils/config'
  *  3. draw() use to draw the chart elements
  */
 @Component({
-  templateUrl: '../charts.common.html'
+  templateUrl: '../charts.common.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   @ViewChild('svg') svgRef: ElementRef
 
-  data: any
+  @Input() margin = { top: 16, right: 16, bottom: 32, left: 48 }
+  @Input() color: string = ChartColors.c3
+  @Input()
+  colors: string[] = [
+    ChartColors.c1,
+    ChartColors.c2,
+    ChartColors.c3,
+    ChartColors.c4,
+    ChartColors.c5,
+    ChartColors.c6
+  ]
+  @Input() keys: ConfigKey[]
+  @Input() hasYAxis = true
+  @Input() hasXAxis = true
+
+  @Output() onMove = new EventEmitter<Date>()
+
+  uid: string
+  data: ChartData[]
   svg: any
   chart: any
+  tooltip: any
   width: number
   height: number
+  xScale: any
+  yScale: any
   xAxis: any
   yAxis: any
   window$: Subscription
-
-  @Input() margin = AppConfig.charts.MARGIN
 
   @Input()
   get chartData() {
@@ -52,7 +78,9 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
+    this.uid = shortid.generate()
     this.svg = d3.select(this.svgRef.nativeElement)
+
     this.beforeInit()
   }
 
@@ -78,16 +106,34 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
         this.beforeUpdate()
       })
 
+    const chartTranslate = `translate(${this.margin.left}, ${this.margin.top})`
+
     this.chart = this.svg
       .append('g')
       .attr('class', 'chart')
-      .attr('transform', `translate(${this.margin.left}, ${this.margin.top})`)
+      .attr('transform', chartTranslate)
 
-    this.xAxis = this.chart.append('g').attr('class', 'axis axis--x')
+    if (this.hasXAxis) {
+      this.xAxis = this.chart.append('g').attr('class', 'axis axis--x')
+    }
+    if (this.hasYAxis) {
+      this.yAxis = this.chart.append('g').attr('class', 'axis axis--y')
+    }
 
-    this.yAxis = this.chart.append('g').attr('class', 'axis axis--y')
+    this.tooltip = this.svg
+      .append('g')
+      .attr('transform', chartTranslate)
+      .append('rect')
+      .attr('class', 'tooltip-box')
+      .on('mousemove', () => this.tooltipMouseMove())
 
     this.init()
+  }
+
+  private tooltipMouseMove() {
+    if (this.xScale) {
+      this.onMove.emit(this.xScale.invert(d3.mouse(this.tooltip.node())[0]))
+    }
   }
 
   private beforeUpdate() {
@@ -105,6 +151,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
     this.height = height - this.margin.top - this.margin.bottom
 
     this.chart.attr('width', this.width).attr('height', this.height)
+    this.tooltip.attr('width', this.width).attr('height', this.height)
 
     this.draw()
   }

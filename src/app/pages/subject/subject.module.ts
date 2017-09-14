@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
-import { HttpModule } from '@angular/http'
 import { MdGridListModule } from '@angular/material'
 import { RouterModule } from '@angular/router'
 
@@ -14,7 +13,6 @@ import { routes } from './subject.routing'
 @NgModule({
   imports: [
     CommonModule,
-    HttpModule,
     RouterModule.forChild(routes),
     MdGridListModule,
     SourceListModule,

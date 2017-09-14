@@ -8,8 +8,8 @@
     "unit": "G",
     "timeFrame": "ONE_DAY",
     "effectiveTimeFrame": {
-      "startDateTime": "2017-02-27T11:46:00Z",
-      "endDateTime": "2017-03-27T16:15:30Z"
+      "startDateTime": "2017-02-28T11:46:00Z",
+      "endDateTime": "2017-04-01T11:46:00Z"
     }
   },
   "dataset": [
@@ -18,11 +18,10 @@
         "simple": 0.2348,
         "special": 0
       },
-      "startDateTime": "2017-02-27T11:46:00Z"
+      "startDateTime": "2017-02-28T11:46:00Z"
     },
     {
       "sample": {
-        "simple": 0.7348,
         "special": 0.823
       },
       "startDateTime": "2017-03-01T11:46:00Z"

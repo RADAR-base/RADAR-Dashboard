@@ -1,58 +1,25 @@
-<div *ngFor="let source of sources; trackBy: trackBySourceId">
+<app-tooltip
+  #tooltip
+  [data]="tooltipData$ | async"
+  [style.transform]="'translate('+ tooltipX +'px, '+ tooltipY +'px)'"
+  [style.opacity]="tooltipShow"
+></app-tooltip>
+
+<div
+  *ngFor="let source of sources; trackBy: trackBySourceId"
+  (mousemove)="onMouseMove($event)"
+  (mouseleave)="onMouseLeave($event)"
+>
   <p>SOURCE {{ source.id }}</p>
   <div *ngFor="let sensor of source.sensors; trackBy: trackBySensorId">
     <div *ngIf="sensor.visible">
-      <div [ngSwitch]="sensor.type">
-        <app-graph-single-line
-          *ngSwitchCase="CHART_TYPE.HEART_RATE"
-          [gradient]="true"
-          [data]="data[sensor.id]"
-          [label]="labels[sensor.id]"
-          [isLoaded]="isDataLoaded[sensor.id]"
-        ></app-graph-single-line>
-        <app-graph-multi-line
-          *ngSwitchCase="CHART_TYPE.ACCELEROMETER"
-          [data]="data[sensor.id]"
-          [label]="labels[sensor.id]"
-          [isLoaded]="isDataLoaded[sensor.id]"
-        ></app-graph-multi-line>
-        <app-graph-single-line
-          *ngSwitchCase="CHART_TYPE.BATTERY"
-          [data]="data[sensor.id]"
-          [label]="labels[sensor.id]"
-          [isLoaded]="isDataLoaded[sensor.id]"
-        ></app-graph-single-line>
-        <app-graph-single-line
-          *ngSwitchCase="CHART_TYPE.BLOOD_VOLUME_PULSE"
-          [data]="data[sensor.id]"
-          [label]="labels[sensor.id]"
-          [isLoaded]="isDataLoaded[sensor.id]"
-        ></app-graph-single-line>
-        <app-graph-single-line
-          *ngSwitchCase="CHART_TYPE.ELECTRODERMAL_ACTIVITY"
-          [data]="data[sensor.id]"
-          [label]="labels[sensor.id]"
-          [isLoaded]="isDataLoaded[sensor.id]"
-        ></app-graph-single-line>
-        <app-graph-single-line
-          *ngSwitchCase="CHART_TYPE.INTER_BEAT_INTERVAL"
-          [data]="data[sensor.id]"
-          [label]="labels[sensor.id]"
-          [isLoaded]="isDataLoaded[sensor.id]"
-        ></app-graph-single-line>
-        <app-graph-single-line
-          *ngSwitchCase="CHART_TYPE.THERMOMETER"
-          [data]="data[sensor.id]"
-          [label]="labels[sensor.id]"
-          [isLoaded]="isDataLoaded[sensor.id]"
-        ></app-graph-single-line>
-        <p
-          *ngSwitchDefault
-          class="font-small"
-        >
-          {{ sensor.type }} is not associated to any graph!
-        </p>
-      </div>
+      <app-source-graph
+        [type]="sensor.type"
+        [sensorData]="sensorsData[sensor.id]"
+        [isLoaded]="isDataLoaded[sensor.id]"
+        [sensorId]="sensor.id"
+        [keys]="sensor?.keys"
+      ></app-source-graph>
     </div>
   </div>
 </div>

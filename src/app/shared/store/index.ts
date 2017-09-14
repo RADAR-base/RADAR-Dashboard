@@ -1,21 +1,16 @@
 import {
   ActionReducerMap,
-  MetaReducer,
   createFeatureSelector,
   createSelector
 } from '@ngrx/store'
-import { storeFreeze } from 'ngrx-store-freeze'
 
-import { environment } from '../../../environments/environment'
 import * as fromCompliance from './compliance/compliance.reducer'
-import * as fromConfig from './config/config.reducer'
 import * as fromSensors from './sensors/sensors.reducer'
 import * as fromSource from './source/source.reducer'
 import * as fromStudy from './study/study.reducer'
 import * as fromSubject from './subject/subject.reducer'
 
 export interface State {
-  config: fromConfig.State
   sensors: fromSensors.State
   source: fromSource.State
   study: fromStudy.State
@@ -24,24 +19,12 @@ export interface State {
 }
 
 export const reducers: ActionReducerMap<State> = {
-  config: fromConfig.reducer,
   sensors: fromSensors.reducer,
   source: fromSource.reducer,
   study: fromStudy.reducer,
   subject: fromSubject.reducer,
   compliance: fromCompliance.reducer
 }
-
-export const metaReducers: MetaReducer<State>[] = !environment.PROD
-  ? [storeFreeze]
-  : []
-
-// Config Selectors
-export const getConfigState = createFeatureSelector<fromConfig.State>('config')
-export const getConfigIsLoaded = createSelector(
-  getConfigState,
-  fromConfig.getIsLoaded
-)
 
 // Study Selectors
 export const getStudyState = createFeatureSelector<fromStudy.State>('study')
@@ -56,6 +39,10 @@ export const getStudyIsLoadedAndValid = createSelector(
 export const getStudyEntities = createSelector(
   getStudyState,
   fromStudy.getEntities
+)
+export const getStudySelectedId = createSelector(
+  getStudyState,
+  fromStudy.getSelectedId
 )
 export const getStudySelected = createSelector(
   getStudyState,
@@ -76,6 +63,14 @@ export const getSubjectEntities = createSelector(
   fromSubject.getEntities
 )
 export const getSubjectAll = createSelector(getSubjectState, fromSubject.getAll)
+export const getSubjectSelected = createSelector(
+  getSubjectState,
+  fromSubject.getSelected
+)
+export const getSubjectSelectedId = createSelector(
+  getSubjectState,
+  fromSubject.getSelectedId
+)
 
 // Source Selectors
 export const getSourceState = createFeatureSelector<fromSource.State>('source')
@@ -97,32 +92,48 @@ export const getSensorsIsLoaded = createSelector(
   getSensorsState,
   fromSensors.getIsLoaded
 )
-
 export const getSensorsIsDataLoaded = createSelector(
   getSensorsState,
   fromSensors.getIsDataLoaded
 )
+export const getSensorsIds = createSelector(getSensorsState, fromSensors.getIds)
 export const getSensorsEntities = createSelector(
   getSensorsState,
   fromSensors.getEntities
 )
-
-export const getSensorsLabels = createSelector(
+export const getSensorsDates = createSelector(
   getSensorsState,
-  fromSensors.getLabels
+  fromSensors.getDates
 )
-
-export const getSensorsAll = createSelector(getSensorsState, fromSensors.getAll)
-
+export const getSensors = createSelector(
+  getSensorsState,
+  fromSensors.getSensors
+)
 export const getSensorsData = createSelector(
   getSensorsState,
-  fromSensors.getAllData
+  fromSensors.getData
+)
+export const getSensorsTimeFrame = createSelector(
+  getSensorsState,
+  fromSensors.getTimeFrame
+)
+export const getSensorsTimeInterval = createSelector(
+  getSensorsState,
+  fromSensors.getTimeInterval
+)
+export const getSensorsDescriptiveStatistic = createSelector(
+  getSensorsState,
+  fromSensors.getDescriptiveStatistic
+)
+export const getSensorsTooltipValues = createSelector(
+  getSensorsState,
+  fromSensors.getTooltipValues
 )
 
 // Source + Sensor Selector
 export const getSourceAllWithSensors = createSelector(
   getSourceAll,
-  getSensorsAll,
+  getSensors,
   (sources, sensors) => {
     if (sensors.length) {
       const sensorsBySource = sources.reduce((acc, source) => {

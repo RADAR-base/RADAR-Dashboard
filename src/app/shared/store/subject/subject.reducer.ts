@@ -23,23 +23,32 @@ export function reducer(
 ): State {
   switch (action.type) {
     case subjectActions.GET_ALL: {
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isLoaded: false
-      })
+      }
     }
 
     case subjectActions.GET_ALL_SUCCESS: {
       const payload = action.payload
       const ids = payload.map(subject => subject.subjectId)
       const entities = payload.reduce((acc, subject) => {
-        return Object.assign(acc, { [subject.subjectId]: subject })
+        return { ...acc, [subject.subjectId]: subject }
       }, {})
 
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isLoaded: true,
         ids,
         entities
-      })
+      }
+    }
+
+    case subjectActions.SET_SELECTED_ID: {
+      return {
+        ...state,
+        selectedId: action.payload
+      }
     }
 
     default:
