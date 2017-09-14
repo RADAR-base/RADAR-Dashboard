@@ -1,13 +1,8 @@
 import { DebugElement } from '@angular/core'
 import { ComponentFixture, TestBed, async } from '@angular/core/testing'
-import { ActivatedRoute, Router } from '@angular/router'
-import { StoreModule } from '@ngrx/store'
+import { Router } from '@angular/router'
 
-import { reducers } from '../../../shared/store'
-import {
-  ActivatedRouteStub,
-  RouterStub
-} from '../../../shared/testing/router-stubs'
+import { RouterStub } from '../../../shared/testing/router-stubs'
 import { SubjectTableComponent } from './subject-table.component'
 import { SubjectTableModule } from './subject-table.module'
 

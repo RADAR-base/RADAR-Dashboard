@@ -9,12 +9,15 @@ import {
   ResponseOptions
 } from '@angular/http'
 import { MockBackend, MockConnection } from '@angular/http/testing'
+import { provideMockActions } from '@ngrx/effects/testing'
+import { Observable } from 'rxjs/Observable'
 
 import { SourceService } from './source.service'
 
 describe('SourceService', () => {
   let service: SourceService
   let backend: MockBackend
+  const actions: Observable<any> = Observable.of()
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -32,7 +35,8 @@ describe('SourceService', () => {
           },
           deps: [MockBackend, BaseRequestOptions]
         },
-        SourceService
+        SourceService,
+        provideMockActions(() => actions)
       ]
     })
   })

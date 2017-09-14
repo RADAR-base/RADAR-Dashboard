@@ -1,5 +1,6 @@
-export const MockConfig = {
-  config: {
+export class MockConfig {
+  static language = 'EN'
+  static config = {
     sensors: {
       ACCELEROMETER: {
         dataType: 'multi',

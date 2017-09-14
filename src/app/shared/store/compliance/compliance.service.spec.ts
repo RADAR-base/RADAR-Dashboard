@@ -1,24 +1,14 @@
 import { HttpClientModule } from '@angular/common/http'
 import { TestBed, inject } from '@angular/core/testing'
 // Make sure to include the Response object from '@angular/http'
-import {
-  BaseRequestOptions,
-  Http,
-  RequestMethod,
-  Response,
-  ResponseOptions
-} from '@angular/http'
-import { MockBackend, MockConnection } from '@angular/http/testing'
+import { BaseRequestOptions, Http } from '@angular/http'
+import { MockBackend } from '@angular/http/testing'
 
 import { ComplianceService } from './compliance.service'
-import { AppConfig } from '../../utils/config'
-import { MockConfig } from '../../../shared/testing/mocks/mock-config'
-import { MockCompliance } from '../../testing/mocks/mock-compliance'
 
 describe('ComplianceService', () => {
   let service: ComplianceService
   let backend: MockBackend
-  let mockConfig
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -36,31 +26,23 @@ describe('ComplianceService', () => {
           },
           deps: [MockBackend, BaseRequestOptions]
         },
-        ComplianceService,
-        {
-          provide: AppConfig,
-          useValue: MockConfig
-        }
+        ComplianceService
       ]
     })
   })
 
   beforeEach(
     inject(
-      [ComplianceService, MockBackend, AppConfig],
-      (
-        complianceService: ComplianceService,
-        mockBackend: MockBackend,
-        config: AppConfig
-      ) => {
+      [ComplianceService, MockBackend],
+      (complianceService: ComplianceService, mockBackend: MockBackend) => {
         service = complianceService
         backend = mockBackend
-        mockConfig = config
       }
     )
   )
 
   // it('should return data', done => {
+  //   console.log(AppConfig.config)
   //   backend.connections.subscribe((connection: MockConnection) => {
   //     const options = new ResponseOptions({
   //       body: JSON.stringify(MockCompliance),
@@ -70,15 +52,14 @@ describe('ComplianceService', () => {
 
   //     // Check the request method
   //     expect(connection.request.method).toEqual(RequestMethod.Get)
+  //     console.log(connection)
   //   })
-  //   service.config = mockConfig.config
-  //   service
-  //     .getAll('0', service.config.compliance.keys, true)
-  //     .subscribe(response => {
-  //       // Check the response
-  //       expect(response).toBeTruthy()
-  //       done()
-  //     })
+  //   service.getAll('0').subscribe(response => {
+  //     console.log(AppConfig.config)
+  //     // Check the response
+  //     expect(response).toBeTruthy()
+  //     done()
+  //   })
   // })
 
   // it('should return null if undefined', done => {
