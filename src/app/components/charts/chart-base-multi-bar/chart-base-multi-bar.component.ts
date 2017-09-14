@@ -12,9 +12,13 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
 })
 export class ChartBaseMultiBarComponent extends ChartBaseComponent {
   @Input() categorical = false
-  @Input() yTicks = [0, 0.25, 0.5, 0.75, 1]
   @Input() paddingInner = 0.3
   @Input() paddingOuter = 0.4
+  @Input() yScaleDomain = [0, 1]
+  @Input() yTicks = [0, 0.25, 0.5, 0.75, 1]
+  @Input() yTickFormat = '.0%' // https://github.com/d3/d3-format
+  @Input() xTickTimeFormat = '%d %b' // https://github.com/d3/d3-time-format
+  @Input() xTickEvery = 2
 
   keys: ConfigKey[]
   dates: Date[]
@@ -42,11 +46,12 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
       .rangeRound([0, this.width])
       .padding(this.paddingOuter)
 
-    this.yScale = d3.scaleLinear().rangeRound([this.height, 0])
-
-    this.yScale.domain([0, 1])
-
     this.xScaleOuter.domain(this.data.map(d => d.date))
+
+    this.yScale = d3
+      .scaleLinear()
+      .rangeRound([this.height, 0])
+      .domain(this.yScaleDomain)
 
     this.xScaleInner
       .domain(this.keys.map(d => d.key))
@@ -55,21 +60,20 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
     this.xAxis.attr('transform', `translate(0, ${this.height})`).call(
       d3
         .axisBottom(this.xScaleOuter)
+        .tickFormat(d3.timeFormat(this.xTickTimeFormat))
         .tickValues(
-          this.xScaleOuter.domain().filter(function(d, i) {
-            return !(i % 3)
-          })
+          this.xScaleOuter.domain().filter((d, i) => !(i % this.xTickEvery))
         )
-        .tickFormat(d3.timeFormat('%d %b'))
     )
 
-    this.yAxis.call(
-      d3
-        .axisLeft(this.yScale)
-        .tickSize(-this.width)
-        .ticks(4, '%')
-        .tickValues(this.yTicks)
-    )
+    this.hasYAxis &&
+      this.yAxis.call(
+        d3
+          .axisLeft(this.yScale)
+          .tickSize(-this.width)
+          .tickFormat(d3.format(this.yTickFormat))
+          .tickValues(this.yTicks)
+      )
 
     // Bars
     let j = 0
@@ -124,8 +128,8 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
           .attr('class', 'null-symbol')
           .attr('fill', '#fff')
           .attr('x', this.xScaleInner(d.className.baseVal))
-          .attr('y', height - height / 40)
-          .style('font-size', this.width / 70)
+          .attr('y', height - height / 40) // TODO: remove harcoded value
+          .style('font-size', this.width / 70) // TODO: remove harcoded value
           .text('x')
       )
 
@@ -138,7 +142,7 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
       .attr('width', this.xScaleInner.bandwidth())
       .attr('class', 'back-bar')
       .attr('x', d => this.xScaleInner(d.key))
-      .attr('y', yScale(1))
+      .attr('y', yScale(this.yScaleDomain[this.yScaleDomain.length - 1]))
       .attr('height', height)
 
     this.bar.exit().remove()
