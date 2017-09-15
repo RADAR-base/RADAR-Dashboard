@@ -107,12 +107,12 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
         d => (d.value === null ? 0 : this.height - this.yScale(d.value))
       )
       .attr('fill', d => this.colorScale(d.key))
-      .attr('data-null', d => (d.value === null ? true : false))
+      .attr('class', d => (d.value === null ? 'null' : 'not-null'))
 
     // Null Symbol
-    this.rects
+    this.bar
+      .selectAll('.null')
       .nodes()
-      .filter(d => d.getAttribute('data-null') === 'true')
       .forEach(d =>
         d3
           .select(d.parentNode)
