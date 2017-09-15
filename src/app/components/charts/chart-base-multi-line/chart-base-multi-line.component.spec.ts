@@ -14,7 +14,7 @@ import {
   MockTimeIntervalChartData
 } from '../../../shared/testing/mocks/mock-chart-data'
 import { MockSensorMulti } from '../../../shared/testing/mocks/mock-sensor-data'
-import { ParseTimeHoles } from '../../../shared/utils/parse-time-holes'
+import { parseTimeHoles } from '../../../shared/utils/parse-time-holes'
 import { ChartBaseMultiLineComponent } from './chart-base-multi-line.component'
 
 describe('ChartBaseMultiLineComponent', () => {
@@ -54,7 +54,7 @@ describe('ChartBaseMultiLineComponent', () => {
     expect(component.chartData).toBeFalsy()
 
     // with data // needs to be parsed //
-    component.chartData = ParseTimeHoles(
+    component.chartData = parseTimeHoles(
       MockAPISampleDataset,
       MockTimeFrameChartData,
       MockTimeIntervalChartData
@@ -76,7 +76,7 @@ describe('ChartBaseMultiLineComponent', () => {
       })
 
       // with data // needs to be parsed //
-      component.chartData = ParseTimeHoles(
+      component.chartData = parseTimeHoles(
         MockAPISampleDataset,
         MockTimeFrameChartData,
         MockTimeIntervalChartData

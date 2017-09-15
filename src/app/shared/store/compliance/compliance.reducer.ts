@@ -1,5 +1,3 @@
-import { createSelector } from '@ngrx/store'
-
 import * as compliance from './compliance.actions'
 
 export interface State {
@@ -18,19 +16,17 @@ export function reducer(
 ): State {
   switch (action.type) {
     case compliance.GET_ALL: {
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isLoaded: false
-      })
+      }
     }
 
     case compliance.GET_ALL_SUCCESS: {
-      const payload = action.payload
-      const data = payload
-
-      return Object.assign({}, state, {
+      return {
         isLoaded: true,
-        data
-      })
+        data: action.payload
+      }
     }
 
     default:
@@ -40,7 +36,3 @@ export function reducer(
 
 export const getIsLoaded = (state: State) => state.isLoaded
 export const getData = (state: State) => state.data
-
-export const getAll = createSelector(getData, data => {
-  return data
-})
