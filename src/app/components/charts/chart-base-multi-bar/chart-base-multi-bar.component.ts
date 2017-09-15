@@ -26,8 +26,6 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
   xScaleOuter: any
   xScaleInner: any
   colorScale: any
-  nullSymbolYPos: any
-  nullSymbolSize: any
 
   init() {
     this.colorScale = d3
@@ -39,9 +37,6 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
   }
 
   draw() {
-    this.nullSymbolYPos = this.height - this.height / 40
-    this.nullSymbolSize = this.width / 70
-
     this.xScaleInner = d3.scaleBand().paddingInner(this.paddingInner)
 
     this.xScaleOuter = d3
@@ -79,7 +74,7 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
       )
 
     // Bars
-    if (this.bar) this.bar.remove()
+    this.bar && this.bar.remove()
 
     this.bar = this.chart
       .append('g')
@@ -98,6 +93,9 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
         }))
       )
       .enter()
+      .append('g')
+      .attr('class', 'bar')
+      .classed('null', d => d.value === null)
       .append('rect')
       .attr('x', d => this.xScaleInner(d.key))
       .attr('y', d => (d.value === null ? 0 : this.yScale(d.value)))
@@ -107,34 +105,24 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
         d => (d.value === null ? 0 : this.height - this.yScale(d.value))
       )
       .attr('fill', d => this.colorScale(d.key))
-      .attr('class', d => (d.value === null ? 'null' : 'not-null'))
 
     // Null Symbol
     this.bar
       .selectAll('.null')
-      .nodes()
-      .forEach(d =>
-        d3
-          .select(d.parentNode)
-          .append('text')
-          .attr('class', 'null-symbol')
-          .attr('fill', '#fff')
-          .attr('x', d.getAttribute('x'))
-          .attr('y', this.nullSymbolYPos)
-          .style('font-size', this.nullSymbolSize)
-          .text('x')
-      )
+      .append('text')
+      .text('\uE5CD')
+      .attr('x', d => this.xScaleInner(d.key))
+      .attr('y', this.height - 8)
+      .attr('font-size', this.xScaleInner.bandwidth())
 
     // Gray Background Bar
     this.bar
-      .selectAll('rects')
-      .data(this.keys, k => k.key)
-      .enter()
+      .selectAll('.bar')
       .append('rect')
-      .attr('width', this.xScaleInner.bandwidth())
       .attr('class', 'back-bar')
       .attr('x', d => this.xScaleInner(d.key))
-      .attr('y', this.yScale(this.yScaleDomain[this.yScaleDomain.length - 1]))
+      .attr('y', 0)
+      .attr('width', this.xScaleInner.bandwidth())
       .attr('height', this.height)
 
     this.bar.exit().remove()
