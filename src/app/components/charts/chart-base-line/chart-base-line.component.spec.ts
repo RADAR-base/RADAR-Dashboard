@@ -8,7 +8,7 @@ import {
   MockTimeFrameChartData,
   MockTimeIntervalChartData
 } from '../../../shared/testing/mocks/mock-chart-data'
-import { ParseTimeHoles } from '../../../shared/utils/parse-time-holes'
+import { parseTimeHoles } from '../../../shared/utils/parse-time-holes'
 import { ChartBaseLineComponent } from './chart-base-line.component'
 
 describe('ChartBaseLineComponent', () => {
@@ -49,7 +49,7 @@ describe('ChartBaseLineComponent', () => {
       expect(component.chartData).toBeFalsy()
 
       // with data // needs to be parsed //
-      component.chartData = ParseTimeHoles(
+      component.chartData = parseTimeHoles(
         MockAPISampleDataset,
         MockTimeFrameChartData,
         MockTimeIntervalChartData
@@ -64,7 +64,7 @@ describe('ChartBaseLineComponent', () => {
       expect(element.querySelectorAll('g.chart .line path').length).toEqual(0)
 
       // with data // needs to be parsed //
-      component.chartData = ParseTimeHoles(
+      component.chartData = parseTimeHoles(
         MockAPISampleDataset,
         MockTimeFrameChartData,
         MockTimeIntervalChartData
@@ -95,7 +95,7 @@ describe('ChartBaseLineComponent', () => {
 
     it('linearGradient should have attributes "y1, y2" when data changes', () => {
       // with data // needs to be parsed //
-      component.chartData = ParseTimeHoles(
+      component.chartData = parseTimeHoles(
         MockAPISampleDataset,
         MockTimeFrameChartData,
         MockTimeIntervalChartData

@@ -7,7 +7,7 @@ import { Subject } from 'rxjs/Subject'
 
 import { RadarAPISampleModel } from '../../models/radar-api.model'
 import { AppConfig } from '../../utils/config'
-import { ParseTimeHoles } from '../../utils/parse-time-holes'
+import { parseTimeHoles } from '../../utils/parse-time-holes'
 import { Source } from '../source/source.model'
 import * as actions from './sensors.actions'
 import { DescriptiveStatistic, Sensor, TimeInterval } from './sensors.model'
@@ -64,7 +64,7 @@ export class SensorsService {
 
         if (response) {
           this.queue$.next({
-            data: ParseTimeHoles(
+            data: parseTimeHoles(
               response.dataset,
               this.options.timeFrame,
               this.options.timeInterval

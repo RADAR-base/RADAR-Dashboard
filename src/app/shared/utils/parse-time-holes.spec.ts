@@ -13,11 +13,11 @@ import {
   MockTimeFrameCompliance,
   MockTimeFrameComplianceWithStartEndHoles
 } from '../testing/mocks/mock-compliance-data'
-import { ParseTimeHoles } from './parse-time-holes'
+import { parseTimeHoles } from './parse-time-holes'
 
-describe('ParseTimeHoles', () => {
+describe('parseTimeHoles', () => {
   it('Sensor Data > 10s Interval > TimeFrame === Data', () => {
-    const actual = ParseTimeHoles(
+    const actual = parseTimeHoles(
       MockAPISampleDataset,
       MockTimeFrameChartData,
       TimeInterval.TEN_SECOND
@@ -26,7 +26,7 @@ describe('ParseTimeHoles', () => {
   })
 
   it('Sensor Data > 10s Interval > TimeFrame !== Data', () => {
-    const actual = ParseTimeHoles(
+    const actual = parseTimeHoles(
       MockAPISampleDataset,
       MockTimeFrameChartDataWithStartEndHoles,
       TimeInterval.TEN_SECOND
@@ -35,7 +35,7 @@ describe('ParseTimeHoles', () => {
   })
 
   it('Compliance Data > 1d Interval > TimeFrame === Data', () => {
-    const actual = ParseTimeHoles(
+    const actual = parseTimeHoles(
       MockAPIComplianceDataset,
       MockTimeFrameCompliance,
       TimeInterval.ONE_DAY
@@ -44,7 +44,7 @@ describe('ParseTimeHoles', () => {
   })
 
   it('Compliance Data > 1d Interval > TimeFrame !== Data', () => {
-    const actual = ParseTimeHoles(
+    const actual = parseTimeHoles(
       MockAPIComplianceDataset,
       MockTimeFrameComplianceWithStartEndHoles,
       TimeInterval.ONE_DAY
