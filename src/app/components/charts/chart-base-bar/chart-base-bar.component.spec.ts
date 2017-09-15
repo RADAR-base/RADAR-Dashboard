@@ -6,7 +6,7 @@ import {
   MockTimeFrameChartData,
   MockTimeIntervalChartData
 } from '../../../shared/testing/mocks/mock-chart-data'
-import { ParseTimeHoles } from '../../../shared/utils/parse-time-holes'
+import { parseTimeHoles } from '../../../shared/utils/parse-time-holes'
 import { ChartBaseBarComponent } from './chart-base-bar.component'
 
 describe('ChartBaseBarComponent', () => {
@@ -46,7 +46,7 @@ describe('ChartBaseBarComponent', () => {
       expect(component.chartData).toBeFalsy()
 
       // with data // needs to be parsed //
-      component.chartData = ParseTimeHoles(
+      component.chartData = parseTimeHoles(
         MockAPISampleDataset,
         MockTimeFrameChartData,
         MockTimeIntervalChartData
@@ -61,7 +61,7 @@ describe('ChartBaseBarComponent', () => {
       expect(element.querySelector('rect.bar')).toBeFalsy()
 
       // with data // needs to be parsed //
-      component.chartData = ParseTimeHoles(
+      component.chartData = parseTimeHoles(
         MockAPISampleDataset,
         MockTimeFrameChartData,
         MockTimeIntervalChartData

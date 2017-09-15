@@ -21,12 +21,10 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
   @Input() xTickEvery = 2
 
   keys: ConfigKey[]
-  dates: Date[]
   bar: any
+  rects: any
   xScaleOuter: any
   xScaleInner: any
-  legend: any
-  rects: any
   colorScale: any
 
   init() {
@@ -76,74 +74,56 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
       )
 
     // Bars
-    let j = 0
-    const yScale = this.yScale
-    const height = this.height
-    const data = this.data
-
-    this.chart.selectAll('rect').remove()
-    this.chart.selectAll('.null-symbol').remove()
+    this.bar && this.bar.remove()
 
     this.bar = this.chart
-      .selectAll('bar')
+      .append('g')
+      .selectAll('g')
       .data(this.data)
       .enter()
       .append('g')
-      .attr('class', 'g')
-      .attr('id', d => j++)
-      .attr('transform', d => `translate(${this.xScaleOuter(d.date)}, 0)`)
+      .attr('transform', d => `translate(${this.xScaleOuter(d.date)} ,0)`)
 
     this.rects = this.bar
       .selectAll('g')
-      .data(this.keys)
+      .data(d =>
+        this.keys.map(k => ({
+          key: k.key,
+          value: d.value[k.key] === undefined ? null : d.value[k.key]
+        }))
+      )
       .enter()
+      .append('g')
+      .attr('class', 'bar')
+      .classed('null', d => d.value === null)
       .append('rect')
-      .attr('width', this.xScaleInner.bandwidth())
-      .style('fill', d => this.colorScale(d.key))
-      .attr('id', function(d) {
-        return data[this.parentNode.id].value[d.key] === undefined
-          ? 'null'
-          : 'not-null'
-      })
       .attr('x', d => this.xScaleInner(d.key))
-      .attr('y', function(d) {
-        return this.id !== 'null'
-          ? yScale(data[this.parentNode.id].value[d.key])
-          : 0
-      })
-      .attr('height', function(d) {
-        return this.id !== 'null'
-          ? height - yScale(data[this.parentNode.id].value[d.key])
-          : 0
-      })
+      .attr('y', d => (d.value === null ? 0 : this.yScale(d.value)))
+      .attr('width', this.xScaleInner.bandwidth())
+      .attr(
+        'height',
+        d => (d.value === null ? 0 : this.height - this.yScale(d.value))
+      )
+      .attr('fill', d => this.colorScale(d.key))
 
     // Null Symbol
-    this.rects
-      .nodes()
-      .filter(d => d.id === 'null')
-      .forEach(d =>
-        d3
-          .select(d.parentNode)
-          .append('text')
-          .attr('class', 'null-symbol')
-          .attr('fill', '#fff')
-          .attr('x', this.xScaleInner(d.className.baseVal))
-          .attr('y', height - height / 40) // TODO: remove harcoded value
-          .style('font-size', this.width / 70) // TODO: remove harcoded value
-          .text('x')
-      )
+    this.bar
+      .selectAll('.null')
+      .append('text')
+      .text('\uE5CD')
+      .attr('x', d => this.xScaleInner(d.key))
+      .attr('y', this.height - 8)
+      .attr('font-size', this.xScaleInner.bandwidth())
 
     // Gray Background Bar
     this.bar
-      .selectAll('rects')
-      .data(this.keys, k => k.key)
-      .enter()
+      .selectAll('.bar')
       .append('rect')
-      .attr('width', this.xScaleInner.bandwidth())
       .attr('class', 'back-bar')
       .attr('x', d => this.xScaleInner(d.key))
-      .attr('y', yScale(this.yScaleDomain[this.yScaleDomain.length - 1]))
-      .attr('height', height)
+      .attr('y', 0)
+      .attr('width', this.xScaleInner.bandwidth())
+      .attr('height', this.height)
 
     this.bar.exit().remove()
   }

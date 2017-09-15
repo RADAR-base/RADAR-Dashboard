@@ -60,6 +60,6 @@ export class StudyPageComponent implements OnInit {
     // Check if compliance is loaded
     this.isComplianceLoaded$ = this.store.select(fromRoot.getComplianceIsLoaded)
 
-    this.complianceData$ = this.store.select(fromRoot.getComplianceAll)
+    this.complianceData$ = this.store.select(fromRoot.getComplianceData)
   }
 }
