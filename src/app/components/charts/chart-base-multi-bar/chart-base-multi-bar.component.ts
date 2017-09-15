@@ -94,24 +94,25 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
       .data(d =>
         this.keys.map(k => ({
           key: k.key,
-          value: d.value[k.key] === undefined ? -1 : d.value[k.key]
+          value: d.value[k.key] === undefined ? null : d.value[k.key]
         }))
       )
       .enter()
       .append('rect')
       .attr('x', d => this.xScaleInner(d.key))
-      .attr('y', d => (d.value === -1 ? -1 : this.yScale(d.value)))
+      .attr('y', d => (d.value === null ? 0 : this.yScale(d.value)))
       .attr('width', this.xScaleInner.bandwidth())
       .attr(
         'height',
-        d => (d.value === -1 ? 0 : this.height - this.yScale(d.value))
+        d => (d.value === null ? 0 : this.height - this.yScale(d.value))
       )
       .attr('fill', d => this.colorScale(d.key))
+      .attr('data-null', d => (d.value === null ? true : false))
 
     // Null Symbol
     this.rects
       .nodes()
-      .filter(d => d.getAttribute('y') === '-1')
+      .filter(d => d.getAttribute('data-null') === 'true')
       .forEach(d =>
         d3
           .select(d.parentNode)
