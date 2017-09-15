@@ -31,6 +31,7 @@ export class SourceGraphsComponent implements OnInit {
   tooltipX = 0
   tooltipY = 0
   tooltipShow = 0 // 0 hide | 1 show
+  lineX = 0
 
   constructor(private store: Store<fromRoot.State>) {}
 
@@ -52,6 +53,7 @@ export class SourceGraphsComponent implements OnInit {
       this.tooltipX = event.x - this.tooltip.width / 2
       this.tooltipY = event.y
       this.tooltipShow = 1
+      this.lineX = event.layerX + 8
     } else {
       this.tooltipShow = 0
     }

@@ -1,3 +1,9 @@
+<div
+  class="line"
+  [style.transform]="'translateX('+ lineX +'px)'"
+  [style.opacity]="tooltipShow"
+></div>
+
 <app-tooltip
   #tooltip
   [data]="tooltipData$ | async"
