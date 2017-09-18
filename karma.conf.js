@@ -28,7 +28,7 @@ module.exports = function(config) {
       './src/styles/main.scss': ['scss']
     },
     angularCli: {
-      environment: 'dev'
+      environment: 'test'
     },
     coverageIstanbulReporter: {
       reports: ['html', 'lcovonly'],
