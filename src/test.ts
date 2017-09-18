@@ -1,4 +1,5 @@
-// This file is required by karma.conf.js and loads recursively all the .spec and framework files
+// This file is required by karma.conf.js and loads recursively all the .spec
+// and framework files
 
 import 'zone.js/dist/long-stack-trace-zone'
 import 'zone.js/dist/proxy.js'
@@ -7,6 +8,7 @@ import 'zone.js/dist/jasmine-patch'
 import 'zone.js/dist/async-test'
 import 'zone.js/dist/fake-async-test'
 
+// Add RxJS Imports file
 import './rxjs.imports'
 
 import { getTestBed } from '@angular/core/testing'
@@ -15,16 +17,15 @@ import {
   platformBrowserDynamicTesting
 } from '@angular/platform-browser-dynamic/testing'
 
-import { MockParams } from './app/shared/testing/mocks/mock-params'
-
-// Unfortunately there's no typing for the `__karma__` variable. Just declare it as any.
+// Unfortunately there's no typing for the `__karma__` variable. Just declare
+// it as any.
 declare const __karma__: any
 declare const require: any
 
 // Prevent Karma from running prematurely.
 __karma__.loaded = function() {}
 
-// First, initialize the Angular testing environment.
+// First, initialize the Angular testing ENV.
 getTestBed().initTestEnvironment(
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting()
@@ -35,7 +36,3 @@ const context = require.context('./', true, /\.spec\.ts$/)
 context.keys().map(context)
 // Finally, start Karma to run the tests.
 __karma__.start()
-
-// GLOBAL PARAMS
-const w: any = window
-w.PARAMS = MockParams

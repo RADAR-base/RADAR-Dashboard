@@ -1,10 +1,13 @@
 dist: trusty
-sudo: required
-group: edge
+sudo: false
 
 language: node_js
 node_js:
   - node
+
+cache:
+  directories:
+     - ./node_modules
 
 env:
   global:
@@ -14,18 +17,12 @@ env:
     - secure: "GLCMFzEm0cJao56LcHlu1C6/XBxLk0YEoNgI/4eluNflxsZgwLFGHqTlzszH6sY+p8HHTMbRM0s7HJwcDnX7WyMavPLCMobJmpH3RRVFrEK5gZyUOZO7S2Moi8fzg0AWhWEoh6ZKDNe3x7/l9tRyptZvDcmku9vRnQywwj/k/P8dVwDstQdXfFod0kJZDd8JiQmGSJeSUppJhenvpAFeltJvnWq3hLYbYPAcWt3/jI29btXBIAg0rpaQlEEZ8E9K68yFLP+eFLu5yxibj0zZfUojxwKUxLWBXuCb7rvcBbi1c0FtxeC+mb4+V0UDS1n6NpbJzsy60gEoi9BjBKFf5eQQCIjrLImutefs0yAOFHtfau4IqkLkLIOnm/tFq7gr0Dy2FdhJFP5aMzYB7tTEBujn9GQJDPJjF+hjXY7SGkxDvU4sAWfu5Jcc6kNl9HshM5ey/4A9zD09+2SRpsfYAqc4wsFQdce+PZp0rZxSC2xswIvifiD5/JilMDYrkZuZGvsqVwySynGcPsyE7/RfgJbKSwqnAQCM79ioIKjO92B6nUroJcsiwGgoQWAXxs9mGU2omXhMyzrvj5T7i6gBrvr5fVsObTC306vwG93fpcJ5JdmANqMU+PIqrQl2UCkoYNBG5qXdyJU4pPHZwtLzDA2VYZIMdORLfo+oQMXXDEw="
     - secure: "SgTangl7e6v11NAkge5aZJxazUbAuMkHFxwa0AnouToBm5Jerrkky2xvWraO7PMnmzz2bjrXfTKL+tBHtfcoZpz1+OGumLF6lGSfZxRGphILZA4A6ZFPlYzHlha57THxWJfvnHXJ667GTPKXwJas/7VcGb/WdOe1thn0hDkaOtoiveufeDVr2ku77mhFROtD8+ewkefkcArdIMnM99qddiM4KFeEKU/vmjEsItvbfM73jZfIfjZZfVroBMeS08Mu0tKt4iCjsO0LeOmc3bPQv1XgNGqJsYF//gFm+HUdyVOTJehBGCXVlkdoI8+lwp7Zr37ySVF+JD/Dz4Kdy2Pz4+rArOOO96pyQJHqTKolFYbwgGtbwskD8VaIyQ6rZfUuh57wz23/2X651gvxFGrjuzHia5cYX/6UReKA9XkMgmVFrW59T5T3exkTqZyREOJDgl8mPUMWMR22YaPd4EGHyZJLwzmO0gwtOTcujldmgQBVQo/1krHNseFEf0YkzACgvaquGrNfKoB3Uw6qlg4c/Eh843hwTtS1xZ57t4PzSXw27gHvu7oBg9lE1IE1qQwMYJTAK1IQOfACdYEZXerhm4VOU92+NoxIUddGsUYFC1rfRAAfdGrE176i45MEfIQwZYgh55VEVzbB0/3TOQwQUkyGzQ9n0eUBjDmBZZ2eZEM="
 
-before_install:
-  # install chrome stable
-  - export CHROME_BIN=/usr/bin/google-chrome
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - sudo apt-get update
-  - sudo apt-get install -y libappindicator1 fonts-liberation
-  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-  - sudo dpkg -i google-chrome*.deb
 
 before_script:
+  # ssh setup
   - echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+  # use Chromium instead of Chrome
+  - export CHROME_BIN=chromium-browser
 
 script:
   # run linters
@@ -35,17 +32,17 @@ script:
   - npm run lint:sort
 
   # run unit tests
-  - npm run test:ci
+  - xvfb-run -a npm run test -- --code-coverage --single-run --no-progress --browser=ChromeNoSandbox
 
   # send coverage info
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
   - cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage
 
   # run e2e tests
-  - npm run e2e
+  - xvfb-run -a npm run e2e -- --no-progress --config=protractor-ci.conf.js
 
 before_deploy:
-  # add certificates
+  # ssh certificates
   - openssl aes-256-cbc -K $encrypted_03759da18559_key -iv $encrypted_03759da18559_iv -in ./scripts/deploy_key.enc -out deploy_key.pem -d
   - eval "$(ssh-agent -s)"
   - chmod 600 deploy_key.pem
