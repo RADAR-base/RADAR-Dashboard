@@ -47,9 +47,9 @@ describe('SensorsService', () => {
       done()
     })
 
-    // tslint:disable-next-line:max-line-length
     const request = http.expectOne(
-      'https://radar-cns.ddns.net/api/data/BATTERY/AVERAGE/TEN_SECOND/MRC01/00:07:80:1F:52:F3/1497589120000/1497628000000'
+      '/api/data/BATTERY/AVERAGE/TEN_SECOND' +
+        '/MRC01/00:07:80:1F:52:F3/1497589120000/1497628000000'
     )
 
     request.flush(MockSensorsOneRaw)
@@ -74,9 +74,9 @@ describe('SensorsService', () => {
       done()
     })
 
-    // tslint:disable-next-line:max-line-length
     const req = http.match(
-      'https://radar-cns.ddns.net/api/data/BATTERY/AVERAGE/TEN_SECOND/MRC01/00:07:80:1F:52:F3/1497589120000/1497628000000'
+      '/api/data/BATTERY/AVERAGE/TEN_SECOND' +
+        '/MRC01/00:07:80:1F:52:F3/1497589120000/1497628000000'
     )
     expect(req.length).toBe(1)
     req.forEach((k, i) => k.flush(MockSensorsOneRaw))

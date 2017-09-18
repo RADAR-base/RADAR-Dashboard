@@ -34,9 +34,7 @@ describe('SourceService', () => {
       actualResult = result
     })
 
-    http
-      .expectOne('https://radar-cns.ddns.net/api/source/getAllSources/MRC01')
-      .flush(expectedResult)
+    http.expectOne('/api/source/getAllSources/MRC01').flush(expectedResult)
 
     expect(actualResult).toEqual([
       {

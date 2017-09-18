@@ -30,9 +30,7 @@ describe('SubjectService', () => {
       actualResult = result
     })
 
-    http
-      .expectOne('https://radar-cns.ddns.net/api/subject/getAllSubjects/0')
-      .flush(expectedResult)
+    http.expectOne('/api/subject/getAllSubjects/0').flush(expectedResult)
 
     expect(actualResult).toEqual([])
   })
