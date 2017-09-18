@@ -5,6 +5,7 @@ import { Action } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 import { Subject } from 'rxjs/Subject'
 
+import { ENV } from '../../../../environments/environment'
 import { RadarAPISampleModel } from '../../models/radar-api.model'
 import { AppConfig } from '../../utils/config'
 import { parseTimeHoles } from '../../utils/parse-time-holes'
@@ -14,7 +15,7 @@ import { DescriptiveStatistic, Sensor, TimeInterval } from './sensors.model'
 
 @Injectable()
 export class SensorsService {
-  private URL = `${PARAMS.API_URI}/data`
+  private URL = `${ENV.PARAMS.API_URI}/data`
   private destroy$: Observable<Action>
   private queue$ = new Subject<any>()
   private sensors$ = new Subject<Sensor>()
