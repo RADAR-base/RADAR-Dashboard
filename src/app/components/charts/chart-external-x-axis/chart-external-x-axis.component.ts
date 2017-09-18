@@ -41,6 +41,8 @@ export class ChartExternalXAxisComponent extends ChartBaseComponent {
       return { date: d, value: data[i] }
     })
 
+    console.log(newData)
+
     this.yScale = d3
       .scaleLinear()
       .range([this.height, 0])
@@ -91,7 +93,7 @@ export class ChartExternalXAxisComponent extends ChartBaseComponent {
       .append('path')
       .datum(newData)
       .attr('class', 'area')
-      .attr('transform', 'translate(0, 30)')
+      .attr('transform', 'translate(0, 0)')
       .attr('d', this.area)
 
     this.context

@@ -1,5 +1,6 @@
-export const MockConfig = {
-  config: {
+export class MockConfig {
+  static language = 'EN'
+  static config = {
     sensors: {
       ACCELEROMETER: {
         dataType: 'multi',
@@ -191,7 +192,7 @@ export const MockConfig = {
       },
       G: {
         doc:
-          'The g-force (with g from gravitational) is a measurement of the type of acceleration that',
+          'The g-force (with g from gravitational) is a measurement of the type of acceleration that causes',
         label: {
           EN: 'G Force'
         }
@@ -205,6 +206,7 @@ export const MockConfig = {
       }
     },
     timeIntervals: {
+      doc: 'Available time intervals in which requested data is returned.',
       TEN_SECOND: {
         doc: '10 seconds time interval',
         value: 10000,
@@ -270,12 +272,14 @@ export const MockConfig = {
       keys: [
         {
           key: 'simple',
+          doc: 'Simple compliance.',
           label: {
             EN: 'Simple Compliance'
           }
         },
         {
           key: 'special',
+          doc: 'Special Compliance',
           label: {
             EN: 'Special Compliance'
           }

@@ -28,8 +28,6 @@ export class ComplianceService {
             },
             TimeInterval[res.header.timeFrame]
           )
-        } else {
-          return null
         }
       })
   }
