@@ -6,11 +6,12 @@
 ></app-tooltip>
 
 <div
+  class="source"
   *ngFor="let source of sources; trackBy: trackBySourceId"
   (mousemove)="onMouseMove($event)"
   (mouseleave)="onMouseLeave($event)"
 >
-  <p>SOURCE {{ source.id }}</p>
+  <div class="source-title">SOURCE {{ source.id }}</div>
   <div *ngFor="let sensor of source.sensors; trackBy: trackBySensorId">
     <div *ngIf="sensor.visible">
       <app-source-graph
@@ -22,4 +23,9 @@
       ></app-source-graph>
     </div>
   </div>
+  <div
+    class="line"
+    [style.transform]="'translateX('+ lineX +'px)'"
+    [style.opacity]="tooltipShow"
+  ></div>
 </div>

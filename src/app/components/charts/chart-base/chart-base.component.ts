@@ -52,7 +52,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   @Input() hasYAxis = true
   @Input() hasXAxis = true
 
-  @Output() onMove = new EventEmitter<Date>()
+  @Output() tooltipMouseMove = new EventEmitter<Date>()
 
   uid: string
   data: ChartData[]
@@ -124,15 +124,18 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
       .append('g')
       .attr('transform', chartTranslate)
       .append('rect')
-      .attr('class', 'tooltip-box')
-      .on('mousemove', () => this.tooltipMouseMove())
+      .attr('class', 'tooltip-mouse-box')
+      .attr('data-tooltipMouseBox', true)
+      .on('mousemove', () => this.onTooltipMouseMove())
 
     this.init()
   }
 
-  private tooltipMouseMove() {
+  private onTooltipMouseMove() {
     if (this.xScale) {
-      this.onMove.emit(this.xScale.invert(d3.mouse(this.tooltip.node())[0]))
+      this.tooltipMouseMove.emit(
+        this.xScale.invert(d3.mouse(this.tooltip.node())[0])
+      )
     }
   }
 
