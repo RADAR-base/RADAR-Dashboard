@@ -1,67 +1,39 @@
-import { HttpClientModule } from '@angular/common/http'
-import { TestBed, inject } from '@angular/core/testing'
-// Make sure to include the Response object from '@angular/http'
 import {
-  BaseRequestOptions,
-  Http,
-  RequestMethod,
-  Response,
-  ResponseOptions
-} from '@angular/http'
-import { MockBackend, MockConnection } from '@angular/http/testing'
+  HttpClientTestingModule,
+  HttpTestingController
+} from '@angular/common/http/testing'
+import { TestBed } from '@angular/core/testing'
 
 import { SubjectService } from './subject.service'
 
 describe('SubjectService', () => {
-  let service: SubjectService
-  let backend: MockBackend
+  let service
+  let http
 
-  beforeEach(() => {
+  beforeEach(() =>
     TestBed.configureTestingModule({
-      imports: [HttpClientModule],
-      providers: [
-        MockBackend,
-        BaseRequestOptions,
-        {
-          provide: Http,
-          useFactory: (
-            backendInstance: MockBackend,
-            defaultOptions: BaseRequestOptions
-          ) => {
-            return new Http(backendInstance, defaultOptions)
-          },
-          deps: [MockBackend, BaseRequestOptions]
-        },
-        SubjectService
-      ]
+      imports: [HttpClientTestingModule],
+      providers: [SubjectService]
     })
-  })
-
-  beforeEach(
-    inject(
-      [SubjectService, MockBackend],
-      (subjectService: SubjectService, mockBackend: MockBackend) => {
-        service = subjectService
-        backend = mockBackend
-      }
-    )
   )
 
-  it('should return data', done => {
-    backend.connections.subscribe((connection: MockConnection) => {
-      const options = new ResponseOptions({
-        body: JSON.stringify({}),
-        status: 200
-      })
-      connection.mockRespond(new Response(options))
+  beforeEach(() => {
+    service = TestBed.get(SubjectService)
+    http = TestBed.get(HttpTestingController)
+  })
 
-      // Check the request method
-      expect(connection.request.method).toEqual(RequestMethod.Get)
+  it('should list empty subjects if empty', () => {
+    const expectedResult = { studyId: 0, subjects: [] }
+
+    let actualResult = []
+    service.getAll(0).subscribe((result: any[]) => {
+      actualResult = result
     })
-    service.getAll(0).subscribe(response => {
-      // Check the response
-      expect(response).toBeTruthy()
-      done()
-    })
+
+    http
+      .expectOne('https://radar-cns.ddns.net/api/subject/getAllSubjects/0')
+      .flush(expectedResult)
+
+    expect(actualResult).toEqual([])
   })
 })

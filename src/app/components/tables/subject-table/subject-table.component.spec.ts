@@ -1,5 +1,6 @@
 import { DebugElement } from '@angular/core'
 import { ComponentFixture, TestBed, async } from '@angular/core/testing'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { Router } from '@angular/router'
 
 import { RouterStub } from '../../../shared/testing/router-stubs'
@@ -15,7 +16,7 @@ describe('SubjectTableComponent', () => {
   beforeEach(
     async(() => {
       TestBed.configureTestingModule({
-        imports: [SubjectTableModule],
+        imports: [SubjectTableModule, BrowserAnimationsModule],
         providers: [{ provide: Router, useClass: RouterStub }]
       })
 

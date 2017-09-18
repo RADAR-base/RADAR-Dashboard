@@ -2,7 +2,6 @@ import { CdkTableModule } from '@angular/cdk/table'
 import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
 import { MdPaginatorModule, MdTableModule } from '@angular/material'
-import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 
 import { SimpleBarComponent } from '../../../components/simple-bar/simple-bar.component'
 import { SubjectTableComponent } from './subject-table.component'
@@ -10,13 +9,7 @@ import { SubjectTableComponent } from './subject-table.component'
 const COMPONENTS = [SubjectTableComponent, SimpleBarComponent]
 
 @NgModule({
-  imports: [
-    CommonModule,
-    CdkTableModule,
-    MdTableModule,
-    MdPaginatorModule,
-    NoopAnimationsModule
-  ],
+  imports: [CommonModule, CdkTableModule, MdTableModule, MdPaginatorModule],
   declarations: COMPONENTS,
   exports: COMPONENTS
 })

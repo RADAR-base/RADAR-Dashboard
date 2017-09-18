@@ -1,71 +1,54 @@
-import { HttpClientModule } from '@angular/common/http'
-import { TestBed, inject } from '@angular/core/testing'
-// Make sure to include the Response object from '@angular/http'
 import {
-  BaseRequestOptions,
-  Http,
-  RequestMethod,
-  Response,
-  ResponseOptions
-} from '@angular/http'
-import { MockBackend, MockConnection } from '@angular/http/testing'
+  HttpClientTestingModule,
+  HttpTestingController
+} from '@angular/common/http/testing'
+import { TestBed } from '@angular/core/testing'
 import { provideMockActions } from '@ngrx/effects/testing'
 import { Observable } from 'rxjs/Observable'
 
+import { MockSources } from '../../testing/mocks/mock-sources'
 import { SourceService } from './source.service'
 
 describe('SourceService', () => {
-  let service: SourceService
-  let backend: MockBackend
+  let service
+  let http
   const actions: Observable<any> = Observable.of()
 
-  beforeEach(() => {
+  beforeEach(() =>
     TestBed.configureTestingModule({
-      imports: [HttpClientModule],
-      providers: [
-        MockBackend,
-        BaseRequestOptions,
-        {
-          provide: Http,
-          useFactory: (
-            backendInstance: MockBackend,
-            defaultOptions: BaseRequestOptions
-          ) => {
-            return new Http(backendInstance, defaultOptions)
-          },
-          deps: [MockBackend, BaseRequestOptions]
-        },
-        SourceService,
-        provideMockActions(() => actions)
-      ]
+      imports: [HttpClientTestingModule],
+      providers: [SourceService, provideMockActions(() => actions)]
     })
-  })
-
-  beforeEach(
-    inject(
-      [SourceService, MockBackend],
-      (sourceService: SourceService, mockBackend: MockBackend) => {
-        service = sourceService
-        backend = mockBackend
-      }
-    )
   )
 
-  it('should return data', done => {
-    backend.connections.subscribe((connection: MockConnection) => {
-      const options = new ResponseOptions({
-        body: JSON.stringify({}),
-        status: 200
-      })
-      connection.mockRespond(new Response(options))
+  beforeEach(() => {
+    service = TestBed.get(SourceService)
+    http = TestBed.get(HttpTestingController)
+  })
 
-      // Check the request method
-      expect(connection.request.method).toEqual(RequestMethod.Get)
+  it('should return all studies', () => {
+    const expectedResult = MockSources
+
+    let actualResult = []
+    service.getAll('MRC01').subscribe((result: any[]) => {
+      actualResult = result
     })
-    service.getAll('MRC01').subscribe(response => {
-      // Check the response
-      expect(response).toBeTruthy()
-      done()
-    })
+
+    http
+      .expectOne('https://radar-cns.ddns.net/api/source/getAllSources/MRC01')
+      .flush(expectedResult)
+
+    expect(actualResult).toEqual([
+      {
+        id: '00:07:80:1F:52:F3',
+        type: 'EMPATICA',
+        summary: null
+      },
+      {
+        id: '00:07:80:1F:17:6B',
+        type: 'EMPATICA',
+        summary: null
+      }
+    ])
   })
 })
