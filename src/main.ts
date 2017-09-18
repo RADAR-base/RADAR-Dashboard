@@ -1,12 +1,13 @@
+// Add RxJS Imports file
 import './rxjs.imports'
 
 import { enableProdMode } from '@angular/core'
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'
 
 import { AppModule } from './app/app.module'
-import { environment } from './environments/environment'
+import { ENV } from './environments/environment'
 
-if (environment.PROD) {
+if (ENV.PROD) {
   enableProdMode()
 }
 

@@ -4,6 +4,7 @@ import { Actions } from '@ngrx/effects'
 import { Action } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
+import { ENV } from '../../../../environments/environment'
 import * as actions from './source.actions'
 import { Source } from './source.model'
 
@@ -16,7 +17,7 @@ export class SourceService {
   }
 
   getAll(subjectId): Observable<Source[]> {
-    const url = `${PARAMS.API_URI}/source/getAllSources/${subjectId}`
+    const url = `${ENV.PARAMS.API_URI}/source/getAllSources/${subjectId}`
 
     return this.http
       .get<any>(url)

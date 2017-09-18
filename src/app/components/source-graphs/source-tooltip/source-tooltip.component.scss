@@ -4,14 +4,19 @@
   @include font-small;
 
   position: fixed;
-  top: 16px;
+  top: 24px;
   left: 0;
   z-index: 10;
   display: block;
+  padding: 0 40px;
+  width: 320px;
+  pointer-events: none;
+}
+
+.box {
   padding: 8px 16px;
   border-radius: 4px;
   background-color: $cl-base-90;
-  pointer-events: none;
 }
 
 .item {

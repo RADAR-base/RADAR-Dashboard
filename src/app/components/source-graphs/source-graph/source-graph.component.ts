@@ -23,7 +23,7 @@ import { AppConfig } from '../../../shared/utils/config'
       [chartData]="sensorData"
       [hasGradient]="gradientEnabled"
       [hasXAxis]="false"
-      (onMove)="onMoveHandler($event)"
+      (tooltipMouseMove)="onTooltipMouseMove($event)"
     ></app-chart-base-line>
 
     <app-chart-base-multi-line
@@ -31,7 +31,7 @@ import { AppConfig } from '../../../shared/utils/config'
       [chartData]="sensorData"
       [keys]="keys"
       [hasXAxis]="false"
-      (onMove)="onMoveHandler($event)"
+      (tooltipMouseMove)="onTooltipMouseMove($event)"
     ></app-chart-base-multi-line>
   `,
   styleUrls: ['./source-graph.component.scss'],
@@ -66,7 +66,7 @@ export class SourceGraphComponent {
 
   constructor(private store: Store<fromRoot.State>) {}
 
-  onMoveHandler(date: Date) {
+  onTooltipMouseMove(date: Date) {
     this.store.dispatch(new sensorsActions.SetTooltipDate(date))
   }
 }

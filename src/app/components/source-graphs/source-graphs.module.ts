@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core'
 import { MdProgressSpinnerModule } from '@angular/material'
 
 import { ChartsModule } from '../charts/charts.module'
+import { GraphExternalXAxisComponent } from './graph-external-x-axis/graph-external-x-axis.component'
 import { SourceGraphComponent } from './source-graph/source-graph.component'
 import { SourceGraphsComponent } from './source-graphs.component'
 import { SourceTooltipComponent } from './source-tooltip/source-tooltip.component'
@@ -10,7 +11,8 @@ import { SourceTooltipComponent } from './source-tooltip/source-tooltip.componen
 const COMPONENTS = [
   SourceGraphsComponent,
   SourceGraphComponent,
-  SourceTooltipComponent
+  SourceTooltipComponent,
+  GraphExternalXAxisComponent
 ]
 
 @NgModule({
