@@ -4,7 +4,7 @@
 /* global jasmine */
 const { SpecReporter } = require('jasmine-spec-reporter')
 
-// TODO: use browserstack when we have a proper e2e test setup
+// TODO: use browserstack when we have a more complete e2e test setup
 exports.config = {
   allScriptsTimeout: 11000,
   specs: ['./e2e/**/*.e2e-spec.ts'],
