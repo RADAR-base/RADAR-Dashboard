@@ -48,12 +48,15 @@ export class SourceGraphsComponent implements OnInit {
   }
 
   onMouseMove(event) {
-    if (event.target.classList.value === 'tooltip-box') {
-      // TODO: improve positioning on the right side so that it's not hidden
-      this.tooltipX = event.x - this.tooltip.width / 2
-      this.tooltipY = event.y
+    if (event.target.dataset.tooltipMouseBox) {
+      this.tooltipX =
+        event.clientX < document.body.clientWidth - this.tooltip.mid
+          ? event.clientX - this.tooltip.mid
+          : document.body.clientWidth - this.tooltip.width
+
+      this.tooltipY = event.clientY
+      this.lineX = event.layerX
       this.tooltipShow = 1
-      this.lineX = event.layerX + 8
     } else {
       this.tooltipShow = 0
     }
