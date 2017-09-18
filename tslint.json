@@ -74,10 +74,10 @@
       "check-interpolation",
       "check-pipe"
     ],
+    "no-unused-variable": false,
     "rxjs-add": {
       "options": [
         {
-          "allowUnused": true,
           "file": "./src/rxjs.imports.ts"
         }
       ],

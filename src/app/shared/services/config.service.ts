@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { BehaviorSubject } from 'rxjs/BehaviorSubject'
 
+import { ENV } from '../../../environments/environment'
 import { AppConfig } from '../utils/config'
 import { ErrorService } from './error.service'
 
@@ -13,7 +14,7 @@ export class ConfigService {
 
   load() {
     this.http
-      .get(`${PARAMS.API_FIREBASE}/config.json`)
+      .get(`${ENV.PARAMS.API_FIREBASE}/config.json`)
       .catch(ErrorService.handleError)
       .subscribe(config => {
         AppConfig.config = config

@@ -2,11 +2,12 @@
   "name": "radar-dashboard",
   "version": "2.1.0",
   "license": "Apache 2.0",
+  "private": true,
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:tools": "ng serve --environment=tools",
     "start:host": "ng serve --host 0.0.0.0",
-    "hmr": "ng serve --hmr -e=hmr",
     "build": "ng build --prod",
     "build:dev": "ng build",
     "all": "npm run fix:all && npm run lint && npm run test:coverage && npm run e2e",
@@ -15,9 +16,8 @@
     "lint:css": "stylelint \"src/**/*.scss\"",
     "lint:prettier": "prettier --list-different \"**/*(*.js|*.ts|*.json)\"",
     "lint:sort": "import-sort -d -s src/app",
-    "test": "ng test",
-    "test:ci": "ng test --code-coverage --watch=false",
-    "test:coverage": "ng test --code-coverage --watch=false && open coverage/index.html",
+    "test": "ng test --environment=test",
+    "test:coverage": "ng test --single-run --code-coverage && open coverage/index.html",
     "e2e": "ng e2e",
     "fix:all": "npm run fix:sort && npm run fix:css && npm run fix:code",
     "fix:css": "npm run fix:stylefmt && npm run fix:stylelint",
@@ -27,9 +27,23 @@
     "fix:prettier": "prettier --write \"**/*(*.js|*.ts|*.json)\"",
     "fix:sort": "import-sort -o src/app"
   },
-  "private": true,
+  "importSort": {
+    ".js": {
+      "parser": "babylon",
+      "style": "module"
+    },
+    ".ts": {
+      "parser": "typescript",
+      "style": "module"
+    }
+  },
+  "browserslist": [
+    "last 2 versions",
+    "not ie <= 10",
+    "not ie_mob <= 10"
+  ],
   "dependencies": {
-    "@angular/animations": "^4.3.6",
+    "@angular/animations": "^4.4.1",
     "@angular/cdk": "^2.0.0-beta.10",
     "@angular/common": "^5.0.0-beta.7",
     "@angular/compiler": "^5.0.0-beta.7",
@@ -87,7 +101,7 @@
     "postcss-scss": "^1.0.2",
     "prettier": "^1.7.0",
     "protractor": "^5.1.2",
-    "rxjs-tslint-rules": "^2.1.6",
+    "rxjs-tslint-rules": "^2.1.7",
     "sass-mq": "^3.3.2",
     "stylefmt": "^6.0.0",
     "stylelint": "^8.1.1",
@@ -98,15 +112,5 @@
     "tslint-config-standard": "^6.0.1",
     "tslint-language-service": "^0.9.6",
     "typescript": "^2.5.1"
-  },
-  "importSort": {
-    ".js": {
-      "parser": "babylon",
-      "style": "module"
-    },
-    ".ts": {
-      "parser": "typescript",
-      "style": "module"
-    }
   }
 }

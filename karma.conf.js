@@ -47,7 +47,14 @@ module.exports = function(config) {
       username: process.env.BROWSERSTACK_USERNAME,
       accessKey: process.env.BROWSERSTACK_ACCESS_KEY
     },
+
+    browsers: ['Chrome'],
+    // browsers: ['Chrome', 'BS_EDGE', 'BS_FIREFOX', 'BS_SAFARI'],
     customLaunchers: {
+      ChromeNoSandbox: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      },
       BS_CHROME: {
         base: 'BrowserStack',
         browser: 'chrome',
@@ -82,10 +89,7 @@ module.exports = function(config) {
     browserDisconnectTimeout: 20000,
     browserDisconnectTolerance: 1,
     browserNoActivityTimeout: 240000,
-    captureTimeout: 240000,
-
-    browsers: ['Chrome'] // for quick local tests
-    // browsers: ['Chrome', 'BS_EDGE', 'BS_FIREFOX', 'BS_SAFARI']
+    captureTimeout: 240000
   })
 
   if (process.env['TRAVIS']) {

@@ -6,7 +6,7 @@ import { EffectsModule } from '@ngrx/effects'
 import { StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 
-import { environment } from '../environments/environment'
+import { ENV } from '../environments/environment'
 import { AppComponent } from './app.component'
 import { AppRoutingModule } from './app.routing'
 import { NotFoundPageComponent } from './pages/not-found/not-found.component'
@@ -40,7 +40,7 @@ import { reducers } from './shared/store'
     // https://github.com/zalmoxisus/redux-devtools-extension
     // NOTE: Beware of the performance cost!
     // https://github.com/ngrx/store-devtools/issues/45
-    !environment.PROD ? StoreDevtoolsModule.instrument() : [],
+    ENV.TOOLS ? StoreDevtoolsModule.instrument() : [],
 
     // Setup ngrx/effects
     EffectsModule.forRoot([
