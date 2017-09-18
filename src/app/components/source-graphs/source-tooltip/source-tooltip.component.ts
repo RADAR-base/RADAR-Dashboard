@@ -44,6 +44,10 @@ export class SourceTooltipComponent implements AfterViewInit {
 
   constructor(private element: ElementRef) {}
 
+  public get height(): number {
+    return this.element.nativeElement.clientHeight
+  }
+
   ngAfterViewInit() {
     this.width = this.element.nativeElement.clientWidth
     this.mid = this.width / 2
