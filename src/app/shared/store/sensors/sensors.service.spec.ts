@@ -11,7 +11,8 @@ import {
   MockSensorsMany,
   MockSensorsOne,
   MockSensorsOneProcessed,
-  MockSensorsOneRaw
+  MockSensorsOneRaw,
+  MockSensorsOptions
 } from '../../testing/mocks/mock-sensor-data'
 import { AppConfig } from '../../utils/config'
 import { SensorsService } from './sensors.service'
@@ -38,18 +39,10 @@ describe('SensorsService', () => {
   })
 
   it('should successfully return expected data for one sensor', done => {
-    const hi = {
-      subjectId: 'MRC01',
-      timeFrame: {
-        start: 1497589120000,
-        end: 1497628000000
-      },
-      timeInterval: 10000,
-      descriptiveStatistic: 0
-    }
+    const options = MockSensorsOptions
     const sensors = MockSensorsOne
     const expectedRes = MockSensorsOneProcessed
-    service.getData(sensors, hi).subscribe(res => {
+    service.getData(sensors, options).subscribe(res => {
       expect(res).toEqual(expectedRes)
       done()
     })

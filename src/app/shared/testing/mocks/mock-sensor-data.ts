@@ -37,6 +37,16 @@ export const MockSensorMulti = {
   id: 4
 }
 
+export const MockSensorsOptions = {
+  subjectId: 'MRC01',
+  timeFrame: {
+    start: 1497589120000,
+    end: 1497628000000
+  },
+  timeInterval: 10000,
+  descriptiveStatistic: 0
+}
+
 export const MockSensorsMany = [
   {
     chart: {
