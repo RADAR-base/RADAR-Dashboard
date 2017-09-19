@@ -12,9 +12,13 @@
   (mouseleave)="onMouseLeave($event)"
 >
   <div class="source-title">SOURCE {{ source.id }}</div>
-  <div *ngFor="let sensor of source.sensors; trackBy: trackBySensorId">
-    <div *ngIf="sensor.visible">
+  <div class="sensors">
+    <div
+      class="sensor"
+      *ngFor="let sensor of source.sensors; trackBy: trackBySensorId"
+    >
       <app-source-graph
+        *ngIf="sensor.visible"
         [type]="sensor.type"
         [sensorData]="sensorsData[sensor.id]"
         [isLoaded]="isDataLoaded[sensor.id]"

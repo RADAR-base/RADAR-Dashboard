@@ -7,6 +7,27 @@
   height: 100%;
 }
 
+:host /deep/ {
+  .sensor .chart {
+    background-color: $cl-base-10;
+  }
+
+  .sensor:first-child .chart {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  .sensor:last-child .chart {
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+}
+
+.sensors {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
 .source {
   position: relative;
 }
@@ -20,7 +41,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  padding-top: 48px;
+  padding-top: 56px;
+  padding-bottom: 8px;
   width: 1px;
   height: 100%;
   pointer-events: none;
