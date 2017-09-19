@@ -33,3 +33,10 @@
   background-color: $cl-white-20;
   content: '';
 }
+
+.axis {
+  position: fixed;
+  bottom: 0;
+  margin-bottom: 24px;
+  width: 71.5%;
+}

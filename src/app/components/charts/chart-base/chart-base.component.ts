@@ -66,6 +66,8 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   xAxis: any
   yAxis: any
   window$: Subscription
+  @Input() isDateAxis: boolean
+  @Input() dates
 
   @Input()
   get chartData() {
@@ -142,6 +144,8 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   private beforeUpdate() {
     if (this.chart && this.data) {
       this.update()
+    } else {
+      if (this.isDateAxis) this.update()
     }
   }
 
