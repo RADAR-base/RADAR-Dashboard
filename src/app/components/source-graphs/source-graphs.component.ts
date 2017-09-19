@@ -54,9 +54,12 @@ export class SourceGraphsComponent implements OnInit {
           ? event.clientX - this.tooltip.mid
           : document.body.clientWidth - this.tooltip.width
       this.tooltipY =
-        event.clientY < document.body.clientHeight - this.tooltip.height
+        event.clientY <
+        document.body.clientHeight -
+          (this.tooltip.height + this.tooltip.height / 2)
           ? event.clientY
-          : document.body.clientHeight - this.tooltip.height
+          : document.body.clientHeight -
+            (this.tooltip.height + this.tooltip.height / 2)
       this.lineX = event.layerX
       this.tooltipShow = 1
     } else {
