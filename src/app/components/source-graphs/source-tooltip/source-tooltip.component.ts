@@ -40,17 +40,17 @@ export class SourceTooltipComponent implements AfterViewInit {
 
   language = AppConfig.language
   width = 0
-  mid = 0
+  center = 0
 
-  constructor(private element: ElementRef) {}
-
-  public get height(): number {
+  get height(): number {
     return this.element.nativeElement.clientHeight
   }
 
+  constructor(private element: ElementRef) {}
+
   ngAfterViewInit() {
     this.width = this.element.nativeElement.clientWidth
-    this.mid = this.width / 2
+    this.center = this.width / 2
   }
 
   setValue(value) {
