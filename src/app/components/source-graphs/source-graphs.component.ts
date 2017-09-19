@@ -31,7 +31,6 @@ export class SourceGraphsComponent implements OnInit {
   tooltipX = 0
   tooltipY = 0
   tooltipShow = 0 // 0 hide | 1 show
-  tooltipOffsetY = 30
   lineX = 0
 
   constructor(private store: Store<fromRoot.State>) {}
@@ -54,16 +53,12 @@ export class SourceGraphsComponent implements OnInit {
         event.clientX < document.body.clientWidth - this.tooltip.mid
           ? event.clientX - this.tooltip.mid
           : document.body.clientWidth - this.tooltip.width
-
       this.tooltipY =
         event.clientY < document.body.clientHeight - this.tooltip.height
           ? event.clientY
-          : document.body.clientHeight -
-            this.tooltip.height -
-            this.tooltipOffsetY
+          : document.body.clientHeight - this.tooltip.height
       this.lineX = event.layerX
       this.tooltipShow = 1
-      this.lineX = event.layerX + 8
     } else {
       this.tooltipShow = 0
     }
