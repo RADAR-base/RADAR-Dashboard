@@ -1,4 +1,5 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing'
+import { ComponentFixture, TestBed, async } from '@angular/core/testing'
+
 import { SourceGraphsModule } from '../source-graphs.module'
 import { SourceDateAxisComponent } from './source-date-axis'
 
