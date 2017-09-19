@@ -1,26 +1,18 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core'
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 import * as d3 from 'd3'
 
 import { ChartBaseComponent } from '../chart-base/chart-base.component'
 
 @Component({
-  selector: 'app-chart-external-x-axis',
+  selector: 'app-chart-date-axis',
   templateUrl: '../charts.common.html',
-  styleUrls: ['./chart-external-x-axis.component.scss'],
+  styleUrls: ['./chart-date-axis.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ChartExternalXAxisComponent extends ChartBaseComponent {
-  data: any
-  dates: Date[]
+export class ChartDateAxisComponent extends ChartBaseComponent {
+  @Input() dates: Date[]
 
-  svg: any
   context: any
-  chart: any
-  width: number
-  height: number
-  xAxis: any
-  xScale: any
-  yScale: any
   xScaleBrush: any
   zoom: any
   brush: any

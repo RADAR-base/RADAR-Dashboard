@@ -6,7 +6,7 @@ import { ChartBaseLineComponent } from './chart-base-line/chart-base-line.compon
 import { ChartBaseMultiBarComponent } from './chart-base-multi-bar/chart-base-multi-bar.component'
 import { ChartBaseMultiLineComponent } from './chart-base-multi-line/chart-base-multi-line.component'
 import { ChartBaseComponent } from './chart-base/chart-base.component'
-import { ChartExternalXAxisComponent } from './chart-external-x-axis/chart-external-x-axis.component'
+import { ChartDateAxisComponent } from './chart-date-axis/chart-date-axis.component'
 
 const COMPONENTS = [
   ChartBaseComponent,
@@ -14,7 +14,7 @@ const COMPONENTS = [
   ChartBaseBarComponent,
   ChartBaseMultiLineComponent,
   ChartBaseMultiBarComponent,
-  ChartExternalXAxisComponent
+  ChartDateAxisComponent
 ]
 
 @NgModule({
