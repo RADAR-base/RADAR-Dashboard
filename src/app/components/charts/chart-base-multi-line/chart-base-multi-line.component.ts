@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core'
 import * as d3 from 'd3'
 import { lineChunked } from 'd3-line-chunked'
 
-import { ConfigKey } from '../../../shared/models/config.model'
+import { ChartData } from '../../../shared/models/chart-data.model'
 import { ChartBaseComponent } from '../chart-base/chart-base.component'
 
 @Component({
@@ -12,7 +12,7 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChartBaseMultiLineComponent extends ChartBaseComponent {
-  keys: ConfigKey[]
+  data: ChartData[]
   colorScale: any
   lineChunkedFunctions: { [key: string]: Function } = {}
   lines: any
