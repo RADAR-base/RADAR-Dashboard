@@ -14,7 +14,6 @@ import { Observable } from 'rxjs/Observable'
 import { Subscription } from 'rxjs/Subscription'
 import * as shortid from 'shortid'
 
-import { ChartData } from '../../../shared/models/chart-data.model'
 import { ConfigKey } from '../../../shared/models/config.model'
 import { ChartColors } from '../chart.model'
 
@@ -51,11 +50,12 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   @Input() keys: ConfigKey[]
   @Input() hasYAxis = true
   @Input() hasXAxis = true
+  @Input() hasTooltip = true
 
   @Output() tooltipMouseMove = new EventEmitter<Date>()
 
   uid: string
-  data: ChartData[]
+  data: any[]
   svg: any
   chart: any
   tooltip: any
@@ -66,6 +66,8 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   xAxis: any
   yAxis: any
   window$: Subscription
+  @Input() isDateAxis: boolean
+  @Input() dates
 
   @Input()
   get chartData() {
@@ -118,13 +120,15 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
       this.yAxis = this.chart.append('g').attr('class', 'axis axis--y')
     }
 
-    this.tooltip = this.svg
-      .append('g')
-      .attr('transform', `translate(${this.margin.left}, 0)`)
-      .append('rect')
-      .attr('class', 'tooltip-mouse-box')
-      .attr('data-tooltipMouseBox', true)
-      .on('mousemove', () => this.onTooltipMouseMove())
+    if (this.hasTooltip) {
+      this.tooltip = this.svg
+        .append('g')
+        .attr('transform', `translate(${this.margin.left}, 0)`)
+        .append('rect')
+        .attr('class', 'tooltip-mouse-box')
+        .attr('data-tooltipMouseBox', true)
+        .on('mousemove', () => this.onTooltipMouseMove())
+    }
 
     this.init()
   }
@@ -152,7 +156,9 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
     this.height = height - this.margin.top - this.margin.bottom
 
     this.chart.attr('width', this.width).attr('height', this.height)
-    this.tooltip.attr('width', this.width).attr('height', height)
+
+    this.hasTooltip &&
+      this.tooltip.attr('width', this.width).attr('height', height)
 
     this.draw()
   }

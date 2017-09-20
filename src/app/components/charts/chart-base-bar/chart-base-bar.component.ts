@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 import * as d3 from 'd3'
 
+import { ChartData } from '../../../shared/models/chart-data.model'
 import { ChartBaseComponent } from '../chart-base/chart-base.component'
 
 @Component({
@@ -14,6 +15,7 @@ export class ChartBaseBarComponent extends ChartBaseComponent {
   @Input() paddingInner = 0.2
   @Input() paddingOuter = 0.2
 
+  data: ChartData[]
   xScaleTime: any
   xScaleOrdinal: any
   bar: any
@@ -33,6 +35,7 @@ export class ChartBaseBarComponent extends ChartBaseComponent {
       .scaleLinear()
       .range([this.height, 0])
       .domain([0, d3.max(this.data, d => d.value as number)])
+      .nice()
 
     if (this.categorical) {
       this.xScaleOrdinal.domain(this.data.map(d => d.name))

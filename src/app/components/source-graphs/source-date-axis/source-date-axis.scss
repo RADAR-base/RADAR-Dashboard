@@ -1,17 +1,9 @@
 @import '../../../../styles/common';
-$side-label-size: 44px;
 
 :host {
   position: relative;
   display: flex;
   flex-direction: column;
-  padding-left: $side-label-size;
-  width: 100%;
+  padding-left: $size-graph-side-label;
   background-color: $cl-base-20;
-}
-
-.axis {
-  flex: 1 1 0;
-  width: inherit;
-  height: 100%;
 }

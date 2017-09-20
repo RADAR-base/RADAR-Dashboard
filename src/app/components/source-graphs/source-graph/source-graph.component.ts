@@ -48,7 +48,7 @@ export class SourceGraphComponent {
   @Input() type
   @Input() keys
 
-  graphMargins = { top: 16, right: 16, bottom: 16, left: 48 }
+  graphMargins = { top: 32, right: 16, bottom: 32, left: 48 }
 
   get gradientEnabled() {
     return (
