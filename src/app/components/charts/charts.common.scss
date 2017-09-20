@@ -12,13 +12,18 @@
     fill: $cl-white-80;
   }
 
+  .axis line,
+  .axis path {
+    shape-rendering: crispEdges;
+  }
+
   .axis--x path,
   .axis--x line {
     stroke: $cl-white-80;
   }
 
   .axis--x line {
-    stroke-width: 2px;
+    stroke-width: 1px;
   }
 
   .axis--y line {

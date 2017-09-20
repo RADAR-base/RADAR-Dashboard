@@ -5,35 +5,40 @@
   [style.opacity]="tooltipShow"
 ></app-tooltip>
 
-<div
-  class="source"
-  *ngFor="let source of sources; trackBy: trackBySourceId"
-  (mousemove)="onMouseMove($event)"
-  (mouseleave)="onMouseLeave($event)"
->
-  <div class="source-title">SOURCE {{ source.id }}</div>
-  <div class="sensors">
-    <div
-      class="sensor"
-      *ngFor="let sensor of source.sensors; trackBy: trackBySensorId"
-    >
-      <app-source-graph
-        *ngIf="sensor.visible"
-        [type]="sensor.type"
-        [sensorData]="sensorsData[sensor.id]"
-        [isLoaded]="isDataLoaded[sensor.id]"
-        [sensorId]="sensor.id"
-        [keys]="sensor?.keys"
-      ></app-source-graph>
-    </div>
-  </div>
+<div class="graphs">
   <div
-    class="line"
-    [style.transform]="'translateX('+ lineX +'px)'"
-    [style.opacity]="tooltipShow"
-  ></div>
+    class="source"
+    *ngFor="let source of sources; trackBy: trackBySourceId"
+    (mousemove)="onMouseMove($event)"
+    (mouseleave)="onMouseLeave($event)"
+  >
+    <div class="source-title">SOURCE {{ source.id }}</div>
+    <div class="sensors">
+      <div
+        class="sensor"
+        *ngFor="let sensor of source.sensors; trackBy: trackBySensorId"
+      >
+        <app-source-graph
+          *ngIf="sensor.visible"
+          [type]="sensor.type"
+          [sensorData]="sensorsData[sensor.id]"
+          [isLoaded]="isDataLoaded[sensor.id]"
+          [sensorId]="sensor.id"
+          [keys]="sensor?.keys"
+        ></app-source-graph>
+      </div>
+    </div>
+    <div
+      class="line"
+      [style.transform]="'translateX('+ lineX +'px)'"
+      [style.opacity]="tooltipShow"
+    ></div>
+  </div>
 </div>
 
-<div *ngIf="dates" class="axis">
+<div
+  class="axis"
+  *ngIf="dates"
+>
   <app-source-date-axis [dates]="dates"></app-source-date-axis>
 </div>

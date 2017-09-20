@@ -34,6 +34,9 @@ $cl-graph-5: #225ea8;
 $cl-graph-6: #0c2c84;
 $cl-graph-hover: #fcaf0a;
 
+// Sizes
+$size-graph-side-label: 44px;
+
 // MIXINS
 @mixin font() {
   font-family: 'Montserrat', sans-serif;
