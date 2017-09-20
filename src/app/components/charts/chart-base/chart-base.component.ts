@@ -106,12 +106,10 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
         this.beforeUpdate()
       })
 
-    const chartTranslate = `translate(${this.margin.left}, ${this.margin.top})`
-
     this.chart = this.svg
       .append('g')
       .attr('class', 'chart')
-      .attr('transform', chartTranslate)
+      .attr('transform', `translate(${this.margin.left}, ${this.margin.top})`)
 
     if (this.hasXAxis) {
       this.xAxis = this.chart.append('g').attr('class', 'axis axis--x')
@@ -122,7 +120,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
 
     this.tooltip = this.svg
       .append('g')
-      .attr('transform', chartTranslate)
+      .attr('transform', `translate(${this.margin.left}, 0)`)
       .append('rect')
       .attr('class', 'tooltip-mouse-box')
       .attr('data-tooltipMouseBox', true)
@@ -154,7 +152,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
     this.height = height - this.margin.top - this.margin.bottom
 
     this.chart.attr('width', this.width).attr('height', this.height)
-    this.tooltip.attr('width', this.width).attr('height', this.height)
+    this.tooltip.attr('width', this.width).attr('height', height)
 
     this.draw()
   }

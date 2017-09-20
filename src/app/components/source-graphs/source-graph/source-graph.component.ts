@@ -19,18 +19,22 @@ import { AppConfig } from '../../../shared/utils/config'
     </div>
 
     <app-chart-base-line
+      class="chart"
       *ngIf="sensorData && isLoaded && isSingle"
       [chartData]="sensorData"
       [hasGradient]="gradientEnabled"
       [hasXAxis]="false"
+      [margin]="graphMargins"
       (tooltipMouseMove)="onTooltipMouseMove($event)"
     ></app-chart-base-line>
 
     <app-chart-base-multi-line
+      class="chart"
       *ngIf="sensorData && isLoaded && !(isSingle)"
       [chartData]="sensorData"
       [keys]="keys"
       [hasXAxis]="false"
+      [margin]="graphMargins"
       (tooltipMouseMove)="onTooltipMouseMove($event)"
     ></app-chart-base-multi-line>
   `,
@@ -43,6 +47,8 @@ export class SourceGraphComponent {
   @Input() sensorId
   @Input() type
   @Input() keys
+
+  graphMargins = { top: 16, right: 16, bottom: 16, left: 48 }
 
   get gradientEnabled() {
     return (
