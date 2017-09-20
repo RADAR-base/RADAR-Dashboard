@@ -5,7 +5,6 @@ $side-label-size: 44px;
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-bottom: 8px;
   padding-left: $side-label-size;
   width: 100%;
   height: 280px;
@@ -15,7 +14,7 @@ $side-label-size: 44px;
   @include font-body();
 
   position: absolute;
-  padding-right: 8px;
+  padding-right: 16px;
   height: $side-label-size;
   color: $cl-white-80;
   line-height: $side-label-size;
@@ -53,4 +52,5 @@ $side-label-size: 44px;
 app-chart-base-line,
 app-chart-base-multi-line {
   flex: 1;
+  margin-right: 8px;
 }

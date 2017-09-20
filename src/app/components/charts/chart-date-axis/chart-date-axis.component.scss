@@ -1,8 +1,6 @@
 @import '../../../../styles/common';
 @import '../charts.common';
-
 :host /deep/ {
-  margin-top: -5px;
-  margin-bottom: 10px;
-  height: 100%;
+    margin-top: -5px;
+    height: 100%;
 }

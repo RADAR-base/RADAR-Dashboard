@@ -6,11 +6,6 @@ $side-label-size: 44px;
     flex-direction: column;
     padding-left: $side-label-size;
     width: 100%;
-    height: 40px;
-}
-
-.axis {
-    flex: 1 1 0;
-    width: inherit;
     height: 100%;
+    background-color: $cl-base-40;
 }

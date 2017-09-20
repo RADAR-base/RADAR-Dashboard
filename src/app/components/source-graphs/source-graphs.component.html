@@ -2,14 +2,14 @@
 
 <div class="source" *ngFor="let source of sources; trackBy: trackBySourceId" (mousemove)="onMouseMove($event)" (mouseleave)="onMouseLeave($event)">
     <div class="source-title">SOURCE {{ source.id }}</div>
-    <div *ngFor="let sensor of source.sensors; trackBy: trackBySensorId">
-        <div *ngIf="sensor.visible">
-            <app-source-graph [type]="sensor.type" [sensorData]="sensorsData[sensor.id]" [isLoaded]="isDataLoaded[sensor.id]" [sensorId]="sensor.id" [keys]="sensor?.keys"></app-source-graph>
+    <div class="sensors">
+        <div class="sensor" *ngFor="let sensor of source.sensors; trackBy: trackBySensorId">
+            <app-source-graph *ngIf="sensor.visible" [type]="sensor.type" [sensorData]="sensorsData[sensor.id]" [isLoaded]="isDataLoaded[sensor.id]" [sensorId]="sensor.id" [keys]="sensor?.keys"></app-source-graph>
         </div>
+        <div class="line" [style.transform]="'translateX('+ lineX +'px)'" [style.opacity]="tooltipShow"></div>
     </div>
-    <div class="line" [style.transform]="'translateX('+ lineX +'px)'" [style.opacity]="tooltipShow"></div>
-</div>
 
-<div *ngIf="dates" class="axis">
-    <app-source-date-axis [dates]="dates"></app-source-date-axis>
-</div>
+    <div *ngIf="dates && sensorsData[0]" class="axis">
+        <app-source-date-axis [dates]="dates"></app-source-date-axis>
+        <app-source-volume [data]="sensorsData[2]"></app-source-volume>
+    </div>

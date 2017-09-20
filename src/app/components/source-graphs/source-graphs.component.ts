@@ -50,11 +50,15 @@ export class SourceGraphsComponent implements OnInit {
   onMouseMove(event) {
     if (event.target.dataset.tooltipMouseBox) {
       this.tooltipX =
-        event.clientX < document.body.clientWidth - this.tooltip.mid
-          ? event.clientX - this.tooltip.mid
+        event.clientX < document.body.clientWidth - this.tooltip.center
+          ? event.clientX - this.tooltip.center
           : document.body.clientWidth - this.tooltip.width
 
-      this.tooltipY = event.clientY
+      this.tooltipY =
+        event.clientY < document.body.clientHeight - this.tooltip.height
+          ? event.clientY
+          : event.clientY - this.tooltip.height
+
       this.lineX = event.layerX
       this.tooltipShow = 1
     } else {
