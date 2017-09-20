@@ -45,6 +45,7 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
       .scaleTime()
       .range([0, this.width])
       .domain(d3.extent(this.data, d => d.date))
+      .nice()
 
     if (this.hasXAxis) this.xAxis.call(d3.axisBottom(this.xScale))
 
@@ -60,6 +61,7 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
       .scaleLinear()
       .range([this.height, 0])
       .domain([minValue, maxValue])
+      .nice()
 
     if (this.hasYAxis) {
       this.yAxis.call(d3.axisLeft(this.yScale).tickSize(-this.width))

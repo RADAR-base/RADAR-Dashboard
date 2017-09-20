@@ -66,11 +66,13 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
       .scaleTime()
       .range([0, this.width])
       .domain(d3.extent(this.data, d => d.date))
+      .nice()
 
     this.yScale = d3
       .scaleLinear()
       .range([this.height, 0])
       .domain(d3.extent(this.data, d => d.value as number))
+      .nice()
 
     this.hasXAxis && this.xAxis.call(d3.axisBottom(this.xScale))
     this.hasYAxis &&

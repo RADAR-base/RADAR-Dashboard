@@ -35,6 +35,7 @@ export class ChartBaseBarComponent extends ChartBaseComponent {
       .scaleLinear()
       .range([this.height, 0])
       .domain([0, d3.max(this.data, d => d.value as number)])
+      .nice()
 
     if (this.categorical) {
       this.xScaleOrdinal.domain(this.data.map(d => d.name))
