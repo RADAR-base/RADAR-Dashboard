@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 import * as d3 from 'd3'
 
-import { ConfigKey } from '../../../shared/models/config.model'
+import { ChartData } from '../../../shared/models/chart-data.model'
 import { ChartBaseComponent } from '../chart-base/chart-base.component'
 
 @Component({
@@ -20,7 +20,7 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
   @Input() xTickTimeFormat = '%d %b' // https://github.com/d3/d3-time-format
   @Input() xTickEvery = 2
 
-  keys: ConfigKey[]
+  data: ChartData[]
   bar: any
   rects: any
   xScaleOuter: any

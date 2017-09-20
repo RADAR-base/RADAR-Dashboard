@@ -10,7 +10,7 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChartDateAxisComponent extends ChartBaseComponent {
-  @Input() dates: Date[]
+  @Input() data: Date[]
 
   init() {
     super.init()
@@ -20,10 +20,9 @@ export class ChartDateAxisComponent extends ChartBaseComponent {
     this.xScale = d3
       .scaleTime()
       .range([0, this.width])
-      .domain(d3.extent(this.dates))
+      .domain(d3.extent(this.data))
+      .nice()
 
-    this.xAxis
-      .attr('transform', 'translate(0, -10)')
-      .call(d3.axisBottom(this.xScale))
+    this.xAxis.call(d3.axisBottom(this.xScale))
   }
 }

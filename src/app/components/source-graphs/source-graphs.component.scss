@@ -1,9 +1,9 @@
 @import '../../../styles/common';
 :host {
     position: relative;
-    display: block;
-    width: 100%;
-    height: 100%;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
 }
 
 :host /deep/ {
@@ -59,4 +59,9 @@
     margin-bottom: 24px;
     width: 71.5%;
     background-color: $cl-base-20;
+}
+
+.graphs {
+    flex: 1 1 auto;
+    overflow-y: scroll;
 }
