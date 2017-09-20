@@ -4,11 +4,11 @@
   @include font-small;
 
   position: fixed;
-  top: 24px;
+  top: 0;
   left: 0;
   z-index: 10;
   display: block;
-  padding: 0 40px;
+  padding: 40px;
   width: 320px;
   pointer-events: none;
 }
