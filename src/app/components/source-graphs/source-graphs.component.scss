@@ -1,67 +1,70 @@
 @import '../../../styles/common';
+
 :host {
-    position: relative;
-    display: flex;
-    flex: 1;
-    flex-direction: column;
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
 }
 
 :host /deep/ {
-    .sensor .chart {
-        background-color: $cl-base-10;
-    }
-    .sensor:first-child .chart {
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
-    }
-    .sensor:last-child .chart {
-        border-bottom-right-radius: 8px;
-        border-bottom-left-radius: 8px;
-    }
+  .sensor .chart {
+    background-color: $cl-base-10;
+  }
+
+  .sensor:first-child .chart {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  .sensor:last-child .chart {
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
 }
 
 .sensors {
-    margin-top: 8px;
-    margin-bottom: 8px;
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
 .source {
-    position: relative;
+  position: relative;
 }
 
 .source-title {
-    padding: 16px 16px 0;
-    height: 48px;
+  padding: 16px 16px 0;
+  height: 48px;
 }
 
 .line {
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding-top: 56px;
-    padding-bottom: 8px;
-    width: 1px;
-    height: 100%;
-    pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding-top: 56px;
+  padding-bottom: 8px;
+  width: 1px;
+  height: 100%;
+  pointer-events: none;
 }
 
 .line::after {
-    display: block;
-    width: 1px;
-    height: 100%;
-    background-color: $cl-white-20;
-    content: '';
+  display: block;
+  width: 1px;
+  height: 100%;
+  background-color: $cl-white-20;
+  content: '';
 }
 
 .axis {
-    position: fixed;
-    bottom: 0;
-    margin-bottom: 24px;
-    width: 71.5%;
-    background-color: $cl-base-20;
+  position: fixed;
+  bottom: 0;
+  margin-bottom: 24px;
+  width: 71.5%;
+  background-color: $cl-base-20;
 }
 
 .graphs {
-    flex: 1 1 auto;
-    overflow-y: scroll;
+  flex: 1 1 auto;
+  overflow-y: scroll;
 }

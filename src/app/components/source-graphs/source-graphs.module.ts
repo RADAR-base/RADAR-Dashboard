@@ -6,8 +6,8 @@ import { ChartsModule } from '../charts/charts.module'
 import { SourceGraphComponent } from './source-graph/source-graph.component'
 import { SourceGraphsComponent } from './source-graphs.component'
 import { SourceTooltipComponent } from './source-tooltip/source-tooltip.component'
-import { SourceDateAxisComponent } from './source-date-axis/source-date-axis'
 import { SourceVolumeComponent } from './source-volume/source-volume.component'
+import { SourceDateAxisComponent } from './source-date-axis/source-date-axis'
 
 const COMPONENTS = [
   SourceGraphsComponent,
