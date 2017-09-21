@@ -1,11 +1,10 @@
 @import '../../../../styles/common';
-$side-label-size: 44px;
 
 :host {
   position: relative;
   display: flex;
   flex-direction: column;
-  padding-left: $side-label-size;
+  padding-left: $size-graph-side-label;
   width: 100%;
   height: 100%;
   background-color: $cl-base-40;

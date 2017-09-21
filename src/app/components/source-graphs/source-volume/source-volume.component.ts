@@ -2,11 +2,8 @@ import { Component, Input } from '@angular/core'
 
 @Component({
   selector: 'app-source-volume',
-  template: `<div *ngIf="data">
-      <app-chart-volume
-      [chartData]="data"
-      [hasYAxis]="false"
-    ></app-chart-volume></div>
+  template: `<app-chart-base-area *ngIf="data"[chartData]="data"[hasYAxis]="false">
+  </app-chart-base-area>
   `,
   styleUrls: ['./source-volume.component.scss']
 })

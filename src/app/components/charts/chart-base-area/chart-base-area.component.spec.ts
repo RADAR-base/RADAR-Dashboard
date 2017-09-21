@@ -1,20 +1,20 @@
 import { DebugElement } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { ChartVolumeComponent } from './chart-volume.component'
+import { ChartBaseAreaComponent } from './chart-base-area.component'
 
-describe('ChartVolumeComponent', () => {
-  let component: ChartVolumeComponent
-  let fixture: ComponentFixture<ChartVolumeComponent>
+describe('ChartBaseAreaComponent', () => {
+  let component: ChartBaseAreaComponent
+  let fixture: ComponentFixture<ChartBaseAreaComponent>
   let element: HTMLElement
   let de: DebugElement
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ChartVolumeComponent]
+      declarations: [ChartBaseAreaComponent]
     })
 
-    fixture = TestBed.createComponent(ChartVolumeComponent)
+    fixture = TestBed.createComponent(ChartBaseAreaComponent)
     component = fixture.componentInstance
     element = fixture.nativeElement
     de = fixture.debugElement

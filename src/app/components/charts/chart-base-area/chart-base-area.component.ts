@@ -1,32 +1,21 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core'
 import * as d3 from 'd3'
 
+import { ChartData } from '../../../shared/models/chart-data.model'
 import { ChartBaseComponent } from '../chart-base/chart-base.component'
 
 @Component({
-  selector: 'app-chart-volume',
+  selector: 'app-chart-base-area',
   templateUrl: '../charts.common.html',
-  styleUrls: ['./chart-volume.component.scss'],
+  styleUrls: ['./chart-base-area.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ChartVolumeComponent extends ChartBaseComponent {
-  dates: Date[]
-
-  svg: any
-  context: any
-  chart: any
-  width: number
-  height: number
-  xAxis: any
-  xScale: any
-  yScale: any
-  xScaleBrush: any
-  zoom: any
-  brush: any
+export class ChartBaseAreaComponent extends ChartBaseComponent {
+  data: ChartData[]
   area: any
 
   init() {
-    this.context = this.svg
+    this.chart = this.svg
       .append('g')
       .attr('class', 'context')
       .attr('transform', `translate(${this.margin.left}, 0)`)
@@ -57,11 +46,11 @@ export class ChartVolumeComponent extends ChartBaseComponent {
     this.area = d3
       .area()
       .curve(d3.curveBasis)
-      .x(d => this.xScale(d['date']))
+      .x((d: any) => this.xScale(d.date))
       .y0(this.yScale(0))
-      .y1(d => this.yScale(d['value']))
+      .y1((d: any) => this.yScale(d.value))
 
-    this.context
+    this.chart
       .append('path')
       .datum(this.data)
       .attr('class', 'area')
