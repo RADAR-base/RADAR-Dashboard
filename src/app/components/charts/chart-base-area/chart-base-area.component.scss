@@ -2,21 +2,27 @@
 @import '../charts.common';
 
 :host /deep/ {
-  margin-top: -5px;
-  margin-bottom: 10px;
-  height: 100%;
-
-  .zoom {
-    cursor: move;
-    pointer-events: all;
-    fill: none;
-  }
-
   .area {
     fill: $cl-base-80;
   }
 
-  .brush {
+  .background {
+    padding-right: 8px;
+    padding-left: 8px;
     fill: $cl-base-40;
+  }
+
+  .axis line,
+  .axis path {
+    shape-rendering: crispEdges;
+  }
+
+  .axis--x line {
+    stroke: $cl-white-20;
+    stroke-dasharray: 4, 2;
+  }
+
+  .axis--x path {
+    stroke: none;
   }
 }

@@ -4,8 +4,12 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  margin-top: 0;
   padding-left: $size-graph-side-label;
   width: 100%;
-  height: 100%;
-  background-color: $cl-base-40;
+}
+
+app-chart-base-area {
+  flex: 1;
+  margin-right: 24px;
 }
