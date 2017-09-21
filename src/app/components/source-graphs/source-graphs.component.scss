@@ -56,6 +56,14 @@
   content: '';
 }
 
+.axis {
+  position: fixed;
+  bottom: 0;
+  margin-bottom: 24px;
+  width: 71.5%;
+  background-color: $cl-base-20;
+}
+
 .graphs {
   flex: 1 1 auto;
   overflow-y: scroll;

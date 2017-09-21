@@ -7,6 +7,7 @@ import { ChartBaseMultiBarComponent } from './chart-base-multi-bar/chart-base-mu
 import { ChartBaseMultiLineComponent } from './chart-base-multi-line/chart-base-multi-line.component'
 import { ChartBaseComponent } from './chart-base/chart-base.component'
 import { ChartDateAxisComponent } from './chart-date-axis/chart-date-axis.component'
+import { ChartVolumeComponent } from './chart-volume/chart-volume.component'
 
 const COMPONENTS = [
   ChartBaseComponent,
@@ -14,7 +15,8 @@ const COMPONENTS = [
   ChartBaseBarComponent,
   ChartBaseMultiLineComponent,
   ChartBaseMultiBarComponent,
-  ChartDateAxisComponent
+  ChartDateAxisComponent,
+  ChartVolumeComponent
 ]
 
 @NgModule({
