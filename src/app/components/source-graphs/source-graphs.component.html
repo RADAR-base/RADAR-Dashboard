@@ -1,44 +1,19 @@
-<app-tooltip
-  #tooltip
-  [data]="tooltipData$ | async"
-  [style.transform]="'translate('+ tooltipX +'px, '+ tooltipY +'px)'"
-  [style.opacity]="tooltipShow"
-></app-tooltip>
+<app-tooltip #tooltip [data]="tooltipData$ | async" [style.transform]="'translate('+ tooltipX +'px, '+ tooltipY +'px)'" [style.opacity]="tooltipShow"></app-tooltip>
 
 <div class="graphs">
-  <div
-    class="source"
-    *ngFor="let source of sources; trackBy: trackBySourceId"
-    (mousemove)="onMouseMove($event)"
-    (mouseleave)="onMouseLeave($event)"
-  >
-    <div class="source-title">SOURCE {{ source.id }}</div>
-    <div class="sensors">
-      <div
-        class="sensor"
-        *ngFor="let sensor of source.sensors; trackBy: trackBySensorId"
-      >
-        <app-source-graph
-          *ngIf="sensor.visible"
-          [type]="sensor.type"
-          [sensorData]="sensorsData[sensor.id]"
-          [isLoaded]="isDataLoaded[sensor.id]"
-          [sensorId]="sensor.id"
-          [keys]="sensor?.keys"
-        ></app-source-graph>
-      </div>
+    <div class="source" *ngFor="let source of sources; trackBy: trackBySourceId" (mousemove)="onMouseMove($event)" (mouseleave)="onMouseLeave($event)">
+        <div class="source-title">SOURCE {{ source.id }}</div>
+        <div class="sensors">
+            <div class="sensor" *ngFor="let sensor of source.sensors; trackBy: trackBySensorId">
+                <app-source-graph *ngIf="sensor.visible" [type]="sensor.type" [sensorData]="sensorsData[sensor.id]" [isLoaded]="isDataLoaded[sensor.id]" [sensorId]="sensor.id" [keys]="sensor?.keys"></app-source-graph>
+            </div>
+        </div>
+        <div class="line" [style.transform]="'translateX('+ lineX +'px)'" [style.opacity]="tooltipShow"></div>
     </div>
-    <div
-      class="line"
-      [style.transform]="'translateX('+ lineX +'px)'"
-      [style.opacity]="tooltipShow"
-    ></div>
-  </div>
 </div>
 
-<div
-  class="axis"
-  *ngIf="dates"
->
-  <app-source-date-axis [dates]="dates"></app-source-date-axis>
+
+<div *ngIf="dates && sensorsData[0]" class="axis">
+    <app-source-date-axis [dates]="dates"></app-source-date-axis>
+    <app-source-volume [data]="sensorsData[2]"></app-source-volume>
 </div>
