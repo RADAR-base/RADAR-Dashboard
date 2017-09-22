@@ -89,7 +89,10 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
       .data(d =>
         this.keys.map(k => ({
           key: k.key,
-          value: d.value[k.key] === undefined ? null : d.value[k.key]
+          value:
+            d.value === null || d.value[k.key] === undefined
+              ? null
+              : d.value[k.key]
         }))
       )
       .enter()
