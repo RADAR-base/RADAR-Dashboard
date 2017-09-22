@@ -22,8 +22,9 @@ import { AppConfig } from '../../../shared/utils/config'
       class="chart"
       *ngIf="sensorData && isLoaded && isSingle"
       [chartData]="sensorData"
-      [hasGradient]="gradientEnabled"
-      [hasXAxis]="false"
+      [hasGradient]="hasGradient"
+      [hasYAxis]="true"
+      [hasTooltip]="true"
       [margin]="graphMargins"
       (tooltipMouseMove)="onTooltipMouseMove($event)"
     ></app-chart-base-line>
@@ -33,7 +34,8 @@ import { AppConfig } from '../../../shared/utils/config'
       *ngIf="sensorData && isLoaded && !(isSingle)"
       [chartData]="sensorData"
       [keys]="keys"
-      [hasXAxis]="false"
+      [hasYAxis]="true"
+      [hasTooltip]="true"
       [margin]="graphMargins"
       (tooltipMouseMove)="onTooltipMouseMove($event)"
     ></app-chart-base-multi-line>
@@ -50,7 +52,7 @@ export class SourceGraphComponent {
 
   graphMargins = { top: 32, right: 16, bottom: 32, left: 48 }
 
-  get gradientEnabled() {
+  get hasGradient() {
     return (
       AppConfig.config && AppConfig.config.sensors[this.type].chart.gradient
     )

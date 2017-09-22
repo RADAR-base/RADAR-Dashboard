@@ -48,9 +48,17 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
     ChartColors.c6
   ]
   @Input() keys: ConfigKey[]
-  @Input() hasYAxis = true
-  @Input() hasXAxis = true
-  @Input() hasTooltip = true
+  @Input() hasYAxis = false
+  @Input() hasXAxis = false
+  @Input() hasTooltip = false
+  @Input()
+  get chartData() {
+    return this.data
+  }
+  set chartData(value) {
+    this.data = value
+    this.beforeUpdate()
+  }
 
   @Output() tooltipMouseMove = new EventEmitter<Date>()
 
@@ -66,18 +74,6 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   xAxis: any
   yAxis: any
   window$: Subscription
-  @Input() isDateAxis: boolean
-  @Input() dates
-
-  @Input()
-  get chartData() {
-    return this.data
-  }
-
-  set chartData(value) {
-    this.data = value
-    this.beforeUpdate()
-  }
 
   ngAfterViewInit() {
     this.uid = shortid.generate()

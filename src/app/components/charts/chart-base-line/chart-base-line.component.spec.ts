@@ -17,6 +17,12 @@ describe('ChartBaseLineComponent', () => {
   let element: HTMLElement
   let de: DebugElement
 
+  const mockChartData = parseTimeHoles(
+    MockAPISampleDataset,
+    MockTimeFrameChartData,
+    MockTimeIntervalChartData
+  )
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [StoreModule.forRoot(reducers)],
@@ -29,83 +35,71 @@ describe('ChartBaseLineComponent', () => {
     de = fixture.debugElement
   })
 
-  describe('=> without @Input', () => {
-    beforeEach(() => {
-      fixture.detectChanges()
-    })
+  it('should be created', () => {
+    fixture.detectChanges()
 
-    it('should create', () => {
-      expect(component).toBeTruthy()
-    })
-
-    it('should create a chart', () => {
-      expect(element.querySelector('g.chart')).toBeTruthy()
-    })
-
-    it('should update() and change size if data changes', () => {
-      // without data
-      expect(component.width).toBeFalsy()
-      expect(component.height).toBeFalsy()
-      expect(component.chartData).toBeFalsy()
-
-      // with data // needs to be parsed //
-      component.chartData = parseTimeHoles(
-        MockAPISampleDataset,
-        MockTimeFrameChartData,
-        MockTimeIntervalChartData
-      )
-
-      expect(component.width).toBeGreaterThan(0)
-      expect(component.height).toBeGreaterThan(0)
-    })
-
-    it('should contain path when data changes', () => {
-      // without data
-      expect(element.querySelectorAll('g.chart .line path').length).toEqual(0)
-
-      // with data // needs to be parsed //
-      component.chartData = parseTimeHoles(
-        MockAPISampleDataset,
-        MockTimeFrameChartData,
-        MockTimeIntervalChartData
-      )
-      expect(
-        element.querySelectorAll('g.chart .line path').length
-      ).toBeGreaterThan(0)
-    })
-
-    it('should not have a linearGradient', () => {
-      expect(
-        element.querySelector('linearGradient[id^="hr-gradient"]')
-      ).toBeFalsy()
-    })
+    expect(component).toBeTruthy()
   })
 
-  describe('=> with @Input: hasGradient', () => {
-    beforeEach(() => {
-      component.hasGradient = true
-      fixture.detectChanges()
-    })
+  it('should NOT update() and change size before data changes', () => {
+    fixture.detectChanges()
 
-    it('should have a linearGradient', () => {
-      expect(
-        element.querySelector('linearGradient[id^="hr-gradient"]')
-      ).toBeTruthy()
-    })
+    expect(component.width).toBeFalsy()
+    expect(component.height).toBeFalsy()
+    expect(component.chartData).toBeFalsy()
+  })
 
-    it('linearGradient should have attributes "y1, y2" when data changes', () => {
-      // with data // needs to be parsed //
-      component.chartData = parseTimeHoles(
-        MockAPISampleDataset,
-        MockTimeFrameChartData,
-        MockTimeIntervalChartData
-      )
+  it('should update() and change size if data changes', () => {
+    component.chartData = mockChartData
+    fixture.detectChanges()
 
-      const gradient = de.nativeElement.querySelector(
-        'linearGradient[id^="hr-gradient"]'
-      )
-      expect(gradient.getAttribute('y1')).toBeGreaterThan(0)
-      expect(gradient.getAttribute('y2')).toBeGreaterThan(0)
-    })
+    expect(component.width).toBeGreaterThan(0)
+    expect(component.height).toBeGreaterThan(0)
+  })
+
+  it('should NOT contain path when data changes', () => {
+    fixture.detectChanges()
+
+    expect(element.querySelectorAll('g.chart .line path').length).toEqual(0)
+  })
+
+  it('should contain path when data changes', () => {
+    component.chartData = mockChartData
+    fixture.detectChanges()
+
+    expect(
+      element.querySelectorAll('g.chart .line path').length
+    ).toBeGreaterThan(0)
+  })
+
+  it('should NOT have a linearGradient', () => {
+    fixture.detectChanges()
+
+    expect(
+      element.querySelector('linearGradient[id^="hr-gradient"]')
+    ).toBeFalsy()
+  })
+
+  it('should have a linearGradient', () => {
+    component.hasGradient = true
+    fixture.detectChanges()
+
+    expect(
+      element.querySelector('linearGradient[id^="hr-gradient"]')
+    ).toBeTruthy()
+  })
+
+  it('linearGradient should have attributes "y1, y2" when data changes', () => {
+    component.hasGradient = true
+    fixture.detectChanges()
+
+    // with data // needs to be parsed //
+    component.chartData = mockChartData
+
+    const gradient = de.nativeElement.querySelector(
+      'linearGradient[id^="hr-gradient"]'
+    )
+    expect(gradient.getAttribute('y1')).toBeGreaterThan(0)
+    expect(gradient.getAttribute('y2')).toBeGreaterThan(0)
   })
 })

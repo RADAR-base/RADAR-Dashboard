@@ -15,5 +15,6 @@
   "sortImports.onSave": true,
   "eslint.enable": false,
   "html.format.enable": false,
-  "angular-template-formatter.indentWidth": 2
+  "angular-template-formatter.indentWidth": 2,
+  "beautify.enable": false
 }
