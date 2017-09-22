@@ -53,8 +53,6 @@ describe('ChartBaseAreaComponent', () => {
   })
 
   it('should update() and change size if data changes', () => {
-    component.hasYAxis = true
-    component.hasXAxis = true
     component.chartData = mockChartData
     fixture.detectChanges()
 
@@ -63,8 +61,6 @@ describe('ChartBaseAreaComponent', () => {
   })
 
   it('area should have attribute d when data changes', () => {
-    component.hasYAxis = true
-    component.hasXAxis = true
     component.chartData = mockChartData
     fixture.detectChanges()
 
