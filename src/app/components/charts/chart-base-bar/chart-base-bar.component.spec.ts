@@ -15,6 +15,12 @@ describe('ChartBaseBarComponent', () => {
   let element: HTMLElement
   let de: DebugElement
 
+  const mockChartData = parseTimeHoles(
+    MockAPISampleDataset,
+    MockTimeFrameChartData,
+    MockTimeIntervalChartData
+  )
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ChartBaseBarComponent]
@@ -26,56 +32,47 @@ describe('ChartBaseBarComponent', () => {
     de = fixture.debugElement
   })
 
-  describe('=> without @Input', () => {
-    beforeEach(() => {
-      fixture.detectChanges()
-    })
+  it('should be created', () => {
+    fixture.detectChanges()
 
-    it('should create', () => {
-      expect(component).toBeTruthy()
-    })
+    expect(component).toBeTruthy()
+  })
 
-    it('should create a chart', () => {
-      expect(element.querySelector('g.chart')).toBeTruthy()
-    })
+  it('should NOT update() and change size before data changes', () => {
+    fixture.detectChanges()
 
-    it('should update() and change size if data changes', () => {
-      // without data
-      expect(component.width).toBeFalsy()
-      expect(component.height).toBeFalsy()
-      expect(component.chartData).toBeFalsy()
+    // without data
+    expect(component.width).toBeFalsy()
+    expect(component.height).toBeFalsy()
+    expect(component.chartData).toBeFalsy()
+  })
 
-      // with data // needs to be parsed //
-      component.chartData = parseTimeHoles(
-        MockAPISampleDataset,
-        MockTimeFrameChartData,
-        MockTimeIntervalChartData
-      )
+  it('should update() and change size if data changes', () => {
+    component.chartData = mockChartData
+    fixture.detectChanges()
 
-      expect(component.width).toBeGreaterThan(0)
-      expect(component.height).toBeGreaterThan(0)
-    })
+    expect(component.width).toBeGreaterThan(0)
+    expect(component.height).toBeGreaterThan(0)
+  })
 
-    it('rect should have attribute x and y when data changes', () => {
-      // without data
-      expect(element.querySelector('rect.bar')).toBeFalsy()
+  it('rect should NOT have attribute x and y before data changes', () => {
+    fixture.detectChanges()
 
-      // with data // needs to be parsed //
-      component.chartData = parseTimeHoles(
-        MockAPISampleDataset,
-        MockTimeFrameChartData,
-        MockTimeIntervalChartData
-      )
+    expect(element.querySelector('rect.bar')).toBeFalsy()
+  })
 
-      // select element again as they'll be instantiated
-      expect(element.querySelector('rect.bar')).toBeTruthy()
+  it('rect should have attribute x and y when data changes', () => {
+    component.chartData = mockChartData
+    fixture.detectChanges()
 
-      const rectElements: any = element.querySelectorAll('rect.bar')
+    // select element again as they'll be instantiated
+    expect(element.querySelector('rect.bar')).toBeTruthy()
 
-      Object.getOwnPropertyNames(rectElements).forEach(prop => {
-        expect(rectElements[prop].getAttribute('x')).toBeTruthy()
-        expect(rectElements[prop].getAttribute('y')).toBeTruthy()
-      })
+    const rectElements: any = element.querySelectorAll('rect.bar')
+
+    Object.getOwnPropertyNames(rectElements).forEach(prop => {
+      expect(rectElements[prop].getAttribute('x')).toBeTruthy()
+      expect(rectElements[prop].getAttribute('y')).toBeTruthy()
     })
   })
 })
