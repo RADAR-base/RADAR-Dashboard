@@ -46,7 +46,15 @@ export class StudyPageComponent implements OnInit {
       .do(isLoadedAndValid => {
         if (isLoadedAndValid) {
           this.store.dispatch(new subjectAction.GetAll(this.studyId))
-          this.store.dispatch(new complianceAction.GetAll(this.studyId))
+
+          // Check if compliance is loaded
+          this.isComplianceLoaded$ = this.store
+            .select(fromRoot.getComplianceIsLoaded)
+            .do(isComplianceLoaded => {
+              if (!isComplianceLoaded) {
+                this.store.dispatch(new complianceAction.GetAll(this.studyId))
+              }
+            })
         } else {
           this.store.dispatch(new studyAction.GetById(this.studyId))
         }
@@ -57,9 +65,7 @@ export class StudyPageComponent implements OnInit {
 
     this.subjects$ = this.store.select(fromRoot.getSubjectAll)
 
-    // Check if compliance is loaded
-    this.isComplianceLoaded$ = this.store.select(fromRoot.getComplianceIsLoaded)
-
+    // Get compliance data
     this.complianceData$ = this.store.select(fromRoot.getComplianceData)
   }
 }
