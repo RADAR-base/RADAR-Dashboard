@@ -43,5 +43,21 @@ md-cell {
 md-paginator {
   @include font-body();
 
+  background-color: transparent;
+}
+
+.bottom-bar {
+  width: 100%;
   background-color: $cl-base-20;
+}
+
+.patients {
+  float: left;
+  margin-top: 16px;
+  margin-left: 24px;
+  width: 16%;
+}
+
+.pages {
+  margin-left: 16%;
 }

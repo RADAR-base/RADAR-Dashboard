@@ -1,28 +1,34 @@
-<md-table #table [dataSource]="dataSource" [trackBy]="trackById">
+<md-table
+  #table
+  [dataSource]="dataSource"
+  [trackBy]="trackById"
+>
 
   <!-- Patient ID Column -->
   <ng-container cdkColumnDef="subjectId">
     <md-header-cell *cdkHeaderCellDef>Patients ID</md-header-cell>
-    <md-cell *cdkCellDef="let row"> {{ row.subjectId }}</md-cell>
+    <md-cell *cdkCellDef="let row">{{ row.subjectId }}</md-cell>
   </ng-container>
 
   <!-- Active Column -->
   <ng-container cdkColumnDef="active">
     <md-header-cell *cdkHeaderCellDef>Active</md-header-cell>
-    <md-cell *cdkCellDef="let row"> {{ row.active }}</md-cell>
+    <md-cell *cdkCellDef="let row">{{ row.active }}</md-cell>
   </ng-container>
 
   <!-- Effective Time Frame Start Column -->
   <ng-container cdkColumnDef="startdate">
     <md-header-cell *cdkHeaderCellDef>Start Date Time</md-header-cell>
-    <md-cell *cdkCellDef="let row"> {{ row.effectiveTimeFrame.endDateTime | date: 'short' }}
+    <md-cell *cdkCellDef="let row">
+      {{ row.effectiveTimeFrame.endDateTime | date: 'short' }}
     </md-cell>
   </ng-container>
 
   <!-- Effective Time Frame End Column -->
   <ng-container cdkColumnDef="enddate">
     <md-header-cell *cdkHeaderCellDef>End Date Time</md-header-cell>
-    <md-cell *cdkCellDef="let row"> {{ row.effectiveTimeFrame.startDateTime | date: 'short' }}
+    <md-cell *cdkCellDef="let row">
+      {{ row.effectiveTimeFrame.startDateTime | date: 'short' }}
     </md-cell>
   </ng-container>
 
@@ -30,7 +36,7 @@
   <ng-container cdkColumnDef="sources">
     <md-header-cell *cdkHeaderCellDef>Sources</md-header-cell>
     <md-cell *cdkCellDef="let row">
-      <span *ngFor="let source of row.sources">{{ source.type }} | </span>
+      <span *ngFor="let source of row.sources">{{ source.type }} |</span>
     </md-cell>
   </ng-container>
 
@@ -38,17 +44,30 @@
   <ng-container cdkColumnDef="compliance">
     <md-header-cell *cdkHeaderCellDef>Compliance</md-header-cell>
     <md-cell *cdkCellDef="let row">
-      <app-simple-bar *ngFor="let data of sampleComplianceData" [data]="data"></app-simple-bar>
+      <app-simple-bar
+        *ngFor="let data of sampleComplianceData"
+        [data]="data"
+      ></app-simple-bar>
     </md-cell>
   </ng-container>
 
   <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
-  <md-row *cdkRowDef="let row; columns: displayedColumns;" (click)="redirectSubject($event, row.subjectId)"></md-row>
+  <md-row
+    *cdkRowDef="let row; columns: displayedColumns;"
+    (click)="redirectSubject($event, row.subjectId)"
+  ></md-row>
 </md-table>
 
-<md-paginator #paginator
-  [length]="subjectDB.data.length"
-  [pageIndex]="0"
-  [pageSize]="10"
-  [pageSizeOptions]="[5, 10, 25, 100]">
-</md-paginator>
+<section class="bottom-bar">
+  <div class="patients">{{ subjectDB.data.length }} Patients</div>
+  <div class="pages">
+    <md-paginator
+      #paginator
+      [length]="subjectDB.data.length"
+      [pageIndex]="0"
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 25, 100]"
+    >
+    </md-paginator>
+  </div>
+</section>
