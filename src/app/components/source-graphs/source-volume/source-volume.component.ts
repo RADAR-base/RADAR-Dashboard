@@ -9,7 +9,7 @@ import { Component, Input } from '@angular/core'
       *ngIf="data"
       [chartData]="data"
       [hasXAxis]="true"
-      [margin]="{top: 8, right: 36, bottom: 32, left: 48 }"
+      [margin]="{ top: 8, right: 36, bottom: 32, left: 48 }"
     ></app-chart-base-area>
   `,
   styleUrls: ['./source-volume.component.scss']
