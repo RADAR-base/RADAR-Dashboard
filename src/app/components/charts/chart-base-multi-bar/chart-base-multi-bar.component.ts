@@ -55,14 +55,15 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
       .domain(this.keys.map(d => d.key))
       .rangeRound([0, this.xScaleOuter.bandwidth()])
 
-    this.xAxis.attr('transform', `translate(0, ${this.height})`).call(
-      d3
-        .axisBottom(this.xScaleOuter)
-        .tickFormat(d3.timeFormat(this.xTickTimeFormat))
-        .tickValues(
-          this.xScaleOuter.domain().filter((d, i) => !(i % this.xTickEvery))
-        )
-    )
+    this.hasXAxis &&
+      this.xAxis.attr('transform', `translate(0, ${this.height})`).call(
+        d3
+          .axisBottom(this.xScaleOuter)
+          .tickFormat(d3.timeFormat(this.xTickTimeFormat))
+          .tickValues(
+            this.xScaleOuter.domain().filter((d, i) => !(i % this.xTickEvery))
+          )
+      )
 
     this.hasYAxis &&
       this.yAxis.call(
