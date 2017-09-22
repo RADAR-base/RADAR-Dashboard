@@ -4,12 +4,26 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-top: 0;
   padding-left: $size-graph-side-label;
-  width: 100%;
 }
 
-app-chart-base-area {
-  flex: 1;
-  margin-right: 24px;
+:host /deep/ {
+  .chart .axis text {
+    fill: $cl-white-60;
+  }
+}
+
+.background {
+  position: absolute;
+  top: 8px;
+  right: 28px;
+  bottom: 32px;
+  left: $size-graph-side-label + 40px;
+  z-index: 0;
+  border-radius: 4px;
+  background-color: $cl-base-40;
+}
+
+.chart {
+  z-index: 1;
 }

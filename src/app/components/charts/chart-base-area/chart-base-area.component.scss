@@ -6,20 +6,8 @@
     fill: $cl-base-80;
   }
 
-  .background {
-    padding-right: 8px;
-    padding-left: 8px;
-    fill: $cl-base-40;
-  }
-
-  .axis line,
-  .axis path {
-    shape-rendering: crispEdges;
-  }
-
   .axis--x line {
     stroke: $cl-white-20;
-    stroke-dasharray: 4, 2;
   }
 
   .axis--x path {

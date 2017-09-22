@@ -61,6 +61,20 @@
   overflow-y: scroll;
 }
 
-.axis {
+.bottom-group {
+  $volume-height: 112px;
+  $axis-height: 32px;
+
+  height: $volume-height + $axis-height;
   background-color: $cl-base-20;
+
+  .volume {
+    height: $volume-height;
+  }
+
+  .common-axis {
+    height: $axis-height;
+  }
 }
+
+

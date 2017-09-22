@@ -2,8 +2,15 @@ import { Component, Input } from '@angular/core'
 
 @Component({
   selector: 'app-source-volume',
-  template: `<app-chart-base-area *ngIf="data"[chartData]="data"[hasYAxis]="false">
-  </app-chart-base-area>
+  template: `
+    <div class="background"></div>
+    <app-chart-base-area
+      class="chart"
+      *ngIf="data"
+      [chartData]="data"
+      [hasXAxis]="true"
+      [margin]="{top: 8, right: 36, bottom: 32, left: 48 }"
+    ></app-chart-base-area>
   `,
   styleUrls: ['./source-volume.component.scss']
 })
