@@ -18,11 +18,11 @@ describe('ChartDateAxisComponent', () => {
     component = fixture.componentInstance
     element = fixture.nativeElement
     de = fixture.debugElement
-
-    fixture.detectChanges()
   })
 
   it('should be created', () => {
+    fixture.detectChanges()
+
     expect(component).toBeTruthy()
   })
 })

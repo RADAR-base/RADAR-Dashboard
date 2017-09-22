@@ -36,9 +36,13 @@
   </div>
 </div>
 
-<div
-  class="axis"
-  *ngIf="dates"
->
-  <app-source-date-axis [dates]="dates"></app-source-date-axis>
+<div class="bottom-group">
+  <app-source-date-axis
+    class="common-axis"
+    [dates]="dates"
+  ></app-source-date-axis>
+  <app-source-volume
+    class="volume"
+    [data]="sensorsData[0]"
+  ></app-source-volume>
 </div>

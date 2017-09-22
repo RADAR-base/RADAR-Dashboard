@@ -16,7 +16,7 @@
     "lint:css": "stylelint \"src/**/*.scss\"",
     "lint:prettier": "prettier --list-different \"**/*(*.js|*.ts|*.json)\"",
     "lint:sort": "import-sort -d -s src/app",
-    "test": "ng test --environment=test",
+    "test": "ng test --environment=test --sourcemaps=false",
     "test:coverage": "ng test --single-run --code-coverage && open coverage/index.html",
     "e2e": "ng e2e",
     "fix:all": "npm run fix:sort && npm run fix:css && npm run fix:code",

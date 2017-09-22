@@ -20,9 +20,14 @@ describe('SourceGraphsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SourceGraphsComponent)
     component = fixture.componentInstance
-    fixture.detectChanges()
+
+    component.sensorsData = []
+    component.dates = []
+    component.sources = []
   })
+
   it('should be created', () => {
+    fixture.detectChanges()
     expect(component).toBeTruthy()
   })
 })

@@ -15,6 +15,12 @@ describe('ChartBaseComponent', () => {
   let element: HTMLElement
   let de: DebugElement
 
+  const mockChartData = parseTimeHoles(
+    MockAPISampleDataset,
+    MockTimeFrameChartData,
+    MockTimeIntervalChartData
+  )
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ChartBaseComponent]
@@ -24,35 +30,61 @@ describe('ChartBaseComponent', () => {
     component = fixture.componentInstance
     element = fixture.nativeElement
     de = fixture.debugElement
-
-    fixture.detectChanges()
   })
 
-  it('should create', () => {
+  it('should be created', () => {
+    fixture.detectChanges()
+
     expect(component).toBeTruthy()
   })
 
   it('should create a chart', () => {
+    fixture.detectChanges()
+
     expect(element.querySelector('g.chart')).toBeTruthy()
   })
 
-  it('should create the axis', () => {
+  it('should create both axis', () => {
+    component.hasXAxis = true
+    component.hasYAxis = true
+    fixture.detectChanges()
+
     expect(element.querySelector('g.axis.axis--x')).toBeTruthy()
     expect(element.querySelector('g.axis.axis--y')).toBeTruthy()
   })
 
-  it('should update() and change size if data changes', () => {
-    // without data
+  it('should NOT create both axis', () => {
+    fixture.detectChanges()
+
+    expect(element.querySelector('g.axis.axis--x')).toBeFalsy()
+    expect(element.querySelector('g.axis.axis--y')).toBeFalsy()
+  })
+
+  it('should create the tooltip box', () => {
+    component.hasTooltip = true
+    fixture.detectChanges()
+
+    expect(element.querySelector('g rect.tooltip-mouse-box')).toBeTruthy()
+  })
+
+  it('should NOT create the tooltip box', () => {
+    fixture.detectChanges()
+
+    expect(element.querySelector('g rect.tooltip-mouse-box')).toBeFalsy()
+  })
+
+  it('should NOT update() and change size before data changes', () => {
+    fixture.detectChanges()
+
     expect(component.width).toBeFalsy()
     expect(component.height).toBeFalsy()
     expect(component.chartData).toBeFalsy()
+  })
 
-    // with data // needs to be parsed //
-    component.chartData = parseTimeHoles(
-      MockAPISampleDataset,
-      MockTimeFrameChartData,
-      MockTimeIntervalChartData
-    )
+  it('should update() and change size when data changes', () => {
+    component.chartData = mockChartData
+    fixture.detectChanges()
+
     expect(component.width).toBeGreaterThan(0)
     expect(component.height).toBeGreaterThan(0)
   })
