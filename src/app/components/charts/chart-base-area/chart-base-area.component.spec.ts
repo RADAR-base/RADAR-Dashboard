@@ -49,7 +49,7 @@ describe('ChartBaseAreaComponent', () => {
   it('should NOT have area property before data changes', () => {
     fixture.detectChanges()
 
-    expect(element.querySelector('g.chart.area')).toBeFalsy()
+    expect(element.querySelector('g.chart .area')).toBeFalsy()
   })
 
   it('should update() and change size if data changes', () => {
@@ -64,7 +64,9 @@ describe('ChartBaseAreaComponent', () => {
     component.chartData = mockChartData
     fixture.detectChanges()
 
-    expect(element.querySelector('.area')).toBeTruthy()
-    expect(element.querySelector('.area').getAttribute('d')).toBeTruthy()
+    expect(element.querySelector('g.chart .area')).toBeTruthy()
+    expect(
+      element.querySelector('g.chart .area').getAttribute('d')
+    ).toBeTruthy()
   })
 })
