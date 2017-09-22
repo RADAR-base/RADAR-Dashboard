@@ -13,9 +13,10 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
 export class ChartBaseAreaComponent extends ChartBaseComponent {
   data: ChartData[]
   area: any
-  radius = 8
 
   init() {
+    this.area = d3.area<any>().defined(d => d.value)
+
     super.init()
   }
 
@@ -39,32 +40,17 @@ export class ChartBaseAreaComponent extends ChartBaseComponent {
         .attr('transform', `translate(0, ${this.height})`)
         .call(d3.axisBottom(this.xScale).tickSize(-this.height))
 
-    this.area = d3
-      .area<any>()
-      .curve(d3.curveBasis)
+    this.chart.selectAll('.area').remove()
+
+    this.area
       .x(d => this.xScale(d.date))
       .y0(this.yScale(0))
       .y1(d => this.yScale(d.value))
-
-    this.chart.selectAll('.area') && this.chart.selectAll('.area').remove()
-    this.chart.selectAll('rect').remove()
-
-    this.chart
-      .append('rect')
-      .attr('height', this.height)
-      .attr('width', this.width)
-      .attr('rx', this.radius)
-      .attr('ry', this.radius)
-      .attr('class', 'background')
 
     this.chart
       .append('path')
       .datum(this.data)
       .attr('class', 'area')
       .attr('d', this.area)
-  }
-
-  addGrid() {
-    return d3.axisBottom(this.xScale).ticks(5)
   }
 }
