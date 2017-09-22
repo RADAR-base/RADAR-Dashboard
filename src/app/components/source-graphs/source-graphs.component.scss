@@ -63,6 +63,7 @@
 
 .bottom-group {
   $volume-height: 112px;
+
   $axis-height: 32px;
 
   height: $volume-height + $axis-height;
@@ -76,5 +77,3 @@
     height: $axis-height;
   }
 }
-
-
