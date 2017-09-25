@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs/Observable'
 
 import { ENV } from '../../../../environments/environment'
+import { TimeInterval } from '../../models/time-interval.enum'
 import { getTime } from '../../utils/get-time'
 import { parseTimeHoles } from '../../utils/parse-time-holes'
-import { TimeInterval } from '../sensors/sensors.model'
 
 @Injectable()
 export class ComplianceService {

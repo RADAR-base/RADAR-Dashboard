@@ -1,10 +1,12 @@
 import { createSelector } from '@ngrx/store'
 
 import { ChartData } from '../../models/chart-data.model'
+import { DescriptiveStatistic } from '../../models/descriptive-statistic.enum'
 import { TimeFrame } from '../../models/time-frame.model'
+import { TimeInterval } from '../../models/time-interval.enum'
 import { roundToNearest } from '../../utils/round-to-nearest'
 import * as actions from './sensors.actions'
-import { DescriptiveStatistic, Sensor, TimeInterval } from './sensors.model'
+import { Sensor } from './sensors.model'
 
 export interface State {
   ids: number[]
