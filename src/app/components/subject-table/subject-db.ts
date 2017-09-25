@@ -1,6 +1,6 @@
 import { BehaviorSubject } from 'rxjs/BehaviorSubject'
 
-import { Subject } from '../../../shared/store/subject/subject.model'
+import { Subject } from '../../shared/store/subject/subject.model'
 
 export class SubjectDB {
   dataChange: BehaviorSubject<Subject[]> = new BehaviorSubject([])
