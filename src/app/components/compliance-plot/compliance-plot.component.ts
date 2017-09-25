@@ -12,22 +12,24 @@ import { ChartColors } from '../charts/chart.model'
 @Component({
   selector: 'app-compliance-plot',
   template: `
-    <div *ngIf="isComplianceLoaded && data && keys" class="chart">
-      <app-chart-base-multi-bar
-        [chartData]="data"
-        [keys]="keys"
-        [yTicks]="yTicks"
-        [colors]="colors"
-        [yScaleDomain]="yScaleDomain"
-      ></app-chart-base-multi-bar>
-    </div>
+    <app-chart-base-multi-bar
+      *ngIf="isLoaded && data && keys"
+      [chartData]="data"
+      [keys]="keys"
+      [yTicks]="yTicks"
+      [colors]="colors"
+      [hasYAxis]="true"
+      [hasXAxis]="true"
+      [yScaleDomain]="yScaleDomain"
+    ></app-chart-base-multi-bar>
   `,
   styleUrls: ['./compliance-plot.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CompliancePlotComponent implements OnInit {
   @Input() data
-  @Input() isComplianceLoaded
+  @Input() isLoaded
+
   keys: ConfigKey[]
   yTicks = [0, 0.25, 0.5, 0.75, 1]
   colors = [ChartColors.c3, ChartColors.c4]
