@@ -58,16 +58,10 @@
   ></md-row>
 </md-table>
 
-<section class="bottom-bar">
-  <div class="patients">{{ subjectDB.data.length }} Patients</div>
-  <div class="pages">
-    <md-paginator
-      #paginator
-      [length]="subjectDB.data.length"
-      [pageIndex]="0"
-      [pageSize]="10"
-      [pageSizeOptions]="[5, 10, 25, 100]"
-    >
-    </md-paginator>
-  </div>
-</section>
+<md-paginator
+  #paginator
+  [length]="subjectDB.data.length"
+  [pageIndex]="0"
+  [pageSize]="50"
+>
+</md-paginator>

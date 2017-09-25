@@ -48,6 +48,8 @@ export class SubjectTableComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.dataSource = new SubjectDataSource(this.subjectDB, this.paginator)
+    this.paginator._intl.itemsPerPageLabel = ''
+    this.paginator._intl.getRangeLabel = this.paginatorRangeLabel
   }
 
   ngOnDestroy() {
@@ -62,5 +64,19 @@ export class SubjectTableComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl(
       '/study/' + this.studyId + '/subject/' + subjectId
     )
+  }
+
+  paginatorRangeLabel(page: number, pageSize: number, length: number): string {
+    if (length === 0 || pageSize === 0) {
+      return `0 of ${length} Patients`
+    }
+    length = Math.max(length, 0)
+    const startIndex = page * pageSize
+    // If the start index exceeds the list length, do not try and fix the end index to the end.
+    const endIndex =
+      startIndex < length
+        ? Math.min(startIndex + pageSize, length)
+        : startIndex + pageSize
+    return `${startIndex + 1} - ${endIndex} of ${length} Patients`
   }
 }
