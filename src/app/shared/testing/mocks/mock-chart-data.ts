@@ -1,5 +1,5 @@
 import { ChartData } from '../../models/chart-data.model'
-import { TimeInterval } from '../../store/sensors/sensors.model'
+import { TimeInterval } from '../../models/time-interval.enum'
 
 export const MockAPISampleDataset = [
   { startDateTime: '2017-06-16T10:09:10.000Z', sample: { value: 153 } },

@@ -4,7 +4,7 @@ import { MdGridListModule } from '@angular/material'
 import { RouterModule } from '@angular/router'
 
 import { CompliancePlotModule } from '../../components/compliance-plot/compliance-plot.module'
-import { SubjectTableModule } from '../../components/tables/subject-table/subject-table.module'
+import { SubjectTableModule } from '../../components/subject-table/subject-table.module'
 import { TileModule } from '../../components/tile/tile.module'
 import { ToolbarModule } from '../../components/toolbar/toolbar.module'
 import { StudyGuard } from '../../shared/guards/study.guard'

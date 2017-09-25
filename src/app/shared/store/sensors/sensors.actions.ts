@@ -1,9 +1,11 @@
 import { Action } from '@ngrx/store'
 
 import { ChartData } from '../../models/chart-data.model'
+import { DescriptiveStatistic } from '../../models/descriptive-statistic.enum'
 import { TimeFrame } from '../../models/time-frame.model'
+import { TimeInterval } from '../../models/time-interval.enum'
 import { Source } from '../source/source.model'
-import { DescriptiveStatistic, Sensor, TimeInterval } from './sensors.model'
+import { Sensor } from './sensors.model'
 
 export const LOAD_SENSORS = '[Sensor] LOAD_SENSORS'
 export const LOAD_SENSORS_SUCCESS = '[Sensor] LOAD_SENSORS_SUCCESS'

@@ -9,12 +9,10 @@ import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 import { Subscription } from 'rxjs/Subscription'
 
+import { DescriptiveStatistic } from '../../shared/models/descriptive-statistic.enum'
+import { TimeInterval } from '../../shared/models/time-interval.enum'
 import * as pagesActions from '../../shared/store/pages/pages.actions'
 import * as sensorsActions from '../../shared/store/sensors/sensors.actions'
-import {
-  DescriptiveStatistic,
-  TimeInterval
-} from '../../shared/store/sensors/sensors.model'
 import * as sourceActions from '../../shared/store/source/source.actions'
 import { Source } from '../../shared/store/source/source.model'
 import * as studyActions from '../../shared/store/study/study.actions'

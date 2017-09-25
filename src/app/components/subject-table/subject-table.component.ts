@@ -9,6 +9,7 @@ import {
 import { MdPaginator } from '@angular/material'
 import { Router } from '@angular/router'
 
+import { Subject } from '../../shared/store/subject/subject.model'
 import { SubjectDataSource } from './subject-data-source'
 import { SubjectDB } from './subject-db'
 
@@ -54,13 +55,11 @@ export class SubjectTableComponent implements OnInit, OnDestroy {
     this.dataSource.disconnect()
   }
 
-  trackById(index, subject) {
-    return subject ? subject.subjectId : undefined
+  trackById(index, subject: Subject) {
+    return subject.subjectId
   }
 
-  redirectSubject(event, subjectId) {
-    this.router.navigateByUrl(
-      '/study/' + this.studyId + '/subject/' + subjectId
-    )
+  openSubjectPage(event, subjectId) {
+    this.router.navigateByUrl(`/study/${this.studyId}/subject/${subjectId}`)
   }
 }

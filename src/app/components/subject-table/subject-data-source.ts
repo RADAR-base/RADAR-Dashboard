@@ -2,7 +2,7 @@ import { DataSource } from '@angular/cdk/table'
 import { MdPaginator } from '@angular/material'
 import { Observable } from 'rxjs/Observable'
 
-import { Subject } from '../../../shared/store/subject/subject.model'
+import { Subject } from '../../shared/store/subject/subject.model'
 import { SubjectDB } from './subject-db'
 
 export class SubjectDataSource extends DataSource<any> {

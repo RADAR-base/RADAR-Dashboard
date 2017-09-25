@@ -6,12 +6,14 @@ import { Observable } from 'rxjs/Observable'
 import { Subject } from 'rxjs/Subject'
 
 import { ENV } from '../../../../environments/environment'
+import { DescriptiveStatistic } from '../../models/descriptive-statistic.enum'
 import { RadarAPISampleModel } from '../../models/radar-api.model'
+import { TimeInterval } from '../../models/time-interval.enum'
 import { AppConfig } from '../../utils/config'
 import { parseTimeHoles } from '../../utils/parse-time-holes'
 import { Source } from '../source/source.model'
 import * as actions from './sensors.actions'
-import { DescriptiveStatistic, Sensor, TimeInterval } from './sensors.model'
+import { Sensor } from './sensors.model'
 
 @Injectable()
 export class SensorsService {
