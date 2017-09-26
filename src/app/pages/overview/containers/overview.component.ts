@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
 import { Study } from '../models/overview.model'
-import * as overviewAction from '../store/overview.actions'
+import * as studyAction from '../store/study/study.actions'
 import * as fromOverview from '../store'
 
 @Component({
@@ -43,7 +43,7 @@ export class OverviewPageComponent implements OnInit {
   constructor(private store: Store<fromOverview.State>) {}
 
   ngOnInit() {
-    this.store.dispatch(new overviewAction.LoadStudies())
+    this.store.dispatch(new studyAction.LoadStudies())
     this.studies$ = this.store.select(fromOverview.getStudies)
     this.studyLoaded$ = this.store.select(fromOverview.getStudiesLoaded)
   }

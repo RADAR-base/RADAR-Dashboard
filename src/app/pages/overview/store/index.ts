@@ -1,27 +1,20 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store'
 
-import * as fromOverview from './overview.reducer'
+import * as fromStudy from './study/study.reducer'
 
 export interface State {
-  overview: fromOverview.State
+  study: fromStudy.State
 }
 
-export const reducers = fromOverview.reducer
+export const reducers = fromStudy.reducer
 
-export const getStudyState = createFeatureSelector<fromOverview.State>(
-  'overview'
-)
+export const getStudyState = createFeatureSelector<fromStudy.State>('overview')
+
 export const getStudiesLoaded = createSelector(
   getStudyState,
-  fromOverview.getStudiesLoaded
+  fromStudy.getIsLoaded
 )
 
-export const getStudiesIds = createSelector(
-  getStudyState,
-  fromOverview.getStudiesIds
+export const { selectAll: getStudies } = fromStudy.adapter.getSelectors(
+  getStudyState
 )
-export const getStudiesById = createSelector(
-  getStudyState,
-  fromOverview.getStudiesById
-)
-export const getStudies = createSelector(getStudyState, fromOverview.getStudies)

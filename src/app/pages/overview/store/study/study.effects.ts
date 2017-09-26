@@ -3,12 +3,12 @@ import { Actions, Effect } from '@ngrx/effects'
 import { Action } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
-import { Study } from '../models/overview.model'
-import { OverviewService } from '../services/overview.service'
-import * as actions from './overview.actions'
+import { Study } from '../../models/overview.model'
+import { OverviewService } from '../../services/overview.service'
+import * as actions from './study.actions'
 
 @Injectable()
-export class OverviewEffects {
+export class StudyEffects {
   @Effect()
   getAll$: Observable<Action> = this.actions$
     .ofType<actions.LoadStudies>(actions.LOAD_STUDIES)

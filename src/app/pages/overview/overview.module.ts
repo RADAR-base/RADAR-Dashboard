@@ -8,7 +8,7 @@ import { ToolbarModule } from '../../components/toolbar/toolbar.module'
 import { OverviewPageComponent } from './containers/overview.component'
 import { routes } from './routing/overview.routing'
 import { OverviewService } from './services/overview.service'
-import { OverviewEffects } from './store/overview.effects'
+import { StudyEffects } from './store/study/study.effects'
 import { reducers } from './store'
 
 @NgModule({
@@ -17,7 +17,7 @@ import { reducers } from './store'
     RouterModule.forChild(routes),
     ToolbarModule,
     StoreModule.forFeature('overview', reducers),
-    EffectsModule.forFeature([OverviewEffects])
+    EffectsModule.forFeature([StudyEffects])
   ],
   declarations: [OverviewPageComponent],
   providers: [OverviewService]

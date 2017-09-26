@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store'
 
-import { Study } from '../models/overview.model'
+import { Study } from '../../models/overview.model'
 
 export const LOAD_STUDIES = '[Study] LOAD_STUDIES'
 export const LOAD_STUDIES_SUCCESS = '[Study] LOAD_STUDIES_SUCCESS'
