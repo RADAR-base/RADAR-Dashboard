@@ -1,15 +1,19 @@
+import { HttpClientModule } from '@angular/common/http'
 import { DebugElement } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ActivatedRoute, Router } from '@angular/router'
+import { EffectsModule } from '@ngrx/effects'
 import { StoreModule } from '@ngrx/store'
 
-import { reducers } from '../../shared/store'
 import {
   ActivatedRouteStub,
   RouterStub
-} from '../../shared/testing/router-stubs'
-import { OverviewPageComponent } from './overview.component'
-import { OverviewPageModule } from './overview.module'
+} from '../../../shared/testing/router-stubs'
+import { OverviewPageComponent } from '../containers/overview.component'
+import { OverviewPageModule } from '../overview.module'
+import { OverviewService } from '../services/overview.service'
+import { OverviewEffects } from '../store/overview.effects'
+import { reducers } from '../store'
 
 describe('OverviewPageComponent', () => {
   let component: OverviewPageComponent
@@ -21,10 +25,16 @@ describe('OverviewPageComponent', () => {
     const activatedRoute = new ActivatedRouteStub()
 
     TestBed.configureTestingModule({
-      imports: [OverviewPageModule, StoreModule.forRoot(reducers)],
+      imports: [
+        HttpClientModule,
+        OverviewPageModule,
+        StoreModule.forRoot(reducers),
+        EffectsModule.forRoot([OverviewEffects])
+      ],
       providers: [
         { provide: Router, useClass: RouterStub },
-        { provide: ActivatedRoute, useValue: activatedRoute }
+        { provide: ActivatedRoute, useValue: activatedRoute },
+        OverviewService
       ]
     })
 

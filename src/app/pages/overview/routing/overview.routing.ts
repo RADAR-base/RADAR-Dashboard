@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router'
 
-import { OverviewPageComponent } from './overview.component'
+import { OverviewPageComponent } from '../containers/overview.component'
 
 export const routes: Routes = [
   {
