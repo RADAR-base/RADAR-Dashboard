@@ -12,8 +12,11 @@ export interface State {
 
 export const reducers = { study: fromStudy.reducer }
 
-export const getOverviewState = createFeatureSelector<StudyState>('overview')
+export const getOverviewState = createFeatureSelector<StudyState>(
+  'overview-page'
+)
 
+// Study Selectors
 export const getStudyState = createSelector(
   getOverviewState,
   state => state.study

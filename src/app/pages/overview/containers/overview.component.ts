@@ -43,7 +43,7 @@ export class OverviewPageComponent implements OnInit {
   constructor(private store: Store<fromOverview.State>) {}
 
   ngOnInit() {
-    this.store.dispatch(new studyAction.LoadStudies())
+    this.store.dispatch(new studyAction.Load())
     this.studies$ = this.store.select(fromOverview.getStudies)
     this.studyLoaded$ = this.store.select(fromOverview.getStudiesLoaded)
   }

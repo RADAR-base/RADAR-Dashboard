@@ -16,7 +16,7 @@ import { reducers } from './store'
     CommonModule,
     RouterModule.forChild(routes),
     ToolbarModule,
-    StoreModule.forFeature('overview', reducers),
+    StoreModule.forFeature('overview-page', reducers),
     EffectsModule.forFeature([StudyEffects])
   ],
   declarations: [OverviewPageComponent],

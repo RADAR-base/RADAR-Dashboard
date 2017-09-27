@@ -11,11 +11,11 @@ import * as actions from './study.actions'
 export class StudyEffects {
   @Effect()
   getAll$: Observable<Action> = this.actions$
-    .ofType<actions.LoadStudies>(actions.LOAD_STUDIES)
+    .ofType<actions.Load>(actions.LOAD)
     .switchMap(() => {
       return this.overviewService
         .getAll()
-        .map((data: Study[]) => new actions.LoadStudiesSuccess(data))
+        .map((data: Study[]) => new actions.LoadSuccess(data))
     })
 
   constructor(
