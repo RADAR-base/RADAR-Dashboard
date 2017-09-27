@@ -51,7 +51,7 @@ export class SubjectPageComponent implements OnInit, OnDestroy {
       this.subjectId = params.subjectId
 
       this.store.dispatch(new subjectActions.SetStudyId(this.studyId))
-      this.store.dispatch(new subjectActions.SetSubjectId(this.subjectId))
+      this.store.dispatch(new subjectActions.SetId(this.subjectId))
     })
 
     // TODO: move whole block to Volume||Brush component -->

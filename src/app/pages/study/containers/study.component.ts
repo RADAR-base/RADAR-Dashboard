@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable'
 
 import { TakeUntilDestroy } from '../../../shared/utils/take-until-destroy'
 import { Subject } from '../models/study.model'
-import * as complianceAction from '../store/compliance/compliance.actions'
+import * as complianceDataAction from '../store/compliance-data/compliance-data.actions'
 import * as studyAction from '../store/study/study.actions'
 import * as subjectAction from '../store/subject/subject.actions'
 import * as fromStudyPage from '../store'
@@ -51,7 +51,7 @@ export class StudyPageComponent implements OnInit {
             .select(fromStudyPage.getComplianceDataLoaded)
             .do(isComplianceLoaded => {
               if (!isComplianceLoaded) {
-                this.store.dispatch(new complianceAction.Load(this.studyId))
+                this.store.dispatch(new complianceDataAction.Load(this.studyId))
               }
             })
         } else {

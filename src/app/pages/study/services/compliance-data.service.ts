@@ -8,7 +8,7 @@ import { getTime } from '../../../shared/utils/get-time'
 import { parseTimeHoles } from '../../../shared/utils/parse-time-holes'
 
 @Injectable()
-export class ComplianceService {
+export class ComplianceDataService {
   constructor(private http: HttpClient) {}
 
   getAll(studyId): Observable<any> {

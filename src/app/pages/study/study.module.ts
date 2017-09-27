@@ -12,10 +12,10 @@ import { ToolbarModule } from '../../components/toolbar/toolbar.module'
 import { StudyPageComponent } from './containers/study.component'
 import { StudyGuard } from './guards/study.guard'
 import { routes } from './routing/study.routing'
-import { ComplianceService } from './services/compliance.service'
+import { ComplianceDataService } from './services/compliance-data.service'
 import { StudyService } from './services/study.service'
 import { SubjectService } from './services/subject.service'
-import { ComplianceEffects } from './store/compliance/compliance.effects'
+import { ComplianceDataEffects } from './store/compliance-data/compliance-data.effects'
 import { StudyEffects } from './store/study/study.effects'
 import { SubjectEffects } from './store/subject/subject.effects'
 import { reducers } from './store'
@@ -30,9 +30,13 @@ import { reducers } from './store'
     SubjectTableModule,
     CompliancePlotModule,
     StoreModule.forFeature('study-page', reducers),
-    EffectsModule.forFeature([StudyEffects, SubjectEffects, ComplianceEffects])
+    EffectsModule.forFeature([
+      StudyEffects,
+      SubjectEffects,
+      ComplianceDataEffects
+    ])
   ],
   declarations: [StudyPageComponent],
-  providers: [StudyGuard, StudyService, SubjectService, ComplianceService]
+  providers: [StudyGuard, StudyService, SubjectService, ComplianceDataService]
 })
 export class StudyPageModule {}

@@ -1,4 +1,4 @@
-import * as compliance from './compliance.actions'
+import * as compliance from './compliance-data.actions'
 
 export interface State {
   data: any

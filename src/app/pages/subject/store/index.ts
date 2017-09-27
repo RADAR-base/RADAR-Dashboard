@@ -32,10 +32,7 @@ export const getStudyId = createSelector(
   fromSubject.getStudyId
 )
 
-export const getSubjectId = createSelector(
-  getSubjectState,
-  fromSubject.getSubjectId
-)
+export const getSubjectId = createSelector(getSubjectState, fromSubject.getId)
 
 // Sensors Selectors
 export const getSensorsState = createSelector(

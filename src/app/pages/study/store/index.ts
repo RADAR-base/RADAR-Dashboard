@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store'
 
-import * as fromCompliance from './compliance/compliance.reducer'
+import * as fromCompliance from './compliance-data/compliance-data.reducer'
 import * as fromStudy from './study/study.reducer'
 import * as fromSubject from './subject/subject.reducer'
 
