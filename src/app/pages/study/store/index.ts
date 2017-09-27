@@ -24,30 +24,18 @@ export const getStudyState = createSelector(
   state => state.study
 )
 
-export const { selectAll: getEntities } = fromStudy.adapter.getSelectors(
-  getStudyState
-)
-
 export const getStudyIsLoaded = createSelector(
   getStudyState,
   fromStudy.getIsLoaded
 )
 
-export const getStudyId = createSelector(getStudyState, fromStudy.getSelectedId)
+export const getStudyId = createSelector(getStudyState, fromStudy.getId)
+
+export const getStudy = createSelector(getStudyState, fromStudy.getSelected)
 
 export const getStudyIsLoadedAndValid = createSelector(
-  getStudyIsLoaded,
-  getEntities,
-  getStudyId,
-  (loaded, entities, selectedId) => {
-    return loaded && !!entities[selectedId]
-  }
-)
-
-export const getSelected = createSelector(
-  getEntities,
-  fromStudy.getSelectedId,
-  (entities, id) => entities[id]
+  getStudyState,
+  fromStudy.getIsLoadedAndValid
 )
 
 // Subject Selectors

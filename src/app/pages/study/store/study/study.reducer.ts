@@ -1,28 +1,19 @@
-import {
-  EntityAdapter,
-  EntityState,
-  createEntityAdapter
-} from '../../../../../tmp_modules/@ngrx/entity'
 import { createSelector } from '@ngrx/store'
 
 import { Study } from '../../models/study.model'
 import * as studyActions from './study.actions'
 
-export interface State extends EntityState<Study> {
+export interface State {
   isLoaded: boolean
   id: string
   selected: Study
 }
 
-export const adapter: EntityAdapter<Study> = createEntityAdapter<Study>({
-  selectId: (study: Study) => study.id
-})
-
-export const initialState: State = adapter.getInitialState({
+const initialState: State = {
   isLoaded: false,
   id: '',
   selected: null
-})
+}
 
 export function reducer(
   state = initialState,
@@ -35,8 +26,8 @@ export function reducer(
 
     case studyActions.LOAD_STUDY_BY_ID_SUCCESS: {
       return {
-        ...adapter.addOne(action.payload, state),
-        selected: state.selected,
+        ...state,
+        selected: action.payload,
         isLoaded: true
       }
     }
@@ -51,4 +42,14 @@ export function reducer(
 }
 
 export const getIsLoaded = (state: State) => state.isLoaded
-export const getSelectedId = (state: State) => state.id
+export const getId = (state: State) => state.id
+export const getSelected = (state: State) => state.selected
+
+export const getIsLoadedAndValid = createSelector(
+  getIsLoaded,
+  getSelected,
+  getId,
+  (loaded, study, id) => {
+    return loaded && !!study && !!id
+  }
+)
