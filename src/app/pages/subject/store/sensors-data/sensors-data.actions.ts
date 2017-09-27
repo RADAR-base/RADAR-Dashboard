@@ -4,7 +4,7 @@ import { ChartData } from '../../../../shared/models/chart-data.model'
 import { DescriptiveStatistic } from '../../../../shared/models/descriptive-statistic.enum'
 import { TimeFrame } from '../../../../shared/models/time-frame.model'
 import { TimeInterval } from '../../../../shared/models/time-interval.enum'
-import { Source, Sensor } from '../../models/subject.model'
+import { Sensor } from '../../models/subject.model'
 
 export const LOAD = '[Sensors-Data] LOAD'
 export const LOAD_SUCCESS = '[Sensors-Data] LOAD_SUCCESS'

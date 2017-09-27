@@ -3,8 +3,6 @@ import {
   EntityState,
   createEntityAdapter
 } from '../../../../../tmp_modules/@ngrx/entity'
-import { createSelector } from '@ngrx/store'
-
 import { Subject } from '../../models/study.model'
 import * as subjectActions from './subject.actions'
 

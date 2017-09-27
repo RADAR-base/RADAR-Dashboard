@@ -3,10 +3,10 @@ import { Actions, Effect } from '@ngrx/effects'
 import { Action, Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
+import { SensorsService } from '../../services/sensors.service'
+import * as sensorsDataActions from '../sensors-data/sensors-data.actions'
 import * as fromSubjectPage from '../'
 import * as sensorsActions from './sensors.actions'
-import * as sensorsDataActions from '../sensors-data/sensors-data.actions'
-import { SensorsService } from '../../services/sensors.service'
 
 @Injectable()
 export class SensorsEffects {

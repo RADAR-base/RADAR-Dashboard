@@ -5,8 +5,8 @@ import { Action } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
 import { ENV } from '../../../../environments/environment'
-import * as actions from '../store/sources/sources.actions'
 import { Source } from '../models/subject.model'
+import * as actions from '../store/sources/sources.actions'
 
 @Injectable()
 export class SourcesService {

@@ -11,15 +11,15 @@ import { Subscription } from 'rxjs/Subscription'
 
 import { DescriptiveStatistic } from '../../../shared/models/descriptive-statistic.enum'
 import { TimeInterval } from '../../../shared/models/time-interval.enum'
+import { Source } from '../../../shared/store/source/source.model'
+import { TakeUntilDestroy } from '../../../shared/utils/take-until-destroy'
+import * as sensorsDataActions from '../store/sensors-data/sensors-data.actions'
 // import * as pagesActions from '../../shared/store/pages/pages.actions'
 // import * as sensorsActions from '../../shared/store/sensors/sensors.actions'
 import * as sourcesActions from '../store/sources/sources.actions'
-import * as sensorsDataActions from '../store/sensors-data/sensors-data.actions'
-import { Source } from '../../../shared/store/source/source.model'
 // import * as studyActions from '../../shared/store/study/study.actions'
 import * as subjectActions from '../store/subject/subject.actions'
 import * as fromSubjectPage from '../store/index'
-import { TakeUntilDestroy } from '../../../shared/utils/take-until-destroy'
 
 @Component({
   selector: 'app-patient-page',

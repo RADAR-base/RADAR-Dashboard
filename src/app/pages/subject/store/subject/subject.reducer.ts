@@ -1,7 +1,4 @@
-import { createSelector } from '@ngrx/store'
-
 import * as subjectActions from './subject.actions'
-import { Subject } from '../../models/subject.model'
 
 export interface State {
   id: string

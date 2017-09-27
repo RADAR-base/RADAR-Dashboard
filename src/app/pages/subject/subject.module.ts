@@ -10,14 +10,13 @@ import { SourceListModule } from '../../components/source-list/source-list.modul
 import { TileModule } from '../../components/tile/tile.module'
 import { ToolbarModule } from '../../components/toolbar/toolbar.module'
 import { SubjectPageComponent } from './containers/subject.component'
-import { SourcesEffects } from './store/sources/sources.effects'
-import { SourcesService } from './services/sources.service'
-import { SensorsEffects } from './store/sensors/sensors.effects'
-import { SensorsService } from './services/sensors.service'
-import { SensorsDataEffects } from './store/sensors-data/sensors-data.effects'
-import { SensorsDataService } from './services/sensors-data.service'
-
 import { routes } from './routing/subject.routing'
+import { SensorsDataService } from './services/sensors-data.service'
+import { SensorsService } from './services/sensors.service'
+import { SourcesService } from './services/sources.service'
+import { SensorsDataEffects } from './store/sensors-data/sensors-data.effects'
+import { SensorsEffects } from './store/sensors/sensors.effects'
+import { SourcesEffects } from './store/sources/sources.effects'
 import { reducers } from './store'
 
 @NgModule({

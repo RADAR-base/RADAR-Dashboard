@@ -3,15 +3,11 @@ import {
   EntityState,
   createEntityAdapter
 } from '../../../../../tmp_modules/@ngrx/entity'
-import { createSelector } from '@ngrx/store'
-
-import { ChartData } from '../../../../shared/models/chart-data.model'
 import { DescriptiveStatistic } from '../../../../shared/models/descriptive-statistic.enum'
 import { TimeFrame } from '../../../../shared/models/time-frame.model'
 import { TimeInterval } from '../../../../shared/models/time-interval.enum'
 import { roundToNearest } from '../../../../shared/utils/round-to-nearest'
 import * as sensorsDataActions from './sensors-data.actions'
-import { Sensor } from '../../models/subject.model'
 
 export interface State extends EntityState<any> {
   areLoaded: { [id: number]: boolean }

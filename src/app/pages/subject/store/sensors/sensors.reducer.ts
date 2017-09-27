@@ -3,8 +3,6 @@ import {
   EntityState,
   createEntityAdapter
 } from '../../../../../tmp_modules/@ngrx/entity'
-import { createSelector } from '@ngrx/store'
-
 import { Sensor } from '../../models/subject.model'
 import * as sensorsActions from './sensors.actions'
 

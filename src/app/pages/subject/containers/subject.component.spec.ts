@@ -8,8 +8,8 @@ import {
   ActivatedRouteStub,
   RouterStub
 } from '../../../shared/testing/router-stubs'
-import { SubjectPageComponent } from './subject.component'
 import { SubjectPageModule } from '../subject.module'
+import { SubjectPageComponent } from './subject.component'
 
 describe('SubjectPageComponent', () => {
   let component: SubjectPageComponent

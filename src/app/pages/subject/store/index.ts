@@ -1,9 +1,9 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store'
 
-import * as fromSubject from './subject/subject.reducer'
-import * as fromSources from './sources/sources.reducer'
-import * as fromSensors from './sensors/sensors.reducer'
 import * as fromSensorsData from './sensors-data/sensors-data.reducer'
+import * as fromSensors from './sensors/sensors.reducer'
+import * as fromSources from './sources/sources.reducer'
+import * as fromSubject from './subject/subject.reducer'
 
 export interface State {
   subject: fromSubject.State
