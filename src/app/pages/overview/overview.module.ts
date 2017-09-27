@@ -7,7 +7,7 @@ import { StoreModule } from '@ngrx/store'
 import { ToolbarModule } from '../../components/toolbar/toolbar.module'
 import { OverviewPageComponent } from './containers/overview.component'
 import { routes } from './routing/overview.routing'
-import { OverviewService } from './services/overview.service'
+import { StudyService } from './services/study.service'
 import { StudyEffects } from './store/study/study.effects'
 import { reducers } from './store'
 
@@ -20,6 +20,6 @@ import { reducers } from './store'
     EffectsModule.forFeature([StudyEffects])
   ],
   declarations: [OverviewPageComponent],
-  providers: [OverviewService]
+  providers: [StudyService]
 })
 export class OverviewPageModule {}

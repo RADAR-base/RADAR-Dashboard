@@ -4,7 +4,7 @@ import { Action } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
 import { Study } from '../../models/overview.model'
-import { OverviewService } from '../../services/overview.service'
+import { StudyService } from '../../services/study.service'
 import * as actions from './study.actions'
 
 @Injectable()
@@ -13,13 +13,10 @@ export class StudyEffects {
   getAll$: Observable<Action> = this.actions$
     .ofType<actions.Load>(actions.LOAD)
     .switchMap(() => {
-      return this.overviewService
+      return this.studyService
         .getAll()
         .map((data: Study[]) => new actions.LoadSuccess(data))
     })
 
-  constructor(
-    private actions$: Actions,
-    private overviewService: OverviewService
-  ) {}
+  constructor(private actions$: Actions, private studyService: StudyService) {}
 }

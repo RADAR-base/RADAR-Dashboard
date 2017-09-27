@@ -6,7 +6,7 @@ import { ENV } from '../../../../environments/environment'
 import { Study } from '../models/overview.model'
 
 @Injectable()
-export class OverviewService {
+export class StudyService {
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<Study[]> {
