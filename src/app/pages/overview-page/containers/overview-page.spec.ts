@@ -9,11 +9,11 @@ import {
   ActivatedRouteStub,
   RouterStub
 } from '../../../shared/testing/router-stubs'
-import { OverviewPageComponent } from '../containers/overview.component'
-import { OverviewPageModule } from '../overview.module'
-import { StudyService } from '../services/study.service'
-import { StudyEffects } from '../store/study/study.effects'
+import { OverviewPageModule } from '../overview-page.module'
+import { StudiesService } from '../services/studies.service'
+import { StudiesEffects } from '../store/studies/studies.effects'
 import { reducers } from '../store'
+import { OverviewPageComponent } from './overview-page'
 
 describe('OverviewPageComponent', () => {
   let component: OverviewPageComponent
@@ -29,12 +29,12 @@ describe('OverviewPageComponent', () => {
         HttpClientModule,
         OverviewPageModule,
         StoreModule.forRoot(reducers),
-        EffectsModule.forRoot([StudyEffects])
+        EffectsModule.forRoot([StudiesEffects])
       ],
       providers: [
         { provide: Router, useClass: RouterStub },
         { provide: ActivatedRoute, useValue: activatedRoute },
-        StudyService
+        StudiesService
       ]
     })
 

@@ -2,7 +2,7 @@ import {
   EntityAdapter,
   EntityState,
   createEntityAdapter
-} from '../../../../../tmp_modules/@ngrx/entity'
+} from '../../../../../../tmp_modules/@ngrx/entity'
 import { DescriptiveStatistic } from '../../../../shared/models/descriptive-statistic.enum'
 import { TimeFrame } from '../../../../shared/models/time-frame.model'
 import { TimeInterval } from '../../../../shared/models/time-interval.enum'

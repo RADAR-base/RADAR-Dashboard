@@ -1,9 +1,9 @@
 import { Action } from '@ngrx/store'
 
-import { Study } from '../../models/overview.model'
+import { Study } from '../../models/study.model'
 
-export const LOAD = '[Study] LOAD'
-export const LOAD_SUCCESS = '[Study] LOAD_SUCCESS'
+export const LOAD = '[Overview][Studies] LOAD'
+export const LOAD_SUCCESS = '[Overview][Studies] LOAD_SUCCESS'
 
 export class Load implements Action {
   readonly type = LOAD

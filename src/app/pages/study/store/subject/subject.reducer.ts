@@ -2,7 +2,7 @@ import {
   EntityAdapter,
   EntityState,
   createEntityAdapter
-} from '../../../../../tmp_modules/@ngrx/entity'
+} from '../../../../../../tmp_modules/@ngrx/entity'
 import { Subject } from '../../models/study.model'
 import * as subjectActions from './subject.actions'
 

@@ -4,9 +4,9 @@ import {
 } from '@angular/common/http/testing'
 import { TestBed } from '@angular/core/testing'
 
-import { MockStudies } from '../../testing/mocks/mock-studies'
-import { Study } from './study.model'
-import { StudyService } from './study.service'
+import { MockStudies } from '../../../shared/testing/mocks/mock-studies'
+import { Study } from '../models/study.model'
+import { StudiesService } from './studies.service'
 
 describe('StudyService', () => {
   let service
@@ -15,18 +15,19 @@ describe('StudyService', () => {
   beforeEach(() =>
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [StudyService]
+      providers: [StudiesService]
     })
   )
 
   beforeEach(() => {
-    service = TestBed.get(StudyService)
+    service = TestBed.get(StudiesService)
     http = TestBed.get(HttpTestingController)
   })
 
   it('should return all studies', () => {
     const expectedResult = MockStudies
     let actualResult = []
+
     service.getAll().subscribe((users: any[]) => {
       actualResult = users
     })
@@ -50,6 +51,7 @@ describe('StudyService', () => {
   it('should return study by id', () => {
     const expectedResult = MockStudies
     let actualResult = []
+
     service.getById('0').subscribe((result: any[]) => {
       actualResult = result
     })

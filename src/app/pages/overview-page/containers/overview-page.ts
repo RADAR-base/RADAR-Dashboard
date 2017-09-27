@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
-import { Study } from '../models/overview.model'
-import * as studyAction from '../store/study/study.actions'
+import { Study } from '../models/study.model'
+import * as studyAction from '../store/studies/studies.actions'
 import * as fromOverview from '../store'
 
 @Component({
@@ -23,28 +23,34 @@ import * as fromOverview from '../store'
         </button>
       </div>
     </app-toolbar>
-    <div *ngIf="studyLoaded$ | async" class="content">
+    <div
+      class="content"
+      *ngIf="studiesIsLoaded$ | async"
+    >
       <div *ngFor="let study of (studies$ | async)">
         <p>
-          <button [routerLink]="['study', study.id]" md-raised-button>
+          <button
+            md-raised-button
+            [routerLink]="['study', study.id]"
+          >
             {{ study.name }} - {{ study.id }}
           </button>
         </p>
       </div>
     </div>
   `,
-  styleUrls: ['./overview.component.scss'],
+  styleUrls: ['./overview-page.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OverviewPageComponent implements OnInit {
   studies$: Observable<Study[]>
-  studyLoaded$: Observable<boolean>
+  studiesIsLoaded$: Observable<boolean>
 
   constructor(private store: Store<fromOverview.State>) {}
 
   ngOnInit() {
     this.store.dispatch(new studyAction.Load())
     this.studies$ = this.store.select(fromOverview.getStudies)
-    this.studyLoaded$ = this.store.select(fromOverview.getStudiesLoaded)
+    this.studiesIsLoaded$ = this.store.select(fromOverview.getStudiesIsLoaded)
   }
 }

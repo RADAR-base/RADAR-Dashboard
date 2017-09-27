@@ -3,10 +3,10 @@ import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs/Observable'
 
 import { ENV } from '../../../../environments/environment'
-import { Study } from '../models/overview.model'
+import { Study } from '../models/study.model'
 
 @Injectable()
-export class StudyService {
+export class StudiesService {
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<Study[]> {

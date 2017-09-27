@@ -5,21 +5,21 @@ import { EffectsModule } from '@ngrx/effects'
 import { StoreModule } from '@ngrx/store'
 
 import { ToolbarModule } from '../../components/toolbar/toolbar.module'
-import { OverviewPageComponent } from './containers/overview.component'
-import { routes } from './routing/overview.routing'
-import { StudyService } from './services/study.service'
-import { StudyEffects } from './store/study/study.effects'
+import { routes } from './overview-page.routing'
+import { StudiesService } from './services/studies.service'
+import { StudiesEffects } from './store/studies/studies.effects'
+import { OverviewPageComponent } from './containers/overview-page'
 import { reducers } from './store'
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild(routes),
     ToolbarModule,
-    StoreModule.forFeature('overview-page', reducers),
-    EffectsModule.forFeature([StudyEffects])
+    RouterModule.forChild(routes),
+    StoreModule.forFeature('overviewPage', reducers),
+    EffectsModule.forFeature([StudiesEffects])
   ],
   declarations: [OverviewPageComponent],
-  providers: [StudyService]
+  providers: [StudiesService]
 })
 export class OverviewPageModule {}
