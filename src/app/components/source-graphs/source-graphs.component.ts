@@ -11,7 +11,7 @@ import { Observable } from 'rxjs/Observable'
 import { SourceTooltipItem } from '../../shared/models/source-tooltip.model'
 import { Sensor } from '../../shared/store/sensors/sensors.model'
 import { Source } from '../../shared/store/source/source.model'
-import * as fromRoot from '../../shared/store/'
+import * as fromSubjectPage from '../../pages/subject/store'
 import { SourceTooltipComponent } from './source-tooltip/source-tooltip.component'
 
 @Component({
@@ -33,10 +33,12 @@ export class SourceGraphsComponent implements OnInit {
   tooltipShow = 0 // 0 hide | 1 show
   lineX = 0
 
-  constructor(private store: Store<fromRoot.State>) {}
+  constructor(private store: Store<fromSubjectPage.State>) {}
 
   ngOnInit() {
-    this.tooltipData$ = this.store.select(fromRoot.getSensorsTooltipValues)
+    this.tooltipData$ = this.store.select(
+      fromSubjectPage.getSensorsTooltipValues
+    )
   }
 
   trackBySourceId(index: number, source: Source) {

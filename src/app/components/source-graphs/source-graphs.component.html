@@ -19,9 +19,9 @@
         *ngFor="let sensor of source.sensors; trackBy: trackBySensorId"
       >
         <app-source-graph
-          *ngIf="sensor.visible"
+          *ngIf="sensor?.visible"
           [type]="sensor.type"
-          [sensorData]="sensorsData[sensor.id]"
+          [sensorData]="sensorsData[sensor.id]?.data"
           [isLoaded]="isDataLoaded[sensor.id]"
           [sensorId]="sensor.id"
           [keys]="sensor?.keys"

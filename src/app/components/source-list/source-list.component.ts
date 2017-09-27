@@ -6,8 +6,9 @@ import {
 } from '@angular/core'
 import { Store } from '@ngrx/store'
 
-import * as sensorsAction from '../../shared/store/sensors/sensors.actions'
-import * as fromRoot from '../../shared/store/index'
+// TODO: Change folders
+import * as sensorsAction from '../../pages/subject/store/sensors/sensors.actions'
+import * as fromSubjectPage from '../../pages/subject/store'
 import { AppConfig } from '../../shared/utils/config'
 
 @Component({
@@ -22,7 +23,7 @@ export class SourceListComponent implements OnInit {
 
   @Input() sources
 
-  constructor(private store: Store<fromRoot.State>) {}
+  constructor(private store: Store<fromSubjectPage.State>) {}
 
   ngOnInit() {}
 

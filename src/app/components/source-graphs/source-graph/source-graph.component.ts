@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 import { Store } from '@ngrx/store'
 
-import * as sensorsActions from '../../../shared/store/sensors/sensors.actions'
+import * as sensorsDataActions from '../../../pages/subject/store/sensors-data/sensors-data.actions'
 import { DataType } from '../../../shared/store/sensors/sensors.model'
-import * as fromRoot from '../../../shared/store/'
+import * as fromSubjectPage from '../../../pages/subject/store'
 import { AppConfig } from '../../../shared/utils/config'
 
 @Component({
@@ -72,9 +72,9 @@ export class SourceGraphComponent {
     )
   }
 
-  constructor(private store: Store<fromRoot.State>) {}
+  constructor(private store: Store<fromSubjectPage.State>) {}
 
   onTooltipMouseMove(date: Date) {
-    this.store.dispatch(new sensorsActions.SetTooltipDate(date))
+    this.store.dispatch(new sensorsDataActions.SetTooltipDate(date))
   }
 }
