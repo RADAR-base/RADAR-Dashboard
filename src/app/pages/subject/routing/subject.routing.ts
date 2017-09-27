@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router'
 
-import { SubjectPageComponent } from './subject.component'
+import { SubjectPageComponent } from '../containers/subject.component'
 
 export const routes: Routes = [
   {

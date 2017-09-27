@@ -3,13 +3,13 @@ import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ActivatedRoute, Router } from '@angular/router'
 import { StoreModule } from '@ngrx/store'
 
-import { reducers } from '../../shared/store'
+import { reducers } from '../../../shared/store'
 import {
   ActivatedRouteStub,
   RouterStub
-} from '../../shared/testing/router-stubs'
+} from '../../../shared/testing/router-stubs'
 import { SubjectPageComponent } from './subject.component'
-import { SubjectPageModule } from './subject.module'
+import { SubjectPageModule } from '../subject.module'
 
 describe('SubjectPageComponent', () => {
   let component: SubjectPageComponent

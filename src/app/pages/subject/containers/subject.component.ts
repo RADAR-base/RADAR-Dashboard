@@ -9,16 +9,17 @@ import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 import { Subscription } from 'rxjs/Subscription'
 
-import { DescriptiveStatistic } from '../../shared/models/descriptive-statistic.enum'
-import { TimeInterval } from '../../shared/models/time-interval.enum'
-import * as pagesActions from '../../shared/store/pages/pages.actions'
-import * as sensorsActions from '../../shared/store/sensors/sensors.actions'
-import * as sourceActions from '../../shared/store/source/source.actions'
-import { Source } from '../../shared/store/source/source.model'
-import * as studyActions from '../../shared/store/study/study.actions'
-import * as subjectActions from '../../shared/store/subject/subject.actions'
-import * as fromRoot from '../../shared/store/index'
-import { TakeUntilDestroy } from '../../shared/utils/take-until-destroy'
+import { DescriptiveStatistic } from '../../../shared/models/descriptive-statistic.enum'
+import { TimeInterval } from '../../../shared/models/time-interval.enum'
+// import * as pagesActions from '../../shared/store/pages/pages.actions'
+// import * as sensorsActions from '../../shared/store/sensors/sensors.actions'
+import * as sourcesActions from '../store/sources/sources.actions'
+import * as sensorsDataActions from '../store/sensors-data/sensors-data.actions'
+import { Source } from '../../../shared/store/source/source.model'
+// import * as studyActions from '../../shared/store/study/study.actions'
+import * as subjectActions from '../store/subject/subject.actions'
+import * as fromSubjectPage from '../store/index'
+import { TakeUntilDestroy } from '../../../shared/utils/take-until-destroy'
 
 @Component({
   selector: 'app-patient-page',
@@ -41,7 +42,7 @@ export class SubjectPageComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private store: Store<fromRoot.State>
+    private store: Store<fromSubjectPage.State>
   ) {}
 
   ngOnInit() {
@@ -49,23 +50,25 @@ export class SubjectPageComponent implements OnInit, OnDestroy {
       this.studyId = params.studyId
       this.subjectId = params.subjectId
 
-      this.store.dispatch(new studyActions.SetSelectedId(this.studyId))
-      this.store.dispatch(new subjectActions.SetSelectedId(this.subjectId))
+      this.store.dispatch(new subjectActions.SetStudyId(this.studyId))
+      this.store.dispatch(new subjectActions.SetSubjectId(this.subjectId))
     })
 
     // TODO: move whole block to Volume||Brush component -->
     this.store.dispatch(
-      new sensorsActions.SetTimeInterval(TimeInterval.TEN_SECOND)
+      new sensorsDataActions.SetTimeInterval(TimeInterval.TEN_SECOND)
     )
     this.store.dispatch(
-      new sensorsActions.SetDescriptiveStatistic(DescriptiveStatistic.AVERAGE)
+      new sensorsDataActions.SetDescriptiveStatistic(
+        DescriptiveStatistic.AVERAGE
+      )
     )
     const endTimeFrame = 1497628000000
     const endMinusOneday = new Date(endTimeFrame).setDate(
       new Date(endTimeFrame).getDate() - 0.45
     )
     this.store.dispatch(
-      new sensorsActions.SetTimeFrame({
+      new sensorsDataActions.SetTimeFrame({
         start: endMinusOneday,
         end: endTimeFrame
       })
@@ -73,24 +76,24 @@ export class SubjectPageComponent implements OnInit, OnDestroy {
     // <-- end
 
     // Get sources from server
-    this.store.dispatch(new sourceActions.GetAll(this.subjectId))
-    this.sourceIsLoaded$ = this.store.select(fromRoot.getSourceIsLoaded)
+    this.store.dispatch(new sourcesActions.Load(this.subjectId))
+    this.sourceIsLoaded$ = this.store.select(fromSubjectPage.getSourcesLoaded)
     this.sources$ = this.store
-      .select(fromRoot.getSourceAllWithSensors)
+      .select(fromSubjectPage.getSourcesWithSensors)
       .takeUntil(this.takeUntilDestroy())
       .subscribe(sources => (this.sources = sources))
 
     // Get sensor data from server
     this.sensorsIsDataLoaded$ = this.store.select(
-      fromRoot.getSensorsIsDataLoaded
+      fromSubjectPage.getSensorsDataLoaded
     )
-    this.sensorsData$ = this.store.select(fromRoot.getSensorsData)
+    this.sensorsData$ = this.store.select(fromSubjectPage.getSensorsData)
 
     // Dates for Volume Graph
-    this.dates$ = this.store.select(fromRoot.getSensorsDates)
+    this.dates$ = this.store.select(fromSubjectPage.getSensorsDates)
   }
 
   ngOnDestroy() {
-    this.store.dispatch(new pagesActions.SubjectDestroy())
+    // this.store.dispatch(new pagesActions.SubjectDestroy())
   }
 }
