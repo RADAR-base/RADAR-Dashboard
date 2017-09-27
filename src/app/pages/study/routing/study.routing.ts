@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router'
 
-import { StudyGuard } from '../../shared/guards/study.guard'
-import { StudyPageComponent } from './study.component'
+import { StudyPageComponent } from '../containers/study.component'
+import { StudyGuard } from '../guards/study.guard'
 
 export const routes: Routes = [
   {

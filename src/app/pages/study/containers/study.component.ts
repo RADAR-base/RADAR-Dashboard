@@ -3,12 +3,12 @@ import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
-import * as complianceAction from '../../shared/store/compliance/compliance.actions'
-import * as studyAction from '../../shared/store/study/study.actions'
-import * as subjectAction from '../../shared/store/subject/subject.actions'
-import { Subject } from '../../shared/store/subject/subject.model'
-import * as fromRoot from '../../shared/store/index'
-import { TakeUntilDestroy } from '../../shared/utils/take-until-destroy'
+import { TakeUntilDestroy } from '../../../shared/utils/take-until-destroy'
+import { Subject } from '../models/study.model'
+import * as complianceAction from '../store/compliance/compliance.actions'
+import * as studyAction from '../store/study/study.actions'
+import * as subjectAction from '../store/subject/subject.actions'
+import * as fromStudyPage from '../store'
 
 @Component({
   selector: 'app-study-page',
@@ -30,42 +30,43 @@ export class StudyPageComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private store: Store<fromRoot.State>
+    private store: Store<fromStudyPage.State>
   ) {}
 
   ngOnInit() {
     // Get `studyId` from route and then get Study by `studyId`
     this.route.params.takeUntil(this.takeUntilDestroy()).subscribe(params => {
       this.studyId = params['studyId']
-      this.store.dispatch(new studyAction.SetSelectedId(this.studyId))
+      this.store.dispatch(new studyAction.SetStudyId(this.studyId))
     })
 
     // If study is not loaded and not valid then fetch it
     this.isStudyLoadedAndValid$ = this.store
-      .select(fromRoot.getStudyIsLoadedAndValid)
+      .select(fromStudyPage.getStudyIsLoadedAndValid)
       .do(isLoadedAndValid => {
         if (isLoadedAndValid) {
-          this.store.dispatch(new subjectAction.GetAll(this.studyId))
-
+          this.store.dispatch(new subjectAction.LoadSubjects(this.studyId))
           // Check if compliance is loaded
           this.isComplianceLoaded$ = this.store
-            .select(fromRoot.getComplianceIsLoaded)
+            .select(fromStudyPage.getComplianceDataLoaded)
             .do(isComplianceLoaded => {
               if (!isComplianceLoaded) {
-                this.store.dispatch(new complianceAction.GetAll(this.studyId))
+                this.store.dispatch(
+                  new complianceAction.LoadComplianceData(this.studyId)
+                )
               }
             })
         } else {
-          this.store.dispatch(new studyAction.GetById(this.studyId))
+          this.store.dispatch(new studyAction.LoadStudyById(this.studyId))
         }
       })
 
     // Check if study is loaded
-    this.isLoaded$ = this.store.select(fromRoot.getStudyIsLoaded)
+    this.isLoaded$ = this.store.select(fromStudyPage.getStudyIsLoaded)
 
-    this.subjects$ = this.store.select(fromRoot.getSubjectAll)
+    this.subjects$ = this.store.select(fromStudyPage.getSubjects)
 
     // Get compliance data
-    this.complianceData$ = this.store.select(fromRoot.getComplianceData)
+    this.complianceData$ = this.store.select(fromStudyPage.getComplianceData)
   }
 }
