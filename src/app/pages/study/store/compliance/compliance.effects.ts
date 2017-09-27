@@ -10,12 +10,12 @@ import * as actions from './compliance.actions'
 export class ComplianceEffects {
   @Effect()
   getAll$: Observable<Action> = this.actions$
-    .ofType<actions.LoadComplianceData>(actions.LOAD_COMPLIANCE_DATA)
+    .ofType<actions.Load>(actions.LOAD)
     .map(action => action.payload)
     .switchMap(payload => {
       return this.complianceService
         .getAll(payload)
-        .map((data: any) => new actions.LoadComplianceDataSuccess(data))
+        .map((data: any) => new actions.LoadSuccess(data))
     })
 
   constructor(

@@ -33,12 +33,12 @@ export const getStudyIsLoaded = createSelector(
   fromStudy.getIsLoaded
 )
 
-export const getId = createSelector(getStudyState, fromStudy.getSelectedId)
+export const getStudyId = createSelector(getStudyState, fromStudy.getSelectedId)
 
 export const getStudyIsLoadedAndValid = createSelector(
   getStudyIsLoaded,
   getEntities,
-  getId,
+  getStudyId,
   (loaded, entities, selectedId) => {
     return loaded && !!entities[selectedId]
   }

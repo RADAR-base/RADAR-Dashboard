@@ -1,4 +1,8 @@
-import { EntityAdapter, EntityState, createEntityAdapter } from '@ngrx/entity'
+import {
+  EntityAdapter,
+  EntityState,
+  createEntityAdapter
+} from '../../../../../tmp_modules/@ngrx/entity'
 import { createSelector } from '@ngrx/store'
 
 import { Study } from '../../models/study.model'

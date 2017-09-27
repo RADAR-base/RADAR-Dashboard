@@ -11,12 +11,12 @@ import * as actions from './subject.actions'
 export class SubjectEffects {
   @Effect()
   getAll$: Observable<Action> = this.actions$
-    .ofType<actions.LoadSubjects>(actions.LOAD_SUBJECTS)
+    .ofType<actions.Load>(actions.LOAD)
     .map(action => action.payload)
     .switchMap(payload => {
       return this.subjectService
         .getAll(payload)
-        .map((data: Subject[]) => new actions.LoadSubjectsSuccess(data))
+        .map((data: Subject[]) => new actions.LoadSuccess(data))
     })
 
   constructor(

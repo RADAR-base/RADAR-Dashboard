@@ -15,14 +15,14 @@ export function reducer(
   action: compliance.Actions
 ): State {
   switch (action.type) {
-    case compliance.LOAD_COMPLIANCE_DATA: {
+    case compliance.LOAD: {
       return {
         ...state,
         isLoaded: false
       }
     }
 
-    case compliance.LOAD_COMPLIANCE_DATA_SUCCESS: {
+    case compliance.LOAD_SUCCESS: {
       return {
         isLoaded: true,
         data: action.payload

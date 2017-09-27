@@ -1,4 +1,8 @@
-import { EntityAdapter, EntityState, createEntityAdapter } from '@ngrx/entity'
+import {
+  EntityAdapter,
+  EntityState,
+  createEntityAdapter
+} from '../../../../../tmp_modules/@ngrx/entity'
 import { createSelector } from '@ngrx/store'
 
 import { Subject } from '../../models/study.model'
@@ -19,11 +23,11 @@ export function reducer(
   action: subjectActions.Actions
 ): State {
   switch (action.type) {
-    case subjectActions.LOAD_SUBJECTS: {
+    case subjectActions.LOAD: {
       return { ...state, isLoaded: false }
     }
 
-    case subjectActions.LOAD_SUBJECTS_SUCCESS: {
+    case subjectActions.LOAD_SUCCESS: {
       return { ...adapter.addAll(action.payload, state), isLoaded: true }
     }
 

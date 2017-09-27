@@ -45,15 +45,13 @@ export class StudyPageComponent implements OnInit {
       .select(fromStudyPage.getStudyIsLoadedAndValid)
       .do(isLoadedAndValid => {
         if (isLoadedAndValid) {
-          this.store.dispatch(new subjectAction.LoadSubjects(this.studyId))
+          this.store.dispatch(new subjectAction.Load(this.studyId))
           // Check if compliance is loaded
           this.isComplianceLoaded$ = this.store
             .select(fromStudyPage.getComplianceDataLoaded)
             .do(isComplianceLoaded => {
               if (!isComplianceLoaded) {
-                this.store.dispatch(
-                  new complianceAction.LoadComplianceData(this.studyId)
-                )
+                this.store.dispatch(new complianceAction.Load(this.studyId))
               }
             })
         } else {
