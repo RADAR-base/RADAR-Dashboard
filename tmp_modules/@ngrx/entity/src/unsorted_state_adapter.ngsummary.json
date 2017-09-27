@@ -1,0 +1,16 @@
+{
+  "summaries": [
+    {
+      "symbol": { "__symbol": 0, "members": [] },
+      "metadata": { "__symbolic": "function" }
+    }
+  ],
+  "symbols": [
+    {
+      "__symbol": 0,
+      "name": "createUnsortedStateAdapter",
+      "filePath":
+        "/Users/Condei/Radar-CNS/newRadarDashboard/platform/modules/entity/src/unsorted_state_adapter.d.ts"
+    }
+  ]
+}
