@@ -17,6 +17,8 @@ describe('SourceTooltipComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SourceTooltipComponent)
     component = fixture.componentInstance
+    component.data = []
+    component.position = { x: 0, y: 0 }
     fixture.detectChanges()
   })
 

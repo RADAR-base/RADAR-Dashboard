@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { Observable } from 'rxjs/Observable'
 
-import { ConfigService } from './shared/services/config.service'
+import { ConfigService } from '../services/config.service'
 
 @Component({
   selector: 'app-root',

@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 import { Store } from '@ngrx/store'
 
-import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.actions'
 import { DataType } from '../../../../shared/enums/data-type.enum'
-import * as fromSubjectPage from '../../../store'
 import { AppConfig } from '../../../../shared/utils/config'
+import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.actions'
+import * as fromSubjectPage from '../../../store'
 
 @Component({
   selector: 'app-source-graph',

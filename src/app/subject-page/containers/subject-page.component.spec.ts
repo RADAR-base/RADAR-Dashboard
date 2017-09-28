@@ -4,12 +4,12 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { EffectsModule } from '@ngrx/effects'
 import { StoreModule } from '@ngrx/store'
 
-import { reducers } from '../store'
 import {
   ActivatedRouteStub,
   RouterStub
 } from '../../shared/testing/router-stubs'
-import { SubjectPageModule } from '../subject.module'
+import { SubjectPageModule } from '../subject-page.module'
+import { reducers } from '../store'
 import { SubjectPageComponent } from './subject-page.component'
 
 describe('SubjectPageComponent', () => {

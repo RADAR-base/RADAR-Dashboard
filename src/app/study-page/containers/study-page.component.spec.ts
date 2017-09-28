@@ -8,7 +8,7 @@ import {
   ActivatedRouteStub,
   RouterStub
 } from '../../shared/testing/router-stubs'
-import { StudyPageModule } from '../study.module'
+import { StudyPageModule } from '../study-page.module'
 import { reducers } from '../store'
 import { StudyPageComponent } from './study-page.component'
 

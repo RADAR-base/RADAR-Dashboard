@@ -8,8 +8,8 @@ import {
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
-import { SourceTooltipItem } from '../../../shared/models/source-tooltip.model'
 import { Sensor } from '../../../shared/models/sensor.model'
+import { SourceTooltipItem } from '../../../shared/models/source-tooltip.model'
 import { Source } from '../../../shared/models/source.model'
 import * as fromSubjectPage from '../../store'
 import { SourceTooltipComponent } from './source-tooltip/source-tooltip.component'

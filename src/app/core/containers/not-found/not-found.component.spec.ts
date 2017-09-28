@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 import {
   ActivatedRouteStub,
   RouterStub
-} from '../../shared/testing/router-stubs'
+} from '../../../shared/testing/router-stubs'
 import { NotFoundPageComponent } from './not-found.component'
 
 describe('NotFoundPageComponent', () => {

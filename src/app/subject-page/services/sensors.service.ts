@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core'
 import { Actions } from '@ngrx/effects'
 import { Observable } from 'rxjs/Observable'
 
-import { AppConfig } from '../../shared/utils/config'
 import { Source } from '../../shared/models/source.model'
+import { AppConfig } from '../../shared/utils/config'
 
 @Injectable()
 export class SensorsService {

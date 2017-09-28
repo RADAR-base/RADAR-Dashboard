@@ -9,8 +9,8 @@ import { ENV } from '../../../environments/environment'
 import { DescriptiveStatistic } from '../../shared/enums/descriptive-statistic.enum'
 import { TimeInterval } from '../../shared/enums/time-interval.enum'
 import { RadarAPISampleModel } from '../../shared/models/radar-api.model'
-import { parseTimeHoles } from '../../shared/utils/parse-time-holes'
 import { Sensor } from '../../shared/models/sensor.model'
+import { parseTimeHoles } from '../../shared/utils/parse-time-holes'
 import * as actions from '../store/sensors-data/sensors-data.actions'
 
 @Injectable()

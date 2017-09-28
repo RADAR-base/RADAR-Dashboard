@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core'
 import { BehaviorSubject } from 'rxjs/BehaviorSubject'
 
 import { ENV } from '../../../environments/environment'
-import { AppConfig } from '../utils/config'
+import { AppConfig } from '../../shared/utils/config'
 import { ErrorService } from './error.service'
 
 @Injectable()
