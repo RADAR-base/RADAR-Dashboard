@@ -6,15 +6,15 @@ import { NotFoundPageComponent } from './core/containers/not-found/not-found.com
 export const routes: Routes = [
   {
     path: 'study/:studyId/subject/:subjectId',
-    loadChildren: '../subject-page/subject-page.module#SubjectPageModule'
+    loadChildren: './subject-page/subject-page.module#SubjectPageModule'
   },
   {
     path: 'study/:studyId',
-    loadChildren: '../study-page/study-page.module#StudyPageModule'
+    loadChildren: './study-page/study-page.module#StudyPageModule'
   },
   {
     path: '',
-    loadChildren: '../overview-page/overview-page.module#OverviewPageModule'
+    loadChildren: './overview-page/overview-page.module#OverviewPageModule'
   },
   {
     path: 'not-found',
