@@ -43,6 +43,7 @@
   ></app-source-date-axis>
   <app-source-volume
     class="volume"
+    *ngIf="sensorsData"
     [data]="sensorsData[0]?.data"
   ></app-source-volume>
 </div>
