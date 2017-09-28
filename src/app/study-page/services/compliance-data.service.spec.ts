@@ -5,9 +5,9 @@ import {
 import { TestBed } from '@angular/core/testing'
 
 import {
-  MockAPIComplianceDataset,
-  MockComplianceDataExpected
-} from '../../shared/testing/mocks/mock-compliance-data'
+  MockCompliance,
+  MockComplianceExpected
+} from '../../shared/testing/mocks/mock-compliance'
 import { ComplianceDataService } from './compliance-data.service'
 
 describe('ComplianceDataService', () => {
@@ -28,12 +28,12 @@ describe('ComplianceDataService', () => {
 
   it('should successfully return expected data', done => {
     service.getAll('MRC01').subscribe(res => {
-      expect(res).toEqual(MockComplianceDataExpected)
+      expect(res).toEqual(MockComplianceExpected)
       done()
     })
 
     const request = http.expectOne('/api/mock-compliance.json')
-    request.flush(MockAPIComplianceDataset)
+    request.flush(MockCompliance)
 
     http.verify()
   })
