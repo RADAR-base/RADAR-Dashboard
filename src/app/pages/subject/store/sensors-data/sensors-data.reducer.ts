@@ -3,9 +3,9 @@ import {
   EntityState,
   createEntityAdapter
 } from '../../../../../../tmp_modules/@ngrx/entity'
-import { DescriptiveStatistic } from '../../../../shared/models/descriptive-statistic.enum'
+import { DescriptiveStatistic } from '../../../../shared/enums/descriptive-statistic.enum'
+import { TimeInterval } from '../../../../shared/enums/time-interval.enum'
 import { TimeFrame } from '../../../../shared/models/time-frame.model'
-import { TimeInterval } from '../../../../shared/models/time-interval.enum'
 import { roundToNearest } from '../../../../shared/utils/round-to-nearest'
 import * as sensorsDataActions from './sensors-data.actions'
 

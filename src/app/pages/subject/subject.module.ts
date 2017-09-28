@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common'
+import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { MdGridListModule } from '@angular/material'
 import { RouterModule } from '@angular/router'
@@ -22,12 +23,13 @@ import { reducers } from './store'
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild(routes),
+    HttpClientModule,
     MdGridListModule,
     SourceListModule,
     SourceGraphsModule,
     TileModule,
     ToolbarModule,
+    RouterModule.forChild(routes),
     StoreModule.forFeature('subject-page', reducers),
     EffectsModule.forFeature([
       SourcesEffects,
