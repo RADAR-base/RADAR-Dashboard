@@ -14,7 +14,7 @@ import { TimeInterval } from '../../shared/enums/time-interval.enum'
 import { Source } from '../../shared/models/source.model'
 import { TakeUntilDestroy } from '../../shared/utils/take-until-destroy'
 import * as sensorsDataActions from '../store/sensors-data/sensors-data.actions'
-// import * as pagesActions from '../../shared/store/pages/pages.actions'
+import * as pagesActions from '../../core/store/pages/pages.actions'
 import * as sourcesActions from '../store/sources/sources.actions'
 import * as subjectActions from '../store/subject/subject.actions'
 import * as fromSubjectPage from '../store/index'
@@ -92,6 +92,6 @@ export class SubjectPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // this.store.dispatch(new pagesActions.SubjectDestroy())
+    this.store.dispatch(new pagesActions.SubjectDestroy())
   }
 }
