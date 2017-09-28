@@ -48,5 +48,7 @@ describe('SourcesService', () => {
         summary: null
       }
     ])
+
+    http.verify()
   })
 })
