@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core'
 import { NoPreloading, RouterModule, Routes } from '@angular/router'
 
-import { NotFoundPageComponent } from './containers/not-found/not-found.component'
+import { NotFoundPageComponent } from './core/containers/not-found/not-found.component'
 
 export const routes: Routes = [
   {

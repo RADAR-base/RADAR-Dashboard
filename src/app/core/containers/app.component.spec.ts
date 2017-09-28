@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing'
 import { RouterTestingModule } from '@angular/router/testing'
 
-import { AppModule } from '../app.module'
-import { routes } from '../app.routing'
+import { AppModule } from '../../app.module'
+import { routes } from '../../app.routing'
 import { AppComponent } from './app.component'
 
 describe('AppComponent', () => {
