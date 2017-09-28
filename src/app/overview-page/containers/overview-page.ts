@@ -2,9 +2,9 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
-import { Study } from '../models/study.model'
+import { Study } from '../../shared/models/study.model'
 import * as studyAction from '../store/studies/studies.actions'
-import * as fromOverview from '../store'
+import * as fromOverview from '../store/index'
 
 @Component({
   selector: 'app-overview-page',

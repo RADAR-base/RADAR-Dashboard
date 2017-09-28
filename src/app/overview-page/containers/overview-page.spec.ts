@@ -1,4 +1,3 @@
-import { HttpClientModule } from '@angular/common/http'
 import { DebugElement } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ActivatedRoute, Router } from '@angular/router'
@@ -8,7 +7,7 @@ import { StoreModule } from '@ngrx/store'
 import {
   ActivatedRouteStub,
   RouterStub
-} from '../../../shared/testing/router-stubs'
+} from '../../shared/testing/router-stubs'
 import { OverviewPageModule } from '../overview-page.module'
 import { StudiesService } from '../services/studies.service'
 import { StudiesEffects } from '../store/studies/studies.effects'
@@ -26,7 +25,6 @@ describe('OverviewPageComponent', () => {
 
     TestBed.configureTestingModule({
       imports: [
-        HttpClientModule,
         OverviewPageModule,
         StoreModule.forRoot(reducers),
         EffectsModule.forRoot([StudiesEffects])
@@ -42,11 +40,10 @@ describe('OverviewPageComponent', () => {
     component = fixture.componentInstance
     element = fixture.nativeElement
     de = fixture.debugElement
-
-    fixture.detectChanges()
   })
 
   it('should create', () => {
+    fixture.detectChanges()
     expect(component).toBeTruthy()
   })
 })

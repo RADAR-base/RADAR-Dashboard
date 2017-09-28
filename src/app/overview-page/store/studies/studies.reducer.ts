@@ -2,8 +2,8 @@ import {
   EntityAdapter,
   EntityState,
   createEntityAdapter
-} from '../../../../../../tmp_modules/@ngrx/entity'
-import { Study } from '../../models/study.model'
+} from '../../../../../tmp_modules/@ngrx/entity/index'
+import { Study } from '../../../shared/models/study.model'
 import * as actions from './studies.actions'
 
 export interface State extends EntityState<Study> {
