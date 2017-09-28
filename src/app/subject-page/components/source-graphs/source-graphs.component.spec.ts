@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing'
-import { Store, StoreModule } from '@ngrx/store'
-import { Observable } from 'rxjs/Observable'
+import { EffectsModule } from '@ngrx/effects'
+import { StoreModule, combineReducers } from '@ngrx/store'
 
-import { reducers } from '../../store'
+import * as fromSubjectPage from '../../store'
 import { SourceGraphsComponent } from './source-graphs.component'
 import { SourceGraphsModule } from './source-graphs.module'
 
@@ -10,19 +10,16 @@ describe('SourceGraphsComponent', () => {
   let component: SourceGraphsComponent
   let fixture: ComponentFixture<SourceGraphsComponent>
 
-  class MockStore {
-    public dispatch(obj) {}
-
-    public select(obj) {
-      return Observable.of([{ id: 0, value: 0 }])
-    }
-  }
-
   beforeEach(
     async(() => {
       TestBed.configureTestingModule({
-        imports: [SourceGraphsModule, StoreModule.forRoot(reducers)],
-        providers: [{ provide: Store, useClass: MockStore }]
+        imports: [
+          SourceGraphsModule,
+          StoreModule.forRoot({
+            subjectPage: combineReducers(fromSubjectPage.reducers)
+          }),
+          EffectsModule.forRoot([])
+        ]
       }).compileComponents()
     })
   )

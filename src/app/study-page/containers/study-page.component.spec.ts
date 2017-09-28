@@ -2,14 +2,14 @@ import { DebugElement } from '@angular/core'
 import { ComponentFixture, TestBed, async } from '@angular/core/testing'
 import { ActivatedRoute, Router } from '@angular/router'
 import { EffectsModule } from '@ngrx/effects'
-import { StoreModule } from '@ngrx/store'
+import { StoreModule, combineReducers } from '@ngrx/store'
 
 import {
   ActivatedRouteStub,
   RouterStub
 } from '../../shared/testing/router-stubs'
 import { StudyPageModule } from '../study-page.module'
-import { reducers } from '../store'
+import * as fromStudyPage from '../store/index'
 import { StudyPageComponent } from './study-page.component'
 
 describe('StudyPageComponent', () => {
@@ -25,7 +25,9 @@ describe('StudyPageComponent', () => {
 
       TestBed.configureTestingModule({
         imports: [
-          StoreModule.forRoot(reducers),
+          StoreModule.forRoot({
+            studyPage: combineReducers(fromStudyPage.reducers)
+          }),
           EffectsModule.forRoot([]),
           StudyPageModule
         ],
