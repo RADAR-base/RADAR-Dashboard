@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router'
 import { EffectsModule } from '@ngrx/effects'
 import { StoreModule } from '@ngrx/store'
 
-import { ToolbarModule } from '../components/toolbar/toolbar.module'
+import { ToolbarModule } from '../core/components/toolbar/toolbar.module'
 import { routes } from './overview-page.routing'
 import { StudiesService } from './services/studies.service'
 import { StudiesEffects } from './store/studies/studies.effects'

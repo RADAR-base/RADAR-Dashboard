@@ -10,7 +10,7 @@ export const routes: Routes = [
   },
   {
     path: 'study/:studyId',
-    loadChildren: './pages/study/study.module#StudyPageModule'
+    loadChildren: './study/study.module#StudyPageModule'
   },
   {
     path: '',

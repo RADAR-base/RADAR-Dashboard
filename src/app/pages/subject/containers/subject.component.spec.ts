@@ -1,8 +1,8 @@
 import { DebugElement } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ActivatedRoute, Router } from '@angular/router'
-import { StoreModule } from '@ngrx/store'
 import { EffectsModule } from '@ngrx/effects'
+import { StoreModule } from '@ngrx/store'
 
 import { reducers } from '../../../shared/store'
 import {
