@@ -2,9 +2,10 @@ import { Action } from '@ngrx/store'
 
 import { Study } from '../../../../shared/models/study.model'
 
-export const SET_STUDY_ID = '[Study] SET_STUDY_ID'
-export const LOAD_STUDY_BY_ID = '[Study] LOAD_STUDY_BY_ID'
-export const LOAD_STUDY_BY_ID_SUCCESS = '[Study] LOAD_STUDY_BY_ID_SUCCESS'
+export const SET_STUDY_ID = '[Study][Study] SET_STUDY_ID'
+export const LOAD_STUDY_BY_ID = '[Study][Study] LOAD_STUDY_BY_ID'
+export const LOAD_STUDY_BY_ID_SUCCESS =
+  '[Study][Study] LOAD_STUDY_BY_ID_SUCCESS'
 
 export class SetStudyId implements Action {
   readonly type = SET_STUDY_ID

@@ -2,9 +2,9 @@ import { Action } from '@ngrx/store'
 
 import { Source } from '../../models/subject.model'
 
-export const LOAD = '[Sensor] LOAD'
-export const LOAD_SUCCESS = '[Sensor] LOAD_SUCCESS'
-export const TOGGLE_VISIBILITY = '[Sensor] TOGGLE_VISIBILITY'
+export const LOAD = '[Subject][Sensor] LOAD'
+export const LOAD_SUCCESS = '[Subject][Sensor] LOAD_SUCCESS'
+export const TOGGLE_VISIBILITY = '[Subject][Sensor] TOGGLE_VISIBILITY'
 
 export class Load implements Action {
   readonly type = LOAD
