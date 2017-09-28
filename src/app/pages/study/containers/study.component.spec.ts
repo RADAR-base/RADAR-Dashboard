@@ -2,6 +2,7 @@ import { DebugElement } from '@angular/core'
 import { ComponentFixture, TestBed, async } from '@angular/core/testing'
 import { ActivatedRoute, Router } from '@angular/router'
 import { StoreModule } from '@ngrx/store'
+import { EffectsModule } from '@ngrx/effects'
 
 import { reducers } from '../../../overview-page/store'
 import {
@@ -23,7 +24,11 @@ describe('StudyPageComponent', () => {
       activatedRoute.testParams = { studyId: '0' }
 
       TestBed.configureTestingModule({
-        imports: [StoreModule.forRoot(reducers), StudyPageModule],
+        imports: [
+          StoreModule.forRoot(reducers),
+          EffectsModule.forRoot([]),
+          StudyPageModule
+        ],
         providers: [
           { provide: Router, useClass: RouterStub },
           { provide: ActivatedRoute, useValue: activatedRoute }
