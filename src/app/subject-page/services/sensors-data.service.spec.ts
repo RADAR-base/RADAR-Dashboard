@@ -69,6 +69,7 @@ describe('SensorsDataService', () => {
     }
     const sensors = MockSensorsMany
     const expectedRes = MockSensorsOneProcessed
+
     service.getData(sensors, hi).subscribe(res => {
       expect(res).toEqual(expectedRes)
       done()
@@ -78,6 +79,8 @@ describe('SensorsDataService', () => {
       '/api/data/BATTERY/AVERAGE/TEN_SECOND' +
         '/MRC01/00:07:80:1F:52:F3/1497589120000/1497628000000'
     )
+
+    // TODO: add multiple requests
     expect(req.length).toBe(1)
     req.forEach((k, i) => k.flush(MockSensorsOneRaw))
   })

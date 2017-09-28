@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common'
-import { HttpClientModule } from '@angular/common/http'
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { MdGridListModule } from '@angular/material'
 import { RouterModule } from '@angular/router'
@@ -19,6 +19,7 @@ import { SensorsEffects } from './store/sensors/sensors.effects'
 import { SourcesEffects } from './store/sources/sources.effects'
 import { routes } from './subject-page.routing'
 import { reducers } from './store'
+import { RadarServicesInterceptor } from '../core/services/radar-services.interceptor'
 
 @NgModule({
   imports: [
@@ -38,6 +39,15 @@ import { reducers } from './store'
     ])
   ],
   declarations: [SubjectPageComponent],
-  providers: [SourcesService, SensorsService, SensorsDataService]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RadarServicesInterceptor,
+      multi: true
+    },
+    SourcesService,
+    SensorsService,
+    SensorsDataService
+  ]
 })
 export class SubjectPageModule {}

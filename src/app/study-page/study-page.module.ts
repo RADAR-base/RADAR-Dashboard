@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common'
-import { HttpClientModule } from '@angular/common/http'
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { MdGridListModule } from '@angular/material'
 import { RouterModule } from '@angular/router'
@@ -20,6 +20,7 @@ import { StudyEffects } from './store/study/study.effects'
 import { SubjectEffects } from './store/subject/subject.effects'
 import { routes } from './study-page.routing'
 import { reducers } from './store'
+import { RadarServicesInterceptor } from '../core/services/radar-services.interceptor'
 
 @NgModule({
   imports: [
@@ -39,6 +40,16 @@ import { reducers } from './store'
     ])
   ],
   declarations: [StudyPageComponent],
-  providers: [StudyGuard, StudyService, SubjectService, ComplianceDataService]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RadarServicesInterceptor,
+      multi: true
+    },
+    StudyGuard,
+    StudyService,
+    SubjectService,
+    ComplianceDataService
+  ]
 })
 export class StudyPageModule {}

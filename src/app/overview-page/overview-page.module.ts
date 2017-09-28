@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common'
-import { HttpClientModule } from '@angular/common/http'
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router'
 import { EffectsModule } from '@ngrx/effects'
@@ -11,6 +11,7 @@ import { StudiesService } from './services/studies.service'
 import { StudiesEffects } from './store/studies/studies.effects'
 import { OverviewPageComponent } from './containers/overview-page'
 import { reducers } from './store/index'
+import { RadarServicesInterceptor } from '../core/services/radar-services.interceptor'
 
 @NgModule({
   imports: [
@@ -22,6 +23,13 @@ import { reducers } from './store/index'
     EffectsModule.forFeature([StudiesEffects])
   ],
   declarations: [OverviewPageComponent],
-  providers: [StudiesService]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RadarServicesInterceptor,
+      multi: true
+    },
+    StudiesService
+  ]
 })
 export class OverviewPageModule {}

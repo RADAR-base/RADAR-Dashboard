@@ -10,7 +10,9 @@ export interface State extends EntityState<Subject> {
   isLoaded: boolean
 }
 
-export const adapter: EntityAdapter<Subject> = createEntityAdapter<Subject>()
+export const adapter: EntityAdapter<Subject> = createEntityAdapter<Subject>({
+  selectId: (subject: Subject) => subject.subjectId
+})
 
 export const initialState: State = adapter.getInitialState({
   isLoaded: false

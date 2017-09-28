@@ -7,13 +7,6 @@ import { provideMockActions } from '@ngrx/effects/testing'
 import { Observable } from 'rxjs/Observable'
 
 import { MockConfig } from '../../shared/testing/mocks/mock-config'
-import {
-  MockSensorsMany,
-  MockSensorsOne,
-  MockSensorsOneProcessed,
-  MockSensorsOneRaw,
-  MockSensorsOptions
-} from '../../shared/testing/mocks/mock-sensor-data'
 import { AppConfig } from '../../shared/utils/config'
 import { SensorsService } from './sensors.service'
 

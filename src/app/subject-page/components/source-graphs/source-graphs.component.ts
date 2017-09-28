@@ -27,6 +27,7 @@ export class SourceGraphsComponent implements OnInit {
   @Input() isDataLoaded
   @Input() sensorsData
   @Input() dates
+
   tooltipData$: Observable<SourceTooltipItem[]>
   tooltipX = 0
   tooltipY = 0
