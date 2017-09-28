@@ -6,11 +6,11 @@ import { NotFoundPageComponent } from './pages/not-found/not-found.component'
 export const routes: Routes = [
   {
     path: 'study/:studyId/subject/:subjectId',
-    loadChildren: './subject/subject.module#SubjectPageModule'
+    loadChildren: './subject-page/subject-page.module#SubjectPageModule'
   },
   {
     path: 'study/:studyId',
-    loadChildren: './study/study.module#StudyPageModule'
+    loadChildren: './study-page/study-page.module#StudyPageModule'
   },
   {
     path: '',
