@@ -14,8 +14,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    loadChildren:
-      './pages/overview-page/overview-page.module#OverviewPageModule'
+    loadChildren: './overview-page/overview-page.module#OverviewPageModule'
   },
   {
     path: 'not-found',

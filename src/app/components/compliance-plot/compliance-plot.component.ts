@@ -5,9 +5,9 @@ import {
   OnInit
 } from '@angular/core'
 
+import { ChartColors } from '../../shared/enums/chart-colors.enum'
 import { ConfigKey } from '../../shared/models/config.model'
 import { AppConfig } from '../../shared/utils/config'
-import { ChartColors } from '../charts/chart.model'
 
 @Component({
   selector: 'app-compliance-plot',

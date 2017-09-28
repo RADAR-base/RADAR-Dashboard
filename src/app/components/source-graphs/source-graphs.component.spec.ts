@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing'
 import { StoreModule } from '@ngrx/store'
 
-import { reducers } from '../../shared/store'
+import { reducers } from '../../overview-page/store'
 import { SourceGraphsComponent } from './source-graphs.component'
 import { SourceGraphsModule } from './source-graphs.module'
 
