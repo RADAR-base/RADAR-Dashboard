@@ -5,11 +5,13 @@ import {
 } from '../../../../../tmp_modules/@ngrx/entity'
 import { DescriptiveStatistic } from '../../../shared/enums/descriptive-statistic.enum'
 import { TimeInterval } from '../../../shared/enums/time-interval.enum'
+import { ChartData } from '../../../shared/models/chart-data.model'
 import { TimeFrame } from '../../../shared/models/time-frame.model'
 import { roundToNearest } from '../../../shared/utils/round-to-nearest'
+import { SensorsData } from '../../models/sensors-data.model'
 import * as actions from './sensors-data.actions'
 
-export interface State extends EntityState<any> {
+export interface State extends EntityState<SensorsData> {
   areLoaded: { [id: number]: boolean }
   dates: Date[]
   tooltipDate: Date
@@ -18,7 +20,9 @@ export interface State extends EntityState<any> {
   descriptiveStatistic: DescriptiveStatistic
 }
 
-export const adapter: EntityAdapter<any> = createEntityAdapter<any>()
+export const adapter: EntityAdapter<SensorsData> = createEntityAdapter<
+  SensorsData
+>()
 
 export const initialState: State = adapter.getInitialState({
   areLoaded: {},

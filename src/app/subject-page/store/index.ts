@@ -90,7 +90,7 @@ export const getSensorsDataState = createSelector(
 export const {
   selectIds: getSensorsIds,
   selectAll: getSensorsData
-} = fromSensors.adapter.getSelectors(getSensorsDataState)
+} = fromSensorsData.adapter.getSelectors(getSensorsDataState)
 
 export const getSensorsDataLoaded = createSelector(
   getSensorsDataState,

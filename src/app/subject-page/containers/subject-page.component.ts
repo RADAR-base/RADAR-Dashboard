@@ -12,8 +12,10 @@ import { Subscription } from 'rxjs/Subscription'
 import * as pagesActions from '../../core/store/pages/pages.actions'
 import { DescriptiveStatistic } from '../../shared/enums/descriptive-statistic.enum'
 import { TimeInterval } from '../../shared/enums/time-interval.enum'
+import { ChartData } from '../../shared/models/chart-data.model'
 import { Source } from '../../shared/models/source.model'
 import { TakeUntilDestroy } from '../../shared/utils/take-until-destroy'
+import { SensorsData } from '../models/sensors-data.model'
 import * as sensorsDataActions from '../store/sensors-data/sensors-data.actions'
 import * as sourcesActions from '../store/sources/sources.actions'
 import * as subjectActions from '../store/subject/subject.actions'
@@ -34,7 +36,7 @@ export class SubjectPageComponent implements OnInit, OnDestroy {
   sourceIsLoaded$: Observable<boolean>
   dates$: Observable<Date[]>
   sensorsIsDataLoaded$: any
-  sensorsData$: Observable<any>
+  sensorsData$: Observable<SensorsData[]>
 
   private takeUntilDestroy
 
@@ -86,6 +88,8 @@ export class SubjectPageComponent implements OnInit, OnDestroy {
       fromSubjectPage.getSensorsDataLoaded
     )
     this.sensorsData$ = this.store.select(fromSubjectPage.getSensorsData)
+
+    this.sensorsData$.subscribe(console.info)
 
     // Dates for Volume Graph
     this.dates$ = this.store.select(fromSubjectPage.getSensorsDates)

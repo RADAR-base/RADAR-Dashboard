@@ -8,6 +8,7 @@ import {
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
+import { ChartData } from '../../../shared/models/chart-data.model'
 import { Sensor } from '../../../shared/models/sensor.model'
 import { SourceTooltipItem } from '../../../shared/models/source-tooltip.model'
 import { Source } from '../../../shared/models/source.model'
@@ -24,8 +25,9 @@ export class SourceGraphsComponent implements OnInit {
   @ViewChild('tooltip') tooltip: SourceTooltipComponent
 
   @Input() sources: Source[]
-  @Input() isDataLoaded
-  @Input() sensorsData
+  @Input() isDataLoaded: boolean
+  @Input() sensorsData: ChartData[]
+  @Input() tooltipData: SourceTooltipItem[]
   @Input() dates
 
   tooltipData$: Observable<SourceTooltipItem[]>
