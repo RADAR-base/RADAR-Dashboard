@@ -30,7 +30,7 @@ import { reducers } from './store'
     TileModule,
     ToolbarModule,
     RouterModule.forChild(routes),
-    StoreModule.forFeature('subject-page', reducers),
+    StoreModule.forFeature('subjectPage', reducers),
     EffectsModule.forFeature([
       SourcesEffects,
       SensorsEffects,
