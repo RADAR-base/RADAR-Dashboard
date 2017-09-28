@@ -8,6 +8,7 @@ import { StoreModule } from '@ngrx/store'
 
 import { TileModule } from '../core/components/tile/tile.module'
 import { ToolbarModule } from '../core/components/toolbar/toolbar.module'
+import { RadarServicesInterceptor } from '../core/services/radar-services.interceptor'
 import { SourceGraphsModule } from './components/source-graphs/source-graphs.module'
 import { SourceListModule } from './components/source-list/source-list.module'
 import { SubjectPageComponent } from './containers/subject-page.component'
@@ -19,7 +20,6 @@ import { SensorsEffects } from './store/sensors/sensors.effects'
 import { SourcesEffects } from './store/sources/sources.effects'
 import { routes } from './subject-page.routing'
 import { reducers } from './store'
-import { RadarServicesInterceptor } from '../core/services/radar-services.interceptor'
 
 @NgModule({
   imports: [

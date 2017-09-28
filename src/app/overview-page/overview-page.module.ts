@@ -6,12 +6,12 @@ import { EffectsModule } from '@ngrx/effects'
 import { StoreModule } from '@ngrx/store'
 
 import { ToolbarModule } from '../core/components/toolbar/toolbar.module'
+import { RadarServicesInterceptor } from '../core/services/radar-services.interceptor'
 import { routes } from './overview-page.routing'
 import { StudiesService } from './services/studies.service'
 import { StudiesEffects } from './store/studies/studies.effects'
 import { OverviewPageComponent } from './containers/overview-page'
 import { reducers } from './store/index'
-import { RadarServicesInterceptor } from '../core/services/radar-services.interceptor'
 
 @NgModule({
   imports: [
