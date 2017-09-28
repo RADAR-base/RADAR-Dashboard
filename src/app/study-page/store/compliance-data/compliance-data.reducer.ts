@@ -1,4 +1,4 @@
-import * as compliance from './compliance-data.actions'
+import * as actions from './compliance-data.actions'
 
 export interface State {
   data: any
@@ -10,19 +10,16 @@ const initialState: State = {
   isLoaded: false
 }
 
-export function reducer(
-  state = initialState,
-  action: compliance.Actions
-): State {
+export function reducer(state = initialState, action: actions.Actions): State {
   switch (action.type) {
-    case compliance.LOAD: {
+    case actions.LOAD: {
       return {
         ...state,
         isLoaded: false
       }
     }
 
-    case compliance.LOAD_SUCCESS: {
+    case actions.LOAD_SUCCESS: {
       return {
         isLoaded: true,
         data: action.payload

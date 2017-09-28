@@ -1,4 +1,4 @@
-import * as subjectActions from './subject.actions'
+import * as actions from './subject.actions'
 
 export interface State {
   id: string
@@ -10,16 +10,13 @@ const initialState: State = {
   studyId: ''
 }
 
-export function reducer(
-  state = initialState,
-  action: subjectActions.Actions
-): State {
+export function reducer(state = initialState, action: actions.Actions): State {
   switch (action.type) {
-    case subjectActions.SET_STUDY_ID: {
+    case actions.SET_STUDY_ID: {
       return { ...state, studyId: action.payload }
     }
 
-    case subjectActions.SET_ID: {
+    case actions.SET_ID: {
       return { ...state, id: action.payload }
     }
 

@@ -7,7 +7,7 @@ import { DescriptiveStatistic } from '../../../shared/enums/descriptive-statisti
 import { TimeInterval } from '../../../shared/enums/time-interval.enum'
 import { TimeFrame } from '../../../shared/models/time-frame.model'
 import { roundToNearest } from '../../../shared/utils/round-to-nearest'
-import * as sensorsDataActions from './sensors-data.actions'
+import * as actions from './sensors-data.actions'
 
 export interface State extends EntityState<any> {
   areLoaded: { [id: number]: boolean }
@@ -29,12 +29,9 @@ export const initialState: State = adapter.getInitialState({
   descriptiveStatistic: DescriptiveStatistic.AVERAGE
 })
 
-export function reducer(
-  state = initialState,
-  action: sensorsDataActions.Actions
-): State {
+export function reducer(state = initialState, action: actions.Actions): State {
   switch (action.type) {
-    case sensorsDataActions.UPDATE_DATES: {
+    case actions.UPDATE_DATES: {
       const iterations =
         (state.timeFrame.end - state.timeFrame.start) / state.timeInterval
 
@@ -49,14 +46,14 @@ export function reducer(
       }
     }
 
-    case sensorsDataActions.LOAD: {
+    case actions.LOAD: {
       return {
         ...state,
         areLoaded: {}
       }
     }
 
-    case sensorsDataActions.LOAD_SUCCESS: {
+    case actions.LOAD_SUCCESS: {
       const data = action.payload.data
       const id = action.payload.sensor.id
 
@@ -66,7 +63,7 @@ export function reducer(
       }
     }
 
-    case sensorsDataActions.SET_TOOLTIP_DATE: {
+    case actions.SET_TOOLTIP_DATE: {
       // round to interval
       const date = roundToNearest(action.payload.getTime(), state.timeInterval)
       return {
@@ -75,28 +72,28 @@ export function reducer(
       }
     }
 
-    case sensorsDataActions.SET_TIME_FRAME: {
+    case actions.SET_TIME_FRAME: {
       return {
         ...state,
         timeFrame: action.payload
       }
     }
 
-    case sensorsDataActions.SET_TIME_INTERVAL: {
+    case actions.SET_TIME_INTERVAL: {
       return {
         ...state,
         timeInterval: action.payload
       }
     }
 
-    case sensorsDataActions.SET_DESCRIPTIVE_STATISTIC: {
+    case actions.SET_DESCRIPTIVE_STATISTIC: {
       return {
         ...state,
         descriptiveStatistic: action.payload
       }
     }
 
-    case sensorsDataActions.DESTROY: {
+    case actions.DESTROY: {
       return { ...initialState }
     }
 

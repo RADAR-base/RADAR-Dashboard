@@ -1,7 +1,7 @@
 import { createSelector } from '@ngrx/store'
 
 import { Study } from '../../../shared/models/study.model'
-import * as studyActions from './study.actions'
+import * as actions from './study.actions'
 
 export interface State {
   isLoaded: boolean
@@ -15,16 +15,13 @@ const initialState: State = {
   selected: null
 }
 
-export function reducer(
-  state = initialState,
-  action: studyActions.Actions
-): State {
+export function reducer(state = initialState, action: actions.Actions): State {
   switch (action.type) {
-    case studyActions.LOAD_STUDY_BY_ID: {
+    case actions.LOAD_STUDY_BY_ID: {
       return { ...state, isLoaded: false }
     }
 
-    case studyActions.LOAD_STUDY_BY_ID_SUCCESS: {
+    case actions.LOAD_STUDY_BY_ID_SUCCESS: {
       return {
         ...state,
         selected: action.payload,
@@ -32,11 +29,11 @@ export function reducer(
       }
     }
 
-    case studyActions.SET_STUDY_ID: {
+    case actions.SET_STUDY_ID: {
       return { ...state, id: action.payload }
     }
 
-    case studyActions.LOAD_STUDY_BY_ID_FAIL: {
+    case actions.LOAD_STUDY_BY_ID_FAIL: {
       return { ...initialState }
     }
 

@@ -4,7 +4,7 @@ import {
   createEntityAdapter
 } from '../../../../../tmp_modules/@ngrx/entity'
 import { Source } from '../../../shared/models/source.model'
-import * as sourcesActions from './sources.actions'
+import * as actions from './sources.actions'
 
 export interface State extends EntityState<Source> {
   isLoaded: boolean
@@ -16,21 +16,18 @@ export const initialState: State = adapter.getInitialState({
   isLoaded: false
 })
 
-export function reducer(
-  state = initialState,
-  action: sourcesActions.Actions
-): State {
+export function reducer(state = initialState, action: actions.Actions): State {
   switch (action.type) {
-    case sourcesActions.LOAD: {
+    case actions.LOAD: {
       return { ...state, isLoaded: false }
     }
 
-    case sourcesActions.LOAD_SUCCESS: {
+    case actions.LOAD_SUCCESS: {
       return { ...adapter.addAll(action.payload, state), isLoaded: true }
     }
 
-    case sourcesActions.LOAD_FAIL:
-    case sourcesActions.DESTROY: {
+    case actions.LOAD_FAIL:
+    case actions.DESTROY: {
       return { ...initialState }
     }
 
