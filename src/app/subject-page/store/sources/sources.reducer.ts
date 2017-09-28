@@ -22,7 +22,7 @@ export function reducer(
 ): State {
   switch (action.type) {
     case sourcesActions.LOAD: {
-      return { ...initialState, isLoaded: false }
+      return { ...state, isLoaded: false }
     }
 
     case sourcesActions.LOAD_SUCCESS: {
