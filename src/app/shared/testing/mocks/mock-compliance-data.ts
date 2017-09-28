@@ -1,5 +1,5 @@
+import { TimeInterval } from '../../enums/time-interval.enum'
 import { ChartData } from '../../models/chart-data.model'
-import { TimeInterval } from '../../models/time-interval.enum'
 import { getTime } from '../../utils/get-time'
 
 export const MockComplianceKeys = [

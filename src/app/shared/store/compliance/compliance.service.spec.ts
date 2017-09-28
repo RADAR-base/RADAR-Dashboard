@@ -32,7 +32,7 @@ describe('ComplianceService', () => {
       done()
     })
 
-    const request = http.expectOne('assets/data/mock-compliance.json')
+    const request = http.expectOne('/api/mock-compliance.json')
     request.flush(MockCompliance)
 
     http.verify()
