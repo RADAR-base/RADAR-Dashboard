@@ -1,6 +1,6 @@
 export enum ChartColors {
-  // ⚠️⚠️Graph Colors
-  // ⚠️NOTE: Keep in sync with 'common.scss'!!
+  // ⚠️ Graph Colors
+  // ⚠️ NOTE: Keep in sync with 'common.scss'
   c1 = '#ffc',
   c2 = '#c7e9b4',
   c3 = '#7fcdbb',
