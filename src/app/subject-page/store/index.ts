@@ -19,7 +19,7 @@ export const reducers = {
   sensorsData: fromSensorsData.reducer
 }
 
-export const getSubjectPageState = createFeatureSelector<State>('subject-page')
+export const getSubjectPageState = createFeatureSelector<State>('subjectPage')
 
 // Subject Selectors
 export const getSubjectState = createSelector(
