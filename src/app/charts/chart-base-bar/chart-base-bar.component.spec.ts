@@ -2,40 +2,37 @@ import { DebugElement } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 
 import {
-  MockAPIComplianceDataset,
-  MockComplianceKeys,
-  MockTimeFrameCompliance,
-  MockTimeIntervalCompliance
-} from '../../../shared/testing/mocks/mock-compliance-data'
-import { parseTimeHoles } from '../../../shared/utils/parse-time-holes'
-import { ChartBaseMultiBarComponent } from './chart-base-multi-bar.component'
+  MockAPISampleDataset,
+  MockTimeFrameChartData,
+  MockTimeIntervalChartData
+} from '../../shared/testing/mocks/mock-chart-data'
+import { parseTimeHoles } from '../../shared/utils/parse-time-holes'
+import { ChartBaseBarComponent } from './chart-base-bar.component'
 
-describe('ChartBaseMultiBarComponent', () => {
-  let component: ChartBaseMultiBarComponent
-  let fixture: ComponentFixture<ChartBaseMultiBarComponent>
+describe('ChartBaseBarComponent', () => {
+  let component: ChartBaseBarComponent
+  let fixture: ComponentFixture<ChartBaseBarComponent>
   let element: HTMLElement
   let de: DebugElement
 
   const mockChartData = parseTimeHoles(
-    MockAPIComplianceDataset,
-    MockTimeFrameCompliance,
-    MockTimeIntervalCompliance
+    MockAPISampleDataset,
+    MockTimeFrameChartData,
+    MockTimeIntervalChartData
   )
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ChartBaseMultiBarComponent]
+      declarations: [ChartBaseBarComponent]
     })
 
-    fixture = TestBed.createComponent(ChartBaseMultiBarComponent)
+    fixture = TestBed.createComponent(ChartBaseBarComponent)
     component = fixture.componentInstance
     element = fixture.nativeElement
     de = fixture.debugElement
-
-    component.keys = MockComplianceKeys
   })
 
-  it('should create component', () => {
+  it('should be created', () => {
     fixture.detectChanges()
 
     expect(component).toBeTruthy()
@@ -44,9 +41,18 @@ describe('ChartBaseMultiBarComponent', () => {
   it('should NOT update() and change size before data changes', () => {
     fixture.detectChanges()
 
+    // without data
     expect(component.width).toBeFalsy()
     expect(component.height).toBeFalsy()
     expect(component.chartData).toBeFalsy()
+  })
+
+  it('should update() and change size if data changes', () => {
+    component.chartData = mockChartData
+    fixture.detectChanges()
+
+    expect(component.width).toBeGreaterThan(0)
+    expect(component.height).toBeGreaterThan(0)
   })
 
   it('rect should NOT have attribute x and y before data changes', () => {
@@ -55,19 +61,12 @@ describe('ChartBaseMultiBarComponent', () => {
     expect(element.querySelector('rect.bar')).toBeFalsy()
   })
 
-  it('should update() and change size when data changes', () => {
-    component.chartData = mockChartData
-    fixture.detectChanges()
-
-    expect(component.width).toBeGreaterThan(0)
-    expect(component.height).toBeGreaterThan(0)
-  })
-
   it('rect should have attribute x and y when data changes', () => {
     component.chartData = mockChartData
     fixture.detectChanges()
 
-    expect(element.querySelector('rect.back-bar')).toBeTruthy()
+    // select element again as they'll be instantiated
+    expect(element.querySelector('rect.bar')).toBeTruthy()
 
     const rectElements: any = element.querySelectorAll('rect.bar')
 

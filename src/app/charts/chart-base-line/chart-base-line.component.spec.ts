@@ -1,14 +1,12 @@
 import { DebugElement } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { StoreModule } from '@ngrx/store'
 
-import { reducers } from '../../../shared/store'
 import {
   MockAPISampleDataset,
   MockTimeFrameChartData,
   MockTimeIntervalChartData
-} from '../../../shared/testing/mocks/mock-chart-data'
-import { parseTimeHoles } from '../../../shared/utils/parse-time-holes'
+} from '../../shared/testing/mocks/mock-chart-data'
+import { parseTimeHoles } from '../../shared/utils/parse-time-holes'
 import { ChartBaseLineComponent } from './chart-base-line.component'
 
 describe('ChartBaseLineComponent', () => {
@@ -25,7 +23,6 @@ describe('ChartBaseLineComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [StoreModule.forRoot(reducers)],
       declarations: [ChartBaseLineComponent]
     })
 

@@ -14,8 +14,8 @@ import { Observable } from 'rxjs/Observable'
 import { Subscription } from 'rxjs/Subscription'
 import * as shortid from 'shortid'
 
-import { ConfigKey } from '../../../shared/models/config.model'
-import { ChartColors } from '../chart.model'
+import { ChartColors } from '../../shared/enums/chart-colors.enum'
+import { ConfigKey } from '../../shared/models/config.model'
 
 /**
  *  BaseComponent to be extended by chart components

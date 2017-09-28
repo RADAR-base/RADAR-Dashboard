@@ -5,16 +5,14 @@ import {
   fakeAsync,
   tick
 } from '@angular/core/testing'
-import { StoreModule } from '@ngrx/store'
 
-import { reducers } from '../../../shared/store'
 import {
   MockAPISampleDataset,
   MockTimeFrameChartData,
   MockTimeIntervalChartData
-} from '../../../shared/testing/mocks/mock-chart-data'
-import { MockSensorMulti } from '../../../shared/testing/mocks/mock-sensor-data'
-import { parseTimeHoles } from '../../../shared/utils/parse-time-holes'
+} from '../../shared/testing/mocks/mock-chart-data'
+import { MockSensorMulti } from '../../shared/testing/mocks/mock-sensor-data'
+import { parseTimeHoles } from '../../shared/utils/parse-time-holes'
 import { ChartBaseMultiLineComponent } from './chart-base-multi-line.component'
 
 describe('ChartBaseMultiLineComponent', () => {
@@ -31,7 +29,6 @@ describe('ChartBaseMultiLineComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [StoreModule.forRoot(reducers)],
       declarations: [ChartBaseMultiLineComponent]
     })
 
