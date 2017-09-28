@@ -4,7 +4,7 @@ import {
   createEntityAdapter
 } from '../../../../../tmp_modules/@ngrx/entity'
 import { Sensor } from '../../../shared/models/sensor.model'
-import * as sensorsActions from './sensors.actions'
+import * as actions from './sensors.actions'
 
 export interface State extends EntityState<Sensor> {
   isLoaded: boolean
@@ -16,16 +16,13 @@ export const initialState: State = adapter.getInitialState({
   isLoaded: false
 })
 
-export function reducer(
-  state = initialState,
-  action: sensorsActions.Actions
-): State {
+export function reducer(state = initialState, action: actions.Actions): State {
   switch (action.type) {
-    case sensorsActions.LOAD: {
+    case actions.LOAD: {
       return { ...state, isLoaded: false }
     }
 
-    case sensorsActions.LOAD_SUCCESS: {
+    case actions.LOAD_SUCCESS: {
       let counter = 0
       action.payload.map(source =>
         source.sensors.map(sensor => {
@@ -46,13 +43,17 @@ export function reducer(
       return { ...state, isLoaded: true }
     }
 
-    case sensorsActions.TOGGLE_VISIBILITY: {
+    case actions.TOGGLE_VISIBILITY: {
       const id = action.payload
 
       return adapter.updateOne(
         { id: id, changes: { visible: !state.entities[id].visible } },
         state
       )
+    }
+
+    case actions.DESTROY: {
+      return { ...initialState }
     }
 
     default:

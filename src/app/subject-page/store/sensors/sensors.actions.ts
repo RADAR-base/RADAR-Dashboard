@@ -2,9 +2,10 @@ import { Action } from '@ngrx/store'
 
 import { Source } from '../../../shared/models/source.model'
 
-export const LOAD = '[Subject][Sensor] LOAD'
-export const LOAD_SUCCESS = '[Subject][Sensor] LOAD_SUCCESS'
-export const TOGGLE_VISIBILITY = '[Subject][Sensor] TOGGLE_VISIBILITY'
+export const LOAD = '[SubjectPage][Sensor] LOAD'
+export const LOAD_SUCCESS = '[SubjectPage][Sensor] LOAD_SUCCESS'
+export const TOGGLE_VISIBILITY = '[SubjectPage][Sensor] TOGGLE_VISIBILITY'
+export const DESTROY = '[SubjectPage][Sensor] DESTROY'
 
 export class Load implements Action {
   readonly type = LOAD
@@ -24,4 +25,8 @@ export class ToggleVisibility implements Action {
   constructor(public payload: any) {}
 }
 
-export type Actions = Load | LoadSuccess | ToggleVisibility
+export class Destroy implements Action {
+  readonly type = DESTROY
+}
+
+export type Actions = Load | LoadSuccess | ToggleVisibility | Destroy

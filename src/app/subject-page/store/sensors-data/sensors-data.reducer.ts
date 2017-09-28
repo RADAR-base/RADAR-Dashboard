@@ -97,9 +97,7 @@ export function reducer(
     }
 
     case sensorsDataActions.DESTROY: {
-      return {
-        ...initialState
-      }
+      return { ...initialState }
     }
 
     default:
@@ -114,12 +112,3 @@ export const getTimeInterval = (state: State) => state.timeInterval
 export const getTooltipDate = (state: State) => state.tooltipDate
 export const getDescriptiveStatistic = (state: State) =>
   state.descriptiveStatistic
-
-// NOTE: Not sure what bottom is for
-// export const getSensors = createSelector(
-//   getSensorsData,
-//   getSensorsIds,
-//   (entities, ids) => {
-//     return ids.map(id => entities[id])
-//   }
-// )

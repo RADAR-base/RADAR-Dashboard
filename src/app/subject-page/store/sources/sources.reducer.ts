@@ -22,11 +22,15 @@ export function reducer(
 ): State {
   switch (action.type) {
     case sourcesActions.LOAD: {
-      return { ...state, isLoaded: false }
+      return { ...initialState, isLoaded: false }
     }
 
     case sourcesActions.LOAD_SUCCESS: {
       return { ...adapter.addAll(action.payload, state), isLoaded: true }
+    }
+
+    case sourcesActions.DESTROY: {
+      return { ...initialState }
     }
 
     default:
