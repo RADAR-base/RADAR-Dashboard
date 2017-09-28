@@ -7,11 +7,11 @@ import {
 } from '@angular/core/testing'
 
 import {
-  MockAPISampleDataset,
-  MockTimeFrameChartData,
-  MockTimeIntervalChartData
-} from '../../shared/testing/mocks/mock-chart-data'
-import { MockSensorMulti } from '../../shared/testing/mocks/mock-sensor-data'
+  MockAcceleration,
+  MockAccelerationKeys,
+  MockAccelerationTimeFrame,
+  MockAccelerationTimeInterval
+} from '../../shared/testing/mocks/mock-acceleration'
 import { parseTimeHoles } from '../../shared/utils/parse-time-holes'
 import { ChartBaseMultiLineComponent } from './chart-base-multi-line.component'
 
@@ -22,9 +22,9 @@ describe('ChartBaseMultiLineComponent', () => {
   let de: DebugElement
 
   const mockChartData = parseTimeHoles(
-    MockAPISampleDataset,
-    MockTimeFrameChartData,
-    MockTimeIntervalChartData
+    MockAcceleration['dataset'],
+    MockAccelerationTimeFrame,
+    MockAccelerationTimeInterval
   )
 
   beforeEach(() => {
@@ -37,7 +37,7 @@ describe('ChartBaseMultiLineComponent', () => {
     element = fixture.nativeElement
     de = fixture.debugElement
 
-    component.keys = MockSensorMulti.keys
+    component.keys = MockAccelerationKeys.keys
   })
 
   it('should be created', () => {
