@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import { Actions, Effect } from '@ngrx/effects'
 import { Action } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
-import { of } from 'rxJs/observable/of'
+import { of } from 'rxjs/observable/of'
 
 import { Study } from '../../../shared/models/study.model'
 import { StudyService } from '../../services/study.service'
