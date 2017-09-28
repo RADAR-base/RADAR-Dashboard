@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs/Observable'
 
 import { ENV } from '../../../../environments/environment'
-import { Study } from '../models/study.model'
+import { Study } from '../../../shared/models/study.model'
 
 @Injectable()
 export class StudyService {

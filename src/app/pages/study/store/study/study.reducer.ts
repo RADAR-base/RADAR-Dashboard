@@ -1,6 +1,6 @@
 import { createSelector } from '@ngrx/store'
 
-import { Study } from '../../models/study.model'
+import { Study } from '../../../../shared/models/study.model'
 import * as studyActions from './study.actions'
 
 export interface State {

@@ -3,7 +3,7 @@ import {
   EntityState,
   createEntityAdapter
 } from '../../../../../../tmp_modules/@ngrx/entity'
-import { Subject } from '../../models/study.model'
+import { Subject } from '../../../../shared/models/subject.model'
 import * as subjectActions from './subject.actions'
 
 export interface State extends EntityState<Subject> {

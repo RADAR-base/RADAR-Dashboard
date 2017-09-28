@@ -4,8 +4,8 @@ import {
 } from '@angular/common/http/testing'
 import { TestBed } from '@angular/core/testing'
 
-import { MockStudies } from '../../testing/mocks/mock-studies'
-import { Study } from './study.model'
+import { Study } from '../../../shared/models/study.model'
+import { MockStudies } from '../../../shared/testing/mocks/mock-studies.spec'
 import { StudyService } from './study.service'
 
 describe('StudyService', () => {
@@ -24,38 +24,15 @@ describe('StudyService', () => {
     http = TestBed.get(HttpTestingController)
   })
 
-  it('should return all studies', () => {
-    const expectedResult = MockStudies
-    let actualResult = []
-    service.getAll().subscribe((users: any[]) => {
-      actualResult = users
-    })
-
-    http.expectOne('assets/data/mock-all-studies.json').flush(expectedResult)
-    expect(actualResult).toEqual([
-      {
-        id: '0',
-        name: 'Study 0'
-      },
-      {
-        id: '1',
-        name: 'Study 1'
-      },
-      {
-        id: '2',
-        name: 'Study 2'
-      }
-    ])
-  })
   it('should return study by id', () => {
-    const expectedResult = MockStudies
-    let actualResult = []
-    service.getById('0').subscribe((result: any[]) => {
-      actualResult = result
+    const mock = MockStudies
+    let actual: Study
+
+    service.getById('0').subscribe((result: Study) => {
+      actual = result
     })
 
-    http.expectOne('assets/data/mock-all-studies.json').flush(expectedResult)
-    const expected: Study = { id: '0', name: 'Study 0' }
-    expect<any>([actualResult]).toEqual([expected])
+    http.expectOne('/api/mock-all-studies.json').flush(mock)
+    expect<Study>(actual).toEqual(mock.dataset[0])
   })
 })

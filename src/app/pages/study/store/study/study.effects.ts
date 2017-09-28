@@ -3,7 +3,7 @@ import { Actions, Effect } from '@ngrx/effects'
 import { Action } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
-import { Study } from '../../models/study.model'
+import { Study } from '../../../../shared/models/study.model'
 import { StudyService } from '../../services/study.service'
 import * as actions from './study.actions'
 

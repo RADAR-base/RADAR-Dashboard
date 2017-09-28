@@ -1,7 +1,7 @@
 import { TestBed, inject } from '@angular/core/testing'
 import { Router } from '@angular/router'
 
-import { RouterStub } from '../testing/router-stubs'
+import { RouterStub } from '../../../shared/testing/router-stubs'
 import { StudyGuard } from './study.guard'
 
 describe('StudyGuard', () => {

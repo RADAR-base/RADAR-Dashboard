@@ -16,7 +16,7 @@ export const reducers = {
   compliance: fromCompliance.reducer
 }
 
-export const getStudyPageState = createFeatureSelector<State>('study-page')
+export const getStudyPageState = createFeatureSelector<State>('studyPage')
 
 // Study Selectors
 export const getStudyState = createSelector(
