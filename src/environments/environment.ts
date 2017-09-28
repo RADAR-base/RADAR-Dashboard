@@ -5,6 +5,7 @@
 
 export const ENV = {
   PROD: false,
+  TEST: false,
   TOOLS: false,
   PARAMS: {
     API_URI: 'https://radar-cns.ddns.net/api',
