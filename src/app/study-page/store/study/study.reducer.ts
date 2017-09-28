@@ -36,6 +36,10 @@ export function reducer(
       return { ...state, id: action.payload }
     }
 
+    case studyActions.LOAD_STUDY_BY_ID_FAIL: {
+      return { ...initialState }
+    }
+
     default:
       return state
   }

@@ -6,6 +6,7 @@ export const SET_STUDY_ID = '[Study][Study] SET_STUDY_ID'
 export const LOAD_STUDY_BY_ID = '[Study][Study] LOAD_STUDY_BY_ID'
 export const LOAD_STUDY_BY_ID_SUCCESS =
   '[Study][Study] LOAD_STUDY_BY_ID_SUCCESS'
+export const LOAD_STUDY_BY_ID_FAIL = '[Study][Study] LOAD_STUDY_BY_ID_FAIL'
 
 export class SetStudyId implements Action {
   readonly type = SET_STUDY_ID
@@ -24,4 +25,12 @@ export class LoadStudyByIdSuccess implements Action {
   constructor(public payload: Study) {}
 }
 
-export type Actions = SetStudyId | LoadStudyById | LoadStudyByIdSuccess
+export class LoadStudyByIdFail implements Action {
+  readonly type = LOAD_STUDY_BY_ID_FAIL
+}
+
+export type Actions =
+  | SetStudyId
+  | LoadStudyById
+  | LoadStudyByIdSuccess
+  | LoadStudyByIdFail

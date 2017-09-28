@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core'
 import { Actions, Effect } from '@ngrx/effects'
 import { Action } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
+import { of } from 'rxJs/observable/of'
 
 import { Study } from '../../../shared/models/study.model'
 import { StudyService } from '../../services/study.service'
@@ -17,6 +18,7 @@ export class StudyEffects {
       return this.studyService
         .getById(payload)
         .map((data: Study) => new actions.LoadStudyByIdSuccess(data))
+        .catch(() => of(new actions.LoadStudyByIdFail()))
     })
 
   constructor(private actions$: Actions, private studyService: StudyService) {}
