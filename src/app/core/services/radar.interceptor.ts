@@ -9,8 +9,8 @@ import {
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs/Observable'
 
-import { ErrorService } from './error.service'
 import { ENV } from '../../../environments/environment'
+import { ErrorService } from './error.service'
 
 @Injectable()
 export class RadarHttpInterceptor implements HttpInterceptor {
