@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common'
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { MdGridListModule } from '@angular/material'
 import { RouterModule } from '@angular/router'
@@ -8,10 +8,7 @@ import { StoreModule } from '@ngrx/store'
 
 import { TileModule } from '../core/components/tile/tile.module'
 import { ToolbarModule } from '../core/components/toolbar/toolbar.module'
-import {
-  RadarHttpInterceptor,
-  RadarHttpInterceptorProvider
-} from '../core/services/radar.interceptor'
+import { RadarHttpInterceptorProvider } from '../core/services/radar.interceptor'
 import { CompliancePlotModule } from './components/compliance-plot/compliance-plot.module'
 import { SubjectTableModule } from './components/subject-table/subject-table.module'
 import { StudyPageComponent } from './containers/study-page.component'
