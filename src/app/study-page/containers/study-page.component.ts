@@ -19,6 +19,7 @@ import * as fromStudyPage from '../store'
 @TakeUntilDestroy
 export class StudyPageComponent implements OnInit {
   studyId: string
+  isStudyLoadedAndValid: boolean
   isStudyLoadedAndValid$: Observable<boolean>
   isLoaded$: Observable<boolean>
   subjects$: Observable<Subject[]>
@@ -43,6 +44,7 @@ export class StudyPageComponent implements OnInit {
     // If study is not loaded and not valid then fetch it
     this.isStudyLoadedAndValid$ = this.store
       .select(fromStudyPage.getStudyIsLoadedAndValid)
+      .takeUntil(this.takeUntilDestroy())
       .do(isLoadedAndValid => {
         if (isLoadedAndValid) {
           this.store.dispatch(new subjectAction.Load(this.studyId))
@@ -58,6 +60,10 @@ export class StudyPageComponent implements OnInit {
           this.store.dispatch(new studyAction.LoadStudyById(this.studyId))
         }
       })
+
+    this.isStudyLoadedAndValid$.subscribe(
+      isLoadedAndValid => (this.isStudyLoadedAndValid = isLoadedAndValid)
+    )
 
     // Check if study is loaded
     this.isLoaded$ = this.store.select(fromStudyPage.getStudyIsLoaded)

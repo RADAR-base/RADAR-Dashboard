@@ -15,7 +15,7 @@
   </div>
 
   <ng-template #loaded>
-    <div *ngIf="(isStudyLoadedAndValid$ | async) === false; else loadedAndValid">
+    <div *ngIf="!isStudyLoadedAndValid; else loadedAndValid">
       <p>Study "{{studyId}}" not found.</p>
       <p>
         <button [routerLink]="['/']">Go to the overview page</button>
@@ -56,4 +56,5 @@
       </md-grid-tile>
     </md-grid-list>
   </ng-template>
+
 </div>
