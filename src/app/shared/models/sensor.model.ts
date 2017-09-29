@@ -3,13 +3,13 @@ import { ChartOptions } from './chart-options.model'
 import { ConfigKey, ConfigLabel } from './config.model'
 
 export interface Sensor {
-  id?: number
-  source?: string
-  keys?: ConfigKey[]
-  type?: string
-  visible?: boolean
+  id: string
+  source: string
+  type: string
   unit: string
   label: ConfigLabel
   dataType: DataType
   chart: ChartOptions
+  keys?: ConfigKey[]
+  visible?: boolean
 }

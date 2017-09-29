@@ -9,6 +9,7 @@ import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 import { Subscription } from 'rxjs/Subscription'
 
+import { Dictionary } from '../../../../tmp_modules/@ngrx/entity/src/models'
 import * as pagesActions from '../../core/store/pages/pages.actions'
 import { DescriptiveStatistic } from '../../shared/enums/descriptive-statistic.enum'
 import { TimeInterval } from '../../shared/enums/time-interval.enum'
@@ -35,7 +36,7 @@ export class SubjectPageComponent implements OnInit, OnDestroy {
   sourceIsLoaded$: Observable<boolean>
   dates$: Observable<Date[]>
   sensorsIsDataLoaded$: any
-  sensorsData$: Observable<SensorsData[]>
+  sensorsData$: Observable<Dictionary<SensorsData>>
 
   private takeUntilDestroy
 
@@ -86,7 +87,9 @@ export class SubjectPageComponent implements OnInit, OnDestroy {
     this.sensorsIsDataLoaded$ = this.store.select(
       fromSubjectPage.getSensorsDataLoaded
     )
-    this.sensorsData$ = this.store.select(fromSubjectPage.getSensorsData)
+    this.sensorsData$ = this.store.select(
+      fromSubjectPage.getSensorsDataEntities
+    )
 
     // Dates for Volume Graph
     this.dates$ = this.store.select(fromSubjectPage.getSensorsDates)

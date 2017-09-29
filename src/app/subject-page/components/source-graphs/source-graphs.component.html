@@ -41,9 +41,9 @@
     class="common-axis"
     [dates]="dates"
   ></app-source-date-axis>
+
+  <!--TODO: add data when API is ready-->
   <app-source-volume
     class="volume"
-    *ngIf="sensorsData"
-    [data]="sensorsData[0]?.data"
   ></app-source-volume>
 </div>

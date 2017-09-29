@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 import { Store } from '@ngrx/store'
 
 import { DataType } from '../../../../shared/enums/data-type.enum'
+import { ChartData } from '../../../../shared/models/chart-data.model'
 import { AppConfig } from '../../../../shared/utils/config'
 import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.actions'
 import * as fromSubjectPage from '../../../store'
@@ -45,7 +46,7 @@ import * as fromSubjectPage from '../../../store'
 })
 export class SourceGraphComponent {
   @Input() isLoaded
-  @Input() sensorData = []
+  @Input() sensorData: ChartData
   @Input() sensorId
   @Input() type
   @Input() keys

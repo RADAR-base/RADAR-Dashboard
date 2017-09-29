@@ -39,9 +39,10 @@ export const getSensorsState = createSelector(
   getSubjectPageState,
   state => state.sensors
 )
-export const { selectAll: getSensors } = fromSensors.adapter.getSelectors(
-  getSensorsState
-)
+export const {
+  selectEntities: getSensorsEntities,
+  selectAll: getSensors
+} = fromSensors.adapter.getSelectors(getSensorsState)
 
 export const getSensorsLoaded = createSelector(
   getSensorsState,
@@ -88,7 +89,8 @@ export const getSensorsDataState = createSelector(
   state => state.sensorsData
 )
 export const {
-  selectIds: getSensorsIds,
+  selectIds: getSensorsDataIds,
+  selectEntities: getSensorsDataEntities,
   selectAll: getSensorsData
 } = fromSensorsData.adapter.getSelectors(getSensorsDataState)
 
@@ -123,17 +125,19 @@ export const getSensorsDescriptiveStatistic = createSelector(
 )
 
 export const getSensorsTooltipValues = createSelector(
-  getSensorsIds,
-  getSensors,
-  getSensorsData,
+  getSensorsDataIds,
+  getSensorsEntities,
+  getSensorsDataEntities,
   getTooltipDate,
-  (ids, sensors, sensorsData, date) => {
+  (ids, sensors, sensorsEntities, date) => {
     if (!date) return []
 
     return ids.reduce((acc, id) => {
       const index =
-        sensorsData[id].data &&
-        sensorsData[id].data.findIndex(d => d.date.getTime() === date.getTime())
+        sensorsEntities[id].data &&
+        sensorsEntities[id].data.findIndex(
+          d => d.date.getTime() === date.getTime()
+        )
 
       return [
         ...acc,
@@ -143,8 +147,8 @@ export const getSensorsTooltipValues = createSelector(
           dataType: sensors[id].dataType,
           keys: sensors[id].keys || null,
           value:
-            sensorsData[id] && index > -1
-              ? sensorsData[id].data[index].value
+            sensorsEntities[id] && index > -1
+              ? sensorsEntities[id].data[index].value
               : null
         }
       ]

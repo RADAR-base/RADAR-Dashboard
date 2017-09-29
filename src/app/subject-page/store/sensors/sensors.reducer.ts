@@ -1,3 +1,5 @@
+import * as shortid from 'shortid'
+
 import {
   EntityAdapter,
   EntityState,
@@ -23,10 +25,9 @@ export function reducer(state = initialState, action: actions.Actions): State {
     }
 
     case actions.LOAD_SUCCESS: {
-      let counter = 0
       action.payload.map(source =>
         source.sensors.map(sensor => {
-          const id = counter++
+          const id = shortid.generate()
 
           return (state = adapter.addOne(
             {
