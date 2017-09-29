@@ -2,10 +2,10 @@ import { Action } from '@ngrx/store'
 
 import { Source } from '../../../shared/models/source.model'
 
-export const LOAD = '[Subject][Source] LOAD'
-export const LOAD_SUCCESS = '[Subject][Source] LOAD_SUCCESS'
-export const LOAD_FAIL = '[Subject][Source] LOAD_FAIL'
-export const DESTROY = '[Subject][Source] DESTROY'
+export const LOAD = '[SubjectPage][Source] LOAD'
+export const LOAD_SUCCESS = '[SubjectPage][Source] LOAD_SUCCESS'
+export const LOAD_FAIL = '[SubjectPage][Source] LOAD_FAIL'
+export const DESTROY = '[SubjectPage][Source] DESTROY'
 
 export class Load implements Action {
   readonly type = LOAD

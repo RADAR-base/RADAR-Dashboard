@@ -6,15 +6,15 @@ import { ChartData } from '../../../shared/models/chart-data.model'
 import { Sensor } from '../../../shared/models/sensor.model'
 import { TimeFrame } from '../../../shared/models/time-frame.model'
 
-export const LOAD = '[Subject][Sensors-Data] LOAD'
-export const LOAD_SUCCESS = '[Subject][Sensors-Data] LOAD_SUCCESS'
-export const UPDATE_DATES = '[Subject][Sensors-Data] UPDATE_DATES'
-export const SET_TOOLTIP_DATE = '[Subject][Sensors-Data] SET_TOOLTIP_DATE'
-export const SET_TIME_FRAME = '[Subject][Sensors-Data] SET_TIME_FRAME'
-export const SET_TIME_INTERVAL = '[Subject][Sensors-Data] SET_TIME_INTERVAL'
+export const LOAD = '[SubjectPage][Sensors-Data] LOAD'
+export const LOAD_SUCCESS = '[SubjectPage][Sensors-Data] LOAD_SUCCESS'
+export const UPDATE_DATES = '[SubjectPage][Sensors-Data] UPDATE_DATES'
+export const SET_TOOLTIP_DATE = '[SubjectPage][Sensors-Data] SET_TOOLTIP_DATE'
+export const SET_TIME_FRAME = '[SubjectPage][Sensors-Data] SET_TIME_FRAME'
+export const SET_TIME_INTERVAL = '[SubjectPage][Sensors-Data] SET_TIME_INTERVAL'
 export const SET_DESCRIPTIVE_STATISTIC =
-  '[Subject][Sensors-Data] SET_DESCRIPTIVE_STATISTIC'
-export const DESTROY = '[Subject][Sensors-Data] DESTROY'
+  '[SubjectPage][Sensors-Data] SET_DESCRIPTIVE_STATISTIC'
+export const DESTROY = '[SubjectPage][Sensors-Data] DESTROY'
 
 export class Load implements Action {
   readonly type = LOAD

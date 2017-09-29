@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store'
 
-export const LOAD = '[Study][Compliance] LOAD'
-export const LOAD_SUCCESS = '[Study][Compliance] LOAD_SUCCESS'
+export const LOAD = '[StudyPage][Compliance] LOAD'
+export const LOAD_SUCCESS = '[StudyPage][Compliance] LOAD_SUCCESS'
 
 export class Load implements Action {
   readonly type = LOAD
