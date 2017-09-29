@@ -89,8 +89,6 @@ export class SubjectPageComponent implements OnInit, OnDestroy {
     )
     this.sensorsData$ = this.store.select(fromSubjectPage.getSensorsData)
 
-    this.sensorsData$.subscribe(console.info)
-
     // Dates for Volume Graph
     this.dates$ = this.store.select(fromSubjectPage.getSensorsDates)
   }
