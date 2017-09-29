@@ -12,7 +12,7 @@ import { AppComponent } from './core/containers/app.component'
 import { NotFoundPageComponent } from './core/containers/not-found/not-found.component'
 import { ConfigService } from './core/services/config.service'
 import { ErrorService } from './core/services/error.service'
-import { RadarServicesInterceptor } from './core/services/radar-services.interceptor'
+import { RadarHttpInterceptor } from './core/services/radar.interceptor'
 import { PagesEffects } from './core/store/pages/pages.effects'
 import { metaReducers } from './core/store'
 
@@ -38,15 +38,7 @@ import { metaReducers } from './core/store'
     // Routing
     AppRoutingModule
   ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: RadarServicesInterceptor,
-      multi: true
-    },
-    ConfigService,
-    ErrorService
-  ],
+  providers: [RadarHttpInterceptor, ConfigService, ErrorService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

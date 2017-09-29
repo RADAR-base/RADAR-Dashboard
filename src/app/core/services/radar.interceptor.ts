@@ -1,4 +1,5 @@
 import {
+  HTTP_INTERCEPTORS,
   HttpEvent,
   HttpHandler,
   HttpInterceptor,
@@ -9,9 +10,10 @@ import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs/Observable'
 
 import { ErrorService } from './error.service'
+import { ENV } from '../../../environments/environment'
 
 @Injectable()
-export class RadarServicesInterceptor implements HttpInterceptor {
+export class RadarHttpInterceptor implements HttpInterceptor {
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
@@ -35,3 +37,14 @@ export class RadarServicesInterceptor implements HttpInterceptor {
       .catch(ErrorService.handleError)
   }
 }
+
+@Injectable()
+export class EmptyProvider {}
+
+const provider = {
+  provide: HTTP_INTERCEPTORS,
+  useClass: RadarHttpInterceptor,
+  multi: true
+}
+
+export const RadarHttpInterceptorProvider = ENV.TEST ? EmptyProvider : provider

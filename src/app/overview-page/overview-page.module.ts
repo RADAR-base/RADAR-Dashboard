@@ -6,7 +6,10 @@ import { EffectsModule } from '@ngrx/effects'
 import { StoreModule } from '@ngrx/store'
 
 import { ToolbarModule } from '../core/components/toolbar/toolbar.module'
-import { RadarServicesInterceptor } from '../core/services/radar-services.interceptor'
+import {
+  RadarHttpInterceptor,
+  RadarHttpInterceptorProvider
+} from '../core/services/radar.interceptor'
 import { routes } from './overview-page.routing'
 import { StudiesService } from './services/studies.service'
 import { StudiesEffects } from './store/studies/studies.effects'
@@ -23,13 +26,6 @@ import { reducers } from './store/index'
     EffectsModule.forFeature([StudiesEffects])
   ],
   declarations: [OverviewPageComponent],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: RadarServicesInterceptor,
-      multi: true
-    },
-    StudiesService
-  ]
+  providers: [RadarHttpInterceptorProvider, StudiesService]
 })
 export class OverviewPageModule {}

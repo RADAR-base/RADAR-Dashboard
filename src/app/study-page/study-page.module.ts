@@ -8,7 +8,10 @@ import { StoreModule } from '@ngrx/store'
 
 import { TileModule } from '../core/components/tile/tile.module'
 import { ToolbarModule } from '../core/components/toolbar/toolbar.module'
-import { RadarServicesInterceptor } from '../core/services/radar-services.interceptor'
+import {
+  RadarHttpInterceptor,
+  RadarHttpInterceptorProvider
+} from '../core/services/radar.interceptor'
 import { CompliancePlotModule } from './components/compliance-plot/compliance-plot.module'
 import { SubjectTableModule } from './components/subject-table/subject-table.module'
 import { StudyPageComponent } from './containers/study-page.component'
@@ -41,11 +44,7 @@ import { reducers } from './store'
   ],
   declarations: [StudyPageComponent],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: RadarServicesInterceptor,
-      multi: true
-    },
+    RadarHttpInterceptorProvider,
     StudyGuard,
     StudyService,
     SubjectService,
