@@ -4,6 +4,7 @@ import { Source } from '../../../shared/models/source.model'
 
 export const LOAD = '[SubjectPage][Sensor] LOAD'
 export const LOAD_SUCCESS = '[SubjectPage][Sensor] LOAD_SUCCESS'
+export const LOAD_FAIL = '[SubjectPage][Sensor] LOAD_FAIL'
 export const TOGGLE_VISIBILITY = '[SubjectPage][Sensor] TOGGLE_VISIBILITY'
 export const DESTROY = '[SubjectPage][Sensor] DESTROY'
 
@@ -19,6 +20,10 @@ export class LoadSuccess implements Action {
   constructor(public payload: Source[]) {}
 }
 
+export class LoadFail implements Action {
+  readonly type = LOAD_FAIL
+}
+
 export class ToggleVisibility implements Action {
   readonly type = TOGGLE_VISIBILITY
 
@@ -29,4 +34,4 @@ export class Destroy implements Action {
   readonly type = DESTROY
 }
 
-export type Actions = Load | LoadSuccess | ToggleVisibility | Destroy
+export type Actions = Load | LoadSuccess | LoadFail | ToggleVisibility | Destroy

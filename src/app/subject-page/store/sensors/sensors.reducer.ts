@@ -52,6 +52,7 @@ export function reducer(state = initialState, action: actions.Actions): State {
       )
     }
 
+    case actions.LOAD_FAIL:
     case actions.DESTROY: {
       return { ...initialState }
     }
