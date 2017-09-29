@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core'
 import { Actions, Effect } from '@ngrx/effects'
-import { Action, Store } from '@ngrx/store'
+import { Action } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 import { of } from 'rxjs/observable/of'
 
 import { SensorsService } from '../../services/sensors.service'
 import * as sensorsDataActions from '../sensors-data/sensors-data.actions'
-import * as fromSubjectPage from '../'
 import * as sensorsActions from './sensors.actions'
 
 @Injectable()
@@ -29,7 +28,6 @@ export class SensorsEffects {
 
   constructor(
     private actions$: Actions,
-    private sensorsService: SensorsService,
-    private store: Store<fromSubjectPage.State>
+    private sensorsService: SensorsService
   ) {}
 }
