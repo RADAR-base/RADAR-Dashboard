@@ -4,29 +4,30 @@ BRANCH=$1
 ROOT_FOLDER=/var/www/dashboard
 
 if [[ ${BRANCH} == "master" ]]; then
-  # build project without base-href
-  npm run build
+  # add base-href with /master path
+  npm run build -- --base-href /master/
 
   rsync -rvz --delete-after \
-    --exclude=builds \
-    --exclude=questionnaire \
     ${TRAVIS_BUILD_DIR}/dist/ \
-    ${DEPLOY_USER}@${DEPLOY_SERVER}:${ROOT_FOLDER}
+    ${DEPLOY_USER}@${DEPLOY_SERVER}:${ROOT_FOLDER}/master
+
+  rsync -rvz --delete-after \
+    ${TRAVIS_BUILD_DIR}/coverage/ \
+    ${DEPLOY_USER}@${DEPLOY_SERVER}:${ROOT_FOLDER}/master/coverage
 
   echo Deployed ${BRANCH} to /
 
 elif [[ ${BRANCH} == "develop" ]]; then
-  # add base-href with dev path
-  npm run build -- --base-href /dev/
+  # add base-href with /develop path
+  npm run build -- --base-href /develop/
 
   rsync -rvz --delete-after \
-    --exclude=coverage \
     ${TRAVIS_BUILD_DIR}/dist/ \
-    ${DEPLOY_USER}@${DEPLOY_SERVER}:${ROOT_FOLDER}/dev
+    ${DEPLOY_USER}@${DEPLOY_SERVER}:${ROOT_FOLDER}/develop
 
   rsync -rvz --delete-after \
     ${TRAVIS_BUILD_DIR}/coverage/ \
-    ${DEPLOY_USER}@${DEPLOY_SERVER}:${ROOT_FOLDER}/dev/coverage
+    ${DEPLOY_USER}@${DEPLOY_SERVER}:${ROOT_FOLDER}/develop/coverage
 
   echo Deployed ${BRANCH} to /dev/
 
