@@ -9,15 +9,25 @@ if [[ ${BRANCH} == "master" ]]; then
   rsync -rvz --delete-after \
     --exclude=builds \
     --exclude=questionnaire \
-    --exclude=coverage \
     ${TRAVIS_BUILD_DIR}/dist/ \
     ${DEPLOY_USER}@${DEPLOY_SERVER}:/www/dashboard
 
+  echo Deployed ${BRANCH} to /
+
+elif [[ ${BRANCH} == "develop" ]]; then
+  # add base-href with dev path
+  npm run build -- --base-href /dev/
+
+  rsync -rvz --delete-after \
+    --exclude=coverage \
+    ${TRAVIS_BUILD_DIR}/dist/ \
+    ${DEPLOY_USER}@${DEPLOY_SERVER}:/www/dashboard/dev
+
   rsync -rvz --delete-after \
     ${TRAVIS_BUILD_DIR}/coverage/ \
-    ${DEPLOY_USER}@${DEPLOY_SERVER}:/www/dashboard/coverage
+    ${DEPLOY_USER}@${DEPLOY_SERVER}:/www/dashboard/dev/coverage
 
-  echo Deployed ${BRANCH} to /
+  echo Deployed ${BRANCH} to /dev/
 
 else
   # add base-href with build path
