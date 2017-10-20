@@ -1,6 +1,7 @@
 #!/bin/bash
 
 BRANCH=$1
+ROOT_FOLDER=/var/www/dashboard
 
 if [[ ${BRANCH} == "master" ]]; then
   # build project without base-href
@@ -10,7 +11,7 @@ if [[ ${BRANCH} == "master" ]]; then
     --exclude=builds \
     --exclude=questionnaire \
     ${TRAVIS_BUILD_DIR}/dist/ \
-    ${DEPLOY_USER}@${DEPLOY_SERVER}:/www/dashboard
+    ${DEPLOY_USER}@${DEPLOY_SERVER}:${ROOT_FOLDER}
 
   echo Deployed ${BRANCH} to /
 
@@ -21,11 +22,11 @@ elif [[ ${BRANCH} == "develop" ]]; then
   rsync -rvz --delete-after \
     --exclude=coverage \
     ${TRAVIS_BUILD_DIR}/dist/ \
-    ${DEPLOY_USER}@${DEPLOY_SERVER}:/www/dashboard/dev
+    ${DEPLOY_USER}@${DEPLOY_SERVER}:${ROOT_FOLDER}/dev
 
   rsync -rvz --delete-after \
     ${TRAVIS_BUILD_DIR}/coverage/ \
-    ${DEPLOY_USER}@${DEPLOY_SERVER}:/www/dashboard/dev/coverage
+    ${DEPLOY_USER}@${DEPLOY_SERVER}:${ROOT_FOLDER}/dev/coverage
 
   echo Deployed ${BRANCH} to /dev/
 
@@ -35,7 +36,7 @@ else
 
   rsync -rvz --delete-after \
     ${TRAVIS_BUILD_DIR}/dist/ \
-    ${DEPLOY_USER}@${DEPLOY_SERVER}:/www/dashboard/builds/${TRAVIS_BUILD_NUMBER}
+    ${DEPLOY_USER}@${DEPLOY_SERVER}:${ROOT_FOLDER}/builds/${TRAVIS_BUILD_NUMBER}
 
   echo Deployed ${BRANCH} to /builds/${TRAVIS_BUILD_NUMBER}/
 
