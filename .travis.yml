@@ -9,15 +9,6 @@ cache:
   directories:
      - ./node_modules
 
-env:
-  global:
-    # DEPLOY_USER
-    secure: "C9sGjrwu9h8IqXaMHMznEgZ7xNDBxqXkVLY/M/Kbujp4cyxAgu17kFWDQW5EqGToptSzhYciBJ2hHQZV34W2AJ6uBnl/1hY8PCYf0CtzvUAbtXneeKLCXF5lf5ej60z6qc4aRKP1nDFZG0CGWyNY0mhjhiFzFlS3SufDSMNzFxbIujDU5m3LnP4EGfsDSWGCFyAIrxG7Zz6j9PZckuyexPhTSsOOqrVdv+g0VMOYM7zd38ykYXcp1LzQ789HN/WPUP1Z3eN+RBUlBwyprG74aQZw5PC73LCCoMRxXZ729OL/W8pYovh6kbtlWD5e6x9vHiT5x14jxks1XhaKa58/2XB4mgDeyZmleCD3nL2PKLt32EBgkOENmde+Ksv+9qdGkYSMNke/xU4xH5QlibrD61Qsx+lJ9YkuZufBRmZyVAuEkRGPdTx7H+k2viFmGMeCmSVnEVFsYKJndPSVQxf70ocpS2CIc0rMEBsb5gqOqCd7DEWMzNpDN10acuGNtq/NCvm6m6EcpCLSVyLw0lCgeHaNhCW7CKgasFNnF+peY4HAhx41q3UJt7uWh2K/uh//9jGz9PpRwoyUIRm020gbiKPhC+DrO8RxQFQqwlu0R1Jz/H3SwIqIyjftJMHzh6SHRz1SXan8U4Eg+GeWbTkIBFRsyOzMYI0r29GWUvU/6ys="
-
-    # DEPLOY_SERVER
-    secure: "2wj2Rt9PsmKggD6wvv71Ojdz4TAM3qvHMzT+KQenuhprj+J3jJ83lcpf5PVosi2fOT0PBhdSw7pbAUr6lDElHgSPELFdFeeL2xGFKMUx7b16eH6e0YB70/gGpEm5OhjubpyRyrH+oKBe+rCMsONIufYAl1SMAAnhfGYyqnfOrsDmA9iFoeumArTqxq6RTEZV5hgVQWcMvQYMtvrOWVx7ga3ebRFhZWci5/1ZfH3+KfApGPLxDvMVsmkNYyl7fFFc2oFApktNCTGuTI9RoeXuRiHIde+cwl3KGuaIpmtoj7fD5CwhY5TskLZmOEYwcOGJErhSgkTzBXa9yF8TF7digtuM48gdMQ51IkWyG2PIb0xfC/cgmwq/GeIjb0BaH5ilLhDMOefV871eWNAplE3sUdtByr8atUS0bBUamGAC6ZfMaDSrQF/nd+jPWhZxbyjuMxjl96iNhBNVzEISF7GKlLcfs7LYZs2M2RoKjv6IPrHDZGJQ1hDArc33esBNrHQ7kP1t8yYyiu7YPqucu9hF5G+nnBXdLc0V48HVMF340Xt1kl6oU/1QZaeJ/eGp43EfQeyCTbMdM0gGD1z43qudMMCudYyerNYLO+BEIbw1aAldcz3iHJex9wuyXz1mxdvi3aY00wkAy+G1bxGPPBcabVvf9qYg0sxfiS9naQWT3Ro="
-
-
 before_script:
   # ssh setup
   - echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
@@ -43,7 +34,7 @@ script:
 
 before_deploy:
   # ssh certificates
-  - openssl aes-256-cbc -K $encrypted_03759da18559_key -iv $encrypted_03759da18559_iv -in ./scripts/deploy_key.enc -out deploy_key.pem -d
+  - openssl aes-256-cbc -K $encrypted_cf9fe38ad62a_key -iv $encrypted_cf9fe38ad62a_iv -in ./scripts/deploy_key.enc -out deploy_key.pem -d
   - eval "$(ssh-agent -s)"
   - chmod 600 deploy_key.pem
   - ssh-add deploy_key.pem
