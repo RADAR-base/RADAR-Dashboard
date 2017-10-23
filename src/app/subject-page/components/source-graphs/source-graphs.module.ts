@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
-import { MdProgressSpinnerModule } from '@angular/material'
+import { MatProgressSpinnerModule } from '@angular/material'
 
 import { ChartsModule } from '../../../charts/charts.module'
 import { SourceGraphComponent } from './source-graph/source-graph.component'
@@ -18,7 +18,7 @@ const COMPONENTS = [
 ]
 
 @NgModule({
-  imports: [CommonModule, ChartsModule, MdProgressSpinnerModule],
+  imports: [CommonModule, ChartsModule, MatProgressSpinnerModule],
   declarations: COMPONENTS,
   exports: COMPONENTS
 })

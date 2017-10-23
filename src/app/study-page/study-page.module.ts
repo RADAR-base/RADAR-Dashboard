@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common'
 import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
-import { MdGridListModule } from '@angular/material'
+import { MatGridListModule } from '@angular/material'
 import { RouterModule } from '@angular/router'
 import { EffectsModule } from '@ngrx/effects'
 import { StoreModule } from '@ngrx/store'
@@ -28,7 +28,7 @@ import { reducers } from './store'
     HttpClientModule,
     TileModule,
     ToolbarModule,
-    MdGridListModule,
+    MatGridListModule,
     SubjectTableModule,
     CompliancePlotModule,
     RouterModule.forChild(routes),

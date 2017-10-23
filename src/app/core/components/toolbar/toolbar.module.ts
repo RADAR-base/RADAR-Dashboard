@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
-import { MdButtonModule, MdToolbarModule } from '@angular/material'
+import { MatButtonModule, MatToolbarModule } from '@angular/material'
 
 import { ToolbarComponent } from './toolbar.component'
 
 const COMPONENTS = [ToolbarComponent]
 
 @NgModule({
-  imports: [CommonModule, MdToolbarModule, MdButtonModule],
+  imports: [CommonModule, MatToolbarModule, MatButtonModule],
   declarations: COMPONENTS,
-  exports: [...COMPONENTS, MdButtonModule]
+  exports: [...COMPONENTS, MatButtonModule]
 })
 export class ToolbarModule {}

@@ -18,7 +18,7 @@ import * as fromOverview from '../store/index'
         </div>
       </div>
       <div end>
-        <button md-icon-button>
+        <button mat-icon-button>
           <i class="material-icons">more_vert</i>
         </button>
       </div>
@@ -30,7 +30,7 @@ import * as fromOverview from '../store/index'
       <div *ngFor="let study of (studies$ | async)">
         <p>
           <button
-            md-raised-button
+            mat-raised-button
             [routerLink]="['study', study.id]"
           >
             {{ study.name }} - {{ study.id }}

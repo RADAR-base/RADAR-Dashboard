@@ -6,7 +6,7 @@ import {
   OnInit,
   ViewChild
 } from '@angular/core'
-import { MdPaginator } from '@angular/material'
+import { MatPaginator } from '@angular/material'
 import { Router } from '@angular/router'
 
 import { Subject } from '../../../shared/models/subject.model'
@@ -37,7 +37,7 @@ export class SubjectTableComponent implements OnInit, OnDestroy {
   dataSource: SubjectDataSource | null
   subjectDB = new SubjectDB()
 
-  @ViewChild(MdPaginator) paginator: MdPaginator
+  @ViewChild(MatPaginator) paginator: MatPaginator
 
   @Input() studyId
   @Input()

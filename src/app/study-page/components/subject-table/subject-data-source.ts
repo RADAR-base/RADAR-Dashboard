@@ -1,12 +1,12 @@
 import { DataSource } from '@angular/cdk/table'
-import { MdPaginator } from '@angular/material'
+import { MatPaginator } from '@angular/material'
 import { Observable } from 'rxjs/Observable'
 
 import { Subject } from '../../../shared/models/subject.model'
 import { SubjectDB } from './subject-db'
 
 export class SubjectDataSource extends DataSource<any> {
-  constructor(private subjectDB: SubjectDB, private paginator: MdPaginator) {
+  constructor(private subjectDB: SubjectDB, private paginator: MatPaginator) {
     super()
   }
 

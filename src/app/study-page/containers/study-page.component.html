@@ -1,12 +1,12 @@
 <app-toolbar>
   <div start>
-    <button [routerLink]="['/']" md-icon-button>
+    <button [routerLink]="['/']" mat-icon-button>
       <i class="material-icons">arrow_back</i>
     </button>
     <div class="label">Study {{studyId}}</div>
   </div>
   <div end>
-    <button md-icon-button><i class="material-icons">more_vert</i></button>
+    <button mat-icon-button><i class="material-icons">more_vert</i></button>
   </div>
 </app-toolbar>
 <div class="content">
@@ -24,8 +24,8 @@
   </ng-template>
 
   <ng-template #loadedAndValid>
-    <md-grid-list cols="6" rowHeight="fit">
-      <md-grid-tile colspan="6" rowspan="2">
+    <mat-grid-list cols="6" rowHeight="fit">
+      <mat-grid-tile colspan="6" rowspan="2">
         <app-tile label="Patients">
           <div tile-content>
             <app-subject-table
@@ -34,8 +34,8 @@
             ></app-subject-table>
           </div>
         </app-tile>
-      </md-grid-tile>
-      <md-grid-tile colspan="6" rowspan="2">
+      </mat-grid-tile>
+      <mat-grid-tile colspan="6" rowspan="2">
         <app-tile label="Compliance">
           <div tile-content>
             <div class="legend">
@@ -53,8 +53,8 @@
             </div>
           </div>
         </app-tile>
-      </md-grid-tile>
-    </md-grid-list>
+      </mat-grid-tile>
+    </mat-grid-list>
   </ng-template>
 
 </div>

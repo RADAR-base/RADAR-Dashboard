@@ -2,32 +2,32 @@
   <div start>
     <button
       [routerLink]="['/study', studyId]"
-      md-icon-button
+      mat-icon-button
     >
       <i class="material-icons">arrow_back</i>
     </button>
     <div class="label">Subject {{subjectId}}</div>
   </div>
   <div end>
-    <button md-icon-button>
+    <button mat-icon-button>
       <i class="material-icons">more_vert</i>
     </button>
   </div>
 </app-toolbar>
 <div class="content">
-  <md-grid-list
+  <mat-grid-list
     cols="8"
     rowHeight="fit"
   >
-    <md-grid-tile colspan="2">
+    <mat-grid-tile colspan="2">
       <app-tile label="Sources">
         <app-source-list
           [sources]="sources"
           tile-content
         ></app-source-list>
       </app-tile>
-    </md-grid-tile>
-    <md-grid-tile colspan="6">
+    </mat-grid-tile>
+    <mat-grid-tile colspan="6">
       <app-tile label="Graphs">
         <app-source-graphs
           [dates]="dates$|async"
@@ -37,6 +37,6 @@
           tile-content
         ></app-source-graphs>
       </app-tile>
-    </md-grid-tile>
-  </md-grid-list>
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>

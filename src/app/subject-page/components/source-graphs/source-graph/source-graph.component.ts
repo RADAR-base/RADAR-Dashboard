@@ -13,7 +13,7 @@ import * as fromSubjectPage from '../../../store'
     <div class="label">{{ label }}</div>
 
     <div class="loading" *ngIf="!isLoaded">
-      <md-spinner></md-spinner>
+      <mat-spinner></mat-spinner>
     </div>
     <div class="nodata" *ngIf="!(sensorData) && isLoaded">
       <p>No data found for this timeframe.</p>

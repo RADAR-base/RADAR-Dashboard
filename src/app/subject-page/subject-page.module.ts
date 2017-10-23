@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common'
 import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
-import { MdGridListModule } from '@angular/material'
+import { MatGridListModule } from '@angular/material'
 import { RouterModule } from '@angular/router'
 import { EffectsModule } from '@ngrx/effects'
 import { StoreModule } from '@ngrx/store'
@@ -25,7 +25,7 @@ import { reducers } from './store'
   imports: [
     CommonModule,
     HttpClientModule,
-    MdGridListModule,
+    MatGridListModule,
     SourceListModule,
     SourceGraphsModule,
     TileModule,
