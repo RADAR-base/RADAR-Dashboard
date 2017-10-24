@@ -25,7 +25,7 @@
     "fix:stylelint": "stylelint --fix \"src/**/*.scss\"",
     "fix:code": "npm run fix:prettier",
     "fix:prettier": "prettier --write \"**/*(*.js|*.ts|*.json)\"",
-    "fix:sort": "import-sort -o src/app"
+    "fix:sort": "import-sort -o src/app || true"
   },
   "importSort": {
     ".js": {
