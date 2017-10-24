@@ -9,7 +9,7 @@ import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 import { Subscription } from 'rxjs/Subscription'
 
-import { Dictionary } from '../../../../tmp_modules/@ngrx/entity/src/models'
+import { Dictionary } from '@ngrx/entity/src/models'
 import * as pagesActions from '../../core/store/pages/pages.actions'
 import { DescriptiveStatistic } from '../../shared/enums/descriptive-statistic.enum'
 import { TimeInterval } from '../../shared/enums/time-interval.enum'

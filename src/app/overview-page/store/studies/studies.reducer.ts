@@ -1,8 +1,4 @@
-import {
-  EntityAdapter,
-  EntityState,
-  createEntityAdapter
-} from '../../../../../tmp_modules/@ngrx/entity/index'
+import { EntityAdapter, EntityState, createEntityAdapter } from '@ngrx/entity'
 import { Study } from '../../../shared/models/study.model'
 import * as actions from './studies.actions'
 
