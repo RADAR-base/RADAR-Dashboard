@@ -1,4 +1,5 @@
 import { EntityAdapter, EntityState, createEntityAdapter } from '@ngrx/entity'
+
 import { DescriptiveStatistic } from '../../../shared/enums/descriptive-statistic.enum'
 import { TimeInterval } from '../../../shared/enums/time-interval.enum'
 import { TimeFrame } from '../../../shared/models/time-frame.model'

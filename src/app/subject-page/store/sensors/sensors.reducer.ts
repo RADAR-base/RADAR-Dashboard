@@ -1,6 +1,6 @@
+import { EntityAdapter, EntityState, createEntityAdapter } from '@ngrx/entity'
 import * as shortid from 'shortid'
 
-import { EntityAdapter, EntityState, createEntityAdapter } from '@ngrx/entity'
 import { Sensor } from '../../../shared/models/sensor.model'
 import * as actions from './sensors.actions'
 
