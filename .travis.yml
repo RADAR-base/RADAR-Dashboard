@@ -9,6 +9,8 @@ cache:
   directories:
      - ./node_modules
 
+before_install: if [[ `npm -v` != 5.3.0* ]]; then npm i -g npm@5.3.0; fi
+
 before_script:
   # ssh setup
   - echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
