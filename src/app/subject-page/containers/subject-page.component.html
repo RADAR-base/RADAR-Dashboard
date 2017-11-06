@@ -6,7 +6,7 @@
     >
       <i class="material-icons">arrow_back</i>
     </button>
-    <div class="label">Subject {{subjectId}}</div>
+    <div class="label">Subject {{ subjectId }}</div>
   </div>
   <div end>
     <button mat-icon-button>
@@ -30,7 +30,7 @@
     <mat-grid-tile colspan="6">
       <app-tile label="Graphs">
         <app-source-graphs
-          [dates]="dates$|async"
+          [dates]="dates$ | async"
           [sources]="sources"
           [sensorsData]="sensorsData$ | async"
           [isDataLoaded]="sensorsIsDataLoaded$ | async"

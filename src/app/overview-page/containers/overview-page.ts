@@ -27,7 +27,7 @@ import * as fromOverview from '../store/index'
       class="content"
       *ngIf="studiesIsLoaded$ | async"
     >
-      <div *ngFor="let study of (studies$ | async)">
+      <div *ngFor="let study of studies$ | async">
         <p>
           <button
             mat-raised-button

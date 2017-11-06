@@ -3,7 +3,7 @@
     <button [routerLink]="['/']" mat-icon-button>
       <i class="material-icons">arrow_back</i>
     </button>
-    <div class="label">Study {{studyId}}</div>
+    <div class="label">Study {{ studyId }}</div>
   </div>
   <div end>
     <button mat-icon-button><i class="material-icons">more_vert</i></button>
@@ -15,8 +15,8 @@
   </div>
 
   <ng-template #loaded>
-    <div *ngIf="!isStudyLoadedAndValid; else loadedAndValid">
-      <p>Study "{{studyId}}" not found.</p>
+    <div *ngIf="isStudyLoadedAndValid === false; else loadedAndValid">
+      <p>Study "{{ studyId }}" not found.</p>
       <p>
         <button [routerLink]="['/']">Go to the overview page</button>
       </p>
