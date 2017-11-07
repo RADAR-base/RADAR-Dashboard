@@ -1,0 +1,79 @@
+@import '../../../../styles/common';
+
+:host {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+:host /deep/ {
+  .sensor .chart {
+    background-color: $cl-base-10;
+  }
+
+  .sensor:first-child .chart {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  .sensor:last-child .chart {
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+}
+
+.sensors {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.source {
+  position: relative;
+}
+
+.source-title {
+  padding: 16px 16px 0;
+  height: 48px;
+}
+
+.line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding-top: 56px;
+  padding-bottom: 8px;
+  width: 1px;
+  height: 100%;
+  pointer-events: none;
+}
+
+.line::after {
+  display: block;
+  width: 1px;
+  height: 100%;
+  background-color: $cl-white-20;
+  content: '';
+}
+
+.graphs {
+  flex: 1 1 auto;
+  overflow-y: scroll;
+}
+
+.bottom-group {
+  $volume-height: 112px;
+
+  $axis-height: 32px;
+
+  height: $volume-height + $axis-height;
+  background-color: $cl-base-20;
+
+  .volume {
+    height: $volume-height;
+  }
+
+  .common-axis {
+    height: $axis-height;
+  }
+}

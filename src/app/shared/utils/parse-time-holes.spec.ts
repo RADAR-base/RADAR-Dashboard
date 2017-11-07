@@ -1,4 +1,4 @@
-import { TimeInterval } from '../models/time-interval.enum'
+import { TimeInterval } from '../enums/time-interval.enum'
 import {
   MockAPISampleDataset,
   MockChartDataExpected,

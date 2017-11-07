@@ -4,7 +4,7 @@ import {
 } from '@angular/common/http/testing'
 import { TestBed } from '@angular/core/testing'
 
-import { MockStudies } from '../../testing/mocks/mock-studies'
+import { MockStudies } from '../../testing/mocks/mock-studies.spec'
 import { Study } from './study.model'
 import { StudyService } from './study.service'
 
@@ -31,7 +31,7 @@ describe('StudyService', () => {
       actualResult = users
     })
 
-    http.expectOne('assets/data/mock-all-studies.json').flush(expectedResult)
+    http.expectOne('/api/mock-all-studies.json').flush(expectedResult)
     expect(actualResult).toEqual([
       {
         id: '0',
@@ -54,7 +54,7 @@ describe('StudyService', () => {
       actualResult = result
     })
 
-    http.expectOne('assets/data/mock-all-studies.json').flush(expectedResult)
+    http.expectOne('/api/mock-all-studies.json').flush(expectedResult)
     const expected: Study = { id: '0', name: 'Study 0' }
     expect<any>([actualResult]).toEqual([expected])
   })

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs/Observable'
 
 import { ENV } from '../../../../environments/environment'
-import { TimeInterval } from '../../models/time-interval.enum'
+import { TimeInterval } from '../../enums/time-interval.enum'
 import { getTime } from '../../utils/get-time'
 import { parseTimeHoles } from '../../utils/parse-time-holes'
 

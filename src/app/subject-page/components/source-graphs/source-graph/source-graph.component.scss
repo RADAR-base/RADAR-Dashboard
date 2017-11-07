@@ -1,0 +1,55 @@
+@import '../../../../../styles/common';
+
+:host {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-left: $size-graph-side-label;
+  width: 100%;
+  height: 280px;
+}
+
+.label {
+  @include font-body();
+
+  position: absolute;
+  padding-right: 30px;
+  height: $size-graph-side-label;
+  color: $cl-white-80;
+  line-height: $size-graph-side-label;
+  transform: rotate(-90deg) translate(-100%, -$size-graph-side-label);
+  transform-origin: left top;
+}
+
+.loading,
+.nodata {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: $size-graph-side-label;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 4px 8px 4px 0;
+  border-radius: 4px;
+  background-color: $cl-white-20;
+
+  mat-spinner {
+    opacity: 1;
+  }
+
+  p {
+    color: $cl-white-60;
+  }
+}
+
+.nodata {
+  background-color: $cl-white-10;
+}
+
+app-chart-base-line,
+app-chart-base-multi-line {
+  flex: 1;
+  margin-right: 8px;
+}

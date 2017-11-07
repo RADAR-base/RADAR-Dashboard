@@ -5,23 +5,23 @@
 An [Angular](https://angular.io/) and [D3](https://d3js.org/) web application to manage and monitor research data from the [RADAR-CNS Platform](http://radar-cns.org/).
 
 ## Install
-Install [Node.js](https://nodejs.org/) and [NPM](https://www.npmjs.com/).
+Install [Node.js](https://nodejs.org/) and [Yarn](https://yarnpkg.com/en/docs/install).
 
 We use [angular-cli](https://github.com/angular/angular-cli) so you can use all of it's commands, like the generator. Please read its documentation for further information.
 
 If want to use angular-cli's commands you need to install it globally:
 ```
-$ npm i -g @angular/cli
+$ yarn global add @angular/cli
 ```
 
 In the project folder install npm dependencies:
 ```
-$ npm i
+$ yarn
 ```
 
 To run the application use:
 ```
-$ npm start
+$ yarn start
 ```
 
 ## Guidelines
@@ -31,7 +31,7 @@ For [SCSS](http://sass-lang.com/) we use [StyleLint](https://github.com/stylelin
 
 Use the following command after you make changes to the SCSS and before a PR to run `stylefmt` and `postcss-sorting` and format the code.
 ```
-$ npm run fix:css
+$ yarn fix:css
 ```
 
 ## Contributing

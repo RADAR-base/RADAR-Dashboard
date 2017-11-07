@@ -1,0 +1,14 @@
+@import '../../../styles/common';
+@import '../charts.common';
+
+:host /deep/ {
+  .back-bar {
+    opacity: 0.1;
+    fill: $cl-lighter;
+  }
+
+  .null text {
+    font-family: 'Material Icons', sans-serif;
+    fill: $cl-white-60;
+  }
+}

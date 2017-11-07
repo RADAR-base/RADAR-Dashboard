@@ -1,9 +1,9 @@
 import { createSelector } from '@ngrx/store'
 
+import { DescriptiveStatistic } from '../../enums/descriptive-statistic.enum'
+import { TimeInterval } from '../../enums/time-interval.enum'
 import { ChartData } from '../../models/chart-data.model'
-import { DescriptiveStatistic } from '../../models/descriptive-statistic.enum'
 import { TimeFrame } from '../../models/time-frame.model'
-import { TimeInterval } from '../../models/time-interval.enum'
 import { roundToNearest } from '../../utils/round-to-nearest'
 import * as actions from './sensors.actions'
 import { Sensor } from './sensors.model'
@@ -150,17 +150,18 @@ export function reducer(state = initialState, action: actions.Actions): State {
     }
 
     case actions.TOGGLE_VISIBILITY: {
-      const id = action.payload
-      const entity = {
-        ...state.entities[id],
-        visible: !state.entities[id].visible
-      }
-      const entities = { ...state.entities, [id]: entity }
+      return state
+      // const id = action.payload
+      // const entity = {
+      //   ...state.entities[id],
+      //   visible: !state.entities[id].visible
+      // }
+      // const entities = { ...state.entities, [id]: entity }
 
-      return {
-        ...state,
-        entities: entities
-      }
+      // return {
+      //   ...state,
+      //   entities: entities
+      // }
     }
 
     default:

@@ -1,0 +1,42 @@
+<app-toolbar>
+  <div start>
+    <button
+      [routerLink]="['/study', studyId]"
+      mat-icon-button
+    >
+      <i class="material-icons">arrow_back</i>
+    </button>
+    <div class="label">Subject {{ subjectId }}</div>
+  </div>
+  <div end>
+    <button mat-icon-button>
+      <i class="material-icons">more_vert</i>
+    </button>
+  </div>
+</app-toolbar>
+<div class="content">
+  <mat-grid-list
+    cols="8"
+    rowHeight="fit"
+  >
+    <mat-grid-tile colspan="2">
+      <app-tile label="Sources">
+        <app-source-list
+          [sources]="sources"
+          tile-content
+        ></app-source-list>
+      </app-tile>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="6">
+      <app-tile label="Graphs">
+        <app-source-graphs
+          [dates]="dates$ | async"
+          [sources]="sources"
+          [sensorsData]="sensorsData$ | async"
+          [isDataLoaded]="sensorsIsDataLoaded$ | async"
+          tile-content
+        ></app-source-graphs>
+      </app-tile>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
