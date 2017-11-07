@@ -5,7 +5,7 @@ ROOT_FOLDER=/var/www/dashboard
 
 if [[ ${BRANCH} == "master" ]]; then
   # add base-href with /master path
-  npm run build -- --base-href /master/
+  yarn build --stats-json --base-href /master/
 
   rsync -rvz --delete-after \
     ${TRAVIS_BUILD_DIR}/dist/ \
@@ -19,7 +19,7 @@ if [[ ${BRANCH} == "master" ]]; then
 
 elif [[ ${BRANCH} == "develop" ]]; then
   # add base-href with /develop path
-  npm run build -- --base-href /develop/
+  yarn build --stats-json --base-href /develop/
 
   rsync -rvz --delete-after \
     ${TRAVIS_BUILD_DIR}/dist/ \
@@ -33,7 +33,7 @@ elif [[ ${BRANCH} == "develop" ]]; then
 
 else
   # add base-href with build path
-  npm run build -- --base-href /builds/${TRAVIS_BUILD_NUMBER}/
+  yarn build --base-href /builds/${TRAVIS_BUILD_NUMBER}/
 
   rsync -rvz --delete-after \
     ${TRAVIS_BUILD_DIR}/dist/ \
