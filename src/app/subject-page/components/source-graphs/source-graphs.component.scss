@@ -7,7 +7,7 @@
   flex-direction: column;
 }
 
-:host /deep/ {
+:host::ng-deep {
   .sensor .chart {
     background-color: $cl-base-10;
   }

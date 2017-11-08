@@ -1,7 +1,7 @@
 @import '../../../styles/common';
 @import '../charts.common';
 
-:host /deep/ {
+:host::ng-deep {
   .back-bar {
     opacity: 0.1;
     fill: $cl-lighter;

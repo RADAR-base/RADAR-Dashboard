@@ -1,11 +1,11 @@
-@import '../../../styles/common';
+@import '../../styles/common';
 
 :host {
   display: flex;
   flex: 1 1 0;
 }
 
-:host /deep/ {
+:host::ng-deep {
   .axis text {
     @include font-small;
 

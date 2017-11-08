@@ -7,7 +7,7 @@
   padding-left: $size-graph-side-label;
 }
 
-:host /deep/ {
+:host::ng-deep {
   .chart .axis text {
     fill: $cl-white-60;
   }

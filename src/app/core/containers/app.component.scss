@@ -6,7 +6,7 @@
   height: 100%;
 }
 
-:host /deep/ {
+:host::ng-deep {
   // Pages content
   .content {
     display: flex;
