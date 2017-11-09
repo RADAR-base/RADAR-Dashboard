@@ -10,7 +10,7 @@
 }
 
 // Common styles for all charts
-:host /deep/ {
+:host::ng-deep {
   .tile-header {
     @include font-small;
 

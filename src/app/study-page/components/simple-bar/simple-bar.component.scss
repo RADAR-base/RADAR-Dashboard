@@ -1,6 +1,6 @@
 @import '../../../../styles/common';
 
-:host /deep/ {
+:host::ng-deep {
   svg {
     display: block;
     margin: 3px 0 3px 2px;

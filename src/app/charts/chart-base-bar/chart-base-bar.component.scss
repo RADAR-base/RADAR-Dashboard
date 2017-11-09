@@ -1,7 +1,7 @@
 @import '../../../styles/common';
 @import '../charts.common';
 
-:host /deep/ {
+:host::ng-deep {
   .bar {
     fill: $cl-graph-3;
   }
