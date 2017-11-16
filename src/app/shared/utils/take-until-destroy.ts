@@ -17,10 +17,8 @@ export function TakeUntilDestroy(constructor: any) {
     if (!subject.observers.length) {
       console.warn(
         `${constructor.name} has no observers subscribed. ` +
-        `Add '.takeUntil(this.takeUntilDestroy())' to the observers in ${
-        constructor.name
-        }. ` +
-        `If you have no observers remove this decorator.`
+          `Add '.takeUntil(this.takeUntilDestroy())' to the observers in ${constructor.name}. ` +
+          `If you have no observers remove this decorator.`
       )
     }
 
