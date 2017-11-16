@@ -4,14 +4,14 @@ export function TakeUntilDestroy(constructor: any) {
   const ngOnDestroy = constructor.prototype.ngOnDestroy
   let subject = new Subject()
 
-  constructor.prototype.takeUntilDestroy = function () {
+  constructor.prototype.takeUntilDestroy = function() {
     if (subject.closed) {
       subject = new Subject()
     }
     return subject.asObservable()
   }
 
-  constructor.prototype.ngOnDestroy = function (...args) {
+  constructor.prototype.ngOnDestroy = function(...args) {
     // check if there are observers
     // if not it could mean the developer forgot to add the `takeUntilDestroy` method
     if (!subject.observers.length) {
