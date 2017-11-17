@@ -2,7 +2,7 @@
   "recommendations": [
     "esbenp.prettier-vscode",
     "minhthai.vscode-todo-parser",
-    "johnpapa.Angular2",
+    "Mikael.angular-beastcode",
     "Angular.ng-template",
     "EditorConfig.EditorConfig",
     "eg2.tslint",
@@ -12,6 +12,7 @@
     "natewallace.angular2-inline",
     "shinnn.stylelint",
     "mrmlnc.vscode-scss",
-    "stringham.angular-template-formatter"
+    "stringham.angular-template-formatter",
+    "amatiasq.sort-imports"
   ]
 }

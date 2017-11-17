@@ -12,7 +12,7 @@
     "folderExclude": [".vscode", "node_modules", "coverage", "dist"],
     "markers": ["TODO:", "NOTE:", "FIXME:"]
   },
-  "sortImports.onSave": true,
+  "sort-imports.on-save": true,
   "eslint.enable": false,
   "html.format.enable": false,
   "angular-template-formatter.indentWidth": 2,
