@@ -91,7 +91,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
     this.beforeDraw()
   }
 
-  draw() { }
+  draw() {}
 
   ngOnDestroy() {
     this.window$.unsubscribe()
