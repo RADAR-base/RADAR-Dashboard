@@ -9,8 +9,10 @@ import {
   Output,
   ViewChild
 } from '@angular/core'
+import { NgControl } from '@angular/forms'
 import * as d3 from 'd3'
 import { Observable } from 'rxjs/Observable'
+import { Subject } from 'rxjs/Subject'
 import { Subscription } from 'rxjs/Subscription'
 import * as shortid from 'shortid'
 
@@ -74,6 +76,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   xAxis: any
   yAxis: any
   window$: Subscription
+  debounceTime = 500
 
   ngAfterViewInit() {
     this.uid = shortid.generate()
@@ -123,17 +126,18 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
         .append('rect')
         .attr('class', 'tooltip-mouse-box')
         .attr('data-tooltipMouseBox', true)
-        .on('mousemove', () => this.onTooltipMouseMove())
+        .on('mousemove', this.onMouseMoveDebounced(this.debounceTime))
     }
 
     this.init()
   }
 
-  private onTooltipMouseMove() {
-    if (this.xScale) {
-      this.tooltipMouseMove.emit(
-        this.xScale.invert(d3.mouse(this.tooltip.node())[0])
-      )
+  private onMouseMoveDebounced(debounceTime) {
+    let timeout
+    return () => {
+      const date = this.xScale.invert(d3.mouse(this.tooltip.node())[0])
+      clearTimeout(timeout)
+      timeout = setTimeout(() => this.tooltipMouseMove.emit(date), debounceTime)
     }
   }
 
