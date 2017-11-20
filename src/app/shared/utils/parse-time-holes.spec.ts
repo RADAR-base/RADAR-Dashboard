@@ -18,7 +18,6 @@ import {
 import { parseTimeHoles } from './parse-time-holes'
 
 describe('parseTimeHoles', () => {
-
   it('Sensor Data > 10s Interval > Zero Values', () => {
     const actual = parseTimeHoles(
       MockAPISampleDatasetZeroVals,
