@@ -1,7 +1,9 @@
 import { TimeInterval } from '../enums/time-interval.enum'
 import {
   MockAPISampleDataset,
+  MockAPISampleDatasetZeroVals,
   MockChartDataExpected,
+  MockChartDataZeroValsExpected,
   MockChartDataWithStartEndHolesExpected,
   MockTimeFrameChartData,
   MockTimeFrameChartDataWithStartEndHoles
@@ -16,6 +18,16 @@ import {
 import { parseTimeHoles } from './parse-time-holes'
 
 describe('parseTimeHoles', () => {
+
+  it('Sensor Data > 10s Interval > Zero Values', () => {
+    const actual = parseTimeHoles(
+      MockAPISampleDatasetZeroVals,
+      MockTimeFrameChartData,
+      TimeInterval.TEN_SECOND
+    )
+    expect(actual).toEqual(MockChartDataZeroValsExpected)
+  })
+
   it('Sensor Data > 10s Interval > TimeFrame === Data', () => {
     const actual = parseTimeHoles(
       MockAPISampleDataset,

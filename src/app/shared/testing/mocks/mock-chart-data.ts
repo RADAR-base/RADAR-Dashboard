@@ -48,3 +48,29 @@ export const MockChartDataWithStartEndHolesExpected: ChartData[] = [
   ...MockChartDataExpected,
   { date: new Date(MockTimeFrameChartDataWithStartEndHoles.end), value: null }
 ]
+
+export const MockAPISampleDatasetZeroVals = [
+  { startDateTime: '2017-06-16T10:09:10.000Z', sample: { value: 0 } },
+  { startDateTime: '2017-06-16T10:09:50.000Z', sample: { value: 0 } },
+  { startDateTime: '2017-06-16T10:14:10.000Z', sample: { value: 0 } },
+  { startDateTime: '2017-06-16T10:14:20.000Z', sample: { value: 0 } },
+  { startDateTime: '2017-06-16T10:14:30.000Z', sample: { value: 0 } },
+  { startDateTime: '2017-06-16T10:46:40.000Z', sample: { value: 0 } },
+  { startDateTime: '2017-06-16T10:46:50.000Z', sample: { value: 0 } },
+  { startDateTime: '2017-06-16T10:49:00.000Z', sample: { value: 0 } }
+]
+
+export const MockChartDataZeroValsExpected: ChartData[] = [
+  { date: new Date('2017-06-16T10:09:10.000Z'), value: 0 },
+  { date: new Date('2017-06-16T10:09:40.000Z'), value: null },
+  { date: new Date('2017-06-16T10:09:50.000Z'), value: 0 },
+  { date: new Date('2017-06-16T10:14:00.000Z'), value: null },
+  { date: new Date('2017-06-16T10:14:10.000Z'), value: 0 },
+  { date: new Date('2017-06-16T10:14:20.000Z'), value: 0 },
+  { date: new Date('2017-06-16T10:14:30.000Z'), value: 0 },
+  { date: new Date('2017-06-16T10:46:30.000Z'), value: null },
+  { date: new Date('2017-06-16T10:46:40.000Z'), value: 0 },
+  { date: new Date('2017-06-16T10:46:50.000Z'), value: 0 },
+  { date: new Date('2017-06-16T10:48:50.000Z'), value: null },
+  { date: new Date('2017-06-16T10:49:00.000Z'), value: 0 }
+]
