@@ -74,7 +74,6 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   xAxis: any
   yAxis: any
   window$: Subscription
-  debounceTime = 500
 
   ngAfterViewInit() {
     this.uid = shortid.generate()
@@ -91,7 +90,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
     this.beforeDraw()
   }
 
-  draw() {}
+  draw() { }
 
   ngOnDestroy() {
     this.window$.unsubscribe()
@@ -124,18 +123,17 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
         .append('rect')
         .attr('class', 'tooltip-mouse-box')
         .attr('data-tooltipMouseBox', true)
-        .on('mousemove', this.onTooltipMouseMove(this.debounceTime))
+        .on('mousemove', () => this.onTooltipMouseMove())
     }
 
     this.init()
   }
 
-  private onTooltipMouseMove(debounceTime) {
-    let timeout
-    return () => {
-      const date = this.xScale.invert(d3.mouse(this.tooltip.node())[0])
-      clearTimeout(timeout)
-      timeout = setTimeout(() => this.tooltipMouseMove.emit(date), debounceTime)
+  private onTooltipMouseMove() {
+    if (this.xScale) {
+      this.tooltipMouseMove.emit(
+        this.xScale.invert(d3.mouse(this.tooltip.node())[0])
+      )
     }
   }
 
