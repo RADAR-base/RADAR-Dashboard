@@ -3,8 +3,8 @@ import {
   MockAPISampleDataset,
   MockAPISampleDatasetZeroVals,
   MockChartDataExpected,
-  MockChartDataZeroValsExpected,
   MockChartDataWithStartEndHolesExpected,
+  MockChartDataZeroValsExpected,
   MockTimeFrameChartData,
   MockTimeFrameChartDataWithStartEndHoles
 } from '../testing/mocks/mock-chart-data'
