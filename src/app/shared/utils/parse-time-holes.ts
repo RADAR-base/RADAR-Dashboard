@@ -15,7 +15,7 @@ export function parseTimeHoles(dataset, timeFrame, timeInterval) {
     }
 
     // --> Add timeholes
-    if (prev && prev.value && !dateCheck) {
+    if (prev && (prev.value !== undefined) && !dateCheck) {
       acc.push({ date: new Date(dateBefore), value: null })
     }
 
