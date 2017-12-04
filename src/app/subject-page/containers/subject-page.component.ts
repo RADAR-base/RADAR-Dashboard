@@ -16,10 +16,10 @@ import { TimeInterval } from '../../shared/enums/time-interval.enum'
 import { Source } from '../../shared/models/source.model'
 import { TakeUntilDestroy } from '../../shared/utils/take-until-destroy'
 import { SensorsData } from '../models/sensors-data.model'
+import * as fromSubjectPage from '../store/index'
 import * as sensorsDataActions from '../store/sensors-data/sensors-data.actions'
 import * as sourcesActions from '../store/sources/sources.actions'
 import * as subjectActions from '../store/subject/subject.actions'
-import * as fromSubjectPage from '../store/index'
 
 @Component({
   selector: 'app-patient-page',

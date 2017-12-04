@@ -5,10 +5,10 @@ import { Observable } from 'rxjs/Observable'
 
 import { Subject } from '../../shared/models/subject.model'
 import { TakeUntilDestroy } from '../../shared/utils/take-until-destroy'
+import * as fromStudyPage from '../store'
 import * as complianceDataAction from '../store/compliance-data/compliance-data.actions'
 import * as studyAction from '../store/study/study.actions'
 import * as subjectAction from '../store/subject/subject.actions'
-import * as fromStudyPage from '../store'
 
 @Component({
   selector: 'app-study-page',

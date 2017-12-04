@@ -7,8 +7,8 @@ import {
 import { Store } from '@ngrx/store'
 
 import { AppConfig } from '../../../shared/utils/config'
-import * as sensorsAction from '../../store/sensors/sensors.actions'
 import * as fromSubjectPage from '../../store'
+import * as sensorsAction from '../../store/sensors/sensors.actions'
 
 @Component({
   selector: 'app-source-list',

@@ -8,8 +8,8 @@ import {
   ActivatedRouteStub,
   RouterStub
 } from '../../shared/testing/router-stubs'
-import { SubjectPageModule } from '../subject-page.module'
 import { reducers } from '../store'
+import { SubjectPageModule } from '../subject-page.module'
 import { SubjectPageComponent } from './subject-page.component'
 
 describe('SubjectPageComponent', () => {

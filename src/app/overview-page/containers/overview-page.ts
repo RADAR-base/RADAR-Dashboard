@@ -3,8 +3,8 @@ import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 
 import { Study } from '../../shared/models/study.model'
-import * as studyAction from '../store/studies/studies.actions'
 import * as fromOverview from '../store/index'
+import * as studyAction from '../store/studies/studies.actions'
 
 @Component({
   selector: 'app-overview-page',
