@@ -15,7 +15,7 @@
     "lint:ng": "ng lint --type-check",
     "lint:css": "stylelint \"src/**/*.scss\"",
     "lint:prettier": "prettier --list-different \"**/*(*.js|*.ts|*.json)\"",
-    "lint:sort": "import-sort -d -s src/app",
+    "lint:sort": "import-sort --list-different \"src/app/**/*(*.js|*.ts)\"",
     "test": "ng test --environment=test",
     "test:coverage": "ng test --single-run --code-coverage && open coverage/index.html",
     "e2e": "ng e2e",
@@ -25,7 +25,7 @@
     "fix:stylelint": "stylelint --fix \"src/**/*.scss\"",
     "fix:code": "yarn fix:prettier",
     "fix:prettier": "prettier --write \"**/*(*.js|*.ts|*.json)\"",
-    "fix:sort": "import-sort -o src/app || true"
+    "fix:sort": "import-sort --write \"src/app/**/*(*.js|*.ts)\""
   },
   "importSort": {
     ".js": {
@@ -80,11 +80,11 @@
     "codacy-coverage": "^2.0.3",
     "codelyzer": "^4.0.1",
     "coveralls": "^3.0.0",
-    "enhanced-resolve": "^3.4.1",
-    "import-sort-cli": "^3.3.0",
-    "import-sort-parser-babylon": "^3.2.0",
-    "import-sort-parser-typescript": "^3.2.0",
-    "import-sort-style-module": "^3.0.0",
+    "enhanced-resolve": "^4.0.0-beta.2",
+    "import-sort-cli": "^4.2.0",
+    "import-sort-parser-babylon": "^4.2.0",
+    "import-sort-parser-typescript": "^4.2.0",
+    "import-sort-style-module": "^4.2.0",
     "jasmine-core": "^2.8.0",
     "jasmine-spec-reporter": "^4.2.1",
     "karma": "^1.7.1",
@@ -106,7 +106,7 @@
     "sass-mq": "^3.3.2",
     "stylefmt": "^6.0.0",
     "stylelint": "^8.2.0",
-    "stylelint-config-standard": "^17.0.0",
+    "stylelint-config-standard": "^18.0.0",
     "stylelint-order": "^0.7.0",
     "ts-node": "^3.3.0",
     "tslint": "^5.8.0",
