@@ -105,7 +105,7 @@
     "rxjs-tslint-rules": "^3.0.4",
     "sass-mq": "^3.3.2",
     "stylefmt": "^6.0.0",
-    "stylelint": "^8.2.0",
+    "stylelint": "^8.4.0",
     "stylelint-config-standard": "^18.0.0",
     "stylelint-order": "^0.8.0",
     "ts-node": "^4.0.1",
