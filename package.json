@@ -44,13 +44,13 @@
   ],
   "dependencies": {
     "@angular/animations": "^5.0.0",
-    "@angular/cdk": "^5.0.0-rc0",
+    "@angular/cdk": "^5.0.0",
     "@angular/common": "^5.0.0",
     "@angular/compiler": "^5.0.0",
     "@angular/core": "^5.0.0",
     "@angular/forms": "^5.0.0",
     "@angular/http": "^5.0.0",
-    "@angular/material": "5.0.0-rc0",
+    "@angular/material": "^5.0.0",
     "@angular/platform-browser": "^5.0.0",
     "@angular/platform-browser-dynamic": "^5.0.0",
     "@angular/router": "^5.0.0",
@@ -107,11 +107,11 @@
     "stylefmt": "^6.0.0",
     "stylelint": "^8.2.0",
     "stylelint-config-standard": "^18.0.0",
-    "stylelint-order": "^0.7.0",
-    "ts-node": "^3.3.0",
+    "stylelint-order": "^0.8.0",
+    "ts-node": "^4.0.1",
     "tslint": "^5.8.0",
     "tslint-config-standard": "^7.0.0",
     "tslint-language-service": "^0.9.6",
-    "typescript": "~2.4.0"
+    "typescript": "~2.5.0"
   }
 }
