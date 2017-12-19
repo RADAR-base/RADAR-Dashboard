@@ -8,8 +8,8 @@ import {
   ActivatedRouteStub,
   RouterStub
 } from '../../shared/testing/router-stubs'
-import { StudyPageModule } from '../study-page.module'
 import * as fromStudyPage from '../store/index'
+import { StudyPageModule } from '../study-page.module'
 import { StudyPageComponent } from './study-page.component'
 
 describe('StudyPageComponent', () => {

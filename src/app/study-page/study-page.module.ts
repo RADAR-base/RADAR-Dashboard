@@ -16,11 +16,11 @@ import { StudyGuard } from './guards/study.guard'
 import { ComplianceDataService } from './services/compliance-data.service'
 import { StudyService } from './services/study.service'
 import { SubjectService } from './services/subject.service'
+import { reducers } from './store'
 import { ComplianceDataEffects } from './store/compliance-data/compliance-data.effects'
 import { StudyEffects } from './store/study/study.effects'
 import { SubjectEffects } from './store/subject/subject.effects'
 import { routes } from './study-page.routing'
-import { reducers } from './store'
 
 @NgModule({
   imports: [

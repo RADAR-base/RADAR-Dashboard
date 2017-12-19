@@ -13,8 +13,8 @@ import { NotFoundPageComponent } from './core/containers/not-found/not-found.com
 import { ConfigService } from './core/services/config.service'
 import { ErrorService } from './core/services/error.service'
 import { RadarHttpInterceptor } from './core/services/radar.interceptor'
-import { PagesEffects } from './core/store/pages/pages.effects'
 import { metaReducers } from './core/store'
+import { PagesEffects } from './core/store/pages/pages.effects'
 
 @NgModule({
   declarations: [AppComponent, NotFoundPageComponent],

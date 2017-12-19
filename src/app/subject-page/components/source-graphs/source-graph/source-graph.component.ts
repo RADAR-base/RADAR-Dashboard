@@ -4,8 +4,8 @@ import { Store } from '@ngrx/store'
 import { DataType } from '../../../../shared/enums/data-type.enum'
 import { ChartData } from '../../../../shared/models/chart-data.model'
 import { AppConfig } from '../../../../shared/utils/config'
-import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.actions'
 import * as fromSubjectPage from '../../../store'
+import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.actions'
 
 @Component({
   selector: 'app-source-graph',

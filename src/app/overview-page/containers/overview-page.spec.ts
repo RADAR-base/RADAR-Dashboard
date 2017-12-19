@@ -10,8 +10,8 @@ import {
 } from '../../shared/testing/router-stubs'
 import { OverviewPageModule } from '../overview-page.module'
 import { StudiesService } from '../services/studies.service'
-import { StudiesEffects } from '../store/studies/studies.effects'
 import { reducers } from '../store'
+import { StudiesEffects } from '../store/studies/studies.effects'
 import { OverviewPageComponent } from './overview-page'
 
 describe('OverviewPageComponent', () => {

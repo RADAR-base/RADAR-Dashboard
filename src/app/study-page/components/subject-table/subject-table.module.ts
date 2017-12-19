@@ -8,8 +8,8 @@ import {
 } from '@angular/material'
 
 import { SimpleBarComponent } from '../simple-bar/simple-bar.component'
-import { SubjectTableComponent } from './subject-table.component'
 import { SubjectPaginatorIntl } from './subject-paginator-intl'
+import { SubjectTableComponent } from './subject-table.component'
 
 const COMPONENTS = [SubjectTableComponent, SimpleBarComponent]
 

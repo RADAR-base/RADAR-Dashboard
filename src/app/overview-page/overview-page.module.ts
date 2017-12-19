@@ -7,11 +7,11 @@ import { StoreModule } from '@ngrx/store'
 
 import { ToolbarModule } from '../core/components/toolbar/toolbar.module'
 import { RadarHttpInterceptorProvider } from '../core/services/radar.interceptor'
+import { OverviewPageComponent } from './containers/overview-page'
 import { routes } from './overview-page.routing'
 import { StudiesService } from './services/studies.service'
-import { StudiesEffects } from './store/studies/studies.effects'
-import { OverviewPageComponent } from './containers/overview-page'
 import { reducers } from './store'
+import { StudiesEffects } from './store/studies/studies.effects'
 
 @NgModule({
   imports: [

@@ -15,11 +15,11 @@ import { SubjectPageComponent } from './containers/subject-page.component'
 import { SensorsDataService } from './services/sensors-data.service'
 import { SensorsService } from './services/sensors.service'
 import { SourcesService } from './services/sources.service'
+import { reducers } from './store'
 import { SensorsDataEffects } from './store/sensors-data/sensors-data.effects'
 import { SensorsEffects } from './store/sensors/sensors.effects'
 import { SourcesEffects } from './store/sources/sources.effects'
 import { routes } from './subject-page.routing'
-import { reducers } from './store'
 
 @NgModule({
   imports: [
