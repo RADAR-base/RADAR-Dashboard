@@ -1,4 +1,4 @@
-import { Sensor } from '../store/sensors/sensors.model'
+import { Sensor } from './sensor.model'
 
 export interface Config {
   sensors: {
