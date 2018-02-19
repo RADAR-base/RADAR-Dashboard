@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common'
 import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
-import { MatGridListModule } from '@angular/material'
 import { RouterModule } from '@angular/router'
 import { EffectsModule } from '@ngrx/effects'
 import { StoreModule } from '@ngrx/store'
@@ -9,6 +8,7 @@ import { StoreModule } from '@ngrx/store'
 import { TileModule } from '../core/components/tile/tile.module'
 import { ToolbarModule } from '../core/components/toolbar/toolbar.module'
 import { RadarHttpInterceptorProvider } from '../core/services/radar.interceptor'
+import { MaterialModule } from '../material'
 import { SourceGraphsModule } from './components/source-graphs/source-graphs.module'
 import { SourceListModule } from './components/source-list/source-list.module'
 import { SubjectPageComponent } from './containers/subject-page.component'
@@ -25,7 +25,7 @@ import { routes } from './subject-page.routing'
   imports: [
     CommonModule,
     HttpClientModule,
-    MatGridListModule,
+    MaterialModule,
     SourceListModule,
     SourceGraphsModule,
     TileModule,

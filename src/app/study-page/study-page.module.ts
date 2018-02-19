@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common'
 import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
-import { MatGridListModule } from '@angular/material'
 import { RouterModule } from '@angular/router'
 import { EffectsModule } from '@ngrx/effects'
 import { StoreModule } from '@ngrx/store'
@@ -9,6 +8,7 @@ import { StoreModule } from '@ngrx/store'
 import { TileModule } from '../core/components/tile/tile.module'
 import { ToolbarModule } from '../core/components/toolbar/toolbar.module'
 import { RadarHttpInterceptorProvider } from '../core/services/radar.interceptor'
+import { MaterialModule } from '../material'
 import { CompliancePlotModule } from './components/compliance-plot/compliance-plot.module'
 import { SubjectTableModule } from './components/subject-table/subject-table.module'
 import { StudyPageComponent } from './containers/study-page.component'
@@ -28,7 +28,7 @@ import { routes } from './study-page.routing'
     HttpClientModule,
     TileModule,
     ToolbarModule,
-    MatGridListModule,
+    MaterialModule,
     SubjectTableModule,
     CompliancePlotModule,
     RouterModule.forChild(routes),
