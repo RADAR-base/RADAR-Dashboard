@@ -24,7 +24,7 @@ import { PagesEffects } from './core/store/pages/pages.effects'
     BrowserAnimationsModule,
 
     // ngrx/store
-    StoreModule.forRoot(metaReducers),
+    StoreModule.forRoot({}, { metaReducers }),
 
     // Setup ngrx/effects
     EffectsModule.forRoot([PagesEffects]),
