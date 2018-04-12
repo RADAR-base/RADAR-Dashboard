@@ -1,4 +1,4 @@
-# RADAR-CNS Frontend Dashboard App
+# RADAR-base Frontend Dashboard App
 
 [![Build Status](https://travis-ci.org/RADAR-base/RADAR-Dashboard.svg?branch=master)](https://travis-ci.org/RADAR-base/RADAR-Dashboard) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/d32926d9ac8c4f0292025b8207ba1f6d)](https://www.codacy.com/app/herkulano/RADAR-Dashboard?utm_source=github.com&utm_medium=referral&utm_content=RADAR-base/RADAR-Dashboard&utm_campaign=Badge_Grade) [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/d32926d9ac8c4f0292025b8207ba1f6d)](https://www.codacy.com/app/herkulano/RADAR-Dashboard?utm_source=github.com&utm_medium=referral&utm_content=RADAR-base/RADAR-Dashboard&utm_campaign=Badge_Coverage) [![Coverage Status](https://coveralls.io/repos/github/RADAR-CNS/RADAR-Dashboard/badge.svg?branch=master)](https://coveralls.io/github/RADAR-base/RADAR-Dashboard?branch=master)
 
