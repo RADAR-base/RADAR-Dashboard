@@ -2,12 +2,14 @@ import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoPreloading, RouterModule } from '@angular/router'
 import { EffectsModule } from '@ngrx/effects'
 import { StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 
 import { ENV } from '../environments/environment'
-import { AppRoutingModule } from './app.routing'
+import { routes } from './app.routing'
+import { AuthModule } from './auth/auth.module'
 import { AppComponent } from './core/containers/app.component'
 import { NotFoundPageComponent } from './core/containers/not-found/not-found.component'
 import { ConfigService } from './core/services/config.service'
@@ -36,7 +38,12 @@ import { PagesEffects } from './core/store/pages/pages.effects'
     ENV.TOOLS ? StoreDevtoolsModule.instrument() : [],
 
     // Routing
-    AppRoutingModule
+    RouterModule.forRoot(routes, {
+      preloadingStrategy: NoPreloading
+    }),
+
+    // Auth
+    AuthModule.forRoot()
   ],
   providers: [RadarHttpInterceptor, ConfigService, ErrorService],
   bootstrap: [AppComponent]
