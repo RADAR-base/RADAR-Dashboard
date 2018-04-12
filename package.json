@@ -69,6 +69,7 @@
     "@angular/cli": "^1.6.4",
     "@angular/compiler-cli": "^5.2.0",
     "@angular/language-service": "^5.2.0",
+    "@ngrx/schematics": "^5.2.0",
     "@ngrx/store-devtools": "^5.1.0",
     "@types/d3": "^5.0.0",
     "@types/hammerjs": "^2.0.35",
