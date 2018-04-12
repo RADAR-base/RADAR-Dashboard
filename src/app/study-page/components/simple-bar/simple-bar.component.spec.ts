@@ -6,13 +6,11 @@ describe('SimpleBarComponent', () => {
   let component: SimpleBarComponent
   let fixture: ComponentFixture<SimpleBarComponent>
 
-  beforeEach(
-    async(() => {
-      TestBed.configureTestingModule({
-        declarations: [SimpleBarComponent]
-      }).compileComponents()
-    })
-  )
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [SimpleBarComponent]
+    }).compileComponents()
+  }))
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SimpleBarComponent)

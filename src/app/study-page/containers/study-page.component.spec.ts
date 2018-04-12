@@ -18,31 +18,29 @@ describe('StudyPageComponent', () => {
   let element: HTMLElement
   let de: DebugElement
 
-  beforeEach(
-    async(() => {
-      const activatedRoute = new ActivatedRouteStub()
-      activatedRoute.testParams = { studyId: '0' }
+  beforeEach(async(() => {
+    const activatedRoute = new ActivatedRouteStub()
+    activatedRoute.testParams = { studyId: '0' }
 
-      TestBed.configureTestingModule({
-        imports: [
-          StoreModule.forRoot({
-            studyPage: combineReducers(fromStudyPage.reducers)
-          }),
-          EffectsModule.forRoot([]),
-          StudyPageModule
-        ],
-        providers: [
-          { provide: Router, useClass: RouterStub },
-          { provide: ActivatedRoute, useValue: activatedRoute }
-        ]
-      })
-
-      fixture = TestBed.createComponent(StudyPageComponent)
-      component = fixture.componentInstance
-      element = fixture.nativeElement
-      de = fixture.debugElement
+    TestBed.configureTestingModule({
+      imports: [
+        StoreModule.forRoot({
+          studyPage: combineReducers(fromStudyPage.reducers)
+        }),
+        EffectsModule.forRoot([]),
+        StudyPageModule
+      ],
+      providers: [
+        { provide: Router, useClass: RouterStub },
+        { provide: ActivatedRoute, useValue: activatedRoute }
+      ]
     })
-  )
+
+    fixture = TestBed.createComponent(StudyPageComponent)
+    component = fixture.componentInstance
+    element = fixture.nativeElement
+    de = fixture.debugElement
+  }))
 
   it('should create', () => {
     fixture.detectChanges()

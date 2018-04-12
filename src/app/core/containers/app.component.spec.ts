@@ -9,20 +9,15 @@ describe('AppComponent', () => {
   let component: AppComponent
   let fixture: ComponentFixture<AppComponent>
 
-  beforeEach(
-    async(() => {
-      TestBed.configureTestingModule({
-        imports: [AppModule, RouterTestingModule.withRoutes(routes)]
-      }).compileComponents()
-    })
-  )
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [AppModule, RouterTestingModule.withRoutes(routes)]
+    }).compileComponents()
+  }))
 
-  it(
-    'should create the app',
-    async(() => {
-      fixture = TestBed.createComponent(AppComponent)
-      component = fixture.componentInstance
-      expect(component).toBeTruthy()
-    })
-  )
+  it('should create the app', async(() => {
+    fixture = TestBed.createComponent(AppComponent)
+    component = fixture.componentInstance
+    expect(component).toBeTruthy()
+  }))
 })

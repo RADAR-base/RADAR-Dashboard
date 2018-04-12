@@ -7,13 +7,11 @@ describe('SourceVolumeComponent', () => {
   let component: SourceVolumeComponent
   let fixture: ComponentFixture<SourceVolumeComponent>
 
-  beforeEach(
-    async(() => {
-      TestBed.configureTestingModule({
-        imports: [SourceGraphsModule]
-      }).compileComponents()
-    })
-  )
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [SourceGraphsModule]
+    }).compileComponents()
+  }))
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SourceVolumeComponent)

@@ -8,13 +8,11 @@ describe('CompliancePlotComponent', () => {
   let component: CompliancePlotComponent
   let fixture: ComponentFixture<CompliancePlotComponent>
 
-  beforeEach(
-    async(() => {
-      TestBed.configureTestingModule({
-        imports: [CompliancePlotModule]
-      }).compileComponents()
-    })
-  )
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [CompliancePlotModule]
+    }).compileComponents()
+  }))
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CompliancePlotComponent)

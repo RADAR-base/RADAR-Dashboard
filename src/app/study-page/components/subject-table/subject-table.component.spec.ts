@@ -13,21 +13,19 @@ describe('SubjectTableComponent', () => {
   let element: HTMLElement
   let de: DebugElement
 
-  beforeEach(
-    async(() => {
-      TestBed.configureTestingModule({
-        imports: [SubjectTableModule, BrowserAnimationsModule],
-        providers: [{ provide: Router, useClass: RouterStub }]
-      })
-
-      fixture = TestBed.createComponent(SubjectTableComponent)
-      component = fixture.componentInstance
-      element = fixture.nativeElement
-      de = fixture.debugElement
-
-      fixture.detectChanges()
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [SubjectTableModule, BrowserAnimationsModule],
+      providers: [{ provide: Router, useClass: RouterStub }]
     })
-  )
+
+    fixture = TestBed.createComponent(SubjectTableComponent)
+    component = fixture.componentInstance
+    element = fixture.nativeElement
+    de = fixture.debugElement
+
+    fixture.detectChanges()
+  }))
 
   it('should create', () => {
     expect(component).toBeTruthy()
