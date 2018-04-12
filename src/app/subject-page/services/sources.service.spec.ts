@@ -18,8 +18,7 @@ describe('SourcesService', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [SourcesService, provideMockActions(() => actions)]
-    })
-  )
+    }))
 
   beforeEach(() => {
     service = TestBed.get(SourcesService)

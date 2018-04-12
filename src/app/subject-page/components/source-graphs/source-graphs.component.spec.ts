@@ -10,19 +10,17 @@ describe('SourceGraphsComponent', () => {
   let component: SourceGraphsComponent
   let fixture: ComponentFixture<SourceGraphsComponent>
 
-  beforeEach(
-    async(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          SourceGraphsModule,
-          StoreModule.forRoot({
-            subjectPage: combineReducers(fromSubjectPage.reducers)
-          }),
-          EffectsModule.forRoot([])
-        ]
-      }).compileComponents()
-    })
-  )
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        SourceGraphsModule,
+        StoreModule.forRoot({
+          subjectPage: combineReducers(fromSubjectPage.reducers)
+        }),
+        EffectsModule.forRoot([])
+      ]
+    }).compileComponents()
+  }))
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SourceGraphsComponent)

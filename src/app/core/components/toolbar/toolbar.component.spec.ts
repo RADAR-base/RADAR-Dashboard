@@ -10,20 +10,18 @@ describe('ToolbarComponent', () => {
   let element: HTMLElement
   let de: DebugElement
 
-  beforeEach(
-    async(() => {
-      TestBed.configureTestingModule({
-        imports: [ToolbarModule]
-      })
-
-      fixture = TestBed.createComponent(ToolbarComponent)
-      component = fixture.componentInstance
-      element = fixture.nativeElement
-      de = fixture.debugElement
-
-      fixture.detectChanges()
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [ToolbarModule]
     })
-  )
+
+    fixture = TestBed.createComponent(ToolbarComponent)
+    component = fixture.componentInstance
+    element = fixture.nativeElement
+    de = fixture.debugElement
+
+    fixture.detectChanges()
+  }))
 
   it('should create', () => {
     expect(component).toBeTruthy()

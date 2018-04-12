@@ -7,13 +7,11 @@ describe('SourceDateAxisComponent', () => {
   let component: SourceDateAxisComponent
   let fixture: ComponentFixture<SourceDateAxisComponent>
 
-  beforeEach(
-    async(() => {
-      TestBed.configureTestingModule({
-        imports: [SourceGraphsModule]
-      }).compileComponents()
-    })
-  )
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [SourceGraphsModule]
+    }).compileComponents()
+  }))
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SourceDateAxisComponent)

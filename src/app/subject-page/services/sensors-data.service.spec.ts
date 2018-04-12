@@ -30,8 +30,7 @@ describe('SensorsDataService', () => {
         provideMockActions(() => actions),
         { provide: AppConfig, useClass: MockConfig }
       ]
-    })
-  )
+    }))
 
   beforeEach(() => {
     service = TestBed.get(SensorsDataService)

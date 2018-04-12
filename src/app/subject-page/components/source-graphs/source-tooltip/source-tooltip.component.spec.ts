@@ -6,13 +6,11 @@ describe('SourceTooltipComponent', () => {
   let component: SourceTooltipComponent
   let fixture: ComponentFixture<SourceTooltipComponent>
 
-  beforeEach(
-    async(() => {
-      TestBed.configureTestingModule({
-        declarations: [SourceTooltipComponent]
-      }).compileComponents()
-    })
-  )
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [SourceTooltipComponent]
+    }).compileComponents()
+  }))
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SourceTooltipComponent)

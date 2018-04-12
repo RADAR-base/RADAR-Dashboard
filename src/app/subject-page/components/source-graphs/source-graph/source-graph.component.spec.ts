@@ -9,13 +9,11 @@ describe('SourceGraphComponent', () => {
   let component: SourceGraphComponent
   let fixture: ComponentFixture<SourceGraphComponent>
 
-  beforeEach(
-    async(() => {
-      TestBed.configureTestingModule({
-        imports: [SourceGraphsModule, StoreModule.forRoot(reducers)]
-      }).compileComponents()
-    })
-  )
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [SourceGraphsModule, StoreModule.forRoot(reducers)]
+    }).compileComponents()
+  }))
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SourceGraphComponent)

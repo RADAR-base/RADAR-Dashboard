@@ -18,8 +18,7 @@ describe('ComplianceDataService', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [ComplianceDataService]
-    })
-  )
+    }))
 
   beforeEach(() => {
     service = TestBed.get(ComplianceDataService)
