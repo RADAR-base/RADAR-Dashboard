@@ -7,6 +7,7 @@ import { StoreModule } from '@ngrx/store'
 
 import { ToolbarModule } from '../core/components/toolbar/toolbar.module'
 import { RadarHttpInterceptorProvider } from '../core/services/radar.interceptor'
+import { MaterialModule } from '../material'
 import { OverviewPageComponent } from './containers/overview-page'
 import { routes } from './overview-page.routing'
 import { StudiesService } from './services/studies.service'
@@ -17,6 +18,7 @@ import { StudiesEffects } from './store/studies/studies.effects'
   imports: [
     CommonModule,
     HttpClientModule,
+    MaterialModule,
     ToolbarModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature('overviewPage', reducers),
