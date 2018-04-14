@@ -1,0 +1,99 @@
+@baseUrl = https://radar-backend.co.uk
+
+# @name token
+POST {{baseUrl}}/managementportal/oauth/token
+Content-Type: application/x-www-form-urlencoded
+origin: rest-client
+
+grant_type=client_credentials&client_id=radar_dashboard&client_secret=says_PRETTY_smiled&scope=SOURCETYPE.READ PROJECT.READ SOURCE.READ SUBJECT.READ
+
+###
+
+# @name getProjects
+GET {{baseUrl}}/api/projects/
+Authorization: Bearer {{token.response.body.access_token}}
+
+###
+
+# @name getDemo
+GET {{baseUrl}}/api/projects/BioIT-Demo
+Authorization: Bearer {{token.response.body.access_token}}
+
+###
+
+# @name getDemoSubjects
+GET {{baseUrl}}/api/projects/BioIT-Demo/subjects
+Authorization: Bearer {{token.response.body.access_token}}
+
+###
+
+# @name getDemoSubjectDetail
+GET {{baseUrl}}/api/projects/BioIT-Demo/subjects/{{getDemoSubjects.response.body.$[0].subjectId}}
+Authorization: Bearer {{token.response.body.access_token}}
+
+###
+
+# @name getSourceTypes
+GET {{baseUrl}}/api/source-types
+Authorization: Bearer {{token.response.body.access_token}}
+
+###
+
+# NOTE: bug in vscode-rest-client doesn't allow getting more than one value on an array
+# @name getSourceTypeDetail
+GET {{baseUrl}}/api/source-types/{{getDemoSubjectDetail.response.body.$.sources[0].sourceTypeProducer}}/PHONE/1.0.0
+Authorization: Bearer {{token.response.body.access_token}}
+
+###
+
+# @name getDemoSampleDataLatest
+# /data/{projectName}/{subjectId}/{sourceId}/{sourceDataName}/{stat}/latest
+# ?timeWindow=
+GET {{baseUrl}}/api/data/BioIT-Demo/3907dab9-b2ae-4db1-ba93-d5b3f699b1eb/4f987b48-b2f3-45a6-aa9b-83c4a15d3c75/{{getSourceTypeDetail.response.body.$.sourceData[0].sourceDataName}}/COUNT/latest
+  ?timeWindow=ONE_MIN
+Authorization: Bearer {{token.response.body.access_token}}
+
+###
+
+# @name getDemoSampleData1
+# /data/{projectName}/{subjectId}/{sourceId}/{sourceDataName}/{stat}
+# ?timeWindow=&startTime=&endTime=
+GET {{baseUrl}}/api/data/BioIT-Demo/3907dab9-b2ae-4db1-ba93-d5b3f699b1eb/4f987b48-b2f3-45a6-aa9b-83c4a15d3c75/{{getSourceTypeDetail.response.body.$.sourceData[0].sourceDataName}}/COUNT
+  ?timeWindow=ONE_MIN
+  &startTime=2018-02-27T12:57:00Z
+  &endTime=2018-02-27T13:03:00Z
+Authorization: Bearer {{token.response.body.access_token}}
+
+###
+
+# @name getDemoSampleData2
+# /data/{projectName}/{subjectId}/{sourceId}/{sourceDataName}/{stat}
+# ?timeWindow=&startTime=&endTime=
+GET {{baseUrl}}/api/data/BioIT-Demo/3907dab9-b2ae-4db1-ba93-d5b3f699b1eb/b6f1a0bb-b663-4aa2-a776-3a51d4dc5f86/EMPATICA_E4_1.0.0_BATTERY/COUNT
+  ?timeWindow=ONE_MIN
+  &startTime=2018-02-27T12:57:00Z
+  &endTime=2018-02-27T13:03:00Z
+Authorization: Bearer {{token.response.body.access_token}}
+
+###
+
+# @name getVolume
+# /aggregate/{projectName}/{subjectId}/distinct
+# ?timeWindow=&startTime=&endTime=
+POST {{baseUrl}}/api/aggregate/BioIT-Demo/{{getDemoSubjectDetail.response.body.$.subjectId}}/distinct
+  ?timeWindow=TEN_MIN
+  &endTime=2018-02-27T14:00:00Z
+  &startTime=2018-02-27T12:00:00Z
+Authorization: Bearer {{token.response.body.access_token}}
+Content-Type: application/json
+
+{
+  "sources":[
+     {
+        "sourceId":"b6f1a0bb-b663-4aa2-a776-3a51d4dc5f86",
+        "sourceData":[
+          {"name": "EMPATICA_E4_v1_ACCELEROMETER"}
+        ]
+     }
+  ]
+}
