@@ -7,9 +7,11 @@ import { StoreModule } from '@ngrx/store'
 
 import { MaterialModule } from '../material'
 import { routes } from './auth.routing'
+import { LoginFormComponent } from './component/login-form/login-form.component'
 import { LoginPageComponent } from './containers/login-page/login-page.component'
 import { AuthEffects } from './effects/auth.effects'
 import * as fromAuth from './reducers'
+import { AuthService } from './services/auth.service'
 
 @NgModule({
   imports: [
@@ -20,13 +22,13 @@ import * as fromAuth from './reducers'
     StoreModule.forFeature('auth', fromAuth.reducers),
     EffectsModule.forFeature([AuthEffects])
   ],
-  declarations: [LoginPageComponent]
+  declarations: [LoginPageComponent, LoginFormComponent]
 })
 export class AuthModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: AuthModule,
-      providers: []
+      providers: [AuthService]
     }
   }
 }

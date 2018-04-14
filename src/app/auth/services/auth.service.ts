@@ -1,15 +1,24 @@
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { Observable } from 'rxjs/Observable'
 import { of } from 'rxjs/observable/of'
 
-import { Authenticate, User } from '../models/user'
+import { ENV } from '../../../environments/environment.tools'
+import { AuthResponse, UserAuth } from '../models/auth'
 
 @Injectable()
 export class AuthService {
-  constructor() {}
+  constructor(private httpClient: HttpClient) {}
 
-  login({ username, password }: Authenticate): Observable<User> {
-    return of({ name: '', role: '' })
+  login({ username, password }: UserAuth) {
+    const body = new HttpParams({
+      fromObject: {
+        ...ENV.AUTH,
+        username,
+        password
+      }
+    })
+
+    return this.httpClient.post<AuthResponse>(ENV.AUTH_URI, body)
   }
 
   logout() {
