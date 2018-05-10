@@ -10,7 +10,7 @@
       type="text"
       placeholder="Username"
     >
-    <mat-error *ngIf="formUsername?.errors?.required">Please enter a value</mat-error>
+    <mat-error *ngIf="!!formUsername?.errors?.required">Please enter a value</mat-error>
   </mat-form-field>
 
   <mat-form-field [hideRequiredMarker]="true">
@@ -21,7 +21,7 @@
       type="password"
       placeholder="Password"
     >
-    <mat-error *ngIf="formPassword?.errors?.required">Please enter a value</mat-error>
+    <mat-error *ngIf="!!formPassword?.errors?.required">Please enter a value</mat-error>
   </mat-form-field>
 
   <button
@@ -32,3 +32,5 @@
   </button>
 
 </form>
+
+<pre>{{ router$ | async | json }}</pre>
