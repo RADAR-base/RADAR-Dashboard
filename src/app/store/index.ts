@@ -8,10 +8,10 @@ import {
 import { storeFreeze } from 'ngrx-store-freeze'
 
 import { ENV } from '../../environments/environment'
-import { RouterStateUrl } from '../shared/utils/custom-router-state-serializer'
+import { CustomRouterState } from '../shared/utils/custom-router-state-serializer'
 
 export interface State {
-  router: fromRouter.RouterReducerState<RouterStateUrl>
+  router: fromRouter.RouterReducerState<CustomRouterState>
 }
 
 export const reducers: ActionReducerMap<State> = {
@@ -21,7 +21,7 @@ export const reducers: ActionReducerMap<State> = {
 export const metaReducers: MetaReducer<{}>[] = !ENV.PROD ? [storeFreeze] : []
 
 export const getRouterState = createFeatureSelector<
-  fromRouter.RouterReducerState<RouterStateUrl>
+  fromRouter.RouterReducerState<CustomRouterState>
 >('router')
 
 export const getRouterUrl = createSelector(getRouterState, router => {
