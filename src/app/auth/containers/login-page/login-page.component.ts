@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { Store } from '@ngrx/store'
 
 import { UserAuth } from '../../models/auth'
-import { Login } from '../../store/auth.actions'
+import * as AuthActions from '../../store/auth.actions'
 import * as fromAuth from '../../store/auth.reducer'
 
 @Component({
@@ -16,6 +16,6 @@ export class LoginPageComponent implements OnInit {
   ngOnInit() {}
 
   loginHandler(event: UserAuth) {
-    this.store.dispatch(new Login(event))
+    this.store.dispatch(new AuthActions.Login(event))
   }
 }

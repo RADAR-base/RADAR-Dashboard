@@ -9,6 +9,7 @@ import { MaterialModule } from '../material'
 import { routes } from './auth.routing'
 import { LoginFormComponent } from './component/login-form/login-form.component'
 import { LoginPageComponent } from './containers/login-page/login-page.component'
+import { AuthGuard } from './services/auth.guard'
 import { AuthService } from './services/auth.service'
 import { AuthEffects } from './store/auth.effects'
 import * as fromAuth from './store/auth.reducer'
@@ -28,7 +29,7 @@ export class AuthModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: AuthModule,
-      providers: [AuthService]
+      providers: [AuthService, AuthGuard]
     }
   }
 }

@@ -1,4 +1,4 @@
-import { Action } from '@ngrx/store'
+import { Action, createFeatureSelector, createSelector } from '@ngrx/store'
 
 import { User } from '../models/user'
 import { AuthActionTypes, AuthActions } from './auth.actions'
@@ -22,3 +22,10 @@ export function reducer(state = initialState, action: AuthActions): State {
       return state
   }
 }
+
+// SELECTORS
+export const getAuthState = createFeatureSelector<State>('auth')
+
+export const getUser = createSelector(getAuthState, state => state.user)
+export const getToken = createSelector(getAuthState, state => state.token)
+export const getIsLoggedIn = createSelector(getAuthState, state => !!state.user)
