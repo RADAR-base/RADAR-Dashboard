@@ -1,19 +1,17 @@
 import { Injectable } from '@angular/core'
 import { Actions, Effect } from '@ngrx/effects'
 import { of } from 'rxjs/observable/of'
-import { switchMap } from 'rxjs/operator/switchMap'
 import { catchError, exhaustMap, map, tap } from 'rxjs/operators'
 
+import { AuthResponse, UserAuth } from '../models/auth'
+import { AuthService } from '../services/auth.service'
 import {
   AuthActionTypes,
-  AuthActions,
   Login,
   LoginFailure,
   LoginSuccess,
   SetToken
-} from '../actions/auth.actions'
-import { AuthResponse, UserAuth } from '../models/auth'
-import { AuthService } from '../services/auth.service'
+} from './auth.actions'
 
 @Injectable()
 export class AuthEffects {

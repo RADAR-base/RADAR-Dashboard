@@ -9,9 +9,9 @@ import { MaterialModule } from '../material'
 import { routes } from './auth.routing'
 import { LoginFormComponent } from './component/login-form/login-form.component'
 import { LoginPageComponent } from './containers/login-page/login-page.component'
-import { AuthEffects } from './effects/auth.effects'
-import * as fromAuth from './reducers'
 import { AuthService } from './services/auth.service'
+import { AuthEffects } from './store/auth.effects'
+import * as fromAuth from './store/auth.reducer'
 
 @NgModule({
   imports: [
@@ -19,8 +19,8 @@ import { AuthService } from './services/auth.service'
     ReactiveFormsModule,
     MaterialModule,
     RouterModule.forChild(routes),
-    StoreModule.forFeature('auth', fromAuth.reducers),
-    EffectsModule.forFeature([AuthEffects])
+    EffectsModule.forFeature([AuthEffects]),
+    StoreModule.forFeature('auth', fromAuth.reducer)
   ],
   declarations: [LoginPageComponent, LoginFormComponent]
 })

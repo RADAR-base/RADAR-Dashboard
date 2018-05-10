@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store'
 
-import { AuthActionTypes, AuthActions } from '../actions/auth.actions'
 import { User } from '../models/user'
+import { AuthActionTypes, AuthActions } from './auth.actions'
 
 export interface State {
   token: string
