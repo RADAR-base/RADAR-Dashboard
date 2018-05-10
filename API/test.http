@@ -41,7 +41,7 @@ Authorization: Bearer {{token.response.body.access_token}}
 
 # NOTE: bug in vscode-rest-client doesn't allow getting more than one value on an array
 # @name getSourceTypeDetail
-GET {{baseUrl}}/api/source-types/{{getDemoSubjectDetail.response.body.$.sources[0].sourceTypeProducer}}/PHONE/1.0.0
+GET {{baseUrl}}/api/source-types/{{getDemoSubjectDetail.response.body.$.sources[0].sourceTypeProducer}}/{{getDemoSubjectDetail.response.body.$.sources[0].sourceTypeModel}}/{{getDemoSubjectDetail.response.body.$.sources[0].sourceTypeCatalogVersion}}
 Authorization: Bearer {{token.response.body.access_token}}
 
 ###
