@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core'
 import { Store } from '@ngrx/store'
 
-import { Login } from '../../actions/auth.actions'
 import { UserAuth } from '../../models/auth'
-import * as fromAuth from '../../reducers'
+import { Login } from '../../store/auth.actions'
+import * as fromAuth from '../../store/auth.reducer'
 
 @Component({
   selector: 'app-login-page',
