@@ -4,6 +4,10 @@ import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { NoPreloading, RouterModule } from '@angular/router'
 import { EffectsModule } from '@ngrx/effects'
+import {
+  RouterStateSerializer,
+  StoreRouterConnectingModule
+} from '@ngrx/router-store'
 import { StoreModule } from '@ngrx/store'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 
@@ -15,8 +19,9 @@ import { NotFoundPageComponent } from './core/containers/not-found/not-found.com
 import { ConfigService } from './core/services/config.service'
 import { ErrorService } from './core/services/error.service'
 import { RadarHttpInterceptor } from './core/services/radar.interceptor'
-import { metaReducers } from './core/store'
-import { PagesEffects } from './core/store/pages/pages.effects'
+import { CustomRouterStateSerializer } from './shared/utils/custom-router-state-serializer'
+import { metaReducers, reducers } from './store'
+import { PagesEffects } from './store/pages/pages.effects'
 
 @NgModule({
   declarations: [AppComponent, NotFoundPageComponent],
@@ -25,8 +30,16 @@ import { PagesEffects } from './core/store/pages/pages.effects'
     HttpClientModule,
     BrowserAnimationsModule,
 
+    // Routing
+    RouterModule.forRoot(routes),
+
     // ngrx/store
-    StoreModule.forRoot({}, { metaReducers }),
+    StoreModule.forRoot(reducers, { metaReducers }),
+
+    // Store Router
+    StoreRouterConnectingModule.forRoot({
+      stateKey: 'router'
+    }),
 
     // Setup ngrx/effects
     EffectsModule.forRoot([PagesEffects]),
@@ -37,15 +50,15 @@ import { PagesEffects } from './core/store/pages/pages.effects'
     // https://github.com/ngrx/store-devtools/issues/45
     ENV.TOOLS ? StoreDevtoolsModule.instrument() : [],
 
-    // Routing
-    RouterModule.forRoot(routes, {
-      preloadingStrategy: NoPreloading
-    }),
-
     // Auth
     AuthModule.forRoot()
   ],
-  providers: [RadarHttpInterceptor, ConfigService, ErrorService],
+  providers: [
+    RadarHttpInterceptor,
+    ConfigService,
+    ErrorService,
+    { provide: RouterStateSerializer, useClass: CustomRouterStateSerializer }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core'
 import { NoPreloading, RouterModule, Routes } from '@angular/router'
 
 import { NotFoundPageComponent } from './core/containers/not-found/not-found.component'
+import { OverviewPageModule } from './overview-page/overview-page.module'
 
 export const routes: Routes = [
   {
@@ -16,13 +17,6 @@ export const routes: Routes = [
     path: '',
     loadChildren: './overview-page/overview-page.module#OverviewPageModule'
   },
-  {
-    path: 'not-found',
-    component: NotFoundPageComponent
-  },
-  {
-    path: '**',
-    redirectTo: '/not-found',
-    pathMatch: 'full'
-  }
+  { path: 'not-found', component: NotFoundPageComponent },
+  { path: '**', redirectTo: '/not-found', pathMatch: 'full' }
 ]
