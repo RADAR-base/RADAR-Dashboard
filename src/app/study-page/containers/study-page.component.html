@@ -1,12 +1,12 @@
 <app-toolbar>
   <div start>
-    <button [routerLink]="['/']" mat-icon-button>
+    <button
+      [routerLink]="['/']"
+      mat-icon-button
+    >
       <i class="material-icons">arrow_back</i>
     </button>
     <div class="label">Study {{ studyId }}</div>
-  </div>
-  <div end>
-    <button mat-icon-button><i class="material-icons">more_vert</i></button>
   </div>
 </app-toolbar>
 <div class="content">
@@ -24,8 +24,14 @@
   </ng-template>
 
   <ng-template #loadedAndValid>
-    <mat-grid-list cols="6" rowHeight="fit">
-      <mat-grid-tile colspan="6" rowspan="2">
+    <mat-grid-list
+      cols="6"
+      rowHeight="fit"
+    >
+      <mat-grid-tile
+        colspan="6"
+        rowspan="2"
+      >
         <app-tile label="Patients">
           <div tile-content>
             <app-subject-table
@@ -35,14 +41,20 @@
           </div>
         </app-tile>
       </mat-grid-tile>
-      <mat-grid-tile colspan="6" rowspan="2">
+      <mat-grid-tile
+        colspan="6"
+        rowspan="2"
+      >
         <app-tile label="Compliance">
           <div tile-content>
             <div class="legend">
               <p>
-                <span class="simple"></span>Simple
-                <span class="special"></span>Special
-                <span class="notanswered"></span>Not Answered
+                <span class="simple"></span>
+                Simple
+                <span class="special"></span>
+                Special
+                <span class="notanswered"></span>
+                Not Answered
               </p>
             </div>
             <div class="chart">
