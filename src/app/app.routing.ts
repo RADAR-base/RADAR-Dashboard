@@ -1,9 +1,7 @@
-import { NgModule } from '@angular/core'
-import { NoPreloading, RouterModule, Routes } from '@angular/router'
+import { Routes } from '@angular/router'
 
 import { AuthGuard } from './auth/services/auth.guard'
 import { NotFoundPageComponent } from './core/containers/not-found/not-found.component'
-import { OverviewPageModule } from './overview-page/overview-page.module'
 
 export const routes: Routes = [
   {
