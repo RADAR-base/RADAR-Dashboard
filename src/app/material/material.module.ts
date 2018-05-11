@@ -10,10 +10,8 @@ import {
   MatTableModule,
   MatToolbarModule
 } from '@angular/material'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 const MAT_MODULES = [
-  BrowserAnimationsModule,
   CdkTableModule,
   MatButtonModule,
   MatFormFieldModule,
