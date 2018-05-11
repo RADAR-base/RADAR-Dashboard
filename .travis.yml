@@ -13,14 +13,7 @@ cache:
   directories:
     - node_modules
 
-before_install:
-  # install latest yarn
-  - curl -o- -L https://yarnpkg.com/install.sh | bash -s
-  - export PATH=$HOME/.yarn/bin:$PATH
-
 before_script:
-  # ssh setup
-  - echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   # use Chromium instead of Chrome
   - export CHROME_BIN=chromium-browser
 
@@ -40,13 +33,6 @@ script:
 
   # run e2e tests
   - xvfb-run -a yarn e2e --no-progress --config=protractor-ci.conf.js
-
-before_deploy:
-  # ssh certificates
-  - openssl aes-256-cbc -K $encrypted_cf9fe38ad62a_key -iv $encrypted_cf9fe38ad62a_iv -in ./scripts/deploy_key.enc -out deploy_key.pem -d
-  - eval "$(ssh-agent -s)"
-  - chmod 600 deploy_key.pem
-  - ssh-add deploy_key.pem
 
 deploy:
   - provider: script
