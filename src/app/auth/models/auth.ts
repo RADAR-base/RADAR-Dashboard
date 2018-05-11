@@ -1,3 +1,5 @@
+import { User } from './user'
+
 export interface UserAuth {
   username: string
   password: string
@@ -10,4 +12,9 @@ export interface AuthResponse {
   iss: string
   jti: string
   token_type: string
+}
+
+export interface AuthData {
+  token: string
+  user: User
 }
