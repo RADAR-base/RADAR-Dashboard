@@ -2,7 +2,8 @@ import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { NoPreloading, RouterModule } from '@angular/router'
+import { RouterModule } from '@angular/router'
+import { JwtModule } from '@auth0/angular-jwt'
 import { EffectsModule } from '@ngrx/effects'
 import {
   RouterStateSerializer,
@@ -14,6 +15,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { ENV } from '../environments/environment'
 import { routes } from './app.routing'
 import { AuthModule } from './auth/auth.module'
+import { AuthService } from './auth/services/auth.service'
 import { AppComponent } from './core/containers/app.component'
 import { NotFoundPageComponent } from './core/containers/not-found/not-found.component'
 import { ConfigService } from './core/services/config.service'
@@ -43,6 +45,15 @@ import { PagesEffects } from './store/pages/pages.effects'
 
     // Setup ngrx/effects
     EffectsModule.forRoot([PagesEffects]),
+
+    // JWT HttpClient interceptor
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: AuthService.getToken,
+        whitelistedDomains: ['localhost:4200'],
+        blacklistedRoutes: ['']
+      }
+    }),
 
     // Redux Devtools
     // https://github.com/zalmoxisus/redux-devtools-extension
