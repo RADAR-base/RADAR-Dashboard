@@ -5,7 +5,7 @@ echo '==' && echo "==> Enviroment variables"
     echo PROJ=${PROJ}
     echo PROJ_FOLDER=${PROJ_FOLDER}
 
-    API_URI=${API_URI:-'https://radar-cns.ddns.net/api'}
+    API_URI=${API_URI:-'https://radar-backend.co.uk/api'}
     echo API_URI=${API_URI}
 
     BASE_HREF=${BASE_HREF:-'/'}

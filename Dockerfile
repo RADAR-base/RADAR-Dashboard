@@ -10,7 +10,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM node:8
+FROM mhart/alpine-node:10
 
 MAINTAINER Maximilian Kerz @kerzmaximilian, Amos Folarin @afolarin, Joris Borgdorff @blootsvoets, Herculano Campos @herkulano
 
@@ -25,12 +25,12 @@ RUN echo && echo "==> Copy files to build ${PROJ}"
 # install and build
 RUN echo && echo "==> Installing dependencies and building App" \
     && cd ${PROJ_FOLDER} \
-    && npm i --silent \
-    && npm run ng -- --version \
-    && npm run build \
+    && yarn install --pure-lockfile \
+    && yarn ng -- --version \
+    && yarn build \
     && echo
 
-FROM nginx:1.13.1-alpine
+FROM nginx:1.13.12-alpine
 
 LABEL org="RADAR-CNS"
 LABEL name="RADAR-Dashboard"
