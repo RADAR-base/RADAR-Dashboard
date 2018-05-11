@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators'
 
 import { ENV } from '../../../environments/environment.tools'
 import { AuthData, AuthResponse, UserAuth } from '../models/auth'
+import { storageItems } from '../models/storage'
 import { User } from '../models/user'
 
 @Injectable()
@@ -12,11 +13,11 @@ export class AuthService {
   constructor(private httpClient: HttpClient) {}
 
   static getToken(): string {
-    return localStorage.getItem('token')
+    return localStorage.getItem(storageItems.token)
   }
 
   static getUser(): User {
-    const user = localStorage.getItem('user')
+    const user = localStorage.getItem(storageItems.user)
     return JSON.parse(user)
   }
 
@@ -26,9 +27,14 @@ export class AuthService {
     return { token, user }
   }
 
-  storeAuth({ token, user }) {
-    localStorage.setItem('token', token)
-    localStorage.setItem('user', JSON.stringify(user))
+  setAuthData({ token, user }) {
+    localStorage.setItem(storageItems.token, token)
+    localStorage.setItem(storageItems.user, JSON.stringify(user))
+  }
+
+  clearAuthData() {
+    localStorage.removeItem(storageItems.token)
+    localStorage.removeItem(storageItems.user)
   }
 
   login(userAuth) {

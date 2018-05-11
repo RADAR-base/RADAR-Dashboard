@@ -42,13 +42,14 @@ export class AuthEffects {
   loginSuccess$ = this.actions$.pipe(
     ofType(AuthActionTypes.LoginSuccess),
     map((action: LoginSuccess) => action.payload),
-    tap(authData => this.authService.storeAuth(authData)),
+    tap(authData => this.authService.setAuthData(authData)),
     tap(() => this.router.navigate(['/']))
   )
 
   @Effect({ dispatch: false })
   loginRedirect$ = this.actions$.pipe(
     ofType(AuthActionTypes.LoginRedirect, AuthActionTypes.Logout),
+    tap(() => this.authService.clearAuthData()),
     tap(() => this.router.navigate(['/login']))
   )
 
