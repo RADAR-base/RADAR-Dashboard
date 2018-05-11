@@ -1,7 +1,6 @@
 import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { RouterModule } from '@angular/router'
 import { JwtModule } from '@auth0/angular-jwt'
 import { EffectsModule } from '@ngrx/effects'
@@ -30,7 +29,6 @@ import { PagesEffects } from './store/pages/pages.effects'
   imports: [
     BrowserModule,
     HttpClientModule,
-    BrowserAnimationsModule,
 
     // Routing
     RouterModule.forRoot(routes),
