@@ -5,6 +5,6 @@ export const ENV = {
   PARAMS: {
     API_URI: '/api',
     API_LOCAL: '/api',
-    API_FIREBASE: 'https://radar-dashboard.firebaseio.com'
+    API_FIREBASE: '/api'
   }
 }

@@ -2,7 +2,10 @@
   "extends": ["tslint-config-standard", "rxjs-tslint-rules"],
   "rulesDirectory": ["node_modules/codelyzer"],
   "rules": {
-    "space-before-function-paren": [true, "never"],
+    "space-before-function-paren": [
+      true,
+      { "anonymous": "never", "named": "never", "asyncArrow": "always" }
+    ],
     "object-curly-spacing": [true, "always"],
     "arrow-return-shorthand": true,
     "callable-types": true,

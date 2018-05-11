@@ -1,5 +1,6 @@
 import { DebugElement } from '@angular/core'
 import { ComponentFixture, TestBed, async } from '@angular/core/testing'
+import { StoreModule } from '@ngrx/store'
 
 import { ToolbarComponent } from './toolbar.component'
 import { ToolbarModule } from './toolbar.module'
@@ -12,7 +13,7 @@ describe('ToolbarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ToolbarModule]
+      imports: [ToolbarModule, StoreModule.forRoot({})]
     })
 
     fixture = TestBed.createComponent(ToolbarComponent)

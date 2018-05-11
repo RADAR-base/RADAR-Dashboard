@@ -17,11 +17,6 @@ import * as studyAction from '../store/studies/studies.actions'
           <div class="font-title">Mental Health</div>
         </div>
       </div>
-      <div end>
-        <button mat-icon-button>
-          <i class="material-icons">more_vert</i>
-        </button>
-      </div>
     </app-toolbar>
     <div
       class="content"

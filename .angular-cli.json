@@ -59,8 +59,10 @@
   "defaults": {
     "styleExt": "scss",
     "component": {
-      "changeDetection": "OnPush",
-      "inlineTemplate": true
+      "changeDetection": "OnPush"
+    },
+    "schematics": {
+      "collection": "@ngrx/schematics"
     }
   }
 }

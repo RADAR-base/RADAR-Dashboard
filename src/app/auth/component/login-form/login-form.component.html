@@ -1,0 +1,34 @@
+<form
+  [formGroup]="form"
+  (ngSubmit)="loginHandler()"
+>
+  <mat-form-field [hideRequiredMarker]="true">
+    <input
+      formControlName="username"
+      matInput
+      required
+      type="text"
+      placeholder="Username"
+    >
+    <mat-error *ngIf="!!formUsername?.errors?.required">Please enter a value</mat-error>
+  </mat-form-field>
+
+  <mat-form-field [hideRequiredMarker]="true">
+    <input
+      formControlName="password"
+      matInput
+      required
+      type="password"
+      placeholder="Password"
+    >
+    <mat-error *ngIf="!!formPassword?.errors?.required">Please enter a value</mat-error>
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    type="submit"
+  >
+    LOGIN
+  </button>
+
+</form>

@@ -2,7 +2,10 @@ import { CdkTableModule } from '@angular/cdk/table'
 import { NgModule } from '@angular/core'
 import {
   MatButtonModule,
+  MatFormFieldModule,
   MatGridListModule,
+  MatInputModule,
+  MatMenuModule,
   MatPaginatorModule,
   MatProgressSpinnerModule,
   MatTableModule,
@@ -12,7 +15,10 @@ import {
 const MAT_MODULES = [
   CdkTableModule,
   MatButtonModule,
+  MatFormFieldModule,
   MatGridListModule,
+  MatMenuModule,
+  MatInputModule,
   MatPaginatorModule,
   MatProgressSpinnerModule,
   MatTableModule,
