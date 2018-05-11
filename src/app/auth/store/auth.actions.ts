@@ -1,9 +1,11 @@
 import { Action } from '@ngrx/store'
 
-import { AuthResponse, UserAuth } from '../models/auth'
+import { AuthData, AuthResponse, UserAuth } from '../models/auth'
+import { User } from '../models/user'
 
 export enum AuthActionTypes {
-  SetToken = '[Auth] Set Token',
+  RehydrateAuth = '[Auth] Rehydrate Auth',
+  StoreAuth = '[Auth] Store Auth',
   Login = '[Auth] Login',
   Logout = '[Auth] Logout',
   LoginSuccess = '[Auth] Login Success',
@@ -11,10 +13,14 @@ export enum AuthActionTypes {
   LoginRedirect = '[Auth] Login Redirect'
 }
 
-export class SetToken implements Action {
-  readonly type = AuthActionTypes.SetToken
+export class RehydrateAuth implements Action {
+  readonly type = AuthActionTypes.RehydrateAuth
+}
 
-  constructor(public payload: AuthResponse) {}
+export class StoreAuth implements Action {
+  readonly type = AuthActionTypes.StoreAuth
+
+  constructor(public payload: AuthData) {}
 }
 
 export class Login implements Action {
@@ -26,7 +32,7 @@ export class Login implements Action {
 export class LoginSuccess implements Action {
   readonly type = AuthActionTypes.LoginSuccess
 
-  constructor(public payload: AuthResponse) {}
+  constructor(public payload: AuthData) {}
 }
 
 export class LoginFailure implements Action {
@@ -44,7 +50,8 @@ export class Logout implements Action {
 }
 
 export type AuthActions =
-  | SetToken
+  | RehydrateAuth
+  | StoreAuth
   | Login
   | LoginSuccess
   | LoginFailure

@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core'
 import { Router } from '@angular/router'
+import { JwtHelperService } from '@auth0/angular-jwt'
 import { Actions, Effect, ofType } from '@ngrx/effects'
 import { of } from 'rxjs/observable/of'
 import { catchError, exhaustMap, map, tap } from 'rxjs/operators'
 
-import { AuthResponse, UserAuth } from '../models/auth'
+import { UserAuth } from '../models/auth'
 import { AuthService } from '../services/auth.service'
 import {
   AuthActionTypes,
   Login,
   LoginFailure,
   LoginSuccess,
-  SetToken
+  StoreAuth
 } from './auth.actions'
 
 @Injectable()
@@ -24,31 +25,37 @@ export class AuthEffects {
       this.authService
         .login(auth)
         .pipe(
-          map(response => new LoginSuccess(response)),
+          map(authData => new LoginSuccess(authData)),
           catchError(error => of(new LoginFailure(error)))
         )
     )
   )
 
   @Effect()
+  rehydrateAuth$ = this.actions$.pipe(
+    ofType(AuthActionTypes.RehydrateAuth),
+    map(() => this.authService.getAuthData()),
+    map(authData => new StoreAuth(authData))
+  )
+
+  @Effect({ dispatch: false })
   loginSuccess$ = this.actions$.pipe(
     ofType(AuthActionTypes.LoginSuccess),
     map((action: LoginSuccess) => action.payload),
-    map((auth: AuthResponse) => new SetToken(auth)),
-    tap(() => this.router.navigate(['/'])),
-    tap(console.log)
+    tap(authData => this.authService.storeAuth(authData)),
+    tap(() => this.router.navigate(['/']))
   )
 
   @Effect({ dispatch: false })
   loginRedirect$ = this.actions$.pipe(
     ofType(AuthActionTypes.LoginRedirect, AuthActionTypes.Logout),
-    tap(() => this.router.navigate(['/login'])),
-    tap(console.log)
+    tap(() => this.router.navigate(['/login']))
   )
 
   constructor(
     private actions$: Actions,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    public jwtHelper: JwtHelperService
   ) {}
 }

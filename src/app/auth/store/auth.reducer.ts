@@ -1,5 +1,6 @@
 import { Action, createFeatureSelector, createSelector } from '@ngrx/store'
 
+import { AuthResponse } from '../models/auth'
 import { User } from '../models/user'
 import { AuthActionTypes, AuthActions } from './auth.actions'
 
@@ -15,8 +16,8 @@ export const initialState: State = {
 
 export function reducer(state = initialState, action: AuthActions): State {
   switch (action.type) {
-    case AuthActionTypes.Login:
-      return state
+    case AuthActionTypes.StoreAuth:
+      return { ...action.payload }
 
     default:
       return state
