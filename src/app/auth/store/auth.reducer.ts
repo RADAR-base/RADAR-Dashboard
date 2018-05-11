@@ -19,6 +19,9 @@ export function reducer(state = initialState, action: AuthActions): State {
     case AuthActionTypes.StoreAuth:
       return { ...action.payload }
 
+    case AuthActionTypes.Logout:
+      return initialState
+
     default:
       return state
   }
