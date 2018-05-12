@@ -2,7 +2,8 @@
 
 BRANCH=$1
 
-now --public --docker --name radar-dasboard-$BRANCH --token $NOW_TOKEN
-now alias radar-dasboard-$BRANCH --token $NOW_TOKEN
+now -t $NOW_TOKEN --public --docker --name radar-dasboard-$BRANCH \
+  && now -t $NOW_TOKEN alias radar-dasboard-$BRANCH \
+  && now -t $NOW_TOKEN remove radar-dasboard-$BRANCH --safe
 
 exit 0
