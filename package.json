@@ -24,9 +24,7 @@
     "fix:stylelint": "stylelint --fix \"src/**/*.scss\"",
     "fix:code": "yarn fix:prettier",
     "fix:prettier": "prettier --write \"**/*(*.js|*.ts|*.json)\"",
-    "fix:sort": "import-sort --write \"src/app/**/*(*.js|*.ts)\"",
-    "deploy": "now --public --docker",
-    "deploy:alias": "now alias"
+    "fix:sort": "import-sort --write \"src/app/**/*(*.js|*.ts)\""
   },
   "importSort": {
     ".js": {
@@ -106,7 +104,6 @@
     "karma-spec-reporter": "^0.0.32",
     "ngrx-store-freeze": "^0.2.0",
     "node-sass": "^4.8.3",
-    "now": "^11.1.7",
     "prettier": "^1.10.2",
     "protractor": "^5.2.2",
     "rxjs-tslint-rules": "^4.1.1",

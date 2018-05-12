@@ -34,6 +34,10 @@ script:
   # run e2e tests
   - xvfb-run -a yarn e2e --no-progress --config=protractor-ci.conf.js
 
+before_deploy:
+  # install now
+  - yarn global install now
+
 deploy:
   - provider: script
     skip_cleanup: true
