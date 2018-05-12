@@ -36,7 +36,7 @@ script:
 
 before_deploy:
   # install now
-  - yarn global install now
+  - yarn global add now
 
 deploy:
   - provider: script
