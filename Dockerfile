@@ -12,23 +12,23 @@
 
 FROM mhart/alpine-node:10
 
-MAINTAINER Maximilian Kerz @kerzmaximilian, Amos Folarin @afolarin, Joris Borgdorff @blootsvoets, Herculano Campos @herkulano
+LABEL maintainer="Maximilian Kerz @kerzmaximilian, Amos Folarin @afolarin, Joris Borgdorff @blootsvoets, Herculano Campos @herkulano"
 
 ENV PROJ="RADAR-Dashboard"
 ENV PROJ_FOLDER="/opt/${PROJ}"
 
 # copy project files to build
 RUN echo && echo "==> Copy files to build ${PROJ}"
-    COPY *.json *.js ${PROJ_FOLDER}/
-    COPY src ${PROJ_FOLDER}/src
+COPY *.json *.js ${PROJ_FOLDER}/
+COPY src ${PROJ_FOLDER}/src
 
 # install and build
 RUN echo && echo "==> Installing dependencies and building App" \
-    && cd ${PROJ_FOLDER} \
-    && yarn install --pure-lockfile \
-    && yarn ng -- --version \
-    && yarn build \
-    && echo
+  && cd ${PROJ_FOLDER} \
+  && yarn install --pure-lockfile \
+  && yarn ng -- --version \
+  && yarn build \
+  && echo
 
 FROM nginx:1.13.12-alpine
 
