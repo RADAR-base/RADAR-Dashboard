@@ -3,8 +3,6 @@ import {
   HttpTestingController
 } from '@angular/common/http/testing'
 import { TestBed } from '@angular/core/testing'
-import { provideMockActions } from '@ngrx/effects/testing'
-import { Observable } from 'rxjs/Observable'
 
 import { MockSources } from '../../shared/testing/mocks/mock-sources'
 import { SourcesService } from './sources.service'
@@ -12,12 +10,11 @@ import { SourcesService } from './sources.service'
 describe('SourcesService', () => {
   let service
   let http
-  const actions: Observable<any> = Observable.of()
 
   beforeEach(() =>
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [SourcesService, provideMockActions(() => actions)]
+      providers: [SourcesService]
     }))
 
   beforeEach(() => {

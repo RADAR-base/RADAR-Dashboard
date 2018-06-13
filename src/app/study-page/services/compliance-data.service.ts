@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { Observable } from 'rxjs/Observable'
+import { Observable } from 'rxjs'
+import { delay, filter, map, take } from 'rxjs/operators'
 
 import { ENV } from '../../../environments/environment'
 import { TimeInterval } from '../../shared/enums/time-interval.enum'
@@ -13,12 +14,11 @@ export class ComplianceDataService {
 
   getAll(studyId): Observable<any> {
     // TODO: Change when API is ready
-    return this.http
-      .get<any>(`${ENV.API_LOCAL}/mock-compliance.json`)
-      .take(1)
-      .delay(1000)
-      .filter(d => d !== null)
-      .map(res => {
+    return this.http.get<any>(`${ENV.API_LOCAL}/mock-compliance.json`).pipe(
+      take(1),
+      delay(1000),
+      filter(d => d !== null),
+      map(res => {
         if (res) {
           return parseTimeHoles(
             res.dataset,
@@ -30,5 +30,6 @@ export class ComplianceDataService {
           )
         }
       })
+    )
   }
 }

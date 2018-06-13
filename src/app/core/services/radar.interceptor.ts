@@ -7,7 +7,8 @@ import {
   HttpResponse
 } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { Observable } from 'rxjs/Observable'
+import { Observable } from 'rxjs'
+import { catchError, map, tap } from 'rxjs/operators'
 
 import { ENV } from '../../../environments/environment'
 import { ErrorService } from './error.service'
@@ -18,9 +19,9 @@ export class RadarHttpInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    return next
-      .handle(req)
-      .map((event: HttpEvent<any>) => {
+    return next.handle(req).pipe(
+      tap(console.log),
+      map((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {
           // TODO: show error to user with UI
           if (event.status !== 200) {
@@ -33,8 +34,9 @@ export class RadarHttpInterceptor implements HttpInterceptor {
 
           return event
         }
-      })
-      .catch(ErrorService.handleError)
+      }),
+      catchError(ErrorService.handleError)
+    )
   }
 }
 

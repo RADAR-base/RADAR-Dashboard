@@ -20,7 +20,7 @@ import { AppComponent } from './core/containers/app.component'
 import { NotFoundPageComponent } from './core/containers/not-found/not-found.component'
 import { ConfigService } from './core/services/config.service'
 import { ErrorService } from './core/services/error.service'
-import { RadarHttpInterceptor } from './core/services/radar.interceptor'
+import { RadarHttpInterceptorProvider } from './core/services/radar.interceptor'
 import { CustomRouterStateSerializer } from './shared/utils/custom-router-state-serializer'
 import { metaReducers, reducers } from './store'
 import { PagesEffects } from './store/pages/pages.effects'
@@ -50,8 +50,8 @@ import { PagesEffects } from './store/pages/pages.effects'
     JwtModule.forRoot({
       config: {
         tokenGetter: AuthService.getToken,
-        whitelistedDomains: ['localhost:4200'],
-        blacklistedRoutes: ['']
+        whitelistedDomains: ['localhost', ENV.API_DOMAIN],
+        blacklistedRoutes: ['radar-dashboard.firebaseio.com']
       }
     }),
 
@@ -65,7 +65,7 @@ import { PagesEffects } from './store/pages/pages.effects'
     AuthModule.forRoot()
   ],
   providers: [
-    RadarHttpInterceptor,
+    RadarHttpInterceptorProvider,
     ConfigService,
     ErrorService,
     { provide: RouterStateSerializer, useClass: CustomRouterStateSerializer }

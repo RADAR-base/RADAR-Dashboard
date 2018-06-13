@@ -6,7 +6,7 @@ import {
   ViewChild
 } from '@angular/core'
 import { Store } from '@ngrx/store'
-import { Observable } from 'rxjs/Observable'
+import { Observable } from 'rxjs'
 
 import { ChartData } from '../../../shared/models/chart-data.model'
 import { Sensor } from '../../../shared/models/sensor.model'

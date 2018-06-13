@@ -10,8 +10,8 @@ import {
   ViewChild
 } from '@angular/core'
 import * as d3 from 'd3'
-import { Observable } from 'rxjs/Observable'
-import { Subscription } from 'rxjs/Subscription'
+import { Subscription, fromEvent } from 'rxjs'
+import { debounceTime } from 'rxjs/operators'
 import * as shortid from 'shortid'
 
 import { ChartColors } from '../../shared/enums/chart-colors.enum'
@@ -98,8 +98,8 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
 
   private beforeInit() {
     // Observe window resize and debounce events
-    this.window$ = Observable.fromEvent(window, 'resize')
-      .debounceTime(150)
+    this.window$ = fromEvent(window, 'resize')
+      .pipe(debounceTime(150))
       .subscribe(() => {
         this.beforeUpdate()
       })

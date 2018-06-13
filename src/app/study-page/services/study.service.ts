@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { Observable } from 'rxjs/Observable'
+import { Observable } from 'rxjs'
+import { filter, map } from 'rxjs/operators'
 
 import { ENV } from '../../../environments/environment'
 import { Study } from '../../shared/models/study.model'
@@ -11,10 +12,10 @@ export class StudyService {
 
   getById(id): Observable<Study> {
     // TODO: Change when API is ready
-    return this.http
-      .get<any>(`${ENV.API_LOCAL}/mock-all-studies.json`)
-      .filter(d => d !== null)
-      .map(res => res.dataset)
-      .map(res => res.filter((data: Study) => data.id === id)[0] || null)
+    return this.http.get<any>(`${ENV.API_LOCAL}/mock-all-studies.json`).pipe(
+      filter(d => d !== null),
+      map(res => res.dataset),
+      map(res => res.filter((data: Study) => data.id === id)[0] || null)
+    )
   }
 }

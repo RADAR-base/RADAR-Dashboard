@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { BehaviorSubject } from 'rxjs/BehaviorSubject'
+import { BehaviorSubject } from 'rxjs'
+import { catchError } from 'rxjs/operators'
 
 import { ENV } from '../../../environments/environment'
+import { Config } from '../../shared/models/config.model'
 import { AppConfig } from '../../shared/utils/config'
 import { ErrorService } from './error.service'
 
@@ -14,8 +16,8 @@ export class ConfigService {
 
   load() {
     this.http
-      .get(`${ENV.API_FIREBASE}/config.json`)
-      .catch(ErrorService.handleError)
+      .get<Config>(`${ENV.API_FIREBASE}/config.json`)
+      .pipe(catchError(ErrorService.handleError))
       .subscribe(config => {
         AppConfig.config = config
         this.isLoaded$.next(true)

@@ -11,10 +11,7 @@ describe('StudyGuard', () => {
     })
   })
 
-  it(
-    'should ...',
-    inject([StudyGuard], (guard: StudyGuard) => {
-      expect(guard).toBeTruthy()
-    })
-  )
+  it('should ...', inject([StudyGuard], (guard: StudyGuard) => {
+    expect(guard).toBeTruthy()
+  }))
 })

@@ -1,4 +1,4 @@
-import { Subject } from 'rxjs/Subject'
+import { Subject } from 'rxjs'
 
 export function TakeUntilDestroy(constructor: any) {
   const ngOnDestroy = constructor.prototype.ngOnDestroy

@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { of } from 'rxjs/observable/of'
+import { of } from 'rxjs'
 import { map } from 'rxjs/operators'
 
 import { ENV } from '../../../environments/environment.tools'

@@ -3,8 +3,6 @@ import {
   HttpTestingController
 } from '@angular/common/http/testing'
 import { TestBed } from '@angular/core/testing'
-import { provideMockActions } from '@ngrx/effects/testing'
-import { Observable } from 'rxjs/Observable'
 
 import { MockConfig } from '../../shared/testing/mocks/mock-config'
 import {
@@ -20,14 +18,12 @@ import { SensorsDataService } from './sensors-data.service'
 describe('SensorsDataService', () => {
   let service
   let http
-  const actions: Observable<any> = Observable.of()
 
   beforeEach(() =>
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [
         SensorsDataService,
-        provideMockActions(() => actions),
         { provide: AppConfig, useClass: MockConfig }
       ]
     }))

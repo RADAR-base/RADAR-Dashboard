@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Actions } from '@ngrx/effects'
 import { Action } from '@ngrx/store'
-import { Observable } from 'rxjs/Observable'
-import { Subject } from 'rxjs/Subject'
+import { Observable, Subject } from 'rxjs'
+import { take, takeUntil } from 'rxjs/operators'
 
 import { ENV } from '../../../environments/environment'
 import { DescriptiveStatistic } from '../../shared/enums/descriptive-statistic.enum'
@@ -43,8 +43,10 @@ export class SensorsDataService {
 
     this.http
       .get<RadarAPISampleModel>(url)
-      .take(1)
-      .takeUntil(this.destroy$)
+      .pipe(
+        takeUntil(this.destroy$),
+        take(1)
+      )
       .subscribe(response => {
         if (this.sensors.length) {
           this.sensors$.next(this.sensors.pop())

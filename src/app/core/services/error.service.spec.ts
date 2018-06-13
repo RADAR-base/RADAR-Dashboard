@@ -11,10 +11,7 @@ describe('ErrorLoggerServiceService', () => {
     })
   })
 
-  it(
-    'should be created',
-    inject([ErrorService], (service: ErrorService) => {
-      expect(service).toBeTruthy()
-    })
-  )
+  it('should be created', inject([ErrorService], (service: ErrorService) => {
+    expect(service).toBeTruthy()
+  }))
 })

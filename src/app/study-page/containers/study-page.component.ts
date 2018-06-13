@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
-import { Store } from '@ngrx/store'
-import { Observable } from 'rxjs/Observable'
+import { Store, select } from '@ngrx/store'
+import { Observable } from 'rxjs'
+import { takeUntil, tap } from 'rxjs/operators'
 
 import { Subject } from '../../shared/models/subject.model'
 import { TakeUntilDestroy } from '../../shared/utils/take-until-destroy'
@@ -36,30 +37,34 @@ export class StudyPageComponent implements OnInit {
 
   ngOnInit() {
     // Get `studyId` from route and then get Study by `studyId`
-    this.route.params.takeUntil(this.takeUntilDestroy()).subscribe(params => {
-      this.studyId = params['studyId']
-      this.store.dispatch(new studyAction.SetStudyId(this.studyId))
-    })
+    this.route.params
+      .pipe(takeUntil(this.takeUntilDestroy()))
+      .subscribe(params => {
+        this.studyId = params['studyId']
+        this.store.dispatch(new studyAction.SetStudyId(this.studyId))
+      })
 
     // If study is not loaded and not valid then fetch it
-    this.isStudyLoadedAndValid$ = this.store
-      .select(fromStudyPage.getStudyIsLoadedAndValid)
-      .takeUntil(this.takeUntilDestroy())
-      .do(isLoadedAndValid => {
+    this.isStudyLoadedAndValid$ = this.store.pipe(
+      select(fromStudyPage.getStudyIsLoadedAndValid),
+      takeUntil(this.takeUntilDestroy()),
+      tap(isLoadedAndValid => {
         if (isLoadedAndValid) {
           this.store.dispatch(new subjectAction.Load(this.studyId))
           // Check if compliance is loaded
-          this.isComplianceLoaded$ = this.store
-            .select(fromStudyPage.getComplianceDataLoaded)
-            .do(isComplianceLoaded => {
+          this.isComplianceLoaded$ = this.store.pipe(
+            select(fromStudyPage.getComplianceDataLoaded),
+            tap(isComplianceLoaded => {
               if (!isComplianceLoaded) {
                 this.store.dispatch(new complianceDataAction.Load(this.studyId))
               }
             })
+          )
         } else {
           this.store.dispatch(new studyAction.LoadStudyById(this.studyId))
         }
       })
+    )
 
     this.isStudyLoadedAndValid$.subscribe(
       isLoadedAndValid => (this.isStudyLoadedAndValid = isLoadedAndValid)

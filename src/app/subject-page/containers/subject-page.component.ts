@@ -6,9 +6,9 @@ import {
 } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { Dictionary } from '@ngrx/entity/src/models'
-import { Store } from '@ngrx/store'
-import { Observable } from 'rxjs/Observable'
-import { Subscription } from 'rxjs/Subscription'
+import { Store, select } from '@ngrx/store'
+import { Observable, Subscription } from 'rxjs'
+import { takeUntil } from 'rxjs/operators'
 
 import { DescriptiveStatistic } from '../../shared/enums/descriptive-statistic.enum'
 import { TimeInterval } from '../../shared/enums/time-interval.enum'
@@ -46,13 +46,15 @@ export class SubjectPageComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.route.params.takeUntil(this.takeUntilDestroy()).subscribe(params => {
-      this.studyId = params.studyId
-      this.subjectId = params.subjectId
+    this.route.params
+      .pipe(takeUntil(this.takeUntilDestroy()))
+      .subscribe(params => {
+        this.studyId = params.studyId
+        this.subjectId = params.subjectId
 
-      this.store.dispatch(new subjectActions.SetStudyId(this.studyId))
-      this.store.dispatch(new subjectActions.SetId(this.subjectId))
-    })
+        this.store.dispatch(new subjectActions.SetStudyId(this.studyId))
+        this.store.dispatch(new subjectActions.SetId(this.subjectId))
+      })
 
     // TODO: move whole block to Volume||Brush component -->
     this.store.dispatch(
@@ -79,8 +81,10 @@ export class SubjectPageComponent implements OnInit, OnDestroy {
     this.store.dispatch(new sourcesActions.Load(this.subjectId))
     this.sourceIsLoaded$ = this.store.select(fromSubjectPage.getSourcesLoaded)
     this.sources$ = this.store
-      .select(fromSubjectPage.getSourcesWithSensors)
-      .takeUntil(this.takeUntilDestroy())
+      .pipe(
+        select(fromSubjectPage.getSourcesWithSensors),
+        takeUntil(this.takeUntilDestroy())
+      )
       .subscribe(sources => (this.sources = sources))
 
     // Get sensor data from server
