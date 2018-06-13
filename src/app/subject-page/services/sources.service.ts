@@ -17,7 +17,7 @@ export class SourcesService {
   }
 
   getAll(subjectId): Observable<Source[]> {
-    const url = `${ENV.PARAMS.API_URI}/source/getAllSources/${subjectId}`
+    const url = `${ENV.API_URI}/source/getAllSources/${subjectId}`
 
     return this.http
       .get<any>(url)

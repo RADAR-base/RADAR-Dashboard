@@ -14,7 +14,7 @@ export class ConfigService {
 
   load() {
     this.http
-      .get(`${ENV.PARAMS.API_FIREBASE}/config.json`)
+      .get(`${ENV.API_FIREBASE}/config.json`)
       .catch(ErrorService.handleError)
       .subscribe(config => {
         AppConfig.config = config

@@ -15,7 +15,7 @@ import * as actions from '../store/sensors-data/sensors-data.actions'
 
 @Injectable()
 export class SensorsDataService {
-  private URL = `${ENV.PARAMS.API_URI}/data`
+  private URL = `${ENV.API_URI}/data`
   private destroy$: Observable<Action>
   private queue$ = new Subject<any>()
   private sensors$ = new Subject<Sensor>()

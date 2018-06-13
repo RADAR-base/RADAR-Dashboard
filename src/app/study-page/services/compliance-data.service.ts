@@ -14,7 +14,7 @@ export class ComplianceDataService {
   getAll(studyId): Observable<any> {
     // TODO: Change when API is ready
     return this.http
-      .get<any>(`${ENV.PARAMS.API_LOCAL}/mock-compliance.json`)
+      .get<any>(`${ENV.API_LOCAL}/mock-compliance.json`)
       .take(1)
       .delay(1000)
       .filter(d => d !== null)
