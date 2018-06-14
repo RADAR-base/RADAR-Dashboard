@@ -130,7 +130,9 @@ export const getSensorsTooltipValues = createSelector(
   getSensorsDataEntities,
   getTooltipDate,
   (ids: (number | string)[], sensors, sensorsEntities, date) => {
-    if (!date) return []
+    if (!date) {
+      return []
+    }
 
     return ids.filter(d => sensors[d].visible).reduce((acc, id) => {
       const index =
