@@ -34,7 +34,7 @@ module.exports = function(config) {
       reports: ['html', 'lcovonly'],
       fixWebpackSourcePaths: true
     },
-    reporters: ['spec', 'kjhtml'],
+    reporters: ['progress', 'kjhtml'],
     specReporter: {
       showSpecTiming: true
     },
