@@ -35,7 +35,9 @@
                 }
               ]
             },
-            "prod": {
+            "production": {
+              "aot": true,
+              "buildOptimizer": true,
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -54,8 +56,8 @@
             "tools": {
               "browserTarget": "radar-dashboard:build:tools"
             },
-            "prod": {
-              "browserTarget": "radar-dashboard:build:prod"
+            "production": {
+              "browserTarget": "radar-dashboard:build:production"
             }
           }
         },
