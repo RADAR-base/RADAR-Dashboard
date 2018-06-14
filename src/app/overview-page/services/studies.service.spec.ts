@@ -5,7 +5,7 @@ import {
 import { TestBed } from '@angular/core/testing'
 
 import { Study } from '../../shared/models/study.model'
-import { MockStudies } from '../../shared/testing/mocks/mock-studies.spec'
+import { MockStudies } from '../../shared/testing/mocks/mock-studies'
 import { StudiesService } from './studies.service'
 
 describe('StudyService', () => {
@@ -31,8 +31,8 @@ describe('StudyService', () => {
       actual = users
     })
 
-    http.expectOne('/api/mock-all-studies.json').flush(mock)
-    expect(actual).toEqual(mock.dataset)
+    http.expectOne('/api/projects').flush(mock)
+    expect(actual).toEqual(mock)
 
     http.verify()
   })

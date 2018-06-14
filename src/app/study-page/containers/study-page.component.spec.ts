@@ -1,4 +1,5 @@
-import { DebugElement } from '@angular/core'
+import { HttpClientTestingModule } from '@angular/common/http/testing'
+import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core'
 import { ComponentFixture, TestBed, async } from '@angular/core/testing'
 import { ActivatedRoute, Router } from '@angular/router'
 import { EffectsModule } from '@ngrx/effects'
@@ -28,12 +29,14 @@ describe('StudyPageComponent', () => {
           studyPage: combineReducers(fromStudyPage.reducers)
         }),
         EffectsModule.forRoot([]),
-        StudyPageModule
+        StudyPageModule,
+        HttpClientTestingModule
       ],
       providers: [
         { provide: Router, useClass: RouterStub },
         { provide: ActivatedRoute, useValue: activatedRoute }
-      ]
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
 
     fixture = TestBed.createComponent(StudyPageComponent)

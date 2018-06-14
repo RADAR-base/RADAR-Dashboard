@@ -3,8 +3,11 @@ import {
   HttpTestingController
 } from '@angular/common/http/testing'
 import { TestBed } from '@angular/core/testing'
+import { EffectsModule } from '@ngrx/effects'
+import { StoreModule } from '@ngrx/store'
 
 import { MockSources } from '../../shared/testing/mocks/mock-sources'
+import { reducers } from '../../store'
 import { SourcesService } from './sources.service'
 
 describe('SourcesService', () => {
@@ -13,7 +16,11 @@ describe('SourcesService', () => {
 
   beforeEach(() =>
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [
+        HttpClientTestingModule,
+        StoreModule.forRoot(reducers),
+        EffectsModule.forRoot([])
+      ],
       providers: [SourcesService]
     }))
 

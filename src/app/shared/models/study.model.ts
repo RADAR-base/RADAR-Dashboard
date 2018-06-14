@@ -1,12 +1,15 @@
 export interface Study {
-  id: number
-  projectName: string
-  description: string
-  location: string
+  id: number | string
+  projectName?: string
+  description?: string
+  location?: string
   projectStatus?: string
-  sourceTypes: SourceType[]
-  attributes: Attribute[]
+  sourceTypes?: SourceType[]
+  attributes?: Attribute[]
   organization?: string
+
+  // TODO: remove after API migration
+  name?: string
 }
 
 interface Attribute {

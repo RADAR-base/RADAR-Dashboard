@@ -5,7 +5,7 @@ import {
 import { TestBed } from '@angular/core/testing'
 
 import { Study } from '../../shared/models/study.model'
-import { MockStudies } from '../../shared/testing/mocks/mock-studies.spec'
+import { MockStudies } from '../../shared/testing/mocks/mock-studies.old'
 import { StudyService } from './study.service'
 
 describe('StudyService', () => {

@@ -3,6 +3,8 @@ import {
   HttpTestingController
 } from '@angular/common/http/testing'
 import { TestBed } from '@angular/core/testing'
+import { EffectsModule } from '@ngrx/effects'
+import { StoreModule } from '@ngrx/store'
 
 import { MockConfig } from '../../shared/testing/mocks/mock-config'
 import {
@@ -13,6 +15,7 @@ import {
   MockSensorsOptions
 } from '../../shared/testing/mocks/mock-sensor-data'
 import { AppConfig } from '../../shared/utils/config'
+import { reducers } from '../../store'
 import { SensorsDataService } from './sensors-data.service'
 
 describe('SensorsDataService', () => {
@@ -21,7 +24,11 @@ describe('SensorsDataService', () => {
 
   beforeEach(() =>
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [
+        HttpClientTestingModule,
+        StoreModule.forRoot(reducers),
+        EffectsModule.forRoot([])
+      ],
       providers: [
         SensorsDataService,
         { provide: AppConfig, useClass: MockConfig }

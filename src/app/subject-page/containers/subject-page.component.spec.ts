@@ -1,4 +1,5 @@
-import { DebugElement } from '@angular/core'
+import { HttpClientTestingModule } from '@angular/common/http/testing'
+import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ActivatedRoute, Router } from '@angular/router'
 import { EffectsModule } from '@ngrx/effects'
@@ -25,13 +26,15 @@ describe('SubjectPageComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         SubjectPageModule,
+        HttpClientTestingModule,
         StoreModule.forRoot(reducers),
         EffectsModule.forRoot([])
       ],
       providers: [
         { provide: Router, useClass: RouterStub },
         { provide: ActivatedRoute, useValue: activatedRoute }
-      ]
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
 
     fixture = TestBed.createComponent(SubjectPageComponent)
