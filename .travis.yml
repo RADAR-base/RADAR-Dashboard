@@ -24,7 +24,7 @@ script:
   - npm run lint:sort
 
   # run unit tests
-  - xvfb-run -a npm run test -- --code-coverage --watch false --no-progress --browser=ChromeNoSandbox
+  - xvfb-run -a npm run test -- --code-coverage --watch=false --no-progress --browsers=ChromeNoSandbox
 
   # send coverage info
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
