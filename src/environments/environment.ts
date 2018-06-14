@@ -10,7 +10,7 @@ export const ENV = {
 
   // API
   API_DOMAIN: 'radar-backend.co.uk',
-  API_URI: `https://radar-backend.co.uk/api`,
+  API_URI: 'https://radar-backend.co.uk/api',
   API_FIREBASE: 'https://radar-dashboard.firebaseio.com',
   API_LOCAL: 'assets/data',
 

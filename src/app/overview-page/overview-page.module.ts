@@ -1,12 +1,10 @@
 import { CommonModule } from '@angular/common'
-import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router'
 import { EffectsModule } from '@ngrx/effects'
 import { StoreModule } from '@ngrx/store'
 
 import { ToolbarModule } from '../core/components/toolbar/toolbar.module'
-import { RadarHttpInterceptorProvider } from '../core/services/radar.interceptor'
 import { MaterialModule } from '../material'
 import { OverviewPageComponent } from './containers/overview-page'
 import { routes } from './overview-page.routing'
@@ -17,7 +15,6 @@ import { StudiesEffects } from './store/studies/studies.effects'
 @NgModule({
   imports: [
     CommonModule,
-    HttpClientModule,
     MaterialModule,
     ToolbarModule,
     RouterModule.forChild(routes),
@@ -25,6 +22,6 @@ import { StudiesEffects } from './store/studies/studies.effects'
     EffectsModule.forFeature([StudiesEffects])
   ],
   declarations: [OverviewPageComponent],
-  providers: [RadarHttpInterceptorProvider, StudiesService]
+  providers: [StudiesService]
 })
 export class OverviewPageModule {}

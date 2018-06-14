@@ -1,5 +1,4 @@
 import { CommonModule } from '@angular/common'
-import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router'
 import { EffectsModule } from '@ngrx/effects'
@@ -7,7 +6,6 @@ import { StoreModule } from '@ngrx/store'
 
 import { TileModule } from '../core/components/tile/tile.module'
 import { ToolbarModule } from '../core/components/toolbar/toolbar.module'
-import { RadarHttpInterceptorProvider } from '../core/services/radar.interceptor'
 import { MaterialModule } from '../material'
 import { CompliancePlotModule } from './components/compliance-plot/compliance-plot.module'
 import { SubjectTableModule } from './components/subject-table/subject-table.module'
@@ -25,7 +23,6 @@ import { routes } from './study-page.routing'
 @NgModule({
   imports: [
     CommonModule,
-    HttpClientModule,
     TileModule,
     ToolbarModule,
     MaterialModule,
@@ -40,12 +37,6 @@ import { routes } from './study-page.routing'
     ])
   ],
   declarations: [StudyPageComponent],
-  providers: [
-    RadarHttpInterceptorProvider,
-    StudyGuard,
-    StudyService,
-    SubjectService,
-    ComplianceDataService
-  ]
+  providers: [StudyGuard, StudyService, SubjectService, ComplianceDataService]
 })
 export class StudyPageModule {}
