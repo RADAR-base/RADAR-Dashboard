@@ -4,7 +4,7 @@ import { Observable, throwError as observableThrowError } from 'rxjs'
 
 import { ENV } from '../../../environments/environment'
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ErrorService {
   static handleError(error: HttpErrorResponse | any) {
     // TODO: add remote error logging

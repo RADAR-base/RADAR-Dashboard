@@ -18,8 +18,6 @@ import { AuthModule } from './auth/auth.module'
 import { AuthService } from './auth/services/auth.service'
 import { AppComponent } from './core/containers/app.component'
 import { NotFoundPageComponent } from './core/containers/not-found/not-found.component'
-import { ConfigService } from './core/services/config.service'
-import { ErrorService } from './core/services/error.service'
 import { RadarHttpInterceptorProvider } from './core/services/radar.interceptor'
 import { CustomRouterStateSerializer } from './shared/utils/custom-router-state-serializer'
 import { metaReducers, reducers } from './store'
@@ -51,7 +49,7 @@ import { PagesEffects } from './store/pages/pages.effects'
       config: {
         tokenGetter: AuthService.getToken,
         whitelistedDomains: ['localhost', ENV.API_DOMAIN],
-        blacklistedRoutes: ['radar-dashboard.firebaseio.com']
+        blacklistedRoutes: [ENV.API_FIREBASE + '/config.json']
       }
     }),
 
@@ -66,8 +64,6 @@ import { PagesEffects } from './store/pages/pages.effects'
   ],
   providers: [
     RadarHttpInterceptorProvider,
-    ConfigService,
-    ErrorService,
     { provide: RouterStateSerializer, useClass: CustomRouterStateSerializer }
   ],
   bootstrap: [AppComponent]

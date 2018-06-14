@@ -8,7 +8,7 @@ import { Config } from '../../shared/models/config.model'
 import { AppConfig } from '../../shared/utils/config'
 import { ErrorService } from './error.service'
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ConfigService {
   isLoaded$ = new BehaviorSubject<boolean>(false)
 
