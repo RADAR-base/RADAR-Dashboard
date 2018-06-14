@@ -6,7 +6,8 @@ import { ConfigService } from '../services/config.service'
 @Component({
   selector: 'app-root',
   template: `
-    <p *ngIf="(isLoadedConfig$ | async) === false; else pages">Loading...</p>
+    <div class="loading"
+      *ngIf="(isLoadedConfig$ | async) === false; else pages">Loading...</div>
     <ng-template #pages>
       <router-outlet></router-outlet>
     </ng-template>

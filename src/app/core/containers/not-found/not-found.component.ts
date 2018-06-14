@@ -5,7 +5,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core'
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <p>Page not found.</p>
-    <p><button routerLink="/">Take me home</button></p>
+    <p><button mat-raised-button routerLink="/">Take me home</button></p>
   `,
   styleUrls: ['./not-found.component.scss']
 })
