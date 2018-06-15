@@ -27,6 +27,8 @@ export const getStudiesIsLoaded = createSelector(
   fromStudies.getIsLoaded
 )
 
-export const { selectAll: getStudies } = fromStudies.adapter.getSelectors(
-  getStudiesState
-)
+export const {
+  selectIds: getStudyByIds,
+  selectEntities: getStudyEntities,
+  selectAll: getStudies
+} = fromStudies.adapter.getSelectors(getStudiesState)
