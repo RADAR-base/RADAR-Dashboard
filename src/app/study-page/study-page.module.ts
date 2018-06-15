@@ -10,7 +10,6 @@ import { MaterialModule } from '../material'
 import { CompliancePlotModule } from './components/compliance-plot/compliance-plot.module'
 import { SubjectTableModule } from './components/subject-table/subject-table.module'
 import { StudyPageComponent } from './containers/study-page.component'
-import { StudyGuard } from './guards/study.guard'
 import { ComplianceDataService } from './services/compliance-data.service'
 import { StudyService } from './services/study.service'
 import { SubjectService } from './services/subject.service'
@@ -37,6 +36,6 @@ import { routes } from './study-page.routing'
     ])
   ],
   declarations: [StudyPageComponent],
-  providers: [StudyGuard, StudyService, SubjectService, ComplianceDataService]
+  providers: [StudyService, SubjectService, ComplianceDataService]
 })
 export class StudyPageModule {}
