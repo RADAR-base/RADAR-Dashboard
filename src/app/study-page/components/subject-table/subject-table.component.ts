@@ -39,7 +39,7 @@ export class SubjectTableComponent implements OnInit, OnDestroy {
 
   @ViewChild(MatPaginator) paginator: MatPaginator
 
-  @Input() studyId
+  @Input() studyName
   @Input()
   set subjects(value) {
     this.subjectDB.data = value
@@ -60,6 +60,6 @@ export class SubjectTableComponent implements OnInit, OnDestroy {
   }
 
   openSubjectPage(event, subjectId) {
-    this.router.navigateByUrl(`/study/${this.studyId}/subject/${subjectId}`)
+    this.router.navigateByUrl(`/study/${this.studyName}/subject/${subjectId}`)
   }
 }

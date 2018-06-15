@@ -21,7 +21,7 @@ describe('StudyPageComponent', () => {
 
   beforeEach(async(() => {
     const activatedRoute = new ActivatedRouteStub()
-    activatedRoute.testParams = { studyId: '0' }
+    activatedRoute.testParams = { studyName: '0' }
 
     TestBed.configureTestingModule({
       imports: [

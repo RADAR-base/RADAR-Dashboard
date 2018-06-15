@@ -21,7 +21,7 @@ describe('SubjectPageComponent', () => {
 
   beforeEach(() => {
     const activatedRoute = new ActivatedRouteStub()
-    activatedRoute.testParams = { studyId: '0', patientId: 'MRC02' }
+    activatedRoute.testParams = { studyName: '0', patientId: 'MRC02' }
 
     TestBed.configureTestingModule({
       imports: [

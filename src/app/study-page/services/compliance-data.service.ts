@@ -12,7 +12,7 @@ import { parseTimeHoles } from '../../shared/utils/parse-time-holes'
 export class ComplianceDataService {
   constructor(private http: HttpClient) {}
 
-  getAll(studyId): Observable<any> {
+  getAll(studyName): Observable<any> {
     // TODO: Change when API is ready
     return this.http.get<any>(`${ENV.API_LOCAL}/mock-compliance.json`).pipe(
       take(1),

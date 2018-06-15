@@ -22,7 +22,7 @@ describe('SubjectService', () => {
   })
 
   it('should list empty subjects if empty', () => {
-    const expectedResult = { studyId: 0, subjects: [] }
+    const expectedResult = { studyName: 0, subjects: [] }
 
     let actualResult = []
     service.getAll(0).subscribe((result: any[]) => {
