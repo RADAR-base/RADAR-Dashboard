@@ -31,3 +31,10 @@ export const getRouterUrl = createSelector(getRouterState, router => {
 export const getRouterParams = createSelector(getRouterState, router => {
   return router && router.state && router.state.params
 })
+
+export const getRouterParamsStudyName = createSelector(
+  getRouterState,
+  router => {
+    return router && router.state && router.state.params['studyName']
+  }
+)
