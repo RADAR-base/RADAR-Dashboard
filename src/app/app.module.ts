@@ -20,9 +20,12 @@ import { AppComponent } from './core/containers/app.component'
 import { NotFoundPageComponent } from './core/containers/not-found/not-found.component'
 import { RadarHttpInterceptorProvider } from './core/services/radar.interceptor'
 import { MaterialModule } from './material'
+import { OverviewPageModule } from './overview-page/overview-page.module'
 import { CustomRouterStateSerializer } from './shared/utils/custom-router-state-serializer'
 import { metaReducers, reducers } from './store'
 import { PagesEffects } from './store/pages/pages.effects'
+import { StudyPageModule } from './study-page/study-page.module'
+import { SubjectPageModule } from './subject-page/subject-page.module'
 
 @NgModule({
   declarations: [AppComponent, NotFoundPageComponent],
@@ -31,9 +34,6 @@ import { PagesEffects } from './store/pages/pages.effects'
     HttpClientModule,
     MaterialModule,
     BrowserAnimationsModule,
-
-    // Routing
-    RouterModule.forRoot(routes),
 
     // ngrx/store
     StoreModule.forRoot(reducers, { metaReducers }),
@@ -62,7 +62,15 @@ import { PagesEffects } from './store/pages/pages.effects'
     ENV.TOOLS ? StoreDevtoolsModule.instrument() : [],
 
     // Auth
-    AuthModule.forRoot()
+    AuthModule.forRoot(),
+
+    // Pages
+    OverviewPageModule,
+    StudyPageModule,
+    SubjectPageModule,
+
+    // Routing
+    RouterModule.forRoot(routes)
   ],
   providers: [
     RadarHttpInterceptorProvider,
