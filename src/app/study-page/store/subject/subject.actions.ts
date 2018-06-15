@@ -4,11 +4,10 @@ import { Subject } from '../../../shared/models/subject.model'
 
 export const LOAD = '[StudyPage][Subject] LOAD'
 export const LOAD_SUCCESS = '[StudyPage][Subject] LOAD_SUCCESS'
+export const LOAD_FAIL = '[StudyPage][Subject] LOAD_FAIL'
 
 export class Load implements Action {
   readonly type = LOAD
-
-  constructor(public payload: string) {}
 }
 
 export class LoadSuccess implements Action {
@@ -17,4 +16,8 @@ export class LoadSuccess implements Action {
   constructor(public payload: Subject[]) {}
 }
 
-export type Actions = Load | LoadSuccess
+export class LoadFail implements Action {
+  readonly type = LOAD_FAIL
+}
+
+export type Actions = Load | LoadSuccess | LoadFail
