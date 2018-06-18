@@ -12,7 +12,7 @@ import { LoginPageComponent } from './containers/login-page/login-page.component
 import { AuthGuard } from './services/auth.guard'
 import { AuthService } from './services/auth.service'
 import { AuthEffects } from './store/auth.effects'
-import * as fromAuth from './store/auth.reducer'
+import { reducer } from './store/auth.reducer'
 
 @NgModule({
   imports: [
@@ -21,7 +21,7 @@ import * as fromAuth from './store/auth.reducer'
     MaterialModule,
     RouterModule.forChild(routes),
     EffectsModule.forFeature([AuthEffects]),
-    StoreModule.forFeature('auth', fromAuth.reducer)
+    StoreModule.forFeature('auth', reducer)
   ],
   declarations: [LoginPageComponent, LoginFormComponent]
 })
