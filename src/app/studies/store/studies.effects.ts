@@ -2,14 +2,7 @@ import { Injectable } from '@angular/core'
 import { Actions, Effect, ofType } from '@ngrx/effects'
 import { Action, Store } from '@ngrx/store'
 import { Observable, of } from 'rxjs'
-import {
-  catchError,
-  exhaustMap,
-  first,
-  map,
-  switchMap,
-  tap
-} from 'rxjs/operators'
+import { catchError, exhaustMap, map, withLatestFrom } from 'rxjs/operators'
 
 import { Study } from '../../shared/models/study.model'
 import * as fromRoot from '../../store'
@@ -22,9 +15,9 @@ export class StudiesEffects {
   @Effect()
   getAll$: Observable<Action> = this.actions$.pipe(
     ofType<actions.Load>(actions.LOAD),
-    switchMap(() => this.store.select(fromStudies.getStudies).pipe(first())),
+    withLatestFrom(this.store.select(fromStudies.getStudies)),
     map(
-      studies =>
+      ([, studies]) =>
         studies.length
           ? new actions.LoadSuccess(studies)
           : new actions.LoadFromApi()

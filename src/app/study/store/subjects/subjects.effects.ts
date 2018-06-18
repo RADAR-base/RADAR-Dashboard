@@ -1,15 +1,8 @@
 import { Injectable } from '@angular/core'
 import { Actions, Effect, ofType } from '@ngrx/effects'
-import { Store, select } from '@ngrx/store'
+import { Store } from '@ngrx/store'
 import { of } from 'rxjs'
-import {
-  catchError,
-  first,
-  map,
-  switchMap,
-  tap,
-  withLatestFrom
-} from 'rxjs/operators'
+import { catchError, map, switchMap, withLatestFrom } from 'rxjs/operators'
 
 import { Subject } from '../../../shared/models/subject.model'
 import * as fromRoot from '../../../store/index'
@@ -26,7 +19,7 @@ export class SubjectsEffects {
     map(([, subjects]) => subjects),
     withLatestFrom(this.store.select(fromRoot.getRouterParamsStudyName)),
     map(
-      ([subjects, studyName]: [Subject[], string]) =>
+      ([subjects, studyName]) =>
         subjects.length && studyName === subjects[0].projectName
           ? new actions.LoadSuccess(subjects)
           : new actions.LoadFromApi()
