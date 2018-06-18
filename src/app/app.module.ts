@@ -24,7 +24,7 @@ import { CustomRouterStateSerializer } from './shared/utils/custom-router-state-
 import { metaReducers, reducers } from './store'
 import { PagesEffects } from './store/pages/pages.effects'
 import { StudiesModule } from './studies/studies.module'
-import { StudyPageModule } from './study-page/study-page.module'
+import { StudyModule } from './study/study.module'
 import { SubjectPageModule } from './subject-page/subject-page.module'
 
 @NgModule({
@@ -57,8 +57,6 @@ import { SubjectPageModule } from './subject-page/subject-page.module'
 
     // Redux Devtools
     // https://github.com/zalmoxisus/redux-devtools-extension
-    // NOTE: Beware of the performance cost!
-    // https://github.com/ngrx/store-devtools/issues/45
     ENV.TOOLS ? StoreDevtoolsModule.instrument() : [],
 
     // Auth
@@ -66,7 +64,7 @@ import { SubjectPageModule } from './subject-page/subject-page.module'
 
     // Pages
     StudiesModule,
-    StudyPageModule,
+    StudyModule,
     SubjectPageModule,
 
     // Routing
