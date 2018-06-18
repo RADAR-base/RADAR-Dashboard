@@ -23,17 +23,15 @@ describe('StudyService', () => {
     http = TestBed.get(HttpTestingController)
   })
 
-  it('should return all studies', () => {
+  it('should return all studies', done => {
     const mock = MockStudies
-    let actual = []
 
     service.getAll().subscribe((users: Study[]) => {
-      actual = users
+      expect(users).toEqual(mock)
+      done()
     })
 
     http.expectOne('/api/projects').flush(mock)
-    expect(actual).toEqual(mock)
-
     http.verify()
   })
 })

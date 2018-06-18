@@ -6,11 +6,11 @@ import { StoreModule } from '@ngrx/store'
 
 import { ToolbarModule } from '../core/components/toolbar/toolbar.module'
 import { MaterialModule } from '../material'
-import { OverviewPageComponent } from './containers/overview-page'
-import { routes } from './overview-page.routing'
+import { StudiesPageComponent } from './containers/studies-page'
 import { StudiesService } from './services/studies.service'
-import { reducers } from './store'
-import { StudiesEffects } from './store/studies/studies.effects'
+import { StudiesEffects } from './store/studies.effects'
+import { reducer } from './store/studies.reducer'
+import { routes } from './studies.routing'
 
 @NgModule({
   imports: [
@@ -18,10 +18,10 @@ import { StudiesEffects } from './store/studies/studies.effects'
     MaterialModule,
     ToolbarModule,
     RouterModule.forChild(routes),
-    StoreModule.forFeature('overviewPage', reducers),
+    StoreModule.forFeature('studies', reducer),
     EffectsModule.forFeature([StudiesEffects])
   ],
-  declarations: [OverviewPageComponent],
+  declarations: [StudiesPageComponent],
   providers: [StudiesService]
 })
-export class OverviewPageModule {}
+export class StudiesModule {}

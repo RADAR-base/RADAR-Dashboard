@@ -1,6 +1,7 @@
 import { EntityAdapter, EntityState, createEntityAdapter } from '@ngrx/entity'
+import { createFeatureSelector, createSelector } from '@ngrx/store'
 
-import { Study } from '../../../shared/models/study.model'
+import { Study } from '../../shared/models/study.model'
 import * as actions from './studies.actions'
 
 export interface State extends EntityState<Study> {
@@ -34,4 +35,16 @@ export function reducer(state = initialState, action: actions.Actions): State {
   }
 }
 
-export const getIsLoaded = (state: State) => state.isLoaded
+// SELECTORS
+export const getStudiesState = createFeatureSelector<State>('studies')
+
+export const getStudiesIsLoaded = createSelector(
+  getStudiesState,
+  state => state.isLoaded
+)
+
+export const {
+  selectIds: getStudyByIds,
+  selectEntities: getStudyEntities,
+  selectAll: getStudies
+} = adapter.getSelectors(getStudiesState)

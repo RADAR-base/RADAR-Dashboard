@@ -9,15 +9,15 @@ import {
   ActivatedRouteStub,
   RouterStub
 } from '../../shared/testing/router-stubs'
-import { OverviewPageModule } from '../overview-page.module'
 import { StudiesService } from '../services/studies.service'
-import { reducers } from '../store'
-import { StudiesEffects } from '../store/studies/studies.effects'
-import { OverviewPageComponent } from './overview-page'
+import { StudiesEffects } from '../store/studies.effects'
+import { reducer } from '../store/studies.reducer'
+import { StudiesModule } from '../studies.module'
+import { StudiesPageComponent } from './studies-page'
 
 describe('OverviewPageComponent', () => {
-  let component: OverviewPageComponent
-  let fixture: ComponentFixture<OverviewPageComponent>
+  let component: StudiesPageComponent
+  let fixture: ComponentFixture<StudiesPageComponent>
   let element: HTMLElement
   let de: DebugElement
 
@@ -26,8 +26,8 @@ describe('OverviewPageComponent', () => {
 
     TestBed.configureTestingModule({
       imports: [
-        OverviewPageModule,
-        StoreModule.forRoot(reducers),
+        StudiesModule,
+        StoreModule.forRoot(reducer),
         EffectsModule.forRoot([StudiesEffects]),
         HttpClientModule
       ],
@@ -39,7 +39,7 @@ describe('OverviewPageComponent', () => {
       schemas: [NO_ERRORS_SCHEMA]
     })
 
-    fixture = TestBed.createComponent(OverviewPageComponent)
+    fixture = TestBed.createComponent(StudiesPageComponent)
     component = fixture.componentInstance
     element = fixture.nativeElement
     de = fixture.debugElement

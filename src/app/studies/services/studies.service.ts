@@ -1,7 +1,5 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { Observable } from 'rxjs'
-import { filter, map, take, tap } from 'rxjs/operators'
 
 import { ENV } from '../../../environments/environment'
 import { Study } from '../../shared/models/study.model'
@@ -10,10 +8,7 @@ import { Study } from '../../shared/models/study.model'
 export class StudiesService {
   constructor(private http: HttpClient) {}
 
-  getAll(): Observable<Study[]> {
-    return this.http.get<any>(`${ENV.API_URI}/projects`).pipe(
-      filter(d => d !== null),
-      take(1)
-    )
+  getAll() {
+    return this.http.get<Study[]>(`${ENV.API_URI}/projects`)
   }
 }

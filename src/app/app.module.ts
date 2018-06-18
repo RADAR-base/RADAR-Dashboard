@@ -20,10 +20,10 @@ import { AppComponent } from './core/containers/app.component'
 import { NotFoundPageComponent } from './core/containers/not-found/not-found.component'
 import { RadarHttpInterceptorProvider } from './core/services/radar.interceptor'
 import { MaterialModule } from './material'
-import { OverviewPageModule } from './overview-page/overview-page.module'
 import { CustomRouterStateSerializer } from './shared/utils/custom-router-state-serializer'
 import { metaReducers, reducers } from './store'
 import { PagesEffects } from './store/pages/pages.effects'
+import { StudiesModule } from './studies/studies.module'
 import { StudyPageModule } from './study-page/study-page.module'
 import { SubjectPageModule } from './subject-page/subject-page.module'
 
@@ -65,7 +65,7 @@ import { SubjectPageModule } from './subject-page/subject-page.module'
     AuthModule.forRoot(),
 
     // Pages
-    OverviewPageModule,
+    StudiesModule,
     StudyPageModule,
     SubjectPageModule,
 

@@ -1,12 +1,12 @@
 import { Routes } from '@angular/router'
 
 import { AuthGuard } from '../auth/services/auth.guard'
-import { OverviewPageComponent } from './containers/overview-page'
+import { StudiesPageComponent } from './containers/studies-page'
 
 export const routes: Routes = [
   {
     path: '',
-    component: OverviewPageComponent,
+    component: StudiesPageComponent,
     canActivate: [AuthGuard]
   }
 ]
