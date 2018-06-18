@@ -15,11 +15,12 @@ export class SubjectsEffects {
   @Effect()
   load$ = this.actions$.pipe(
     ofType(actions.LOAD),
-    withLatestFrom(this.store.select(fromStudy.getSubjects)),
-    map(([, subjects]) => subjects),
-    withLatestFrom(this.store.select(fromRoot.getRouterParamsStudyName)),
+    withLatestFrom(
+      this.store.select(fromStudy.getSubjects),
+      this.store.select(fromRoot.getRouterParamsStudyName)
+    ),
     map(
-      ([subjects, studyName]) =>
+      ([, subjects, studyName]) =>
         subjects.length && studyName === subjects[0].projectName
           ? new actions.LoadSuccess(subjects)
           : new actions.LoadFromApi()
