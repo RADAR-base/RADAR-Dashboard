@@ -7,10 +7,25 @@ import { catchError, first, map, switchMap } from 'rxjs/operators'
 import { Subject } from '../../../shared/models/subject.model'
 import * as fromRoot from '../../../store/index'
 import { SubjectService } from '../../services/subject.service'
-import * as actions from './subject.actions'
+import * as actions from './subjects.actions'
 
 @Injectable()
-export class SubjectEffects {
+export class SubjectsEffects {
+  // @Effect()
+  // load$ = this.actions$.pipe(
+  //   ofType(actions.LOAD),
+  //   switchMap(() =>
+  //     this.store.pipe(
+  //       select(fromStudy.getStudyByRouteStudyName),
+  //       first()
+  //     )
+  //   ),
+  //   map(
+  //     study =>
+  //       study ? new actions.LoadSuccess(study) : new actions.LoadFromApi()
+  //   )
+  // )
+
   @Effect()
   getAll$ = this.actions$.pipe(
     ofType(actions.LOAD),

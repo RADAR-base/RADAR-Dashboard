@@ -17,7 +17,7 @@ export class StudyEffects {
     ofType(actions.LOAD),
     switchMap(() =>
       this.store.pipe(
-        select(fromStudy.getStudyByRouteStudyName),
+        select(fromStudy.getStudyFromStudies),
         first()
       )
     ),

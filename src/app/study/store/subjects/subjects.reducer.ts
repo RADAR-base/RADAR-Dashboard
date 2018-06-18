@@ -1,7 +1,7 @@
 import { EntityAdapter, EntityState, createEntityAdapter } from '@ngrx/entity'
 
 import { Subject } from '../../../shared/models/subject.model'
-import * as actions from './subject.actions'
+import * as actions from './subjects.actions'
 
 export interface State extends EntityState<Subject> {
   isLoaded: boolean

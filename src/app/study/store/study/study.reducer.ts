@@ -5,13 +5,11 @@ import * as actions from './study.actions'
 
 export interface State {
   isLoaded: boolean
-  id: string
   selected: Study
 }
 
 const initialState: State = {
   isLoaded: true,
-  id: '',
   selected: null
 }
 
@@ -23,7 +21,6 @@ export function reducer(state = initialState, action: actions.Actions): State {
     case actions.LOAD_SUCCESS:
       return {
         ...state,
-        id: action.payload.projectName,
         selected: action.payload,
         isLoaded: true
       }
@@ -37,5 +34,4 @@ export function reducer(state = initialState, action: actions.Actions): State {
 }
 
 export const getIsLoaded = (state: State) => state.isLoaded
-export const getId = (state: State) => state.id
 export const getSelected = (state: State) => state.selected

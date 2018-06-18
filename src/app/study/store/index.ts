@@ -4,40 +4,35 @@ import * as fromRoot from '../../store'
 import * as fromStudies from '../../studies/store/studies.reducer'
 import * as fromCompliance from './compliance-data/compliance-data.reducer'
 import * as fromStudy from './study/study.reducer'
-import * as fromSubject from './subject/subject.reducer'
+import * as fromSubject from './subjects/subjects.reducer'
 
 export interface State {
   study: fromStudy.State
-  subject: fromSubject.State
+  subjects: fromSubject.State
   compliance: fromCompliance.State
 }
 
 export const reducers = {
   study: fromStudy.reducer,
-  subject: fromSubject.reducer,
+  subjects: fromSubject.reducer,
   compliance: fromCompliance.reducer
 }
 
-export const getStudyPageState = createFeatureSelector<State>('study')
+export const getStudyFeatureState = createFeatureSelector<State>('study')
 
 // Study Selectors
 export const getStudyState = createSelector(
-  getStudyPageState,
+  getStudyFeatureState,
   state => state.study
 )
 export const getStudyIsLoaded = createSelector(
   getStudyState,
   fromStudy.getIsLoaded
 )
-export const getstudyName = createSelector(getStudyState, fromStudy.getId)
 export const getStudy = createSelector(getStudyState, fromStudy.getSelected)
-export const getStudyIsSelected = createSelector(
-  getStudyState,
-  state => !!state.selected
-)
 
-// Router + Study Selectors
-export const getStudyByRouteStudyName = createSelector(
+// FromStudies + Router Selectors
+export const getStudyFromStudies = createSelector(
   fromStudies.getStudyEntities,
   fromRoot.getRouterParamsStudyName,
   (studies, studyName) => studies[studyName]
@@ -45,8 +40,8 @@ export const getStudyByRouteStudyName = createSelector(
 
 // Subject Selectors
 export const getSubjectState = createSelector(
-  getStudyPageState,
-  state => state.subject
+  getStudyFeatureState,
+  state => state.subjects
 )
 export const getSubjectsLoaded = createSelector(
   getSubjectState,
@@ -58,7 +53,7 @@ export const { selectAll: getSubjects } = fromSubject.adapter.getSelectors(
 
 // Compliance Selectors
 export const getComplianceState = createSelector(
-  getStudyPageState,
+  getStudyFeatureState,
   state => state.compliance
 )
 export const getComplianceDataLoaded = createSelector(

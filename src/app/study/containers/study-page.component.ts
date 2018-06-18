@@ -8,7 +8,7 @@ import { Subject } from '../../shared/models/subject.model'
 import * as fromRoot from '../../store'
 import * as fromStudyPage from '../store'
 import * as studyAction from '../store/study/study.actions'
-import * as subjectsAction from '../store/subject/subject.actions'
+import * as subjectsAction from '../store/subjects/subjects.actions'
 
 @Component({
   selector: 'app-study-page',

@@ -16,7 +16,7 @@ import { SubjectService } from './services/subject.service'
 import { reducers } from './store'
 import { ComplianceDataEffects } from './store/compliance-data/compliance-data.effects'
 import { StudyEffects } from './store/study/study.effects'
-import { SubjectEffects } from './store/subject/subject.effects'
+import { SubjectsEffects } from './store/subjects/subjects.effects'
 import { routes } from './study.routing'
 
 @NgModule({
@@ -31,7 +31,7 @@ import { routes } from './study.routing'
     StoreModule.forFeature('study', reducers),
     EffectsModule.forFeature([
       StudyEffects,
-      SubjectEffects,
+      SubjectsEffects,
       ComplianceDataEffects
     ])
   ],
