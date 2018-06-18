@@ -36,10 +36,10 @@ export function reducer(state = initialState, action: actions.Actions): State {
 }
 
 // SELECTORS
-export const getStudiesState = createFeatureSelector<State>('studies')
+export const getStudiesFeatureState = createFeatureSelector<State>('studies')
 
 export const getStudiesIsLoaded = createSelector(
-  getStudiesState,
+  getStudiesFeatureState,
   state => state.isLoaded
 )
 
@@ -47,4 +47,4 @@ export const {
   selectIds: getStudyByIds,
   selectEntities: getStudyEntities,
   selectAll: getStudies
-} = adapter.getSelectors(getStudiesState)
+} = adapter.getSelectors(getStudiesFeatureState)
