@@ -1,17 +1,17 @@
 import { Routes } from '@angular/router'
 
 import { AuthGuard } from '../auth/services/auth.guard'
-import { SubjectPageComponent } from './containers/subject-page.component'
+import { SubjectComponent } from './containers/subject.component'
 
 export const routes: Routes = [
   {
     path: 'study/:studyName/subject/:subjectId',
-    component: SubjectPageComponent,
+    component: SubjectComponent,
     canActivate: [AuthGuard]
   },
   {
     path: ':startTime/:endTime',
-    component: SubjectPageComponent,
+    component: SubjectComponent,
     canActivate: [AuthGuard]
   }
 ]

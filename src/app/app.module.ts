@@ -25,7 +25,7 @@ import { metaReducers, reducers } from './store'
 import { PagesEffects } from './store/pages/pages.effects'
 import { StudiesModule } from './studies/studies.module'
 import { StudyModule } from './study/study.module'
-import { SubjectPageModule } from './subject-page/subject-page.module'
+import { SubjectModule } from './subject/subject.module'
 
 @NgModule({
   declarations: [AppComponent, NotFoundPageComponent],
@@ -65,7 +65,7 @@ import { SubjectPageModule } from './subject-page/subject-page.module'
     // Pages
     StudiesModule,
     StudyModule,
-    SubjectPageModule,
+    SubjectModule,
 
     // Routing
     RouterModule.forRoot(routes)

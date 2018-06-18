@@ -9,7 +9,7 @@ import { ToolbarModule } from '../core/components/toolbar/toolbar.module'
 import { MaterialModule } from '../material'
 import { SourceGraphsModule } from './components/source-graphs/source-graphs.module'
 import { SourceListModule } from './components/source-list/source-list.module'
-import { SubjectPageComponent } from './containers/subject-page.component'
+import { SubjectComponent } from './containers/subject.component'
 import { SensorsDataService } from './services/sensors-data.service'
 import { SensorsService } from './services/sensors.service'
 import { SourcesService } from './services/sources.service'
@@ -17,7 +17,7 @@ import { reducers } from './store'
 import { SensorsDataEffects } from './store/sensors-data/sensors-data.effects'
 import { SensorsEffects } from './store/sensors/sensors.effects'
 import { SourcesEffects } from './store/sources/sources.effects'
-import { routes } from './subject-page.routing'
+import { routes } from './subject.routing'
 
 @NgModule({
   imports: [
@@ -28,14 +28,14 @@ import { routes } from './subject-page.routing'
     TileModule,
     ToolbarModule,
     RouterModule.forChild(routes),
-    StoreModule.forFeature('subjectPage', reducers),
+    StoreModule.forFeature('subject', reducers),
     EffectsModule.forFeature([
       SourcesEffects,
       SensorsEffects,
       SensorsDataEffects
     ])
   ],
-  declarations: [SubjectPageComponent],
+  declarations: [SubjectComponent],
   providers: [SourcesService, SensorsService, SensorsDataService]
 })
-export class SubjectPageModule {}
+export class SubjectModule {}

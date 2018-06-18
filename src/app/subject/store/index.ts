@@ -19,11 +19,11 @@ export const reducers = {
   sensorsData: fromSensorsData.reducer
 }
 
-export const getSubjectPageState = createFeatureSelector<State>('subjectPage')
+export const getSubjectFeatureState = createFeatureSelector<State>('subject')
 
 // Subject Selectors
 export const getSubjectState = createSelector(
-  getSubjectPageState,
+  getSubjectFeatureState,
   state => state.subject
 )
 
@@ -36,7 +36,7 @@ export const getSubjectId = createSelector(getSubjectState, fromSubject.getId)
 
 // Sensors Selectors
 export const getSensorsState = createSelector(
-  getSubjectPageState,
+  getSubjectFeatureState,
   state => state.sensors
 )
 export const {
@@ -51,7 +51,7 @@ export const getSensorsLoaded = createSelector(
 
 // Sources Selectors
 export const getSourcesState = createSelector(
-  getSubjectPageState,
+  getSubjectFeatureState,
   state => state.sources
 )
 export const { selectAll: getSources } = fromSources.adapter.getSelectors(
@@ -85,7 +85,7 @@ export const getSourcesWithSensors = createSelector(
 
 // Sensors Data Selectors
 export const getSensorsDataState = createSelector(
-  getSubjectPageState,
+  getSubjectFeatureState,
   state => state.sensorsData
 )
 export const {

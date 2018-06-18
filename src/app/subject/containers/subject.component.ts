@@ -22,13 +22,13 @@ import * as sourcesActions from '../store/sources/sources.actions'
 import * as subjectActions from '../store/subject/subject.actions'
 
 @Component({
-  selector: 'app-patient-page',
-  templateUrl: './subject-page.component.html',
-  styleUrls: ['./subject-page.component.scss'],
+  selector: 'app-subject-page',
+  templateUrl: './subject.component.html',
+  styleUrls: ['./subject.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 @TakeUntilDestroy
-export class SubjectPageComponent implements OnInit, OnDestroy {
+export class SubjectComponent implements OnInit, OnDestroy {
   sources: Source[]
   studyId: string
   subjectId: string
