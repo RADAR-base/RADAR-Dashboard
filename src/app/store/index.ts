@@ -24,17 +24,17 @@ export const getRouterState = createFeatureSelector<
   fromRouter.RouterReducerState<CustomRouterState>
 >('router')
 
-export const getRouterUrl = createSelector(getRouterState, router => {
-  return router && router.state && router.state.url
-})
+export const getRouterUrl = createSelector(
+  getRouterState,
+  router => router && router.state.url
+)
 
-export const getRouterParams = createSelector(getRouterState, router => {
-  return router && router.state && router.state.params
-})
+export const getRouterParams = createSelector(
+  getRouterState,
+  router => router && router.state.params
+)
 
 export const getRouterParamsStudyName = createSelector(
   getRouterState,
-  router => {
-    return router && router.state && router.state.params['studyName']
-  }
+  (router): string => router && router.state.params['studyName']
 )
