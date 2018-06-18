@@ -27,16 +27,32 @@ mat-row:hover {
 mat-header-cell,
 mat-cell {
   flex: 5;
+  padding-right: 0.5rem;
 }
 
 mat-cell {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  min-width: 0;
+
+  .ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
 
-.mat-column-subjectId,
-.mat-column-active {
+mat-cell:first-child,
+mat-footer-cell:first-child,
+mat-header-cell:first-child {
+  padding-left: 1rem;
+}
+
+mat-cell:last-child,
+mat-footer-cell:last-child,
+mat-header-cell:last-child {
+  padding-right: 1rem;
+}
+
+.mat-column-subjectId {
   flex: 3;
 }
 
@@ -55,6 +71,6 @@ mat-paginator::ng-deep {
 
   .mat-paginator-range-label {
     flex: 1;
-    margin: 0 16px;
+    margin: 0 1rem;
   }
 }

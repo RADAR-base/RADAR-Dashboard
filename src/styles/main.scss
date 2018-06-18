@@ -16,8 +16,21 @@
   background-color: $cl-white-20;
 }
 
+*::-webkit-scrollbar-corner {
+  background-color: $cl-base-40;
+}
+
 p {
   @include font-large;
+}
+
+button.mat-button,
+button.mat-raised-button {
+  text-transform: uppercase;
+}
+
+button.mat-button {
+  background-color: $cl-base;
 }
 
 // Fonts
