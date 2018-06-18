@@ -2,42 +2,44 @@ import { Injectable } from '@angular/core'
 import { Actions, Effect, ofType } from '@ngrx/effects'
 import { Store, select } from '@ngrx/store'
 import { of } from 'rxjs'
-import { catchError, first, map, switchMap } from 'rxjs/operators'
+import {
+  catchError,
+  first,
+  map,
+  switchMap,
+  tap,
+  withLatestFrom
+} from 'rxjs/operators'
 
 import { Subject } from '../../../shared/models/subject.model'
 import * as fromRoot from '../../../store/index'
 import { SubjectService } from '../../services/subject.service'
+import * as fromStudy from '../index'
 import * as actions from './subjects.actions'
 
 @Injectable()
 export class SubjectsEffects {
-  // @Effect()
-  // load$ = this.actions$.pipe(
-  //   ofType(actions.LOAD),
-  //   switchMap(() =>
-  //     this.store.pipe(
-  //       select(fromStudy.getStudyByRouteStudyName),
-  //       first()
-  //     )
-  //   ),
-  //   map(
-  //     study =>
-  //       study ? new actions.LoadSuccess(study) : new actions.LoadFromApi()
-  //   )
-  // )
+  @Effect()
+  load$ = this.actions$.pipe(
+    ofType(actions.LOAD),
+    withLatestFrom(this.store.select(fromStudy.getSubjects)),
+    map(([, subjects]) => subjects),
+    withLatestFrom(this.store.select(fromRoot.getRouterParamsStudyName)),
+    map(
+      ([subjects, studyName]: [Subject[], string]) =>
+        subjects.length && studyName === subjects[0].projectName
+          ? new actions.LoadSuccess(subjects)
+          : new actions.LoadFromApi()
+    )
+  )
 
   @Effect()
-  getAll$ = this.actions$.pipe(
-    ofType(actions.LOAD),
-    switchMap(() =>
-      this.store.pipe(
-        select(fromRoot.getRouterParamsStudyName),
-        first()
-      )
-    ),
-    switchMap(studyName => {
+  loadFromApi$ = this.actions$.pipe(
+    ofType(actions.LOAD_FROM_API),
+    withLatestFrom(this.store.select(fromRoot.getRouterParamsStudyName)),
+    switchMap(([, studyName]) => {
       return this.subjectService.getAll(studyName).pipe(
-        map((data: Subject[]) => new actions.LoadSuccess(data)),
+        map((subjects: Subject[]) => new actions.LoadSuccess(subjects)),
         catchError(() => of(new actions.LoadFail()))
       )
     })
