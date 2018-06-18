@@ -4,17 +4,17 @@ import * as fromRoot from '../../store'
 import * as fromStudies from '../../studies/store/studies.reducer'
 import * as fromCompliance from './compliance-data/compliance-data.reducer'
 import * as fromStudy from './study/study.reducer'
-import * as fromSubject from './subjects/subjects.reducer'
+import * as fromSubjects from './subjects/subjects.reducer'
 
 export interface State {
   study: fromStudy.State
-  subjects: fromSubject.State
+  subjects: fromSubjects.State
   compliance: fromCompliance.State
 }
 
 export const reducers = {
   study: fromStudy.reducer,
-  subjects: fromSubject.reducer,
+  subjects: fromSubjects.reducer,
   compliance: fromCompliance.reducer
 }
 
@@ -38,18 +38,20 @@ export const getStudyFromStudies = createSelector(
   (studies, studyName) => studies[studyName]
 )
 
-// Subject Selectors
-export const getSubjectState = createSelector(
+// Subjects Selectors
+export const getSubjectsState = createSelector(
   getStudyFeatureState,
   state => state.subjects
 )
 export const getSubjectsLoaded = createSelector(
-  getSubjectState,
-  fromSubject.getIsLoaded
+  getSubjectsState,
+  fromSubjects.getIsLoaded
 )
-export const { selectAll: getSubjects } = fromSubject.adapter.getSelectors(
-  getSubjectState
-)
+export const {
+  selectIds: getSubjectsByIds,
+  selectEntities: getSubjectsEntities,
+  selectAll: getSubjects
+} = fromSubjects.adapter.getSelectors(getSubjectsState)
 
 // Compliance Selectors
 export const getComplianceState = createSelector(
