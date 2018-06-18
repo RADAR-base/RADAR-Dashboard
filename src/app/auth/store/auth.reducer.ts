@@ -1,6 +1,5 @@
-import { Action, createFeatureSelector, createSelector } from '@ngrx/store'
+import { createFeatureSelector, createSelector } from '@ngrx/store'
 
-import { AuthResponse } from '../models/auth'
 import { User } from '../models/user'
 import { AuthActionTypes, AuthActions } from './auth.actions'
 
