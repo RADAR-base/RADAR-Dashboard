@@ -17,7 +17,7 @@ import { reducers } from './store'
 import { ComplianceDataEffects } from './store/compliance-data/compliance-data.effects'
 import { StudyEffects } from './store/study/study.effects'
 import { SubjectEffects } from './store/subject/subject.effects'
-import { routes } from './study-page.routing'
+import { routes } from './study.routing'
 
 @NgModule({
   imports: [
@@ -28,7 +28,7 @@ import { routes } from './study-page.routing'
     SubjectTableModule,
     CompliancePlotModule,
     RouterModule.forChild(routes),
-    StoreModule.forFeature('studyPage', reducers),
+    StoreModule.forFeature('study', reducers),
     EffectsModule.forFeature([
       StudyEffects,
       SubjectEffects,
@@ -38,4 +38,4 @@ import { routes } from './study-page.routing'
   declarations: [StudyPageComponent],
   providers: [StudyService, SubjectService, ComplianceDataService]
 })
-export class StudyPageModule {}
+export class StudyModule {}

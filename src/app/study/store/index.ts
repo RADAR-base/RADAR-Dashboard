@@ -18,7 +18,7 @@ export const reducers = {
   compliance: fromCompliance.reducer
 }
 
-export const getStudyPageState = createFeatureSelector<State>('studyPage')
+export const getStudyPageState = createFeatureSelector<State>('study')
 
 // Study Selectors
 export const getStudyState = createSelector(
@@ -34,10 +34,6 @@ export const getStudy = createSelector(getStudyState, fromStudy.getSelected)
 export const getStudyIsSelected = createSelector(
   getStudyState,
   state => !!state.selected
-)
-export const getStudyIsLoadedAndValid = createSelector(
-  getStudyState,
-  fromStudy.getIsLoadedAndValid
 )
 
 // Router + Study Selectors

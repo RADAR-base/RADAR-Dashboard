@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store'
 
-export const LOAD = '[StudyPage][Compliance] LOAD'
-export const LOAD_SUCCESS = '[StudyPage][Compliance] LOAD_SUCCESS'
+export const LOAD = '[Study][Compliance] LOAD'
+export const LOAD_SUCCESS = '[Study][Compliance] LOAD_SUCCESS'
 
 export class Load implements Action {
   readonly type = LOAD
@@ -12,7 +12,8 @@ export class Load implements Action {
 export class LoadSuccess implements Action {
   readonly type = LOAD_SUCCESS
 
-  constructor(public payload: any) {} // TODO: Change to Compliance[] type
+  // TODO: Change to Compliance[] type
+  constructor(public payload: any) {}
 }
 
 export type Actions = Load | LoadSuccess

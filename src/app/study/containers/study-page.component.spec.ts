@@ -10,7 +10,7 @@ import {
   RouterStub
 } from '../../shared/testing/router-stubs'
 import * as fromStudyPage from '../store/index'
-import { StudyPageModule } from '../study-page.module'
+import { StudyModule } from '../study.module'
 import { StudyPageComponent } from './study-page.component'
 
 describe('StudyPageComponent', () => {
@@ -29,7 +29,7 @@ describe('StudyPageComponent', () => {
           studyPage: combineReducers(fromStudyPage.reducers)
         }),
         EffectsModule.forRoot([]),
-        StudyPageModule,
+        StudyModule,
         HttpClientTestingModule
       ],
       providers: [

@@ -2,10 +2,10 @@ import { Action } from '@ngrx/store'
 
 import { Study } from '../../../shared/models/study.model'
 
-export const LOAD = '[StudyPage][Study] LOAD'
-export const LOAD_FROM_API = '[StudyPage][Study] LOAD_API'
-export const LOAD_SUCCESS = '[StudyPage][Study] LOAD_SUCCESS'
-export const LOAD_FAIL = '[StudyPage][Study] LOAD_FAIL'
+export const LOAD = '[Study][Study] LOAD'
+export const LOAD_FROM_API = '[Study][Study] LOAD_API'
+export const LOAD_SUCCESS = '[Study][Study] LOAD_SUCCESS'
+export const LOAD_FAIL = '[Study][Study] LOAD_FAIL'
 
 export class Load implements Action {
   readonly type = LOAD

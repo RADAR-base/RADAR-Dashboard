@@ -39,12 +39,3 @@ export function reducer(state = initialState, action: actions.Actions): State {
 export const getIsLoaded = (state: State) => state.isLoaded
 export const getId = (state: State) => state.id
 export const getSelected = (state: State) => state.selected
-
-export const getIsLoadedAndValid = createSelector(
-  getIsLoaded,
-  getSelected,
-  getId,
-  (loaded, study, id) => {
-    return loaded && !!study && !!id
-  }
-)
