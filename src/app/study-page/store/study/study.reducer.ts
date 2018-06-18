@@ -10,32 +10,26 @@ export interface State {
 }
 
 const initialState: State = {
-  isLoaded: false,
+  isLoaded: true,
   id: '',
   selected: null
 }
 
 export function reducer(state = initialState, action: actions.Actions): State {
   switch (action.type) {
-    case actions.LOAD_STUDY_BY_ID: {
+    case actions.LOAD:
       return { ...state, isLoaded: false }
-    }
 
-    case actions.LOAD_STUDY_BY_ID_SUCCESS: {
+    case actions.LOAD_SUCCESS:
       return {
         ...state,
+        id: action.payload.projectName,
         selected: action.payload,
         isLoaded: true
       }
-    }
 
-    case actions.SET_STUDY_ID: {
-      return { ...state, id: action.payload }
-    }
-
-    case actions.LOAD_STUDY_BY_ID_FAIL: {
+    case actions.LOAD_FAIL:
       return { ...initialState }
-    }
 
     default:
       return state

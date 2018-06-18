@@ -3,52 +3,42 @@
   [dataSource]="dataSource"
   [trackBy]="trackById"
 >
-  <!-- Patient ID Column -->
   <ng-container cdkColumnDef="subjectId">
-    <mat-header-cell *cdkHeaderCellDef>Patients ID</mat-header-cell>
-    <mat-cell *cdkCellDef="let row">{{ row.subjectId }}</mat-cell>
-  </ng-container>
-
-  <!-- Active Column -->
-  <ng-container cdkColumnDef="active">
-    <mat-header-cell *cdkHeaderCellDef>Active</mat-header-cell>
-    <mat-cell *cdkCellDef="let row">{{ row.active }}</mat-cell>
-  </ng-container>
-
-  <!-- Effective Time Frame Start Column -->
-  <ng-container cdkColumnDef="startdate">
-    <mat-header-cell *cdkHeaderCellDef>Start Date Time</mat-header-cell>
-    <mat-cell *cdkCellDef="let row">
-      {{ row.effectiveTimeFrame.endDateTime | date: 'short' }}
+    <mat-header-cell *cdkHeaderCellDef>ID</mat-header-cell>
+    <mat-cell *cdkCellDef="let row" >
+      <span class="ellipsis">{{ row.subjectId }}</span>
     </mat-cell>
   </ng-container>
 
-  <!-- Effective Time Frame End Column -->
-  <ng-container cdkColumnDef="enddate">
-    <mat-header-cell *cdkHeaderCellDef>End Date Time</mat-header-cell>
+  <ng-container cdkColumnDef="humanReadableId">
+      <mat-header-cell *cdkHeaderCellDef>Readable ID</mat-header-cell>
+      <mat-cell *cdkCellDef="let row">
+        <span class="ellipsis">{{ row.humanReadableId }}</span>
+      </mat-cell>
+    </ng-container>
+
+  <ng-container cdkColumnDef="status">
+    <mat-header-cell *cdkHeaderCellDef>Status</mat-header-cell>
     <mat-cell *cdkCellDef="let row">
-      {{ row.effectiveTimeFrame.startDateTime | date: 'short' }}
+      <span class="ellipsis">{{ row.status }}</span>
     </mat-cell>
   </ng-container>
 
-  <!-- Sources Column -->
   <ng-container cdkColumnDef="sources">
     <mat-header-cell *cdkHeaderCellDef>Sources</mat-header-cell>
     <mat-cell *cdkCellDef="let row">
-      <span *ngFor="let source of row.sources">{{ source.type }} | </span>
+      <span class="ellipsis">
+        <span *ngFor="let source of row.sources">{{ source.sourceTypeProducer }}  </span>
+      </span>
     </mat-cell>
   </ng-container>
 
-  <!-- Compliance Column -->
-  <ng-container cdkColumnDef="compliance">
-    <mat-header-cell *cdkHeaderCellDef>Compliance</mat-header-cell>
-    <mat-cell *cdkCellDef="let row">
-      <app-simple-bar
-        *ngFor="let data of sampleComplianceData"
-        [data]="data"
-      ></app-simple-bar>
-    </mat-cell>
-  </ng-container>
+  <ng-container cdkColumnDef="lastSeen">
+      <mat-header-cell *cdkHeaderCellDef>Last seen</mat-header-cell>
+      <mat-cell *cdkCellDef="let row">
+        <span class="ellipsis">{{ row.effectiveTimeFrame?.lastSeen | date: 'short' }}</span>
+      </mat-cell>
+    </ng-container>
 
   <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row

@@ -15,24 +15,17 @@ import { SubjectDB } from './subject-db'
 
 @Component({
   selector: 'app-subject-table',
-  styleUrls: ['subject-table.component.scss'],
   templateUrl: 'subject-table.component.html',
+  styleUrls: ['subject-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SubjectTableComponent implements OnInit, OnDestroy {
-  // TODO: Fix with service and API
-  sampleComplianceData = [
-    { type: 'simple', value: 0.2 },
-    { type: 'special', value: 0.3 }
-  ]
-
   displayedColumns = [
     'subjectId',
-    'active',
-    'startdate',
-    'enddate',
-    'sources',
-    'compliance'
+    'humanReadableId',
+    'status',
+    'lastSeen',
+    'sources'
   ]
   dataSource: SubjectDataSource | null
   subjectDB = new SubjectDB()

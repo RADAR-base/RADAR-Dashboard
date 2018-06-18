@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core'
 import { Actions, Effect, ofType } from '@ngrx/effects'
-import { Action } from '@ngrx/store'
-import { Observable } from 'rxjs'
-import { map, switchMap } from 'rxjs/operators'
+import { Store, select } from '@ngrx/store'
+import { of } from 'rxjs'
+import { catchError, first, map, switchMap } from 'rxjs/operators'
 
 import { Subject } from '../../../shared/models/subject.model'
+import * as fromRoot from '../../../store/index'
 import { SubjectService } from '../../services/subject.service'
 import * as actions from './subject.actions'
 
@@ -13,16 +14,23 @@ export class SubjectEffects {
   @Effect()
   getAll$ = this.actions$.pipe(
     ofType(actions.LOAD),
-    map((action: actions.Load) => action.payload),
-    switchMap(payload => {
-      return this.subjectService
-        .getAll(payload)
-        .pipe(map((data: Subject[]) => new actions.LoadSuccess(data)))
+    switchMap(() =>
+      this.store.pipe(
+        select(fromRoot.getRouterParamsStudyName),
+        first()
+      )
+    ),
+    switchMap(studyName => {
+      return this.subjectService.getAll(studyName).pipe(
+        map((data: Subject[]) => new actions.LoadSuccess(data)),
+        catchError(() => of(new actions.LoadFail()))
+      )
     })
   )
 
   constructor(
     private actions$: Actions,
-    private subjectService: SubjectService
+    private subjectService: SubjectService,
+    private store: Store<fromRoot.State>
   ) {}
 }

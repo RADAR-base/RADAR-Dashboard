@@ -5,7 +5,7 @@ import {
 import { TestBed } from '@angular/core/testing'
 
 import { Study } from '../../shared/models/study.model'
-import { MockStudies } from '../../shared/testing/mocks/mock-studies.old'
+import { MockStudies } from '../../shared/testing/mocks/mock-studies'
 import { StudyService } from './study.service'
 
 describe('StudyService', () => {
@@ -23,15 +23,15 @@ describe('StudyService', () => {
     http = TestBed.get(HttpTestingController)
   })
 
-  it('should return study by id', () => {
-    const mock = MockStudies
-    let actual: Study
+  it('should return study by id', done => {
+    const studyName = MockStudies[0].projectName
+    const mock = MockStudies[0]
 
-    service.getById('0').subscribe((result: Study) => {
-      actual = result
+    service.getById(studyName).subscribe((result: Study) => {
+      expect(result).toEqual(mock)
+      done()
     })
 
-    http.expectOne('/api/mock-all-studies.json').flush(mock)
-    expect<Study>(actual).toEqual(mock.dataset[0])
+    http.expectOne(`/api/projects/${studyName}`).flush(mock)
   })
 })

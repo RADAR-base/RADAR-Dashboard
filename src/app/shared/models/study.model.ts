@@ -17,7 +17,7 @@ interface Attribute {
   value: string
 }
 
-interface SourceType {
+export interface SourceType {
   producer: string
   model: string
   catalogVersion: string
@@ -29,7 +29,7 @@ interface SourceType {
   appProvider?: string
 }
 
-interface Source {
+export interface Source {
   sourceDataType: string
   sourceDataName: string
   keySchema: string

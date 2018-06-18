@@ -1,15 +1,14 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
-import { ActivatedRoute } from '@angular/router'
 import { Store, select } from '@ngrx/store'
 import { Observable } from 'rxjs'
-import { takeUntil, tap } from 'rxjs/operators'
+import { publishReplay, refCount, tap } from 'rxjs/operators'
 
+import { Study } from '../../shared/models/study.model'
 import { Subject } from '../../shared/models/subject.model'
-import { TakeUntilDestroy } from '../../shared/utils/take-until-destroy'
+import * as fromRoot from '../../store'
 import * as fromStudyPage from '../store'
-import * as complianceDataAction from '../store/compliance-data/compliance-data.actions'
 import * as studyAction from '../store/study/study.actions'
-import * as subjectAction from '../store/subject/subject.actions'
+import * as subjectsAction from '../store/subject/subject.actions'
 
 @Component({
   selector: 'app-study-page',
@@ -17,65 +16,24 @@ import * as subjectAction from '../store/subject/subject.actions'
   styleUrls: ['./study-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-@TakeUntilDestroy
 export class StudyPageComponent implements OnInit {
-  studyId: string
-  isStudyLoadedAndValid: boolean
-  isStudyLoadedAndValid$: Observable<boolean>
+  study$: Observable<Study>
   isLoaded$: Observable<boolean>
   subjects$: Observable<Subject[]>
-  isComplianceLoaded$: Observable<boolean>
-  complianceData$: Observable<any>
-  timeHoles = true
 
-  private takeUntilDestroy // from TakeUntilDestroy
-
-  constructor(
-    private route: ActivatedRoute,
-    private store: Store<fromStudyPage.State>
-  ) {}
+  constructor(private store: Store<fromRoot.State>) {}
 
   ngOnInit() {
-    // Get `studyId` from route and then get Study by `studyId`
-    this.route.params
-      .pipe(takeUntil(this.takeUntilDestroy()))
-      .subscribe(params => {
-        this.studyId = params['studyId']
-        this.store.dispatch(new studyAction.SetStudyId(this.studyId))
-      })
-
-    // If study is not loaded and not valid then fetch it
-    this.isStudyLoadedAndValid$ = this.store.pipe(
-      select(fromStudyPage.getStudyIsLoadedAndValid),
-      takeUntil(this.takeUntilDestroy()),
-      tap(isLoadedAndValid => {
-        if (isLoadedAndValid) {
-          this.store.dispatch(new subjectAction.Load(this.studyId))
-          // Check if compliance is loaded
-          this.isComplianceLoaded$ = this.store.pipe(
-            select(fromStudyPage.getComplianceDataLoaded),
-            tap(isComplianceLoaded => {
-              if (!isComplianceLoaded) {
-                this.store.dispatch(new complianceDataAction.Load(this.studyId))
-              }
-            })
-          )
-        } else {
-          this.store.dispatch(new studyAction.LoadStudyById(this.studyId))
-        }
-      })
+    this.study$ = this.store.pipe(
+      select(fromStudyPage.getStudy),
+      publishReplay(1),
+      refCount()
     )
 
-    this.isStudyLoadedAndValid$.subscribe(
-      isLoadedAndValid => (this.isStudyLoadedAndValid = isLoadedAndValid)
-    )
+    this.store.dispatch(new studyAction.Load())
+    this.store.dispatch(new subjectsAction.Load())
 
-    // Check if study is loaded
     this.isLoaded$ = this.store.select(fromStudyPage.getStudyIsLoaded)
-
     this.subjects$ = this.store.select(fromStudyPage.getSubjects)
-
-    // Get compliance data
-    this.complianceData$ = this.store.select(fromStudyPage.getComplianceData)
   }
 }
