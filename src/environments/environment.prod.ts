@@ -4,13 +4,14 @@ export const ENV = {
   TOOLS: false,
 
   // API
-  API_DOMAIN: 'radar-backend.co.uk',
-  API_URI: 'https://radar-backend.co.uk/api',
+  API_DOMAIN: 'radar-cns-platform.rosalind.kcl.ac.uk',
+  API_URI: 'https://radar-cns-platform.rosalind.kcl.ac.uk/api',
   API_LOCAL: 'assets/data',
   API_FIREBASE: 'https://radar-dashboard.firebaseio.com',
 
   // AUTH API
-  AUTH_URI: 'https://radar-backend.co.uk/managementportal/oauth/token',
+  AUTH_URI:
+    'https://radar-cns-platform.rosalind.kcl.ac.uk/managementportal/oauth/token',
   AUTH: {
     grant_type: 'client_credentials',
     client_id: 'radar_dashboard',
