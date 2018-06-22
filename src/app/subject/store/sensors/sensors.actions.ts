@@ -1,12 +1,15 @@
+import { Update } from '@ngrx/entity'
 import { Action } from '@ngrx/store'
 
+import { SourceData } from '../../../shared/models/source-data.model'
 import { Source } from '../../../shared/models/source.model'
 
-export const LOAD = '[SubjectPage][Sensor] LOAD'
-export const LOAD_SUCCESS = '[SubjectPage][Sensor] LOAD_SUCCESS'
-export const LOAD_FAIL = '[SubjectPage][Sensor] LOAD_FAIL'
-export const TOGGLE_VISIBILITY = '[SubjectPage][Sensor] TOGGLE_VISIBILITY'
-export const DESTROY = '[SubjectPage][Sensor] DESTROY'
+export const LOAD = '[Subject][Sensor] LOAD'
+export const LOAD_SUCCESS = '[Subject][Sensor] LOAD_SUCCESS'
+export const LOAD_FAIL = '[Subject][Sensor] LOAD_FAIL'
+export const UPDATE_SOURCE_DATA = '[Subject][Sensor] UPDATE_SOURCE_DATA'
+export const TOGGLE_VISIBILITY = '[Subject][Sensor] TOGGLE_VISIBILITY'
+export const DESTROY = '[Subject][Sensor] DESTROY'
 
 export class Load implements Action {
   readonly type = LOAD
@@ -17,11 +20,17 @@ export class Load implements Action {
 export class LoadSuccess implements Action {
   readonly type = LOAD_SUCCESS
 
-  constructor(public payload: Source[]) {}
+  constructor(public payload: any) {}
 }
 
 export class LoadFail implements Action {
   readonly type = LOAD_FAIL
+}
+
+export class UpdateSourceData implements Action {
+  readonly type = UPDATE_SOURCE_DATA
+
+  constructor(public payload: { sourceId: string; sourceData: SourceData[] }) {}
 }
 
 export class ToggleVisibility implements Action {
@@ -34,4 +43,10 @@ export class Destroy implements Action {
   readonly type = DESTROY
 }
 
-export type Actions = Load | LoadSuccess | LoadFail | ToggleVisibility | Destroy
+export type Actions =
+  | Load
+  | LoadSuccess
+  | LoadFail
+  | UpdateSourceData
+  | ToggleVisibility
+  | Destroy

@@ -3,36 +3,20 @@ import { createFeatureSelector, createSelector } from '@ngrx/store'
 import * as fromSensorsData from './sensors-data/sensors-data.reducer'
 import * as fromSensors from './sensors/sensors.reducer'
 import * as fromSources from './sources/sources.reducer'
-import * as fromSubject from './subject/subject.reducer'
 
 export interface State {
-  subject: fromSubject.State
   sources: fromSources.State
   sensors: fromSensors.State
   sensorsData: fromSensorsData.State
 }
 
 export const reducers = {
-  subject: fromSubject.reducer,
   sources: fromSources.reducer,
   sensors: fromSensors.reducer,
   sensorsData: fromSensorsData.reducer
 }
 
 export const getSubjectFeatureState = createFeatureSelector<State>('subject')
-
-// Subject Selectors
-export const getSubjectState = createSelector(
-  getSubjectFeatureState,
-  state => state.subject
-)
-
-export const getStudyId = createSelector(
-  getSubjectState,
-  fromSubject.getStudyId
-)
-
-export const getSubjectId = createSelector(getSubjectState, fromSubject.getId)
 
 // Sensors Selectors
 export const getSensorsState = createSelector(
@@ -63,13 +47,18 @@ export const getSourcesLoaded = createSelector(
   fromSources.getIsLoaded
 )
 
+export const getSourcesSubject = createSelector(
+  getSourcesState,
+  fromSources.getSubject
+)
+
 export const getSourcesWithSensors = createSelector(
   getSources,
   getSensors,
   (sources, sensors) => {
     if (sensors.length) {
       const sensorsBySource = sources.reduce((acc, source) => {
-        return { ...acc, [source.id]: [] }
+        return { ...acc, [source.sourceId]: [] }
       }, {})
 
       sensors.map(sensor => {
@@ -77,7 +66,7 @@ export const getSourcesWithSensors = createSelector(
       })
 
       return sources.map(source => {
-        return { ...source, sensors: sensorsBySource[source.id] }
+        return { ...source, sensors: sensorsBySource[source.sourceId] }
       })
     }
   }

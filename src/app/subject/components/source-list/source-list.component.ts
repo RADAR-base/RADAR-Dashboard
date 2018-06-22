@@ -8,7 +8,7 @@ import { Store } from '@ngrx/store'
 
 import { AppConfig } from '../../../shared/utils/config'
 import * as fromSubjectPage from '../../store'
-import * as sensorsAction from '../../store/sensors/sensors.actions'
+import * as sourcesActions from '../../store/sources/sources.actions'
 
 @Component({
   selector: 'app-source-list',
@@ -26,17 +26,8 @@ export class SourceListComponent implements OnInit {
 
   ngOnInit() {}
 
-  toggleSensor(sensorId) {
-    this.store.dispatch(new sensorsAction.ToggleVisibility(sensorId))
-  }
-
-  toggleSource(sourceId) {
-    const index = this.collapsed.indexOf(sourceId)
-
-    index > -1 ? this.collapsed.splice(index, 1) : this.collapsed.push(sourceId)
-  }
-
-  isSourceOn(sourceId) {
-    return this.collapsed.indexOf(sourceId) === -1
+  toggleSourceData(sourceDataUid, sourceId) {
+    const payload = { sourceDataUid, sourceId }
+    this.store.dispatch(new sourcesActions.ToggleVisibility(payload))
   }
 }

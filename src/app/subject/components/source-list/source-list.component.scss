@@ -11,7 +11,7 @@
 }
 
 .source,
-.sensor {
+.sourceData {
   overflow: hidden;
   padding: 4px 0;
   text-overflow: ellipsis;
@@ -23,18 +23,19 @@
 .source {
   @include font-body-light;
 
-  margin-top: 12px;
-  margin-left: 12px;
+  margin-top: 1rem;
+  margin-left: 1rem;
+  font-weight: 600;
 
   .icon {
     padding-right: 0;
   }
 }
 
-.sensor {
+.sourceData {
   @include font-small;
 
-  margin-left: 32px;
+  margin-left: 1rem;
 
   &.inactive {
     opacity: 0.3;

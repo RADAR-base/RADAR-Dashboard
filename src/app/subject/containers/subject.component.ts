@@ -6,20 +6,16 @@ import {
 } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { Dictionary } from '@ngrx/entity/src/models'
-import { Store, select } from '@ngrx/store'
-import { Observable, Subscription } from 'rxjs'
-import { takeUntil } from 'rxjs/operators'
+import { Store } from '@ngrx/store'
+import { Observable } from 'rxjs'
 
-import { DescriptiveStatistic } from '../../shared/enums/descriptive-statistic.enum'
-import { TimeInterval } from '../../shared/enums/time-interval.enum'
 import { Source } from '../../shared/models/source.model'
-import { TakeUntilDestroy } from '../../shared/utils/take-until-destroy'
+import { Subject } from '../../shared/models/subject.model'
+import * as fromRoot from '../../store'
 import * as pagesActions from '../../store/pages/pages.actions'
 import { SensorsData } from '../models/sensors-data.model'
-import * as fromSubjectPage from '../store/index'
-import * as sensorsDataActions from '../store/sensors-data/sensors-data.actions'
+import * as fromSubject from '../store/index'
 import * as sourcesActions from '../store/sources/sources.actions'
-import * as subjectActions from '../store/subject/subject.actions'
 
 @Component({
   selector: 'app-subject-page',
@@ -27,76 +23,61 @@ import * as subjectActions from '../store/subject/subject.actions'
   styleUrls: ['./subject.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-@TakeUntilDestroy
 export class SubjectComponent implements OnInit, OnDestroy {
-  sources: Source[]
-  studyId: string
-  subjectId: string
-  sources$: Subscription
+  studyName$: Observable<string>
+  subjectId$: Observable<string>
+  subject$: Observable<Subject>
+  sources$: Observable<Source[]>
   sourceIsLoaded$: Observable<boolean>
   dates$: Observable<Date[]>
   sensorsIsDataLoaded$: any
   sensorsData$: Observable<Dictionary<SensorsData>>
 
-  private takeUntilDestroy
-
-  constructor(
-    private route: ActivatedRoute,
-    private store: Store<fromSubjectPage.State>
-  ) {}
+  constructor(private store: Store<fromSubject.State>) {}
 
   ngOnInit() {
-    this.route.params
-      .pipe(takeUntil(this.takeUntilDestroy()))
-      .subscribe(params => {
-        this.studyId = params.studyId
-        this.subjectId = params.subjectId
+    this.studyName$ = this.store.select(fromRoot.getRouterParamsStudyName)
+    this.subjectId$ = this.store.select(fromRoot.getRouterParamsSubjectId)
 
-        this.store.dispatch(new subjectActions.SetStudyId(this.studyId))
-        this.store.dispatch(new subjectActions.SetId(this.subjectId))
-      })
-
-    // TODO: move whole block to Volume||Brush component -->
-    this.store.dispatch(
-      new sensorsDataActions.SetTimeInterval(TimeInterval.TEN_SECOND)
-    )
-    this.store.dispatch(
-      new sensorsDataActions.SetDescriptiveStatistic(
-        DescriptiveStatistic.AVERAGE
-      )
-    )
-    const endTimeFrame = 1497628000000
-    const endMinusOneday = new Date(endTimeFrame).setDate(
-      new Date(endTimeFrame).getDate() - 0.45
-    )
-    this.store.dispatch(
-      new sensorsDataActions.SetTimeFrame({
-        start: endMinusOneday,
-        end: endTimeFrame
-      })
-    )
-    // <-- end
+    this.subject$ = this.store.select(fromSubject.getSourcesSubject)
 
     // Get sources from server
-    this.store.dispatch(new sourcesActions.Load(this.subjectId))
-    this.sourceIsLoaded$ = this.store.select(fromSubjectPage.getSourcesLoaded)
-    this.sources$ = this.store
-      .pipe(
-        select(fromSubjectPage.getSourcesWithSensors),
-        takeUntil(this.takeUntilDestroy())
-      )
-      .subscribe(sources => (this.sources = sources))
+    this.store.dispatch(new sourcesActions.Load())
+
+    this.sourceIsLoaded$ = this.store.select(fromSubject.getSourcesLoaded)
+    this.sources$ = this.store.select(fromSubject.getSources)
 
     // Get sensor data from server
-    this.sensorsIsDataLoaded$ = this.store.select(
-      fromSubjectPage.getSensorsDataLoaded
-    )
-    this.sensorsData$ = this.store.select(
-      fromSubjectPage.getSensorsDataEntities
-    )
+    // this.sensorsIsDataLoaded$ = this.store.select(
+    //   fromSubjectPage.getSensorsDataLoaded
+    // )
+    // this.sensorsData$ = this.store.select(
+    //   fromSubjectPage.getSensorsDataEntities
+    // )
 
     // Dates for Volume Graph
-    this.dates$ = this.store.select(fromSubjectPage.getSensorsDates)
+    // this.dates$ = this.store.select(fromSubjectPage.getSensorsDates)
+
+    // TODO: move whole block to Volume||Brush component -->
+    // this.store.dispatch(
+    //   new sensorsDataActions.SetTimeInterval(TimeInterval.TEN_SECOND)
+    // )
+    // this.store.dispatch(
+    //   new sensorsDataActions.SetDescriptiveStatistic(
+    //     DescriptiveStatistic.AVERAGE
+    //   )
+    // )
+    // const endTimeFrame = 1497628000000
+    // const endMinusOneday = new Date(endTimeFrame).setDate(
+    //   new Date(endTimeFrame).getDate() - 0.45
+    // )
+    // this.store.dispatch(
+    //   new sensorsDataActions.SetTimeFrame({
+    //     start: endMinusOneday,
+    //     end: endTimeFrame
+    //   })
+    // )
+    // <-- end
   }
 
   ngOnDestroy() {

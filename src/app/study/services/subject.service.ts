@@ -11,8 +11,6 @@ export class SubjectService {
   getAll(studyName) {
     const url = `${ENV.API_URI}/projects/${studyName}/subjects`
 
-    // TODO: getting 500 error from API on some projects
-    // https://github.com/RADAR-base/RADAR-RestApi/issues/97
     return this.http.get<Subject[]>(url)
   }
 }

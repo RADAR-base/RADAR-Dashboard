@@ -3,10 +3,10 @@ import { Injectable } from '@angular/core'
 import { Actions, ofType } from '@ngrx/effects'
 import { Action } from '@ngrx/store'
 import { Observable } from 'rxjs'
-import { filter, map, take, takeUntil } from 'rxjs/operators'
+import { takeUntil } from 'rxjs/operators'
 
 import { ENV } from '../../../environments/environment'
-import { Source } from '../../shared/models/source.model'
+import { Subject } from '../../shared/models/subject.model'
 import * as actions from '../store/sources/sources.actions'
 
 @Injectable()
@@ -17,20 +17,9 @@ export class SourcesService {
     this.destroy$ = this.actions$.pipe(ofType(actions.DESTROY))
   }
 
-  getAll(subjectId): Observable<Source[]> {
-    const url = `${ENV.API_URI}/source/getAllSources/${subjectId}`
+  getAll(studyName, subjectId): Observable<Subject> {
+    const url = `${ENV.API_URI}/projects/${studyName}/subjects/${subjectId}`
 
-    return this.http.get<any>(url).pipe(
-      filter(d => d !== null),
-      map(res => res.sources),
-      map(this.removeNonSupportedTypes),
-      takeUntil(this.destroy$),
-      take(1)
-    )
-  }
-
-  // TODO: remove filter when API and data are ready
-  removeNonSupportedTypes(res) {
-    return res.filter((d: Source) => d.type === 'EMPATICA')
+    return this.http.get<Subject>(url).pipe(takeUntil(this.destroy$))
   }
 }

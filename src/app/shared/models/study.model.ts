@@ -1,3 +1,5 @@
+import { SourceType } from './source-type.model'
+
 export interface Study {
   id: number | string
   projectName?: string
@@ -15,29 +17,4 @@ export interface Study {
 interface Attribute {
   key: string
   value: string
-}
-
-export interface SourceType {
-  producer: string
-  model: string
-  catalogVersion: string
-  sourceTypeScope: string
-  canRegisterDynamically: boolean
-  name?: string
-  description?: string
-  sourceData: Source[]
-  appProvider?: string
-}
-
-export interface Source {
-  sourceDataType: string
-  sourceDataName: string
-  keySchema: string
-  valueSchema: string
-  topic: string
-  enabled: boolean
-  unit?: string
-  frequency?: string
-  provider?: string
-  processingState?: string
 }

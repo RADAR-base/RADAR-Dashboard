@@ -9,6 +9,8 @@ export class StudyService {
   constructor(private http: HttpClient) {}
 
   getById(name) {
-    return this.http.get<Study>(`${ENV.API_URI}/projects/${name}`)
+    const url = `${ENV.API_URI}/projects/${name}`
+
+    return this.http.get<Study>(url)
   }
 }

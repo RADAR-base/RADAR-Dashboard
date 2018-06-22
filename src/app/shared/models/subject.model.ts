@@ -1,4 +1,4 @@
-import { Source } from './study.model'
+import { Source } from './source.model'
 
 export interface Subject {
   subjectId: string

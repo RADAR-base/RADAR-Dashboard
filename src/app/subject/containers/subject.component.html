@@ -1,37 +1,42 @@
 <app-toolbar>
   <div start>
-    <button
-      [routerLink]="['/study', studyId]"
-      mat-icon-button
-    >
-      <i class="material-icons">arrow_back</i>
-    </button>
-    <div class="label">Subject {{ subjectId }}</div>
+    <ng-container *ngIf="(studyName$ | async) as studyName">
+      <button
+        [routerLink]="['/study', studyName]"
+        mat-icon-button
+      >
+        <i class="material-icons">arrow_back</i>
+      </button>
+    </ng-container>
+    <div class="label">Subject {{ (subject$ | async)?.humanReadableId }}</div>
   </div>
 </app-toolbar>
+
 <div class="content">
-  <mat-grid-list
-    cols="8"
-    rowHeight="fit"
-  >
-    <mat-grid-tile colspan="2">
+  <ng-container *ngIf="(sources$ | async) as sources">
+    <div class="grid">
       <app-tile label="Sources">
         <app-source-list
-          [sources]="sources"
-          tile-content
+        [sources]="sources"
+        tile-content
         ></app-source-list>
       </app-tile>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="6">
+
       <app-tile label="Graphs">
-        <app-source-graphs
-          [dates]="dates$ | async"
-          [sources]="sources"
-          [sensorsData]="sensorsData$ | async"
-          [isDataLoaded]="sensorsIsDataLoaded$ | async"
-          tile-content
-        ></app-source-graphs>
+        <div tile-content>
+          <pre>{{ sources | json }}</pre>
+        </div>
       </app-tile>
-    </mat-grid-tile>
-  </mat-grid-list>
+
+      <!-- <app-tile label="Graphs">
+        <app-source-graphs
+        [dates]="dates$ | async"
+        [sources]="sources"
+        [sensorsData]="sensorsData$ | async"
+        [isDataLoaded]="sensorsIsDataLoaded$ | async"
+        tile-content
+        ></app-source-graphs>
+      </app-tile> -->
+    </div>
+  </ng-container>
 </div>

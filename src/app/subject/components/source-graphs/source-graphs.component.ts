@@ -45,7 +45,7 @@ export class SourceGraphsComponent implements OnInit {
   }
 
   trackBySourceId(index: number, source: Source) {
-    return source.id
+    return source.sourceId
   }
 
   trackBySensorId(index: number, sensor: Sensor) {

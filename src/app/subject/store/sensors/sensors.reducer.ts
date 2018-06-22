@@ -21,22 +21,22 @@ export function reducer(state = initialState, action: actions.Actions): State {
     }
 
     case actions.LOAD_SUCCESS: {
-      action.payload.map(source =>
-        source.sensors.map(sensor => {
-          const id = shortid.generate()
+      console.log('LOAD_SUCCESS', action.payload)
+      // action.payload.map(source =>
+      //   source.sensors.map(sensor => {
+      //     const id = shortid.generate()
 
-          return (state = adapter.addOne(
-            {
-              ...sensor,
-              visible: true,
-              source: source.id,
-              id
-            },
-            state
-          ))
-        }, {})
-      )
-
+      //     return (state = adapter.addOne(
+      //       {
+      //         ...sensor,
+      //         visible: true,
+      //         source: source.id,
+      //         id
+      //       },
+      //       state
+      //     ))
+      //   }, {})
+      // )
       return { ...state, isLoaded: true }
     }
 
