@@ -49,15 +49,19 @@ export function reducer(state = initialState, action: actions.Actions): State {
         const source = state.entities[id]
         const sourceData = sourceTypesEntities[
           source.sourceTypeId
-        ].sourceData.map(value => ({
-          ...value,
-          uid: shortid.generate(),
-          sourceId: source.sourceId,
-          dataType: AppConfig.config.sensors[value.sourceDataType].dataType,
-          keys: AppConfig.config.sensors[value.sourceDataType].keys,
-          label: AppConfig.config.sensors[value.sourceDataType].label,
-          visible: true
-        }))
+        ].sourceData.map(value => {
+          const config = AppConfig.config.sensors[value.sourceDataType]
+          return {
+            ...value,
+            uid: shortid.generate(),
+            sourceId: source.sourceId,
+            chart: config.chart,
+            dataType: config.dataType,
+            keys: config.keys,
+            label: config.label,
+            visible: true
+          }
+        })
 
         return {
           ...source,
