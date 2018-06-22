@@ -1,8 +1,8 @@
 <div *ngFor="let source of sources">
   <div class="source"
-    title="{{ source.sourceName }} | {{ source.sourceTypeModel }}"
+    title="{{ source.sourceTypeModel }} | {{ source.sourceName }}"
   >
-    {{ source.sourceName }} | {{ source.sourceTypeModel }}
+    {{ source.sourceTypeModel }} | {{ source.sourceName }}
   </div>
   <div class="sourceData"
     *ngFor="let sourceData of source.sourceData"

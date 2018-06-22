@@ -15,6 +15,7 @@ export const ENV = {
     grant_type: 'client_credentials',
     client_id: 'radar_dashboard',
     client_secret: 'says_PRETTY_smiled',
-    scope: 'SOURCETYPE.READ PROJECT.READ SOURCE.READ SUBJECT.READ'
+    scope:
+      'SOURCETYPE.READ PROJECT.READ SOURCE.READ SUBJECT.READ MEASUREMENT.READ'
   }
 }

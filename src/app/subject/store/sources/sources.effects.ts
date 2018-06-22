@@ -7,6 +7,7 @@ import { catchError, map, switchMap, tap, withLatestFrom } from 'rxjs/operators'
 import * as fromRoot from '../../../store'
 import * as sourceTypesActions from '../../../store/source-types/source-types.actions'
 import { SourcesService } from '../../services/sources.service'
+import * as sensorsDataActions from '../sensors-data/sensors-data.actions'
 import * as sourcesActions from './sources.actions'
 
 @Injectable()
@@ -28,7 +29,8 @@ export class SourcesEffects {
 
   @Effect({ dispatch: false })
   injectSourceData$ = this.actions$.pipe(
-    ofType(sourcesActions.INJECT_SOURCE_DATA)
+    ofType(sourcesActions.INJECT_SOURCE_DATA),
+    tap(() => this.store.dispatch(new sensorsDataActions.Load()))
   )
 
   @Effect({ dispatch: false })

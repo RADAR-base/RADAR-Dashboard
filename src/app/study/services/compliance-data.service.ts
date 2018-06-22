@@ -4,7 +4,7 @@ import { Observable } from 'rxjs'
 import { delay, filter, map, take } from 'rxjs/operators'
 
 import { ENV } from '../../../environments/environment'
-import { TimeInterval } from '../../shared/enums/time-interval.enum'
+import { TimeWindow } from '../../shared/enums/time-window.enum'
 import { getTime } from '../../shared/utils/get-time'
 import { parseTimeHoles } from '../../shared/utils/parse-time-holes'
 
@@ -25,7 +25,7 @@ export class ComplianceDataService {
               start: getTime(res.header.effectiveTimeFrame.startDateTime),
               end: getTime(res.header.effectiveTimeFrame.endDateTime)
             },
-            TimeInterval[res.header.timeFrame]
+            TimeWindow[res.header.timeFrame]
           )
         }
       })

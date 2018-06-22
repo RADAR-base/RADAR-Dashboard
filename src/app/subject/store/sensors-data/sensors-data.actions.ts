@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store'
 
 import { DescriptiveStatistic } from '../../../shared/enums/descriptive-statistic.enum'
-import { TimeInterval } from '../../../shared/enums/time-interval.enum'
+import { TimeWindow } from '../../../shared/enums/time-window.enum'
 import { ChartData } from '../../../shared/models/chart-data.model'
 import { Sensor } from '../../../shared/models/sensor.model'
 import { TimeFrame } from '../../../shared/models/time.model'
@@ -18,8 +18,6 @@ export const DESTROY = '[Subject][Sensors-Data] DESTROY'
 
 export class Load implements Action {
   readonly type = LOAD
-
-  constructor(public payload: Sensor[]) {}
 }
 
 export class LoadSuccess implements Action {
@@ -47,7 +45,7 @@ export class SetTimeFrame implements Action {
 export class SetTimeInterval implements Action {
   readonly type = SET_TIME_INTERVAL
 
-  constructor(public payload: TimeInterval) {}
+  constructor(public payload: TimeWindow) {}
 }
 
 export class SetDescriptiveStatistic implements Action {

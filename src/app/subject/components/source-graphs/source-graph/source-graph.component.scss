@@ -29,6 +29,7 @@
   bottom: 0;
   left: $size-graph-side-label;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: 4px 8px 4px 0;
@@ -40,8 +41,13 @@
   }
 
   p {
+    margin: 0.5rem;
     color: $cl-white-60;
   }
+}
+
+.emoji {
+  font-size: 2rem;
 }
 
 .nodata {

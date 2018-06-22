@@ -3,19 +3,20 @@ import { Injectable } from '@angular/core'
 import { Actions } from '@ngrx/effects'
 import { Action } from '@ngrx/store'
 import { Observable, Subject } from 'rxjs'
-import { take, takeUntil } from 'rxjs/operators'
+import { takeUntil } from 'rxjs/operators'
 
 import { ENV } from '../../../environments/environment'
 import { DescriptiveStatistic } from '../../shared/enums/descriptive-statistic.enum'
-import { TimeInterval } from '../../shared/enums/time-interval.enum'
-import { RadarAPISampleModel } from '../../shared/models/radar-api.model'
+import { TimeWindow } from '../../shared/enums/time-window.enum'
+import { SampleDataModel } from '../../shared/models/sample-data.model'
 import { Sensor } from '../../shared/models/sensor.model'
+import { Source } from '../../shared/models/source.model'
 import { parseTimeHoles } from '../../shared/utils/parse-time-holes'
 import * as actions from '../store/sensors-data/sensors-data.actions'
 
 @Injectable()
 export class SensorsDataService {
-  private URL = `${ENV.API_URI}/data`
+  private url = `${ENV.API_URI}/data`
   private destroy$: Observable<Action>
   private queue$ = new Subject<any>()
   private sensors$ = new Subject<Sensor>()
@@ -29,9 +30,12 @@ export class SensorsDataService {
     })
   }
 
-  getData(sensors, options): Observable<any> {
+  getData(sources: Source[], options): Observable<any> {
     this.options = options
-    this.sensors = sensors.slice().reverse()
+    this.sensors = sources.reduce(
+      (accumulator, source) => [...accumulator, ...source.sourceData],
+      []
+    )
 
     this.sensors$.next(this.sensors.pop()) // get the first sensor
 
@@ -40,25 +44,25 @@ export class SensorsDataService {
 
   private getNextSensorData(sensor) {
     const url = this.parseURL(sensor)
+    console.log(url)
 
     this.http
-      .get<RadarAPISampleModel>(url)
-      .pipe(
-        takeUntil(this.destroy$),
-        take(1)
-      )
-      .subscribe(response => {
+      .get<SampleDataModel>(url)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response: SampleDataModel) => {
         if (this.sensors.length) {
           this.sensors$.next(this.sensors.pop())
         }
-
         if (response) {
           this.queue$.next({
-            data: parseTimeHoles(
-              response.dataset,
-              this.options.timeFrame,
-              this.options.timeInterval
-            ),
+            data:
+              response.dataset && response.dataset.length
+                ? parseTimeHoles(
+                    response.dataset,
+                    response.header.effectiveTimeFrame,
+                    response.header.timeWindow
+                  )
+                : null,
             sensor
           })
         } else {
@@ -67,17 +71,27 @@ export class SensorsDataService {
       })
   }
 
-  // TODO: setup 'AVERAGE' & 'TEN_SECOND' when API is ready
-  private parseURL(sensor) {
-    return [
-      this.URL,
-      sensor.type,
-      DescriptiveStatistic[this.options.descriptiveStatistic],
-      TimeInterval[this.options.timeInterval],
+  private parseURL(sensor: Sensor): string {
+    let url = [
+      this.url,
+      this.options.studyName,
       this.options.subjectId,
-      sensor.source,
-      this.options.timeFrame.start,
-      this.options.timeFrame.end
+      sensor.sourceId,
+      sensor.sourceDataName,
+      DescriptiveStatistic[this.options.descriptiveStatistic]
     ].join('/')
+
+    url = url + '?'
+    url = `${url}timeWindow=${TimeWindow[this.options.timeWindow]}`
+
+    this.options.timeFrame.start
+      ? (url = `${url}&startTime=${this.options.timeFrame.start}`)
+      : (url = url)
+
+    this.options.timeFrame.end
+      ? (url = `${url}&startTime=${this.options.timeFrame.end}`)
+      : (url = url)
+
+    return url
   }
 }

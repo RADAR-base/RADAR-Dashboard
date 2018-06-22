@@ -9,7 +9,7 @@ import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs'
 
 import { ChartData } from '../../../shared/models/chart-data.model'
-import { Sensor } from '../../../shared/models/sensor.model'
+import { SourceData } from '../../../shared/models/source-data.model'
 import { SourceTooltipItem } from '../../../shared/models/source-tooltip.model'
 import { Source } from '../../../shared/models/source.model'
 import * as fromSubjectPage from '../../store'
@@ -40,7 +40,7 @@ export class SourceGraphsComponent implements OnInit {
 
   ngOnInit() {
     this.tooltipData$ = this.store.select(
-      fromSubjectPage.getSensorsTooltipValues
+      fromSubjectPage.getSensorsDataTooltipValues
     )
   }
 
@@ -48,8 +48,8 @@ export class SourceGraphsComponent implements OnInit {
     return source.sourceId
   }
 
-  trackBySensorId(index: number, sensor: Sensor) {
-    return sensor.id
+  trackBySourceDataUid(index: number, sourceData: SourceData) {
+    return sourceData.uid
   }
 
   onMouseMove(event) {

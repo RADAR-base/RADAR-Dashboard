@@ -12,19 +12,21 @@
     (mousemove)="onMouseMove($event)"
     (mouseleave)="onMouseLeave($event)"
   >
-    <div class="source-title">SOURCE {{ source.id }}</div>
+    <div class="source-title">
+      {{ source.sourceTypeModel }} | {{ source.sourceName }}
+    </div>
+
     <div class="sensors">
       <div
         class="sensor"
-        *ngFor="let sensor of source.sensors; trackBy: trackBySensorId"
+        *ngFor="let sourceData of source.sourceData; trackBy: trackBySourceDataUid"
       >
         <app-source-graph
-          *ngIf="sensor?.visible"
-          [type]="sensor.type"
-          [sensorData]="sensorsData[sensor.id]?.data"
-          [isLoaded]="isDataLoaded[sensor.id]"
-          [sensorId]="sensor.id"
-          [keys]="sensor?.keys"
+          *ngIf="sourceData?.visible"
+          [type]="sourceData.sourceDataType"
+          [sensorData]="sensorsData[sourceData.uid]?.data"
+          [isLoaded]="isDataLoaded[sourceData.uid]"
+          [sensorId]="sourceData.uid"
         ></app-source-graph>
       </div>
     </div>
@@ -36,14 +38,14 @@
   </div>
 </div>
 
-<div class="bottom-group">
+<!-- <div class="bottom-group">
   <app-source-date-axis
     class="common-axis"
     [dates]="dates"
-  ></app-source-date-axis>
+  ></app-source-date-axis> -->
 
   <!--TODO: add data when API is ready-->
-  <app-source-volume
+  <!-- <app-source-volume
     class="volume"
-  ></app-source-volume>
-</div>
+  ></app-source-volume> -->
+<!-- </div> -->

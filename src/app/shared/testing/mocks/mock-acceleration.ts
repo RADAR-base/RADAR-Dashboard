@@ -1,6 +1,6 @@
-import { TimeInterval } from '../../enums/time-interval.enum'
+import { TimeWindow } from '../../enums/time-window.enum'
 
-export const MockAccelerationTimeInterval = TimeInterval.TEN_SECOND
+export const MockAccelerationTimeInterval = TimeWindow.TEN_SECOND
 
 export const MockAccelerationKeys = {
   chart: {

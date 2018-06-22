@@ -22,21 +22,20 @@
         ></app-source-list>
       </app-tile>
 
-      <app-tile label="Graphs">
-        <div tile-content>
-          <pre>{{ sources | json }}</pre>
-        </div>
-      </app-tile>
-
       <!-- <app-tile label="Graphs">
-        <app-source-graphs
-        [dates]="dates$ | async"
-        [sources]="sources"
-        [sensorsData]="sensorsData$ | async"
-        [isDataLoaded]="sensorsIsDataLoaded$ | async"
-        tile-content
-        ></app-source-graphs>
+        <div tile-content>
+          <pre>{{ sensorsData$ | async | json }}</pre>
+        </div>
       </app-tile> -->
+
+      <app-tile label="Graphs">
+        <app-source-graphs
+          [sources]="sources"
+          [sensorsData]="sensorsData$ | async"
+          [isDataLoaded]="sensorsIsDataLoaded$ | async"
+          tile-content
+        ></app-source-graphs>
+      </app-tile>
     </div>
   </ng-container>
 </div>

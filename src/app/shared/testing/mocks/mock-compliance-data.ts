@@ -1,4 +1,4 @@
-import { TimeInterval } from '../../enums/time-interval.enum'
+import { TimeWindow } from '../../enums/time-window.enum'
 import { ChartData } from '../../models/chart-data.model'
 import { getTime } from '../../utils/get-time'
 
@@ -25,7 +25,7 @@ export const MockAPIComplianceDataset = [
   { startDateTime: '2017-03-29T11:46:00Z', sample: { a: 0.2348, b: 0.123 } },
   { startDateTime: '2017-04-01T11:46:00Z', sample: { a: 0.2348, b: 0.123 } }
 ]
-export const MockTimeIntervalCompliance = TimeInterval.ONE_DAY
+export const MockTimeIntervalCompliance = TimeWindow.ONE_DAY
 export const MockTimeFrameCompliance = {
   start: getTime(MockAPIComplianceDataset[0].startDateTime),
   end: getTime(

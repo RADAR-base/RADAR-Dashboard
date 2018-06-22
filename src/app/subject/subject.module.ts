@@ -11,11 +11,9 @@ import { SourceGraphsModule } from './components/source-graphs/source-graphs.mod
 import { SourceListModule } from './components/source-list/source-list.module'
 import { SubjectComponent } from './containers/subject.component'
 import { SensorsDataService } from './services/sensors-data.service'
-import { SensorsService } from './services/sensors.service'
 import { SourcesService } from './services/sources.service'
 import { reducers } from './store'
 import { SensorsDataEffects } from './store/sensors-data/sensors-data.effects'
-import { SensorsEffects } from './store/sensors/sensors.effects'
 import { SourcesEffects } from './store/sources/sources.effects'
 import { routes } from './subject.routing'
 
@@ -29,13 +27,9 @@ import { routes } from './subject.routing'
     ToolbarModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature('subject', reducers),
-    EffectsModule.forFeature([
-      SourcesEffects,
-      SensorsEffects,
-      SensorsDataEffects
-    ])
+    EffectsModule.forFeature([SourcesEffects, SensorsDataEffects])
   ],
   declarations: [SubjectComponent],
-  providers: [SourcesService, SensorsService, SensorsDataService]
+  providers: [SourcesService, SensorsDataService]
 })
 export class SubjectModule {}

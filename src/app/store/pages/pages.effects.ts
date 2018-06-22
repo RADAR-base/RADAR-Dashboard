@@ -3,7 +3,6 @@ import { Actions, Effect, ofType } from '@ngrx/effects'
 import { mergeMap } from 'rxjs/operators'
 
 import * as sensorsDataActions from '../../subject/store/sensors-data/sensors-data.actions'
-import * as sensorsActions from '../../subject/store/sensors/sensors.actions'
 import * as sourcesActions from '../../subject/store/sources/sources.actions'
 import * as actions from './pages.actions'
 
@@ -14,7 +13,6 @@ export class PagesEffects {
     ofType(actions.SUBJECT_DESTROY),
     mergeMap(() => [
       new sourcesActions.Destroy(),
-      new sensorsActions.Destroy(),
       new sensorsDataActions.Destroy()
     ])
   )

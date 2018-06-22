@@ -1,45 +1,50 @@
+import { Dictionary } from '@ngrx/entity/src/models'
 import { createFeatureSelector, createSelector } from '@ngrx/store'
 
+import { SourceData } from '../../shared/models/source-data.model'
+import { SensorsData } from '../models/sensors-data.model'
 import * as fromSensorsData from './sensors-data/sensors-data.reducer'
-import * as fromSensors from './sensors/sensors.reducer'
 import * as fromSources from './sources/sources.reducer'
 
 export interface State {
   sources: fromSources.State
-  sensors: fromSensors.State
   sensorsData: fromSensorsData.State
 }
 
 export const reducers = {
   sources: fromSources.reducer,
-  sensors: fromSensors.reducer,
   sensorsData: fromSensorsData.reducer
 }
 
 export const getSubjectFeatureState = createFeatureSelector<State>('subject')
-
-// Sensors Selectors
-export const getSensorsState = createSelector(
-  getSubjectFeatureState,
-  state => state.sensors
-)
-export const {
-  selectEntities: getSensorsEntities,
-  selectAll: getSensors
-} = fromSensors.adapter.getSelectors(getSensorsState)
-
-export const getSensorsLoaded = createSelector(
-  getSensorsState,
-  fromSensors.getIsLoaded
-)
 
 // Sources Selectors
 export const getSourcesState = createSelector(
   getSubjectFeatureState,
   state => state.sources
 )
-export const { selectAll: getSources } = fromSources.adapter.getSelectors(
-  getSourcesState
+export const {
+  selectIds: getSourcesIds,
+  selectEntities: getSourcesEntities,
+  selectAll: getSources
+} = fromSources.adapter.getSelectors(getSourcesState)
+
+export const getSourcesData = createSelector(getSources, sources => {
+  return sources.length && sources[0].sourceData
+    ? sources.reduce((acc, source) => [...acc, ...source.sourceData], [])
+    : null
+})
+
+export const getSourcesDataEntities = createSelector(
+  getSourcesData,
+  sourcesData => {
+    return sourcesData && sourcesData.length
+      ? sourcesData.reduce(
+          (acc, sourceData) => ({ ...acc, [sourceData.uid]: sourceData }),
+          {}
+        )
+      : null
+  }
 )
 
 export const getSourcesLoaded = createSelector(
@@ -50,26 +55,6 @@ export const getSourcesLoaded = createSelector(
 export const getSourcesSubject = createSelector(
   getSourcesState,
   fromSources.getSubject
-)
-
-export const getSourcesWithSensors = createSelector(
-  getSources,
-  getSensors,
-  (sources, sensors) => {
-    if (sensors.length) {
-      const sensorsBySource = sources.reduce((acc, source) => {
-        return { ...acc, [source.sourceId]: [] }
-      }, {})
-
-      sensors.map(sensor => {
-        sensorsBySource[sensor.source].push(sensor)
-      })
-
-      return sources.map(source => {
-        return { ...source, sensors: sensorsBySource[source.sourceId] }
-      })
-    }
-  }
 )
 
 // Sensors Data Selectors
@@ -88,45 +73,50 @@ export const getSensorsDataLoaded = createSelector(
   fromSensorsData.getIsDataLoaded
 )
 
-export const getSensorsDates = createSelector(
+export const getSensorsDataDates = createSelector(
   getSensorsDataState,
   fromSensorsData.getDates
 )
 
-export const getTooltipDate = createSelector(
+export const getSensorsDataTooltipDate = createSelector(
   getSensorsDataState,
   fromSensorsData.getTooltipDate
 )
 
-export const getSensorsTimeFrame = createSelector(
+export const getSensorsDataTimeFrame = createSelector(
   getSensorsDataState,
   fromSensorsData.getTimeFrame
 )
 
-export const getSensorsTimeInterval = createSelector(
+export const getSensorsDataTimeInterval = createSelector(
   getSensorsDataState,
   fromSensorsData.getTimeInterval
 )
 
-export const getSensorsDescriptiveStatistic = createSelector(
+export const getSensorsDataDescriptiveStatistic = createSelector(
   getSensorsDataState,
   fromSensorsData.getDescriptiveStatistic
 )
 
-export const getSensorsTooltipValues = createSelector(
+export const getSensorsDataTooltipValues = createSelector(
   getSensorsDataIds,
-  getSensorsEntities,
   getSensorsDataEntities,
-  getTooltipDate,
-  (ids: (number | string)[], sensors, sensorsEntities, date) => {
+  getSourcesDataEntities,
+  getSensorsDataTooltipDate,
+  (
+    ids: string[],
+    sensorsDataEntities: Dictionary<SensorsData>,
+    sourcesDataEntities: Dictionary<SourceData>,
+    date
+  ) => {
     if (!date) {
       return []
     }
 
-    return ids.filter(d => sensors[d].visible).reduce((acc, id) => {
+    return ids.filter(d => sourcesDataEntities[d].visible).reduce((acc, id) => {
       const index =
-        sensorsEntities[id].data &&
-        sensorsEntities[id].data.findIndex(
+        sensorsDataEntities[id].data &&
+        sensorsDataEntities[id].data.findIndex(
           d => d.date.getTime() === date.getTime()
         )
 
@@ -134,12 +124,12 @@ export const getSensorsTooltipValues = createSelector(
         ...acc,
         {
           id: id,
-          label: sensors[id].label,
-          dataType: sensors[id].dataType,
-          keys: sensors[id].keys || null,
+          label: sourcesDataEntities[id].label,
+          dataType: sourcesDataEntities[id].dataType,
+          keys: sourcesDataEntities[id].keys || null,
           value:
-            sensorsEntities[id] && index > -1
-              ? sensorsEntities[id].data[index].value
+            sensorsDataEntities[id] && index > -1
+              ? sensorsDataEntities[id].data[index].value
               : null
         }
       ]

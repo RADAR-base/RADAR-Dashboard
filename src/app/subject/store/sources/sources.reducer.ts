@@ -8,6 +8,7 @@ import * as shortid from 'shortid'
 
 import { Source } from '../../../shared/models/source.model'
 import { Subject } from '../../../shared/models/subject.model'
+import { AppConfig } from '../../../shared/utils/config'
 import * as actions from './sources.actions'
 
 export interface State extends EntityState<Source> {
@@ -51,6 +52,10 @@ export function reducer(state = initialState, action: actions.Actions): State {
         ].sourceData.map(value => ({
           ...value,
           uid: shortid.generate(),
+          sourceId: source.sourceId,
+          dataType: AppConfig.config.sensors[value.sourceDataType].dataType,
+          keys: AppConfig.config.sensors[value.sourceDataType].keys,
+          label: AppConfig.config.sensors[value.sourceDataType].label,
           visible: true
         }))
 

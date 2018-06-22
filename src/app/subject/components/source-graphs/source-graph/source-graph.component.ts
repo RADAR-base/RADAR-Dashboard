@@ -16,7 +16,8 @@ import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.ac
       <mat-spinner></mat-spinner>
     </div>
     <div class="nodata" *ngIf="!(sensorData) && isLoaded">
-      <p>No data found for this timeframe.</p>
+      <p class="emoji">🤷‍♀️</p>
+      <p>No data found.</p>
     </div>
 
     <app-chart-base-line
@@ -49,9 +50,12 @@ export class SourceGraphComponent {
   @Input() sensorData: ChartData
   @Input() sensorId
   @Input() type
-  @Input() keys
 
   graphMargins = { top: 32, right: 16, bottom: 32, left: 48 }
+
+  get keys() {
+    return AppConfig.config && AppConfig.config.sensors[this.type].keys
+  }
 
   get hasGradient() {
     return (

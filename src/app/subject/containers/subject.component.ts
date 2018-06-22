@@ -48,12 +48,10 @@ export class SubjectComponent implements OnInit, OnDestroy {
     this.sources$ = this.store.select(fromSubject.getSources)
 
     // Get sensor data from server
-    // this.sensorsIsDataLoaded$ = this.store.select(
-    //   fromSubjectPage.getSensorsDataLoaded
-    // )
-    // this.sensorsData$ = this.store.select(
-    //   fromSubjectPage.getSensorsDataEntities
-    // )
+    this.sensorsData$ = this.store.select(fromSubject.getSensorsDataEntities)
+    this.sensorsIsDataLoaded$ = this.store.select(
+      fromSubject.getSensorsDataLoaded
+    )
 
     // Dates for Volume Graph
     // this.dates$ = this.store.select(fromSubjectPage.getSensorsDates)

@@ -1,4 +1,4 @@
-import { TimeInterval } from '../../enums/time-interval.enum'
+import { TimeWindow } from '../../enums/time-window.enum'
 import { ChartData } from '../../models/chart-data.model'
 
 export const MockAPISampleDataset = [
@@ -12,7 +12,7 @@ export const MockAPISampleDataset = [
   { startDateTime: '2017-06-16T10:49:00.000Z', sample: { value: 159 } }
 ]
 
-export const MockTimeIntervalChartData = TimeInterval.TEN_SECOND
+export const MockTimeIntervalChartData = TimeWindow.TEN_SECOND
 export const MockTimeFrameChartData = {
   start: new Date(MockAPISampleDataset[0].startDateTime).getTime(),
   end: new Date(
@@ -36,8 +36,8 @@ export const MockChartDataExpected: ChartData[] = [
 ]
 
 export const MockTimeFrameChartDataWithStartEndHoles = {
-  start: MockTimeFrameChartData.start - TimeInterval.TEN_SECOND * 4,
-  end: MockTimeFrameChartData.end + TimeInterval.TEN_SECOND * 4
+  start: MockTimeFrameChartData.start - TimeWindow.TEN_SECOND * 4,
+  end: MockTimeFrameChartData.end + TimeWindow.TEN_SECOND * 4
 }
 
 export const MockChartDataWithStartEndHolesExpected: ChartData[] = [
