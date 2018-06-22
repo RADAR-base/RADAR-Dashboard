@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store'
 
 import { DataType } from '../../../../shared/enums/data-type.enum'
 import { ChartData } from '../../../../shared/models/chart-data.model'
+import { SourceData } from '../../../../shared/models/source-data.model'
 import { AppConfig } from '../../../../shared/utils/config'
 import * as fromSubjectPage from '../../../store'
 import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.actions'
@@ -47,34 +48,26 @@ import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.ac
 })
 export class SourceGraphComponent {
   @Input() isLoaded
-  @Input() sensorData: ChartData
   @Input() sensorId
-  @Input() type
+  @Input() sensorData: ChartData
+  @Input() sourceData: SourceData
 
   graphMargins = { top: 32, right: 16, bottom: 32, left: 48 }
 
   get keys() {
-    return AppConfig.config && AppConfig.config.sensors[this.type].keys
+    return this.sourceData.keys
   }
 
   get hasGradient() {
-    return (
-      AppConfig.config && AppConfig.config.sensors[this.type].chart.gradient
-    )
+    return this.sourceData.chart.gradient
   }
 
   get isSingle() {
-    return (
-      AppConfig.config &&
-      AppConfig.config.sensors[this.type].dataType === DataType.single
-    )
+    return this.sourceData.dataType === DataType.single
   }
 
   get label() {
-    return (
-      AppConfig.config &&
-      AppConfig.config.sensors[this.type].label[AppConfig.language]
-    )
+    return this.sourceData.label[AppConfig.language]
   }
 
   constructor(private store: Store<fromSubjectPage.State>) {}

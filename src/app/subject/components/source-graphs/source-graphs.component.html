@@ -23,7 +23,7 @@
       >
         <app-source-graph
           *ngIf="sourceData?.visible"
-          [type]="sourceData.sourceDataType"
+          [sourceData]="sourceData"
           [sensorData]="sensorsData[sourceData.uid]?.data"
           [isLoaded]="isDataLoaded[sourceData.uid]"
           [sensorId]="sourceData.uid"
