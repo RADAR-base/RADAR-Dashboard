@@ -1,7 +1,12 @@
+import { Config } from './config'
+
 export const ENV = {
   PROD: false,
   TEST: false,
   TOOLS: false,
+
+  // CONFIG
+  CONFIG: Config,
 
   // API
   API_DOMAIN: '',

@@ -1,7 +1,12 @@
+import { Config } from './config'
+
 export const ENV = {
   PROD: false,
   TEST: false,
   TOOLS: true,
+
+  // CONFIG
+  CONFIG: Config,
 
   // API
   API_DOMAIN: 'radar-backend.co.uk',

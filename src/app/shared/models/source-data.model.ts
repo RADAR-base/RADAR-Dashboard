@@ -23,4 +23,5 @@ export interface SourceData {
   chart?: ChartOptions
   keys?: ConfigKey[]
   visible?: boolean
+  doc?: string
 }

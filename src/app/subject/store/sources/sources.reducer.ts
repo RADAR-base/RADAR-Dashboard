@@ -6,9 +6,9 @@ import {
 } from '@ngrx/entity'
 import * as shortid from 'shortid'
 
+import { AppConfig } from '../../../shared/app-config'
 import { Source } from '../../../shared/models/source.model'
 import { Subject } from '../../../shared/models/subject.model'
-import { AppConfig } from '../../../shared/utils/config'
 import * as actions from './sources.actions'
 
 export interface State extends EntityState<Source> {
@@ -50,7 +50,7 @@ export function reducer(state = initialState, action: actions.Actions): State {
         const sourceData = sourceTypesEntities[
           source.sourceTypeId
         ].sourceData.map(value => {
-          const config = AppConfig.config.sensors[value.sourceDataType]
+          const config = AppConfig.config.sourceData[value.sourceDataType]
           return {
             ...value,
             uid: shortid.generate(),

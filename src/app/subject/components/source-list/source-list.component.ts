@@ -6,7 +6,7 @@ import {
 } from '@angular/core'
 import { Store } from '@ngrx/store'
 
-import { AppConfig } from '../../../shared/utils/config'
+import { AppConfig } from '../../../shared/app-config'
 import * as fromSubjectPage from '../../store'
 import * as sourcesActions from '../../store/sources/sources.actions'
 

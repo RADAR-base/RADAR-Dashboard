@@ -1,7 +1,12 @@
+import { Config } from './config'
+
 export const ENV = {
   PROD: true,
   TEST: false,
   TOOLS: false,
+
+  // CONFIG
+  CONFIG: Config,
 
   // API
   API_DOMAIN: 'radar-cns-platform.rosalind.kcl.ac.uk',

@@ -1,8 +1,8 @@
-import { Sensor } from './sensor.model'
+import { SourceData } from './source-data.model'
 
 export interface Config {
-  sensors: {
-    [id: string]: Sensor
+  sourceData: {
+    [id: string]: Partial<SourceData>
   }
   units: {
     [id: string]: ConfigUnit

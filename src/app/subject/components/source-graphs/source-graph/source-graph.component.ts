@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 import { Store } from '@ngrx/store'
 
+import { AppConfig } from '../../../../shared/app-config'
 import { DataType } from '../../../../shared/enums/data-type.enum'
 import { ChartData } from '../../../../shared/models/chart-data.model'
 import { SourceData } from '../../../../shared/models/source-data.model'
-import { AppConfig } from '../../../../shared/utils/config'
 import * as fromSubjectPage from '../../../store'
 import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.actions'
 

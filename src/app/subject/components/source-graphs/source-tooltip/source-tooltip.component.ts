@@ -6,8 +6,8 @@ import {
   Input
 } from '@angular/core'
 
+import { AppConfig } from '../../../../shared/app-config'
 import { SourceTooltipItem } from '../../../../shared/models/source-tooltip.model'
-import { AppConfig } from '../../../../shared/utils/config'
 
 @Component({
   selector: 'app-tooltip',
