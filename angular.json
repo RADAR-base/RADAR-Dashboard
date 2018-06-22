@@ -121,5 +121,8 @@
       }
     }
   },
-  "defaultProject": "radar-dashboard"
+  "defaultProject": "radar-dashboard",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
