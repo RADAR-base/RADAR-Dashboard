@@ -23,7 +23,7 @@
 .source {
   @include font-body-light;
 
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   margin-left: 1rem;
   font-weight: 600;
 
@@ -40,4 +40,8 @@
   &.inactive {
     opacity: 0.3;
   }
+}
+
+.sourceData:last-child {
+  margin-bottom: 0.5rem;
 }
