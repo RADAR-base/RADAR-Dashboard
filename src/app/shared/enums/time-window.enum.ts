@@ -1,4 +1,4 @@
-export enum TimeInterval {
+export enum TimeWindow {
   TEN_SECOND = 10000,
   THIRTY_SECOND = 30000,
   ONE_MIN = 60000,
