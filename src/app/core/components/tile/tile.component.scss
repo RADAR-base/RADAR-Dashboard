@@ -48,14 +48,14 @@
 
   .tile-container {
     display: flex;
-    flex: 1 1 auto;
+    flex: 1 1 0;
     overflow: auto;
     background-color: $cl-base-20;
   }
 
   [tile-content] {
     display: flex;
-    flex: 1 1 auto;
+    flex: 1 1 0;
     flex-direction: column;
     overflow-x: hidden;
     overflow-y: auto;
