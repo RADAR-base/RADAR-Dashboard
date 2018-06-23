@@ -2,9 +2,9 @@ import { EntityAdapter, EntityState, createEntityAdapter } from '@ngrx/entity'
 
 import { DescriptiveStatistic } from '../../../shared/enums/descriptive-statistic.enum'
 import { TimeWindow } from '../../../shared/enums/time-window.enum'
+import { SensorsData } from '../../../shared/models/sensors-data.model'
 import { TimeFrame } from '../../../shared/models/time.model'
 import { roundToNearest } from '../../../shared/utils/round-to-nearest'
-import { SensorsData } from '../../models/sensors-data.model'
 import * as actions from './sensors-data.actions'
 
 export interface State extends EntityState<SensorsData> {
@@ -54,11 +54,17 @@ export function reducer(state = initialState, action: actions.Actions): State {
     }
 
     case actions.LOAD_SUCCESS: {
+      const sensor = action.payload.sensor
+
+      if (!sensor) {
+        return state
+      }
+
       const data = action.payload.data
-      const id = action.payload.sensor.uid
+      const id = sensor.uid
 
       return {
-        ...adapter.addOne({ ...action.payload.sensor, data }, state),
+        ...adapter.addOne({ ...sensor, data }, state),
         areLoaded: { ...state.areLoaded, [id]: true }
       }
     }

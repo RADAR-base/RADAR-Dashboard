@@ -4,12 +4,14 @@
   >
     {{ source.sourceTypeModel }} | {{ source.sourceName }}
   </div>
-  <div class="sourceData"
-    *ngFor="let sourceData of source.sourceData"
-    [class.inactive]="!sourceData?.visible"
-    (click)="toggleSourceData(sourceData.uid, source.sourceId)"
-  >
-    <i class="icon material-icons icon-eye">remove_red_eye</i>
-    {{ sourceData.sourceDataType }}
-  </div>
+  <ng-container *ngIf="source.sourceData">
+    <div class="sourceData"
+      *ngFor="let sourceData of source.sourceData"
+      [class.inactive]="!sourceData?.visible"
+      (click)="toggleSourceData(sourceData.uid, source.sourceId)"
+    >
+      <i class="icon material-icons icon-eye">remove_red_eye</i>
+      {{ sourceData.sourceDataType }}
+    </div>
+  </ng-container>
 </div>

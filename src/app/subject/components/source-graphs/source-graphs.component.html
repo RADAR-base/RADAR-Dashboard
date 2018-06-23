@@ -21,13 +21,15 @@
         class="sensor"
         *ngFor="let sourceData of source.sourceData; trackBy: trackBySourceDataUid"
       >
-        <app-source-graph
-          *ngIf="sourceData?.visible"
-          [sourceData]="sourceData"
-          [sensorData]="sensorsData[sourceData.uid]?.data"
-          [isLoaded]="isDataLoaded[sourceData.uid]"
-          [sensorId]="sourceData.uid"
-        ></app-source-graph>
+        <ng-container *ngIf="sourceData">
+          <app-source-graph
+            *ngIf="sourceData?.visible"
+            [sourceData]="sourceData"
+            [sensorData]="sensorsData[sourceData.uid]?.data"
+            [isLoaded]="isDataLoaded[sourceData.uid]"
+            [sensorId]="sourceData.uid"
+          ></app-source-graph>
+        </ng-container>
       </div>
     </div>
     <div

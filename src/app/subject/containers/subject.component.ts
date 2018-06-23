@@ -9,11 +9,11 @@ import { Dictionary } from '@ngrx/entity/src/models'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs'
 
+import { SensorsData } from '../../shared/models/sensors-data.model'
 import { Source } from '../../shared/models/source.model'
 import { Subject } from '../../shared/models/subject.model'
 import * as fromRoot from '../../store'
 import * as pagesActions from '../../store/pages/pages.actions'
-import { SensorsData } from '../models/sensors-data.model'
 import * as fromSubject from '../store/index'
 import * as sourcesActions from '../store/sources/sources.actions'
 

@@ -1,8 +1,8 @@
 import { Dictionary } from '@ngrx/entity/src/models'
 import { createFeatureSelector, createSelector } from '@ngrx/store'
 
+import { SensorsData } from '../../shared/models/sensors-data.model'
 import { SourceData } from '../../shared/models/source-data.model'
-import { SensorsData } from '../models/sensors-data.model'
 import * as fromSensorsData from './sensors-data/sensors-data.reducer'
 import * as fromSources from './sources/sources.reducer'
 
@@ -39,10 +39,11 @@ export const getSourcesDataEntities = createSelector(
   getSourcesData,
   sourcesData => {
     return sourcesData && sourcesData.length
-      ? sourcesData.reduce(
-          (acc, sourceData) => ({ ...acc, [sourceData.uid]: sourceData }),
-          {}
-        )
+      ? sourcesData.reduce((acc, sourceData) => {
+          return sourceData !== null
+            ? { ...acc, [sourceData.uid]: sourceData }
+            : { ...acc }
+        }, {})
       : null
   }
 )
@@ -113,26 +114,37 @@ export const getSensorsDataTooltipValues = createSelector(
       return []
     }
 
-    return ids.filter(d => sourcesDataEntities[d].visible).reduce((acc, id) => {
-      const index =
-        sensorsDataEntities[id].data &&
-        sensorsDataEntities[id].data.findIndex(
-          d => d.date.getTime() === date.getTime()
-        )
+    return ids
+      .filter(
+        d =>
+          sourcesDataEntities &&
+          sourcesDataEntities[d] &&
+          sourcesDataEntities[d].visible
+      )
+      .reduce((acc, id) => {
+        const sensorData = sensorsDataEntities[id] || null
 
-      return [
-        ...acc,
-        {
-          id: id,
-          label: sourcesDataEntities[id].label,
-          dataType: sourcesDataEntities[id].dataType,
-          keys: sourcesDataEntities[id].keys || null,
-          value:
-            sensorsDataEntities[id] && index > -1
-              ? sensorsDataEntities[id].data[index].value
-              : null
+        if (sensorData === null) {
+          return [...acc]
         }
-      ]
-    }, [])
+
+        const index =
+          sensorData.data &&
+          sensorData.data.findIndex(d => d.date.getTime() === date.getTime())
+
+        const value =
+          sensorData.data && index > -1 ? sensorData.data[index].value : null
+
+        return [
+          ...acc,
+          {
+            id: id,
+            label: sourcesDataEntities[id].label,
+            dataType: sourcesDataEntities[id].dataType,
+            keys: sourcesDataEntities[id].keys || null,
+            value
+          }
+        ]
+      }, [])
   }
 )

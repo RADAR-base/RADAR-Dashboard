@@ -47,21 +47,42 @@ export function reducer(state = initialState, action: actions.Actions): State {
       const sourceIds = state.ids as Array<string | number>
       const sourcesWithSourceData = sourceIds.map(id => {
         const source = state.entities[id]
-        const sourceData = sourceTypesEntities[
-          source.sourceTypeId
-        ].sourceData.map(value => {
-          const config = AppConfig.config.sourceData[value.sourceDataType]
-          return {
-            ...value,
-            uid: shortid.generate(),
-            sourceId: source.sourceId,
-            chart: config.chart,
-            dataType: config.dataType,
-            keys: config.keys,
-            label: config.label,
-            visible: true
-          }
-        })
+        const sourceType = sourceTypesEntities[source.sourceTypeId]
+        const sourceData = sourceType.sourceData.length
+          ? sourceType.sourceData.map(value => {
+              const config =
+                AppConfig.config.sourceData[value.sourceDataType] || null
+
+              if (config === null) {
+                console.warn(
+                  `⚠️ the sourceDataType: "${
+                    value.sourceDataType
+                  }" dashboard configuration has not been set in "environments/config.ts". Please add it and open a PR with the changes in https://github.com/RADAR-base/RADAR-Dashboard/`
+                )
+              }
+
+              return {
+                ...value,
+                uid: shortid.generate(),
+                sourceId: source.sourceId,
+                chart: config && config.chart,
+                dataType: config && config.dataType,
+                keys: config && config.keys,
+                label: config && config.label,
+                visible: true
+              }
+            })
+          : null
+
+        if (!sourceData) {
+          console.warn(
+            `⚠️ the sourceData is empty in sourceType { id:"${
+              sourceType.id
+            }", model: "${sourceType.model}", producer:"${
+              sourceType.producer
+            }", catalogVersion:"${sourceType.catalogVersion}" }`
+          )
+        }
 
         return {
           ...source,

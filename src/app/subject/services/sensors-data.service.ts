@@ -43,11 +43,13 @@ export class SensorsDataService {
   }
 
   private getNextSensorData(sensor) {
-    const url = this.parseURL(sensor)
-    console.log(url)
+    if (!sensor) {
+      this.queue$.next({ data: null, sensor })
+      return false
+    }
 
     this.http
-      .get<SampleDataModel>(url)
+      .get<SampleDataModel>(this.parseURL(sensor))
       .pipe(takeUntil(this.destroy$))
       .subscribe((response: SampleDataModel) => {
         if (this.sensors.length) {

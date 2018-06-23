@@ -6,15 +6,15 @@ import { ChartData } from '../../../shared/models/chart-data.model'
 import { Sensor } from '../../../shared/models/sensor.model'
 import { TimeFrame } from '../../../shared/models/time.model'
 
-export const LOAD = '[Subject][Sensors-Data] LOAD'
-export const LOAD_SUCCESS = '[Subject][Sensors-Data] LOAD_SUCCESS'
-export const UPDATE_DATES = '[Subject][Sensors-Data] UPDATE_DATES'
-export const SET_TOOLTIP_DATE = '[Subject][Sensors-Data] SET_TOOLTIP_DATE'
-export const SET_TIME_FRAME = '[Subject][Sensors-Data] SET_TIME_FRAME'
-export const SET_TIME_INTERVAL = '[Subject][Sensors-Data] SET_TIME_INTERVAL'
+export const LOAD = '[SensorsData] LOAD'
+export const LOAD_SUCCESS = '[SensorsData] LOAD_SUCCESS'
+export const UPDATE_DATES = '[SensorsData] UPDATE_DATES'
+export const SET_TOOLTIP_DATE = '[SensorsData] SET_TOOLTIP_DATE'
+export const SET_TIME_FRAME = '[SensorsData] SET_TIME_FRAME'
+export const SET_TIME_INTERVAL = '[SensorsData] SET_TIME_INTERVAL'
 export const SET_DESCRIPTIVE_STATISTIC =
-  '[Subject][Sensors-Data] SET_DESCRIPTIVE_STATISTIC'
-export const DESTROY = '[Subject][Sensors-Data] DESTROY'
+  '[SensorsData] SET_DESCRIPTIVE_STATISTIC'
+export const DESTROY = '[SensorsData] DESTROY'
 
 export class Load implements Action {
   readonly type = LOAD

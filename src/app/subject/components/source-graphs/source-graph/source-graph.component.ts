@@ -16,6 +16,7 @@ import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.ac
     <div class="loading" *ngIf="!isLoaded">
       <mat-spinner></mat-spinner>
     </div>
+    
     <div class="nodata" *ngIf="!(sensorData) && isLoaded">
       <p class="emoji">🤷‍♀️</p>
       <p>No data found.</p>
@@ -67,7 +68,7 @@ export class SourceGraphComponent {
   }
 
   get label() {
-    return this.sourceData.label[AppConfig.language]
+    return this.sourceData.label && this.sourceData.label[AppConfig.language]
   }
 
   constructor(private store: Store<fromSubjectPage.State>) {}
