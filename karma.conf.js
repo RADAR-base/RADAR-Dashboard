@@ -54,6 +54,10 @@ module.exports = function(config) {
     browsers: ['Chrome'],
     // browsers: ['Chrome', 'BS_EDGE', 'BS_FIREFOX', 'BS_SAFARI'],
     customLaunchers: {
+      ChromeDebugging: {
+        base: 'Chrome',
+        flags: ['--remote-debugging-port=9333']
+      },
       ChromeNoSandbox: {
         base: 'Chrome',
         flags: ['--no-sandbox']
