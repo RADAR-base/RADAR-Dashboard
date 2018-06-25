@@ -84,7 +84,7 @@ export class SensorsDataService {
     ].join('/')
 
     url = url + '?'
-    url = `${url}timeWindow=${TimeWindow[this.options.timeWindow]}`
+    url = `${url}timeWindow=${this.options.timeWindow}`
 
     this.options.timeFrame.start
       ? (url = `${url}&startTime=${this.options.timeFrame.start}`)
