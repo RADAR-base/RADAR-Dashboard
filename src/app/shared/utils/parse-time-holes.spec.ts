@@ -20,7 +20,7 @@ describe('parseTimeHoles', () => {
     const actual = parseTimeHoles(
       MockAPISampleDataset,
       MockTimeFrameChartData,
-      TimeWindow.TEN_SECOND
+      'TEN_SECOND'
     )
     expect(actual).toEqual(MockChartDataExpected)
   })
@@ -29,7 +29,7 @@ describe('parseTimeHoles', () => {
     const actual = parseTimeHoles(
       MockAPISampleDataset,
       MockTimeFrameChartDataWithStartEndHoles,
-      TimeWindow.TEN_SECOND
+      'TEN_SECOND'
     )
     expect(actual).toEqual(MockChartDataWithStartEndHolesExpected)
   })
@@ -38,7 +38,7 @@ describe('parseTimeHoles', () => {
     const actual = parseTimeHoles(
       MockAPIComplianceDataset,
       MockTimeFrameCompliance,
-      TimeWindow.ONE_DAY
+      'ONE_DAY'
     )
     expect(actual).toEqual(MockComplianceDataExpected)
   })
@@ -47,7 +47,7 @@ describe('parseTimeHoles', () => {
     const actual = parseTimeHoles(
       MockAPIComplianceDataset,
       MockTimeFrameComplianceWithStartEndHoles,
-      TimeWindow.ONE_DAY
+      'ONE_DAY'
     )
     expect(actual).toEqual(MockComplianceDataWithStartEndHolesExpected)
   })

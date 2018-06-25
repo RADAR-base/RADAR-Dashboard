@@ -1,23 +1,22 @@
 import { TimeWindow } from '../../enums/time-window.enum'
 import { ChartData } from '../../models/chart-data.model'
+import { EffectiveTimeFrame } from '../../models/sample-data.model'
 
 export const MockAPISampleDataset = [
-  { startDateTime: '2017-06-16T10:09:10.000Z', sample: { value: 153 } },
-  { startDateTime: '2017-06-16T10:09:50.000Z', sample: { value: 87 } },
-  { startDateTime: '2017-06-16T10:14:10.000Z', sample: { value: 0 } },
-  { startDateTime: '2017-06-16T10:14:20.000Z', sample: { value: 143 } },
-  { startDateTime: '2017-06-16T10:14:30.000Z', sample: { value: 0 } },
-  { startDateTime: '2017-06-16T10:46:40.000Z', sample: { value: 98 } },
-  { startDateTime: '2017-06-16T10:46:50.000Z', sample: { value: 101 } },
-  { startDateTime: '2017-06-16T10:49:00.000Z', sample: { value: 159 } }
+  { startDateTime: '2017-06-16T10:09:10.000Z', value: 153 },
+  { startDateTime: '2017-06-16T10:09:50.000Z', value: 87 },
+  { startDateTime: '2017-06-16T10:14:10.000Z', value: 0 },
+  { startDateTime: '2017-06-16T10:14:20.000Z', value: 143 },
+  { startDateTime: '2017-06-16T10:14:30.000Z', value: 0 },
+  { startDateTime: '2017-06-16T10:46:40.000Z', value: 98 },
+  { startDateTime: '2017-06-16T10:46:50.000Z', value: 101 },
+  { startDateTime: '2017-06-16T10:49:00.000Z', value: 159 }
 ]
 
-export const MockTimeIntervalChartData = TimeWindow.TEN_SECOND
-export const MockTimeFrameChartData = {
-  start: new Date(MockAPISampleDataset[0].startDateTime).getTime(),
-  end: new Date(
-    MockAPISampleDataset[MockAPISampleDataset.length - 1].startDateTime
-  ).getTime()
+export const MockTimeIntervalChartData = 'TEN_SECOND'
+export const MockTimeFrameChartData: EffectiveTimeFrame = {
+  startDateTime: '2017-06-16T10:09:10.000Z',
+  endDateTime: '2017-06-16T10:49:00.000Z'
 }
 
 export const MockChartDataExpected: ChartData[] = [
@@ -35,16 +34,16 @@ export const MockChartDataExpected: ChartData[] = [
   { date: new Date('2017-06-16T10:49:00.000Z'), value: 159 }
 ]
 
-export const MockTimeFrameChartDataWithStartEndHoles = {
-  start: MockTimeFrameChartData.start - TimeWindow.TEN_SECOND * 4,
-  end: MockTimeFrameChartData.end + TimeWindow.TEN_SECOND * 4
+export const MockTimeFrameChartDataWithStartEndHoles: EffectiveTimeFrame = {
+  startDateTime: '2017-06-16T10:09:00.000Z',
+  endDateTime: '2017-06-16T10:49:10.000Z'
 }
 
 export const MockChartDataWithStartEndHolesExpected: ChartData[] = [
   {
-    date: new Date(MockTimeFrameChartDataWithStartEndHoles.start),
+    date: new Date('2017-06-16T10:09:00.000Z'),
     value: null
   },
   ...MockChartDataExpected,
-  { date: new Date(MockTimeFrameChartDataWithStartEndHoles.end), value: null }
+  { date: new Date('2017-06-16T10:49:10.000Z'), value: null }
 ]

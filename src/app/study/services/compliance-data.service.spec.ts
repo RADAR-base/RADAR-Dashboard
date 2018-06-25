@@ -33,8 +33,8 @@ describe('ComplianceDataService', () => {
   })
 
   it('should successfully return expected data', done => {
-    service.getAll('MRC01').subscribe(res => {
-      expect(res).toEqual(MockComplianceExpected)
+    service.getAll('MRC01').subscribe(response => {
+      expect(response).toEqual(MockComplianceExpected)
       done()
     })
 

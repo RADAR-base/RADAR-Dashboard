@@ -1,38 +1,38 @@
-import { ComponentFixture, TestBed, async } from '@angular/core/testing'
-import { EffectsModule } from '@ngrx/effects'
+import { NO_ERRORS_SCHEMA } from '@angular/core'
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { StoreModule, combineReducers } from '@ngrx/store'
 
-import * as fromSubjectPage from '../../store'
+import * as fromRoot from '../../../store'
+import * as fromFeature from '../../store'
 import { SourceGraphsComponent } from './source-graphs.component'
-import { SourceGraphsModule } from './source-graphs.module'
 
 describe('SourceGraphsComponent', () => {
   let component: SourceGraphsComponent
   let fixture: ComponentFixture<SourceGraphsComponent>
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
-        SourceGraphsModule,
         StoreModule.forRoot({
-          subjectPage: combineReducers(fromSubjectPage.reducers)
-        }),
-        EffectsModule.forRoot([])
-      ]
+          ...fromRoot.reducers,
+          subject: combineReducers(fromFeature.reducers)
+        })
+      ],
+      declarations: [SourceGraphsComponent],
+      schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents()
-  }))
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(SourceGraphsComponent)
     component = fixture.componentInstance
 
     component.sensorsData = []
     component.dates = []
     component.sources = []
+
+    fixture.detectChanges()
   })
 
   it('should be created', () => {
-    fixture.detectChanges()
     expect(component).toBeTruthy()
   })
 })

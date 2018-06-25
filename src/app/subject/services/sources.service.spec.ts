@@ -14,7 +14,7 @@ describe('SourcesService', () => {
   let service
   let http
 
-  beforeEach(() =>
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
@@ -22,35 +22,24 @@ describe('SourcesService', () => {
         EffectsModule.forRoot([])
       ],
       providers: [SourcesService]
-    }))
+    })
 
-  beforeEach(() => {
     service = TestBed.get(SourcesService)
     http = TestBed.get(HttpTestingController)
   })
 
   it('should return all studies', () => {
-    const expectedResult = MockSources
+    const studyName = 'abc'
+    const subjectId = '123'
+    const expected = MockSources
 
-    let actualResult = []
-    service.getAll('MRC01').subscribe((result: any[]) => {
-      actualResult = result
+    service.getAll(studyName, subjectId).subscribe((result: any[]) => {
+      expect(result).toEqual(expected)
     })
 
-    http.expectOne('/api/source/getAllSources/MRC01').flush(expectedResult)
-
-    expect(actualResult).toEqual([
-      {
-        id: '00:07:80:1F:52:F3',
-        type: 'EMPATICA',
-        summary: null
-      },
-      {
-        id: '00:07:80:1F:17:6B',
-        type: 'EMPATICA',
-        summary: null
-      }
-    ])
+    http
+      .expectOne(`/api/projects/${studyName}/subjects/${subjectId}`)
+      .flush(expected)
 
     http.verify()
   })

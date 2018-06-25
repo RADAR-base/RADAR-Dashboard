@@ -12,7 +12,7 @@ export interface State extends EntityState<SensorsData> {
   dates: Date[]
   tooltipDate: Date
   timeFrame: TimeFrame
-  timeWindow: TimeWindow
+  timeWindow: string
   descriptiveStatistic: DescriptiveStatistic
 }
 
@@ -25,7 +25,7 @@ export const initialState: State = adapter.getInitialState({
   dates: [],
   tooltipDate: null,
   timeFrame: { start: null, end: null },
-  timeWindow: TimeWindow.TEN_SECOND,
+  timeWindow: 'TEN_SECOND',
   descriptiveStatistic: DescriptiveStatistic.MEDIAN
 })
 
@@ -33,11 +33,14 @@ export function reducer(state = initialState, action: actions.Actions): State {
   switch (action.type) {
     case actions.UPDATE_DATES: {
       const iterations =
-        (state.timeFrame.end - state.timeFrame.start) / state.timeWindow
+        (state.timeFrame.end - state.timeFrame.start) /
+        TimeWindow[state.timeWindow]
 
       const dates = []
       for (let i = 0; i < iterations; i++) {
-        dates[i] = new Date(state.timeFrame.start + state.timeWindow * i)
+        dates[i] = new Date(
+          state.timeFrame.start + TimeWindow[state.timeWindow] * i
+        )
       }
 
       return {
@@ -71,7 +74,10 @@ export function reducer(state = initialState, action: actions.Actions): State {
 
     case actions.SET_TOOLTIP_DATE: {
       // round to interval
-      const date = roundToNearest(action.payload.getTime(), state.timeWindow)
+      const date = roundToNearest(
+        action.payload.getTime(),
+        TimeWindow[state.timeWindow]
+      )
       return {
         ...state,
         tooltipDate: new Date(date)

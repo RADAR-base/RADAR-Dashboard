@@ -1,6 +1,5 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing'
 import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core'
-import { ComponentFixture, TestBed, async } from '@angular/core/testing'
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ActivatedRoute, Router } from '@angular/router'
 import { EffectsModule } from '@ngrx/effects'
 import { StoreModule, combineReducers } from '@ngrx/store'
@@ -10,7 +9,6 @@ import {
   RouterStub
 } from '../../shared/testing/router-stubs'
 import * as fromStudyPage from '../store/index'
-import { StudyModule } from '../study.module'
 import { StudyPageComponent } from './study-page.component'
 
 describe('StudyPageComponent', () => {
@@ -19,34 +17,34 @@ describe('StudyPageComponent', () => {
   let element: HTMLElement
   let de: DebugElement
 
-  beforeEach(async(() => {
+  beforeEach(async () => {
     const activatedRoute = new ActivatedRouteStub()
     activatedRoute.testParams = { studyName: '0' }
 
-    TestBed.configureTestingModule({
+    await TestBed.configureTestingModule({
       imports: [
         StoreModule.forRoot({
-          studyPage: combineReducers(fromStudyPage.reducers)
+          study: combineReducers(fromStudyPage.reducers)
         }),
-        EffectsModule.forRoot([]),
-        StudyModule,
-        HttpClientTestingModule
+        EffectsModule.forRoot([])
       ],
+      declarations: [StudyPageComponent],
       providers: [
         { provide: Router, useClass: RouterStub },
         { provide: ActivatedRoute, useValue: activatedRoute }
       ],
       schemas: [NO_ERRORS_SCHEMA]
-    })
+    }).compileComponents()
 
     fixture = TestBed.createComponent(StudyPageComponent)
     component = fixture.componentInstance
     element = fixture.nativeElement
     de = fixture.debugElement
-  }))
+
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    fixture.detectChanges()
     expect(component).toBeTruthy()
   })
 })

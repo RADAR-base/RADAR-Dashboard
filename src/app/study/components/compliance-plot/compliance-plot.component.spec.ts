@@ -1,6 +1,7 @@
-import { ComponentFixture, TestBed, async } from '@angular/core/testing'
+import { NO_ERRORS_SCHEMA } from '@angular/core'
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { MockConfig } from '../../../shared/testing/mocks/mock-config'
+import { MockComplianceDataExpected } from '../../../shared/testing/mocks/mock-compliance-data'
 import { CompliancePlotComponent } from './compliance-plot.component'
 import { CompliancePlotModule } from './compliance-plot.module'
 
@@ -8,16 +9,17 @@ describe('CompliancePlotComponent', () => {
   let component: CompliancePlotComponent
   let fixture: ComponentFixture<CompliancePlotComponent>
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [CompliancePlotModule]
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [CompliancePlotModule],
+      schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents()
-  }))
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(CompliancePlotComponent)
     component = fixture.componentInstance
-    component.keys = MockConfig.config.compliance.keys
+
+    component.data = MockComplianceDataExpected
+
     fixture.detectChanges()
   })
 

@@ -1,8 +1,16 @@
+import { TimeWindow } from '../enums/time-window.enum'
+import { ChartData } from '../models/chart-data.model'
 import { MultiSample, SingleSample } from '../models/sample-data.model'
+import { EffectiveTimeFrame } from '../models/time.model'
 
-export function parseTimeHoles(dataset, timeFrame, timeWindow) {
-  const startTime = new Date(timeFrame.start).getTime()
-  const endTime = new Date(timeFrame.end).getTime()
+export function parseTimeHoles(
+  dataset: ChartData[],
+  effectiveTimeFrame: EffectiveTimeFrame,
+  timeWindowEnum: string
+) {
+  const startTime = new Date(effectiveTimeFrame.startDateTime).getTime()
+  const endTime = new Date(effectiveTimeFrame.endDateTime).getTime()
+  const timeWindow: TimeWindow = TimeWindow[timeWindowEnum]
 
   return dataset.reduce((acc, d: SingleSample | MultiSample, i, arr) => {
     const prev = acc[acc.length - 1]

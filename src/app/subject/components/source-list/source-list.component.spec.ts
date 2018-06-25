@@ -1,23 +1,28 @@
-import { ComponentFixture, TestBed, async } from '@angular/core/testing'
-import { StoreModule } from '@ngrx/store'
+import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { StoreModule, combineReducers } from '@ngrx/store'
 
-import { reducers } from '../../store'
+import * as fromRoot from '../../../store'
+import * as fromFeature from '../../store'
 import { SourceListComponent } from './source-list.component'
 
 describe('SourceListComponent', () => {
   let component: SourceListComponent
   let fixture: ComponentFixture<SourceListComponent>
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [StoreModule.forRoot(reducers)],
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [
+        StoreModule.forRoot({
+          ...fromRoot.reducers,
+          subject: combineReducers(fromFeature.reducers)
+        })
+      ],
       declarations: [SourceListComponent]
     }).compileComponents()
-  }))
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(SourceListComponent)
     component = fixture.componentInstance
+
     fixture.detectChanges()
   })
 

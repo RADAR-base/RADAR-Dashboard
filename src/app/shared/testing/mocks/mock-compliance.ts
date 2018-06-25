@@ -1,3 +1,5 @@
+import { TimeWindow } from '../../enums/time-window.enum'
+
 export const MockCompliance = {
   header: {
     subjectId: 'KCLTest0',
@@ -6,7 +8,7 @@ export const MockCompliance = {
     sensor: 'COMPLIANCE',
     descriptiveStatistic: 'AVERAGE',
     unit: 'G',
-    timeFrame: 'ONE_DAY',
+    timeWindow: 'ONE_DAY',
     effectiveTimeFrame: {
       startDateTime: '2017-02-27T11:46:00Z',
       endDateTime: '2017-03-02T11:46:00Z'
@@ -14,21 +16,21 @@ export const MockCompliance = {
   },
   dataset: [
     {
-      sample: {
+      value: {
         simple: 0.2348,
         special: 0
       },
       startDateTime: '2017-02-27T11:46:00Z'
     },
     {
-      sample: {
+      value: {
         simple: 0.7348,
         special: 0.823
       },
       startDateTime: '2017-03-01T11:46:00Z'
     },
     {
-      sample: {
+      value: {
         simple: 0.3348,
         special: 0.323
       },

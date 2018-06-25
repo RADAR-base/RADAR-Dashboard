@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core'
 import { Actions } from '@ngrx/effects'
 import { Action } from '@ngrx/store'
 import { Observable, Subject } from 'rxjs'
-import { takeUntil } from 'rxjs/operators'
+import { takeUntil, tap } from 'rxjs/operators'
 
 import { ENV } from '../../../environments/environment'
 import { DescriptiveStatistic } from '../../shared/enums/descriptive-statistic.enum'

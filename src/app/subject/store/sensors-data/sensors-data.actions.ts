@@ -45,7 +45,7 @@ export class SetTimeFrame implements Action {
 export class SetTimeInterval implements Action {
   readonly type = SET_TIME_INTERVAL
 
-  constructor(public payload: TimeWindow) {}
+  constructor(public payload: string) {}
 }
 
 export class SetDescriptiveStatistic implements Action {
