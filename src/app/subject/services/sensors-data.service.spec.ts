@@ -55,7 +55,7 @@ describe('SensorsDataService', () => {
         sources[0].sourceId
       }/${sources[0].sourceData[0].sourceDataName}/${
         DescriptiveStatistic[options.descriptiveStatistic]
-      }?timeWindow=${TimeWindow[options.timeWindow]}`
+      }?timeWindow=${options.timeWindow}`
     )
 
     request.flush(MockSensorDataAPIResponse)
