@@ -1,0 +1,41 @@
+<app-toolbar>
+  <div start>
+    <ng-container *ngIf="(studyName$ | async) as studyName">
+      <button
+        [routerLink]="['/study', studyName]"
+        mat-icon-button
+      >
+        <i class="material-icons">arrow_back</i>
+      </button>
+    </ng-container>
+    <div class="label">Subject {{ (subject$ | async)?.humanReadableId }}</div>
+  </div>
+</app-toolbar>
+
+<div class="content">
+  <ng-container *ngIf="(sources$ | async) as sources">
+    <div class="grid">
+      <app-tile label="Sources">
+        <app-source-list
+        [sources]="sources"
+        tile-content
+        ></app-source-list>
+      </app-tile>
+
+      <!-- <app-tile label="Graphs">
+        <div tile-content>
+          <pre>{{ sensorsData$ | async | json }}</pre>
+        </div>
+      </app-tile> -->
+
+      <app-tile label="Graphs">
+        <app-source-graphs
+          [sources]="sources"
+          [sensorsData]="sensorsData$ | async"
+          [isDataLoaded]="sensorsIsDataLoaded$ | async"
+          tile-content
+        ></app-source-graphs>
+      </app-tile>
+    </div>
+  </ng-container>
+</div>

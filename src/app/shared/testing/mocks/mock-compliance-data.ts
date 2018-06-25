@@ -1,6 +1,6 @@
-import { TimeInterval } from '../../enums/time-interval.enum'
+import { TimeWindow } from '../../enums/time-window.enum'
 import { ChartData } from '../../models/chart-data.model'
-import { getTime } from '../../utils/get-time'
+import { EffectiveTimeFrame } from '../../models/sample-data.model'
 
 export const MockComplianceKeys = [
   { key: 'a', doc: 'A', label: { EN: 'A' } },
@@ -8,29 +8,27 @@ export const MockComplianceKeys = [
 ]
 
 export const MockAPIComplianceDataset = [
-  { startDateTime: '2017-02-27T11:46:00Z', sample: { a: 0.2348, b: 0 } },
-  { startDateTime: '2017-03-01T11:46:00Z', sample: { a: 0.7348, b: 0.823 } },
-  { startDateTime: '2017-03-02T11:46:00Z', sample: { a: 0.3348, b: 0.323 } },
-  { startDateTime: '2017-03-03T11:46:00Z', sample: { a: 0.2348, b: 0.123 } },
-  { startDateTime: '2017-03-05T11:46:00Z', sample: { a: 0.2348, b: 0.123 } },
-  { startDateTime: '2017-03-08T11:46:00Z', sample: { a: 0.2348, b: 0.123 } },
-  { startDateTime: '2017-03-09T11:46:00Z', sample: { a: 0.2348, b: 0.123 } },
-  { startDateTime: '2017-03-10T11:46:00Z', sample: { a: 0.2348, b: 1 } },
-  { startDateTime: '2017-03-19T11:46:00Z', sample: { a: 0.2348, b: 0 } },
-  { startDateTime: '2017-03-20T11:46:00Z', sample: { a: 0.2348, b: 0.123 } },
-  { startDateTime: '2017-03-22T11:46:00Z', sample: { a: 0.2348, b: 0.123 } },
-  { startDateTime: '2017-03-23T11:46:00Z', sample: { a: 0.2348, b: 0.123 } },
-  { startDateTime: '2017-03-25T11:46:00Z', sample: { a: 0.2348, b: 0.123 } },
-  { startDateTime: '2017-03-26T11:46:00Z', sample: { a: 0.2348, b: 0.123 } },
-  { startDateTime: '2017-03-29T11:46:00Z', sample: { a: 0.2348, b: 0.123 } },
-  { startDateTime: '2017-04-01T11:46:00Z', sample: { a: 0.2348, b: 0.123 } }
+  { startDateTime: '2017-02-27T11:46:00Z', value: { a: 0.2348, b: 0 } },
+  { startDateTime: '2017-03-01T11:46:00Z', value: { a: 0.7348, b: 0.823 } },
+  { startDateTime: '2017-03-02T11:46:00Z', value: { a: 0.3348, b: 0.323 } },
+  { startDateTime: '2017-03-03T11:46:00Z', value: { a: 0.2348, b: 0.123 } },
+  { startDateTime: '2017-03-05T11:46:00Z', value: { a: 0.2348, b: 0.123 } },
+  { startDateTime: '2017-03-08T11:46:00Z', value: { a: 0.2348, b: 0.123 } },
+  { startDateTime: '2017-03-09T11:46:00Z', value: { a: 0.2348, b: 0.123 } },
+  { startDateTime: '2017-03-10T11:46:00Z', value: { a: 0.2348, b: 1 } },
+  { startDateTime: '2017-03-19T11:46:00Z', value: { a: 0.2348, b: 0 } },
+  { startDateTime: '2017-03-20T11:46:00Z', value: { a: 0.2348, b: 0.123 } },
+  { startDateTime: '2017-03-22T11:46:00Z', value: { a: 0.2348, b: 0.123 } },
+  { startDateTime: '2017-03-23T11:46:00Z', value: { a: 0.2348, b: 0.123 } },
+  { startDateTime: '2017-03-25T11:46:00Z', value: { a: 0.2348, b: 0.123 } },
+  { startDateTime: '2017-03-26T11:46:00Z', value: { a: 0.2348, b: 0.123 } },
+  { startDateTime: '2017-03-29T11:46:00Z', value: { a: 0.2348, b: 0.123 } },
+  { startDateTime: '2017-04-01T11:46:00Z', value: { a: 0.2348, b: 0.123 } }
 ]
-export const MockTimeIntervalCompliance = TimeInterval.ONE_DAY
-export const MockTimeFrameCompliance = {
-  start: getTime(MockAPIComplianceDataset[0].startDateTime),
-  end: getTime(
-    MockAPIComplianceDataset[MockAPIComplianceDataset.length - 1].startDateTime
-  )
+export const MockTimeIntervalCompliance = 'ONE_DAY'
+export const MockTimeFrameCompliance: EffectiveTimeFrame = {
+  startDateTime: '2017-02-27T11:46:00Z',
+  endDateTime: '2017-04-01T11:46:00Z'
 }
 
 export const MockComplianceDataExpected = [
@@ -60,16 +58,16 @@ export const MockComplianceDataExpected = [
   { date: new Date('2017-04-01T11:46:00Z'), value: { a: 0.2348, b: 0.123 } }
 ]
 
-export const MockTimeFrameComplianceWithStartEndHoles = {
-  start: MockTimeFrameCompliance.start - MockTimeIntervalCompliance * 4,
-  end: MockTimeFrameCompliance.end + MockTimeIntervalCompliance * 4
+export const MockTimeFrameComplianceWithStartEndHoles: EffectiveTimeFrame = {
+  startDateTime: '2017-02-26T11:46:00Z',
+  endDateTime: '2017-04-02T11:46:00Z'
 }
 
 export const MockComplianceDataWithStartEndHolesExpected: ChartData[] = [
   {
-    date: new Date(MockTimeFrameComplianceWithStartEndHoles.start),
+    date: new Date('2017-02-26T11:46:00Z'),
     value: null
   },
   ...MockComplianceDataExpected,
-  { date: new Date(MockTimeFrameComplianceWithStartEndHoles.end), value: null }
+  { date: new Date('2017-04-02T11:46:00Z'), value: null }
 ]

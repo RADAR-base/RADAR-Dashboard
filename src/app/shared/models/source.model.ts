@@ -1,9 +1,15 @@
-import { Sensor } from './sensor.model'
+import { SourceData } from './source-data.model'
+import { EffectiveTimeFrame } from './time.model'
 
 export interface Source {
-  id: string
-  type: string
-  summary?: string
-  visible?: boolean
-  sensors?: Sensor[]
+  sourceId: string
+  sourceName: string
+  sourceTypeId: string | number
+  sourceTypeProducer: string
+  sourceTypeModel: string
+  sourceTypeCatalogVersion: string
+  assigned: boolean
+  status: string
+  effectiveTimeFrame: EffectiveTimeFrame
+  sourceData?: SourceData[]
 }

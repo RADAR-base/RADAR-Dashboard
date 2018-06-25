@@ -18,22 +18,23 @@ import { AuthModule } from './auth/auth.module'
 import { AuthService } from './auth/services/auth.service'
 import { AppComponent } from './core/containers/app.component'
 import { NotFoundPageComponent } from './core/containers/not-found/not-found.component'
-import { ConfigService } from './core/services/config.service'
-import { ErrorService } from './core/services/error.service'
-import { RadarHttpInterceptor } from './core/services/radar.interceptor'
+import { RadarHttpInterceptorProvider } from './core/services/radar.interceptor'
+import { MaterialModule } from './material'
 import { CustomRouterStateSerializer } from './shared/utils/custom-router-state-serializer'
 import { metaReducers, reducers } from './store'
 import { PagesEffects } from './store/pages/pages.effects'
+import { SourceTypesEffects } from './store/source-types/source-types.effects'
+import { StudiesModule } from './studies/studies.module'
+import { StudyModule } from './study/study.module'
+import { SubjectModule } from './subject/subject.module'
 
 @NgModule({
   declarations: [AppComponent, NotFoundPageComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
+    MaterialModule,
     BrowserAnimationsModule,
-
-    // Routing
-    RouterModule.forRoot(routes),
 
     // ngrx/store
     StoreModule.forRoot(reducers, { metaReducers }),
@@ -44,30 +45,34 @@ import { PagesEffects } from './store/pages/pages.effects'
     }),
 
     // Setup ngrx/effects
-    EffectsModule.forRoot([PagesEffects]),
+    EffectsModule.forRoot([PagesEffects, SourceTypesEffects]),
 
     // JWT HttpClient interceptor
     JwtModule.forRoot({
       config: {
         tokenGetter: AuthService.getToken,
-        whitelistedDomains: ['localhost:4200'],
-        blacklistedRoutes: ['']
+        whitelistedDomains: ['localhost', ENV.API_DOMAIN],
+        blacklistedRoutes: [ENV.API_FIREBASE + '/config.json']
       }
     }),
 
     // Redux Devtools
     // https://github.com/zalmoxisus/redux-devtools-extension
-    // NOTE: Beware of the performance cost!
-    // https://github.com/ngrx/store-devtools/issues/45
     ENV.TOOLS ? StoreDevtoolsModule.instrument() : [],
 
     // Auth
-    AuthModule.forRoot()
+    AuthModule.forRoot(),
+
+    // Pages
+    StudiesModule,
+    StudyModule,
+    SubjectModule,
+
+    // Routing
+    RouterModule.forRoot(routes)
   ],
   providers: [
-    RadarHttpInterceptor,
-    ConfigService,
-    ErrorService,
+    RadarHttpInterceptorProvider,
     { provide: RouterStateSerializer, useClass: CustomRouterStateSerializer }
   ],
   bootstrap: [AppComponent]

@@ -1,24 +1,8 @@
 import { Routes } from '@angular/router'
 
-import { AuthGuard } from './auth/services/auth.guard'
 import { NotFoundPageComponent } from './core/containers/not-found/not-found.component'
 
 export const routes: Routes = [
-  {
-    path: 'study/:studyId/subject/:subjectId',
-    loadChildren: './subject-page/subject-page.module#SubjectPageModule',
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'study/:studyId',
-    loadChildren: './study-page/study-page.module#StudyPageModule',
-    canActivate: [AuthGuard]
-  },
-  {
-    path: '',
-    loadChildren: './overview-page/overview-page.module#OverviewPageModule',
-    canActivate: [AuthGuard]
-  },
   { path: 'not-found', component: NotFoundPageComponent },
   { path: '**', redirectTo: '/not-found', pathMatch: 'full' }
 ]

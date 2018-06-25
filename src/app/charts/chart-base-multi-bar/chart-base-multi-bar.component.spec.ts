@@ -22,10 +22,10 @@ describe('ChartBaseMultiBarComponent', () => {
     MockTimeIntervalCompliance
   )
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       declarations: [ChartBaseMultiBarComponent]
-    })
+    }).compileComponents()
 
     fixture = TestBed.createComponent(ChartBaseMultiBarComponent)
     component = fixture.componentInstance

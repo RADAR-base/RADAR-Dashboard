@@ -1,0 +1,47 @@
+@import '../../../../styles/common';
+
+.toggleOn {
+  transform: rotate(90deg);
+}
+
+.icon {
+  padding: 0 4px 2px 0;
+  vertical-align: middle;
+  font-size: 16px;
+}
+
+.source,
+.sourceData {
+  overflow: hidden;
+  padding: 4px 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: default;
+  user-select: none;
+}
+
+.source {
+  @include font-body-light;
+
+  margin-top: 0.5rem;
+  margin-left: 1rem;
+  font-weight: 600;
+
+  .icon {
+    padding-right: 0;
+  }
+}
+
+.sourceData {
+  @include font-small;
+
+  margin-left: 1rem;
+
+  &.inactive {
+    opacity: 0.3;
+  }
+}
+
+.sourceData:last-child {
+  margin-bottom: 0.5rem;
+}

@@ -4,14 +4,14 @@
 module.exports = function(config) {
   config.set({
     basePath: '',
-    frameworks: ['jasmine', '@angular/cli'],
+    frameworks: ['jasmine', '@angular-devkit/build-angular'],
     plugins: [
       require('karma-jasmine'),
       require('karma-browserstack-launcher'),
       require('karma-chrome-launcher'),
       require('karma-coverage-istanbul-reporter'),
       require('karma-jasmine-html-reporter'),
-      require('@angular/cli/plugins/karma'),
+      require('@angular-devkit/build-angular/plugins/karma'),
       require('karma-scss-preprocessor'),
       require('karma-spec-reporter')
     ],
@@ -28,14 +28,13 @@ module.exports = function(config) {
     preprocessors: {
       './src/styles/main.scss': ['scss']
     },
-    angularCli: {
-      environment: 'test'
-    },
+
     coverageIstanbulReporter: {
+      dir: require('path').join(__dirname, 'coverage'),
       reports: ['html', 'lcovonly'],
       fixWebpackSourcePaths: true
     },
-    reporters: ['spec', 'kjhtml'],
+    reporters: ['progress', 'kjhtml'],
     specReporter: {
       showSpecTiming: true
     },
@@ -55,6 +54,10 @@ module.exports = function(config) {
     browsers: ['Chrome'],
     // browsers: ['Chrome', 'BS_EDGE', 'BS_FIREFOX', 'BS_SAFARI'],
     customLaunchers: {
+      ChromeDebugging: {
+        base: 'Chrome',
+        flags: ['--remote-debugging-port=9333']
+      },
       ChromeNoSandbox: {
         base: 'Chrome',
         flags: ['--no-sandbox']

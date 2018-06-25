@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import { Router } from '@angular/router'
 import { JwtHelperService } from '@auth0/angular-jwt'
 import { Actions, Effect, ofType } from '@ngrx/effects'
-import { of } from 'rxjs/observable/of'
+import { of } from 'rxjs'
 import { catchError, exhaustMap, map, tap } from 'rxjs/operators'
 
 import { UserAuth } from '../models/auth'
@@ -22,12 +22,10 @@ export class AuthEffects {
     ofType(AuthActionTypes.Login),
     map((action: Login) => action.payload),
     exhaustMap((auth: UserAuth) =>
-      this.authService
-        .login(auth)
-        .pipe(
-          map(authData => new LoginSuccess(authData)),
-          catchError(error => of(new LoginFailure(error)))
-        )
+      this.authService.login(auth).pipe(
+        map(authData => new LoginSuccess(authData)),
+        catchError(error => of(new LoginFailure(error)))
+      )
     )
   )
 

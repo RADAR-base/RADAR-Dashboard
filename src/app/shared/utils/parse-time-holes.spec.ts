@@ -1,4 +1,4 @@
-import { TimeInterval } from '../enums/time-interval.enum'
+import { TimeWindow } from '../enums/time-window.enum'
 import {
   MockAPISampleDataset,
   MockChartDataExpected,
@@ -20,7 +20,7 @@ describe('parseTimeHoles', () => {
     const actual = parseTimeHoles(
       MockAPISampleDataset,
       MockTimeFrameChartData,
-      TimeInterval.TEN_SECOND
+      'TEN_SECOND'
     )
     expect(actual).toEqual(MockChartDataExpected)
   })
@@ -29,7 +29,7 @@ describe('parseTimeHoles', () => {
     const actual = parseTimeHoles(
       MockAPISampleDataset,
       MockTimeFrameChartDataWithStartEndHoles,
-      TimeInterval.TEN_SECOND
+      'TEN_SECOND'
     )
     expect(actual).toEqual(MockChartDataWithStartEndHolesExpected)
   })
@@ -38,7 +38,7 @@ describe('parseTimeHoles', () => {
     const actual = parseTimeHoles(
       MockAPIComplianceDataset,
       MockTimeFrameCompliance,
-      TimeInterval.ONE_DAY
+      'ONE_DAY'
     )
     expect(actual).toEqual(MockComplianceDataExpected)
   })
@@ -47,7 +47,7 @@ describe('parseTimeHoles', () => {
     const actual = parseTimeHoles(
       MockAPIComplianceDataset,
       MockTimeFrameComplianceWithStartEndHoles,
-      TimeInterval.ONE_DAY
+      'ONE_DAY'
     )
     expect(actual).toEqual(MockComplianceDataWithStartEndHolesExpected)
   })

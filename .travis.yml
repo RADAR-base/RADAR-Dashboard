@@ -9,7 +9,6 @@ node_js:
   - "node"
 
 cache:
-  yarn: true
   directories:
     - node_modules
 
@@ -19,24 +18,24 @@ before_script:
 
 script:
   # run linters
-  - yarn lint:ng
-  - yarn lint:css
-  - yarn lint:prettier
-  - yarn lint:sort
+  - npm run lint:ng
+  - npm run lint:css
+  - npm run lint:prettier
+  - npm run lint:sort
 
   # run unit tests
-  - xvfb-run -a yarn test --code-coverage --single-run --no-progress --browser=ChromeNoSandbox
+  - xvfb-run -a npm run test -- --code-coverage --watch=false --no-progress --browsers=ChromeNoSandbox
 
   # send coverage info
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
   - cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage
 
   # run e2e tests
-  - xvfb-run -a yarn e2e --no-progress --config=protractor-ci.conf.js
+  - xvfb-run -a npm run e2e -- --no-progress --config=protractor-ci.conf.js
 
 before_deploy:
   # install now
-  - yarn global add now
+  - npm i -g now
 
 deploy:
   - provider: script

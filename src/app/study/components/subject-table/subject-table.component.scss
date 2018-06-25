@@ -1,0 +1,83 @@
+@import '../../../../styles/common';
+
+:host {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+}
+
+.table {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  background-color: $cl-base-10;
+}
+
+table {
+  width: 100%;
+  background-color: transparent;
+}
+
+.mat-header-cell {
+  border-color: $cl-base-20;
+  background-color: $cl-base-10;
+}
+
+.mat-row {
+  border-color: $cl-base-20;
+}
+
+.mat-row:hover {
+  background-color: $cl-base-20;
+}
+
+.mat-header-cell,
+.mat-cell {
+  flex: 5;
+  padding-right: 0.5rem;
+}
+
+.mat-cell {
+  min-width: 0;
+
+  .ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.mat-cell:first-child,
+.mat-footer-cell:first-child,
+.mat-header-cell:first-child {
+  padding-left: 1rem;
+}
+
+.mat-cell:last-child,
+.mat-footer-cell:last-child,
+.mat-header-cell:last-child {
+  padding-right: 1rem;
+}
+
+.mat-column-subjectId {
+  flex: 3;
+}
+
+.mat-paginator {
+  @include font-small();
+
+  flex: 0 1 3.25rem;
+  justify-content: stretch;
+  padding: 0;
+  background-color: $cl-base-20;
+}
+
+.mat-paginator::ng-deep {
+  .mat-paginator-page-size {
+    display: none;
+  }
+
+  .mat-paginator-range-label {
+    flex: 1;
+    margin: 0 1rem;
+  }
+}

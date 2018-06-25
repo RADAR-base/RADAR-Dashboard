@@ -14,132 +14,132 @@
   },
   "dataset": [
     {
-      "sample": {
+      "value": {
         "simple": 0.2348,
         "special": 0
       },
       "startDateTime": "2017-02-28T11:46:00Z"
     },
     {
-      "sample": {
+      "value": {
         "special": 0.823
       },
       "startDateTime": "2017-03-01T11:46:00Z"
     },
     {
-      "sample": {
+      "value": {
         "simple": 0.3348,
         "special": 0.323
       },
       "startDateTime": "2017-03-02T11:46:00Z"
     },
     {
-      "sample": {
+      "value": {
         "simple": 0.2348,
         "special": 0.123
       },
       "startDateTime": "2017-03-03T11:46:00Z"
     },
     {
-      "sample": {
+      "value": {
         "simple": 0.2348,
         "special": 0.123
       },
       "startDateTime": "2017-03-04T11:46:00Z"
     },
     {
-      "sample": {
+      "value": {
         "simple": 0.2348,
         "special": 0.123
       },
       "startDateTime": "2017-03-05T11:46:00Z"
     },
     {
-      "sample": {
+      "value": {
         "simple": 0.2348,
         "special": 0.123
       },
       "startDateTime": "2017-03-06T11:46:00Z"
     },
     {
-      "sample": {
+      "value": {
         "simple": 0.2348,
         "special": 0.123
       },
       "startDateTime": "2017-03-07T11:46:00Z"
     },
     {
-      "sample": {
+      "value": {
         "simple": 0.2348,
         "special": 0.123
       },
       "startDateTime": "2017-03-08T11:46:00Z"
     },
     {
-      "sample": {
+      "value": {
         "simple": 0.2348,
         "special": 0.123
       },
       "startDateTime": "2017-03-09T11:46:00Z"
     },
     {
-      "sample": {
+      "value": {
         "simple": 0.2348,
         "special": 0.123
       },
       "startDateTime": "2017-03-10T11:46:00Z"
     },
     {
-      "sample": {
+      "value": {
         "simple": 0.2348,
         "special": 0.123
       },
       "startDateTime": "2017-03-11T11:46:00Z"
     },
     {
-      "sample": {
+      "value": {
         "simple": 0.2348,
         "special": 0.123
       },
       "startDateTime": "2017-03-12T11:46:00Z"
     },
     {
-      "sample": {
+      "value": {
         "simple": 0.2348,
         "special": 0.123
       },
       "startDateTime": "2017-03-13T11:46:00Z"
     },
     {
-      "sample": {
+      "value": {
         "simple": 0.2348,
         "special": 0.123
       },
       "startDateTime": "2017-03-14T11:46:00Z"
     },
     {
-      "sample": {
+      "value": {
         "simple": 0.2348,
         "special": 0.123
       },
       "startDateTime": "2017-03-15T11:46:00Z"
     },
     {
-      "sample": {
+      "value": {
         "simple": 0.2348,
         "special": 0.123
       },
       "startDateTime": "2017-03-16T11:46:00Z"
     },
     {
-      "sample": {
+      "value": {
         "simple": 0.2348,
         "special": 0.123
       },
       "startDateTime": "2017-03-17T11:46:00Z"
     },
     {
-      "sample": {
+      "value": {
         "simple": 0.2348,
         "special": 0.123
       },

@@ -1,0 +1,55 @@
+<div class="table">
+  <table mat-table
+    #table
+    [dataSource]="dataSource"
+    [trackBy]="trackById"
+  >
+    <ng-container matColumnDef="subjectId">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let row">
+        <span class="ellipsis">{{ row.subjectId }}</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="humanReadableId">
+      <th mat-header-cell *matHeaderCellDef>Readable ID</th>
+      <td mat-cell *matCellDef="let row">
+        <span class="ellipsis">{{ row.humanReadableId }}</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <td mat-cell *matCellDef="let row">
+        <span class="ellipsis">{{ row.status }}</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="sources">
+      <th mat-header-cell *matHeaderCellDef>Sources</th>
+      <td mat-cell *matCellDef="let row">
+        <span class="ellipsis">
+            <span *ngFor="let source of row.sources">{{ source.sourceTypeProducer }}  </span>
+          </span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastSeen">
+      <th mat-header-cell *matHeaderCellDef>Last seen</th>
+      <td mat-cell *matCellDef="let row">
+        <span class="ellipsis">{{ row.effectiveTimeFrame?.lastSeen | date: 'short' }}</span>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+      (click)="openSubjectPage($event, row.subjectId)"></tr>
+  </table>
+</div>
+
+<mat-paginator
+  #paginator
+  [length]="subjectDB.data.length"
+  [pageIndex]="0"
+  [pageSize]="50">
+</mat-paginator>

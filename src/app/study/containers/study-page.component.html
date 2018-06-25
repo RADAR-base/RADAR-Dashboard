@@ -1,0 +1,62 @@
+<app-toolbar>
+  <div start>
+    <button
+      [routerLink]="['/']"
+      mat-icon-button
+    >
+      <i class="material-icons">arrow_back</i>
+    </button>
+    <div class="label">Study {{ (study$ | async)?.projectName }}</div>
+  </div>
+</app-toolbar>
+
+<div class="content">
+  <div class="loading" *ngIf="(isLoaded$ | async) === false; else loaded">
+    Loading...
+  </div>
+
+  <ng-template #loaded>
+    <div *ngIf="!!(study$ | async) === false; else loadedAndValid">
+      <p>We could not find this study.</p>
+      <p>
+        <button mat-raised-button [routerLink]="['/']">
+          Go to Studies
+        </button>
+      </p>
+    </div>
+  </ng-template>
+
+  <ng-template #loadedAndValid>
+    <app-tile label="Subjects">
+      <div tile-content>
+        <app-subject-table
+          [subjects]="subjects$ | async"
+          [studyName]="(study$ | async)?.projectName"
+        ></app-subject-table>
+      </div>
+    </app-tile>
+
+    <!-- TODO: Implement when API is ready -->
+    <!-- <app-tile label="Compliance">
+      <div tile-content>
+        <div class="legend">
+          <p>
+            <span class="simple"></span>
+            Simple
+            <span class="special"></span>
+            Special
+            <span class="notanswered"></span>
+            Not Answered
+          </p>
+        </div>
+        <div class="chart">
+          <app-compliance-plot
+            [data]="complianceData$ | async"
+            [isLoaded]="isComplianceLoaded$ | async"
+          ></app-compliance-plot>
+        </div>
+      </div>
+    </app-tile> -->
+  </ng-template>
+
+</div>

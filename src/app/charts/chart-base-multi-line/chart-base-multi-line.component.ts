@@ -47,7 +47,9 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
       .domain(d3.extent(this.data, d => d.date))
       .nice()
 
-    if (this.hasXAxis) this.xAxis.call(d3.axisBottom(this.xScale))
+    if (this.hasXAxis) {
+      this.xAxis.call(d3.axisBottom(this.xScale))
+    }
 
     const minValue = d3.min(
       this.keys.map(k => d3.min(this.data, d => d.value && d.value[k.key]))

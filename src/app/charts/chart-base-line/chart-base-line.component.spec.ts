@@ -21,10 +21,10 @@ describe('ChartBaseLineComponent', () => {
     MockTimeIntervalChartData
   )
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       declarations: [ChartBaseLineComponent]
-    })
+    }).compileComponents()
 
     fixture = TestBed.createComponent(ChartBaseLineComponent)
     component = fixture.componentInstance

@@ -3,10 +3,24 @@
 @include mat-core();
 
 // Theme
-$cl-app-primary: mat-palette($mat-blue-grey);
-$cl-app-accent: mat-palette($mat-grey);
-$cl-app-warn: mat-palette($mat-red);
+$cl-app-primary: mat-palette($mat-teal, A700, 200, 900);
+$cl-app-accent: mat-palette($mat-cyan, A700, 200, 900);
+$cl-app-warn: mat-palette($mat-yellow, A700, 200, 900);
 $cl-app-theme: mat-dark-theme($cl-app-primary, $cl-app-accent, $cl-app-warn);
 
 // add Theme
 @include angular-material-theme($cl-app-theme);
+
+// Light theme
+$cl-app-light-primary: mat-palette($mat-teal);
+$cl-app-light-accent: mat-palette($mat-cyan);
+$cl-app-light-warn: mat-palette($mat-red);
+$cl-app-light-theme: mat-light-theme(
+  $cl-app-light-primary,
+  $cl-app-light-accent,
+  $cl-app-light-warn
+);
+
+.light-theme {
+  @include angular-material-theme($cl-app-light-theme);
+}
