@@ -32,6 +32,7 @@
         <app-subject-table
           [subjects]="subjects$ | async"
           [studyName]="(study$ | async)?.projectName"
+          [isLoaded]="subjectsLoaded$ | async "
         ></app-subject-table>
       </div>
     </app-tile>

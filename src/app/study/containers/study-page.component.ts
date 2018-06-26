@@ -20,6 +20,7 @@ export class StudyPageComponent implements OnInit {
   study$: Observable<Study>
   isLoaded$: Observable<boolean>
   subjects$: Observable<Subject[]>
+  subjectsLoaded$: Observable<boolean>
 
   constructor(private store: Store<fromRoot.State>) {}
 
@@ -35,5 +36,6 @@ export class StudyPageComponent implements OnInit {
 
     this.isLoaded$ = this.store.select(fromStudyPage.getStudyIsLoaded)
     this.subjects$ = this.store.select(fromStudyPage.getSubjects)
+    this.subjectsLoaded$ = this.store.select(fromStudyPage.getSubjectsLoaded)
   }
 }

@@ -26,6 +26,7 @@ export class SubjectTableComponent implements OnInit, OnDestroy {
 
   @ViewChild(MatPaginator) paginator: MatPaginator
 
+  @Input() isLoaded = false
   @Input() studyName
   @Input()
   set subjects(value) {
