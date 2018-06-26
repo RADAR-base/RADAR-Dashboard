@@ -36,24 +36,24 @@ export class SensorsDataService {
       []
     )
 
-    this.sensors$.next(this.sensors.pop()) // get the first sensor
+    // get the first sensor
+    this.sensors$.next(this.sensors.pop())
 
-    return this.queue$.asObservable() // subscribed in the @effects
+    // observable is subscribed by @ngrx/effects
+    return this.queue$.asObservable()
   }
 
   private getNextSensorData(sensor) {
-    if (!sensor) {
+    if (sensor === null) {
       this.queue$.next({ data: null, sensor })
-      return false
+      this.nextSensor()
+      return
     }
 
     this.http
       .get<SampleDataModel>(this.parseURL(sensor))
       .pipe(takeUntil(this.sensorsDataLoad$))
       .subscribe((response: SampleDataModel) => {
-        if (this.sensors.length) {
-          this.sensors$.next(this.sensors.pop())
-        }
         if (response) {
           this.queue$.next({
             data:
@@ -69,7 +69,15 @@ export class SensorsDataService {
         } else {
           this.queue$.next({ data: null, sensor })
         }
+
+        this.nextSensor()
       })
+  }
+
+  private nextSensor() {
+    if (this.sensors.length) {
+      this.sensors$.next(this.sensors.pop())
+    }
   }
 
   private parseURL(sensor: Sensor): string {
