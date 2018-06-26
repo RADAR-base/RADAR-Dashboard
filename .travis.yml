@@ -32,15 +32,3 @@ script:
 
   # run e2e tests
   - xvfb-run -a npm run e2e -- --no-progress --config=protractor-ci.conf.js
-
-before_deploy:
-  # install now
-  - npm i -g now
-
-deploy:
-  - provider: script
-    skip_cleanup: true
-    script: ./scripts/deploy.sh $TRAVIS_BRANCH
-    on:
-      all_branches: true
-      condition: $TRAVIS_BRANCH =~ ^master|develop$
