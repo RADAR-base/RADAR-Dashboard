@@ -1,11 +1,11 @@
 <div class="details">
   <div>Sources of</div>
-  <div class="title">{{ subject.humanReadableId }}</div>
-  <div class="caption">{{ subject.subjectId }}</div>
-  <div class="caption">{{ subject.status }}</div>
+  <div class="title">{{ subject?.humanReadableId }}</div>
+  <div class="caption">{{ subject?.subjectId }}</div>
+  <div class="caption">{{ subject?.status }}</div>
 </div>
 
-<ng-container *ngIf="subject.sources.length; else noSources">
+<ng-container *ngIf="subject?.sources.length; else noSources">
   <div class="sources">
     <ng-container *ngFor="let source of subject.sources">
       <div class="source-name">{{ source.sourceName }}</div>
