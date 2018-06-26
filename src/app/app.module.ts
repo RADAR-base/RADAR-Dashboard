@@ -22,7 +22,6 @@ import { RadarHttpInterceptorProvider } from './core/services/radar.interceptor'
 import { MaterialModule } from './material'
 import { CustomRouterStateSerializer } from './shared/utils/custom-router-state-serializer'
 import { metaReducers, reducers } from './store'
-import { PagesEffects } from './store/pages/pages.effects'
 import { SourceTypesEffects } from './store/source-types/source-types.effects'
 import { StudiesModule } from './studies/studies.module'
 import { StudyModule } from './study/study.module'
@@ -45,7 +44,7 @@ import { SubjectModule } from './subject/subject.module'
     }),
 
     // Setup ngrx/effects
-    EffectsModule.forRoot([PagesEffects, SourceTypesEffects]),
+    EffectsModule.forRoot([SourceTypesEffects]),
 
     // JWT HttpClient interceptor
     JwtModule.forRoot({

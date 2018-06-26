@@ -6,6 +6,13 @@
   flex-direction: column;
 }
 
+.loading {
+  display: flex;
+  flex: 1 1 0;
+  align-items: center;
+  justify-content: center;
+}
+
 .table {
   flex: 1 1 auto;
   overflow-y: auto;

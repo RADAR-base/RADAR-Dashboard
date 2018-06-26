@@ -27,19 +27,16 @@ export const initialState: State = adapter.getInitialState({
 
 export function reducer(state = initialState, action: actions.Actions): State {
   switch (action.type) {
-    case actions.LOAD: {
-      return { ...state, isLoaded: false }
+    case actions.LOAD:
+    case actions.LOAD_FAIL:
+    case actions.DESTROY: {
+      return initialState
     }
 
     case actions.LOAD_SUCCESS: {
       const subject = action.payload
       const sources = subject.sources
       return { ...adapter.addAll(sources, state), subject, isLoaded: true }
-    }
-
-    case actions.LOAD_FAIL:
-    case actions.DESTROY: {
-      return { ...initialState }
     }
 
     case actions.INJECT_SOURCE_DATA: {

@@ -9,24 +9,24 @@ export interface State {
 }
 
 const initialState: State = {
-  isLoaded: true,
+  isLoaded: false,
   selected: null
 }
 
 export function reducer(state = initialState, action: actions.Actions): State {
   switch (action.type) {
     case actions.LOAD:
-      return { ...state, isLoaded: false }
+    case actions.LOAD_FAIL: {
+      return initialState
+    }
 
-    case actions.LOAD_SUCCESS:
+    case actions.LOAD_SUCCESS: {
       return {
         ...state,
         selected: action.payload,
         isLoaded: true
       }
-
-    case actions.LOAD_FAIL:
-      return { ...initialState }
+    }
 
     default:
       return state
