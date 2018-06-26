@@ -32,6 +32,10 @@
   }
 }
 
+.empty {
+  opacity: 0.5;
+}
+
 .sourceData {
   @include font-small;
 
