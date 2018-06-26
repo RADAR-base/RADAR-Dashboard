@@ -42,10 +42,6 @@
     "not dead",
     "not ie > 0"
   ],
-  "now": {
-    "name": "radar-dashboard-canary",
-    "alias": "radar-dashboard-canary"
-  },
   "dependencies": {
     "@angular/animations": "^6.0.6",
     "@angular/cdk": "^6.3.0",
