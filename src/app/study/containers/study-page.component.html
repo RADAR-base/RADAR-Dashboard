@@ -28,12 +28,17 @@
 
   <ng-template #loadedAndValid>
     <app-tile label="Subjects">
-      <div tile-content>
+      <div tile-content class="tile-content-subjects">
         <app-subject-table
           [subjects]="subjects$ | async"
           [studyName]="(study$ | async)?.projectName"
-          [isLoaded]="subjectsLoaded$ | async "
+          [isLoaded]="subjectsLoaded$ | async"
+          (openSubject)="openSubjectHandler($event)"
         ></app-subject-table>
+        <app-subject-detail
+          *ngIf="subject"
+          [subject]="subject"
+        ></app-subject-detail>
       </div>
     </app-tile>
 

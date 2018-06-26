@@ -5,6 +5,10 @@ $cl-base: #0b4a59;
 $cl-light: #6d9aa5;
 $cl-lighter: #9bb5bc;
 
+$cl-safe: #73e686;
+$cl-warning: #ff8;
+$cl-error: #db172e;
+
 // Transparent Base
 $cl-base-10: rgba(#0b4a59, 0.1);
 $cl-base-20: rgba(#0b4a59, 0.2);
@@ -37,9 +41,12 @@ $cl-graph-hover: #fcaf0a;
 // Sizes
 $size-graph-side-label: 44px;
 
+// Fonts
+$font-family: 'Montserrat', sans-serif;
+
 // MIXINS
 @mixin font() {
-  font-family: 'Montserrat', sans-serif;
+  font-family: $font-family;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

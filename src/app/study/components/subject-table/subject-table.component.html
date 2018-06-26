@@ -47,7 +47,7 @@
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-      (click)="openSubjectPage($event, row.subjectId)"></tr>
+      (click)="openSubjectHandler($event, row)"></tr>
   </table>
 </div>
 
