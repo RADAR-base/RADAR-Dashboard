@@ -21,6 +21,8 @@
   display: grid;
   padding: 2rem;
   grid-gap: 1rem;
+
+  /* autoprefixer: off */
   grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
 }
 

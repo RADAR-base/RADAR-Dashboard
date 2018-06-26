@@ -1,9 +1,11 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
   OnDestroy,
   OnInit,
+  Output,
   ViewChild
 } from '@angular/core'
 import { MatPaginator } from '@angular/material'
@@ -26,6 +28,8 @@ export class SubjectTableComponent implements OnInit, OnDestroy {
 
   @ViewChild(MatPaginator) paginator: MatPaginator
 
+  @Output() openSubject = new EventEmitter<Subject>()
+
   @Input() isLoaded = false
   @Input() studyName
   @Input()
@@ -47,7 +51,7 @@ export class SubjectTableComponent implements OnInit, OnDestroy {
     return subject.subjectId
   }
 
-  openSubjectPage(event, subjectId) {
-    this.router.navigateByUrl(`/study/${this.studyName}/subject/${subjectId}`)
+  openSubjectHandler(event, subject) {
+    this.openSubject.emit(subject)
   }
 }

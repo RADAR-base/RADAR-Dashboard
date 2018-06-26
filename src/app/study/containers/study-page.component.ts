@@ -17,6 +17,7 @@ import * as subjectsAction from '../store/subjects/subjects.actions'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StudyPageComponent implements OnInit {
+  subject: Subject = null
   study$: Observable<Study>
   isLoaded$: Observable<boolean>
   subjects$: Observable<Subject[]>
@@ -37,5 +38,9 @@ export class StudyPageComponent implements OnInit {
     this.isLoaded$ = this.store.select(fromStudyPage.getStudyIsLoaded)
     this.subjects$ = this.store.select(fromStudyPage.getSubjects)
     this.subjectsLoaded$ = this.store.select(fromStudyPage.getSubjectsLoaded)
+  }
+
+  openSubjectHandler(subject) {
+    this.subject = subject
   }
 }
