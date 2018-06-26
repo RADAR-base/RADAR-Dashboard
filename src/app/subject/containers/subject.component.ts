@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnDestroy,
-  OnInit
-} from '@angular/core'
-import { ActivatedRoute } from '@angular/router'
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { Dictionary } from '@ngrx/entity/src/models'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs'
@@ -13,7 +7,6 @@ import { SensorsData } from '../../shared/models/sensors-data.model'
 import { Source } from '../../shared/models/source.model'
 import { Subject } from '../../shared/models/subject.model'
 import * as fromRoot from '../../store'
-import * as pagesActions from '../../store/pages/pages.actions'
 import * as fromSubject from '../store/index'
 import * as sourcesActions from '../store/sources/sources.actions'
 
@@ -23,7 +16,7 @@ import * as sourcesActions from '../store/sources/sources.actions'
   styleUrls: ['./subject.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SubjectComponent implements OnInit, OnDestroy {
+export class SubjectComponent implements OnInit {
   studyName$: Observable<string>
   subjectId$: Observable<string>
   subject$: Observable<Subject>
@@ -76,9 +69,5 @@ export class SubjectComponent implements OnInit, OnDestroy {
     //   })
     // )
     // <-- end
-  }
-
-  ngOnDestroy() {
-    this.store.dispatch(new pagesActions.SubjectDestroy())
   }
 }

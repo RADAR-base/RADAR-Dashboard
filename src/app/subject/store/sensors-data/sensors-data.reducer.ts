@@ -49,11 +49,9 @@ export function reducer(state = initialState, action: actions.Actions): State {
       }
     }
 
-    case actions.LOAD: {
-      return {
-        ...state,
-        areLoaded: {}
-      }
+    case actions.LOAD:
+    case actions.DESTROY: {
+      return initialState
     }
 
     case actions.LOAD_SUCCESS: {
@@ -103,10 +101,6 @@ export function reducer(state = initialState, action: actions.Actions): State {
         ...state,
         descriptiveStatistic: action.payload
       }
-    }
-
-    case actions.DESTROY: {
-      return { ...initialState }
     }
 
     default:

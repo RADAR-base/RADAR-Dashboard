@@ -17,16 +17,13 @@ export const initialState: State = adapter.getInitialState({
 
 export function reducer(state = initialState, action: actions.Actions): State {
   switch (action.type) {
-    case actions.LOAD: {
-      return { ...state, isLoaded: false }
+    case actions.LOAD:
+    case actions.LOAD_FAIL: {
+      return initialState
     }
 
     case actions.LOAD_SUCCESS: {
       return { ...adapter.addAll(action.payload, state), isLoaded: true }
-    }
-
-    case actions.LOAD_FAIL: {
-      return { ...initialState }
     }
 
     default:
