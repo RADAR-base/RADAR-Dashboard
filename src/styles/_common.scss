@@ -41,12 +41,9 @@ $cl-graph-hover: #fcaf0a;
 // Sizes
 $size-graph-side-label: 44px;
 
-// Fonts
-$font-family: 'Montserrat', sans-serif;
-
 // MIXINS
 @mixin font() {
-  font-family: $font-family;
+  font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
