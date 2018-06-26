@@ -1,5 +1,5 @@
 <div *ngFor="let source of sources">
-  <div class="source"
+  <div class="source" [class.empty]="source.sourceData === null"
     title="{{ source.sourceTypeModel }} | {{ source.sourceName }}"
   >
     {{ source.sourceTypeModel }} | {{ source.sourceName }}
@@ -13,5 +13,8 @@
       <i class="icon material-icons icon-eye">remove_red_eye</i>
       {{ sourceData.sourceDataType }}
     </div>
+  </ng-container>
+  <ng-container *ngIf="source.sourceData === null">
+    <div class="sourceData empty">No SourceData</div>
   </ng-container>
 </div>

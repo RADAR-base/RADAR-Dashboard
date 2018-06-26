@@ -6,9 +6,9 @@
 ></app-tooltip>
 
 <div class="graphs">
-  <div
-    class="source"
+  <div class="source"
     *ngFor="let source of sources; trackBy: trackBySourceId"
+    [class.empty]="source.sourceData === null"
     (mousemove)="onMouseMove($event)"
     (mouseleave)="onMouseLeave($event)"
   >
@@ -17,26 +17,25 @@
     </div>
 
     <div class="sensors">
-      <div
-        class="sensor"
-        *ngFor="let sourceData of source.sourceData; trackBy: trackBySourceDataUid"
-      >
-        <ng-container *ngIf="sourceData">
+      <ng-container *ngIf="source.sourceData">
+        <div class="sensor"
+          *ngFor="let sourceData of source.sourceData; trackBy: trackBySourceDataUid"
+        >
           <app-source-graph
             *ngIf="sourceData?.visible"
             [sourceData]="sourceData"
             [sensorData]="sensorsData[sourceData.uid]?.data"
             [isLoaded]="isDataLoaded[sourceData.uid]"
-            [sensorId]="sourceData.uid"
-          ></app-source-graph>
-        </ng-container>
-      </div>
+            [sensorId]="sourceData.uid"></app-source-graph>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="source.sourceData === null">
+        <div class="sensor empty message">No SourceData</div>
+      </ng-container>
     </div>
-    <div
-      class="line"
+    <div class="line"
       [style.transform]="'translateX('+ lineX +'px)'"
-      [style.opacity]="tooltipShow"
-    ></div>
+      [style.opacity]="tooltipShow"></div>
   </div>
 </div>
 
