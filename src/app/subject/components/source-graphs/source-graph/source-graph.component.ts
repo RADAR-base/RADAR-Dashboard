@@ -18,7 +18,7 @@ import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.ac
     </div>
     
     <div class="nodata" *ngIf="!(sensorData) && isLoaded">
-      <p class="emoji">🤷‍♀️</p>
+      <p class="emoji">🤷‍</p>
       <p>No data found.</p>
     </div>
 
