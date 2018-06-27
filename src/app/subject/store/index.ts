@@ -132,32 +132,27 @@ export const getSensorsDataTooltipValues = createSelector(
 
     return ids
       .filter(
-        d =>
-          sourcesDataEntities &&
-          sourcesDataEntities[d] &&
-          sourcesDataEntities[d].visible
+        id =>
+          sensorsDataEntities[id] &&
+          sensorsDataEntities[id].data &&
+          sensorsDataEntities[id].chart &&
+          sourcesDataEntities[id] &&
+          sourcesDataEntities[id].visible
       )
       .reduce((acc, id) => {
         const sensorData = sensorsDataEntities[id] || null
-
-        if (sensorData === null) {
-          return [...acc]
-        }
-
-        const index =
-          sensorData.data &&
-          sensorData.data.findIndex(d => d.date.getTime() === date.getTime())
-
-        const value =
-          sensorData.data && index > -1 ? sensorData.data[index].value : null
+        const index = sensorData.data.findIndex(
+          d => d.date.getTime() === date.getTime()
+        )
+        const value = index > -1 ? sensorData.data[index].value : null
 
         return [
           ...acc,
           {
             id: id,
-            label: sourcesDataEntities[id].label,
-            dataType: sourcesDataEntities[id].chart.dataType,
-            keys: sourcesDataEntities[id].keys || null,
+            label: sensorData.label || null,
+            dataType: sensorData.chart.dataType || null,
+            keys: sensorData.keys || null,
             value
           }
         ]
