@@ -63,8 +63,6 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
   }
 
   draw() {
-    console.log(this.hasTimeHoles)
-
     this.xScale = d3
       .scaleTime()
       .range([0, this.width])
