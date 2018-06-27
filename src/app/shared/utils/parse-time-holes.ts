@@ -7,7 +7,7 @@ export function parseTimeHoles(
   dataset: ChartData[],
   effectiveTimeFrame: EffectiveTimeFrame,
   timeWindowEnum: string,
-  timeHoles: boolean
+  timeHoles = true
 ) {
   if (timeHoles === false) {
     return dataset.reduce((acc, d: SingleSample | MultiSample, i, arr) => {
