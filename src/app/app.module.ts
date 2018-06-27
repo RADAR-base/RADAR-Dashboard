@@ -22,9 +22,9 @@ import { RadarHttpInterceptorProvider } from './core/services/radar.interceptor'
 import { MaterialModule } from './material'
 import { CustomRouterStateSerializer } from './shared/utils/custom-router-state-serializer'
 import { metaReducers, reducers } from './store'
-import { SourceTypesEffects } from './subject/store/source-types/source-types.effects'
 import { StudiesModule } from './studies/studies.module'
 import { StudyModule } from './study/study.module'
+import { SourceTypesEffects } from './subject/store/source-types/source-types.effects'
 import { SubjectModule } from './subject/subject.module'
 
 @NgModule({
