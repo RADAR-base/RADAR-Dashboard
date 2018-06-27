@@ -5,9 +5,9 @@ import { of } from 'rxjs'
 import { catchError, map, switchMap, tap, withLatestFrom } from 'rxjs/operators'
 
 import * as fromRoot from '../../../store'
-import * as sourceTypesActions from '../source-types/source-types.actions'
 import { SourcesService } from '../../services/sources.service'
 import * as sensorsDataActions from '../sensors-data/sensors-data.actions'
+import * as sourceTypesActions from '../source-types/source-types.actions'
 import * as sourcesActions from './sources.actions'
 
 @Injectable()
