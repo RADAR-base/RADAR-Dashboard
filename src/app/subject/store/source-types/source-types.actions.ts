@@ -1,7 +1,7 @@
 import { Dictionary } from '@ngrx/entity/src/models'
 import { Action } from '@ngrx/store'
 
-import { SourceType } from '../../shared/models/source-type.model'
+import { SourceType } from '../../../shared/models/source-type.model'
 
 export enum SourceTypeActionTypes {
   Load = '[SourceType] Load',
