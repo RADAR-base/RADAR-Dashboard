@@ -24,8 +24,7 @@ export const MockSourceData: SourceData = {
   enabled: true,
   uid: 'rJywbfpZm',
   sourceId: 'b6f1a0bb-b663-4aa2-a776-3a51d4dc5f86',
-  chart: { type: ChartType.line },
-  dataType: DataType.single,
+  chart: { type: ChartType.line, dataType: DataType.single },
   label: { EN: 'Electrodermal Activity' },
   visible: true
 }

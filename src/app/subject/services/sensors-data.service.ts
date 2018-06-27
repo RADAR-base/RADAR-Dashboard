@@ -6,6 +6,7 @@ import { Observable, Subject } from 'rxjs'
 import { takeUntil } from 'rxjs/operators'
 
 import { ENV } from '../../../environments/environment'
+import { AppConfig } from '../../shared/app-config'
 import { DescriptiveStatistic } from '../../shared/enums/descriptive-statistic.enum'
 import { SampleDataModel } from '../../shared/models/sample-data.model'
 import { Sensor } from '../../shared/models/sensor.model'
@@ -54,16 +55,18 @@ export class SensorsDataService {
       .get<SampleDataModel>(this.parseURL(sensor))
       .pipe(takeUntil(this.sensorsDataLoad$))
       .subscribe((response: SampleDataModel) => {
-        if (response) {
+        const dataset = response && response.dataset
+        const header = response && response.header
+        const config = AppConfig.config.sourceData[header.sourceDataType]
+
+        if (dataset && dataset.length) {
           this.queue$.next({
-            data:
-              response.dataset && response.dataset.length
-                ? parseTimeHoles(
-                    response.dataset,
-                    response.header.effectiveTimeFrame,
-                    response.header.timeWindow
-                  )
-                : null,
+            data: parseTimeHoles(
+              dataset,
+              header.effectiveTimeFrame,
+              header.timeWindow,
+              config.chart.timeHoles
+            ).sort((a, b) => a.date - b.date),
             sensor
           })
         } else {

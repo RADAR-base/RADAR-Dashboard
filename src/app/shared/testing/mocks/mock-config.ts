@@ -3,8 +3,8 @@ export class MockConfig {
   static config = {
     sensors: {
       ACCELEROMETER: {
-        dataType: 'multi',
         chart: {
+          dataType: 'multi',
           type: 'line'
         },
         doc:
@@ -38,8 +38,8 @@ export class MockConfig {
         ]
       },
       BATTERY: {
-        dataType: 'single',
         chart: {
+          dataType: 'single',
           type: 'line'
         },
         doc: 'Battery level in percentage as unit.',
@@ -49,8 +49,8 @@ export class MockConfig {
         unit: 'PERCENTAGE'
       },
       BLOOD_VOLUME_PULSE: {
-        dataType: 'single',
         chart: {
+          dataType: 'single',
           type: 'line'
         },
         doc:
@@ -61,8 +61,8 @@ export class MockConfig {
         unit: 'NANOWATT'
       },
       ELECTRODERMAL_ACTIVITY: {
-        dataType: 'single',
         chart: {
+          dataType: 'single',
           type: 'line'
         },
         doc: 'Electrodermal activity in microsiemens (µS) as unit.',
@@ -72,8 +72,8 @@ export class MockConfig {
         unit: 'MICROSIEMENS'
       },
       INTER_BEAT_INTERVAL: {
-        dataType: 'single',
         chart: {
+          dataType: 'single',
           type: 'line'
         },
         doc: 'Time between individal heat beats.',
@@ -83,8 +83,8 @@ export class MockConfig {
         unit: 'BEATS_PER_MIN'
       },
       HEART_RATE: {
-        dataType: 'single',
         chart: {
+          dataType: 'single',
           type: 'line',
           gradient: true
         },
@@ -104,8 +104,8 @@ export class MockConfig {
         unit: 'BEATS_PER_MIN'
       },
       THERMOMETER: {
-        dataType: 'single',
         chart: {
+          dataType: 'single',
           type: 'line'
         },
         doc: 'Temperature value expressed in Celsius (°C) scale',
