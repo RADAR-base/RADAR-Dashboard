@@ -25,10 +25,12 @@ $cl-app-light-theme: mat-light-theme(
   @include angular-material-theme($cl-app-light-theme);
 }
 
+$custom-family: '"Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI","Roboto", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"';
+
 // Define a custom typography config that overrides the font-family as well as the
 // `headlines` and `body-1` levels.
 $custom-typography: mat-typography-config(
-  $font-family: 'Montserrat, sans-serif',
+  $font-family: $custom-family,
   $headline: mat-typography-level(32px, 48px, 700),
   $body-1: mat-typography-level(16px, 24px, 500)
 );
