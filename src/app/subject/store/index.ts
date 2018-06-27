@@ -4,16 +4,19 @@ import { createFeatureSelector, createSelector } from '@ngrx/store'
 import { SensorsData } from '../../shared/models/sensors-data.model'
 import { SourceData } from '../../shared/models/source-data.model'
 import * as fromSensorsData from './sensors-data/sensors-data.reducer'
+import * as fromSourceTypes from './source-types/source-types.reducer'
 import * as fromSources from './sources/sources.reducer'
 
 export interface State {
   sources: fromSources.State
   sensorsData: fromSensorsData.State
+  sourceTypes: fromSourceTypes.State
 }
 
 export const reducers = {
   sources: fromSources.reducer,
-  sensorsData: fromSensorsData.reducer
+  sensorsData: fromSensorsData.reducer,
+  sourceTypes: fromSourceTypes.reducer
 }
 
 export const getSubjectFeatureState = createFeatureSelector<State>('subject')
@@ -58,7 +61,20 @@ export const getSourcesSubject = createSelector(
   fromSources.getSubject
 )
 
-// Sensors Data Selectors
+// SourceTypes Selectors
+export const getSourceTypesState = createSelector(
+  getSubjectFeatureState,
+  state => state.sourceTypes
+)
+
+export const {
+  selectIds: getSourceTypesIds,
+  selectEntities: getSourceTypesEntities,
+  selectAll: getSourceTypesAll,
+  selectTotal: getSourceTypesTotal
+} = fromSourceTypes.adapter.getSelectors(getSourceTypesState)
+
+// SensorsData Selectors
 export const getSensorsDataState = createSelector(
   getSubjectFeatureState,
   state => state.sensorsData

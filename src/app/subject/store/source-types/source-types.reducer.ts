@@ -1,6 +1,6 @@
 import { EntityAdapter, EntityState, createEntityAdapter } from '@ngrx/entity'
 
-import { SourceType } from '../../shared/models/source-type.model'
+import { SourceType } from '../../../shared/models/source-type.model'
 import {
   SourceTypeActionTypes,
   SourceTypeActions

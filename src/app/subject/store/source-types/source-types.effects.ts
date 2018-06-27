@@ -2,16 +2,12 @@ import { Injectable } from '@angular/core'
 import { Actions, Effect, ofType } from '@ngrx/effects'
 import { Store } from '@ngrx/store'
 import { of } from 'rxjs'
-import {
-  catchError,
-  exhaustMap,
-  map,
-  tap,
-  withLatestFrom
-} from 'rxjs/operators'
+import { catchError, exhaustMap, map, withLatestFrom } from 'rxjs/operators'
 
-import * as fromSourcesActions from '../../subject/store/sources/sources.actions'
-import * as fromRoot from '../index'
+import * as fromRoot from '../../../store'
+import { SourceTypesService } from '../../services/source-types.service'
+import * as fromSubject from '../'
+import * as fromSourcesActions from '../sources/sources.actions'
 import {
   LoadFail,
   LoadFromApi,
@@ -19,14 +15,13 @@ import {
   LoadSuccess,
   SourceTypeActionTypes
 } from './source-types.actions'
-import { SourceTypesService } from './source-types.service'
 
 @Injectable()
 export class SourceTypesEffects {
   @Effect()
   load$ = this.actions$.pipe(
     ofType(SourceTypeActionTypes.Load),
-    withLatestFrom(this.store.select(fromRoot.getSourceTypesIds)),
+    withLatestFrom(this.store.select(fromSubject.getSourceTypesIds)),
     map(
       ([, sourceTypesIds]) =>
         sourceTypesIds.length ? new LoadSuccess() : new LoadFromApi()
@@ -50,7 +45,7 @@ export class SourceTypesEffects {
       SourceTypeActionTypes.LoadSuccess,
       SourceTypeActionTypes.LoadFromApiSuccess
     ),
-    withLatestFrom(this.store.select(fromRoot.getSourceTypesEntities)),
+    withLatestFrom(this.store.select(fromSubject.getSourceTypesEntities)),
     map(
       ([, sourceTypesEntities]) =>
         new fromSourcesActions.InjectSourceData(sourceTypesEntities)
