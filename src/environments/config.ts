@@ -1,8 +1,12 @@
 export const Config = {
   sourceData: {
     ACCELEROMETER: {
-      chart: { type: 'line' },
-      dataType: 'multi',
+      chart: {
+        type: 'line',
+        gradient: false,
+        timeHoles: true,
+        dataType: 'multi'
+      },
       doc:
         'Acceleration item for a dataset with gravitational constant g as unit.',
       keys: [
@@ -25,40 +29,65 @@ export const Config = {
       label: { EN: 'Accelerometer' }
     },
     BATTERY: {
-      chart: { type: 'line' },
-      dataType: 'single',
+      chart: {
+        type: 'line',
+        gradient: false,
+        timeHoles: false,
+        dataType: 'single'
+      },
       doc: 'Battery level in percentage as unit.',
       label: { EN: 'Battery' }
     },
     BLOOD_VOLUME_PULSE: {
-      chart: { type: 'line' },
-      dataType: 'single',
+      chart: {
+        type: 'line',
+        gradient: false,
+        timeHoles: true,
+        dataType: 'single'
+      },
       doc:
         'Blood volumne pulse from photoplethysmograph expressed in light absorption (nW).',
       label: { EN: 'Blood Volume Pulse' }
     },
     ELECTRODERMAL_ACTIVITY: {
-      chart: { type: 'line' },
-      dataType: 'single',
+      chart: {
+        type: 'line',
+        gradient: false,
+        timeHoles: true,
+        dataType: 'single'
+      },
       doc: 'Electrodermal activity in microsiemens (µS) as unit.',
       label: { EN: 'Electrodermal Activity' }
     },
     HEART_RATE: {
-      chart: { gradient: true, type: 'line' },
-      dataType: 'single',
+      chart: {
+        type: 'line',
+        gradient: true,
+        timeHoles: true,
+        dataType: 'single'
+      },
       doc:
         'Heart Rate resulting from data aggregation. It is computed as (60 / ibi)',
       keys: [{ key: 'value', label: { EN: 'Heart Rate' } }],
       label: { EN: 'Heart Rate' }
     },
     INTER_BEAT_INTERVAL: {
-      chart: { type: 'line' },
-      dataType: 'single',
+      chart: {
+        type: 'line',
+        gradient: false,
+        timeHoles: true,
+        dataType: 'single'
+      },
       doc: 'Time between individal heat beats.',
       label: { EN: 'Inter Beat Interval' }
     },
     THERMOMETER: {
-      chart: { type: 'line' },
+      chart: {
+        type: 'line',
+        gradient: false,
+        timeHoles: true,
+        dataType: 'single'
+      },
       dataType: 'single',
       doc: 'Temperature value expressed in Celsius (°C) scale',
       label: { EN: 'Thermometer' }

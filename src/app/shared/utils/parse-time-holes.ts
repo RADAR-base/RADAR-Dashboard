@@ -6,8 +6,20 @@ import { EffectiveTimeFrame } from '../models/time.model'
 export function parseTimeHoles(
   dataset: ChartData[],
   effectiveTimeFrame: EffectiveTimeFrame,
-  timeWindowEnum: string
+  timeWindowEnum: string,
+  timeHoles: boolean
 ) {
+  if (timeHoles === false) {
+    return dataset.reduce((acc, d: SingleSample | MultiSample, i, arr) => {
+      const date = new Date(d.startDateTime)
+
+      // --> Add the current dataset value
+      acc.push({ date, value: d.value })
+
+      return acc
+    }, [])
+  }
+
   const startTime = new Date(effectiveTimeFrame.startDateTime).getTime()
   const endTime = new Date(effectiveTimeFrame.endDateTime).getTime()
   const timeWindow: TimeWindow = TimeWindow[timeWindowEnum]

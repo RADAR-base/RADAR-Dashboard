@@ -8,7 +8,6 @@ export interface Sensor extends SourceData {
   type?: string
   unit?: string
   label?: ConfigLabel
-  dataType?: DataType
   chart?: ChartOptions
   keys?: ConfigKey[]
   visible?: boolean

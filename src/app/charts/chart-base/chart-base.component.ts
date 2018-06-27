@@ -15,6 +15,7 @@ import { debounceTime } from 'rxjs/operators'
 import * as shortid from 'shortid'
 
 import { ChartColors } from '../../shared/enums/chart-colors.enum'
+import { ChartData } from '../../shared/models/chart-data.model'
 import { ConfigKey } from '../../shared/models/config.model'
 
 /**
@@ -131,9 +132,14 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
 
   private onTooltipMouseMove() {
     if (this.xScale) {
-      this.tooltipMouseMove.emit(
-        this.xScale.invert(d3.mouse(this.tooltip.node())[0])
-      )
+      const x = this.xScale.invert(d3.mouse(this.tooltip.node())[0])
+      const bisectDate = d3.bisector((d: ChartData) => d.date).left
+      const index = bisectDate(this.chartData, x)
+      const chart = this.chartData[index]
+
+      if (chart) {
+        this.tooltipMouseMove.emit(chart.date)
+      }
     }
   }
 

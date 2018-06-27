@@ -20,7 +20,8 @@ export class ComplianceDataService {
           return parseTimeHoles(
             response.dataset,
             response.header.effectiveTimeFrame,
-            response.header.timeWindow
+            response.header.timeWindow,
+            true
           )
         }
       })

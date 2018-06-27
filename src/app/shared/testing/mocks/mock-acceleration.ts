@@ -4,9 +4,9 @@ export const MockAccelerationTimeInterval = 'TEN_SECOND'
 
 export const MockAccelerationKeys = {
   chart: {
-    type: 'line'
+    type: 'line',
+    dataType: 'multi'
   },
-  dataType: 'multi',
   doc: 'Acceleration item for a dataset with gravitational constant g as unit.',
   keys: [
     {

@@ -27,6 +27,7 @@ import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.ac
       *ngIf="sensorData && isLoaded && isSingle"
       [chartData]="sensorData"
       [hasGradient]="hasGradient"
+      [hasTimeHoles]="hasTimeHoles"
       [hasYAxis]="true"
       [hasTooltip]="true"
       [margin]="graphMargins"
@@ -63,8 +64,12 @@ export class SourceGraphComponent {
     return this.sourceData.chart.gradient
   }
 
+  get hasTimeHoles() {
+    return this.sourceData.chart.timeHoles
+  }
+
   get isSingle() {
-    return this.sourceData.dataType === DataType.single
+    return this.sourceData.chart.dataType === DataType.single
   }
 
   get label() {

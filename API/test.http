@@ -97,3 +97,24 @@ Content-Type: application/json
      }
   ]
 }
+
+###
+
+# @name getVolumeNoTime
+# /aggregate/{projectName}/{subjectId}/distinct
+# ?timeWindow=&startTime=&endTime=
+POST {{baseUrl}}/api/aggregate/BioIT-Demo/{{getDemoSubjectDetail.response.body.$.subjectId}}/distinct
+  ?timeWindow=TEN_MIN
+Authorization: Bearer {{token.response.body.access_token}}
+Content-Type: application/json
+
+{
+  "sources":[
+     {
+        "sourceId":"b6f1a0bb-b663-4aa2-a776-3a51d4dc5f86",
+        "sourceData":[
+          {"name": "EMPATICA_E4_v1_ACCELEROMETER"}
+        ]
+     }
+  ]
+}

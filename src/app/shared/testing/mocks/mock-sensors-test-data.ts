@@ -2,9 +2,9 @@ export const PayloadSingle = {
   subjectId: 'MRC01',
   data: {
     chart: {
+      dataType: 'single',
       type: 'line'
     },
-    dataType: 'single',
     doc: 'Battery level in percentage as unit.',
     label: {
       EN: 'Battery'
@@ -20,9 +20,9 @@ export const PayloadMulti = {
   subjectId: 'MRC01',
   data: {
     chart: {
+      dataType: 'multi',
       type: 'line'
     },
-    dataType: 'multi',
     doc:
       'Acceleration item for a dataset with gravitational constant g as unit.',
     keys: [

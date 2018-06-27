@@ -156,7 +156,7 @@ export const getSensorsDataTooltipValues = createSelector(
           {
             id: id,
             label: sourcesDataEntities[id].label,
-            dataType: sourcesDataEntities[id].dataType,
+            dataType: sourcesDataEntities[id].chart.dataType,
             keys: sourcesDataEntities[id].keys || null,
             value
           }

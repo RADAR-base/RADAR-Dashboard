@@ -13,6 +13,7 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
 })
 export class ChartBaseLineComponent extends ChartBaseComponent {
   @Input() hasGradient = false
+  @Input() hasTimeHoles = true
   @Input()
   gradientColors = [
     { offset: '0%', color: '#2ED8E5' },
@@ -62,6 +63,8 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
   }
 
   draw() {
+    console.log(this.hasTimeHoles)
+
     this.xScale = d3
       .scaleTime()
       .range([0, this.width])

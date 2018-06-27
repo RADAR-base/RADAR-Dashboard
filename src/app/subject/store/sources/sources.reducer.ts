@@ -63,7 +63,6 @@ export function reducer(state = initialState, action: actions.Actions): State {
                 uid: shortid.generate(),
                 sourceId: source.sourceId,
                 chart: config && config.chart,
-                dataType: config && config.dataType,
                 keys: config && config.keys,
                 label: config && config.label,
                 visible: true
