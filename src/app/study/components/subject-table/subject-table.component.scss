@@ -39,19 +39,32 @@ table {
 
 .mat-header-cell,
 .mat-cell {
-  flex: 5;
   padding-right: 0.5rem;
+  width: 20%;
+
+  &.mat-column-status {
+    min-width: 5rem;
+    max-width: 8rem;
+    width: 10%;
+  }
+
+  &.mat-column-sources {
+    width: 25%;
+  }
+
+  &.mat-column-lastSeen {
+    min-width: 5rem;
+    max-width: 12rem;
+    width: 12%;
+  }
 }
 
 .mat-cell {
-  min-width: 0;
+  overflow: hidden;
+  max-width: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-size: 0.875rem;
-
-  .ellipsis {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
 }
 
 .mat-cell:first-child,
@@ -64,10 +77,6 @@ table {
 .mat-footer-cell:last-child,
 .mat-header-cell:last-child {
   padding-right: 1rem;
-}
-
-.mat-column-subjectId {
-  flex: 3;
 }
 
 .mat-paginator {
