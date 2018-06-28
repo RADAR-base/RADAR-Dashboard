@@ -22,7 +22,13 @@ import { SubjectDB } from './subject-db'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SubjectTableComponent implements OnInit, OnDestroy {
-  displayedColumns = ['humanReadableId', 'status', 'sources', 'lastSeen']
+  displayedColumns = [
+    'subjectId',
+    'humanReadableId',
+    'status',
+    'sources',
+    'lastSeen'
+  ]
   dataSource: SubjectDataSource | null
   subjectDB = new SubjectDB()
 
