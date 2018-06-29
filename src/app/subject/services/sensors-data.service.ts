@@ -103,13 +103,13 @@ export class SensorsDataService {
     url = url + '?'
     url = `${url}timeWindow=${this.options.timeWindow}`
 
-    this.options.timeFrame.start
-      ? (url = `${url}&startTime=${this.options.timeFrame.start}`)
-      : (url = url)
+    const startTime =
+      this.options.timeFrame.start || this.options.queryParams.startTime || null
+    const endTime =
+      this.options.timeFrame.start || this.options.queryParams.endTime || null
 
-    this.options.timeFrame.end
-      ? (url = `${url}&startTime=${this.options.timeFrame.end}`)
-      : (url = url)
+    startTime ? (url = `${url}&startTime=${startTime}`) : (url = url)
+    endTime ? (url = `${url}&endTime=${endTime}`) : (url = url)
 
     return url
   }

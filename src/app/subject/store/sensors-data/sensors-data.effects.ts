@@ -22,7 +22,9 @@ export class SensorsDataEffects {
       // Store values
       this.store.select(fromSubject.getSensorsDataTimeFrame),
       this.store.select(fromSubject.getSensorsDataTimeInterval),
-      this.store.select(fromSubject.getSensorsDataDescriptiveStatistic)
+      this.store.select(fromSubject.getSensorsDataDescriptiveStatistic),
+      // TimeFrame through queryParams
+      this.store.select(fromRoot.getRouterQueryParams)
     ),
     switchMap(
       ([
@@ -32,7 +34,8 @@ export class SensorsDataEffects {
         subjectId,
         timeFrame,
         timeWindow,
-        descriptiveStatistic
+        descriptiveStatistic,
+        queryParams
       ]) =>
         this.sensorsDataService
           .getData(sources, {
@@ -40,7 +43,8 @@ export class SensorsDataEffects {
             subjectId,
             timeFrame,
             timeWindow,
-            descriptiveStatistic
+            descriptiveStatistic,
+            queryParams
           })
           .pipe(map(data => new actions.LoadSuccess(data)))
     )
