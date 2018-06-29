@@ -1,3 +1,4 @@
+import { Params } from '@angular/router'
 import * as fromRouter from '@ngrx/router-store'
 import {
   ActionReducerMap,
@@ -26,12 +27,17 @@ export const getRouterState = createFeatureSelector<
 
 export const getRouterUrl = createSelector(
   getRouterState,
-  router => router && router.state.url
+  (router): string => router && router.state.url
 )
 
 export const getRouterParams = createSelector(
   getRouterState,
-  router => router && router.state.params
+  (router): Params => router && router.state.params
+)
+
+export const getRouterQueryParams = createSelector(
+  getRouterState,
+  (router): Params => router && router.state.queryParams
 )
 
 export const getRouterParamsStudyName = createSelector(

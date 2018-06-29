@@ -54,27 +54,34 @@ export class SensorsDataService {
     this.http
       .get<SampleDataModel>(this.parseURL(sensor))
       .pipe(takeUntil(this.sensorsDataLoad$))
-      .subscribe((response: SampleDataModel) => {
-        const dataset = response && response.dataset
-        const header = response && response.header
-        const config = AppConfig.config.sourceData[header.sourceDataType]
+      .subscribe(
+        (response: SampleDataModel) => {
+          const dataset = response && response.dataset
+          const header = response && response.header
+          const config = AppConfig.config.sourceData[header.sourceDataType]
 
-        if (dataset && dataset.length) {
-          this.queue$.next({
-            data: parseTimeHoles(
-              dataset,
-              header.effectiveTimeFrame,
-              header.timeWindow,
-              config.chart.timeHoles
-            ).sort((a, b) => a.date - b.date),
-            sensor
-          })
-        } else {
+          if (dataset && dataset.length) {
+            this.queue$.next({
+              data: parseTimeHoles(
+                dataset,
+                header.effectiveTimeFrame,
+                header.timeWindow,
+                config.chart.timeHoles
+              ).sort((a, b) => a.date - b.date),
+              sensor
+            })
+          } else {
+            this.queue$.next({ data: null, sensor })
+          }
+
+          this.nextSensor()
+        },
+        error => {
           this.queue$.next({ data: null, sensor })
+          this.nextSensor()
+          console.error(error)
         }
-
-        this.nextSensor()
-      })
+      )
   }
 
   private nextSensor() {
@@ -96,13 +103,13 @@ export class SensorsDataService {
     url = url + '?'
     url = `${url}timeWindow=${this.options.timeWindow}`
 
-    this.options.timeFrame.start
-      ? (url = `${url}&startTime=${this.options.timeFrame.start}`)
-      : (url = url)
+    const startTime =
+      this.options.timeFrame.start || this.options.queryParams.startTime || null
+    const endTime =
+      this.options.timeFrame.start || this.options.queryParams.endTime || null
 
-    this.options.timeFrame.end
-      ? (url = `${url}&startTime=${this.options.timeFrame.end}`)
-      : (url = url)
+    startTime ? (url = `${url}&startTime=${startTime}`) : (url = url)
+    endTime ? (url = `${url}&endTime=${endTime}`) : (url = url)
 
     return url
   }

@@ -8,10 +8,5 @@ export const routes: Routes = [
     path: 'study/:studyName/subject/:subjectId',
     component: SubjectComponent,
     canActivate: [AuthGuard]
-  },
-  {
-    path: ':startTime/:endTime',
-    component: SubjectComponent,
-    canActivate: [AuthGuard]
   }
 ]

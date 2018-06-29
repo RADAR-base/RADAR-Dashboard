@@ -8,7 +8,8 @@ export const MockSensorsOptions = {
   subjectId: '3907dab9-b2ae-4db1-ba93-d5b3f699b1eb',
   timeFrame: { start: null, end: null },
   timeWindow: 'ONE_MIN',
-  descriptiveStatistic: 3
+  descriptiveStatistic: 3,
+  queryParams: {}
 }
 
 export const MockSourceData: SourceData = {
