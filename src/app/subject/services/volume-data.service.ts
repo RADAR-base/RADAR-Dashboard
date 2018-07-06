@@ -13,8 +13,8 @@ import * as actions from '../store/sources/sources.actions'
 @Injectable()
 export class VolumeDataService {
   private destroy$: Observable<Action>
-  private endTime = '2018-02-27T14:00:00Z'
-  private startTime = '2017-02-27T12:00:00Z'
+  private endTime = '2018-04-27T14:00:00Z'
+  private startTime = '2017-04-27T12:00:00Z'
 
   constructor(private http: HttpClient, private actions$: Actions) {
     this.destroy$ = this.actions$.pipe(ofType(actions.DESTROY))
