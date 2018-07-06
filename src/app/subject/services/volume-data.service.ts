@@ -13,7 +13,6 @@ import * as actions from '../store/sources/sources.actions'
 @Injectable()
 export class VolumeDataService {
   private destroy$: Observable<Action>
-  private temp_timeWindow = 'ONE_DAY'
   private endTime = '2018-02-27T14:00:00Z'
   private startTime = '2017-02-27T12:00:00Z'
 
