@@ -5,7 +5,6 @@ import { map, switchMap, tap, withLatestFrom } from 'rxjs/operators'
 
 import * as fromRoot from '../../../store'
 import { SensorsDataService } from '../../services/sensors-data.service'
-import { VolumeDataService } from '../../services/volume-data.service'
 import * as fromSubject from '../'
 import * as actions from './sensors-data.actions'
 
@@ -55,7 +54,6 @@ export class SensorsDataEffects {
   constructor(
     private actions$: Actions,
     private sensorsDataService: SensorsDataService,
-    private volumeDataService: VolumeDataService,
     private store: Store<fromSubject.State>
   ) {}
 }
