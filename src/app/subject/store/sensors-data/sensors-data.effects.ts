@@ -20,9 +20,8 @@ export class SensorsDataEffects {
       this.store.select(fromRoot.getRouterParamsStudyName),
       this.store.select(fromRoot.getRouterParamsSubjectId),
       // Store values
-      // below fix timeframe get from volume
-      this.store.select(fromSubject.getSensorsDataTimeFrame),
-      this.store.select(fromSubject.getSensorsDataTimeInterval),
+      this.store.select(fromSubject.getVolumeDataTimeFrame),
+      this.store.select(fromSubject.getVolumeDataTimeInterval),
       this.store.select(fromSubject.getSensorsDataDescriptiveStatistic),
       // TimeFrame through queryParams
       this.store.select(fromRoot.getRouterQueryParams)
@@ -37,8 +36,8 @@ export class SensorsDataEffects {
         timeWindow,
         descriptiveStatistic,
         queryParams
-      ]) =>
-        this.sensorsDataService
+      ]) => {
+        return this.sensorsDataService
           .getData(sources, {
             studyName,
             subjectId,
@@ -48,6 +47,7 @@ export class SensorsDataEffects {
             queryParams
           })
           .pipe(map(data => new actions.LoadSuccess(data)))
+      }
     )
   )
 

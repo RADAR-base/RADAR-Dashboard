@@ -16,6 +16,7 @@ import { VolumeDataService } from './services/volume-data.service'
 import { reducers } from './store'
 import { SensorsDataEffects } from './store/sensors-data/sensors-data.effects'
 import { SourcesEffects } from './store/sources/sources.effects'
+import { VolumeDataEffects } from './store/volume-data/volume-data.effects'
 import { routes } from './subject.routing'
 
 @NgModule({
@@ -28,7 +29,11 @@ import { routes } from './subject.routing'
     ToolbarModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature('subject', reducers),
-    EffectsModule.forFeature([SourcesEffects, SensorsDataEffects])
+    EffectsModule.forFeature([
+      SourcesEffects,
+      SensorsDataEffects,
+      VolumeDataEffects
+    ])
   ],
   declarations: [SubjectComponent],
   providers: [SourcesService, SensorsDataService, VolumeDataService]
