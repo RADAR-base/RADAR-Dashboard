@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { Actions, Effect, ofType } from '@ngrx/effects'
 import { Store } from '@ngrx/store'
-import { map, switchMap, tap, withLatestFrom } from 'rxjs/operators'
+import { map, mergeMap, switchMap, tap, withLatestFrom } from 'rxjs/operators'
 
 import * as fromRoot from '../../../store'
 import { SensorsDataService } from '../../services/sensors-data.service'

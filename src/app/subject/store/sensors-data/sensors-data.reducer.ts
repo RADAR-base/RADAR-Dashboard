@@ -24,7 +24,7 @@ export const initialState: State = adapter.getInitialState({
   areLoaded: {},
   dates: [],
   tooltipDate: null,
-  timeFrame: { start: null, end: null },
+  timeFrame: { startDateTime: null, endDateTime: null },
   timeWindow: 'TEN_SECOND',
   descriptiveStatistic: DescriptiveStatistic.MEDIAN
 })
@@ -32,15 +32,14 @@ export const initialState: State = adapter.getInitialState({
 export function reducer(state = initialState, action: actions.Actions): State {
   switch (action.type) {
     case actions.UPDATE_DATES: {
+      const end = new Date(state.timeFrame.endDateTime)
+      const start = new Date(state.timeFrame.startDateTime)
       const iterations =
-        (state.timeFrame.end - state.timeFrame.start) /
-        TimeWindow[state.timeWindow]
+        (end.getTime() - start.getTime()) / TimeWindow[state.timeWindow]
 
       const dates = []
       for (let i = 0; i < iterations; i++) {
-        dates[i] = new Date(
-          state.timeFrame.start + TimeWindow[state.timeWindow] * i
-        )
+        dates[i] = new Date(start.getTime() + TimeWindow[state.timeWindow] * i)
       }
 
       return {
@@ -51,7 +50,9 @@ export function reducer(state = initialState, action: actions.Actions): State {
 
     case actions.LOAD:
     case actions.DESTROY: {
-      return initialState
+      return {
+        ...state
+      }
     }
 
     case actions.LOAD_SUCCESS: {

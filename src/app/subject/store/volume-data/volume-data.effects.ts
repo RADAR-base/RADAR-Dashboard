@@ -51,7 +51,8 @@ export class VolumeDataEffects {
         this.store.dispatch(
           new sensorsDataActions.SetTimeInterval(timeInterval)
         ),
-        this.store.dispatch(new sensorsDataActions.Load())
+        this.store.dispatch(new sensorsDataActions.Load()),
+        this.store.dispatch(new sensorsDataActions.UpdateDates())
       ]
     })
   )
