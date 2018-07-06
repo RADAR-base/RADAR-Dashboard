@@ -188,3 +188,8 @@ export const getVolumeDataTimeInterval = createSelector(
   getVolumeDataState,
   fromVolumeData.getTimeInterval
 )
+
+export const getVolumeDataDescriptiveStatistic = createSelector(
+  getVolumeDataState,
+  fromVolumeData.getDescriptiveStatistic
+)

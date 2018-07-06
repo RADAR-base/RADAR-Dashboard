@@ -25,12 +25,16 @@ export class VolumeDataEffects {
     withLatestFrom(
       this.store.select(fromRoot.getRouterParamsStudyName),
       this.store.select(fromRoot.getRouterParamsSubjectId),
+      this.store.select(fromSubject.getVolumeDataDescriptiveStatistic),
       this.store.select(fromSubject.getSourcesEntities)
     ),
-    switchMap(([, studyName, subjectId, sources]) =>
+    switchMap(([, studyName, subjectId, descriptiveStatistic, sources]) =>
       this.volumeDataService
-        .getData(sources, studyName, subjectId)
-        .pipe(map(data => new volumeDataActions.LoadSuccess(data)))
+        .getData(studyName, subjectId, descriptiveStatistic, sources)
+        .pipe(
+          map(data => new volumeDataActions.LoadSuccess(data)),
+          catchError(() => of(new volumeDataActions.LoadFail()))
+        )
     )
   )
 

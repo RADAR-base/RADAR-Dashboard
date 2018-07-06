@@ -16,6 +16,7 @@ export interface State extends EntityState<VolumeData> {
   isLoaded: boolean
   timeFrame: TimeFrame
   timeWindow: string
+  descriptiveStatistic: DescriptiveStatistic
 }
 
 export const adapter: EntityAdapter<VolumeData> = createEntityAdapter<
@@ -27,7 +28,8 @@ export const adapter: EntityAdapter<VolumeData> = createEntityAdapter<
 export const initialState: State = adapter.getInitialState({
   isLoaded: false,
   timeFrame: null,
-  timeWindow: null
+  timeWindow: null,
+  descriptiveStatistic: DescriptiveStatistic.DISTINCT
 })
 
 export function reducer(state = initialState, action: actions.Actions): State {
@@ -54,7 +56,8 @@ export function reducer(state = initialState, action: actions.Actions): State {
         ...adapter.addAll(new_data, state),
         isLoaded: true,
         timeFrame: header.timeFrame,
-        timeWindow: header.timeWindow
+        timeWindow: header.timeWindow,
+        descriptiveStatistic: header.statistic
       }
     }
 
@@ -66,3 +69,5 @@ export function reducer(state = initialState, action: actions.Actions): State {
 export const getIsDataLoaded = (state: State) => state.isLoaded
 export const getTimeFrame = (state: State) => state.timeFrame
 export const getTimeInterval = (state: State) => state.timeWindow
+export const getDescriptiveStatistic = (state: State) =>
+  state.descriptiveStatistic
