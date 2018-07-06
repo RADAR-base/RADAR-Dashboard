@@ -9,16 +9,18 @@ export function parseTimeHoles(
   timeWindowEnum: string,
   timeHoles = true
 ) {
-  if (timeHoles === false) {
-    return dataset.reduce((acc, d: SingleSample | MultiSample, i, arr) => {
-      const date = new Date(d.startDateTime)
+  // NOTE: If timeholes is false only add timeholes at edges
 
-      // --> Add the current dataset value
-      acc.push({ date, value: d.value })
+  // if (timeHoles === false) {
+  //   return dataset.reduce((acc, d: SingleSample | MultiSample, i, arr) => {
+  //     const date = new Date(d.startDateTime)
 
-      return acc
-    }, [])
-  }
+  //     // --> Add the current dataset value
+  //     acc.push({ date, value: d.value })
+
+  //     return acc
+  //   }, [])
+  // }
 
   const startTime = new Date(effectiveTimeFrame.startDateTime).getTime()
   const endTime = new Date(effectiveTimeFrame.endDateTime).getTime()
@@ -35,9 +37,11 @@ export function parseTimeHoles(
       acc.push({ date: new Date(startTime), value: null })
     }
 
-    // --> Add timeholes
-    if (prev && prev.value !== undefined && !dateCheck) {
-      acc.push({ date: new Date(dateBefore), value: null })
+    if (timeHoles) {
+      // --> Add timeholes
+      if (prev && prev.value !== undefined && !dateCheck) {
+        acc.push({ date: new Date(dateBefore), value: null })
+      }
     }
 
     // --> Add the current dataset value

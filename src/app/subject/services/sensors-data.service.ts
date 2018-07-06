@@ -59,13 +59,16 @@ export class SensorsDataService {
           const dataset = response && response.dataset
           const header = response && response.header
           const config = AppConfig.config.sourceData[header.sourceDataType]
+          this.options.timeFrame = this.options.timeFrame.startDateTime
+            ? this.options.timeFrame
+            : header.effectiveTimeFrame
 
           if (dataset && dataset.length) {
             this.queue$.next({
               data: parseTimeHoles(
                 dataset,
-                header.effectiveTimeFrame,
-                header.timeWindow,
+                this.options.timeFrame,
+                this.options.timeWindow,
                 config.chart.timeHoles
               ).sort((a, b) => a.date - b.date),
               sensor
