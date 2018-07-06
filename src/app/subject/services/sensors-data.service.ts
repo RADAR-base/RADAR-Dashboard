@@ -104,9 +104,13 @@ export class SensorsDataService {
     url = `${url}timeWindow=${this.options.timeWindow}`
 
     const startTime =
-      this.options.timeFrame.start || this.options.queryParams.startTime || null
+      this.options.timeFrame.startDateTime ||
+      this.options.queryParams.startTime ||
+      null
     const endTime =
-      this.options.timeFrame.start || this.options.queryParams.endTime || null
+      this.options.timeFrame.endDateTime ||
+      this.options.queryParams.endTime ||
+      null
 
     startTime ? (url = `${url}&startTime=${startTime}`) : (url = url)
     endTime ? (url = `${url}&endTime=${endTime}`) : (url = url)
