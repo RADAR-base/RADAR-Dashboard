@@ -1,0 +1,42 @@
+@import '../../../../../styles/common';
+
+:host {
+  @include font-small;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-left: $size-graph-side-label;
+  font-size: 10px;
+}
+
+:host::ng-deep {
+  .chart .axis text {
+    fill: $cl-white-60;
+  }
+}
+
+.background {
+  position: absolute;
+  top: 8px;
+  right: 28px;
+  bottom: 32px;
+  left: 15px;
+  z-index: 0;
+  width: 75px;
+  border-radius: 4px;
+  background-color: $cl-base-40;
+}
+
+.chart {
+  z-index: 1;
+}
+
+.text {
+  padding: 7px;
+  text-align: center;
+}
+
+hr {
+  border: 0.4px solid $cl-white-20;
+}
