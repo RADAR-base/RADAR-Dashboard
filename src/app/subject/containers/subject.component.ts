@@ -47,7 +47,8 @@ export class SubjectComponent implements OnInit {
     )
 
     // Dates for Volume Graph
-    // this.dates$ = this.store.select(fromSubjectPage.getSensorsDates)
+
+    this.dates$ = this.store.select(fromSubject.getSensorsDataDates)
 
     // TODO: move whole block to Volume||Brush component -->
     // this.store.dispatch(

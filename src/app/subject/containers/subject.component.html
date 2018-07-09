@@ -8,7 +8,9 @@
         <i class="material-icons">arrow_back</i>
       </button>
     </ng-container>
-    <div class="label">Subject {{ (subject$ | async)?.humanReadableId }}</div>
+    <div class="label">
+      Subject {{ (subject$ | async)?.humanReadableId }}
+    </div>
   </div>
 </app-toolbar>
 
@@ -17,8 +19,8 @@
     <div class="grid">
       <app-tile label="Sources">
         <app-source-list
-        [sources]="sources"
-        tile-content
+          [sources]="sources"
+          tile-content
         ></app-source-list>
       </app-tile>
 
@@ -33,6 +35,7 @@
           [sources]="sources"
           [sensorsData]="sensorsData$ | async"
           [isDataLoaded]="sensorsIsDataLoaded$ | async"
+          [dates]="dates$ | async"
           tile-content
         ></app-source-graphs>
       </app-tile>
