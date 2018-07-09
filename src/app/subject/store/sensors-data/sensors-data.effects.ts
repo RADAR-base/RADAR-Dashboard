@@ -11,6 +11,12 @@ import * as actions from './sensors-data.actions'
 @Injectable()
 export class SensorsDataEffects {
   @Effect()
+  loadSensorsData$ = this.actions$.pipe(
+    ofType(actions.UPDATE_DATES),
+    map(([]) => new actions.Load())
+  )
+
+  @Effect()
   getSensorsDataSuccess$ = this.actions$.pipe(
     ofType<actions.Load>(actions.LOAD),
     withLatestFrom(
@@ -20,8 +26,8 @@ export class SensorsDataEffects {
       this.store.select(fromRoot.getRouterParamsStudyName),
       this.store.select(fromRoot.getRouterParamsSubjectId),
       // Store values
-      this.store.select(fromSubject.getVolumeDataTimeFrame),
-      this.store.select(fromSubject.getVolumeDataTimeInterval),
+      this.store.select(fromSubject.getSensorsDataTimeFrame),
+      this.store.select(fromSubject.getSensorsDataTimeInterval),
       this.store.select(fromSubject.getSensorsDataDescriptiveStatistic),
       // TimeFrame through queryParams
       this.store.select(fromRoot.getRouterQueryParams)

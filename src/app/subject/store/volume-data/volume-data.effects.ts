@@ -50,11 +50,15 @@ export class VolumeDataEffects {
         this.store.dispatch(new sensorsDataActions.SetTimeFrame(timeFrame)),
         this.store.dispatch(
           new sensorsDataActions.SetTimeInterval(timeInterval)
-        ),
-        this.store.dispatch(new sensorsDataActions.Load()),
-        this.store.dispatch(new sensorsDataActions.UpdateDates())
+        )
       ]
     })
+  )
+
+  @Effect()
+  updateDates$ = this.actions$.pipe(
+    ofType(sensorsDataActions.SET_TIME_FRAME),
+    map(([]) => new sensorsDataActions.UpdateDates())
   )
 
   constructor(
