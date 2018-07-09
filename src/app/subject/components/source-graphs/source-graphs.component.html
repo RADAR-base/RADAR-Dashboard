@@ -1,6 +1,7 @@
 <app-tooltip
   #tooltip
   [data]="tooltipData$ | async"
+  [date]="tooltipDate$ | async"
   [style.transform]="'translate('+ tooltipX +'px, '+ tooltipY +'px)'"
   [style.opacity]="tooltipShow"
 ></app-tooltip>

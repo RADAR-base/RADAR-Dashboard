@@ -30,10 +30,10 @@ export class SourceGraphsComponent implements OnInit {
   @Input() volumeData: ChartData[]
   @Input() isVolumeDataLoaded: boolean
   @Input() volumeTimeFrame: any
-  @Input() tooltipData: SourceTooltipItem[]
   @Input() dates
 
   tooltipData$: Observable<SourceTooltipItem[]>
+  tooltipDate$: Observable<Date>
   tooltipX = 0
   tooltipY = 0
   tooltipShow = 0 // 0 hide | 1 show
@@ -45,6 +45,7 @@ export class SourceGraphsComponent implements OnInit {
     this.tooltipData$ = this.store.select(
       fromSubject.getSensorsDataTooltipValues
     )
+    this.tooltipDate$ = this.store.select(fromSubject.getSensorsDataTooltipDate)
   }
 
   trackBySourceId(index: number, source: Source) {

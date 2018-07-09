@@ -13,18 +13,19 @@ import { SourceTooltipItem } from '../../../../shared/models/source-tooltip.mode
   selector: 'app-tooltip',
   template: `
     <div class="box mat-elevation-z6">
+    <div class="date">{{ date | date: 'yyyy/MM/dd hh:mm:ss' }}</div>
       <div
         *ngFor="let item of data"
         [ngSwitch]="item.dataType"
       >
         <div class="item single" *ngSwitchCase="'single'">
-          <span class="label">{{ item.label[language] }}:</span>
+          <span class="label">{{ item.label[language] }}: </span>
           <span class="value">{{ setValue(item.value) }}</span>
         </div>
         <div class="item multi" *ngSwitchCase="'multi'">
           <span class="label">{{ item.label[language] }}</span>
           <div *ngFor="let k of item.keys">
-            <span class="key-label">{{ k.label[language] }}:</span>
+            <span class="key-label">{{ k.label[language] }}: </span>
             <span class="value">{{ setMultiValue(k.key, item.value) }}</span>
           </div>
         </div>
@@ -36,6 +37,7 @@ import { SourceTooltipItem } from '../../../../shared/models/source-tooltip.mode
 })
 export class SourceTooltipComponent implements AfterViewInit {
   @Input() data: SourceTooltipItem[]
+  @Input() date: Date
   @Input() position: { x: number; y: number }
 
   language = AppConfig.language
