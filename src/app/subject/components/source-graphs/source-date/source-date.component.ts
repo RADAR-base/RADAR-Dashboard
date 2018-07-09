@@ -12,7 +12,5 @@ import { Component, Input } from '@angular/core'
   styleUrls: ['./source-date.component.scss']
 })
 export class SourceDateComponent {
-  startDate
-  endDate
   @Input() timeFrame
 }
