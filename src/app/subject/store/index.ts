@@ -193,3 +193,16 @@ export const getVolumeDataDescriptiveStatistic = createSelector(
   getVolumeDataState,
   fromVolumeData.getDescriptiveStatistic
 )
+
+export const getVolumeDataFormatted = createSelector(
+  getVolumeDataIds,
+  getVolumeDataEntities,
+  (ids: string[], volumeDataEntities: Dictionary<any>) => {
+    return ids.map(function(d) {
+      return {
+        value: volumeDataEntities[d].data.value,
+        date: new Date(volumeDataEntities[d].data.startDateTime)
+      }
+    })
+  }
+)
