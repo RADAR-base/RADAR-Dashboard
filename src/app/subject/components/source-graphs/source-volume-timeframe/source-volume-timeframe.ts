@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core'
 
 @Component({
-  selector: 'app-source-date',
+  selector: 'app-source-volume-timeframe',
   template: ` <div class="background">
   <div *ngIf="timeFrame" class="text">
   {{ timeFrame.startDateTime | date: 'yyyy-MM-dd' }}<hr> 
@@ -9,8 +9,8 @@ import { Component, Input } from '@angular/core'
   </div>
   </div>
   `,
-  styleUrls: ['./source-date.component.scss']
+  styleUrls: ['./source-volume-timeframe.component.scss']
 })
-export class SourceDateComponent {
+export class SourceVolumeTimeFrameComponent {
   @Input() timeFrame
 }

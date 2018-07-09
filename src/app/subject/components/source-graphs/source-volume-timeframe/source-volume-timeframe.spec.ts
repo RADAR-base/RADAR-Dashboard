@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing'
 
 import { SourceGraphsModule } from '../source-graphs.module'
-import { SourceDateComponent } from './source-date.component'
+import { SourceVolumeTimeFrameComponent } from './source-volume-timeframe'
 
-describe('SourceDateComponent', () => {
-  let component: SourceDateComponent
-  let fixture: ComponentFixture<SourceDateComponent>
+describe('SourceVolumeTimeFrameComponent', () => {
+  let component: SourceVolumeTimeFrameComponent
+  let fixture: ComponentFixture<SourceVolumeTimeFrameComponent>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -14,7 +14,7 @@ describe('SourceDateComponent', () => {
   }))
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SourceDateComponent)
+    fixture = TestBed.createComponent(SourceVolumeTimeFrameComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
   })
