@@ -15,6 +15,8 @@ import * as volumeDataActions from '../store/volume-data/volume-data.actions'
 export class VolumeDataService {
   private url = `${ENV.API_URI}/aggregate`
   private destroy$: Observable<Action>
+
+  // NOTE: Temporary values are used to get data from volume API. Time window is automatically specified (ONE_WEEK) by API.
   private endTime = '2018-04-27T14:00:00Z'
   private startTime = '2017-04-27T12:00:00Z'
 
