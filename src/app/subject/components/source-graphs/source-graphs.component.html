@@ -50,8 +50,12 @@
     [dates]="dates"
   ></app-source-date-axis>
 
-  <!-- TODO: add data when API is ready -->
-  <!-- <app-source-volume
-    class="volume"
-  ></app-source-volume> -->
+  <div class="grid">
+    <app-source-date [timeFrame]="volumeTimeFrame"></app-source-date>
+    <app-source-volume
+      *ngIf="isVolumeDataLoaded"
+      class="volume"
+      [data]="volumeData"
+    ></app-source-volume>
+  </div>
 </div>

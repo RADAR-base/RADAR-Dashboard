@@ -12,7 +12,7 @@ import { ChartData } from '../../../shared/models/chart-data.model'
 import { SourceData } from '../../../shared/models/source-data.model'
 import { SourceTooltipItem } from '../../../shared/models/source-tooltip.model'
 import { Source } from '../../../shared/models/source.model'
-import * as fromSubjectPage from '../../store'
+import * as fromSubject from '../../store'
 import { SourceTooltipComponent } from './source-tooltip/source-tooltip.component'
 
 @Component({
@@ -27,6 +27,9 @@ export class SourceGraphsComponent implements OnInit {
   @Input() sources: Source[]
   @Input() isDataLoaded: boolean
   @Input() sensorsData: ChartData[]
+  @Input() volumeData: ChartData[]
+  @Input() isVolumeDataLoaded: boolean
+  @Input() volumeTimeFrame: any
   @Input() tooltipData: SourceTooltipItem[]
   @Input() dates
 
@@ -36,11 +39,11 @@ export class SourceGraphsComponent implements OnInit {
   tooltipShow = 0 // 0 hide | 1 show
   lineX = 0
 
-  constructor(private store: Store<fromSubjectPage.State>) {}
+  constructor(private store: Store<fromSubject.State>) {}
 
   ngOnInit() {
     this.tooltipData$ = this.store.select(
-      fromSubjectPage.getSensorsDataTooltipValues
+      fromSubject.getSensorsDataTooltipValues
     )
   }
 
