@@ -71,7 +71,7 @@ export class ChartBaseAreaComponent extends ChartBaseComponent {
 
   brushed(xScale) {
     const extent = d3.event.selection
-    const extent_fixed = []
+    const extent_snapped = []
     const bisectDate = d3.bisector((d: ChartData) => d.date).left
 
     const chart_data0 = this.chartData[
@@ -81,13 +81,13 @@ export class ChartBaseAreaComponent extends ChartBaseComponent {
     const chart_data1 = this.chartData[
       bisectDate(this.chartData, xScale.invert(extent[1]))
     ]
-    extent_fixed[0] = xScale(new Date(chart_data0.date))
-    extent_fixed[1] = xScale(new Date(chart_data1.date))
+    extent_snapped[0] = xScale(new Date(chart_data0.date))
+    extent_snapped[1] = xScale(new Date(chart_data1.date))
 
     d3.selectAll('.brush')
       .select('.selection')
       .transition()
-      .attr('width', extent_fixed[1] - extent_fixed[0])
-      .attr('x', extent_fixed[0])
+      .attr('width', extent_snapped[1] - extent_snapped[0])
+      .attr('x', extent_snapped[0])
   }
 }
