@@ -13,11 +13,14 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
 export class ChartBaseAreaComponent extends ChartBaseComponent {
   data: ChartData[]
   area: any
+  brush: any
 
   init() {
     this.area = d3.area<any>().defined(d => d.value)
 
     super.init()
+
+    this.brushInit()
   }
 
   draw() {
@@ -52,5 +55,39 @@ export class ChartBaseAreaComponent extends ChartBaseComponent {
       .datum(this.data)
       .attr('class', 'area')
       .attr('d', this.area)
+  }
+
+  brushInit() {
+    this.brush = d3
+      .brushX()
+      .extent([[0, 0], [this.width, this.height]])
+      .on('end', () => this.brushed(this.xScale))
+
+    this.chart
+      .append('g')
+      .attr('class', 'brush')
+      .call(this.brush)
+  }
+
+  brushed(xScale) {
+    const extent = d3.event.selection
+    const extent_fixed = []
+    const bisectDate = d3.bisector((d: ChartData) => d.date).left
+
+    const chart_data0 = this.chartData[
+      bisectDate(this.chartData, xScale.invert(extent[0]))
+    ]
+
+    const chart_data1 = this.chartData[
+      bisectDate(this.chartData, xScale.invert(extent[1]))
+    ]
+    extent_fixed[0] = xScale(new Date(chart_data0.date))
+    extent_fixed[1] = xScale(new Date(chart_data1.date))
+
+    d3.selectAll('.brush')
+      .select('.selection')
+      .transition()
+      .attr('width', extent_fixed[1] - extent_fixed[0])
+      .attr('x', extent_fixed[0])
   }
 }
