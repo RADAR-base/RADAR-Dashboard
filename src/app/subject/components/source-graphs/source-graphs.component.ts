@@ -30,7 +30,7 @@ export class SourceGraphsComponent implements OnInit {
   @Input() volumeData: ChartData[]
   @Input() isVolumeDataLoaded: boolean
   @Input() volumeTimeFrame: any
-  @Input() dates
+  @Input() sensorsDataTimeFrame
 
   tooltipData$: Observable<SourceTooltipItem[]>
   tooltipDate$: Observable<Date>

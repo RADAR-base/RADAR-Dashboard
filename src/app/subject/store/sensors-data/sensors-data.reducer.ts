@@ -31,23 +31,6 @@ export const initialState: State = adapter.getInitialState({
 
 export function reducer(state = initialState, action: actions.Actions): State {
   switch (action.type) {
-    case actions.UPDATE_DATES: {
-      const end = new Date(state.timeFrame.endDateTime)
-      const start = new Date(state.timeFrame.startDateTime)
-      const iterations =
-        (end.getTime() - start.getTime()) / TimeWindow[state.timeWindow]
-
-      const dates = []
-      for (let i = 0; i < iterations; i++) {
-        dates[i] = new Date(start.getTime() + TimeWindow[state.timeWindow] * i)
-      }
-
-      return {
-        ...state,
-        dates
-      }
-    }
-
     case actions.LOAD: {
       return {
         ...state
