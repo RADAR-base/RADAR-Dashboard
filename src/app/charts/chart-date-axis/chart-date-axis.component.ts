@@ -31,7 +31,6 @@ export class ChartDateAxisComponent extends ChartBaseComponent {
         new Date(this.timeFrame.startDateTime),
         new Date(this.timeFrame.endDateTime)
       ])
-      // .domain(d3.extent(this.data))
       .nice()
 
     this.xAxis.call(d3.axisBottom(this.xScale))
