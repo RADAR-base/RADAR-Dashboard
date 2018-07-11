@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Output
+} from '@angular/core'
 import * as d3 from 'd3'
 
 import { ChartData } from '../../shared/models/chart-data.model'
@@ -15,11 +20,12 @@ export class ChartBaseAreaComponent extends ChartBaseComponent {
   area: any
   brush: any
 
+  @Output() brushMove = new EventEmitter<any>()
+
   init() {
     this.area = d3.area<any>().defined(d => d.value)
 
     super.init()
-
     this.brushInit()
   }
 
@@ -60,7 +66,7 @@ export class ChartBaseAreaComponent extends ChartBaseComponent {
   brushInit() {
     this.brush = d3
       .brushX()
-      .extent([[0, 0], [this.width, this.height]])
+      .extent([[0, 0], [this.width + 10, this.height]])
       .on('end', () => this.brushed(this.xScale))
 
     this.chart
@@ -71,6 +77,7 @@ export class ChartBaseAreaComponent extends ChartBaseComponent {
 
   brushed(xScale) {
     const extent = d3.event.selection
+
     const extent_snapped = []
     const bisectDate = d3.bisector((d: ChartData) => d.date).left
 
@@ -78,16 +85,26 @@ export class ChartBaseAreaComponent extends ChartBaseComponent {
       bisectDate(this.chartData, xScale.invert(extent[0]))
     ]
 
-    const chart_data1 = this.chartData[
+    let chart_data1 = this.chartData[
       bisectDate(this.chartData, xScale.invert(extent[1]))
     ]
-    extent_snapped[0] = xScale(new Date(chart_data0.date))
-    extent_snapped[1] = xScale(new Date(chart_data1.date))
 
-    d3.selectAll('.brush')
-      .select('.selection')
-      .transition()
-      .attr('width', extent_snapped[1] - extent_snapped[0])
-      .attr('x', extent_snapped[0])
+    if (chart_data1 == null) {
+      chart_data1 = this.chartData[
+        bisectDate(this.chartData, xScale.invert(extent[1])) - 1
+      ]
+    }
+    if (chart_data0 && chart_data1) {
+      extent_snapped[0] = xScale(new Date(chart_data0.date))
+      extent_snapped[1] = xScale(new Date(chart_data1.date))
+
+      d3.selectAll('.brush')
+        .select('.selection')
+        .transition()
+        .attr('width', extent_snapped[1] - extent_snapped[0])
+        .attr('x', extent_snapped[0])
+
+      this.brushMove.emit([chart_data0.date, chart_data1.date])
+    }
   }
 }
