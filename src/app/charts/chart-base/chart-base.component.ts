@@ -135,7 +135,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
       const x = this.xScale.invert(d3.mouse(this.tooltip.node())[0])
       const bisectDate = d3.bisector((d: ChartData) => d.date).left
       const index = bisectDate(this.chartData, x)
-      const chart = this.chartData[index]
+      const chart = this.chartData[index - 1]
 
       if (chart) {
         this.tooltipMouseMove.emit(chart.date)
