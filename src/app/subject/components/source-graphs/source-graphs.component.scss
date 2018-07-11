@@ -70,7 +70,7 @@
 }
 
 .bottom-group {
-  $volume-height: 112px;
+  $volume-height: 92px;
 
   $axis-height: 32px;
 
@@ -81,7 +81,19 @@
     height: $volume-height;
   }
 
+  .date {
+    display: flex;
+    height: $volume-height;
+  }
+
   .common-axis {
     height: $axis-height;
+  }
+
+  .grid {
+    display: grid;
+    width: 100%;
+    grid-gap: 1rem;
+    grid-template-columns: 1px 1fr;
   }
 }

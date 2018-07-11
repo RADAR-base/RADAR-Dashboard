@@ -37,7 +37,7 @@ import { ConfigKey } from '../../shared/models/config.model'
 export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   @ViewChild('svg') svgRef: ElementRef
 
-  @Input() margin = { top: 16, right: 16, bottom: 32, left: 48 }
+  @Input() margin = { top: 16, right: 16, bottom: 32, left: 80 }
   @Input() color: string = ChartColors.c3
   @Input()
   colors: string[] = [

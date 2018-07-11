@@ -23,8 +23,11 @@ export class SubjectComponent implements OnInit {
   sources$: Observable<Source[]>
   sourceIsLoaded$: Observable<boolean>
   dates$: Observable<Date[]>
-  sensorsIsDataLoaded$: any
+  sensorsIsDataLoaded$: Observable<any>
   sensorsData$: Observable<Dictionary<SensorsData>>
+  volumeData$: Observable<Dictionary<any>>
+  volumeIsDataLoaded$: Observable<boolean>
+  volumeTimeFrame$: Observable<any>
 
   constructor(private store: Store<fromSubject.State>) {}
 
@@ -46,8 +49,17 @@ export class SubjectComponent implements OnInit {
       fromSubject.getSensorsDataLoaded
     )
 
+    // Get volume data from server
+    this.volumeData$ = this.store.select(fromSubject.getVolumeDataFormatted)
+    this.volumeIsDataLoaded$ = this.store.select(
+      fromSubject.getVolumeDataLoaded
+    )
+    this.volumeTimeFrame$ = this.store.select(
+      fromSubject.getVolumeDataTimeFrame
+    )
+
     // Dates for Volume Graph
-    // this.dates$ = this.store.select(fromSubjectPage.getSensorsDates)
+    this.dates$ = this.store.select(fromSubject.getSensorsDataDates)
 
     // TODO: move whole block to Volume||Brush component -->
     // this.store.dispatch(

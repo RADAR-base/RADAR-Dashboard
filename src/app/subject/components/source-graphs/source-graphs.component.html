@@ -1,12 +1,14 @@
 <app-tooltip
   #tooltip
   [data]="tooltipData$ | async"
+  [date]="tooltipDate$ | async"
   [style.transform]="'translate('+ tooltipX +'px, '+ tooltipY +'px)'"
   [style.opacity]="tooltipShow"
 ></app-tooltip>
 
 <div class="graphs">
-  <div class="source"
+  <div
+    class="source"
     *ngFor="let source of sources; trackBy: trackBySourceId"
     [class.empty]="source.sourceData === null"
     (mousemove)="onMouseMove($event)"
@@ -18,7 +20,8 @@
 
     <div class="sensors">
       <ng-container *ngIf="source.sourceData">
-        <div class="sensor"
+        <div
+          class="sensor"
           *ngFor="let sourceData of source.sourceData; trackBy: trackBySourceDataUid"
         >
           <app-source-graph
@@ -26,27 +29,34 @@
             [sourceData]="sourceData"
             [sensorData]="sensorsData[sourceData.uid]?.data"
             [isLoaded]="isDataLoaded[sourceData.uid]"
-            [sensorId]="sourceData.uid"></app-source-graph>
+            [sensorId]="sourceData.uid"
+          ></app-source-graph>
         </div>
       </ng-container>
       <ng-container *ngIf="source.sourceData === null">
         <div class="sensor empty message">No SourceData</div>
       </ng-container>
     </div>
-    <div class="line"
+    <div
+      class="line"
       [style.transform]="'translateX('+ lineX +'px)'"
-      [style.opacity]="tooltipShow"></div>
+      [style.opacity]="tooltipShow"
+    ></div>
   </div>
 </div>
 
-<!-- <div class="bottom-group">
+<div class="bottom-group">
   <app-source-date-axis
     class="common-axis"
     [dates]="dates"
-  ></app-source-date-axis> -->
+  ></app-source-date-axis>
 
-  <!--TODO: add data when API is ready-->
-  <!-- <app-source-volume
-    class="volume"
-  ></app-source-volume> -->
-<!-- </div> -->
+  <div class="grid">
+    <app-source-volume-timeframe [timeFrame]="volumeTimeFrame"></app-source-volume-timeframe>
+    <app-source-volume
+      *ngIf="isVolumeDataLoaded"
+      class="volume"
+      [data]="volumeData"
+    ></app-source-volume>
+  </div>
+</div>
