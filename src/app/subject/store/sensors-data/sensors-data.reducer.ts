@@ -64,9 +64,13 @@ export function reducer(state = initialState, action: actions.Actions): State {
       const data = action.payload.data
       const id = sensor.uid
 
-      return {
-        ...adapter.addOne({ ...sensor, data }, state),
-        areLoaded: { ...state.areLoaded, [id]: true }
+      if (!state.areLoaded[id]) {
+        return {
+          ...adapter.addOne({ ...sensor, data }, state),
+          areLoaded: { ...state.areLoaded, [id]: true }
+        }
+      } else {
+        return adapter.updateOne({ id: id, changes: { data: data } }, state)
       }
     }
 
@@ -82,7 +86,8 @@ export function reducer(state = initialState, action: actions.Actions): State {
       }
     }
 
-    case actions.SET_TIME_FRAME: {
+    case actions.SET_TIME_FRAME:
+    case actions.SET_TIME_FRAME_FROM_VOLUME: {
       return {
         ...state,
         timeFrame: action.payload
