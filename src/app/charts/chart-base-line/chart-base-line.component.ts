@@ -106,5 +106,9 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
         'stroke',
         this.hasGradient ? `url(#hr-gradient-${this.uid})` : this.color
       )
+      .attr('opacity', 0)
+      .transition()
+      .attr('opacity', 1)
+      .duration(500)
   }
 }
