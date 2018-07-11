@@ -22,9 +22,9 @@ export class SubjectComponent implements OnInit {
   subject$: Observable<Subject>
   sources$: Observable<Source[]>
   sourceIsLoaded$: Observable<boolean>
-  dates$: Observable<Date[]>
   sensorsIsDataLoaded$: Observable<any>
   sensorsData$: Observable<Dictionary<SensorsData>>
+  sensorsDataTimeFrame$: Observable<any>
   volumeData$: Observable<Dictionary<any>>
   volumeIsDataLoaded$: Observable<boolean>
   volumeTimeFrame$: Observable<any>
@@ -48,6 +48,9 @@ export class SubjectComponent implements OnInit {
     this.sensorsIsDataLoaded$ = this.store.select(
       fromSubject.getSensorsDataLoaded
     )
+    this.sensorsDataTimeFrame$ = this.store.select(
+      fromSubject.getSensorsDataTimeFrame
+    )
 
     // Get volume data from server
     this.volumeData$ = this.store.select(fromSubject.getVolumeDataFormatted)
@@ -57,29 +60,5 @@ export class SubjectComponent implements OnInit {
     this.volumeTimeFrame$ = this.store.select(
       fromSubject.getVolumeDataTimeFrame
     )
-
-    // Dates for Volume Graph
-    this.dates$ = this.store.select(fromSubject.getSensorsDataDates)
-
-    // TODO: move whole block to Volume||Brush component -->
-    // this.store.dispatch(
-    //   new sensorsDataActions.SetTimeInterval(TimeInterval.TEN_SECOND)
-    // )
-    // this.store.dispatch(
-    //   new sensorsDataActions.SetDescriptiveStatistic(
-    //     DescriptiveStatistic.AVERAGE
-    //   )
-    // )
-    // const endTimeFrame = 1497628000000
-    // const endMinusOneday = new Date(endTimeFrame).setDate(
-    //   new Date(endTimeFrame).getDate() - 0.45
-    // )
-    // this.store.dispatch(
-    //   new sensorsDataActions.SetTimeFrame({
-    //     start: endMinusOneday,
-    //     end: endTimeFrame
-    //   })
-    // )
-    // <-- end
   }
 }

@@ -23,7 +23,10 @@ export class ChartBaseAreaComponent extends ChartBaseComponent {
   @Output() brushMove = new EventEmitter<any>()
 
   init() {
-    this.area = d3.area<any>().defined(d => d.value)
+    this.area = d3
+      .area<any>()
+      // .defined(d => d.value)
+      .curve(d3.curveBasis)
 
     super.init()
     this.brushInit()

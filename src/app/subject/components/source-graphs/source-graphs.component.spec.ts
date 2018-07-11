@@ -26,7 +26,6 @@ describe('SourceGraphsComponent', () => {
     component = fixture.componentInstance
 
     component.sensorsData = []
-    component.dates = []
     component.sources = []
 
     fixture.detectChanges()

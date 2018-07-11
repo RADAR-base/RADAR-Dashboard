@@ -16,7 +16,7 @@ describe('SourceDateAxisComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SourceDateAxisComponent)
     component = fixture.componentInstance
-    component.dates = []
+    component.timeFrame = { startDateTime: new Date(), endDateTime: new Date() }
     fixture.detectChanges()
   })
 
