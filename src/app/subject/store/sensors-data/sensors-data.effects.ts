@@ -51,7 +51,6 @@ export class SensorsDataEffects {
         descriptiveStatistic,
         queryParams
       ]) => {
-        console.log(timeFrame)
         return this.sensorsDataService
           .getData(sources, {
             studyName,

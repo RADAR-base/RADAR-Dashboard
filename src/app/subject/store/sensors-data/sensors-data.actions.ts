@@ -5,7 +5,6 @@ import { DescriptiveStatistic } from '../../../shared/enums/descriptive-statisti
 import { TimeWindow } from '../../../shared/enums/time-window.enum'
 import { ChartData } from '../../../shared/models/chart-data.model'
 import { Sensor } from '../../../shared/models/sensor.model'
-import { SensorsData } from '../../../shared/models/sensors-data.model'
 import { TimeFrame } from '../../../shared/models/time.model'
 
 export const LOAD = '[SensorsData] LOAD'
