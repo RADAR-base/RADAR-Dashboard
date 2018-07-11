@@ -17,8 +17,12 @@ export class VolumeDataService {
   private destroy$: Observable<Action>
 
   // NOTE: Temporary values are used to get data from volume API. Time window is automatically specified (ONE_WEEK) by API.
-  private endTime = '2018-04-27T14:00:00Z'
-  private startTime = '2017-04-27T12:00:00Z'
+  private endTime = new Date()
+  private startTime = new Date(
+    this.endTime.getFullYear() - 1,
+    this.endTime.getMonth(),
+    this.endTime.getDate()
+  )
 
   constructor(private http: HttpClient, private actions$: Actions) {
     this.destroy$ = this.actions$.pipe(ofType(volumeDataActions.DESTROY))
@@ -70,8 +74,12 @@ export class VolumeDataService {
       DescriptiveStatistic[descriptiveStatistic].toLowerCase()
     ].join('/')
 
-    this.startTime ? (url = `${url}?startTime=${this.startTime}`) : (url = url)
-    this.endTime ? (url = `${url}&endTime=${this.endTime}`) : (url = url)
+    this.startTime
+      ? (url = `${url}?startTime=${this.startTime.toISOString()}`)
+      : (url = url)
+    this.endTime
+      ? (url = `${url}&endTime=${this.endTime.toISOString()}`)
+      : (url = url)
 
     return url
   }
