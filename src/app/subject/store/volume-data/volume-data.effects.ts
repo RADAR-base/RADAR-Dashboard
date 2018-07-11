@@ -13,9 +13,9 @@ import {
 
 import * as fromRoot from '../../../store'
 import { VolumeDataService } from '../../services/volume-data.service'
-import * as fromSubject from '../'
 import * as sensorsDataActions from '../sensors-data/sensors-data.actions'
 import * as volumeDataActions from './volume-data.actions'
+import * as fromSubject from '..'
 
 @Injectable()
 export class VolumeDataEffects {
@@ -47,18 +47,14 @@ export class VolumeDataEffects {
     ),
     mergeMap(([, timeFrame, timeInterval]) => {
       return [
-        this.store.dispatch(new sensorsDataActions.SetTimeFrame(timeFrame)),
+        this.store.dispatch(
+          new sensorsDataActions.SetTimeFrameFromVolume(timeFrame)
+        ),
         this.store.dispatch(
           new sensorsDataActions.SetTimeInterval(timeInterval)
         )
       ]
     })
-  )
-
-  @Effect()
-  updateDates$ = this.actions$.pipe(
-    ofType(sensorsDataActions.SET_TIME_FRAME),
-    map(([]) => new sensorsDataActions.UpdateDates())
   )
 
   constructor(
