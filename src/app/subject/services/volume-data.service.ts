@@ -32,17 +32,21 @@ export class VolumeDataService {
   ): Observable<any> {
     const new_sources = new Array()
 
-    for (const key of Object.keys(sources)) {
-      const new_sourcedata = new Array()
-      for (const data of Object.keys(sources[key].sourceData)) {
-        new_sourcedata.push({
-          name: sources[key].sourceData[data].sourceDataName
+    if (sources) {
+      for (const key of Object.keys(sources)) {
+        const new_sourcedata = new Array()
+        if (sources[key].sourceData) {
+          for (const data of Object.keys(sources[key].sourceData)) {
+            new_sourcedata.push({
+              name: sources[key].sourceData[data].sourceDataName
+            })
+          }
+        }
+        new_sources.push({
+          sourceId: sources[key].sourceId,
+          sourceData: new_sourcedata
         })
       }
-      new_sources.push({
-        sourceId: sources[key].sourceId,
-        sourceData: new_sourcedata
-      })
     }
 
     return this.http
