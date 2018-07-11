@@ -4,7 +4,7 @@ import { Component, Input } from '@angular/core'
   selector: 'app-source-date-axis',
   template: `
     <app-chart-date-axis
-      *ngIf="timeFrame.startDateTime"
+      *ngIf="timeFrame[0]"
       [timeFrame]="timeFrame"
       [hasXAxis]="true"
       [margin]="{top: 0, right: 36, bottom: 0, left: 80 }"

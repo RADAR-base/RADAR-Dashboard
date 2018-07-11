@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnChanges
+} from '@angular/core'
 import * as d3 from 'd3'
 
 import { ChartBaseComponent } from '../chart-base/chart-base.component'
@@ -9,17 +14,15 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
   styleUrls: ['./chart-date-axis.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ChartDateAxisComponent extends ChartBaseComponent {
+export class ChartDateAxisComponent extends ChartBaseComponent
+  implements OnChanges {
   @Input() timeFrame
 
-  init() {
-    if (this.timeFrame) {
-      this.data = [
-        new Date(this.timeFrame.startDateTime),
-        new Date(this.timeFrame.endDateTime)
-      ]
-    }
+  ngOnChanges(changes: any) {
+    this.chartData = changes.timeFrame.currentValue
+  }
 
+  init() {
     super.init()
   }
 
@@ -27,10 +30,7 @@ export class ChartDateAxisComponent extends ChartBaseComponent {
     this.xScale = d3
       .scaleTime()
       .range([0, this.width])
-      .domain([
-        new Date(this.timeFrame.startDateTime),
-        new Date(this.timeFrame.endDateTime)
-      ])
+      .domain([new Date(this.timeFrame[0]), new Date(this.timeFrame[1])])
       .nice()
 
     this.xAxis.call(d3.axisBottom(this.xScale))

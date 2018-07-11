@@ -133,14 +133,14 @@ export class SensorsDataService {
 
     switch (true) {
       case difference <= THREE_MONTHS && difference >= TimeWindow['ONE_WEEK']:
-        return 'ONE_DAY'
-      case difference < TimeWindow['ONE_WEEK'] && difference >= TWO_DAYS:
         return 'ONE_HOUR'
-      case difference < TWO_DAYS && difference >= TimeWindow['ONE_HOUR']:
+      case difference < TimeWindow['ONE_WEEK'] && difference >= TWO_DAYS:
         return 'TEN_MIN'
+      case difference < TWO_DAYS && difference >= TimeWindow['ONE_HOUR']:
+        return 'ONE_MIN'
       case difference < TimeWindow['ONE_HOUR'] &&
         difference >= TimeWindow['ONE_MINUTE']:
-        return 'ONE_MIN'
+        return 'TEN_SECOND'
       case difference < TimeWindow['ONE_MINUTE']:
         return 'TEN_SECOND'
       default:
