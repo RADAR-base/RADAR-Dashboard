@@ -75,6 +75,7 @@ export class ChartBaseAreaComponent extends ChartBaseComponent {
     this.chart
       .append('g')
       .attr('class', 'brush')
+      .attr('z-index', 1000)
       .call(this.brush)
   }
 
