@@ -8,6 +8,7 @@ import { takeUntil } from 'rxjs/operators'
 import { ENV } from '../../../environments/environment'
 import { AppConfig } from '../../shared/app-config'
 import { DescriptiveStatistic } from '../../shared/enums/descriptive-statistic.enum'
+import { TimeWindow } from '../../shared/enums/time-window.enum'
 import { SampleDataModel } from '../../shared/models/sample-data.model'
 import { Sensor } from '../../shared/models/sensor.model'
 import { Source } from '../../shared/models/source.model'
@@ -59,13 +60,16 @@ export class SensorsDataService {
           const dataset = response && response.dataset
           const header = response && response.header
           const config = AppConfig.config.sourceData[header.sourceDataType]
+          this.options.timeFrame = this.options.timeFrame.startDateTime
+            ? this.options.timeFrame
+            : header.effectiveTimeFrame
 
           if (dataset && dataset.length) {
             this.queue$.next({
               data: parseTimeHoles(
                 dataset,
-                header.effectiveTimeFrame,
-                header.timeWindow,
+                this.options.timeFrame,
+                this.options.timeWindow,
                 config.chart.timeHoles
               ).sort((a, b) => a.date - b.date),
               sensor
@@ -104,13 +108,43 @@ export class SensorsDataService {
     url = `${url}timeWindow=${this.options.timeWindow}`
 
     const startTime =
-      this.options.timeFrame.start || this.options.queryParams.startTime || null
+      this.options.timeFrame.startDateTime ||
+      this.options.queryParams.startTime ||
+      null
     const endTime =
-      this.options.timeFrame.start || this.options.queryParams.endTime || null
+      this.options.timeFrame.endDateTime ||
+      this.options.queryParams.endTime ||
+      null
 
     startTime ? (url = `${url}&startTime=${startTime}`) : (url = url)
     endTime ? (url = `${url}&endTime=${endTime}`) : (url = url)
 
     return url
+  }
+
+  getTimeInterval(timeFrame: any) {
+    const ONE_YEAR = TimeWindow['ONE_WEEK'] * 52
+    const THREE_MONTHS = ONE_YEAR / 4
+    const TWO_DAYS = ONE_YEAR / 365
+
+    const difference =
+      new Date(timeFrame.endDateTime).getTime() -
+      new Date(timeFrame.startDateTime).getTime()
+
+    switch (true) {
+      case difference <= THREE_MONTHS && difference >= TimeWindow['ONE_WEEK']:
+        return 'ONE_DAY'
+      case difference < TimeWindow['ONE_WEEK'] && difference >= TWO_DAYS:
+        return 'ONE_HOUR'
+      case difference < TWO_DAYS && difference >= TimeWindow['ONE_HOUR']:
+        return 'TEN_MIN'
+      case difference < TimeWindow['ONE_HOUR'] &&
+        difference >= TimeWindow['ONE_MINUTE']:
+        return 'ONE_MIN'
+      case difference < TimeWindow['ONE_MINUTE']:
+        return 'TEN_SECOND'
+      default:
+        return 'ONE_WEEK'
+    }
   }
 }

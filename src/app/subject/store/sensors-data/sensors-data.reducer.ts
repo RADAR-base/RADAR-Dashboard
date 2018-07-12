@@ -24,7 +24,7 @@ export const initialState: State = adapter.getInitialState({
   areLoaded: {},
   dates: [],
   tooltipDate: null,
-  timeFrame: { start: null, end: null },
+  timeFrame: { startDateTime: null, endDateTime: null },
   timeWindow: 'TEN_SECOND',
   descriptiveStatistic: DescriptiveStatistic.MEDIAN
 })
@@ -32,15 +32,14 @@ export const initialState: State = adapter.getInitialState({
 export function reducer(state = initialState, action: actions.Actions): State {
   switch (action.type) {
     case actions.UPDATE_DATES: {
+      const end = new Date(state.timeFrame.endDateTime)
+      const start = new Date(state.timeFrame.startDateTime)
       const iterations =
-        (state.timeFrame.end - state.timeFrame.start) /
-        TimeWindow[state.timeWindow]
+        (end.getTime() - start.getTime()) / TimeWindow[state.timeWindow]
 
       const dates = []
       for (let i = 0; i < iterations; i++) {
-        dates[i] = new Date(
-          state.timeFrame.start + TimeWindow[state.timeWindow] * i
-        )
+        dates[i] = new Date(start.getTime() + TimeWindow[state.timeWindow] * i)
       }
 
       return {
@@ -49,9 +48,10 @@ export function reducer(state = initialState, action: actions.Actions): State {
       }
     }
 
-    case actions.LOAD:
-    case actions.DESTROY: {
-      return initialState
+    case actions.LOAD: {
+      return {
+        ...state
+      }
     }
 
     case actions.LOAD_SUCCESS: {
@@ -64,9 +64,13 @@ export function reducer(state = initialState, action: actions.Actions): State {
       const data = action.payload.data
       const id = sensor.uid
 
-      return {
-        ...adapter.addOne({ ...sensor, data }, state),
-        areLoaded: { ...state.areLoaded, [id]: true }
+      if (!state.areLoaded[id]) {
+        return {
+          ...adapter.addOne({ ...sensor, data }, state),
+          areLoaded: { ...state.areLoaded, [id]: true }
+        }
+      } else {
+        return adapter.updateOne({ id: id, changes: { data: data } }, state)
       }
     }
 
@@ -82,7 +86,8 @@ export function reducer(state = initialState, action: actions.Actions): State {
       }
     }
 
-    case actions.SET_TIME_FRAME: {
+    case actions.SET_TIME_FRAME:
+    case actions.SET_TIME_FRAME_FROM_VOLUME: {
       return {
         ...state,
         timeFrame: action.payload
@@ -101,6 +106,10 @@ export function reducer(state = initialState, action: actions.Actions): State {
         ...state,
         descriptiveStatistic: action.payload
       }
+    }
+
+    case actions.DESTROY: {
+      return initialState
     }
 
     default:

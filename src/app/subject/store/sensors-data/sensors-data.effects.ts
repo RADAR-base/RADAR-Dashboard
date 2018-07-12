@@ -1,15 +1,29 @@
 import { Injectable } from '@angular/core'
 import { Actions, Effect, ofType } from '@ngrx/effects'
 import { Store } from '@ngrx/store'
-import { map, switchMap, tap, withLatestFrom } from 'rxjs/operators'
+import { of } from 'rxjs'
+import {
+  catchError,
+  map,
+  mergeMap,
+  switchMap,
+  tap,
+  withLatestFrom
+} from 'rxjs/operators'
 
 import * as fromRoot from '../../../store'
 import { SensorsDataService } from '../../services/sensors-data.service'
-import * as fromSubject from '../'
 import * as actions from './sensors-data.actions'
+import * as fromSubject from '..'
 
 @Injectable()
 export class SensorsDataEffects {
+  @Effect()
+  loadSensorsData$ = this.actions$.pipe(
+    ofType(actions.UPDATE_DATES),
+    map(([]) => new actions.Load())
+  )
+
   @Effect()
   getSensorsDataSuccess$ = this.actions$.pipe(
     ofType<actions.Load>(actions.LOAD),
@@ -36,8 +50,8 @@ export class SensorsDataEffects {
         timeWindow,
         descriptiveStatistic,
         queryParams
-      ]) =>
-        this.sensorsDataService
+      ]) => {
+        return this.sensorsDataService
           .getData(sources, {
             studyName,
             subjectId,
@@ -46,8 +60,30 @@ export class SensorsDataEffects {
             descriptiveStatistic,
             queryParams
           })
-          .pipe(map(data => new actions.LoadSuccess(data)))
+          .pipe(
+            map(data => new actions.LoadSuccess(data)),
+            catchError(() => of(new actions.LoadFail()))
+          )
+      }
     )
+  )
+
+  @Effect()
+  updateTimeInterval$ = this.actions$.pipe(
+    ofType(actions.SET_TIME_FRAME),
+    withLatestFrom(this.store.select(fromSubject.getSensorsDataTimeFrame)),
+    map(
+      ([, timeFrame]) =>
+        new actions.SetTimeInterval(
+          this.sensorsDataService.getTimeInterval(timeFrame)
+        )
+    )
+  )
+
+  @Effect()
+  updateDates$ = this.actions$.pipe(
+    ofType(actions.SET_TIME_INTERVAL),
+    map(([]) => new actions.UpdateDates())
   )
 
   constructor(
