@@ -57,7 +57,7 @@ export class SourceGraphsComponent implements OnInit {
   }
 
   onMouseMove(event) {
-    if (event.target.dataset.tooltipMouseBox) {
+    if (event.target.getAttribute('data-tooltipMouseBox')) {
       this.tooltipX =
         event.clientX < document.body.clientWidth - this.tooltip.center
           ? event.clientX - this.tooltip.center
