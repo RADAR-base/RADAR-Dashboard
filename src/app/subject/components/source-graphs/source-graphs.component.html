@@ -47,6 +47,7 @@
 
 <div class="bottom-group">
   <app-source-date-axis
+    *ngIf="sensorsDataTimeFrame && sensorsDataTimeFrame.startDateTime"
     class="common-axis"
     [timeFrame]="sensorsDataTimeFrame"
   ></app-source-date-axis>
