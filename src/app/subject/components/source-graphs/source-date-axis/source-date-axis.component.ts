@@ -10,7 +10,7 @@ import { Component, Input } from '@angular/core'
       [margin]="{top: 0, right: 36, bottom: 0, left: 80 }"
     ></app-chart-date-axis>
   `,
-  styleUrls: ['./source-date-axis.scss']
+  styleUrls: ['./source-date-axis.component.scss']
 })
 export class SourceDateAxisComponent {
   @Input() timeFrame

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing'
 
 import { SourceGraphsModule } from '../source-graphs.module'
-import { SourceDateAxisComponent } from './source-date-axis'
+import { SourceDateAxisComponent } from './source-date-axis.component'
 
 describe('SourceDateAxisComponent', () => {
   let component: SourceDateAxisComponent
