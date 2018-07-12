@@ -74,6 +74,7 @@
 
   $axis-height: 32px;
 
+  overflow: hidden;
   height: $volume-height + $axis-height;
   background-color: $cl-base-20;
 
