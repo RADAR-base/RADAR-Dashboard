@@ -26,7 +26,7 @@ export class ChartBaseAreaComponent extends ChartBaseComponent {
     this.area = d3
       .area<any>()
       // .defined(d => d.value)
-      .curve(d3.curveBasis)
+      .curve(d3.curveMonotoneX)
 
     super.init()
     this.brushInit()
@@ -81,33 +81,6 @@ export class ChartBaseAreaComponent extends ChartBaseComponent {
   brushed(xScale) {
     const extent = d3.event.selection
 
-    const extent_snapped = []
-    const bisectDate = d3.bisector((d: ChartData) => d.date).left
-
-    const chart_data0 = this.chartData[
-      bisectDate(this.chartData, xScale.invert(extent[0]))
-    ]
-
-    let chart_data1 = this.chartData[
-      bisectDate(this.chartData, xScale.invert(extent[1]))
-    ]
-
-    if (chart_data1 == null) {
-      chart_data1 = this.chartData[
-        bisectDate(this.chartData, xScale.invert(extent[1])) - 1
-      ]
-    }
-    if (chart_data0 && chart_data1) {
-      extent_snapped[0] = xScale(new Date(chart_data0.date))
-      extent_snapped[1] = xScale(new Date(chart_data1.date))
-
-      d3.selectAll('.brush')
-        .select('.selection')
-        .transition()
-        .attr('width', extent_snapped[1] - extent_snapped[0])
-        .attr('x', extent_snapped[0])
-
-      this.brushMove.emit([chart_data0.date, chart_data1.date])
-    }
+    this.brushMove.emit([xScale.invert(extent[0]), xScale.invert(extent[1])])
   }
 }
