@@ -7,6 +7,7 @@ import { SourceDateAxisComponent } from './source-date-axis/source-date-axis'
 import { SourceGraphComponent } from './source-graph/source-graph.component'
 import { SourceGraphsComponent } from './source-graphs.component'
 import { SourceTooltipComponent } from './source-tooltip/source-tooltip.component'
+import { SourceVolumeTimeFrameComponent } from './source-volume-timeframe/source-volume-timeframe'
 import { SourceVolumeComponent } from './source-volume/source-volume.component'
 
 const COMPONENTS = [
@@ -14,7 +15,8 @@ const COMPONENTS = [
   SourceGraphComponent,
   SourceTooltipComponent,
   SourceDateAxisComponent,
-  SourceVolumeComponent
+  SourceVolumeComponent,
+  SourceVolumeTimeFrameComponent
 ]
 
 @NgModule({

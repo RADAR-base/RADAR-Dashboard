@@ -32,7 +32,7 @@ export const Config = {
       chart: {
         type: 'line',
         gradient: false,
-        timeHoles: false,
+        timeHoles: true,
         dataType: 'single'
       },
       doc: 'Battery level in percentage as unit.',

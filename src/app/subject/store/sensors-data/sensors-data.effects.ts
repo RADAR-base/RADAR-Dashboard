@@ -19,12 +19,6 @@ import * as fromSubject from '..'
 @Injectable()
 export class SensorsDataEffects {
   @Effect()
-  loadSensorsData$ = this.actions$.pipe(
-    ofType(actions.UPDATE_DATES),
-    map(([]) => new actions.Load())
-  )
-
-  @Effect()
   getSensorsDataSuccess$ = this.actions$.pipe(
     ofType<actions.Load>(actions.LOAD),
     withLatestFrom(
@@ -81,9 +75,9 @@ export class SensorsDataEffects {
   )
 
   @Effect()
-  updateDates$ = this.actions$.pipe(
+  loadSensorsData$ = this.actions$.pipe(
     ofType(actions.SET_TIME_INTERVAL),
-    map(([]) => new actions.UpdateDates())
+    map(([]) => new actions.Load())
   )
 
   constructor(

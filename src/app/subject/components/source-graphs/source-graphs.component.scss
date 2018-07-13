@@ -49,6 +49,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 100;
   padding-top: 56px;
   padding-bottom: 8px;
   width: 1px;
@@ -70,10 +71,11 @@
 }
 
 .bottom-group {
-  $volume-height: 112px;
+  $volume-height: 92px;
 
   $axis-height: 32px;
 
+  overflow: hidden;
   height: $volume-height + $axis-height;
   background-color: $cl-base-20;
 
@@ -81,7 +83,19 @@
     height: $volume-height;
   }
 
+  .date {
+    display: flex;
+    height: $volume-height;
+  }
+
   .common-axis {
     height: $axis-height;
+  }
+
+  .grid {
+    display: grid;
+    width: 100%;
+    grid-gap: 1rem;
+    grid-template-columns: 1px 1fr;
   }
 }

@@ -1,3 +1,5 @@
+import 'd3-selection-multi'
+
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -37,7 +39,7 @@ import { ConfigKey } from '../../shared/models/config.model'
 export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   @ViewChild('svg') svgRef: ElementRef
 
-  @Input() margin = { top: 16, right: 16, bottom: 32, left: 48 }
+  @Input() margin = { top: 16, right: 16, bottom: 32, left: 80 }
   @Input() color: string = ChartColors.c3
   @Input()
   colors: string[] = [
@@ -52,6 +54,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   @Input() hasYAxis = false
   @Input() hasXAxis = false
   @Input() hasTooltip = false
+  @Input() path
   @Input()
   get chartData() {
     return this.data
@@ -135,7 +138,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
       const x = this.xScale.invert(d3.mouse(this.tooltip.node())[0])
       const bisectDate = d3.bisector((d: ChartData) => d.date).left
       const index = bisectDate(this.chartData, x)
-      const chart = this.chartData[index]
+      const chart = this.chartData[index - 1]
 
       if (chart) {
         this.tooltipMouseMove.emit(chart.date)
@@ -163,5 +166,18 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
       this.tooltip.attr('width', this.width).attr('height', height)
 
     this.draw()
+
+    const path = this.path
+
+    this.chart.selectAll('path').styles({
+      'clip-path': function(d, i) {
+        if (this.hasAttribute('clip-path')) {
+          const u = this.getAttribute('clip-path').split('#')[1]
+          console.log(u)
+          console.log(path)
+          return 'url(' + path + '#' + u
+        }
+      }
+    })
   }
 }
