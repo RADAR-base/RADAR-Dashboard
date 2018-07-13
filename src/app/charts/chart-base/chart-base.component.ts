@@ -172,10 +172,9 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
     this.chart.selectAll('path').styles({
       'clip-path': function(d, i) {
         if (this.hasAttribute('clip-path')) {
-          const u = this.getAttribute('clip-path').split('#')[1]
-          console.log(u)
-          console.log(path)
-          return 'url(' + path + '#' + u
+          return (
+            'url(' + path + '#' + this.getAttribute('clip-path').split('#')[1]
+          )
         }
       }
     })
