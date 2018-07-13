@@ -13,4 +13,8 @@
   .axis--x path {
     stroke: none;
   }
+
+  .brush {
+    z-index: 100;
+  }
 }
