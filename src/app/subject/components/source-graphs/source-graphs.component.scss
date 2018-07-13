@@ -49,6 +49,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 100;
   padding-top: 56px;
   padding-bottom: 8px;
   width: 1px;
@@ -74,6 +75,7 @@
 
   $axis-height: 32px;
 
+  overflow: hidden;
   height: $volume-height + $axis-height;
   background-color: $cl-base-20;
 

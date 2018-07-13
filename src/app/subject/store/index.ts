@@ -139,6 +139,7 @@ export const getSensorsDataTooltipValues = createSelector(
           sensorsDataEntities[id] &&
           sensorsDataEntities[id].data &&
           sensorsDataEntities[id].chart &&
+          sourcesDataEntities &&
           sourcesDataEntities[id] &&
           sourcesDataEntities[id].visible
       )

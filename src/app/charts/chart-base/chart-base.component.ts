@@ -1,3 +1,5 @@
+import 'd3-selection-multi'
+
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -52,6 +54,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   @Input() hasYAxis = false
   @Input() hasXAxis = false
   @Input() hasTooltip = false
+  @Input() path
   @Input()
   get chartData() {
     return this.data
@@ -163,5 +166,18 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
       this.tooltip.attr('width', this.width).attr('height', height)
 
     this.draw()
+
+    const path = this.path
+
+    this.chart.selectAll('path').styles({
+      'clip-path': function(d, i) {
+        if (this.hasAttribute('clip-path')) {
+          const u = this.getAttribute('clip-path').split('#')[1]
+          console.log(u)
+          console.log(path)
+          return 'url(' + path + '#' + u
+        }
+      }
+    })
   }
 }
