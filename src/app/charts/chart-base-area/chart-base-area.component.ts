@@ -29,7 +29,6 @@ export class ChartBaseAreaComponent extends ChartBaseComponent {
       .curve(d3.curveMonotoneX)
 
     super.init()
-    this.brushInit()
   }
 
   draw() {
@@ -64,9 +63,13 @@ export class ChartBaseAreaComponent extends ChartBaseComponent {
       .datum(this.data)
       .attr('class', 'area')
       .attr('d', this.area)
+
+    this.brushInit()
   }
 
   brushInit() {
+    this.chart.selectAll('.brush').remove()
+
     this.brush = d3
       .brushX()
       .extent([[0, 0], [this.width + 10, this.height]])
@@ -75,7 +78,6 @@ export class ChartBaseAreaComponent extends ChartBaseComponent {
     this.chart
       .append('g')
       .attr('class', 'brush')
-      .attr('z-index', 1000)
       .call(this.brush)
   }
 
