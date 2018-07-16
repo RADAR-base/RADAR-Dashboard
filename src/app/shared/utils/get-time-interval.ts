@@ -21,6 +21,6 @@ export function getTimeInterval(timeFrame: TimeFrame) {
     case difference < TimeWindow['ONE_HOUR'] && difference > 0:
       return 'TEN_SECOND'
     default:
-      return 'ONE_WEEK'
+      return 'ONE_DAY'
   }
 }
