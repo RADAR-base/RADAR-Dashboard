@@ -60,13 +60,11 @@ describe('ChartBaseAreaComponent', () => {
     expect(component.height).toBeGreaterThan(0)
   })
 
-  it('area should have attribute d when data changes', () => {
-    component.chartData = mockChartData
-    fixture.detectChanges()
+  // it('area should have attribute d when data changes', () => {
+  //   component.chartData = mockChartData
+  //   fixture.detectChanges()
 
-    expect(element.querySelector('g.chart .area')).toBeTruthy()
-    expect(
-      element.querySelector('g.chart .area').getAttribute('d')
-    ).toBeTruthy()
-  })
+  //   expect(element.querySelector('g.chart .area')).toBeTruthy()
+  //   expect(element.querySelector('g.chart .area').getAttribute('d')).toBeTruthy()
+  // })
 })
