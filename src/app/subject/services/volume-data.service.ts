@@ -24,6 +24,8 @@ export class VolumeDataService {
     this.endTime.getDate()
   )
 
+  private timeInterval = 'ONE_DAY'
+
   constructor(private http: HttpClient, private actions$: Actions) {
     this.destroy$ = this.actions$.pipe(ofType(volumeDataActions.DESTROY))
   }
@@ -80,6 +82,8 @@ export class VolumeDataService {
     this.endTime
       ? (url = `${url}&endTime=${this.endTime.toISOString()}`)
       : (url = url)
+
+    url = `${url}&timeWindow=${this.timeInterval}`
 
     return url
   }

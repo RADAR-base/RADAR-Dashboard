@@ -13,6 +13,7 @@ import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.ac
       *ngIf="data"
       [chartData]="data"
       [hasXAxis]="true"
+      [hasBrush]="true"
       [margin]="{ top: 8, right: 36, bottom: 32, left: 63 }"
       (brushMove)="onBrushMove($event)"
     ></app-chart-base-area>

@@ -54,6 +54,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   @Input() hasYAxis = false
   @Input() hasXAxis = false
   @Input() hasTooltip = false
+  @Input() hasBrush = true
   @Input() path
   @Input()
   get chartData() {
@@ -65,6 +66,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   }
 
   @Output() tooltipMouseMove = new EventEmitter<Date>()
+  @Output() brushMove = new EventEmitter<any>()
 
   uid: string
   data: any[]
@@ -78,6 +80,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   xAxis: any
   yAxis: any
   window$: Subscription
+  brush: any
 
   ngAfterViewInit() {
     this.uid = shortid.generate()
@@ -178,5 +181,25 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
         }
       }
     })
+  }
+
+  brushInit() {
+    this.chart.selectAll('.brush').remove()
+
+    this.brush = d3
+      .brushX()
+      .extent([[0, 0], [this.width, this.height]])
+      .on('end', () => this.brushed(this.xScale))
+
+    this.chart
+      .append('g')
+      .attr('class', 'brush')
+      .call(this.brush)
+  }
+
+  private brushed(xScale) {
+    const extent = d3.event.selection
+
+    this.brushMove.emit([xScale.invert(extent[0]), xScale.invert(extent[1])])
   }
 }

@@ -18,14 +18,12 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
 export class ChartBaseAreaComponent extends ChartBaseComponent {
   data: ChartData[]
   area: any
-  brush: any
-
-  @Output() brushMove = new EventEmitter<any>()
+  bar
 
   init() {
     this.area = d3
       .area<any>()
-      // .defined(d => d.value)
+      .defined(d => d.value)
       .curve(d3.curveLinear)
 
     super.init()
@@ -51,39 +49,32 @@ export class ChartBaseAreaComponent extends ChartBaseComponent {
         .attr('transform', `translate(0, ${this.height})`)
         .call(d3.axisBottom(this.xScale).tickSize(-this.height))
 
-    this.chart.selectAll('.area').remove()
+    // this.chart.selectAll('.area').remove()
 
-    this.area
-      .x(d => this.xScale(d.date))
-      .y0(this.yScale(0))
-      .y1(d => this.yScale(d.value))
+    // this.area
+    //   .x(d => this.xScale(d.date))
+    //   .y0(this.yScale(0))
+    //   .y1(d => this.yScale(d.value))
 
-    this.chart
-      .append('path')
-      .datum(this.data)
-      .attr('class', 'area')
-      .attr('d', this.area)
+    // this.chart
+    //   .append('path')
+    //   .datum(this.data)
+    //   .attr('class', 'area')
+    //   .attr('d', this.area)
 
-    this.brushInit()
-  }
+    this.chart.selectAll('rect').remove()
 
-  brushInit() {
-    this.chart.selectAll('.brush').remove()
+    this.bar = this.chart.selectAll('bar').data(this.data)
 
-    this.brush = d3
-      .brushX()
-      .extent([[0, 0], [this.width + 10, this.height]])
-      .on('end', () => this.brushed(this.xScale))
+    this.bar
+      .enter()
+      .append('rect')
+      .attr('class', 'bar')
+      .attr('x', d => this.xScale(d.date))
+      .attr('width', this.width / this.data.length)
+      .attr('y', d => this.yScale(d.value))
+      .attr('height', d => this.height - this.yScale(d.value))
 
-    this.chart
-      .append('g')
-      .attr('class', 'brush')
-      .call(this.brush)
-  }
-
-  brushed(xScale) {
-    const extent = d3.event.selection
-
-    this.brushMove.emit([xScale.invert(extent[0]), xScale.invert(extent[1])])
+    super.brushInit()
   }
 }
