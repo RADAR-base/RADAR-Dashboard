@@ -26,7 +26,7 @@ export class ChartBaseAreaComponent extends ChartBaseComponent {
     this.area = d3
       .area<any>()
       // .defined(d => d.value)
-      .curve(d3.curveMonotoneX)
+      .curve(d3.curveLinear)
 
     super.init()
   }
