@@ -8,15 +8,16 @@ import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.ac
   selector: 'app-source-volume',
   template: `
     <div class="background"></div>
-    <app-chart-base-area
+    <app-chart-base-bar
       class="chart"
       *ngIf="data"
       [chartData]="data"
       [hasXAxis]="true"
       [hasBrush]="true"
+      [categorical]="false"
       [margin]="{ top: 8, right: 36, bottom: 32, left: 63 }"
       (brushMove)="onBrushMove($event)"
-    ></app-chart-base-area>
+    ></app-chart-base-bar>
   `,
   styleUrls: ['./source-volume.component.scss']
 })

@@ -49,32 +49,17 @@ export class ChartBaseAreaComponent extends ChartBaseComponent {
         .attr('transform', `translate(0, ${this.height})`)
         .call(d3.axisBottom(this.xScale).tickSize(-this.height))
 
-    // this.chart.selectAll('.area').remove()
+    this.chart.selectAll('.area').remove()
 
-    // this.area
-    //   .x(d => this.xScale(d.date))
-    //   .y0(this.yScale(0))
-    //   .y1(d => this.yScale(d.value))
+    this.area
+      .x(d => this.xScale(d.date))
+      .y0(this.yScale(0))
+      .y1(d => this.yScale(d.value))
 
-    // this.chart
-    //   .append('path')
-    //   .datum(this.data)
-    //   .attr('class', 'area')
-    //   .attr('d', this.area)
-
-    this.chart.selectAll('rect').remove()
-
-    this.bar = this.chart.selectAll('bar').data(this.data)
-
-    this.bar
-      .enter()
-      .append('rect')
-      .attr('class', 'bar')
-      .attr('x', d => this.xScale(d.date))
-      .attr('width', this.width / this.data.length)
-      .attr('y', d => this.yScale(d.value))
-      .attr('height', d => this.height - this.yScale(d.value))
-
-    super.brushInit()
+    this.chart
+      .append('path')
+      .datum(this.data)
+      .attr('class', 'area')
+      .attr('d', this.area)
   }
 }
