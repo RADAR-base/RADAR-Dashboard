@@ -44,9 +44,9 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   @Input()
   colors: string[] = [
     ChartColors.c1,
-    ChartColors.c2,
+    ChartColors.hover,
     ChartColors.c3,
-    ChartColors.c4,
+    ChartColors.c2,
     ChartColors.c5,
     ChartColors.c6
   ]

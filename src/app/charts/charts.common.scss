@@ -45,4 +45,9 @@
     stroke-width: 2px;
     stroke-linejoin: round;
   }
+
+  .selection {
+    fill: $cl-graph-1;
+    stroke-width: 0;
+  }
 }
