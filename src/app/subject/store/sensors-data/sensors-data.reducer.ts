@@ -25,7 +25,7 @@ export const initialState: State = adapter.getInitialState({
   dates: [],
   tooltipDate: null,
   timeFrame: { startDateTime: null, endDateTime: null },
-  timeWindow: 'TEN_SECOND',
+  timeWindow: null,
   descriptiveStatistic: DescriptiveStatistic.MEDIAN
 })
 
