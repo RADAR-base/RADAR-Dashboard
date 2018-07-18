@@ -156,6 +156,11 @@ export const Config = {
     }
   },
   timeIntervals: {
+    ONE_WEEK: {
+      doc: '1 week time interval',
+      label: { EN: '1w' },
+      value: 604800000
+    },
     ONE_DAY: {
       doc: '1 day time interval',
       label: { EN: '1d' },
@@ -166,30 +171,25 @@ export const Config = {
       label: { EN: '1h' },
       value: 3600000
     },
-    ONE_MIN: {
-      doc: '1 minute time interval',
-      label: { EN: '1m' },
-      value: 60000
-    },
-    ONE_WEEK: {
-      doc: '1 week time interval',
-      label: { EN: '1w' },
-      value: 604800000
-    },
     TEN_MIN: {
       doc: '10 minutes time interval',
       label: { EN: '10m' },
       value: 600000
     },
-    TEN_SECOND: {
-      doc: '10 seconds time interval',
-      label: { EN: '10s' },
-      value: 10000
+    ONE_MIN: {
+      doc: '1 minute time interval',
+      label: { EN: '1m' },
+      value: 60000
     },
     THIRTY_SECOND: {
       doc: '30 seconds time interval',
       label: { EN: '30s' },
       value: 30000
+    },
+    TEN_SECOND: {
+      doc: '10 seconds time interval',
+      label: { EN: '10s' },
+      value: 10000
     },
     doc: 'Available time intervals in which requested data is returned.'
   },
