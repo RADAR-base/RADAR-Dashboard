@@ -54,7 +54,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   @Input() hasYAxis = false
   @Input() hasXAxis = false
   @Input() hasTooltip = false
-  @Input() hasBrush = true
+  @Input() hasBrush = false
   @Input() path
   @Input()
   get chartData() {
@@ -81,6 +81,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   yAxis: any
   window$: Subscription
   brush: any
+  brushWidthDefault = 120
 
   ngAfterViewInit() {
     this.uid = shortid.generate()
@@ -195,6 +196,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
       .append('g')
       .attr('class', 'brush')
       .call(this.brush)
+      .call(this.brush.move, [this.width - this.brushWidthDefault, this.width])
   }
 
   private brushed(xScale) {

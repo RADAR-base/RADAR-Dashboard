@@ -83,7 +83,7 @@ export class ChartBaseBarComponent extends ChartBaseComponent {
       .attr('y', d => this.yScale(d.value))
       .attr('height', d => this.height - this.yScale(d.value))
 
-    super.brushInit()
+    if (this.hasBrush) { super.brushInit() }
 
     this.bar.exit().remove()
   }
