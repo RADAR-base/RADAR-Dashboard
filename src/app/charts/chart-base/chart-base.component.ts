@@ -82,6 +82,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   window$: Subscription
   brush: any
   brushWidthDefault = 120
+  brushExtent
 
   ngAfterViewInit() {
     this.uid = shortid.generate()
@@ -196,12 +197,20 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
       .append('g')
       .attr('class', 'brush')
       .call(this.brush)
-      .call(this.brush.move, [this.width - this.brushWidthDefault, this.width])
+      .call(
+        this.brush.move,
+        this.brushExtent
+          ? this.brushExtent
+          : [this.width - this.brushWidthDefault, this.width]
+      )
   }
 
   private brushed(xScale) {
-    const extent = d3.event.selection
+    this.brushExtent = d3.event.selection
 
-    this.brushMove.emit([xScale.invert(extent[0]), xScale.invert(extent[1])])
+    this.brushMove.emit([
+      xScale.invert(this.brushExtent[0]),
+      xScale.invert(this.brushExtent[1])
+    ])
   }
 }
