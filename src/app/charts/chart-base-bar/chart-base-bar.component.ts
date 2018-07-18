@@ -11,13 +11,11 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChartBaseBarComponent extends ChartBaseComponent {
-  @Input() categorical = false
-  @Input() paddingInner = 0.2
-  @Input() paddingOuter = 0.2
+  @Input() categorical = true
+  @Input() paddingInner = 0
+  @Input() paddingOuter = 0
 
   data: ChartData[]
-  xScaleTime: any
-  xScaleOrdinal: any
   bar: any
 
   init() {
@@ -25,12 +23,6 @@ export class ChartBaseBarComponent extends ChartBaseComponent {
   }
 
   draw() {
-    this.xScaleOrdinal = d3
-      .scaleBand()
-      .rangeRound([0, this.width])
-      .paddingInner(this.paddingInner)
-      .paddingOuter(this.categorical ? this.paddingOuter : 0)
-
     this.yScale = d3
       .scaleLinear()
       .range([this.height, 0])
@@ -38,20 +30,33 @@ export class ChartBaseBarComponent extends ChartBaseComponent {
       .nice()
 
     if (this.categorical) {
-      this.xScaleOrdinal.domain(this.data.map(d => d.name))
+      this.xScale = d3
+        .scaleBand()
+        .rangeRound([0, this.width])
+        .paddingInner(this.paddingInner)
+        .paddingOuter(this.categorical ? this.paddingOuter : 0)
+        .domain(this.data.map(d => d.name))
     } else {
-      this.xScaleOrdinal.domain(this.data.map(d => d.date))
-      this.xScaleTime = d3
+      this.xScale = d3
         .scaleTime()
-        .range([0, this.width])
+        .rangeRound([0, this.width])
         .domain(d3.extent(this.data, d => d.date))
+        .nice()
     }
 
     this.hasXAxis &&
       this.xAxis
-        .attr('transform', `translate(0, ${this.yScale(0)})`)
+        .attr(
+          'transform',
+          () =>
+            this.categorical
+              ? `translate(0, ${this.yScale(0)})`
+              : `translate(0, ${this.height})`
+        )
         .call(
-          d3.axisBottom(this.categorical ? this.xScaleOrdinal : this.xScaleTime)
+          d3
+            .axisBottom(this.xScale)
+            .tickSize(this.categorical ? 0 : -this.height)
         )
 
     this.hasYAxis &&
@@ -64,11 +69,23 @@ export class ChartBaseBarComponent extends ChartBaseComponent {
     this.bar
       .enter()
       .append('rect')
-      .attr('class', 'bar')
-      .attr('x', d => this.xScaleOrdinal(this.categorical ? d.name : d.date))
-      .attr('width', this.xScaleOrdinal.bandwidth())
+      .attr('class', () => (this.categorical ? 'bar' : 'bar-time'))
+      .attr(
+        'x',
+        d => (this.categorical ? this.xScale(d.name) : this.xScale(d.date))
+      )
+      .attr(
+        'width',
+        this.categorical
+          ? this.xScale.bandwidth()
+          : this.width / this.data.length
+      )
       .attr('y', d => this.yScale(d.value))
       .attr('height', d => this.height - this.yScale(d.value))
+
+    if (this.hasBrush) {
+      super.brushInit()
+    }
 
     this.bar.exit().remove()
   }

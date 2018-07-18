@@ -11,6 +11,7 @@ import {
   withLatestFrom
 } from 'rxjs/operators'
 
+import { getTimeInterval } from '../../../shared/utils/get-time-interval'
 import * as fromRoot from '../../../store'
 import { SensorsDataService } from '../../services/sensors-data.service'
 import * as actions from './sensors-data.actions'
@@ -67,10 +68,7 @@ export class SensorsDataEffects {
     ofType(actions.SET_TIME_FRAME),
     withLatestFrom(this.store.select(fromSubject.getSensorsDataTimeFrame)),
     map(
-      ([, timeFrame]) =>
-        new actions.SetTimeInterval(
-          this.sensorsDataService.getTimeInterval(timeFrame)
-        )
+      ([, timeFrame]) => new actions.SetTimeInterval(getTimeInterval(timeFrame))
     )
   )
 

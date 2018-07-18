@@ -1,5 +1,8 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing'
+import { StoreModule, combineReducers } from '@ngrx/store'
 
+import * as fromRoot from '../../../../store'
+import * as fromFeature from '../../../store'
 import { SourceGraphsModule } from '../source-graphs.module'
 import { SourceVolumeComponent } from './source-volume.component'
 
@@ -9,7 +12,13 @@ describe('SourceVolumeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [SourceGraphsModule]
+      imports: [
+        SourceGraphsModule,
+        StoreModule.forRoot({
+          ...fromRoot.reducers,
+          subject: combineReducers(fromFeature.reducers)
+        })
+      ]
     }).compileComponents()
   }))
 

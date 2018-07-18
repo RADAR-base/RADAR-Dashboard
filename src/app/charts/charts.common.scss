@@ -42,8 +42,12 @@
   .d3-line-chunked-defined,
   .d3-line-chunked-undefined {
     fill: none;
-    stroke-width: 2px;
-    vector-effect: non-scaling-stroke;
+    stroke-width: 1.5px;
     stroke-linejoin: round;
+  }
+
+  .selection {
+    fill: $cl-graph-1;
+    stroke-width: 0;
   }
 }

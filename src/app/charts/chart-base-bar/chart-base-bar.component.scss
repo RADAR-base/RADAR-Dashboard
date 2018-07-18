@@ -9,4 +9,16 @@
   .bar:hover {
     fill: $cl-graph-hover;
   }
+
+  .bar-time {
+    fill: $cl-base-80;
+  }
+
+  .axis--x line {
+    stroke: $cl-white-20;
+  }
+
+  .axis--x path {
+    stroke: none;
+  }
 }

@@ -13,7 +13,7 @@ import { SourceTooltipItem } from '../../../../shared/models/source-tooltip.mode
   selector: 'app-tooltip',
   template: `
     <div class="box mat-elevation-z6">
-    <div class="date">{{ date | date: 'yyyy/MM/dd hh:mm:ss' }}</div>
+    <div class="date">{{ date | date: 'yyyy/MM/dd h:mm:ss a' }}</div>
       <div
         *ngFor="let item of data"
         [ngSwitch]="item.dataType"

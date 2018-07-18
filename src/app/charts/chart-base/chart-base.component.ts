@@ -44,9 +44,9 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   @Input()
   colors: string[] = [
     ChartColors.c1,
-    ChartColors.c2,
+    ChartColors.hover,
     ChartColors.c3,
-    ChartColors.c4,
+    ChartColors.c2,
     ChartColors.c5,
     ChartColors.c6
   ]
@@ -54,6 +54,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   @Input() hasYAxis = false
   @Input() hasXAxis = false
   @Input() hasTooltip = false
+  @Input() hasBrush = false
   @Input() path
   @Input()
   get chartData() {
@@ -65,6 +66,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   }
 
   @Output() tooltipMouseMove = new EventEmitter<Date>()
+  @Output() brushMove = new EventEmitter<any>()
 
   uid: string
   data: any[]
@@ -78,6 +80,8 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   xAxis: any
   yAxis: any
   window$: Subscription
+  brush: any
+  brushWidthDefault = 120
 
   ngAfterViewInit() {
     this.uid = shortid.generate()
@@ -172,12 +176,32 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
     this.chart.selectAll('path').styles({
       'clip-path': function(d, i) {
         if (this.hasAttribute('clip-path')) {
-          const u = this.getAttribute('clip-path').split('#')[1]
-          console.log(u)
-          console.log(path)
-          return 'url(' + path + '#' + u
+          return (
+            'url(' + path + '#' + this.getAttribute('clip-path').split('#')[1]
+          )
         }
       }
     })
+  }
+
+  brushInit() {
+    this.chart.selectAll('.brush').remove()
+
+    this.brush = d3
+      .brushX()
+      .extent([[0, 0], [this.width, this.height]])
+      .on('end', () => this.brushed(this.xScale))
+
+    this.chart
+      .append('g')
+      .attr('class', 'brush')
+      .call(this.brush)
+      .call(this.brush.move, [this.width - this.brushWidthDefault, this.width])
+  }
+
+  private brushed(xScale) {
+    const extent = d3.event.selection
+
+    this.brushMove.emit([xScale.invert(extent[0]), xScale.invert(extent[1])])
   }
 }

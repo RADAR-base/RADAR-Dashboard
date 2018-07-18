@@ -56,7 +56,7 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
     this.lineChunked = lineChunked()
       .x(d => this.xScale(d.date))
       .y(d => this.yScale(d.value))
-      .curve(d3.curveLinear)
+      .curve(d3.curveMonotoneX)
       .defined(d => d.value)
 
     super.init()
@@ -106,5 +106,9 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
         'stroke',
         this.hasGradient ? `url(#hr-gradient-${this.uid})` : this.color
       )
+      .attr('opacity', 0)
+      .transition()
+      .attr('opacity', 1)
+      .duration(500)
   }
 }

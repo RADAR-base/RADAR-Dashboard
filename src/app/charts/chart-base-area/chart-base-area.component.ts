@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Output
+} from '@angular/core'
 import * as d3 from 'd3'
 
 import { ChartData } from '../../shared/models/chart-data.model'
@@ -13,12 +18,13 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
 export class ChartBaseAreaComponent extends ChartBaseComponent {
   data: ChartData[]
   area: any
+  bar
 
   init() {
     this.area = d3
       .area<any>()
-      // .defined(d => d.value)
-      .curve(d3.curveBasis)
+      .defined(d => d.value)
+      .curve(d3.curveLinear)
 
     super.init()
   }

@@ -13,4 +13,12 @@
   .axis--x path {
     stroke: none;
   }
+
+  .brush {
+    z-index: 1000;
+  }
+
+  .bar {
+    fill: $cl-base-80;
+  }
 }

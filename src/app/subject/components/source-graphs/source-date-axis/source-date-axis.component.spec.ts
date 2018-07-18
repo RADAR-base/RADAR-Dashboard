@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing'
 
 import { SourceGraphsModule } from '../source-graphs.module'
-import { SourceDateAxisComponent } from './source-date-axis'
+import { SourceDateAxisComponent } from './source-date-axis.component'
 
 describe('SourceDateAxisComponent', () => {
   let component: SourceDateAxisComponent
@@ -16,7 +16,7 @@ describe('SourceDateAxisComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SourceDateAxisComponent)
     component = fixture.componentInstance
-    component.timeFrame = { startDateTime: new Date(), endDateTime: new Date() }
+    component.timeFrame = [0, 0]
     fixture.detectChanges()
   })
 

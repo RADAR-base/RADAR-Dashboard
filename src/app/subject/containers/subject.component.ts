@@ -6,8 +6,9 @@ import { Observable } from 'rxjs'
 import { SensorsData } from '../../shared/models/sensors-data.model'
 import { Source } from '../../shared/models/source.model'
 import { Subject } from '../../shared/models/subject.model'
+import { TimeFrame } from '../../shared/models/time.model'
 import * as fromRoot from '../../store'
-import * as fromSubject from '../store/index'
+import * as fromSubject from '../store'
 import * as sourcesActions from '../store/sources/sources.actions'
 
 @Component({
@@ -24,7 +25,7 @@ export class SubjectComponent implements OnInit {
   sourceIsLoaded$: Observable<boolean>
   sensorsIsDataLoaded$: Observable<any>
   sensorsData$: Observable<Dictionary<SensorsData>>
-  sensorsDataTimeFrame$: Observable<any>
+  sensorsDataTimeFrame$: Observable<TimeFrame>
   volumeData$: Observable<Dictionary<any>>
   volumeIsDataLoaded$: Observable<boolean>
   volumeTimeFrame$: Observable<any>

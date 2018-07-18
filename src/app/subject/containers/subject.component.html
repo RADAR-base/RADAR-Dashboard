@@ -32,9 +32,11 @@
 
       <app-tile label="Graphs">
         <app-source-graphs
+          *ngIf="(sensorsDataTimeFrame$ | async)?.startDateTime"
           [sources]="sources"
           [sensorsData]="sensorsData$ | async"
-          [sensorsDataTimeFrame]="sensorsDataTimeFrame$ | async"
+          [sensorsDataTimeFrame]="[(sensorsDataTimeFrame$ | async)?.startDateTime,
+          (sensorsDataTimeFrame$ | async)?.endDateTime]"
           [isDataLoaded]="sensorsIsDataLoaded$ | async"
           [volumeData]="volumeData$ | async"
           [isVolumeDataLoaded]="volumeIsDataLoaded$ | async"

@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   Input,
+  OnDestroy,
   OnInit,
   ViewChild
 } from '@angular/core'
@@ -13,6 +14,7 @@ import { SourceData } from '../../../shared/models/source-data.model'
 import { SourceTooltipItem } from '../../../shared/models/source-tooltip.model'
 import { Source } from '../../../shared/models/source.model'
 import * as fromSubject from '../../store'
+import * as sensorsDataActions from '../../store/sensors-data/sensors-data.actions'
 import { SourceTooltipComponent } from './source-tooltip/source-tooltip.component'
 
 @Component({
@@ -21,7 +23,7 @@ import { SourceTooltipComponent } from './source-tooltip/source-tooltip.componen
   styleUrls: ['./source-graphs.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SourceGraphsComponent implements OnInit {
+export class SourceGraphsComponent implements OnInit, OnDestroy {
   @ViewChild('tooltip') tooltip: SourceTooltipComponent
 
   @Input() sources: Source[]
@@ -30,7 +32,7 @@ export class SourceGraphsComponent implements OnInit {
   @Input() volumeData: ChartData[]
   @Input() isVolumeDataLoaded: boolean
   @Input() volumeTimeFrame: any
-  @Input() sensorsDataTimeFrame
+  @Input() sensorsDataTimeFrame: number[]
 
   tooltipData$: Observable<SourceTooltipItem[]>
   tooltipDate$: Observable<Date>
@@ -46,6 +48,10 @@ export class SourceGraphsComponent implements OnInit {
       fromSubject.getSensorsDataTooltipValues
     )
     this.tooltipDate$ = this.store.select(fromSubject.getSensorsDataTooltipDate)
+  }
+
+  ngOnDestroy() {
+    this.store.dispatch(new sensorsDataActions.Destroy())
   }
 
   trackBySourceId(index: number, source: Source) {

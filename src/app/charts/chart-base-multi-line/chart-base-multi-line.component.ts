@@ -31,7 +31,7 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
       this.lineChunkedFunctions[k.key] = lineChunked()
         .x(d => this.xScale(d.date))
         .y(d => this.yScale(d.value[k.key]))
-        .curve(d3.curveBasis)
+        .curve(d3.curveMonotoneX)
         .defined(d => d.value)
         .lineStyles({ stroke: this.colorScale(k.key) })
         .pointStyles({ fill: this.colorScale(k.key) })
@@ -77,6 +77,10 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
         .attr('class', `line ${k.key}`)
         .datum(this.data)
         .call(this.lineChunkedFunctions[k.key])
+        .attr('opacity', 0)
+        .transition()
+        .attr('opacity', 1)
+        .duration(500)
     })
   }
 }
