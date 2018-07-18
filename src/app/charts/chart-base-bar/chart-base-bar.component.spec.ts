@@ -28,7 +28,6 @@ describe('ChartBaseBarComponent', () => {
 
     fixture = TestBed.createComponent(ChartBaseBarComponent)
     component = fixture.componentInstance
-    component.categorical = true
     element = fixture.nativeElement
     de = fixture.debugElement
   })

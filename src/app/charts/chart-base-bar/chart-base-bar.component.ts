@@ -11,7 +11,7 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChartBaseBarComponent extends ChartBaseComponent {
-  @Input() categorical = false
+  @Input() categorical = true
   @Input() paddingInner = 0
   @Input() paddingOuter = 0
 
@@ -83,7 +83,9 @@ export class ChartBaseBarComponent extends ChartBaseComponent {
       .attr('y', d => this.yScale(d.value))
       .attr('height', d => this.height - this.yScale(d.value))
 
-    if (this.hasBrush) { super.brushInit() }
+    if (this.hasBrush) {
+      super.brushInit()
+    }
 
     this.bar.exit().remove()
   }
