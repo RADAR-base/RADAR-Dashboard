@@ -24,15 +24,14 @@
         ></app-source-list>
       </app-tile>
 
-      <!-- <app-tile label="Graphs">
-        <div tile-content>
-          <pre>{{ sensorsData$ | async | json }}</pre>
-        </div>
-      </app-tile> -->
-
       <app-tile label="Graphs">
+        <app-source-toggle-resolution
+          *ngIf="volumeIsDataLoaded$ | async"
+          header-content
+          [selectedTimeInterval]="sensorsDataTimeInterval$ | async"
+        ></app-source-toggle-resolution>
         <app-source-graphs
-          *ngIf="(sensorsDataTimeFrame$ | async)?.startDateTime"
+          *ngIf="volumeIsDataLoaded$ | async"
           [sources]="sources"
           [sensorsData]="sensorsData$ | async"
           [sensorsDataTimeFrame]="[(sensorsDataTimeFrame$ | async)?.startDateTime,

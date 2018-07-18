@@ -1,0 +1,40 @@
+@import '../../../../styles/common';
+
+@keyframes buttonClickAnimation {
+  0% {
+    transform: scale(0.8);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+:host {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-left: $size-graph-side-label;
+}
+
+.toggle-menu {
+  padding-left: 15px;
+  border-radius: 4px;
+  background-color: $cl-base-40;
+  text-transform: lowercase;
+}
+
+button {
+  @include font-small;
+
+  padding: 5px 10px 5px 10px;
+  border: none;
+  background-color: transparent;
+}
+
+.button-selected {
+  border: none;
+  background-color: white;
+  color: $cl-base;
+  animation: buttonClickAnimation 0.5s;
+}

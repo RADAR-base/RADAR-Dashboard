@@ -26,6 +26,7 @@ export class SubjectComponent implements OnInit {
   sensorsIsDataLoaded$: Observable<any>
   sensorsData$: Observable<Dictionary<SensorsData>>
   sensorsDataTimeFrame$: Observable<TimeFrame>
+  sensorsDataTimeInterval$: Observable<any>
   volumeData$: Observable<Dictionary<any>>
   volumeIsDataLoaded$: Observable<boolean>
   volumeTimeFrame$: Observable<any>
@@ -51,6 +52,9 @@ export class SubjectComponent implements OnInit {
     )
     this.sensorsDataTimeFrame$ = this.store.select(
       fromSubject.getSensorsDataTimeFrame
+    )
+    this.sensorsDataTimeInterval$ = this.store.select(
+      fromSubject.getSensorsDataTimeInterval
     )
 
     // Get volume data from server
