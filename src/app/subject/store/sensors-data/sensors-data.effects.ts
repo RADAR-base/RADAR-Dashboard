@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store'
 import { of } from 'rxjs'
 import {
   catchError,
+  debounceTime,
   map,
   mergeMap,
   switchMap,
@@ -66,15 +67,23 @@ export class SensorsDataEffects {
   @Effect()
   updateTimeInterval$ = this.actions$.pipe(
     ofType(actions.SET_TIME_FRAME),
-    withLatestFrom(this.store.select(fromSubject.getSensorsDataTimeFrame)),
+    debounceTime(1000),
+    withLatestFrom(
+      this.store.select(fromSubject.getSensorsDataTimeFrame),
+      this.store.select(fromSubject.getSensorsDataTimeInterval)
+    ),
     map(
-      ([, timeFrame]) => new actions.SetTimeInterval(getTimeInterval(timeFrame))
+      ([, timeFrame, timeInterval]) =>
+        new actions.SetTimeInterval(
+          timeInterval ? timeInterval : getTimeInterval(timeFrame)
+        )
     )
   )
 
   @Effect()
   loadSensorsData$ = this.actions$.pipe(
     ofType(actions.SET_TIME_INTERVAL),
+    debounceTime(1000),
     map(([]) => new actions.Load())
   )
 

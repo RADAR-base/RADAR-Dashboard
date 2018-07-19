@@ -38,25 +38,6 @@ export class VolumeDataEffects {
     )
   )
 
-  @Effect({ dispatch: false })
-  loadSuccess$ = this.actions$.pipe(
-    ofType(volumeDataActions.LOAD_SUCCESS),
-    withLatestFrom(
-      this.store.select(fromSubject.getVolumeDataTimeFrame),
-      this.store.select(fromSubject.getVolumeDataTimeInterval)
-    ),
-    mergeMap(([, timeFrame, timeInterval]) => {
-      return [
-        this.store.dispatch(
-          new sensorsDataActions.SetTimeFrameFromVolume(timeFrame)
-        ),
-        this.store.dispatch(
-          new sensorsDataActions.SetTimeInterval(timeInterval)
-        )
-      ]
-    })
-  )
-
   constructor(
     private actions$: Actions,
     private volumeDataService: VolumeDataService,
