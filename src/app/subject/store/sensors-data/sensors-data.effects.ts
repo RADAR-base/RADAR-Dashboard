@@ -83,6 +83,7 @@ export class SensorsDataEffects {
   @Effect()
   loadSensorsData$ = this.actions$.pipe(
     ofType(actions.SET_TIME_INTERVAL),
+    debounceTime(1000),
     map(([]) => new actions.Load())
   )
 
