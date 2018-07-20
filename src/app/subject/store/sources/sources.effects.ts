@@ -31,7 +31,14 @@ export class SourcesEffects {
   @Effect({ dispatch: false })
   injectSourceData$ = this.actions$.pipe(
     ofType(sourcesActions.INJECT_SOURCE_DATA),
-    tap(() => this.store.dispatch(new volumeDataActions.Load()))
+    tap(() =>
+      this.store.dispatch(
+        new volumeDataActions.SetTimeFrame({
+          startDateTime: null,
+          endDateTime: null
+        })
+      )
+    )
   )
 
   @Effect({ dispatch: false })

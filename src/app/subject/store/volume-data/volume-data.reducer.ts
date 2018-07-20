@@ -34,9 +34,43 @@ export const initialState: State = adapter.getInitialState({
 
 export function reducer(state = initialState, action: actions.Actions): State {
   switch (action.type) {
-    case actions.LOAD:
+    case actions.LOAD: {
+      return {
+        ...state
+      }
+    }
+
     case actions.DESTROY: {
       return initialState
+    }
+
+    case actions.SET_TIME_FRAME: {
+      let tempTimeFrame
+      if (!action.payload.startDateTime) {
+        const endTime = new Date()
+        const startTime = new Date(
+          endTime.getFullYear() - 1,
+          endTime.getMonth(),
+          endTime.getDate()
+        )
+        tempTimeFrame = {
+          startDateTime: startTime,
+          endDateTime: endTime
+        }
+      } else {
+        tempTimeFrame = action.payload
+      }
+      return {
+        ...state,
+        timeFrame: tempTimeFrame
+      }
+    }
+
+    case actions.SET_TIME_INTERVAL: {
+      return {
+        ...state,
+        timeWindow: action.payload
+      }
     }
 
     case actions.LOAD_SUCCESS: {
