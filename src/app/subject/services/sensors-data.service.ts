@@ -115,8 +115,10 @@ export class SensorsDataService {
       this.options.queryParams.endTime ||
       null
 
-    startTime ? (url = `${url}&startTime=${startTime}`) : (url = url)
-    endTime ? (url = `${url}&endTime=${endTime}`) : (url = url)
+    startTime
+      ? (url = `${url}&startTime=${startTime.toISOString()}`)
+      : (url = url)
+    endTime ? (url = `${url}&endTime=${endTime.toISOString()}`) : (url = url)
 
     return url
   }

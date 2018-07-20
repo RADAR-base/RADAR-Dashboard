@@ -9,13 +9,13 @@ import * as volumeDataActions from '../../../store/volume-data/volume-data.actio
   template: ` <div class="background">
   <div *ngIf="timeFrame" class="text">
     <mat-form-field>
-      <input matInput [matDatepicker]="start" [value]="timeFrame.startDateTime" (dateChange)="changeStart($event.value)">
+      <input matInput [matDatepicker]="start" [value]="timeFrame.startDateTime" (dateChange)="changeTimeFrame({startDateTime: $event.value, endDateTime: timeFrame.endDateTime})">
       <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
       <mat-datepicker #start></mat-datepicker>
     </mat-form-field>
     <hr>
     <mat-form-field>
-      <input matInput [matDatepicker]="end" [value]="timeFrame.endDateTime" (dateChange)="changeEnd($event.value)">
+      <input matInput [matDatepicker]="end" [value]="timeFrame.endDateTime" (dateChange)="changeTimeFrame({startDateTime: timeFrame.startDateTime, endDateTime: $event.value})">
       <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
       <mat-datepicker #end></mat-datepicker>
     </mat-form-field>
@@ -29,20 +29,7 @@ export class SourceVolumeTimeFrameComponent {
 
   constructor(private store: Store<fromSubject.State>) {}
 
-  private changeStart(x) {
-    this.store.dispatch(
-      new volumeDataActions.SetTimeFrame({
-        startDateTime: x.toISOString(),
-        endDateTime: new Date(this.timeFrame.endDateTime).toISOString()
-      })
-    )
-  }
-  private changeEnd(x) {
-    this.store.dispatch(
-      new volumeDataActions.SetTimeFrame({
-        startDateTime: new Date(this.timeFrame.startDateTime).toISOString(),
-        endDateTime: x.toISOString()
-      })
-    )
+  private changeTimeFrame(payload) {
+    this.store.dispatch(new volumeDataActions.SetTimeFrame(payload))
   }
 }

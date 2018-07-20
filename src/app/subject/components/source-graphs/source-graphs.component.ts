@@ -13,6 +13,7 @@ import { ChartData } from '../../../shared/models/chart-data.model'
 import { SourceData } from '../../../shared/models/source-data.model'
 import { SourceTooltipItem } from '../../../shared/models/source-tooltip.model'
 import { Source } from '../../../shared/models/source.model'
+import { TimeFrame } from '../../../shared/models/time.model'
 import * as fromSubject from '../../store'
 import * as sensorsDataActions from '../../store/sensors-data/sensors-data.actions'
 import * as volumeDataActions from '../../store/volume-data/volume-data.actions'
@@ -32,7 +33,7 @@ export class SourceGraphsComponent implements OnInit, OnDestroy {
   @Input() sensorsData: ChartData[]
   @Input() volumeData: ChartData[]
   @Input() isVolumeDataLoaded: boolean
-  @Input() volumeTimeFrame: any
+  @Input() volumeTimeFrame: TimeFrame
   @Input() sensorsDataTimeFrame: number[]
 
   tooltipData$: Observable<SourceTooltipItem[]>
