@@ -181,11 +181,6 @@ export const Config = {
       label: { EN: '1m' },
       value: 60000
     },
-    THIRTY_SECOND: {
-      doc: '30 seconds time interval',
-      label: { EN: '30s' },
-      value: 30000
-    },
     TEN_SECOND: {
       doc: '10 seconds time interval',
       label: { EN: '10s' },
