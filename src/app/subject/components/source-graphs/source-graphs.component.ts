@@ -15,6 +15,7 @@ import { SourceTooltipItem } from '../../../shared/models/source-tooltip.model'
 import { Source } from '../../../shared/models/source.model'
 import * as fromSubject from '../../store'
 import * as sensorsDataActions from '../../store/sensors-data/sensors-data.actions'
+import * as volumeDataActions from '../../store/volume-data/volume-data.actions'
 import { SourceTooltipComponent } from './source-tooltip/source-tooltip.component'
 
 @Component({
@@ -52,6 +53,7 @@ export class SourceGraphsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.store.dispatch(new sensorsDataActions.Destroy())
+    this.store.dispatch(new volumeDataActions.Destroy())
   }
 
   trackBySourceId(index: number, source: Source) {

@@ -98,4 +98,8 @@
     grid-gap: 1rem;
     grid-template-columns: 1px 1fr;
   }
+
+  .timeframe {
+    z-index: 1000;
+  }
 }

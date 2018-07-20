@@ -53,7 +53,11 @@
   ></app-source-date-axis>
 
   <div class="grid">
-    <app-source-volume-timeframe [timeFrame]="volumeTimeFrame"></app-source-volume-timeframe>
+    <app-source-volume-timeframe
+      *ngIf="volumeTimeFrame?.startDateTime && volumeTimeFrame"
+      [timeFrame]="volumeTimeFrame"
+      class="timeframe"
+    ></app-source-volume-timeframe>
     <app-source-volume
       *ngIf="isVolumeDataLoaded"
       class="volume"
