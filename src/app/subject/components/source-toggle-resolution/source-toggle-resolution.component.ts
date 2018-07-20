@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store'
 import { AppConfig } from '../../../shared/app-config'
 import * as fromSubject from '../../store'
 import * as sensorsDataActions from '../../store/sensors-data/sensors-data.actions'
+import * as volumeDataActions from '../../store/volume-data/volume-data.actions'
 
 @Component({
   selector: 'app-source-toggle-resolution',
@@ -31,5 +32,6 @@ export class SourceToggleResolutionComponent {
   onSelect(interval) {
     this.selectedTimeInterval = interval
     this.store.dispatch(new sensorsDataActions.SetTimeInterval(interval))
+    this.store.dispatch(new volumeDataActions.SetTimeInterval(interval))
   }
 }
