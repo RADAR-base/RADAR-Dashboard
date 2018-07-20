@@ -70,6 +70,10 @@
   overflow-y: scroll;
 }
 
+.tooltip {
+  z-index: 1000;
+}
+
 .bottom-group {
   $volume-height: 92px;
 
@@ -100,6 +104,6 @@
   }
 
   .timeframe {
-    z-index: 1000;
+    z-index: 100;
   }
 }
