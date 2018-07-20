@@ -35,6 +35,7 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
         .defined(d => d.value)
         .lineStyles({ stroke: this.colorScale(k.key) })
         .pointStyles({ fill: this.colorScale(k.key) })
+        .pointAttrs({ r: 1.5 })
     })
 
     super.init()
