@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from '@angular/core'
+import { Component, Input } from '@angular/core'
 import { Store } from '@ngrx/store'
 
 import * as fromSubject from '../../../store'
@@ -24,14 +24,10 @@ import * as volumeDataActions from '../../../store/volume-data/volume-data.actio
   `,
   styleUrls: ['./source-volume-timeframe.component.scss']
 })
-export class SourceVolumeTimeFrameComponent implements OnChanges {
+export class SourceVolumeTimeFrameComponent {
   @Input() timeFrame
 
   constructor(private store: Store<fromSubject.State>) {}
-
-  ngOnChanges() {
-    console.log(this.timeFrame)
-  }
 
   private changeTimeFrame(payload) {
     this.store.dispatch(new volumeDataActions.SetTimeFrame(payload))
