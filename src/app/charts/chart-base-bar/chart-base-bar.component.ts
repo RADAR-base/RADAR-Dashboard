@@ -72,7 +72,10 @@ export class ChartBaseBarComponent extends ChartBaseComponent {
       .attr('class', () => (this.categorical ? 'bar' : 'bar-time'))
       .attr(
         'x',
-        d => (this.categorical ? this.xScale(d.name) : this.xScale(d.date))
+        d =>
+          this.categorical
+            ? this.xScale(d.name)
+            : this.xScale(d.date) - this.width / this.data.length / 2
       )
       .attr(
         'width',
@@ -82,6 +85,7 @@ export class ChartBaseBarComponent extends ChartBaseComponent {
       )
       .attr('y', d => this.yScale(d.value))
       .attr('height', d => this.height - this.yScale(d.value))
+      .attr('clip-path', 'url(#rect-clip)')
 
     if (this.hasBrush) {
       super.brushInit()

@@ -83,6 +83,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   brush: any
   brushWidthDefault = 120
   brushExtent
+  clipOffset = 15
 
   ngAfterViewInit() {
     this.uid = shortid.generate()
@@ -169,6 +170,14 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
 
     this.hasTooltip &&
       this.tooltip.attr('width', this.width).attr('height', height)
+
+    this.chart
+      .append('clipPath')
+      .attr('id', 'rect-clip')
+      .append('rect')
+      .attr('x', -this.clipOffset)
+      .attr('width', this.width + this.clipOffset)
+      .attr('height', this.height * 2)
 
     this.draw()
 
