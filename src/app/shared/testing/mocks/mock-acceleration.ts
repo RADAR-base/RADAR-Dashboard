@@ -51,8 +51,8 @@ export const MockAcceleration = {
     unit: 'G',
     timeFrame: 'TEN_SECOND',
     effectiveTimeFrame: {
-      startDateTime: '2017-02-27T11:46:00Z',
-      endDateTime: '2017-02-27T11:54:10Z'
+      startDateTime: new Date('2017-02-27T11:46:00Z'),
+      endDateTime: new Date('2017-02-27T11:54:10Z')
     }
   },
   dataset: [
@@ -308,6 +308,6 @@ export const MockAcceleration = {
 }
 
 export const MockAccelerationTimeFrame: EffectiveTimeFrame = {
-  startDateTime: '2017-02-27T11:46:00Z',
-  endDateTime: '2017-02-27T11:54:10Z'
+  startDateTime: new Date('2017-02-27T11:46:00Z'),
+  endDateTime: new Date('2017-02-27T11:54:10Z')
 }

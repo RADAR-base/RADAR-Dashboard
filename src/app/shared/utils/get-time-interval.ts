@@ -8,8 +8,7 @@ export function getTimeInterval(timeFrame: TimeFrame) {
   const TWO_WEEKS = TimeWindow['ONE_WEEK'] * 2
 
   const difference =
-    new Date(timeFrame.endDateTime).getTime() -
-    new Date(timeFrame.startDateTime).getTime()
+    timeFrame.endDateTime.getTime() - timeFrame.startDateTime.getTime()
 
   switch (true) {
     case difference <= THREE_MONTHS && difference >= TWO_WEEKS:

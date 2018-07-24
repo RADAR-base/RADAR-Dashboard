@@ -34,8 +34,7 @@
           *ngIf="volumeIsDataLoaded$ | async"
           [sources]="sources"
           [sensorsData]="sensorsData$ | async"
-          [sensorsDataTimeFrame]="[(sensorsDataTimeFrame$ | async)?.startDateTime,
-          (sensorsDataTimeFrame$ | async)?.endDateTime]"
+          [sensorsDataTimeFrame]="sensorsDataTimeFrame$ | async"
           [isDataLoaded]="sensorsIsDataLoaded$ | async"
           [volumeData]="volumeData$ | async"
           [isVolumeDataLoaded]="volumeIsDataLoaded$ | async"

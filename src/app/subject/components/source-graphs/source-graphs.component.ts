@@ -35,7 +35,7 @@ export class SourceGraphsComponent implements OnInit, OnDestroy {
   @Input() volumeData: ChartData[]
   @Input() isVolumeDataLoaded: boolean
   @Input() volumeTimeFrame: TimeFrame
-  @Input() sensorsDataTimeFrame: number[]
+  @Input() sensorsDataTimeFrame: TimeFrame
 
   tooltipData$: Observable<SourceTooltipItem[]>
   tooltipDate$: Observable<Date>

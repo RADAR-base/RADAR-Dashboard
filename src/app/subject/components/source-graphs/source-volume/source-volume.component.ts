@@ -28,7 +28,7 @@ export class SourceVolumeComponent {
 
   constructor(private store: Store<fromSubject.State>) {}
 
-  onBrushMove(date: string[]) {
+  onBrushMove(date: Date[]) {
     this.store.dispatch(
       new sensorsDataActions.SetTimeFrame({
         startDateTime: date[0],

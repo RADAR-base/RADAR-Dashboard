@@ -115,8 +115,6 @@ export function reducer(state = initialState, action: actions.Actions): State {
         ...adapter.addAll(new_data, state),
         isLoaded: true,
         loadFail: false,
-        timeFrame: header.timeFrame,
-        timeWindow: header.timeWindow,
         timeFrameChanged: false
       }
     }

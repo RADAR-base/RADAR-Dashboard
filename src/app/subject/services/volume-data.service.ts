@@ -63,8 +63,8 @@ export class VolumeDataService {
     url = url + '?'
     url = `${url}timeWindow=${this.options.timeWindow}`
 
-    const startTime = new Date(this.options.timeFrame.startDateTime)
-    const endTime = new Date(this.options.timeFrame.endDateTime)
+    const startTime = this.options.timeFrame.startDateTime
+    const endTime = this.options.timeFrame.endDateTime
 
     startTime
       ? (url = `${url}&startTime=${startTime.toISOString()}`)

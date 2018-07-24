@@ -27,8 +27,8 @@ export const MockAPIComplianceDataset = [
 ]
 export const MockTimeIntervalCompliance = 'ONE_DAY'
 export const MockTimeFrameCompliance: EffectiveTimeFrame = {
-  startDateTime: '2017-02-27T11:46:00Z',
-  endDateTime: '2017-04-01T11:46:00Z'
+  startDateTime: new Date('2017-02-27T11:46:00Z'),
+  endDateTime: new Date('2017-04-01T11:46:00Z')
 }
 
 export const MockComplianceDataExpected = [
@@ -59,8 +59,8 @@ export const MockComplianceDataExpected = [
 ]
 
 export const MockTimeFrameComplianceWithStartEndHoles: EffectiveTimeFrame = {
-  startDateTime: '2017-02-26T11:46:00Z',
-  endDateTime: '2017-04-02T11:46:00Z'
+  startDateTime: new Date('2017-02-26T11:46:00Z'),
+  endDateTime: new Date('2017-04-02T11:46:00Z')
 }
 
 export const MockComplianceDataWithStartEndHolesExpected: ChartData[] = [

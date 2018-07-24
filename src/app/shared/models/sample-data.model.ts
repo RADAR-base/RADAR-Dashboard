@@ -28,6 +28,6 @@ export interface Header {
 }
 
 export interface EffectiveTimeFrame {
-  startDateTime: string
-  endDateTime: string
+  startDateTime: Date
+  endDateTime: Date
 }

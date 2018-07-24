@@ -6,7 +6,7 @@ import { Source } from '../../models/source.model'
 export const MockSensorsOptions = {
   studyName: 'BioIT-Demo',
   subjectId: '3907dab9-b2ae-4db1-ba93-d5b3f699b1eb',
-  timeFrame: { start: null, end: null },
+  timeFrame: { startDateTime: null, endDateTime: null },
   timeWindow: 'ONE_MIN',
   descriptiveStatistic: 3,
   queryParams: {}
@@ -41,8 +41,8 @@ export const MockSources: Source[] = [
     assigned: true,
     status: 'DISCONNECTED',
     effectiveTimeFrame: {
-      startDateTime: '2000-01-01T00:00:00Z',
-      endDateTime: '2000-01-01T00:10:00Z'
+      startDateTime: new Date('2000-01-01T00:00:00Z'),
+      endDateTime: new Date('2000-01-01T00:10:00Z')
     },
     sourceData: [MockSourceData]
   }

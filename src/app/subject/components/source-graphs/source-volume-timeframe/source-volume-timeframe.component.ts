@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core'
 import { Store } from '@ngrx/store'
 
+import { TimeFrame } from '../../../../shared/models/time.model'
 import * as fromSubject from '../../../store'
 import * as volumeDataActions from '../../../store/volume-data/volume-data.actions'
 
@@ -29,7 +30,7 @@ export class SourceVolumeTimeFrameComponent {
 
   constructor(private store: Store<fromSubject.State>) {}
 
-  private changeTimeFrame(payload) {
+  private changeTimeFrame(payload: TimeFrame) {
     this.store.dispatch(new volumeDataActions.SetTimeFrame(payload))
   }
 }
