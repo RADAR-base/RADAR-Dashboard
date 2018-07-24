@@ -75,7 +75,8 @@ export class ChartBaseBarComponent extends ChartBaseComponent {
         d =>
           this.categorical
             ? this.xScale(d.name)
-            : this.xScale(d.date) - this.width / this.data.length / 2
+            : // NOTE: This moves bar (to the left) to the middle of time tick.
+              this.xScale(d.date) - this.width / this.data.length / 2
       )
       .attr(
         'width',
