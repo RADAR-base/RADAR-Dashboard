@@ -23,6 +23,7 @@ export class VolumeDataService {
 
   getData(sources, options): Observable<any> {
     this.options = options
+
     const new_sources = new Array()
 
     if (sources) {
@@ -56,7 +57,7 @@ export class VolumeDataService {
       this.url,
       this.options.studyName,
       this.options.subjectId,
-      DescriptiveStatistic[11].toLowerCase()
+      DescriptiveStatistic[this.options.descriptiveStatistic].toLowerCase()
     ].join('/')
 
     url = url + '?'

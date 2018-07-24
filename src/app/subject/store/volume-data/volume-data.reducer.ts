@@ -117,8 +117,7 @@ export function reducer(state = initialState, action: actions.Actions): State {
         loadFail: false,
         timeFrame: header.timeFrame,
         timeWindow: header.timeWindow,
-        timeFrameChanged: false,
-        descriptiveStatistic: header.statistic
+        timeFrameChanged: false
       }
     }
 
