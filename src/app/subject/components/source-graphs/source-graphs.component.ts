@@ -14,6 +14,7 @@ import { SourceData } from '../../../shared/models/source-data.model'
 import { SourceTooltipItem } from '../../../shared/models/source-tooltip.model'
 import { Source } from '../../../shared/models/source.model'
 import { TimeFrame } from '../../../shared/models/time.model'
+import * as fromRoot from '../../../store'
 import * as fromSubject from '../../store'
 import * as sensorsDataActions from '../../store/sensors-data/sensors-data.actions'
 import * as volumeDataActions from '../../store/volume-data/volume-data.actions'
@@ -42,8 +43,14 @@ export class SourceGraphsComponent implements OnInit, OnDestroy {
   tooltipY = 0
   tooltipShow = 0 // 0 hide | 1 show
   lineX = 0
+  path$: Observable<any>
 
-  constructor(private store: Store<fromSubject.State>) {}
+  constructor(
+    private store: Store<fromSubject.State>,
+    private rootStore: Store<fromRoot.State>
+  ) {
+    this.path$ = this.rootStore.select(fromRoot.getRouterUrl)
+  }
 
   ngOnInit() {
     this.tooltipData$ = this.store.select(

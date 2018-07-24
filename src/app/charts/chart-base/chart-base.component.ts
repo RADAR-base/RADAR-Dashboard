@@ -176,7 +176,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
       .attr('id', 'rect-clip')
       .append('rect')
       .attr('x', -this.clipOffset)
-      .attr('width', this.width + this.clipOffset)
+      .attr('width', this.width)
       .attr('height', this.height * 2)
 
     this.draw()

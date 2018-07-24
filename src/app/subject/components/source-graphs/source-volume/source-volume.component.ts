@@ -15,6 +15,7 @@ import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.ac
       [hasXAxis]="true"
       [hasBrush]="true"
       [categorical]="false"
+      [path]="path"
       [margin]="{ top: 8, right: 36, bottom: 32, left: 63 }"
       (brushMove)="onBrushMove($event)"
     ></app-chart-base-bar>
@@ -23,6 +24,7 @@ import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.ac
 })
 export class SourceVolumeComponent {
   @Input() data
+  @Input() path
 
   constructor(private store: Store<fromSubject.State>) {}
 

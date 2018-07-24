@@ -85,7 +85,7 @@ export class ChartBaseBarComponent extends ChartBaseComponent {
       )
       .attr('y', d => this.yScale(d.value))
       .attr('height', d => this.height - this.yScale(d.value))
-      .attr('clip-path', 'url(#rect-clip)')
+      .attr('clip-path', `url(${this.path}#rect-clip)`)
 
     if (this.hasBrush) {
       super.brushInit()

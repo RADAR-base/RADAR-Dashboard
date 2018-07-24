@@ -22,11 +22,11 @@ export class SourceToggleResolutionComponent {
   @Input() selectedTimeInterval
   timeIntervals
   timeIntervalKeys
-  selected
 
   constructor(private store: Store<fromSubject.State>) {
     this.timeIntervals = AppConfig.config.timeIntervals
     this.timeIntervalKeys = Object.keys(this.timeIntervals)
+    this.timeIntervalKeys.pop()
   }
 
   onSelect(interval) {

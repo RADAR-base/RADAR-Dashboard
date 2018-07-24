@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnDestroy
+} from '@angular/core'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs'
 
@@ -6,7 +11,6 @@ import { AppConfig } from '../../../../shared/app-config'
 import { DataType } from '../../../../shared/enums/data-type.enum'
 import { ChartData } from '../../../../shared/models/chart-data.model'
 import { SourceData } from '../../../../shared/models/source-data.model'
-import * as fromRoot from '../../../../store'
 import * as fromSubject from '../../../store'
 import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.actions'
 
@@ -33,7 +37,7 @@ import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.ac
       [hasYAxis]="true"
       [hasTooltip]="true"
       [margin]="graphMargins"
-      [path]="path$ | async"
+      [path]="path"
       (tooltipMouseMove)="onTooltipMouseMove($event)"
     ></app-chart-base-line>
 
@@ -45,20 +49,20 @@ import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.ac
       [hasYAxis]="true"
       [hasTooltip]="true"
       [margin]="graphMargins"
-      [path]="path$ | async"
+      [path]="path"
       (tooltipMouseMove)="onTooltipMouseMove($event)"
     ></app-chart-base-multi-line>
   `,
   styleUrls: ['./source-graph.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SourceGraphComponent {
+export class SourceGraphComponent implements OnDestroy {
   @Input() isLoaded
   @Input() sensorId
   @Input() sensorData: ChartData
   @Input() sourceData: SourceData
+  @Input() path
 
-  path$: Observable<any>
   graphMargins = { top: 32, right: 16, bottom: 32, left: 80 }
 
   get keys() {
@@ -81,12 +85,9 @@ export class SourceGraphComponent {
     return this.sourceData.label && this.sourceData.label[AppConfig.language]
   }
 
-  constructor(
-    private store: Store<fromSubject.State>,
-    private rootStore: Store<fromRoot.State>
-  ) {
-    this.path$ = this.rootStore.select(fromRoot.getRouterUrl)
-  }
+  constructor(private store: Store<fromSubject.State>) {}
+
+  ngOnDestroy
 
   onTooltipMouseMove(date: Date) {
     this.store.dispatch(new sensorsDataActions.SetTooltipDate(date))

@@ -31,6 +31,7 @@
             [sensorData]="sensorsData[sourceData.uid]?.data"
             [isLoaded]="isDataLoaded[sourceData.uid]"
             [sensorId]="sourceData.uid"
+            [path]="path$ | async"
           ></app-source-graph>
         </div>
       </ng-container>
@@ -63,6 +64,7 @@
       *ngIf="isVolumeDataLoaded"
       class="volume"
       [data]="volumeData"
+      [path]="path$ | async"
     ></app-source-volume>
   </div>
 </div>
