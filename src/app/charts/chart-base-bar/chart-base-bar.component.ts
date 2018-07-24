@@ -12,8 +12,8 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
 })
 export class ChartBaseBarComponent extends ChartBaseComponent {
   @Input() categorical = true
-  @Input() paddingInner = 0
-  @Input() paddingOuter = 0
+  @Input() paddingInner = 0.2
+  @Input() paddingOuter = 0.3
 
   data: ChartData[]
   bar: any
@@ -34,14 +34,13 @@ export class ChartBaseBarComponent extends ChartBaseComponent {
         .scaleBand()
         .rangeRound([0, this.width])
         .paddingInner(this.paddingInner)
-        .paddingOuter(this.categorical ? this.paddingOuter : 0)
+        .paddingOuter(this.paddingOuter)
         .domain(this.data.map(d => d.name))
     } else {
       this.xScale = d3
         .scaleTime()
         .rangeRound([0, this.width])
         .domain(d3.extent(this.data, d => d.date))
-        .nice()
     }
 
     this.hasXAxis &&
@@ -72,11 +71,7 @@ export class ChartBaseBarComponent extends ChartBaseComponent {
       .attr('class', () => (this.categorical ? 'bar' : 'bar-time'))
       .attr(
         'x',
-        d =>
-          this.categorical
-            ? this.xScale(d.name)
-            : // NOTE: This moves bar (to the left) to the middle of time tick.
-              this.xScale(d.date) - this.width / this.data.length / 2
+        d => (this.categorical ? this.xScale(d.name) : this.xScale(d.date))
       )
       .attr(
         'width',
