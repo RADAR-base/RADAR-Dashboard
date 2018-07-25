@@ -57,7 +57,7 @@ export function reducer(state = initialState, action: actions.Actions): State {
       }
     }
 
-    case actions.LOAD_RESET_FAIL: {
+    case actions.LOAD_FAIL_RESET: {
       return {
         ...state,
         loadFail: false,

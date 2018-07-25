@@ -63,17 +63,12 @@ export class VolumeDataEffects {
     withLatestFrom(
       this.store.select(fromSubject.getVolumeDataTimeFrame),
       this.store.select(fromSubject.getSensorsDataTimeInterval),
-      this.store.select(fromSubject.getVolumeDataPrevTimeInterval),
       this.store.select(fromSubject.getVolumeDataHasLoadFailed)
     ),
     map(
-      ([, timeFrame, timeInterval, prevTimeInterval, loadFail]) =>
+      ([, timeFrame, timeInterval, loadFail]) =>
         new volumeDataActions.SetTimeInterval(
-          loadFail
-            ? prevTimeInterval
-            : timeInterval
-              ? timeInterval
-              : getTimeInterval(timeFrame)
+          !loadFail && timeInterval ? timeInterval : getTimeInterval(timeFrame)
         )
     )
   )
@@ -81,13 +76,7 @@ export class VolumeDataEffects {
   @Effect()
   loadSensorsData$ = this.actions$.pipe(
     ofType(volumeDataActions.SET_TIME_INTERVAL),
-    withLatestFrom(this.store.select(fromSubject.getVolumeDataHasLoadFailed)),
-    map(
-      ([, loadFail]) =>
-        !loadFail
-          ? new volumeDataActions.Load()
-          : new volumeDataActions.LoadResetFail()
-    )
+    map(([]) => new volumeDataActions.Load())
   )
 
   @Effect()
@@ -95,14 +84,17 @@ export class VolumeDataEffects {
     ofType(volumeDataActions.LOAD_FAIL),
     withLatestFrom(
       this.store.select(fromSubject.getVolumeDataPrevTimeInterval),
-      this.store.select(fromSubject.getVolumeDataPrevTimeFrame),
+      this.store.select(fromSubject.getVolumeDataTimeFrame),
       this.store.select(fromSubject.getVolumeDataHasTimeFrameChanged)
     ),
-    mergeMap(([, prevTimeInterval, prevTimeFrame, timeFrameChanged]) => [
-      timeFrameChanged
-        ? new volumeDataActions.SetTimeFrame(prevTimeFrame)
-        : new volumeDataActions.SetTimeInterval(prevTimeInterval)
-    ])
+    map(
+      ([, prevTimeInterval, timeFrame, timeFrameChanged]) =>
+        timeFrameChanged
+          ? new volumeDataActions.SetTimeFrame(timeFrame)
+          : prevTimeInterval !== getTimeInterval(timeFrame)
+            ? new volumeDataActions.SetTimeInterval(prevTimeInterval)
+            : new volumeDataActions.LoadFailReset()
+    )
   )
 
   constructor(
