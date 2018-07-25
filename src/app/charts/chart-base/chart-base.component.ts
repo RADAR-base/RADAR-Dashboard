@@ -208,9 +208,11 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
       .call(this.brush)
       .call(
         this.brush.move,
-        this.brushExtent
-          ? this.brushExtent
-          : [this.width - this.brushWidthDefault, this.width]
+        !this.brushExtent
+          ? [this.width - this.brushWidthDefault, this.width]
+          : this.brushExtent[1] > this.width
+            ? [this.brushExtent[0], this.width]
+            : this.brushExtent
       )
   }
 
