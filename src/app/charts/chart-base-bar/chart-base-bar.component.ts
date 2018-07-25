@@ -41,6 +41,7 @@ export class ChartBaseBarComponent extends ChartBaseComponent {
         .scaleTime()
         .rangeRound([0, this.width])
         .domain(d3.extent(this.data, d => d.date))
+        .nice()
     }
 
     this.hasXAxis &&
@@ -79,9 +80,13 @@ export class ChartBaseBarComponent extends ChartBaseComponent {
           ? this.xScale.bandwidth()
           : this.width / this.data.length
       )
+      .attr('y', this.height)
+      .attr('height', 0)
+      .attr('clip-path', `url(${this.path}#rect-clip)`)
+      .transition()
+      .duration(1500)
       .attr('y', d => this.yScale(d.value))
       .attr('height', d => this.height - this.yScale(d.value))
-      .attr('clip-path', `url(${this.path}#rect-clip)`)
 
     if (this.hasBrush) {
       super.brushInit()
