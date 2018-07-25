@@ -215,6 +215,11 @@ export const getVolumeDataHasTimeFrameChanged = createSelector(
   fromVolumeData.getHasTimeFrameChanged
 )
 
+export const getVolumeDataHasTimeWindowChanged = createSelector(
+  getVolumeDataState,
+  fromVolumeData.getHasTimeWindowChanged
+)
+
 export const getVolumeDataFormatted = createSelector(
   getVolumeDataIds,
   getVolumeDataEntities,

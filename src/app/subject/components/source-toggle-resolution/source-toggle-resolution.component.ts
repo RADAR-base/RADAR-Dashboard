@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 import { Store } from '@ngrx/store'
+import { Observable } from 'rxjs'
 
 import { AppConfig } from '../../../shared/app-config'
 import * as fromSubject from '../../store'
@@ -22,6 +23,7 @@ export class SourceToggleResolutionComponent {
   @Input() selectedTimeInterval
   timeIntervals
   timeIntervalKeys
+  volumeTimeIntervalChanged$: Observable<boolean>
 
   constructor(private store: Store<fromSubject.State>) {
     this.timeIntervals = AppConfig.config.timeIntervals
@@ -31,7 +33,14 @@ export class SourceToggleResolutionComponent {
 
   onSelect(interval) {
     this.selectedTimeInterval = interval
-    this.store.dispatch(new sensorsDataActions.SetTimeInterval(interval))
     this.store.dispatch(new volumeDataActions.SetTimeInterval(interval))
+    this.volumeTimeIntervalChanged$ = this.store.select(
+      fromSubject.getVolumeDataHasTimeWindowChanged
+    )
+    this.volumeTimeIntervalChanged$.subscribe(d => {
+      if (!d) {
+        this.store.dispatch(new sensorsDataActions.SetTimeInterval(interval))
+      }
+    })
   }
 }

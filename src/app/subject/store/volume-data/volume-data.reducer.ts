@@ -21,6 +21,7 @@ export interface State extends EntityState<VolumeData> {
   descriptiveStatistic: DescriptiveStatistic
   loadFail: boolean
   timeFrameChanged: boolean
+  timeWindowChanged: boolean
 }
 
 export const adapter: EntityAdapter<VolumeData> = createEntityAdapter<
@@ -37,7 +38,8 @@ export const initialState: State = adapter.getInitialState({
   prevTimeWindow: null,
   descriptiveStatistic: DescriptiveStatistic.DISTINCT,
   loadFail: false,
-  timeFrameChanged: false
+  timeFrameChanged: false,
+  timeWindowChanged: false
 })
 
 export function reducer(state = initialState, action: actions.Actions): State {
@@ -58,7 +60,8 @@ export function reducer(state = initialState, action: actions.Actions): State {
     case actions.LOAD_RESET_FAIL: {
       return {
         ...state,
-        loadFail: false
+        loadFail: false,
+        timeWindowChanged: false
       }
     }
 
@@ -94,7 +97,8 @@ export function reducer(state = initialState, action: actions.Actions): State {
       return {
         ...state,
         prevTimeWindow: state.timeWindow,
-        timeWindow: action.payload
+        timeWindow: action.payload,
+        timeWindowChanged: true
       }
     }
 
@@ -115,7 +119,8 @@ export function reducer(state = initialState, action: actions.Actions): State {
         ...adapter.addAll(new_data, state),
         isLoaded: true,
         loadFail: false,
-        timeFrameChanged: false
+        timeFrameChanged: false,
+        timeWindowChanged: false
       }
     }
 
@@ -133,3 +138,4 @@ export const getDescriptiveStatistic = (state: State) =>
   state.descriptiveStatistic
 export const getHasLoadFailed = (state: State) => state.loadFail
 export const getHasTimeFrameChanged = (state: State) => state.timeFrameChanged
+export const getHasTimeWindowChanged = (state: State) => state.timeWindowChanged
