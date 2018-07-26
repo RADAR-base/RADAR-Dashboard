@@ -63,10 +63,14 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   set chartData(value) {
     this.data = value
     this.beforeUpdate()
+    if (this.sensorDataTimeFrame) {
+      this.updateBrush()
+    }
   }
 
   @Output() tooltipMouseMove = new EventEmitter<Date>()
   @Output() brushMove = new EventEmitter<any>()
+  @Input() sensorDataTimeFrame
 
   uid: string
   data: any[]
@@ -223,5 +227,18 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
       xScale.invert(this.brushExtent[0]),
       xScale.invert(this.brushExtent[1])
     ])
+  }
+
+  private updateBrush() {
+    const brushExtentLeft = this.xScale(this.sensorDataTimeFrame[0])
+    const brushExtentRight = this.xScale(this.sensorDataTimeFrame[1])
+    this.chart
+      .selectAll('.brush')
+      .transition()
+      .duration(1500)
+      .call(this.brush.move, [
+        brushExtentLeft < 0 ? 0 : brushExtentLeft,
+        brushExtentRight > this.width ? this.width : brushExtentRight
+      ])
   }
 }
