@@ -2,20 +2,12 @@ import { Injectable } from '@angular/core'
 import { Actions, Effect, ofType } from '@ngrx/effects'
 import { Store } from '@ngrx/store'
 import { of } from 'rxjs'
-import {
-  catchError,
-  map,
-  mergeMap,
-  switchMap,
-  tap,
-  withLatestFrom
-} from 'rxjs/operators'
+import { catchError, map, switchMap, withLatestFrom } from 'rxjs/operators'
 
 import { TimeFrame } from '../../../shared/models/time.model'
 import { getTimeInterval } from '../../../shared/utils/get-time-interval'
 import * as fromRoot from '../../../store'
 import { VolumeDataService } from '../../services/volume-data.service'
-import * as sensorsDataActions from '../sensors-data/sensors-data.actions'
 import * as volumeDataActions from './volume-data.actions'
 import * as fromSubject from '..'
 
