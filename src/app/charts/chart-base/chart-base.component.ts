@@ -55,6 +55,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   @Input() hasXAxis = false
   @Input() hasTooltip = false
   @Input() hasBrush = false
+  @Input() sensorDataTimeFrame
   @Input() path
   @Input()
   get chartData() {
@@ -63,14 +64,15 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   set chartData(value) {
     this.data = value
     this.beforeUpdate()
+
     if (this.sensorDataTimeFrame) {
+      this.updateBrushFromSensorDates()
       this.updateBrush()
     }
   }
 
   @Output() tooltipMouseMove = new EventEmitter<Date>()
   @Output() brushMove = new EventEmitter<any>()
-  @Input() sensorDataTimeFrame
 
   uid: string
   data: any[]
@@ -87,6 +89,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   brush: any
   brushWidthDefault = 120
   brushExtent
+  brushExtentFromSensors
   clipOffset = 15
 
   ngAfterViewInit() {
@@ -206,17 +209,21 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
       .extent([[0, 0], [this.width, this.height]])
       .on('end', () => this.brushed(this.xScale))
 
+    if (this.sensorDataTimeFrame) {
+      this.updateBrushFromSensorDates()
+    }
+
     this.chart
       .append('g')
       .attr('class', 'brush')
       .call(this.brush)
+      .transition()
+      .duration(500)
       .call(
         this.brush.move,
         !this.brushExtent
           ? [this.width - this.brushWidthDefault, this.width]
-          : this.brushExtent[1] > this.width
-            ? [this.brushExtent[0], this.width]
-            : this.brushExtent
+          : this.brushExtentFromSensors
       )
   }
 
@@ -230,15 +237,21 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   }
 
   private updateBrush() {
-    const brushExtentLeft = this.xScale(this.sensorDataTimeFrame[0])
-    const brushExtentRight = this.xScale(this.sensorDataTimeFrame[1])
     this.chart
       .selectAll('.brush')
       .transition()
       .duration(1500)
-      .call(this.brush.move, [
-        brushExtentLeft < 0 ? 0 : brushExtentLeft,
-        brushExtentRight > this.width ? this.width : brushExtentRight
-      ])
+      .call(this.brush.move, this.brushExtentFromSensors)
+  }
+
+  private updateBrushFromSensorDates() {
+    this.brushExtentFromSensors = [
+      this.xScale(this.sensorDataTimeFrame[0]) < 0
+        ? 0
+        : this.xScale(this.sensorDataTimeFrame[0]),
+      this.xScale(this.sensorDataTimeFrame[1]) > this.width
+        ? this.width
+        : this.xScale(this.sensorDataTimeFrame[1])
+    ]
   }
 }
