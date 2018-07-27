@@ -19,6 +19,7 @@ import * as shortid from 'shortid'
 import { ChartColors } from '../../shared/enums/chart-colors.enum'
 import { ChartData } from '../../shared/models/chart-data.model'
 import { ConfigKey } from '../../shared/models/config.model'
+import { arraysEqual } from '../../shared/utils/arrays-equal'
 
 /**
  *  BaseComponent to be extended by chart components
@@ -242,14 +243,18 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   }
 
   private updateBrushFromSensorDates() {
-    this.brushUpdatedFromSensors = true
+    const brushLeft = this.xScale(this.sensorDataTimeFrame[0])
+    const brushRight = this.xScale(this.sensorDataTimeFrame[1])
+    const temp_brushExtent = [brushLeft, brushRight]
+
     this.brushExtentFromSensors = [
-      this.xScale(this.sensorDataTimeFrame[0]) < 0
-        ? 0
-        : this.xScale(this.sensorDataTimeFrame[0]),
-      this.xScale(this.sensorDataTimeFrame[1]) > this.width
-        ? this.width
-        : this.xScale(this.sensorDataTimeFrame[1])
+      brushLeft < 0 ? 0 : brushLeft,
+      brushRight > this.width ? this.width : brushRight
     ]
+    if (!arraysEqual(temp_brushExtent, this.brushExtentFromSensors)) {
+      this.brushUpdatedFromSensors = false
+    } else {
+      this.brushUpdatedFromSensors = true
+    }
   }
 }
