@@ -12,7 +12,7 @@ import * as volumeDataActions from '../../store/volume-data/volume-data.actions'
   template: `
   <div class="toggle-menu">
   <ng-container *ngFor="let timeInterval of timeIntervalKeys">
-  <button mat-button [class.button-selected]="selectedTimeInterval == timeInterval" (click)="onSelect(timeInterval)">{{ timeIntervals[timeInterval]?.label?.EN }}</button>
+  <button mat-button [disabled]="selectedTimeInterval == timeInterval" [class.button-selected]="selectedTimeInterval == timeInterval" (click)="onSelect(timeInterval)">{{ timeIntervals[timeInterval]?.label?.EN }}</button>
   </ng-container>
   </div>
   `,
