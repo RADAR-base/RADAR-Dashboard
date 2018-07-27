@@ -12,7 +12,9 @@ export interface State extends EntityState<SensorsData> {
   dates: Date[]
   tooltipDate: Date
   timeFrame: TimeFrame
+  prevTimeFrame: TimeFrame
   timeWindow: string
+  prevTimeWindow: string
   descriptiveStatistic: DescriptiveStatistic
 }
 
@@ -25,7 +27,9 @@ export const initialState: State = adapter.getInitialState({
   dates: [],
   tooltipDate: null,
   timeFrame: { startDateTime: null, endDateTime: null },
+  prevTimeFrame: { startDateTime: null, endDateTime: null },
   timeWindow: null,
+  prevTimeWindow: null,
   descriptiveStatistic: DescriptiveStatistic.MEDIAN
 })
 
@@ -69,10 +73,10 @@ export function reducer(state = initialState, action: actions.Actions): State {
       }
     }
 
-    case actions.SET_TIME_FRAME:
-    case actions.SET_TIME_FRAME_FROM_VOLUME: {
+    case actions.SET_TIME_FRAME: {
       return {
         ...state,
+        prevTimeFrame: state.timeFrame,
         timeFrame: action.payload
       }
     }
@@ -80,6 +84,7 @@ export function reducer(state = initialState, action: actions.Actions): State {
     case actions.SET_TIME_INTERVAL: {
       return {
         ...state,
+        prevTimeWindow: state.timeWindow,
         timeWindow: action.payload
       }
     }
@@ -103,7 +108,9 @@ export function reducer(state = initialState, action: actions.Actions): State {
 export const getIsDataLoaded = (state: State) => state.areLoaded
 export const getDates = (state: State) => state.dates
 export const getTimeFrame = (state: State) => state.timeFrame
+export const getPrevTimeFrame = (state: State) => state.prevTimeFrame
 export const getTimeInterval = (state: State) => state.timeWindow
+export const getPrevTimeInterval = (state: State) => state.prevTimeWindow
 export const getTooltipDate = (state: State) => state.tooltipDate
 export const getDescriptiveStatistic = (state: State) =>
   state.descriptiveStatistic

@@ -67,7 +67,6 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
 
     if (this.sensorDataTimeFrame) {
       this.updateBrushFromSensorDates()
-      this.updateBrush()
     }
   }
 
@@ -90,6 +89,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   brushWidthDefault = 120
   brushExtent
   brushExtentFromSensors
+  brushUpdatedFromSensors: boolean
   clipOffset = 15
 
   ngAfterViewInit() {
@@ -207,7 +207,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
     this.brush = d3
       .brushX()
       .extent([[0, 0], [this.width, this.height]])
-      .on('end', () => this.brushed(this.xScale))
+      .on('end', () => this.brushed())
 
     if (this.sensorDataTimeFrame) {
       this.updateBrushFromSensorDates()
@@ -221,30 +221,28 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
       .duration(500)
       .call(
         this.brush.move,
-        !this.brushExtent
+        !this.brushExtentFromSensors
           ? [this.width - this.brushWidthDefault, this.width]
           : this.brushExtentFromSensors
       )
   }
 
-  private brushed(xScale) {
-    this.brushExtent = d3.event.selection
+  private brushed() {
+    if (!this.brushUpdatedFromSensors) {
+      this.brushExtent = d3.event.selection
 
-    this.brushMove.emit([
-      xScale.invert(this.brushExtent[0]),
-      xScale.invert(this.brushExtent[1])
-    ])
-  }
-
-  private updateBrush() {
-    this.chart
-      .selectAll('.brush')
-      .transition()
-      .duration(1500)
-      .call(this.brush.move, this.brushExtentFromSensors)
+      this.brushMove.emit([
+        this.xScale.invert(this.brushExtent[0]),
+        this.xScale.invert(this.brushExtent[1])
+      ])
+    } else {
+      this.brushUpdatedFromSensors = false
+      this.brushMove.emit(this.sensorDataTimeFrame)
+    }
   }
 
   private updateBrushFromSensorDates() {
+    this.brushUpdatedFromSensors = true
     this.brushExtentFromSensors = [
       this.xScale(this.sensorDataTimeFrame[0]) < 0
         ? 0

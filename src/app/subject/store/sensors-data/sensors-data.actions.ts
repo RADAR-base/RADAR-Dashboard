@@ -13,8 +13,6 @@ export const LOAD_FAIL = '[SensorsData] LOAD_FAIL'
 export const UPDATE_DATES = '[SensorsData] UPDATE_DATES'
 export const SET_TOOLTIP_DATE = '[SensorsData] SET_TOOLTIP_DATE'
 export const SET_TIME_FRAME = '[SensorsData] SET_TIME_FRAME'
-export const SET_TIME_FRAME_FROM_VOLUME =
-  '[SensorsData] SET_TIME_FRAME_FROM_VOLUME'
 export const SET_TIME_INTERVAL = '[SensorsData] SET_TIME_INTERVAL'
 export const SET_DESCRIPTIVE_STATISTIC =
   '[SensorsData] SET_DESCRIPTIVE_STATISTIC'
@@ -50,12 +48,6 @@ export class SetTimeFrame implements Action {
   constructor(public payload: TimeFrame) {}
 }
 
-export class SetTimeFrameFromVolume implements Action {
-  readonly type = SET_TIME_FRAME_FROM_VOLUME
-
-  constructor(public payload: TimeFrame) {}
-}
-
 export class SetTimeInterval implements Action {
   readonly type = SET_TIME_INTERVAL
 
@@ -79,7 +71,6 @@ export type Actions =
   | UpdateDates
   | SetTooltipDate
   | SetTimeFrame
-  | SetTimeFrameFromVolume
   | SetTimeInterval
   | SetDescriptiveStatistic
   | Destroy

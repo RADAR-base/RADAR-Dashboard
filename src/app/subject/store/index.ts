@@ -108,9 +108,19 @@ export const getSensorsDataTimeFrame = createSelector(
   fromSensorsData.getTimeFrame
 )
 
+export const getSensorsDataPrevTimeFrame = createSelector(
+  getSensorsDataState,
+  fromSensorsData.getPrevTimeFrame
+)
+
 export const getSensorsDataTimeInterval = createSelector(
   getSensorsDataState,
   fromSensorsData.getTimeInterval
+)
+
+export const getSensorsDataPrevTimeInterval = createSelector(
+  getSensorsDataState,
+  fromSensorsData.getPrevTimeInterval
 )
 
 export const getSensorsDataDescriptiveStatistic = createSelector(
