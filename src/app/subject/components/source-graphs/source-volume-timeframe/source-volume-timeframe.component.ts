@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core'
 import { Store } from '@ngrx/store'
 
 import { TimeFrame } from '../../../../shared/models/time.model'
+import { timeFramesEqual } from '../../../../shared/utils/timeframes-equal'
 import * as fromSubject from '../../../store'
 import * as volumeDataActions from '../../../store/volume-data/volume-data.actions'
 
@@ -31,6 +32,8 @@ export class SourceVolumeTimeFrameComponent {
   constructor(private store: Store<fromSubject.State>) {}
 
   private changeTimeFrame(payload: TimeFrame) {
-    this.store.dispatch(new volumeDataActions.SetTimeFrame(payload))
+    if (!timeFramesEqual(payload, this.timeFrame)) {
+      this.store.dispatch(new volumeDataActions.SetTimeFrame(payload))
+    }
   }
 }
