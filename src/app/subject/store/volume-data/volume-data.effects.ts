@@ -84,7 +84,7 @@ export class VolumeDataEffects {
         timeFrameChanged
           ? new volumeDataActions.SetTimeFrame(timeFrame)
           : prevTimeInterval !== getTimeInterval(timeFrame)
-            ? new volumeDataActions.SetTimeInterval(prevTimeInterval)
+            ? new volumeDataActions.SetTimeInterval(getTimeInterval(timeFrame))
             : new volumeDataActions.LoadFailReset()
     )
   )
