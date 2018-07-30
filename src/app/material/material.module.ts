@@ -8,8 +8,10 @@ import {
   MatInputModule,
   MatMenuModule,
   MatNativeDateModule,
+  MatOptionModule,
   MatPaginatorModule,
   MatProgressSpinnerModule,
+  MatSelectModule,
   MatTableModule,
   MatToolbarModule
 } from '@angular/material'
@@ -26,7 +28,9 @@ const MAT_MODULES = [
   MatTableModule,
   MatToolbarModule,
   MatDatepickerModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatSelectModule,
+  MatOptionModule
 ]
 
 @NgModule({
