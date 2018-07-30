@@ -34,6 +34,8 @@ export class SourceToggleResolutionComponent {
   onSelect(interval) {
     this.selectedTimeInterval = interval
     this.store.dispatch(new volumeDataActions.SetTimeInterval(interval))
+
+    // NOTE: This makes sure sensor data loads after volume data.
     this.volumeTimeIntervalChanged$ = this.store.select(
       fromSubject.getVolumeDataHasTimeWindowChanged
     )
