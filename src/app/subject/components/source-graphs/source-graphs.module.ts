@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core'
 
 import { ChartsModule } from '../../../charts/charts.module'
 import { MaterialModule } from '../../../material'
+import { PipesModule } from '../../../shared/pipes/pipes.module'
 import { SourceDateAxisComponent } from './source-date-axis/source-date-axis.component'
 import { SourceGraphComponent } from './source-graph/source-graph.component'
 import { SourceGraphsComponent } from './source-graphs.component'
@@ -20,7 +21,7 @@ const COMPONENTS = [
 ]
 
 @NgModule({
-  imports: [CommonModule, ChartsModule, MaterialModule],
+  imports: [CommonModule, ChartsModule, MaterialModule, PipesModule],
   declarations: COMPONENTS,
   exports: COMPONENTS
 })
