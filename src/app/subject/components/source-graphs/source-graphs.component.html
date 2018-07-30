@@ -1,11 +1,11 @@
-<app-tooltip
+<app-source-tooltip
   #tooltip
   [data]="tooltipData$ | async"
   [date]="tooltipDate$ | async"
   [style.transform]="'translate('+ tooltipX +'px, '+ tooltipY +'px)'"
   [style.opacity]="tooltipShow"
   class="tooltip"
-></app-tooltip>
+></app-source-tooltip>
 
 <div class="graphs">
   <div
