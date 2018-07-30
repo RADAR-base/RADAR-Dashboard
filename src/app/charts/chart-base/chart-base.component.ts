@@ -170,6 +170,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
     const svgEl = this.svg.node()
     const width = svgEl.clientWidth || svgEl.parentNode.clientWidth
     const height = svgEl.clientHeight || svgEl.parentNode.clientHeight
+    const path = this.path
 
     this.width = width - this.margin.left - this.margin.right
     this.height = height - this.margin.top - this.margin.bottom
@@ -180,8 +181,6 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
       this.tooltip.attr('width', this.width).attr('height', height)
 
     this.draw()
-
-    const path = this.path
 
     this.chart
       .append('clipPath')
