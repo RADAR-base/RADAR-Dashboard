@@ -1,4 +1,4 @@
-@import '../../../../styles/common';
+@import '../../../../../styles/common';
 
 @keyframes buttonClickAnimation {
   0% {
@@ -18,6 +18,10 @@
 }
 
 .toggle-menu {
+  @include font-small();
+
+  display: flex;
+  flex-direction: row;
   padding-left: 15px;
   border-radius: 4px;
   background-color: $cl-base-40;
@@ -32,7 +36,12 @@ button {
   background-color: transparent;
 }
 
-.button-selected {
+button:hover {
+  background-color: $cl-base-80;
+}
+
+.button-selected,
+.button-selected:hover {
   border: none;
   background-color: white;
   color: $cl-base;
