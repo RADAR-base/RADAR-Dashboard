@@ -30,6 +30,11 @@
           header-content
           [selectedTimeInterval]="sensorsDataTimeInterval$ | async"
         ></app-source-toggle-resolution>
+        <app-source-toggle-resolution
+          *ngIf="sensorsDataTimeInterval$ | async"
+          header-content
+          [selectedTimeInterval]="sensorsDataTimeInterval$ | async"
+        ></app-source-toggle-resolution>
         <app-source-graphs
           *ngIf="volumeIsDataLoaded$ | async"
           [sources]="sources"
