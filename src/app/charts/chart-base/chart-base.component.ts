@@ -179,6 +179,10 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
     this.hasTooltip &&
       this.tooltip.attr('width', this.width).attr('height', height)
 
+    this.draw()
+
+    const path = this.path
+
     this.chart
       .append('clipPath')
       .attr('id', 'rect-clip')
@@ -186,10 +190,6 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
       .attr('x', -this.clipOffset)
       .attr('width', this.width)
       .attr('height', this.height * 2)
-
-    this.draw()
-
-    const path = this.path
 
     this.chart.selectAll('path').styles({
       'clip-path': function(d, i) {
@@ -219,7 +219,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
       .attr('class', 'brush')
       .call(this.brush)
       .transition()
-      .duration(500)
+      .duration(1000)
       .call(
         this.brush.move,
         !this.brushExtentFromSensors
