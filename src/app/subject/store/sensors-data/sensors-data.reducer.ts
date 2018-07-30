@@ -1,6 +1,9 @@
 import { EntityAdapter, EntityState, createEntityAdapter } from '@ngrx/entity'
 
-import { DescriptiveStatistic } from '../../../shared/enums/descriptive-statistic.enum'
+import {
+  DescriptiveStatistic,
+  getStatEnumValue
+} from '../../../shared/enums/descriptive-statistic.enum'
 import { TimeWindow } from '../../../shared/enums/time-window.enum'
 import { SensorsData } from '../../../shared/models/sensors-data.model'
 import { TimeFrame } from '../../../shared/models/time.model'
@@ -15,7 +18,7 @@ export interface State extends EntityState<SensorsData> {
   prevTimeFrame: TimeFrame
   timeWindow: string
   prevTimeWindow: string
-  descriptiveStatistic: DescriptiveStatistic
+  descriptiveStatistic: Number
 }
 
 export const adapter: EntityAdapter<SensorsData> = createEntityAdapter<

@@ -101,6 +101,13 @@ export class SensorsDataEffects {
     })
   )
 
+  @Effect()
+  changeDescriptiveStat$ = this.actions$.pipe(
+    ofType(actions.SET_DESCRIPTIVE_STATISTIC),
+    debounceTime(1000),
+    map(() => new actions.Load())
+  )
+
   constructor(
     private actions$: Actions,
     private sensorsDataService: SensorsDataService,

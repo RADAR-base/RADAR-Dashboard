@@ -57,7 +57,7 @@ export class SetTimeInterval implements Action {
 export class SetDescriptiveStatistic implements Action {
   readonly type = SET_DESCRIPTIVE_STATISTIC
 
-  constructor(public payload: DescriptiveStatistic) {}
+  constructor(public payload: any) {}
 }
 
 export class Destroy implements Action {
