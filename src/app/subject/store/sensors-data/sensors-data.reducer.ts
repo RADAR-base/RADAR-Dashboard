@@ -1,9 +1,6 @@
 import { EntityAdapter, EntityState, createEntityAdapter } from '@ngrx/entity'
 
-import {
-  DescriptiveStatistic,
-  getStatEnumValue
-} from '../../../shared/enums/descriptive-statistic.enum'
+import { DescriptiveStatistic } from '../../../shared/enums/descriptive-statistic.enum'
 import { TimeWindow } from '../../../shared/enums/time-window.enum'
 import { SensorsData } from '../../../shared/models/sensors-data.model'
 import { TimeFrame } from '../../../shared/models/time.model'

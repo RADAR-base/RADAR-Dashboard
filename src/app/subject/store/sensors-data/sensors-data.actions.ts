@@ -1,8 +1,5 @@
-import { Update } from '@ngrx/entity'
 import { Action } from '@ngrx/store'
 
-import { DescriptiveStatistic } from '../../../shared/enums/descriptive-statistic.enum'
-import { TimeWindow } from '../../../shared/enums/time-window.enum'
 import { ChartData } from '../../../shared/models/chart-data.model'
 import { Sensor } from '../../../shared/models/sensor.model'
 import { TimeFrame } from '../../../shared/models/time.model'

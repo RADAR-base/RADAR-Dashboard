@@ -3,10 +3,7 @@ import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs'
 
 import { AppConfig } from '../../../../shared/app-config'
-import {
-  DescriptiveStatistic,
-  getStatEnumValue
-} from '../../../../shared/enums/descriptive-statistic.enum'
+import { getStatEnumValue } from '../../../../shared/enums/descriptive-statistic.enum'
 import * as fromSubject from '../../../store'
 import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.actions'
 
