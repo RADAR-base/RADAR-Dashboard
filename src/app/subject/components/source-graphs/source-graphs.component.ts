@@ -43,6 +43,7 @@ export class SourceGraphsComponent implements OnInit, OnDestroy {
   tooltipY = 0
   tooltipShow = 0 // 0 hide | 1 show
   lineX = 0
+  lineOffset = 3
   path$: Observable<any>
 
   constructor(
@@ -84,7 +85,7 @@ export class SourceGraphsComponent implements OnInit, OnDestroy {
           ? event.clientY
           : event.clientY - this.tooltip.height
 
-      this.lineX = event.layerX
+      this.lineX = event.layerX + this.tooltip.width / 7 - this.lineOffset
       this.tooltipShow = 1
     } else {
       this.tooltipShow = 0
