@@ -60,6 +60,7 @@ export function reducer(state = initialState, action: actions.Actions): State {
     case actions.LOAD_FAIL_RESET: {
       return {
         ...state,
+        timeWindow: state.prevTimeWindow,
         loadFail: false,
         timeWindowChanged: false
       }

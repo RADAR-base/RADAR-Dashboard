@@ -6,6 +6,7 @@ import { catchError, map, switchMap, withLatestFrom } from 'rxjs/operators'
 
 import { TimeFrame } from '../../../shared/models/time.model'
 import { getTimeInterval } from '../../../shared/utils/get-time-interval'
+import { lowerTimeResolution } from '../../../shared/utils/lower-time-resolution'
 import * as fromRoot from '../../../store'
 import { VolumeDataService } from '../../services/volume-data.service'
 import * as volumeDataActions from './volume-data.actions'
@@ -83,9 +84,9 @@ export class VolumeDataEffects {
       ([, prevTimeInterval, timeFrame, timeFrameChanged]) =>
         timeFrameChanged
           ? new volumeDataActions.SetTimeFrame(timeFrame)
-          : prevTimeInterval !== getTimeInterval(timeFrame)
-            ? new volumeDataActions.SetTimeInterval(getTimeInterval(timeFrame))
-            : new volumeDataActions.LoadFailReset()
+          : !lowerTimeResolution(prevTimeInterval, getTimeInterval(timeFrame))
+            ? new volumeDataActions.LoadFailReset()
+            : new volumeDataActions.SetTimeInterval(getTimeInterval(timeFrame))
     )
   )
 

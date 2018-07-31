@@ -7,3 +7,7 @@ export enum TimeWindow {
   ONE_DAY = 86400000,
   ONE_WEEK = 604800000
 }
+
+export function getTimeWindowEnumValue(key) {
+  return TimeWindow[key]
+}
