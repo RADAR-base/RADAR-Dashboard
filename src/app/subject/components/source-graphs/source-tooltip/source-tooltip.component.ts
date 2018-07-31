@@ -14,6 +14,7 @@ import { SourceTooltipItem } from '../../../../shared/models/source-tooltip.mode
   template: `
     <div class="box mat-elevation-z6">
     <div class="date">{{ date | date: 'yyyy/MM/dd h:mm:ss a' }}</div>
+    <div class="data">
       <div
         *ngFor="let item of data"
         [ngSwitch]="item.dataType"
@@ -30,6 +31,7 @@ import { SourceTooltipItem } from '../../../../shared/models/source-tooltip.mode
           </div>
         </div>
       </div>
+    </div>
     </div>
   `,
   styleUrls: ['./source-tooltip.component.scss'],
