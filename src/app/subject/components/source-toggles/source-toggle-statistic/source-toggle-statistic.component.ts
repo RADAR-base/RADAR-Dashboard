@@ -11,7 +11,7 @@ import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.ac
   selector: 'app-source-toggle-statistic',
   template: `
   <div class="toggle-stat">
-  <mat-select [placeholder]="statistics[selectedStatistic]?.label?.EN">
+  <mat-select [value]="statistics[selectedStatistic]?.label?.EN">
   <mat-option *ngFor="let stat of statisticKeys" (click)="onSelect(stat)" [value]="statistics[stat]?.label?.EN">
   {{ statistics[stat]?.label?.EN }}
   </mat-option>
