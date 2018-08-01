@@ -121,7 +121,6 @@ export const MockVolumeAPIResponse = {
   ]
 }
 
-
 export const MockSourceData: SourceData = {
   id: 10990,
   sourceDataType: 'ELECTRODERMAL_ACTIVITY',
