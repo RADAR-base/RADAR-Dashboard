@@ -242,13 +242,13 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   }
 
   private updateBrushFromSensorDates() {
-    const brushLeft = this.xScale(this.sensorDataTimeFrame[0])
-    const brushRight = this.xScale(this.sensorDataTimeFrame[1])
-    const temp_brushExtent = [brushLeft, brushRight]
+    const brushTimeStart = this.xScale(this.sensorDataTimeFrame[0])
+    const brushTimeEnd = this.xScale(this.sensorDataTimeFrame[1])
+    const temp_brushExtent = [brushTimeStart, brushTimeEnd]
 
     this.brushExtentFromSensors = [
-      brushLeft < 0 ? 0 : brushLeft,
-      brushRight > this.width ? this.width : brushRight
+      brushTimeStart < 0 ? 0 : brushTimeStart,
+      brushTimeEnd > this.width ? this.width : brushTimeEnd
     ]
     if (!arraysEqual(temp_brushExtent, this.brushExtentFromSensors)) {
       this.brushUpdatedFromSensors = false
