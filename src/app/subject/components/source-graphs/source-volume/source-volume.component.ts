@@ -15,7 +15,9 @@ import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.ac
       [hasXAxis]="true"
       [hasBrush]="true"
       [categorical]="false"
+      [path]="path"
       [margin]="{ top: 8, right: 36, bottom: 32, left: 63 }"
+      [sensorDataTimeFrame]="sensorDataTimeFrame"
       (brushMove)="onBrushMove($event)"
     ></app-chart-base-bar>
   `,
@@ -23,14 +25,17 @@ import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.ac
 })
 export class SourceVolumeComponent {
   @Input() data
+  @Input() path
+  sensorDataTimeFrame: any
 
   constructor(private store: Store<fromSubject.State>) {}
 
-  onBrushMove(date: any) {
+  onBrushMove(dates: Date[]) {
+    this.sensorDataTimeFrame = dates
     this.store.dispatch(
       new sensorsDataActions.SetTimeFrame({
-        startDateTime: date[0].toISOString(),
-        endDateTime: date[1].toISOString()
+        startDateTime: dates[0],
+        endDateTime: dates[1]
       })
     )
   }

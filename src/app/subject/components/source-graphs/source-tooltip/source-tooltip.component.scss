@@ -14,9 +14,20 @@
 }
 
 .box {
-  padding: 8px 16px;
   border-radius: 4px;
-  background-color: $cl-base-90;
+  background-color: $cl-base-60;
+}
+
+.box > .date {
+  padding: 8px 25px;
+  border-radius: 7px 7px 0 0;
+  background-color: $cl-base-80;
+  text-align: center;
+}
+
+.box > .data {
+  padding: 5px 25px 10px;
+  border-radius: 7px;
 }
 
 .item {
@@ -31,10 +42,7 @@
 }
 
 .value {
+  color: white;
   font-weight: bold;
   line-height: 1em;
-}
-
-.date {
-  text-align: center;
 }

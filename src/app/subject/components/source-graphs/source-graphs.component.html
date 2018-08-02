@@ -1,10 +1,11 @@
-<app-tooltip
+<app-source-tooltip
   #tooltip
   [data]="tooltipData$ | async"
   [date]="tooltipDate$ | async"
   [style.transform]="'translate('+ tooltipX +'px, '+ tooltipY +'px)'"
   [style.opacity]="tooltipShow"
-></app-tooltip>
+  class="tooltip"
+></app-source-tooltip>
 
 <div class="graphs">
   <div
@@ -30,6 +31,7 @@
             [sensorData]="sensorsData[sourceData.uid]?.data"
             [isLoaded]="isDataLoaded[sourceData.uid]"
             [sensorId]="sourceData.uid"
+            [path]="path$ | async"
           ></app-source-graph>
         </div>
       </ng-container>
@@ -47,17 +49,22 @@
 
 <div class="bottom-group">
   <app-source-date-axis
-    *ngIf="sensorsDataTimeFrame && sensorsDataTimeFrame[0]"
+    *ngIf="sensorsDataTimeFrame && sensorsDataTimeFrame?.startDateTime"
     class="common-axis"
     [timeFrame]="sensorsDataTimeFrame"
   ></app-source-date-axis>
 
   <div class="grid">
-    <app-source-volume-timeframe [timeFrame]="volumeTimeFrame"></app-source-volume-timeframe>
+    <app-source-volume-timeframe
+      *ngIf="volumeTimeFrame?.startDateTime && volumeTimeFrame"
+      [timeFrame]="volumeTimeFrame"
+      class="timeframe"
+    ></app-source-volume-timeframe>
     <app-source-volume
       *ngIf="isVolumeDataLoaded"
       class="volume"
       [data]="volumeData"
+      [path]="path$ | async"
     ></app-source-volume>
   </div>
 </div>

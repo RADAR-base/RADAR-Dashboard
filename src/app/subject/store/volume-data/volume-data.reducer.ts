@@ -15,8 +15,13 @@ export interface VolumeData {
 export interface State extends EntityState<VolumeData> {
   isLoaded: boolean
   timeFrame: TimeFrame
+  prevTimeFrame: TimeFrame
   timeWindow: string
+  prevTimeWindow: string
   descriptiveStatistic: DescriptiveStatistic
+  loadFail: boolean
+  timeFrameChanged: boolean
+  timeWindowChanged: boolean
 }
 
 export const adapter: EntityAdapter<VolumeData> = createEntityAdapter<
@@ -28,15 +33,74 @@ export const adapter: EntityAdapter<VolumeData> = createEntityAdapter<
 export const initialState: State = adapter.getInitialState({
   isLoaded: false,
   timeFrame: null,
+  prevTimeFrame: null,
   timeWindow: null,
-  descriptiveStatistic: DescriptiveStatistic.DISTINCT
+  prevTimeWindow: null,
+  descriptiveStatistic: DescriptiveStatistic.DISTINCT,
+  loadFail: false,
+  timeFrameChanged: false,
+  timeWindowChanged: false
 })
 
 export function reducer(state = initialState, action: actions.Actions): State {
   switch (action.type) {
-    case actions.LOAD:
+    case actions.LOAD: {
+      return {
+        ...state
+      }
+    }
+
+    case actions.LOAD_FAIL: {
+      return {
+        ...state,
+        loadFail: true
+      }
+    }
+
+    case actions.LOAD_FAIL_RESET: {
+      return {
+        ...state,
+        timeWindow: state.prevTimeWindow,
+        loadFail: false,
+        timeWindowChanged: false
+      }
+    }
+
     case actions.DESTROY: {
       return initialState
+    }
+
+    case actions.SET_TIME_FRAME: {
+      let tempTimeFrame
+      if (!action.payload.startDateTime) {
+        const endTime = new Date()
+        const startTime = new Date(
+          endTime.getFullYear() - 1,
+          endTime.getMonth(),
+          endTime.getDate()
+        )
+        tempTimeFrame = {
+          startDateTime: startTime,
+          endDateTime: endTime
+        }
+      } else {
+        tempTimeFrame = action.payload
+      }
+      return {
+        ...state,
+        prevTimeFrame: state.timeFrame,
+        timeFrame: tempTimeFrame,
+        timeFrameChanged: true
+      }
+    }
+
+    case actions.SET_TIME_INTERVAL: {
+      return {
+        ...state,
+        prevTimeWindow: state.timeWindow,
+        timeWindow: action.payload,
+        timeWindowChanged: true
+      }
     }
 
     case actions.LOAD_SUCCESS: {
@@ -55,9 +119,9 @@ export function reducer(state = initialState, action: actions.Actions): State {
       return {
         ...adapter.addAll(new_data, state),
         isLoaded: true,
-        timeFrame: header.timeFrame,
-        timeWindow: header.timeWindow,
-        descriptiveStatistic: header.statistic
+        loadFail: false,
+        timeFrameChanged: false,
+        timeWindowChanged: false
       }
     }
 
@@ -68,6 +132,11 @@ export function reducer(state = initialState, action: actions.Actions): State {
 
 export const getIsDataLoaded = (state: State) => state.isLoaded
 export const getTimeFrame = (state: State) => state.timeFrame
+export const getPrevTimeFrame = (state: State) => state.prevTimeFrame
 export const getTimeInterval = (state: State) => state.timeWindow
+export const getPrevTimeInterval = (state: State) => state.prevTimeWindow
 export const getDescriptiveStatistic = (state: State) =>
   state.descriptiveStatistic
+export const getHasLoadFailed = (state: State) => state.loadFail
+export const getHasTimeFrameChanged = (state: State) => state.timeFrameChanged
+export const getHasTimeWindowChanged = (state: State) => state.timeWindowChanged

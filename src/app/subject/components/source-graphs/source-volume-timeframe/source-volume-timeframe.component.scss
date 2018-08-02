@@ -7,7 +7,7 @@
   display: flex;
   flex-direction: column;
   padding-left: $size-graph-side-label;
-  font-size: 10px;
+  font-size: 9px;
 }
 
 :host::ng-deep {
@@ -33,10 +33,28 @@
 }
 
 .text {
-  padding: 7px;
+  padding: 6px;
   text-align: center;
 }
 
 hr {
+  margin: 3px;
   border: 0.4px solid $cl-white-20;
+}
+
+mat-datepicker-toggle {
+  width: 5px;
+}
+
+mat-form-field {
+  margin-top: -1em;
+  margin-bottom: -1.25em;
+  padding-top: 0;
+  padding-left: 5px;
+  width: 65px;
+}
+
+::ng-deep .mat-form-field-underline {
+  display: none;
+  opacity: 0;
 }

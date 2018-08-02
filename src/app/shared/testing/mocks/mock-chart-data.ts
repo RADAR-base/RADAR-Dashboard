@@ -15,8 +15,8 @@ export const MockAPISampleDataset = [
 
 export const MockTimeIntervalChartData = 'TEN_SECOND'
 export const MockTimeFrameChartData: EffectiveTimeFrame = {
-  startDateTime: '2017-06-16T10:09:10.000Z',
-  endDateTime: '2017-06-16T10:49:00.000Z'
+  startDateTime: new Date('2017-06-16T10:09:10.000Z'),
+  endDateTime: new Date('2017-06-16T10:49:00.000Z')
 }
 
 export const MockChartDataExpected: ChartData[] = [
@@ -35,8 +35,8 @@ export const MockChartDataExpected: ChartData[] = [
 ]
 
 export const MockTimeFrameChartDataWithStartEndHoles: EffectiveTimeFrame = {
-  startDateTime: '2017-06-16T10:09:00.000Z',
-  endDateTime: '2017-06-16T10:49:10.000Z'
+  startDateTime: new Date('2017-06-16T10:09:00.000Z'),
+  endDateTime: new Date('2017-06-16T10:49:10.000Z')
 }
 
 export const MockChartDataWithStartEndHolesExpected: ChartData[] = [

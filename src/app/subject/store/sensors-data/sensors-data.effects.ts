@@ -6,13 +6,12 @@ import {
   catchError,
   debounceTime,
   map,
-  mergeMap,
   switchMap,
-  tap,
   withLatestFrom
 } from 'rxjs/operators'
 
 import { getTimeInterval } from '../../../shared/utils/get-time-interval'
+import { timeFramesEqual } from '../../../shared/utils/timeframes-equal'
 import * as fromRoot from '../../../store'
 import { SensorsDataService } from '../../services/sensors-data.service'
 import * as actions from './sensors-data.actions'
@@ -64,27 +63,42 @@ export class SensorsDataEffects {
     )
   )
 
-  @Effect()
+  @Effect({ dispatch: false })
   updateTimeInterval$ = this.actions$.pipe(
     ofType(actions.SET_TIME_FRAME),
-    debounceTime(1000),
+    debounceTime(2000),
     withLatestFrom(
       this.store.select(fromSubject.getSensorsDataTimeFrame),
+      this.store.select(fromSubject.getSensorsDataPrevTimeFrame),
       this.store.select(fromSubject.getSensorsDataTimeInterval)
     ),
-    map(
-      ([, timeFrame, timeInterval]) =>
-        new actions.SetTimeInterval(
-          timeInterval ? timeInterval : getTimeInterval(timeFrame)
-        )
-    )
+    map(([, timeFrame, prevTimeFrame, timeInterval]) => {
+      return !timeFramesEqual(timeFrame, prevTimeFrame)
+        ? this.store.dispatch(
+            new actions.SetTimeInterval(
+              timeInterval ? timeInterval : getTimeInterval(timeFrame)
+            )
+          )
+        : []
+    })
   )
 
-  @Effect()
+  @Effect({ dispatch: false })
   loadSensorsData$ = this.actions$.pipe(
     ofType(actions.SET_TIME_INTERVAL),
-    debounceTime(1000),
-    map(([]) => new actions.Load())
+    debounceTime(2000),
+    withLatestFrom(
+      this.store.select(fromSubject.getSensorsDataTimeFrame),
+      this.store.select(fromSubject.getSensorsDataPrevTimeFrame),
+      this.store.select(fromSubject.getSensorsDataTimeInterval),
+      this.store.select(fromSubject.getSensorsDataPrevTimeInterval)
+    ),
+    map(([, timeFrame, prevTimeFrame, timeInterval, prevTimeInterval]) => {
+      !timeFramesEqual(timeFrame, prevTimeFrame) ||
+      timeInterval !== prevTimeInterval
+        ? this.store.dispatch(new actions.Load())
+        : []
+    })
   )
 
   constructor(

@@ -1,9 +1,9 @@
 export interface TimeFrame {
-  startDateTime: number
-  endDateTime: number
+  startDateTime: Date
+  endDateTime: Date
 }
 
 export interface EffectiveTimeFrame {
-  startDateTime: string
-  endDateTime: string
+  startDateTime: Date
+  endDateTime: Date
 }

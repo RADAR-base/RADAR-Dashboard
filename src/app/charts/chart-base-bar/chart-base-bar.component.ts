@@ -12,8 +12,8 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
 })
 export class ChartBaseBarComponent extends ChartBaseComponent {
   @Input() categorical = true
-  @Input() paddingInner = 0
-  @Input() paddingOuter = 0
+  @Input() paddingInner = 0.2
+  @Input() paddingOuter = 0.3
 
   data: ChartData[]
   bar: any
@@ -34,7 +34,7 @@ export class ChartBaseBarComponent extends ChartBaseComponent {
         .scaleBand()
         .rangeRound([0, this.width])
         .paddingInner(this.paddingInner)
-        .paddingOuter(this.categorical ? this.paddingOuter : 0)
+        .paddingOuter(this.paddingOuter)
         .domain(this.data.map(d => d.name))
     } else {
       this.xScale = d3
@@ -80,6 +80,11 @@ export class ChartBaseBarComponent extends ChartBaseComponent {
           ? this.xScale.bandwidth()
           : this.width / this.data.length
       )
+      .attr('y', this.height)
+      .attr('height', 0)
+      .attr('clip-path', `url(${this.path}#rect-clip)`)
+      .transition()
+      .duration(1500)
       .attr('y', d => this.yScale(d.value))
       .attr('height', d => this.height - this.yScale(d.value))
 

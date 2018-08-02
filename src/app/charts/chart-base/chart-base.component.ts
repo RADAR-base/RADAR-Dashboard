@@ -19,6 +19,7 @@ import * as shortid from 'shortid'
 import { ChartColors } from '../../shared/enums/chart-colors.enum'
 import { ChartData } from '../../shared/models/chart-data.model'
 import { ConfigKey } from '../../shared/models/config.model'
+import { arraysEqual } from '../../shared/utils/arrays-equal'
 
 /**
  *  BaseComponent to be extended by chart components
@@ -55,6 +56,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   @Input() hasXAxis = false
   @Input() hasTooltip = false
   @Input() hasBrush = false
+  @Input() sensorDataTimeFrame
   @Input() path
   @Input()
   get chartData() {
@@ -63,6 +65,10 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   set chartData(value) {
     this.data = value
     this.beforeUpdate()
+
+    if (this.sensorDataTimeFrame) {
+      this.updateBrushFromSensorDates()
+    }
   }
 
   @Output() tooltipMouseMove = new EventEmitter<Date>()
@@ -83,6 +89,9 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   brush: any
   brushWidthDefault = 120
   brushExtent
+  brushExtentFromSensors
+  brushUpdatedFromSensors: boolean
+  clipOffset = 15
 
   ngAfterViewInit() {
     this.uid = shortid.generate()
@@ -161,6 +170,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
     const svgEl = this.svg.node()
     const width = svgEl.clientWidth || svgEl.parentNode.clientWidth
     const height = svgEl.clientHeight || svgEl.parentNode.clientHeight
+    const path = this.path
 
     this.width = width - this.margin.left - this.margin.right
     this.height = height - this.margin.top - this.margin.bottom
@@ -172,7 +182,13 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
 
     this.draw()
 
-    const path = this.path
+    this.chart
+      .append('clipPath')
+      .attr('id', 'rect-clip')
+      .append('rect')
+      .attr('x', -this.clipOffset)
+      .attr('width', this.width)
+      .attr('height', this.height * 2)
 
     this.chart.selectAll('path').styles({
       'clip-path': function(d, i) {
@@ -191,26 +207,53 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
     this.brush = d3
       .brushX()
       .extent([[0, 0], [this.width, this.height]])
-      .on('end', () => this.brushed(this.xScale))
+      .on('end', () => this.brushed())
+
+    if (this.sensorDataTimeFrame) {
+      this.updateBrushFromSensorDates()
+    }
 
     this.chart
       .append('g')
       .attr('class', 'brush')
       .call(this.brush)
+      .transition()
+      .duration(1000)
       .call(
         this.brush.move,
-        this.brushExtent
-          ? this.brushExtent
-          : [this.width - this.brushWidthDefault, this.width]
+        !this.brushExtentFromSensors
+          ? [this.width - this.brushWidthDefault, this.width]
+          : this.brushExtentFromSensors
       )
   }
 
-  private brushed(xScale) {
-    this.brushExtent = d3.event.selection
+  private brushed() {
+    if (!this.brushUpdatedFromSensors) {
+      this.brushExtent = d3.event.selection
 
-    this.brushMove.emit([
-      xScale.invert(this.brushExtent[0]),
-      xScale.invert(this.brushExtent[1])
-    ])
+      this.brushMove.emit([
+        this.xScale.invert(this.brushExtent[0]),
+        this.xScale.invert(this.brushExtent[1])
+      ])
+    } else {
+      this.brushUpdatedFromSensors = false
+      this.brushMove.emit(this.sensorDataTimeFrame)
+    }
+  }
+
+  private updateBrushFromSensorDates() {
+    const brushTimeStart = this.xScale(this.sensorDataTimeFrame[0])
+    const brushTimeEnd = this.xScale(this.sensorDataTimeFrame[1])
+    const temp_brushExtent = [brushTimeStart, brushTimeEnd]
+
+    this.brushExtentFromSensors = [
+      brushTimeStart < 0 ? 0 : brushTimeStart,
+      brushTimeEnd > this.width ? this.width : brushTimeEnd
+    ]
+    if (!arraysEqual(temp_brushExtent, this.brushExtentFromSensors)) {
+      this.brushUpdatedFromSensors = false
+    } else {
+      this.brushUpdatedFromSensors = true
+    }
   }
 }

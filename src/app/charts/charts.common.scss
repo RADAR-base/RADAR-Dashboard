@@ -3,6 +3,8 @@
 :host {
   display: flex;
   flex: 1 1 0;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 :host::ng-deep {

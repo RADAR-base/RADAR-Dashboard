@@ -15,27 +15,15 @@ import * as volumeDataActions from '../store/volume-data/volume-data.actions'
 export class VolumeDataService {
   private url = `${ENV.API_URI}/aggregate`
   private destroy$: Observable<Action>
-
-  // NOTE: Temporary values are used to get data from volume API. Time window is automatically specified (ONE_WEEK) by API.
-  private endTime = new Date()
-  private startTime = new Date(
-    this.endTime.getFullYear() - 1,
-    this.endTime.getMonth(),
-    this.endTime.getDate()
-  )
-
-  private timeInterval = 'ONE_DAY'
+  private options: any = {}
 
   constructor(private http: HttpClient, private actions$: Actions) {
     this.destroy$ = this.actions$.pipe(ofType(volumeDataActions.DESTROY))
   }
 
-  getData(
-    studyName,
-    subjectId,
-    descriptiveStatistic,
-    sources: any
-  ): Observable<any> {
+  getData(sources, options): Observable<any> {
+    this.options = options
+
     const new_sources = new Array()
 
     if (sources) {
@@ -56,34 +44,33 @@ export class VolumeDataService {
     }
 
     return this.http
-      .post<any>(
-        this.parseURL(studyName, subjectId, descriptiveStatistic),
-        JSON.stringify({ sources: new_sources }),
-        {
-          headers: new HttpHeaders({
-            'Content-Type': 'application/json'
-          })
-        }
-      )
+      .post<any>(this.parseURL(), JSON.stringify({ sources: new_sources }), {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        })
+      })
       .pipe(takeUntil(this.destroy$))
   }
 
-  private parseURL(studyName, subjectId, descriptiveStatistic): string {
+  private parseURL(): string {
     let url = [
       this.url,
-      studyName,
-      subjectId,
-      DescriptiveStatistic[descriptiveStatistic].toLowerCase()
+      this.options.studyName,
+      this.options.subjectId,
+      DescriptiveStatistic[this.options.descriptiveStatistic].toLowerCase()
     ].join('/')
 
-    this.startTime
-      ? (url = `${url}?startTime=${this.startTime.toISOString()}`)
-      : (url = url)
-    this.endTime
-      ? (url = `${url}&endTime=${this.endTime.toISOString()}`)
+    url = url + '?'
+    url = `${url}timeWindow=${this.options.timeWindow}`
+
+    const startTime = this.options.timeFrame.startDateTime
+    const endTime = this.options.timeFrame.endDateTime
+
+    startTime
+      ? (url = `${url}&startTime=${startTime.toISOString()}`)
       : (url = url)
 
-    url = `${url}&timeWindow=${this.timeInterval}`
+    endTime ? (url = `${url}&endTime=${endTime.toISOString()}`) : (url = url)
 
     return url
   }

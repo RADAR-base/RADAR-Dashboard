@@ -1,7 +1,10 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing'
+import { StoreModule, combineReducers } from '@ngrx/store'
 
+import * as fromRoot from '../../../../store'
+import * as fromFeature from '../../../store'
 import { SourceGraphsModule } from '../source-graphs.module'
-import { SourceVolumeTimeFrameComponent } from './source-volume-timeframe'
+import { SourceVolumeTimeFrameComponent } from './source-volume-timeframe.component'
 
 describe('SourceVolumeTimeFrameComponent', () => {
   let component: SourceVolumeTimeFrameComponent
@@ -9,7 +12,13 @@ describe('SourceVolumeTimeFrameComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [SourceGraphsModule]
+      imports: [
+        SourceGraphsModule,
+        StoreModule.forRoot({
+          ...fromRoot.reducers,
+          subject: combineReducers(fromFeature.reducers)
+        })
+      ]
     }).compileComponents()
   }))
 

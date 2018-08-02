@@ -58,6 +58,7 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
       .y(d => this.yScale(d.value))
       .curve(d3.curveMonotoneX)
       .defined(d => d.value)
+      .pointAttrs({ r: 1.5 })
 
     super.init()
   }
