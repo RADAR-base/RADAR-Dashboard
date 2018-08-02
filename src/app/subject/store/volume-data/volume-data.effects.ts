@@ -4,9 +4,9 @@ import { Store } from '@ngrx/store'
 import { of } from 'rxjs'
 import { catchError, map, switchMap, withLatestFrom } from 'rxjs/operators'
 
+import { isLowerTimeResolution } from '../../../shared/enums/time-window.enum'
 import { TimeFrame } from '../../../shared/models/time.model'
 import { getTimeInterval } from '../../../shared/utils/get-time-interval'
-import { lowerTimeResolution } from '../../../shared/utils/lower-time-resolution'
 import * as fromRoot from '../../../store'
 import { VolumeDataService } from '../../services/volume-data.service'
 import * as volumeDataActions from './volume-data.actions'
@@ -84,7 +84,7 @@ export class VolumeDataEffects {
       ([, prevTimeInterval, timeFrame, timeFrameChanged]) =>
         timeFrameChanged
           ? new volumeDataActions.SetTimeFrame(timeFrame)
-          : lowerTimeResolution(prevTimeInterval, getTimeInterval(timeFrame))
+          : isLowerTimeResolution(prevTimeInterval, getTimeInterval(timeFrame))
             ? new volumeDataActions.SetTimeInterval(getTimeInterval(timeFrame))
             : new volumeDataActions.LoadFailReset()
     )
