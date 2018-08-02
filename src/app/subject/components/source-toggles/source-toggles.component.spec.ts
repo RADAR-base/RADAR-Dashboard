@@ -4,11 +4,11 @@ import { StoreModule, combineReducers } from '@ngrx/store'
 
 import * as fromRoot from '../../../store'
 import * as fromFeature from '../../store'
-import { SourceToggleResolutionComponent } from './source-toggle-resolution.component'
+import { SourceTogglesComponent } from './source-toggles.component'
 
-describe('SourceToggleResolutionComponent', () => {
-  let component: SourceToggleResolutionComponent
-  let fixture: ComponentFixture<SourceToggleResolutionComponent>
+describe('SourceTogglesComponent', () => {
+  let component: SourceTogglesComponent
+  let fixture: ComponentFixture<SourceTogglesComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -18,11 +18,11 @@ describe('SourceToggleResolutionComponent', () => {
           subject: combineReducers(fromFeature.reducers)
         })
       ],
-      declarations: [SourceToggleResolutionComponent],
+      declarations: [SourceTogglesComponent],
       schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents()
 
-    fixture = TestBed.createComponent(SourceToggleResolutionComponent)
+    fixture = TestBed.createComponent(SourceTogglesComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
   })

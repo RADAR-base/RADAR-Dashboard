@@ -9,7 +9,7 @@ import { ToolbarModule } from '../core/components/toolbar/toolbar.module'
 import { MaterialModule } from '../material'
 import { SourceGraphsModule } from './components/source-graphs/source-graphs.module'
 import { SourceListModule } from './components/source-list/source-list.module'
-import { SourceToggleResolutionModule } from './components/source-toggle-resolution/source-toggle-resolution.module'
+import { SourceTogglesModule } from './components/source-toggles/source-toggles.module'
 import { SubjectComponent } from './containers/subject.component'
 import { SensorsDataService } from './services/sensors-data.service'
 import { SourcesService } from './services/sources.service'
@@ -26,7 +26,7 @@ import { routes } from './subject.routing'
     MaterialModule,
     SourceListModule,
     SourceGraphsModule,
-    SourceToggleResolutionModule,
+    SourceTogglesModule,
     TileModule,
     ToolbarModule,
     RouterModule.forChild(routes),

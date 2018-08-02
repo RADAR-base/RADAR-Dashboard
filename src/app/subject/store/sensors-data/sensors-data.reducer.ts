@@ -15,7 +15,7 @@ export interface State extends EntityState<SensorsData> {
   prevTimeFrame: TimeFrame
   timeWindow: string
   prevTimeWindow: string
-  descriptiveStatistic: DescriptiveStatistic
+  descriptiveStatistic: Number
 }
 
 export const adapter: EntityAdapter<SensorsData> = createEntityAdapter<

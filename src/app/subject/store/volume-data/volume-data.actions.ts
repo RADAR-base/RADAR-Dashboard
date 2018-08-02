@@ -1,4 +1,3 @@
-import { Dictionary } from '@ngrx/entity/src/models'
 import { Action } from '@ngrx/store'
 
 import { TimeFrame } from '../../../shared/models/time.model'

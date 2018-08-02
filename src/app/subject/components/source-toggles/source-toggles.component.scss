@@ -1,0 +1,8 @@
+@import '../../../../styles/common';
+
+:host {
+  display: flex;
+  flex-direction: row;
+  overflow: auto;
+  padding-left: 35%;
+}

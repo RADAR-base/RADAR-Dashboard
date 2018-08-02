@@ -25,11 +25,11 @@
       </app-tile>
 
       <app-tile label="Graphs">
-        <app-source-toggle-resolution
+        <app-source-toggles
           *ngIf="sensorsDataTimeInterval$ | async"
           header-content
-          [selectedTimeInterval]="sensorsDataTimeInterval$ | async"
-        ></app-source-toggle-resolution>
+          [sensorsDataTimeInterval]="sensorsDataTimeInterval$ | async"
+        ></app-source-toggles>
         <app-source-graphs
           *ngIf="volumeIsDataLoaded$ | async"
           [sources]="sources"

@@ -12,3 +12,7 @@ export enum DescriptiveStatistic {
   RECEIVED_MESSAGES,
   DISTINCT
 }
+
+export function getStatEnumValue(key) {
+  return DescriptiveStatistic[key]
+}
