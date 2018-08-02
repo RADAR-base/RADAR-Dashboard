@@ -70,7 +70,7 @@ export class SensorsDataService {
                 this.options.timeFrame,
                 this.options.timeWindow,
                 config.chart.timeHoles
-              ).sort((a, b) => a.date - b.date),
+              ),
               sensor
             })
           } else {
