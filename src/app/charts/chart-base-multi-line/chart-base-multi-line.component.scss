@@ -4,14 +4,3 @@
 .text {
   @include font-small();
 }
-
-.legend {
-  @include font-small();
-
-  display: flex;
-  flex-direction: row;
-  padding-left: 15px;
-  border-radius: 4px;
-  background-color: $cl-base-40;
-  text-transform: capitalize;
-}
