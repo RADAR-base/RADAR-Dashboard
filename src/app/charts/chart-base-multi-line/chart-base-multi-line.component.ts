@@ -19,6 +19,9 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
   line: any
   lineGroup: any
   legend
+  legend_pos = 10
+  legend_offset = 80
+  key_labels
 
   init() {
     this.lineGroup = this.chart.append('g')
@@ -43,6 +46,10 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
   }
 
   draw() {
+    this.key_labels = this.keys.map(d => d.label.EN)
+    this.key_labels.push(this.key_labels[0])
+    this.key_labels.sort()
+
     this.xScale = d3
       .scaleTime()
       .range([0, this.width])
@@ -90,16 +97,13 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
       .attr('class', 'legend')
       .append('svg')
       .attr('x', this.width - 250)
-      .attr('y', -20)
+      .attr('y', -25)
       .attr('width', this.width)
       .attr('height', this.height - 100)
 
-    let dataL = 0
-    const offset = 80
-
     this.legend
       .append('rect')
-      .attr('width', '25%')
+      .attr('width', '28%')
       .attr('height', '20%')
       .attr('fill', '#0b4a59')
       .attr('rx', '4')
@@ -109,20 +113,15 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
 
     this.legend = this.legend
       .selectAll('.legend')
-      .data(this.keys.map(d => d.label.EN))
+      .data(this.key_labels)
       .enter()
       .append('g')
       .attr('class', 'legend')
       .attr('margin', 10)
-      .attr('transform', function(d, i) {
-        if (i === 0) {
-          dataL = d.length + offset
-          return 'translate(0,5)'
-        } else {
-          const newdataL = dataL
-          dataL += d.length + offset
-          return 'translate(' + newdataL + ',5)'
-        }
+      .attr('transform', d => {
+        const new_legend_pos = this.legend_pos
+        this.legend_pos += d.length + this.legend_offset
+        return 'translate(' + new_legend_pos + ', 5)'
       })
 
     this.legend
@@ -130,7 +129,7 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
       .attr('cx', 5)
       .attr('cy', 5)
       .attr('r', 4)
-      .style('fill', (d, i) => this.colorScale(d.key))
+      .style('fill', (d, i) => this.colorScale(this.keys[i - 1].key))
 
     this.legend
       .append('text')
