@@ -19,8 +19,8 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
   line: any
   lineGroup: any
   legend
-  legend_pos = 10
-  legend_offset = 80
+  legend_pos
+  legend_offset
   key_labels
 
   init() {
@@ -46,9 +46,7 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
   }
 
   draw() {
-    this.key_labels = this.keys.map(d => d.label.EN)
-    this.key_labels.push(this.key_labels[0])
-    this.key_labels.sort()
+    // CHART
 
     this.xScale = d3
       .scaleTime()
@@ -92,27 +90,37 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
         .duration(500)
     })
 
+    // LEGEND
+
+    this.key_labels = this.keys.map(d => d.label.EN)
+    this.key_labels.push(this.key_labels[0])
+    this.key_labels.sort()
+    this.legend_offset = this.width / 14
+    this.legend_pos = 10
+
+    this.chart.selectAll('.legend_wrap').remove()
+
     this.legend = this.chart
       .append('g')
-      .attr('class', 'legend')
+      .attr('class', 'legend_wrap')
       .append('svg')
-      .attr('x', this.width - 250)
+      .attr('x', this.width / 1.35)
       .attr('y', -25)
       .attr('width', this.width)
       .attr('height', this.height - 100)
 
     this.legend
       .append('rect')
-      .attr('width', '28%')
+      .attr('width', this.width / 4)
       .attr('height', '20%')
       .attr('fill', '#0b4a59')
       .attr('rx', '4')
       .attr('ry', '4')
       .attr('fill-opacity', 0.2)
-      .attr('class', 'legend')
+      .attr('class', 'legends')
 
     this.legend = this.legend
-      .selectAll('.legend')
+      .selectAll('.legends')
       .data(this.key_labels)
       .enter()
       .append('g')
