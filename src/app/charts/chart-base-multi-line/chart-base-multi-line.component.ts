@@ -105,7 +105,7 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
       .attr('class', 'legend_wrap')
       .append('svg')
       .attr('x', this.width / 1.35)
-      .attr('y', -25)
+      .attr('y', -30)
       .attr('width', this.width)
       .attr('height', this.height - 100)
 
