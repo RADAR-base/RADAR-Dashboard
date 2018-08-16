@@ -211,9 +211,9 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
     if (this.keys) {
       this.chart.selectAll('.legend_wrap').remove()
 
+      this.isSingle = this.keys.length === 1
       this.legendOffset = this.width / 14
       this.legendPos = this.legendMargin
-      this.isSingle = this.keys.length === 1
 
       this.legend = this.chart
         .append('g')
