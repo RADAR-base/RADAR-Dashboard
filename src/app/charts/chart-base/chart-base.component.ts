@@ -97,6 +97,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   legendOffset
   legendMargin = 10
   colorScale: any
+  isSingle: boolean
 
   ngAfterViewInit() {
     this.uid = shortid.generate()
@@ -146,7 +147,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
         .append('rect')
         .attr('class', 'tooltip-mouse-box')
         .attr('data-tooltipMouseBox', true)
-        .on('mousemove', () => this.onTooltipMouseMove())
+        .on('mousemove', this.onTooltipMouseMove())
     }
 
     this.init()
@@ -212,26 +213,27 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
 
       this.legendOffset = this.width / 14
       this.legendPos = this.legendMargin
+      this.isSingle = this.keys.length === 0
 
       this.legend = this.chart
         .append('g')
         .attr('class', 'legend_wrap')
         .append('svg')
-        .attr('x', this.keys.length > 1 ? this.width / 1.35 : this.width / 1.16)
-        .attr('y', () => (this.keys.length > 1 ? -30 : -28))
+        .attr('x', !this.isSingle ? this.width / 1.35 : this.width / 1.16)
+        .attr('y', !this.isSingle ? -30 : -28)
         .attr('width', this.width)
         .attr('height', this.height - 100)
 
       this.legend
         .append('rect')
-        .attr('width', this.keys.length > 1 ? this.width / 4 : this.width / 8)
+        .attr('width', !this.isSingle ? this.width / 4 : this.width / 8)
         .attr('rx', '4')
         .attr('ry', '4')
         .attr('class', 'legends')
 
       this.legend = this.legend
         .selectAll('.legend_wrap')
-        .data(this.keys.length > 1 ? this.keys.map(d => d.label.EN) : this.keys)
+        .data(!this.isSingle ? this.keys.map(d => d.label.EN) : this.keys)
         .enter()
         .append('g')
         .attr('class', 'legend')
@@ -248,7 +250,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
         .attr('r', 5)
         .style(
           'fill',
-          this.keys.length > 1
+          !this.isSingle
             ? (d, i) => this.colorScale(this.keys[i].key)
             : this.color
         )
