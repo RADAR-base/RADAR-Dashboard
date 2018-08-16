@@ -220,7 +220,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
         .attr('class', 'legend_wrap')
         .append('svg')
         .attr('x', this.isSingle ? this.width / 1.16 : this.width / 1.35)
-        .attr('y', this.isSingle ? -28 : -30)
+        .attr('y', -30)
         .attr('width', this.width)
         .attr('height', this.height - 100)
 
