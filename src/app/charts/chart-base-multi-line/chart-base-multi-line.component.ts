@@ -19,9 +19,9 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
   line: any
   lineGroup: any
   legend
-  legend_pos
-  legend_offset
-  key_labels
+  legendPos
+  legendOffset
+  legendMargin = 10
 
   init() {
     this.lineGroup = this.chart.append('g')
@@ -92,13 +92,10 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
 
     // LEGEND
 
-    this.key_labels = this.keys.map(d => d.label.EN)
-    this.key_labels.push(this.key_labels[0])
-    this.key_labels.sort()
-    this.legend_offset = this.width / 14
-    this.legend_pos = 10
-
     this.chart.selectAll('.legend_wrap').remove()
+
+    this.legendOffset = this.width / 14
+    this.legendPos = this.legendMargin
 
     this.legend = this.chart
       .append('g')
@@ -112,41 +109,34 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
     this.legend
       .append('rect')
       .attr('width', this.width / 4)
-      .attr('height', '20%')
-      .attr('fill', '#0b4a59')
       .attr('rx', '4')
       .attr('ry', '4')
-      .attr('fill-opacity', 0.2)
       .attr('class', 'legends')
 
     this.legend = this.legend
-      .selectAll('.legends')
-      .data(this.key_labels)
+      .selectAll('.legend_wrap')
+      .data(this.keys.map(d => d.label.EN))
       .enter()
       .append('g')
       .attr('class', 'legend')
-      .attr('margin', 10)
       .attr('transform', d => {
-        const new_legend_pos = this.legend_pos
-        this.legend_pos += d.length + this.legend_offset
-        return 'translate(' + new_legend_pos + ', 5)'
+        const new_legend_pos = this.legendPos
+        this.legendPos += d.length + this.legendOffset
+        return `translate(${new_legend_pos}, ${this.legendMargin / 2})`
       })
 
     this.legend
       .append('circle')
-      .attr('cx', 5)
-      .attr('cy', 5)
-      .attr('r', 4)
-      .style('fill', (d, i) => this.colorScale(this.keys[i - 1].key))
+      .attr('cx', 8)
+      .attr('cy', 6)
+      .attr('r', 5)
+      .style('fill', (d, i) => this.colorScale(this.keys[i].key))
 
     this.legend
       .append('text')
-      .attr('x', 20)
-      .attr('y', 10)
-      .text(d => d)
       .attr('class', 'text')
-      .style('text-anchor', 'start')
-      .style('fill', 'white')
-      .attr('font-size', 10)
+      .attr('x', this.legendMargin * 2)
+      .attr('y', this.legendMargin)
+      .text(d => d)
   }
 }
