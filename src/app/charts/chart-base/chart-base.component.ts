@@ -245,8 +245,8 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
 
       this.legend
         .append('circle')
-        .attr('cx', 8)
-        .attr('cy', 6)
+        .attr('cx', 9)
+        .attr('cy', 6.5)
         .attr('r', 5)
         .style(
           'fill',
