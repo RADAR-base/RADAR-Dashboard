@@ -52,4 +52,18 @@
     fill: $cl-graph-1;
     stroke-width: 0;
   }
+
+  .legend-text {
+    font-size: 10px;
+    fill: $cl-white-80;
+  }
+
+  .legends {
+    height: 20%;
+    fill: $cl-base-20;
+  }
+
+  .legend {
+    margin: 10px;
+  }
 }

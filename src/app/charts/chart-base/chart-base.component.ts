@@ -92,6 +92,11 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   brushExtentFromSensors
   brushUpdatedFromSensors: boolean
   clipOffset = 15
+  legend
+  legendPos
+  legendOffset
+  legendMargin = 10
+  colorScale: any
 
   ngAfterViewInit() {
     this.uid = shortid.generate()
@@ -199,6 +204,62 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
         }
       }
     })
+
+    // Legend
+
+    if (this.keys) {
+      this.chart.selectAll('.legend_wrap').remove()
+
+      this.legendOffset = this.width / 14
+      this.legendPos = this.legendMargin
+
+      this.legend = this.chart
+        .append('g')
+        .attr('class', 'legend_wrap')
+        .append('svg')
+        .attr('x', this.keys.length > 1 ? this.width / 1.35 : this.width / 1.16)
+        .attr('y', () => (this.keys.length > 1 ? -30 : -28))
+        .attr('width', this.width)
+        .attr('height', this.height - 100)
+
+      this.legend
+        .append('rect')
+        .attr('width', this.keys.length > 1 ? this.width / 4 : this.width / 8)
+        .attr('rx', '4')
+        .attr('ry', '4')
+        .attr('class', 'legends')
+
+      this.legend = this.legend
+        .selectAll('.legend_wrap')
+        .data(this.keys.length > 1 ? this.keys.map(d => d.label.EN) : this.keys)
+        .enter()
+        .append('g')
+        .attr('class', 'legend')
+        .attr('transform', d => {
+          const new_legend_pos = this.legendPos
+          this.legendPos += d.length + this.legendOffset
+          return `translate(${new_legend_pos}, ${this.legendMargin / 2})`
+        })
+
+      this.legend
+        .append('circle')
+        .attr('cx', 8)
+        .attr('cy', 6)
+        .attr('r', 5)
+        .style(
+          'fill',
+          this.keys.length > 1
+            ? (d, i) => this.colorScale(this.keys[i].key)
+            : this.color
+        )
+
+      this.legend
+        .append('text')
+        .attr('class', 'legend-text')
+        .attr('x', this.legendMargin * 2)
+        .attr('y', this.legendMargin)
+        .text(d => d)
+    }
   }
 
   brushInit() {

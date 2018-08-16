@@ -13,15 +13,10 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
 })
 export class ChartBaseMultiLineComponent extends ChartBaseComponent {
   data: ChartData[]
-  colorScale: any
   lineChunkedFunctions: { [key: string]: Function } = {}
   lines: any
   line: any
   lineGroup: any
-  legend
-  legendPos
-  legendOffset
-  legendMargin = 10
 
   init() {
     this.lineGroup = this.chart.append('g')
@@ -46,8 +41,6 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
   }
 
   draw() {
-    // CHART
-
     this.xScale = d3
       .scaleTime()
       .range([0, this.width])
@@ -89,54 +82,5 @@ export class ChartBaseMultiLineComponent extends ChartBaseComponent {
         .attr('opacity', 1)
         .duration(500)
     })
-
-    // LEGEND
-
-    this.chart.selectAll('.legend_wrap').remove()
-
-    this.legendOffset = this.width / 14
-    this.legendPos = this.legendMargin
-
-    this.legend = this.chart
-      .append('g')
-      .attr('class', 'legend_wrap')
-      .append('svg')
-      .attr('x', this.width / 1.35)
-      .attr('y', -30)
-      .attr('width', this.width)
-      .attr('height', this.height - 100)
-
-    this.legend
-      .append('rect')
-      .attr('width', this.width / 4)
-      .attr('rx', '4')
-      .attr('ry', '4')
-      .attr('class', 'legends')
-
-    this.legend = this.legend
-      .selectAll('.legend_wrap')
-      .data(this.keys.map(d => d.label.EN))
-      .enter()
-      .append('g')
-      .attr('class', 'legend')
-      .attr('transform', d => {
-        const new_legend_pos = this.legendPos
-        this.legendPos += d.length + this.legendOffset
-        return `translate(${new_legend_pos}, ${this.legendMargin / 2})`
-      })
-
-    this.legend
-      .append('circle')
-      .attr('cx', 8)
-      .attr('cy', 6)
-      .attr('r', 5)
-      .style('fill', (d, i) => this.colorScale(this.keys[i].key))
-
-    this.legend
-      .append('text')
-      .attr('class', 'text')
-      .attr('x', this.legendMargin * 2)
-      .attr('y', this.legendMargin)
-      .text(d => d)
   }
 }
