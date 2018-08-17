@@ -37,25 +37,41 @@
   <ng-template #loadedAndValid>
 
     <app-tile label="Subjects">
+      <div header-content>
+        <button
+          mat-icon-button
+          (click)="refreshSubjectTable()"
+        >
+          <i class="material-icons">refresh</i>
+        </button>
+      </div>
+
       <div
         tile-content
         class="tile-content-subjects"
       >
-        <app-subject-table
-          [subjects]="subjects$ | async"
-          [studyName]="(study$ | async)?.projectName"
-          [isLoaded]="subjectsLoaded$ | async"
-          (openSubject)="openSubjectHandler($event)"
-        ></app-subject-table>
-        <app-subject-detail
-          *ngIf="subject"
-          [subject]="subject"
-        ></app-subject-detail>
+        <section
+          [class.subject-table]="subject"
+          [class.subject-table-before]="!subject"
+        >
+          <app-subject-table
+            [subjects]="subjects$ | async"
+            [studyName]="(study$ | async)?.projectName"
+            [isLoaded]="subjectsLoaded$ | async"
+            (openSubject)="openSubjectHandler($event)"
+          ></app-subject-table>
+        </section>
+        <section [class.subject-detail]="subject">
+          <app-subject-detail
+            *ngIf="subject"
+            [subject]="subject"
+          ></app-subject-detail>
+        </section>
       </div>
 
     </app-tile>
     <!-- TODO: Implement when API is ready -->
-    <!-- <app-tile
+    <app-tile
       label="Compliance"
       class="tile-compliance"
     >
@@ -67,7 +83,7 @@
           ></app-compliance-plot>
         </div>
       </div>
-    </app-tile> -->
+    </app-tile>
   </ng-template>
 
 </div>

@@ -51,4 +51,13 @@ export class StudyPageComponent implements OnInit {
   openSubjectHandler(subject) {
     this.subject = subject
   }
+
+  closeSubjectHandler() {
+    this.subject = null
+  }
+
+  refreshSubjectTable() {
+    this.store.dispatch(new subjectsAction.Load())
+    this.closeSubjectHandler()
+  }
 }
