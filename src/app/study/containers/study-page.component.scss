@@ -7,6 +7,10 @@
   height: 100%;
 }
 
+.content {
+  font-size: 0.75rem;
+}
+
 button {
   color: $cl-white-80;
 }
@@ -25,4 +29,8 @@ app-subject-table {
 
 app-subject-detail {
   flex: 1 1 15rem;
+}
+
+.chart {
+  height: 100%;
 }
