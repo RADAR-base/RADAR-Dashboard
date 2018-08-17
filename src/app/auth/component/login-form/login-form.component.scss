@@ -1,5 +1,15 @@
 @import '../../../../styles/common';
 
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 :host {
   display: block;
   margin: auto;
@@ -9,6 +19,9 @@
 
 .logo {
   width: 80%;
+  animation-name: fade-in;
+  animation-duration: 1s;
+  animation-fill-mode: both;
 }
 
 form {
