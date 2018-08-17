@@ -37,8 +37,6 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
   }
 
   draw() {
-    this.height = this.height - 40
-
     this.xScaleInner = d3.scaleBand().paddingInner(this.paddingInner)
 
     this.xScaleOuter = d3
@@ -132,7 +130,5 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
       .attr('height', this.height)
 
     this.bar.exit().remove()
-
-    this.chart.attr('transform', 'translate(70,50)')
   }
 }
