@@ -21,6 +21,7 @@ import { ConfigKey } from '../../../shared/models/config.model'
       [hasYAxis]="true"
       [hasXAxis]="true"
       [yScaleDomain]="yScaleDomain"
+      [isCompliance]="true"
     ></app-chart-base-multi-bar>
   `,
   styleUrls: ['./compliance-plot.component.scss'],
@@ -37,5 +38,6 @@ export class CompliancePlotComponent implements OnInit {
 
   ngOnInit() {
     this.keys = AppConfig.config && AppConfig.config.compliance.keys
+    console.log(this.keys)
   }
 }

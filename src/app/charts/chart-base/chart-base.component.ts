@@ -57,6 +57,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   @Input() hasTooltip = false
   @Input() hasBrush = false
   @Input() sensorDataTimeFrame
+  @Input() isCompliance
   @Input() path
   @Input()
   get chartData() {
@@ -212,7 +213,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
       this.chart.selectAll('.legend_wrap').remove()
 
       this.isSingle = this.keys.length === 1
-      this.legendOffset = this.width / 14
+      this.legendOffset = this.isCompliance ? this.width / 10 : this.width / 14
       this.legendPos = this.legendMargin
 
       this.legend = this.chart
@@ -227,6 +228,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
       this.legend
         .append('rect')
         .attr('width', this.isSingle ? this.width / 8 : this.width / 4)
+        .attr('height', () => (this.isCompliance ? '30%' : '20%'))
         .attr('rx', '4')
         .attr('ry', '4')
         .attr('class', 'legends')
