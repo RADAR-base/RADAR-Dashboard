@@ -6,12 +6,17 @@
     >
       <i class="material-icons">arrow_back</i>
     </button>
-    <div class="label">Study {{ (study$ | async)?.projectName }}</div>
+    <div class="label">
+      Study {{ (study$ | async)?.projectName }}
+    </div>
   </div>
 </app-toolbar>
 
 <div class="content">
-  <div class="loading" *ngIf="(isLoaded$ | async) === false; else loaded">
+  <div
+    class="loading"
+    *ngIf="(isLoaded$ | async) === false; else loaded"
+  >
     Loading...
   </div>
 
@@ -19,7 +24,10 @@
     <div *ngIf="!!(study$ | async) === false; else loadedAndValid">
       <p>We could not find this study.</p>
       <p>
-        <button mat-raised-button [routerLink]="['/']">
+        <button
+          mat-raised-button
+          [routerLink]="['/']"
+        >
           Go to Studies
         </button>
       </p>
@@ -27,8 +35,12 @@
   </ng-template>
 
   <ng-template #loadedAndValid>
+
     <app-tile label="Subjects">
-      <div tile-content class="tile-content-subjects">
+      <div
+        tile-content
+        class="tile-content-subjects"
+      >
         <app-subject-table
           [subjects]="subjects$ | async"
           [studyName]="(study$ | async)?.projectName"
@@ -40,21 +52,14 @@
           [subject]="subject"
         ></app-subject-detail>
       </div>
-    </app-tile>
 
+    </app-tile>
     <!-- TODO: Implement when API is ready -->
-    <!-- <app-tile label="Compliance">
+    <!-- <app-tile
+      label="Compliance"
+      class="tile-compliance"
+    >
       <div tile-content>
-        <div class="legend">
-          <p>
-            <span class="simple"></span>
-            Simple
-            <span class="special"></span>
-            Special
-            <span class="notanswered"></span>
-            Not Answered
-          </p>
-        </div>
         <div class="chart">
           <app-compliance-plot
             [data]="complianceData$ | async"

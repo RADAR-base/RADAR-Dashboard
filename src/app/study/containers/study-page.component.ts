@@ -7,6 +7,7 @@ import { Study } from '../../shared/models/study.model'
 import { Subject } from '../../shared/models/subject.model'
 import * as fromRoot from '../../store'
 import * as fromStudyPage from '../store'
+import * as complianceDataAction from '../store/compliance-data/compliance-data.actions'
 import * as studyAction from '../store/study/study.actions'
 import * as subjectsAction from '../store/subjects/subjects.actions'
 
@@ -22,6 +23,8 @@ export class StudyPageComponent implements OnInit {
   isLoaded$: Observable<boolean>
   subjects$: Observable<Subject[]>
   subjectsLoaded$: Observable<boolean>
+  complianceData$: Observable<any>
+  isComplianceLoaded$: Observable<boolean>
 
   constructor(private store: Store<fromRoot.State>) {}
 
@@ -34,10 +37,15 @@ export class StudyPageComponent implements OnInit {
 
     this.store.dispatch(new studyAction.Load())
     this.store.dispatch(new subjectsAction.Load())
+    this.store.dispatch(new complianceDataAction.Load({}))
 
     this.isLoaded$ = this.store.select(fromStudyPage.getStudyIsLoaded)
     this.subjects$ = this.store.select(fromStudyPage.getSubjects)
     this.subjectsLoaded$ = this.store.select(fromStudyPage.getSubjectsLoaded)
+    this.complianceData$ = this.store.select(fromStudyPage.getComplianceData)
+    this.isComplianceLoaded$ = this.store.select(
+      fromStudyPage.getComplianceDataLoaded
+    )
   }
 
   openSubjectHandler(subject) {
