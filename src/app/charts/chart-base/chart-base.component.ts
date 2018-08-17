@@ -228,7 +228,6 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
       this.legend
         .append('rect')
         .attr('width', this.isSingle ? this.width / 8 : this.width / 4)
-        .attr('height', () => (this.isCompliance ? this.height / 9 : '20%'))
         .attr('rx', '4')
         .attr('ry', '4')
         .attr('class', 'legends')
