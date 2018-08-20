@@ -4,7 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing'
 
 import { routes } from '../../app.routing'
 import { AppComponent } from './app.component'
-import { NotFoundPageComponent } from './not-found/not-found.component'
+import { NotFoundPageComponent } from './not-found/not-found-page.component'
 
 describe('AppComponent', () => {
   let component: AppComponent
