@@ -51,7 +51,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
     ChartColors.c5,
     ChartColors.c6
   ]
-  @Input() keys: ConfigKey[]
+  @Input() keys: any[]
   @Input() hasYAxis = false
   @Input() hasXAxis = false
   @Input() hasTooltip = false
@@ -93,11 +93,16 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   brushUpdatedFromSensors: boolean
   clipOffset = 15
   legend
-  legendPos
-  legendOffset
+  legendXPos
+  legendWrapYPos = -30
+  legendWrapXPos
+  legendOffset = 13
   legendMargin = 10
+  legendCharSpace = 9
+  legendWidth
   colorScale: any
   isSingle: boolean
+  keyStrLength
 
   ngAfterViewInit() {
     this.uid = shortid.generate()
@@ -212,21 +217,26 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
       this.chart.selectAll('.legend_wrap').remove()
 
       this.isSingle = this.keys.length === 1
-      this.legendOffset = this.width / 14
-      this.legendPos = this.legendMargin
+      this.keyStrLength = this.isSingle
+        ? Math.max(this.keys[0].length, this.legendMargin)
+        : this.keys.map(d => d.label.EN)[0].length
+
+      this.legendXPos = 10
+      this.legendWidth =
+        this.keyStrLength * this.legendCharSpace * this.keys.length +
+        this.keys.length * this.legendOffset
+      this.legendWrapXPos = this.width - 50 - this.legendWidth
 
       this.legend = this.chart
         .append('g')
         .attr('class', 'legend_wrap')
         .append('svg')
-        .attr('x', this.isSingle ? this.width / 1.16 : this.width / 1.35)
-        .attr('y', -30)
-        .attr('width', this.width)
-        .attr('height', this.height - 100)
+        .attr('x', this.legendWrapXPos)
+        .attr('y', this.legendWrapYPos)
 
       this.legend
         .append('rect')
-        .attr('width', this.isSingle ? this.width / 8 : this.width / 4)
+        .attr('width', this.legendWidth)
         .attr('rx', '4')
         .attr('ry', '4')
         .attr('class', 'legends')
@@ -238,14 +248,14 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
         .append('g')
         .attr('class', 'legend')
         .attr('transform', d => {
-          const new_legend_pos = this.legendPos
-          this.legendPos += d.length + this.legendOffset
+          const new_legend_pos = this.legendXPos
+          this.legendXPos += d.length * this.legendCharSpace + this.legendOffset
           return `translate(${new_legend_pos}, ${this.legendMargin / 2})`
         })
 
       this.legend
         .append('circle')
-        .attr('cx', 9)
+        .attr('cx', 8)
         .attr('cy', 6.5)
         .attr('r', 5)
         .style(
