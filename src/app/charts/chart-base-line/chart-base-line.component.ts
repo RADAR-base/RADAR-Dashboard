@@ -31,6 +31,7 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
   lineGroup: any
   gradient: any
   lineChunked: any
+  yExtentFactor = 1.5
 
   init() {
     // Add HR Gradient
@@ -71,7 +72,10 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
       .range([this.height, 0])
       .domain(
         yValuesExtent[0] === yValuesExtent[1]
-          ? [yValuesExtent[0] / 1.5, yValuesExtent[0] * 1.5]
+          ? [
+              yValuesExtent[0] / this.yExtentFactor,
+              yValuesExtent[0] * this.yExtentFactor
+            ]
           : yValuesExtent
       )
       .nice()
