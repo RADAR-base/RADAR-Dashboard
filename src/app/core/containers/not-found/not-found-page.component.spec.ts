@@ -6,7 +6,7 @@ import {
   ActivatedRouteStub,
   RouterStub
 } from '../../../shared/testing/router-stubs'
-import { NotFoundPageComponent } from './not-found.component'
+import { NotFoundPageComponent } from './not-found-page.component'
 
 describe('NotFoundPageComponent', () => {
   let component: NotFoundPageComponent

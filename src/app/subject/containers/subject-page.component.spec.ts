@@ -10,12 +10,12 @@ import {
   RouterStub
 } from '../../shared/testing/router-stubs'
 import * as fromRoot from '../../store'
-import * as fromFeature from '../store/index'
-import { SubjectComponent } from './subject.component'
+import * as fromFeature from '../store'
+import { SubjectPageComponent } from './subject-page.component'
 
 describe('SubjectPageComponent', () => {
-  let component: SubjectComponent
-  let fixture: ComponentFixture<SubjectComponent>
+  let component: SubjectPageComponent
+  let fixture: ComponentFixture<SubjectPageComponent>
   let element: HTMLElement
   let de: DebugElement
 
@@ -32,7 +32,7 @@ describe('SubjectPageComponent', () => {
         }),
         EffectsModule.forRoot([])
       ],
-      declarations: [SubjectComponent],
+      declarations: [SubjectPageComponent],
       providers: [
         { provide: Router, useClass: RouterStub },
         { provide: ActivatedRoute, useValue: activatedRoute }
@@ -40,7 +40,7 @@ describe('SubjectPageComponent', () => {
       schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents()
 
-    fixture = TestBed.createComponent(SubjectComponent)
+    fixture = TestBed.createComponent(SubjectPageComponent)
     component = fixture.componentInstance
     element = fixture.nativeElement
     de = fixture.debugElement
