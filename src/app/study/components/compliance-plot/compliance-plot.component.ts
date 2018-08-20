@@ -22,7 +22,6 @@ import { ConfigKey } from '../../../shared/models/config.model'
       [hasYAxis]="true"
       [hasXAxis]="true"
       [yScaleDomain]="yScaleDomain"
-      [isCompliance]="true"
     ></app-chart-base-multi-bar>
   `,
   styleUrls: ['./compliance-plot.component.scss'],
