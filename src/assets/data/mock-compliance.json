@@ -6,7 +6,7 @@
     "sensor": "COMPLIANCE",
     "descriptiveStatistic": "AVERAGE",
     "unit": "G",
-    "timeFrame": "ONE_DAY",
+    "timeWindow": "ONE_DAY",
     "effectiveTimeFrame": {
       "startDateTime": "2017-02-28T11:46:00Z",
       "endDateTime": "2017-03-18T11:46:00Z"
