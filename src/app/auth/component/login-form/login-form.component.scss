@@ -1,5 +1,15 @@
 @import '../../../../styles/common';
 
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 :host {
   display: block;
   margin: auto;
@@ -7,14 +17,28 @@
   max-width: 400px;
 }
 
+.logo {
+  width: 80%;
+  animation-name: fade-in;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
 form {
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  border-radius: 4px;
-  background-color: rgba(black, 0.35);
+  text-align: center;
 }
 
 form > * {
   margin: 8px;
+}
+
+button {
+  width: 100%;
+  border-radius: 3px;
+  background-color: $cl-white-80;
+  color: $cl-base-80;
+  font-weight: bold;
 }
