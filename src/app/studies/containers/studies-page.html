@@ -6,7 +6,7 @@
       alt="RADAR-base Logo"
     >
     <div class="label">
-      <div class="font-body-light">RADAR-CNS Dashboard</div>
+      <div class="font-body-light">RADAR-Base Dashboard</div>
       <div class="font-title">Mental Health</div>
     </div>
   </div>
@@ -17,7 +17,6 @@
   class="tile-studies"
 >
   <div tile-content>
-
     <div
       class="container"
       *ngIf="studiesIsLoaded$ | async"
@@ -29,12 +28,27 @@
             *ngFor="let study of studies$ | async"
             (click)="openStudy(study.projectName)"
           >
-            <h2 class="title">{{ study.projectName }}</h2>
+            <h3 class="title">
+              {{ study.humanReadableProjectName ? study.humanReadableProjectName : study.projectName }}
+            </h3>
+
             <h4 class="subtitle">
               <span>{{ study.id }}</span>
-              <span *ngIf="study.location">| {{ study.location }}</span>
-              <span *ngIf="study.organization">| {{ study.organization }}</span>
-              <span *ngIf="study.projectStatus">| {{ study.projectStatus }}</span>
+              <span *ngIf="study.location">
+                |
+                <i class="material-icons small">place</i>
+                {{ study.location }}
+              </span>
+              <span *ngIf="study.organization">
+                |
+                <i class="material-icons small">group</i>
+                {{ study.organization }}
+              </span>
+              <span *ngIf="study.projectStatus">
+                |
+                <i class="material-icons small">help_outline</i>
+                {{ study.projectStatus }}
+              </span>
             </h4>
             <div class="description">{{ study.description }}</div>
           </div>
