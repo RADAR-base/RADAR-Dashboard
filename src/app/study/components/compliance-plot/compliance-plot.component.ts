@@ -38,6 +38,5 @@ export class CompliancePlotComponent implements OnInit {
 
   ngOnInit() {
     this.keys = AppConfig.config && AppConfig.config.compliance.keys
-    console.log(this.keys)
   }
 }
