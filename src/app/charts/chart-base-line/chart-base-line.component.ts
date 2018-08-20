@@ -64,16 +64,22 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
   }
 
   draw() {
-    this.xScale = d3
-      .scaleTime()
-      .range([0, this.width])
-      .domain(d3.extent(this.data, d => d.date))
-      .nice()
+    const yValuesExtent = d3.extent(this.data, d => d.value as number)
 
     this.yScale = d3
       .scaleLinear()
       .range([this.height, 0])
-      .domain(d3.extent(this.data, d => d.value as number))
+      .domain(
+        yValuesExtent[0] === yValuesExtent[1]
+          ? [yValuesExtent[0] / 1.5, yValuesExtent[0] * 1.5]
+          : yValuesExtent
+      )
+      .nice()
+
+    this.xScale = d3
+      .scaleTime()
+      .range([0, this.width])
+      .domain(d3.extent(this.data, d => d.date))
       .nice()
 
     this.hasXAxis && this.xAxis.call(d3.axisBottom(this.xScale))
