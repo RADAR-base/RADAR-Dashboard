@@ -13,11 +13,11 @@ import * as sourcesActions from '../store/sources/sources.actions'
 
 @Component({
   selector: 'app-subject-page',
-  templateUrl: './subject.component.html',
-  styleUrls: ['./subject.component.scss'],
+  templateUrl: './subject-page.component.html',
+  styleUrls: ['./subject-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SubjectComponent implements OnInit {
+export class SubjectPageComponent implements OnInit {
   studyName$: Observable<string>
   subjectId$: Observable<string>
   subject$: Observable<Subject>

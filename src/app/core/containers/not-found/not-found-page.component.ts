@@ -7,6 +7,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core'
     <p>Page not found.</p>
     <p><button mat-raised-button routerLink="/">Take me home</button></p>
   `,
-  styleUrls: ['./not-found.component.scss']
+  styleUrls: ['./not-found-page.component.scss']
 })
 export class NotFoundPageComponent {}

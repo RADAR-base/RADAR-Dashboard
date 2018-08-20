@@ -5,6 +5,7 @@
   flex-direction: column;
   width: 100%;
   height: 100%;
+  cursor: default;
 }
 
 .container {
@@ -27,7 +28,31 @@
 }
 
 .study-card {
-  padding: 1rem;
+  padding: 1.5rem;
   border-radius: 4px;
   background-color: $cl-base-20;
+}
+
+.study-card:hover {
+  background-color: $cl-base-40;
+}
+
+.tile-studies {
+  padding: 24px;
+}
+
+.material-icons.small {
+  @include font-small();
+
+  position: relative;
+  top: 1.5px;
+}
+
+.title {
+  font-size: 1.5rem;
+}
+
+.subtitle {
+  text-transform: capitalize;
+  font-size: 0.75rem;
 }
