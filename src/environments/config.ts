@@ -203,6 +203,15 @@ export const Config = {
         'The g-force (with g from gravitational) is a measurement of the type of acceleration that causes a perception of weight',
       label: { EN: 'G Force' }
     },
+    PERCENTAGE: {
+      label: { EN: 'Percentage' }
+    },
+    NANO_WATT: {
+      label: { EN: 'Nanowatt' }
+    },
+    MICRO_SIEMENS: {
+      label: { EN: 'Microsiemens' }
+    },
     doc: 'All possible units requested data is returned as.'
   }
 }

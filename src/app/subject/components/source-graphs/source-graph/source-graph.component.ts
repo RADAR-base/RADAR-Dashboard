@@ -31,7 +31,9 @@ import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.ac
     <app-chart-base-line
       class="chart"
       *ngIf="sensorData && isLoaded && isSingle"
+      [isSingle]="isSingle"
       [chartData]="sensorData"
+      [keys]="keys"
       [hasGradient]="hasGradient"
       [hasTimeHoles]="hasTimeHoles"
       [hasYAxis]="true"
@@ -39,11 +41,13 @@ import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.ac
       [margin]="graphMargins"
       [path]="path"
       (tooltipMouseMove)="onTooltipMouseMove($event)"
-    ></app-chart-base-line>
+    >
+    </app-chart-base-line>
 
     <app-chart-base-multi-line
       class="chart"
       *ngIf="sensorData && isLoaded && !(isSingle)"
+      [isSingle]="isSingle"
       [chartData]="sensorData"
       [keys]="keys"
       [hasYAxis]="true"
@@ -66,7 +70,17 @@ export class SourceGraphComponent implements OnDestroy {
   graphMargins = { top: 32, right: 16, bottom: 32, left: 80 }
 
   get keys() {
-    return this.sourceData.keys
+    if (this.isSingle) {
+      if (AppConfig.config.units[this.sourceData.unit]) {
+        return [AppConfig.config.units[this.sourceData.unit].label.EN]
+      }
+    } else {
+      return this.sourceData.keys.map(d =>
+        Object.assign({}, d, {
+          label: { EN: `${d.label.EN} (${this.sourceData.unit})` }
+        })
+      )
+    }
   }
 
   get hasGradient() {

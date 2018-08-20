@@ -13,7 +13,6 @@ import { ChartBaseComponent } from '../chart-base/chart-base.component'
 })
 export class ChartBaseMultiLineComponent extends ChartBaseComponent {
   data: ChartData[]
-  colorScale: any
   lineChunkedFunctions: { [key: string]: Function } = {}
   lines: any
   line: any

@@ -12,6 +12,9 @@ import * as fromAuth from '../../../auth/store/auth.reducer'
       <span class="fill"></span>
       <ng-content select="[end]"></ng-content>
 
+      <button mat-icon-button>
+      <i class="material-icons">info</i>
+      </button>
       <button mat-icon-button [matMenuTriggerFor]="menu">
         <i class="material-icons">more_vert</i>
       </button>
