@@ -73,7 +73,11 @@ export class SourceGraphComponent implements OnDestroy {
         return [AppConfig.config.units[this.sourceData.unit].label.EN]
       }
     } else {
-      return this.sourceData.keys
+      return this.sourceData.keys.map(d =>
+        Object.assign({}, d, {
+          label: { EN: `${d.label.EN} (${this.sourceData.unit})` }
+        })
+      )
     }
   }
 
