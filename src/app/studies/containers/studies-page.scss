@@ -27,11 +27,29 @@
 }
 
 .study-card {
-  padding: 1rem;
+  padding: 1.5rem;
   border-radius: 4px;
   background-color: $cl-base-20;
 }
 
+.study-card:hover {
+  background-color: $cl-base-40;
+}
+
 .tile-studies {
   padding: 24px;
+}
+
+.material-icons.small {
+  @include font-small();
+
+  padding-top: 1px;
+}
+
+.title {
+  font-size: 1.5rem;
+}
+
+.subtitle {
+  font-size: 0.75rem;
 }
