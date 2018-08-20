@@ -57,6 +57,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   @Input() hasTooltip = false
   @Input() hasBrush = false
   @Input() sensorDataTimeFrame
+  @Input() isSingle
   @Input() path
   @Input()
   get chartData() {
@@ -101,7 +102,6 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   legendCharSpace = 9
   legendWidth
   colorScale: any
-  isSingle: boolean
   keyStrLength
 
   ngAfterViewInit() {
@@ -216,7 +216,6 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
     if (this.keys) {
       this.chart.selectAll('.legend_wrap').remove()
 
-      this.isSingle = this.keys.length === 1
       this.keyStrLength = this.isSingle
         ? Math.max(this.keys[0].length, this.legendMargin)
         : this.keys.map(d => d.label.EN)[0].length
