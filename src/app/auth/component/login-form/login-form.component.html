@@ -18,7 +18,7 @@
       type="text"
       placeholder="Username"
     >
-    <mat-error *ngIf="!!formUsername?.errors?.required">Please enter a value</mat-error>
+    <mat-error *ngIf="!!formUsername?.errors?.required">Please enter your username</mat-error>
   </mat-form-field>
 
   <mat-form-field [hideRequiredMarker]="true">
@@ -29,24 +29,13 @@
       type="password"
       placeholder="Password"
     >
-    <mat-error *ngIf="!!formPassword?.errors?.required">Please enter a value</mat-error>
+    <mat-error *ngIf="!!formPassword?.errors?.required">Please enter your password</mat-error>
   </mat-form-field>
 
-  <div class="buttons">
-    <button
-      mat-raised-button
-      type="submit"
-    >
-      LOG IN
-    </button>
-
-    <button
-      disabled
-      mat-raised-button
-      type="submit"
-      class="signup"
-    >
-      SIGN UP
-    </button>
-  </div>
+  <button
+    mat-raised-button
+    type="submit"
+  >
+    LOG IN
+  </button>
 </form>
