@@ -31,6 +31,7 @@ import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.ac
     <app-chart-base-line
       class="chart"
       *ngIf="sensorData && isLoaded && isSingle"
+      [isSingle]="isSingle"
       [chartData]="sensorData"
       [keys]="keys"
       [hasGradient]="hasGradient"
@@ -46,6 +47,7 @@ import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.ac
     <app-chart-base-multi-line
       class="chart"
       *ngIf="sensorData && isLoaded && !(isSingle)"
+      [isSingle]="isSingle"
       [chartData]="sensorData"
       [keys]="keys"
       [hasYAxis]="true"
@@ -73,7 +75,11 @@ export class SourceGraphComponent implements OnDestroy {
         return [AppConfig.config.units[this.sourceData.unit].label.EN]
       }
     } else {
-      return this.sourceData.keys
+      return this.sourceData.keys.map(d =>
+        Object.assign({}, d, {
+          label: { EN: `${d.label.EN} (${this.sourceData.unit})` }
+        })
+      )
     }
   }
 
