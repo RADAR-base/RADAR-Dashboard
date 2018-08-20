@@ -10,7 +10,7 @@ import {
 } from '../../shared/testing/router-stubs'
 import * as fromRoot from '../../store'
 import * as fromFeature from '../store/studies.reducer'
-import { StudiesPageComponent } from './studies-page'
+import { StudiesPageComponent } from './studies-page.component'
 
 describe('StudiesPageComponent', () => {
   let component: StudiesPageComponent

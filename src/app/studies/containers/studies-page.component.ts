@@ -9,8 +9,8 @@ import * as fromStudies from '../store/studies.reducer'
 
 @Component({
   selector: 'app-studies-page',
-  templateUrl: './studies-page.html',
-  styleUrls: ['./studies-page.scss'],
+  templateUrl: './studies-page.component.html',
+  styleUrls: ['./studies-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StudiesPageComponent implements OnInit {

@@ -10,7 +10,7 @@ import { MaterialModule } from '../material'
 import { SourceGraphsModule } from './components/source-graphs/source-graphs.module'
 import { SourceListModule } from './components/source-list/source-list.module'
 import { SourceTogglesModule } from './components/source-toggles/source-toggles.module'
-import { SubjectComponent } from './containers/subject.component'
+import { SubjectPageComponent } from './containers/subject-page.component'
 import { SensorsDataService } from './services/sensors-data.service'
 import { SourcesService } from './services/sources.service'
 import { VolumeDataService } from './services/volume-data.service'
@@ -37,7 +37,7 @@ import { routes } from './subject.routing'
       VolumeDataEffects
     ])
   ],
-  declarations: [SubjectComponent],
+  declarations: [SubjectPageComponent],
   providers: [SourcesService, SensorsDataService, VolumeDataService]
 })
 export class SubjectModule {}
