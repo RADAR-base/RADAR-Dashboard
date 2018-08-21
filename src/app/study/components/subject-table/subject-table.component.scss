@@ -45,7 +45,7 @@ table {
   &.mat-column-status {
     min-width: 5rem;
     max-width: 8rem;
-    width: 10%;
+    width: 5%;
   }
 
   &.mat-column-sources {
@@ -97,4 +97,26 @@ table {
     flex: 1;
     margin: 0 1rem;
   }
+}
+
+.source-status-icon {
+  display: inline-block;
+  margin-right: 0.5rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 0.75rem;
+}
+
+.source-status-icon.OK,
+.source-status-icon.CONNECTED {
+  background-color: $cl-safe;
+}
+
+.source-status-icon.WARNING,
+.source-status-icon.DISCONNECTED {
+  background-color: $cl-warning;
+}
+
+.source-status-icon.UNKNOWN {
+  background-color: $cl-white-40;
 }

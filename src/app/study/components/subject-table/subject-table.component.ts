@@ -25,12 +25,15 @@ export class SubjectTableComponent implements OnInit, OnDestroy {
   displayedColumns = [
     'subjectId',
     'humanReadableId',
-    'status',
+    'subjectStatus',
+    'deviceStatus',
     'sources',
     'lastSeen'
   ]
   dataSource: SubjectDataSource | null
   subjectDB = new SubjectDB()
+  statusCon = 'CONNECTED'
+  statusDis = 'DISCONNECTED'
 
   @ViewChild(MatPaginator) paginator: MatPaginator
 
@@ -40,7 +43,11 @@ export class SubjectTableComponent implements OnInit, OnDestroy {
   @Input() studyName
   @Input()
   set subjects(value) {
-    this.subjectDB.data = value
+    this.subjectDB.data = value.map(d =>
+      Object.assign({}, d, {
+        deviceStatus: this.getDeviceStatus(d.sources)
+      })
+    )
   }
 
   constructor(private router: Router) {}
@@ -59,5 +66,16 @@ export class SubjectTableComponent implements OnInit, OnDestroy {
 
   openSubjectHandler(event, subject) {
     this.openSubject.emit(subject)
+  }
+
+  getDeviceStatus(sources) {
+    sources = sources.map(d => d.status)
+    return sources
+      .sort(
+        (a, b) =>
+          sources.filter(stat => stat === a).length -
+          sources.filter(stat => stat === b).length
+      )
+      .pop()
   }
 }

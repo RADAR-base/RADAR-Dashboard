@@ -45,7 +45,22 @@
       </td>
     </ng-container>
 
-    <ng-container matColumnDef="status">
+    <ng-container matColumnDef="subjectStatus">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+      >
+        Status
+      </th>
+      <td
+        mat-cell
+        *matCellDef="let row"
+      >
+        {{ row.status }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="deviceStatus">
       <th
         mat-header-cell
         *matHeaderCellDef
@@ -56,7 +71,8 @@
         mat-cell
         *matCellDef="let row"
       >
-        {{ row.status }}
+        <span class="source-status-icon {{row.deviceStatus}}"></span>
+        {{ row.deviceStatus }}
       </td>
     </ng-container>
 
@@ -74,6 +90,7 @@
         <span *ngFor="let source of row.sources; let isLast=last">
           {{ source.sourceTypeProducer }}{{ isLast? '' : ',' }}
         </span>
+        <span *ngIf="row.sources.length === 0">NONE</span>
       </td>
     </ng-container>
 
