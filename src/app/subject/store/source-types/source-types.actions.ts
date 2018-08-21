@@ -8,7 +8,8 @@ export enum SourceTypeActionTypes {
   LoadFromApi = '[SourceType] LoadFromApi',
   LoadFromApiSuccess = '[SourceType] LoadFromApiSuccess',
   LoadSuccess = '[SourceType] LoadSuccess',
-  LoadFail = '[SourceType] LoadFail'
+  LoadFail = '[SourceType] LoadFail',
+  Destroy = '[SourceType] Destroy'
 }
 
 export class Load implements Action {
@@ -33,9 +34,14 @@ export class LoadFail implements Action {
   readonly type = SourceTypeActionTypes.LoadFail
 }
 
+export class Destroy implements Action {
+  readonly type = SourceTypeActionTypes.Destroy
+}
+
 export type SourceTypeActions =
   | Load
   | LoadFromApi
   | LoadFromApiSuccess
   | LoadSuccess
   | LoadFail
+  | Destroy
