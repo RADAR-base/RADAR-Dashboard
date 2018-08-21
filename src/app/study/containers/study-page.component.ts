@@ -42,7 +42,6 @@ export class StudyPageComponent implements OnInit, OnDestroy {
 
     this.store.dispatch(new studyActions.Load())
     this.store.dispatch(new subjectsActions.Load())
-    this.store.dispatch(new complianceDataActions.Load())
 
     this.isLoaded$ = this.store.select(fromStudyPage.getStudyIsLoaded)
     this.subjects$ = this.store.select(fromStudyPage.getSubjects)
