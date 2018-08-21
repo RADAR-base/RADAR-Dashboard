@@ -11,7 +11,7 @@ import { parseTimeHoles } from '../../shared/utils/parse-time-holes'
 export class ComplianceDataService {
   constructor(private http: HttpClient) {}
 
-  getAll(studyName): Observable<any> {
+  getAll(studyName, timeFrame): Observable<any> {
     // TODO: Change when API is ready
     return this.http.get<any>(`${ENV.API_LOCAL}/mock-compliance.json`).pipe(
       delay(1000),
