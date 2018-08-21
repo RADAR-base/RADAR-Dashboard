@@ -17,3 +17,15 @@ export class DateCalcPipe implements PipeTransform {
     }
   }
 }
+
+@Pipe({ name: 'shorten' })
+export class ShortenLabelPipe implements PipeTransform {
+  transform(label: string) {
+    if (label.indexOf(' ') > 0) {
+      const a = label.split(' ').map(d => d[0])
+      return a.join('')
+    } else {
+      return label
+    }
+  }
+}
