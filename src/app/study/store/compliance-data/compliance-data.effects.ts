@@ -1,23 +1,30 @@
 import { Injectable } from '@angular/core'
 import { Actions, Effect, ofType } from '@ngrx/effects'
 import { Action } from '@ngrx/store'
+import { Store } from '@ngrx/store'
 import { Observable, of } from 'rxjs'
-import { catchError, map, switchMap } from 'rxjs/operators'
+import { catchError, map, switchMap, withLatestFrom } from 'rxjs/operators'
 
+import * as fromRoot from '../../../store'
 import { ComplianceDataService } from '../../services/compliance-data.service'
 import * as actions from './compliance-data.actions'
+import * as fromStudy from '..'
 
 @Injectable()
 export class ComplianceDataEffects {
   @Effect()
   getAll$ = this.actions$.pipe(
     ofType(actions.LOAD),
-    switchMap(payload => {
-      return this.complianceDataService.getAll(payload).pipe(
+    withLatestFrom(
+      this.store.select(fromStudy.getStudy),
+      this.store.select(fromStudy.getComplianceDataTimeFrame)
+    ),
+    switchMap(([, study, timeFrame]) =>
+      this.complianceDataService.getAll(study, timeFrame).pipe(
         map((data: any) => new actions.LoadSuccess(data)),
         catchError(() => of(new actions.LoadFail()))
       )
-    })
+    )
   )
 
   @Effect()
@@ -28,6 +35,7 @@ export class ComplianceDataEffects {
 
   constructor(
     private actions$: Actions,
-    private complianceDataService: ComplianceDataService
+    private complianceDataService: ComplianceDataService,
+    private store: Store<fromRoot.State>
   ) {}
 }
