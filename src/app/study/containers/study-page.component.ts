@@ -37,7 +37,7 @@ export class StudyPageComponent implements OnInit {
 
     this.store.dispatch(new studyAction.Load())
     this.store.dispatch(new subjectsAction.Load())
-    this.store.dispatch(new complianceDataAction.Load({}))
+    this.store.dispatch(new complianceDataAction.Load())
 
     this.isLoaded$ = this.store.select(fromStudyPage.getStudyIsLoaded)
     this.subjects$ = this.store.select(fromStudyPage.getSubjects)
