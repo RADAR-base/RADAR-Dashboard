@@ -67,7 +67,7 @@ export const getComplianceData = createSelector(
   fromCompliance.getData
 )
 
-export const getcComplianceDataTimeFrame = createSelector(
+export const getComplianceDataTimeFrame = createSelector(
   getComplianceState,
   fromCompliance.getTimeFrame
 )
