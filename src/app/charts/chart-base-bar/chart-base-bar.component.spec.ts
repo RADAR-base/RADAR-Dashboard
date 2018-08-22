@@ -75,4 +75,32 @@ describe('ChartBaseBarComponent', () => {
       expect(rectElements[prop].getAttribute('y')).toBeTruthy()
     })
   })
+
+  it('should create bars when chart has brush component', () => {
+    component.hasBrush = true
+    component.chartData = mockChartData
+    fixture.detectChanges()
+
+    expect(element.querySelector('.bar')).toBeTruthy()
+  })
+
+  it('should create brush when hasBrush is set to true', () => {
+    component.hasBrush = true
+    component.chartData = mockChartData
+    fixture.detectChanges()
+
+    expect(element.querySelector('.brush')).toBeTruthy()
+  })
+
+  it('should update brush from timeFrame data', () => {
+    component.hasBrush = true
+    component.chartData = mockChartData
+    component.sensorDataTimeFrame = [
+      MockTimeFrameChartData.startDateTime,
+      MockTimeFrameChartData.endDateTime
+    ]
+    fixture.detectChanges()
+
+    expect(element.querySelector('.brush')).toBeTruthy()
+  })
 })

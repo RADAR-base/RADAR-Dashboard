@@ -99,4 +99,20 @@ describe('ChartBaseLineComponent', () => {
     expect(gradient.getAttribute('y1')).toBeGreaterThan(0)
     expect(gradient.getAttribute('y2')).toBeGreaterThan(0)
   })
+
+  it('should emit date on tooltipMouseMove', () => {
+    spyOn(component.tooltipMouseMove, 'emit')
+    component.hasTooltip = true
+    component.chartData = mockChartData
+    fixture.detectChanges()
+
+    const evt = new MouseEvent('mousemove', {
+      clientX: 800,
+      clientY: 300
+    })
+    element.querySelector('.tooltip-mouse-box').dispatchEvent(evt)
+
+    expect(element.querySelector('.tooltip-mouse-box')).toBeTruthy()
+    expect(component.tooltipMouseMove.emit).toHaveBeenCalled()
+  })
 })
