@@ -1,8 +1,11 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
-  OnDestroy
+  OnDestroy,
+  OnInit,
+  Output
 } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs'
@@ -22,7 +25,7 @@ import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.ac
     <div class="loading" *ngIf="!isLoaded">
       <mat-spinner></mat-spinner>
     </div>
-    
+
     <div class="nodata" *ngIf="!(sensorData) && isLoaded">
       <p class="emoji">🤷‍</p>
       <p>No data found.</p>
@@ -41,6 +44,7 @@ import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.ac
       [margin]="graphMargins"
       [path]="path"
       (tooltipMouseMove)="onTooltipMouseMove($event)"
+      (tooltipMouseLeave)="onTooltipMouseLeave($event)"
     >
     </app-chart-base-line>
 
@@ -55,6 +59,7 @@ import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.ac
       [margin]="graphMargins"
       [path]="path"
       (tooltipMouseMove)="onTooltipMouseMove($event)"
+      (tooltipMouseLeave)="onTooltipMouseLeave()"
     ></app-chart-base-multi-line>
   `,
   styleUrls: ['./source-graph.component.scss'],
@@ -63,9 +68,11 @@ import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.ac
 export class SourceGraphComponent implements OnDestroy {
   @Input() isLoaded
   @Input() sensorId
-  @Input() sensorData: ChartData
+  @Input() sensorData: any
   @Input() sourceData: SourceData
   @Input() path
+  @Output() tooltipMouseMoveOuter = new EventEmitter<any>()
+  @Output() tooltipMouseLeaveOuter = new EventEmitter<any>()
 
   graphMargins = { top: 32, right: 16, bottom: 32, left: 80 }
 
@@ -101,9 +108,14 @@ export class SourceGraphComponent implements OnDestroy {
 
   constructor(private store: Store<fromSubject.State>) {}
 
-  ngOnDestroy
+  ngOnDestroy() {}
 
-  onTooltipMouseMove(date: Date) {
-    this.store.dispatch(new sensorsDataActions.SetTooltipDate(date))
+  onTooltipMouseMove(data) {
+    this.store.dispatch(new sensorsDataActions.SetTooltipDate(data.date))
+    this.tooltipMouseMoveOuter.emit(data.event)
+  }
+
+  onTooltipMouseLeave() {
+    this.tooltipMouseLeaveOuter.emit()
   }
 }
