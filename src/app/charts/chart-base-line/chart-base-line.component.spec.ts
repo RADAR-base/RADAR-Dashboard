@@ -20,6 +20,7 @@ describe('ChartBaseLineComponent', () => {
     MockTimeFrameChartData,
     MockTimeIntervalChartData
   )
+  const mouseEventObject = { clientX: 800, clientY: 300 }
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -100,16 +101,13 @@ describe('ChartBaseLineComponent', () => {
     expect(gradient.getAttribute('y2')).toBeGreaterThan(0)
   })
 
-  it('should emit date on tooltipMouseMove', () => {
+  it('should emit data on tooltipMouseMove', () => {
     spyOn(component.tooltipMouseMove, 'emit')
     component.hasTooltip = true
     component.chartData = mockChartData
     fixture.detectChanges()
 
-    const evt = new MouseEvent('mousemove', {
-      clientX: 800,
-      clientY: 300
-    })
+    const evt = new MouseEvent('mousemove', mouseEventObject)
     element.querySelector('.tooltip-mouse-box').dispatchEvent(evt)
 
     expect(element.querySelector('.tooltip-mouse-box')).toBeTruthy()

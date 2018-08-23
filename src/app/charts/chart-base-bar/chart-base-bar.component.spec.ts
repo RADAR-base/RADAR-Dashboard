@@ -1,5 +1,6 @@
 import { DebugElement } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
+import * as d3 from 'd3'
 
 import {
   MockAPISampleDataset,
@@ -7,6 +8,7 @@ import {
   MockTimeIntervalChartData
 } from '../../shared/testing/mocks/mock-chart-data'
 import { parseTimeHoles } from '../../shared/utils/parse-time-holes'
+import { SourceGraphsModule } from '../../subject/components/source-graphs/source-graphs.module'
 import { ChartBaseBarComponent } from './chart-base-bar.component'
 
 describe('ChartBaseBarComponent', () => {
@@ -14,6 +16,8 @@ describe('ChartBaseBarComponent', () => {
   let fixture: ComponentFixture<ChartBaseBarComponent>
   let element: HTMLElement
   let de: DebugElement
+
+  const mouseEventObject = {}
 
   const mockChartData = parseTimeHoles(
     MockAPISampleDataset,
@@ -23,7 +27,7 @@ describe('ChartBaseBarComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ChartBaseBarComponent]
+      imports: [SourceGraphsModule]
     })
 
     fixture = TestBed.createComponent(ChartBaseBarComponent)
@@ -99,6 +103,21 @@ describe('ChartBaseBarComponent', () => {
       MockTimeFrameChartData.startDateTime,
       MockTimeFrameChartData.endDateTime
     ]
+    fixture.detectChanges()
+
+    expect(element.querySelector('.brush')).toBeTruthy()
+  })
+
+  it('should emit data on brush', () => {
+    component.hasBrush = true
+    component.categorical = false
+    component.brushWidthDefault = 200
+    component.data = mockChartData
+
+    component.brushMove.subscribe(d => {
+      expect(d).toBeDefined()
+    })
+
     fixture.detectChanges()
 
     expect(element.querySelector('.brush')).toBeTruthy()
