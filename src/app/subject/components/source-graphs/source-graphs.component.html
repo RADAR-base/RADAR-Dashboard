@@ -30,8 +30,8 @@
             [isLoaded]="isDataLoaded[sourceData.uid]"
             [sensorId]="sourceData.uid"
             [path]="path$ | async"
-            (tooltipMouseMoveOuter)="onMouseMove($event)"
-            (tooltipMouseLeaveOuter)="onMouseLeave()"
+            (tooltipMouseMoveParent)="onMouseMove($event)"
+            (tooltipMouseLeaveParent)="onMouseLeave()"
           ></app-source-graph>
         </div>
       </ng-container>

@@ -70,8 +70,8 @@ export class SourceGraphComponent {
   @Input() sensorData: any
   @Input() sourceData: SourceData
   @Input() path
-  @Output() tooltipMouseMoveOuter = new EventEmitter<any>()
-  @Output() tooltipMouseLeaveOuter = new EventEmitter<any>()
+  @Output() tooltipMouseMoveParent = new EventEmitter<any>()
+  @Output() tooltipMouseLeaveParent = new EventEmitter<any>()
 
   graphMargins = { top: 32, right: 16, bottom: 32, left: 80 }
 
@@ -108,11 +108,12 @@ export class SourceGraphComponent {
   constructor(private store: Store<fromSubject.State>) {}
 
   onTooltipMouseMove(data) {
+    console.log(data.date)
     this.store.dispatch(new sensorsDataActions.SetTooltipDate(data.date))
-    this.tooltipMouseMoveOuter.emit(data.event)
+    this.tooltipMouseMoveParent.emit(data.event)
   }
 
   onTooltipMouseLeave() {
-    this.tooltipMouseLeaveOuter.emit()
+    this.tooltipMouseLeaveParent.emit()
   }
 }

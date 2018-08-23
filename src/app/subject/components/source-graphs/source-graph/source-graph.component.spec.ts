@@ -37,7 +37,7 @@ describe('SourceGraphComponent', () => {
   })
 
   it('should emit data on tooltipMouseMove', () => {
-    spyOn(component.tooltipMouseMoveOuter, 'emit')
+    spyOn(component.tooltipMouseMoveParent, 'emit')
     component.isLoaded = true
     component.sensorData = MockSensorDataResult.data
     fixture.detectChanges()
@@ -46,6 +46,6 @@ describe('SourceGraphComponent', () => {
     element.querySelector('.tooltip-mouse-box').dispatchEvent(evt)
 
     expect(element.querySelector('.tooltip-mouse-box')).toBeTruthy()
-    expect(component.tooltipMouseMoveOuter.emit).toHaveBeenCalled()
+    expect(component.tooltipMouseMoveParent.emit).toHaveBeenCalled()
   })
 })

@@ -1,6 +1,5 @@
 import { DebugElement } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import * as d3 from 'd3'
 
 import {
   MockAPISampleDataset,
