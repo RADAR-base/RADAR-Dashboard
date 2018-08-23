@@ -4,7 +4,6 @@ import {
   EventEmitter,
   Input,
   OnDestroy,
-  OnInit,
   Output
 } from '@angular/core'
 import { Store } from '@ngrx/store'
@@ -65,7 +64,7 @@ import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.ac
   styleUrls: ['./source-graph.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SourceGraphComponent implements OnDestroy {
+export class SourceGraphComponent {
   @Input() isLoaded
   @Input() sensorId
   @Input() sensorData: any
@@ -107,8 +106,6 @@ export class SourceGraphComponent implements OnDestroy {
   }
 
   constructor(private store: Store<fromSubject.State>) {}
-
-  ngOnDestroy() {}
 
   onTooltipMouseMove(data) {
     this.store.dispatch(new sensorsDataActions.SetTooltipDate(data.date))
