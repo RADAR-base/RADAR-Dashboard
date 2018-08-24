@@ -13,6 +13,8 @@ export const SET_TIME_FRAME = '[SensorsData] SET_TIME_FRAME'
 export const SET_TIME_INTERVAL = '[SensorsData] SET_TIME_INTERVAL'
 export const SET_DESCRIPTIVE_STATISTIC =
   '[SensorsData] SET_DESCRIPTIVE_STATISTIC'
+export const TIME_FRAME_NO_CHANGE = '[SensorsData] TIME_FRAME_NO_CHANGE'
+export const TIME_INTERVAL_NO_CHANGE = '[SensorsData] TIME_INTERVAL_NO_CHANGE'
 export const DESTROY = '[SensorsData] DESTROY'
 
 export class Load implements Action {
@@ -57,6 +59,14 @@ export class SetDescriptiveStatistic implements Action {
   constructor(public payload: any) {}
 }
 
+export class TimeFrameNoChange implements Action {
+  readonly type = TIME_FRAME_NO_CHANGE
+}
+
+export class TimeIntervalNoChange implements Action {
+  readonly type = TIME_INTERVAL_NO_CHANGE
+}
+
 export class Destroy implements Action {
   readonly type = DESTROY
 }
@@ -70,4 +80,6 @@ export type Actions =
   | SetTimeFrame
   | SetTimeInterval
   | SetDescriptiveStatistic
+  | TimeFrameNoChange
+  | TimeIntervalNoChange
   | Destroy
