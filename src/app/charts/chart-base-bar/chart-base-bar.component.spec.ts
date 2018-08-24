@@ -82,6 +82,10 @@ describe('ChartBaseBarComponent', () => {
   it('should create bars when chart has brush component', () => {
     component.hasBrush = true
     component.chartData = mockChartData
+    component.sensorDataTimeFrame = [
+      MockTimeFrameChartData.startDateTime,
+      MockTimeFrameChartData.endDateTime
+    ]
     fixture.detectChanges()
 
     expect(element.querySelector('.bar')).toBeTruthy()
@@ -90,6 +94,10 @@ describe('ChartBaseBarComponent', () => {
   it('should create brush when hasBrush is set to true', () => {
     component.hasBrush = true
     component.chartData = mockChartData
+    component.sensorDataTimeFrame = [
+      MockTimeFrameChartData.startDateTime,
+      MockTimeFrameChartData.endDateTime
+    ]
     fixture.detectChanges()
 
     expect(element.querySelector('.brush')).toBeTruthy()
