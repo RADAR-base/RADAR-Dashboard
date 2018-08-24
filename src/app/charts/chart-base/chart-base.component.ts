@@ -289,24 +289,31 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
     this.brush = d3
       .brushX()
       .extent([[0, 0], [this.width, this.height]])
-      .on('end', () => this.brushed())
+      .on('brush', () => this.brushed())
 
     if (this.sensorDataTimeFrame) {
       this.updateBrushFromSensorDates()
     }
 
-    this.chart
+    const brushEl = this.chart
       .append('g')
       .attr('class', 'brush')
       .call(this.brush)
-      .transition()
-      .duration(1000)
-      .call(
-        this.brush.move,
-        !this.brushExtentFromSensors
-          ? [this.width - this.brushWidthDefault, this.width]
-          : this.brushExtentFromSensors
-      )
+
+    if (!this.brushExtentFromSensors) {
+      brushEl
+        .call(this.brush.move, [this.width - 0.1, this.width])
+        .transition()
+        .duration(2000)
+        .call(
+          this.brush.move,
+          !this.brushExtentFromSensors
+            ? [this.width - this.brushWidthDefault, this.width]
+            : this.brushExtentFromSensors
+        )
+    } else {
+      brushEl.call(this.brush.move, this.brushExtentFromSensors)
+    }
   }
 
   private brushed() {
