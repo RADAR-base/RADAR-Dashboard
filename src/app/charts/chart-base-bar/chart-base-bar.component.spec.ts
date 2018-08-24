@@ -16,13 +16,15 @@ describe('ChartBaseBarComponent', () => {
   let element: HTMLElement
   let de: DebugElement
 
-  const mouseEventObject = {}
-
   const mockChartData = parseTimeHoles(
     MockAPISampleDataset,
     MockTimeFrameChartData,
     MockTimeIntervalChartData
   )
+  const mockTimeFrame = [
+    MockTimeFrameChartData.startDateTime,
+    MockTimeFrameChartData.endDateTime
+  ]
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -94,10 +96,7 @@ describe('ChartBaseBarComponent', () => {
   it('should create brush when hasBrush is set to true', () => {
     component.hasBrush = true
     component.chartData = mockChartData
-    component.sensorDataTimeFrame = [
-      MockTimeFrameChartData.startDateTime,
-      MockTimeFrameChartData.endDateTime
-    ]
+    component.sensorDataTimeFrame = mockTimeFrame
     fixture.detectChanges()
 
     expect(element.querySelector('.brush')).toBeTruthy()
@@ -106,10 +105,7 @@ describe('ChartBaseBarComponent', () => {
   it('should update brush from timeFrame data', () => {
     component.hasBrush = true
     component.chartData = mockChartData
-    component.sensorDataTimeFrame = [
-      MockTimeFrameChartData.startDateTime,
-      MockTimeFrameChartData.endDateTime
-    ]
+    component.sensorDataTimeFrame = mockTimeFrame
     fixture.detectChanges()
 
     expect(element.querySelector('.brush')).toBeTruthy()

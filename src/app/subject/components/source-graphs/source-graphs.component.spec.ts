@@ -19,6 +19,7 @@ describe('SourceGraphsComponent', () => {
 
   const mockSources = MockSources
   const mouseEventObject = { clientX: 700, clientY: 300 }
+  const mockDataLoaded = { rJywbfpZm: true }
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -76,7 +77,7 @@ describe('SourceGraphsComponent', () => {
   it('should not show tooltip on mouseleave', () => {
     component.sources = mockSources
     component.sensorsData = MockSensorsAll
-    component.isDataLoaded = { rJywbfpZm: true }
+    component.isDataLoaded = mockDataLoaded
 
     fixture.detectChanges()
 
@@ -91,7 +92,7 @@ describe('SourceGraphsComponent', () => {
   it('should  show tooltip when mouse is within target', () => {
     component.sources = mockSources
     component.sensorsData = MockSensorsAll
-    component.isDataLoaded = { rJywbfpZm: true }
+    component.isDataLoaded = mockDataLoaded
     fixture.detectChanges()
 
     const evt = new MouseEvent('mousemove', mouseEventObject)
