@@ -108,7 +108,6 @@ export class SourceGraphComponent {
   constructor(private store: Store<fromSubject.State>) {}
 
   onTooltipMouseMove(data) {
-    console.log(data.date)
     this.store.dispatch(new sensorsDataActions.SetTooltipDate(data.date))
     this.tooltipMouseMoveParent.emit(data.event)
   }
