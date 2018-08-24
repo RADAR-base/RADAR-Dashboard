@@ -3,7 +3,7 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnDestroy,
+  OnChanges,
   Output
 } from '@angular/core'
 import { Store } from '@ngrx/store'
@@ -43,7 +43,7 @@ import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.ac
       [margin]="graphMargins"
       [path]="path"
       (tooltipMouseMove)="onTooltipMouseMove($event)"
-      (tooltipMouseLeave)="onTooltipMouseLeave($event)"
+      (tooltipMouseLeave)="onTooltipMouseLeave()"
     >
     </app-chart-base-line>
 
@@ -64,7 +64,7 @@ import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.ac
   styleUrls: ['./source-graph.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SourceGraphComponent {
+export class SourceGraphComponent implements OnChanges {
   @Input() isLoaded
   @Input() sensorId
   @Input() sensorData: any
@@ -105,6 +105,9 @@ export class SourceGraphComponent {
     return this.sourceData.label && this.sourceData.label[AppConfig.language]
   }
 
+  ngOnChanges() {
+    this.onTooltipMouseLeave()
+  }
   constructor(private store: Store<fromSubject.State>) {}
 
   onTooltipMouseMove(data) {
