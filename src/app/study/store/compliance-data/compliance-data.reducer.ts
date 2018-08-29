@@ -6,7 +6,7 @@ export interface State {
   timeFrame: any
 }
 
-const initialState: State = {
+export const initialState: State = {
   data: [],
   isLoaded: false,
   timeFrame: '30 days'

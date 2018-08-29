@@ -3,7 +3,7 @@ import { Config } from './config'
 export const ENV = {
   PROD: false,
   TEST: false,
-  TOOLS: false,
+  TOOLS: true,
 
   // CONFIG
   CONFIG: Config,
