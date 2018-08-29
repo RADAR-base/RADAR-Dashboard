@@ -1,7 +1,7 @@
 import { Config } from './config'
 
 export const ENV = {
-  PROD: false,
+  PROD: true,
   TEST: false,
   TOOLS: false,
 
