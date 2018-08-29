@@ -90,7 +90,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   yAxis: any
   window$: Subscription
   brush: any
-  brushWidthDefault = 104
+  brushWidthDefault = 112
   brushExtent
   brushExtentFromSensors
   brushUpdatedFromSensors: boolean
