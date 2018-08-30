@@ -19,11 +19,11 @@ describe('CompliancePlotComponent', () => {
     component = fixture.componentInstance
 
     component.data = MockComplianceDataExpected
-
-    fixture.detectChanges()
   })
 
   it('should be created', () => {
+    fixture.detectChanges()
+
     expect(component).toBeTruthy()
   })
 })
