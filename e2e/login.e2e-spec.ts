@@ -15,7 +15,7 @@ describe('radar-dashboard Login', function() {
     page.navigateTo()
     page.fillCredentials()
 
-    browser.sleep(5000)
+    browser.waitForAngular()
 
     const list = element.all(by.css('.study-card'))
     expect(list.count()).toBeGreaterThan(0)
