@@ -2,9 +2,9 @@ import * as complianceDataActions from './compliance-data.actions'
 import * as fromComplianceData from './compliance-data.reducer'
 
 describe('ComplianceDataReducer', () => {
+  const { initialState } = fromComplianceData
   describe('Destroy action', () => {
     it('should return the default state', () => {
-      const { initialState } = fromComplianceData
       const action = new complianceDataActions.Destroy()
       const state = fromComplianceData.reducer(undefined, action)
 
@@ -14,7 +14,6 @@ describe('ComplianceDataReducer', () => {
 
   describe('Load action', () => {
     it('should populate compliance data', () => {
-      const { initialState } = fromComplianceData
       const action = new complianceDataActions.Load()
       const state = fromComplianceData.reducer(initialState, action)
 
@@ -24,7 +23,6 @@ describe('ComplianceDataReducer', () => {
 
   describe('Load Success action', () => {
     it('should populate compliance data', () => {
-      const { initialState } = fromComplianceData
       const action = new complianceDataActions.LoadSuccess({})
       const state = fromComplianceData.reducer(initialState, action)
 
@@ -34,7 +32,6 @@ describe('ComplianceDataReducer', () => {
 
   describe('Set Time Frame action', () => {
     it('should set timeframe', () => {
-      const { initialState } = fromComplianceData
       const timeFrame = '30 days'
       const action = new complianceDataActions.SetTimeFrame(timeFrame)
       const state = fromComplianceData.reducer(initialState, action)

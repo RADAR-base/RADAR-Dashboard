@@ -6,11 +6,11 @@ describe('SourcesReducer', () => {
     it('should return', () => {
       const { initialState } = fromSources
       const subject = {
-        subjectId: 'hi',
+        subjectId: 'KKJL2',
         sources: [],
         status: '',
-        humanReadableId: 'hi',
-        projectName: 'hello',
+        humanReadableId: 'humanId',
+        projectName: 'projectName',
         lastSeen: '2017-05-01'
       }
       const action = new sourcesActions.LoadSuccess(subject)
@@ -22,14 +22,14 @@ describe('SourcesReducer', () => {
 
   describe('Toggle Visibility action', () => {
     it('visiblity should be false when initially true', () => {
+      const { initialState } = fromSources
       const payload = {
         sourceDataUid: 'KFJL1',
-        sourceId: 'fedd672e-959a-11e8-9eb6-529269fb1459'
+        sourceId: 'fedd672e-959a'
       }
-      const { initialState } = fromSources
       initialState.entities = {
-        'fedd672e-959a-11e8-9eb6-529269fb1459': {
-          sourceId: 'fedd672e-959a-11e8-9eb6-529269fb1459',
+        'fedd672e-959a': {
+          sourceId: 'fedd672e-959a',
           sourceName: 'A003C9',
           sourceTypeId: 10855,
           sourceTypeProducer: 'EMPATICA',
@@ -62,12 +62,17 @@ describe('SourcesReducer', () => {
 
   describe('Inject SourceData action', () => {
     it('should inject sourcedata to source entities', () => {
+      const { initialState } = fromSources
       const payload = {
         10304: {
           canRegisterDynamically: true,
           id: 10304,
           sourceData: [
-            { id: 509, sourceDataName: 'asd', sourceDataType: 'as' }
+            {
+              id: 509,
+              sourceDataName: 'sourceName',
+              sourceDataType: 'sourceType'
+            }
           ],
           producer: 'producer',
           model: 'model',
@@ -75,13 +80,12 @@ describe('SourcesReducer', () => {
           sourceTypeScope: 'PASSIVE'
         }
       }
-      const { initialState } = fromSources
-      initialState.ids = ['gjkd09']
+      initialState.ids = ['GJKD09']
       initialState.entities = {
-        gjkd09: {
-          sourceId: 'gjkd09',
+        GJKD09: {
+          sourceId: 'GJKD09',
           sourceTypeId: 10304,
-          sourceName: 'asd-gjkd09',
+          sourceName: 'asd-GJKD09',
           sourceTypeProducer: 'producer',
           sourceTypeModel: 'model',
           sourceTypeCatalogVersion: '1.0',

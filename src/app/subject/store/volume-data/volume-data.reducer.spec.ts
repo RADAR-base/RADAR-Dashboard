@@ -2,9 +2,10 @@ import * as volumeDataActions from './volume-data.actions'
 import * as fromVolumeData from './volume-data.reducer'
 
 describe('VolumeDataReducer', () => {
+  const { initialState } = fromVolumeData
+
   describe('Destroy action', () => {
     it('should return the default state', () => {
-      const { initialState } = fromVolumeData
       const action = new volumeDataActions.Destroy()
       const state = fromVolumeData.reducer(undefined, action)
 
@@ -14,7 +15,6 @@ describe('VolumeDataReducer', () => {
 
   describe('Load Fail action', () => {
     it('should set loadFail to true', () => {
-      const { initialState } = fromVolumeData
       const action = new volumeDataActions.LoadFail()
       const state = fromVolumeData.reducer(initialState, action)
 
@@ -28,7 +28,7 @@ describe('VolumeDataReducer', () => {
         header: {
           projectName: 'test',
           sources: [],
-          subjectId: 'ifodj',
+          subjectId: 'IFODJ',
           timeWindow: 'ONE_DAY'
         },
         dataset: [
@@ -39,7 +39,6 @@ describe('VolumeDataReducer', () => {
         ]
       }
 
-      const { initialState } = fromVolumeData
       const action = new volumeDataActions.LoadSuccess(volume)
       const state = fromVolumeData.reducer(initialState, action)
 
@@ -53,7 +52,6 @@ describe('VolumeDataReducer', () => {
 
   describe('Set Time Frame action', () => {
     it('should set timeframe', () => {
-      const { initialState } = fromVolumeData
       const timeFrame = { startDateTime: new Date(), endDateTime: new Date() }
       const action = new volumeDataActions.SetTimeFrame(timeFrame)
       const state = fromVolumeData.reducer(initialState, action)
@@ -64,7 +62,6 @@ describe('VolumeDataReducer', () => {
 
   describe('Set Time Frame action', () => {
     it('should set timeframe when no timeframe is specified', () => {
-      const { initialState } = fromVolumeData
       const timeFrame = { startDateTime: null, endDateTime: null }
       const action = new volumeDataActions.SetTimeFrame(timeFrame)
       const state = fromVolumeData.reducer(initialState, action)
@@ -75,7 +72,6 @@ describe('VolumeDataReducer', () => {
 
   describe('Set Time Interval action', () => {
     it('should set time interval', () => {
-      const { initialState } = fromVolumeData
       const timeInterval = 'ONE_HOUR'
       const action = new volumeDataActions.SetTimeInterval(timeInterval)
       const state = fromVolumeData.reducer(initialState, action)

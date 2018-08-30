@@ -2,9 +2,9 @@ import * as authActions from './auth.actions'
 import * as fromAuth from './auth.reducer'
 
 describe('AuthReducer', () => {
+  const { initialState } = fromAuth
   describe('Logout action', () => {
     it('should return the default state', () => {
-      const { initialState } = fromAuth
       const action = new authActions.Logout()
       const state = fromAuth.reducer(initialState, action)
 
@@ -14,7 +14,6 @@ describe('AuthReducer', () => {
 
   describe('Store Auth action', () => {
     it('should store data', () => {
-      const { initialState } = fromAuth
       const action = new authActions.StoreAuth({
         token: '1ihi2u',
         user: { username: 'user', name: 'name', role: '0' }
@@ -27,7 +26,6 @@ describe('AuthReducer', () => {
 
   describe('Login Failure action', () => {
     it('should store data', () => {
-      const { initialState } = fromAuth
       const action = new authActions.LoginFailure({})
       const state = fromAuth.reducer(initialState, action)
 
