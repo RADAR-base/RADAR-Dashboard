@@ -1,7 +1,7 @@
 import * as studiesActions from './studies.actions'
 import * as fromStudies from './studies.reducer'
 
-describe('VolumeDataReducer', () => {
+describe('StudiesReducer', () => {
   describe('Destroy action', () => {
     it('should return the default state', () => {
       const { initialState } = fromStudies
@@ -13,7 +13,7 @@ describe('VolumeDataReducer', () => {
   })
 
   describe('Load action', () => {
-    it('should populate volume data', () => {
+    it('should populate studies', () => {
       const { initialState } = fromStudies
       const action = new studiesActions.Load()
       const state = fromStudies.reducer(initialState, action)
@@ -23,7 +23,7 @@ describe('VolumeDataReducer', () => {
   })
 
   describe('Load Success action', () => {
-    it('should populate volume data', () => {
+    it('should populate studies', () => {
       const { initialState } = fromStudies
       const action = new studiesActions.LoadSuccess([{ id: 0 }])
       const state = fromStudies.reducer(initialState, action)

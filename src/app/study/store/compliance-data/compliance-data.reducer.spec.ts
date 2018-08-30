@@ -1,7 +1,7 @@
 import * as complianceDataActions from './compliance-data.actions'
 import * as fromComplianceData from './compliance-data.reducer'
 
-describe('VolumeDataReducer', () => {
+describe('ComplianceDataReducer', () => {
   describe('Destroy action', () => {
     it('should return the default state', () => {
       const { initialState } = fromComplianceData
@@ -13,7 +13,7 @@ describe('VolumeDataReducer', () => {
   })
 
   describe('Load action', () => {
-    it('should populate volume data', () => {
+    it('should populate compliance data', () => {
       const { initialState } = fromComplianceData
       const action = new complianceDataActions.Load()
       const state = fromComplianceData.reducer(initialState, action)
@@ -23,7 +23,7 @@ describe('VolumeDataReducer', () => {
   })
 
   describe('Load Success action', () => {
-    it('should populate volume data', () => {
+    it('should populate compliance data', () => {
       const { initialState } = fromComplianceData
       const action = new complianceDataActions.LoadSuccess({})
       const state = fromComplianceData.reducer(initialState, action)

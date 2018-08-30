@@ -59,4 +59,41 @@ describe('SourcesReducer', () => {
       expect(state.entities[payload.sourceId].sourceData[0].visible).toBeFalsy()
     })
   })
+
+  describe('Inject SourceData action', () => {
+    it('should inject sourcedata to source entities', () => {
+      const payload = {
+        10304: {
+          canRegisterDynamically: true,
+          id: 10304,
+          sourceData: [
+            { id: 509, sourceDataName: 'asd', sourceDataType: 'as' }
+          ],
+          producer: 'producer',
+          model: 'model',
+          catalogVersion: '1.0',
+          sourceTypeScope: 'PASSIVE'
+        }
+      }
+      const { initialState } = fromSources
+      initialState.ids = ['gjkd09']
+      initialState.entities = {
+        gjkd09: {
+          sourceId: 'gjkd09',
+          sourceTypeId: 10304,
+          sourceName: 'asd-gjkd09',
+          sourceTypeProducer: 'producer',
+          sourceTypeModel: 'model',
+          sourceTypeCatalogVersion: '1.0',
+          assigned: true,
+          status: 'DISCONNECTED',
+          effectiveTimeFrame: null
+        }
+      }
+      const action = new sourcesActions.InjectSourceData(payload)
+      const state = fromSources.reducer(initialState, action)
+
+      expect(state.entities[initialState.ids[0]].sourceData).toBeTruthy()
+    })
+  })
 })

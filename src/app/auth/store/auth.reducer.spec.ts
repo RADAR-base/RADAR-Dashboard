@@ -1,7 +1,7 @@
 import * as authActions from './auth.actions'
 import * as fromAuth from './auth.reducer'
 
-describe('VolumeDataReducer', () => {
+describe('AuthReducer', () => {
   describe('Logout action', () => {
     it('should return the default state', () => {
       const { initialState } = fromAuth
