@@ -62,6 +62,17 @@ describe('VolumeDataReducer', () => {
     })
   })
 
+  describe('Set Time Frame action', () => {
+    it('should set timeframe when no timeframe is specified', () => {
+      const { initialState } = fromVolumeData
+      const timeFrame = { startDateTime: null, endDateTime: null }
+      const action = new volumeDataActions.SetTimeFrame(timeFrame)
+      const state = fromVolumeData.reducer(initialState, action)
+
+      expect(state.timeFrame.startDateTime).toBeTruthy()
+    })
+  })
+
   describe('Set Time Interval action', () => {
     it('should set time interval', () => {
       const { initialState } = fromVolumeData

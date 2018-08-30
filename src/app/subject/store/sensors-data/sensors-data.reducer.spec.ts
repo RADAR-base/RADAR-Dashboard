@@ -12,6 +12,18 @@ describe('SensorsDataReducer', () => {
     })
   })
 
+  describe('Load action', () => {
+    it('should return same state', () => {
+      const { initialState } = fromSensorsData
+      const action = new sensorsDataActions.Load()
+      const state = fromSensorsData.reducer(initialState, action)
+
+      console.log(state)
+      console.log(initialState)
+      expect(state.entities).toBe(initialState.entities)
+    })
+  })
+
   describe('Load Success action', () => {
     it('should populate sensors data', () => {
       const payload = {
@@ -45,6 +57,42 @@ describe('SensorsDataReducer', () => {
       const state = fromSensorsData.reducer(initialState, action)
 
       expect(state).toBe(initialState)
+    })
+  })
+
+  describe('Load Success action', () => {
+    it('should return updated state when sensor exists', () => {
+      // NOTE: Initialise state
+      const payload = {
+        data: [],
+        sensor: {
+          id: 0,
+          sourceDataType: '',
+          sourceDataName: '',
+          uid: 'ifodj'
+        }
+      }
+
+      const { initialState } = fromSensorsData
+      const action = new sensorsDataActions.LoadSuccess(payload)
+      const state = fromSensorsData.reducer(initialState, action)
+
+      // NOTE: Update state
+      const payloadUpdated = {
+        data: [{ date: new Date(), value: 1 }],
+        sensor: {
+          id: 0,
+          sourceDataType: '',
+          sourceDataName: '',
+          uid: 'ifodj'
+        }
+      }
+
+      const actionUpdate = new sensorsDataActions.LoadSuccess(payloadUpdated)
+      const stateUpdated = fromSensorsData.reducer(state, actionUpdate)
+
+      expect(stateUpdated.areLoaded[payload.sensor.uid]).toBeTruthy()
+      expect(stateUpdated.entities[payload.sensor.uid].data.length).toBe(1)
     })
   })
 
