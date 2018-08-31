@@ -9,13 +9,11 @@ describe('radar-dashboard Login', function() {
     page = new LoginPage()
   })
 
-  const credentials = { username: 'user', password: 'pass' }
-
   it('when login is successful — he should redirect to studies page', () => {
     page.navigateTo()
     page.fillCredentials()
 
-    browser.sleep(5000)
+    browser.waitForAngular()
 
     const list = element.all(by.css('.study-card'))
     expect(list.count()).toBeGreaterThan(0)
