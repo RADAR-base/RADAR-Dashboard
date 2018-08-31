@@ -26,7 +26,7 @@ import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.ac
 export class SourceVolumeComponent {
   @Input() data
   @Input() path
-  sensorDataTimeFrame: any
+  sensorDataTimeFrame: Date[]
 
   constructor(private store: Store<fromSubject.State>) {}
 

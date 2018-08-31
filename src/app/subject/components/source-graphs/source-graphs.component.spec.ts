@@ -43,7 +43,7 @@ describe('SourceGraphsComponent', () => {
     element = fixture.nativeElement
 
     component.sources = []
-    component.isDataLoaded = false
+    component.isDataLoaded = { 0: false }
     component.sensorsData = {
       id: {
         data: null,

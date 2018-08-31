@@ -4,7 +4,7 @@ import { TimeWindow } from '../enums/time-window.enum'
 
 @Pipe({ name: 'dateCalc' })
 export class DateCalcPipe implements PipeTransform {
-  transform(date: Date, date_factor: any, jump: any) {
+  transform(date: Date, date_factor: string, jump: string) {
     switch (date_factor) {
       case 'ONE_DAY':
         if (jump === 'forward') {

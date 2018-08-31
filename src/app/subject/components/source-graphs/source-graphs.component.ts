@@ -32,7 +32,7 @@ export class SourceGraphsComponent implements OnInit, OnDestroy {
   @ViewChild('tooltip') tooltip: SourceTooltipComponent
 
   @Input() sources: Source[]
-  @Input() isDataLoaded: any
+  @Input() isDataLoaded: Dictionary<boolean>
   @Input() sensorsData: Dictionary<SensorsData>
   @Input() volumeData: ChartData[]
   @Input() isVolumeDataLoaded: boolean
