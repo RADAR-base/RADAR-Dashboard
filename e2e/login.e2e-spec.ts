@@ -9,8 +9,6 @@ describe('radar-dashboard Login', function() {
     page = new LoginPage()
   })
 
-  const credentials = { username: 'user', password: 'pass' }
-
   it('when login is successful — he should redirect to studies page', () => {
     page.navigateTo()
     page.fillCredentials()
