@@ -1,5 +1,3 @@
-import { TimeWindow } from '../../enums/time-window.enum'
-
 export const MockCompliance = {
   header: {
     subjectId: 'KCLTest0',

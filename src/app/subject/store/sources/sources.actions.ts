@@ -2,7 +2,6 @@ import { Dictionary } from '@ngrx/entity/src/models'
 import { Action } from '@ngrx/store'
 
 import { SourceType } from '../../../shared/models/source-type.model'
-import { Source } from '../../../shared/models/source.model'
 import { Subject } from '../../../shared/models/subject.model'
 
 export const LOAD = '[Sources] LOAD'

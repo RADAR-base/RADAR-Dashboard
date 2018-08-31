@@ -44,7 +44,14 @@ describe('SourceGraphsComponent', () => {
 
     component.sources = []
     component.isDataLoaded = false
-    component.sensorsData = []
+    component.sensorsData = {
+      id: {
+        data: null,
+        id: 0,
+        sourceDataName: '',
+        sourceDataType: ''
+      }
+    }
     component.volumeData = []
     component.isVolumeDataLoaded = false
     component.volumeTimeFrame = {
@@ -59,7 +66,6 @@ describe('SourceGraphsComponent', () => {
 
   it('should be created', () => {
     component.sources = []
-    component.sensorsData = []
 
     expect(component).toBeTruthy()
   })

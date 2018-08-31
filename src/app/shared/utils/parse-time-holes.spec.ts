@@ -1,4 +1,3 @@
-import { TimeWindow } from '../enums/time-window.enum'
 import {
   MockAPISampleDataset,
   MockChartDataExpected,

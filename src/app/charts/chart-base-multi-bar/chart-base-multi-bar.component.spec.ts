@@ -1,4 +1,3 @@
-import { DebugElement } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 
 import {
@@ -14,7 +13,6 @@ describe('ChartBaseMultiBarComponent', () => {
   let component: ChartBaseMultiBarComponent
   let fixture: ComponentFixture<ChartBaseMultiBarComponent>
   let element: HTMLElement
-  let de: DebugElement
 
   const mockChartData = parseTimeHoles(
     MockAPIComplianceDataset,
@@ -30,7 +28,6 @@ describe('ChartBaseMultiBarComponent', () => {
     fixture = TestBed.createComponent(ChartBaseMultiBarComponent)
     component = fixture.componentInstance
     element = fixture.nativeElement
-    de = fixture.debugElement
 
     component.keys = MockComplianceKeys
   })

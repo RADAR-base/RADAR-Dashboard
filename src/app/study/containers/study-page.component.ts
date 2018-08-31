@@ -6,7 +6,7 @@ import {
 } from '@angular/core'
 import { Store, select } from '@ngrx/store'
 import { Observable } from 'rxjs'
-import { publishReplay, refCount, tap } from 'rxjs/operators'
+import { publishReplay, refCount } from 'rxjs/operators'
 
 import { Study } from '../../shared/models/study.model'
 import { Subject } from '../../shared/models/subject.model'

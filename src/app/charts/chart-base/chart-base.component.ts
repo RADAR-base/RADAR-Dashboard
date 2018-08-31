@@ -18,7 +18,6 @@ import * as shortid from 'shortid'
 
 import { ChartColors } from '../../shared/enums/chart-colors.enum'
 import { ChartData } from '../../shared/models/chart-data.model'
-import { ConfigKey } from '../../shared/models/config.model'
 import { arraysEqual } from '../../shared/utils/arrays-equal'
 
 /**

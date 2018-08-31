@@ -4,7 +4,6 @@ import { Observable } from 'rxjs'
 import { delay, map } from 'rxjs/operators'
 
 import { ENV } from '../../../environments/environment'
-import { TimeWindow } from '../../shared/enums/time-window.enum'
 import { parseTimeHoles } from '../../shared/utils/parse-time-holes'
 
 @Injectable()

@@ -7,6 +7,7 @@ import {
   ViewChild
 } from '@angular/core'
 import { Store } from '@ngrx/store'
+import { Dictionary } from 'async'
 import { Observable } from 'rxjs'
 
 import { ChartData } from '../../../shared/models/chart-data.model'
@@ -32,7 +33,7 @@ export class SourceGraphsComponent implements OnInit, OnDestroy {
 
   @Input() sources: Source[]
   @Input() isDataLoaded: any
-  @Input() sensorsData: any
+  @Input() sensorsData: Dictionary<SensorsData>
   @Input() volumeData: ChartData[]
   @Input() isVolumeDataLoaded: boolean
   @Input() volumeTimeFrame: TimeFrame

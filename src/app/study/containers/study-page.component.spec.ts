@@ -1,4 +1,4 @@
-import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core'
+import { NO_ERRORS_SCHEMA } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ActivatedRoute, Router } from '@angular/router'
 import { EffectsModule } from '@ngrx/effects'
@@ -14,8 +14,6 @@ import { StudyPageComponent } from './study-page.component'
 describe('StudyPageComponent', () => {
   let component: StudyPageComponent
   let fixture: ComponentFixture<StudyPageComponent>
-  let element: HTMLElement
-  let de: DebugElement
 
   beforeEach(async () => {
     const activatedRoute = new ActivatedRouteStub()
@@ -38,8 +36,6 @@ describe('StudyPageComponent', () => {
 
     fixture = TestBed.createComponent(StudyPageComponent)
     component = fixture.componentInstance
-    element = fixture.nativeElement
-    de = fixture.debugElement
 
     fixture.detectChanges()
   })

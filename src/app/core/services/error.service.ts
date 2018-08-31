@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { Observable, throwError as observableThrowError } from 'rxjs'
+import { throwError as observableThrowError } from 'rxjs'
 
 import { ENV } from '../../../environments/environment'
 

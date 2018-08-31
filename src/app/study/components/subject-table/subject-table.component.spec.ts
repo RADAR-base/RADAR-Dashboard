@@ -1,4 +1,3 @@
-import { DebugElement } from '@angular/core'
 import { ComponentFixture, TestBed, async } from '@angular/core/testing'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { Router } from '@angular/router'
@@ -10,8 +9,6 @@ import { SubjectTableModule } from './subject-table.module'
 describe('SubjectTableComponent', () => {
   let component: SubjectTableComponent
   let fixture: ComponentFixture<SubjectTableComponent>
-  let element: HTMLElement
-  let de: DebugElement
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -21,8 +18,6 @@ describe('SubjectTableComponent', () => {
 
     fixture = TestBed.createComponent(SubjectTableComponent)
     component = fixture.componentInstance
-    element = fixture.nativeElement
-    de = fixture.debugElement
 
     fixture.detectChanges()
   }))

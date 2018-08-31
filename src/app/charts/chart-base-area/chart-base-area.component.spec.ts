@@ -1,4 +1,3 @@
-import { DebugElement } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 
 import {
@@ -13,7 +12,6 @@ describe('ChartBaseAreaComponent', () => {
   let component: ChartBaseAreaComponent
   let fixture: ComponentFixture<ChartBaseAreaComponent>
   let element: HTMLElement
-  let de: DebugElement
 
   const mockChartData = parseTimeHoles(
     MockAPISampleDataset,
@@ -29,7 +27,6 @@ describe('ChartBaseAreaComponent', () => {
     fixture = TestBed.createComponent(ChartBaseAreaComponent)
     component = fixture.componentInstance
     element = fixture.nativeElement
-    de = fixture.debugElement
   })
 
   it('should be created', () => {

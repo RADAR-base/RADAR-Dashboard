@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 import { Store } from '@ngrx/store'
-import { Observable } from 'rxjs'
 
 import * as fromStudy from '../../../store'
 import * as complianceDataActions from '../../store/compliance-data/compliance-data.actions'

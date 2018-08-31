@@ -1,5 +1,4 @@
-import { DebugElement } from '@angular/core'
-import { ComponentFixture, TestBed, tick } from '@angular/core/testing'
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
 import {
   MockAcceleration,
@@ -14,7 +13,6 @@ describe('ChartBaseMultiLineComponent', () => {
   let component: ChartBaseMultiLineComponent
   let fixture: ComponentFixture<ChartBaseMultiLineComponent>
   let element: HTMLElement
-  let de: DebugElement
 
   const mockChartData = parseTimeHoles(
     MockAcceleration['dataset'],
@@ -30,7 +28,6 @@ describe('ChartBaseMultiLineComponent', () => {
     fixture = TestBed.createComponent(ChartBaseMultiLineComponent)
     component = fixture.componentInstance
     element = fixture.nativeElement
-    de = fixture.debugElement
 
     component.keys = MockAccelerationKeys.keys
   })

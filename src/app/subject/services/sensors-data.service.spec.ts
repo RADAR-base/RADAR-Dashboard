@@ -2,17 +2,16 @@ import {
   HttpClientTestingModule,
   HttpTestingController
 } from '@angular/common/http/testing'
-import { TestBed, async } from '@angular/core/testing'
+import { TestBed } from '@angular/core/testing'
 import { EffectsModule } from '@ngrx/effects'
 import { StoreModule } from '@ngrx/store'
 
 import { AppConfig } from '../../shared/app-config'
 import { DescriptiveStatistic } from '../../shared/enums/descriptive-statistic.enum'
-import { TimeWindow } from '../../shared/enums/time-window.enum'
 import { MockConfig } from '../../shared/testing/mocks/mock-config'
 import {
   MockSensorDataAPIResponse,
-  MockSensorDataResult,
+  MockSensorDataTestResult,
   MockSensorsOptions
 } from '../../shared/testing/mocks/mock-sources'
 import { MockSources } from '../../shared/testing/mocks/mock-sources'
@@ -43,7 +42,7 @@ describe('SensorsDataService', () => {
   it('should successfully return expected data for one sensor', done => {
     const options = MockSensorsOptions
     const sources = MockSources
-    const expected = MockSensorDataResult
+    const expected = MockSensorDataTestResult
 
     service.getData(sources, options).subscribe(response => {
       expect(response).toEqual(expected)

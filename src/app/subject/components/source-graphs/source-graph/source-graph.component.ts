@@ -3,11 +3,9 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnDestroy,
   Output
 } from '@angular/core'
 import { Store } from '@ngrx/store'
-import { Observable } from 'rxjs'
 
 import { AppConfig } from '../../../../shared/app-config'
 import { DataType } from '../../../../shared/enums/data-type.enum'
@@ -67,7 +65,7 @@ import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.ac
 export class SourceGraphComponent {
   @Input() isLoaded
   @Input() sensorId
-  @Input() sensorData: any
+  @Input() sensorData: ChartData[]
   @Input() sourceData: SourceData
   @Input() path
   @Output() tooltipMouseMoveParent = new EventEmitter<any>()

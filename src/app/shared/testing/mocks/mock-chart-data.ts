@@ -1,4 +1,3 @@
-import { TimeWindow } from '../../enums/time-window.enum'
 import { ChartData } from '../../models/chart-data.model'
 import { EffectiveTimeFrame } from '../../models/sample-data.model'
 
