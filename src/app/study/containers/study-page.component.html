@@ -51,8 +51,8 @@
         class="tile-content-subjects"
       >
         <section [ngClass]="{
-          'subject-table': subject,
-          'subject-table-before': !subject
+          'subject-table-before': !subject,
+          'subject-table': subject
         }">
           <app-subject-table
             [subjects]="subjects$ | async"
