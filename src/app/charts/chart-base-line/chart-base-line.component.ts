@@ -31,7 +31,7 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
   lineGroup: any
   gradient: any
   lineChunked: any
-  extentFactor = 1.25
+  extentFactor = 1.5
 
   init() {
     // Add HR Gradient
