@@ -27,7 +27,8 @@ export function reducer(
       return adapter.addAll(action.payload, state)
     }
 
-    case SourceTypeActionTypes.LoadFail: {
+    case SourceTypeActionTypes.LoadFail:
+    case SourceTypeActionTypes.Destroy: {
       return initialState
     }
 

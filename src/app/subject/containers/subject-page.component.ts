@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit
+} from '@angular/core'
 import { Dictionary } from '@ngrx/entity/src/models'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs'
@@ -9,6 +14,7 @@ import { Subject } from '../../shared/models/subject.model'
 import { TimeFrame } from '../../shared/models/time.model'
 import * as fromRoot from '../../store'
 import * as fromSubject from '../store'
+import * as sourceTypeActions from '../store/source-types/source-types.actions'
 import * as sourcesActions from '../store/sources/sources.actions'
 
 @Component({
@@ -17,7 +23,7 @@ import * as sourcesActions from '../store/sources/sources.actions'
   styleUrls: ['./subject-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SubjectPageComponent implements OnInit {
+export class SubjectPageComponent implements OnInit, OnDestroy {
   studyName$: Observable<string>
   subjectId$: Observable<string>
   subject$: Observable<Subject>
@@ -65,5 +71,10 @@ export class SubjectPageComponent implements OnInit {
     this.volumeTimeFrame$ = this.store.select(
       fromSubject.getVolumeDataTimeFrame
     )
+  }
+
+  ngOnDestroy() {
+    this.store.dispatch(new sourcesActions.Destroy())
+    this.store.dispatch(new sourceTypeActions.Destroy())
   }
 }

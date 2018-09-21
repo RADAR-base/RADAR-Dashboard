@@ -30,6 +30,10 @@ export function reducer(state = initialState, action: actions.Actions): State {
       return { ...initialState }
     }
 
+    case actions.DESTROY: {
+      return initialState
+    }
+
     default:
       return state
   }

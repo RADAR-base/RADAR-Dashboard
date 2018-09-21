@@ -1,0 +1,13 @@
+@import '../../../../styles/common';
+
+.toggle-stat {
+  padding-left: 15px;
+  border-radius: 4px;
+  background-color: $cl-base-40;
+  text-transform: capitalize;
+}
+
+mat-select {
+  padding: 5px;
+  width: 150px;
+}
