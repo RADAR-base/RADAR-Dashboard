@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing'
 
+import { ShortenLabelPipe } from '../../../../shared/pipes/pipes'
 import { SourceTooltipComponent } from './source-tooltip.component'
 
 describe('SourceTooltipComponent', () => {
@@ -8,7 +9,7 @@ describe('SourceTooltipComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SourceTooltipComponent]
+      declarations: [SourceTooltipComponent, ShortenLabelPipe]
     }).compileComponents()
   }))
 

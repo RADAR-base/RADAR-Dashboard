@@ -50,10 +50,10 @@
         tile-content
         class="tile-content-subjects"
       >
-        <section
-          [class.subject-table]="subject"
-          [class.subject-table-before]="!subject"
-        >
+        <section [ngClass]="{
+          'subject-table-before': !subject,
+          'subject-table': subject
+        }">
           <app-subject-table
             [subjects]="subjects$ | async"
             [studyName]="(study$ | async)?.projectName"

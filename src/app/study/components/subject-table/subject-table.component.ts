@@ -32,8 +32,6 @@ export class SubjectTableComponent implements OnInit, OnDestroy {
   ]
   dataSource: SubjectDataSource | null
   subjectDB = new SubjectDB()
-  statusCon = 'CONNECTED'
-  statusDis = 'DISCONNECTED'
 
   @ViewChild(MatPaginator) paginator: MatPaginator
 
