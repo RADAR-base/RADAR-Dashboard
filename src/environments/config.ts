@@ -193,10 +193,10 @@ export const Config = {
       doc: 'Number of events (heart beats) per minute.',
       label: { EN: 'Beats per Minute' }
     },
-    C: {
+    CELSIUS: {
       doc:
         'Celsius, also known as centigrade, is a metric scale and unit of measurement for temperature.',
-      label: { EN: '°C' }
+      label: { EN: '°Celsius' }
     },
     G: {
       doc:
