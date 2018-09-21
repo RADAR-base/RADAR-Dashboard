@@ -10,9 +10,6 @@ export interface Study {
   sourceTypes?: SourceType[]
   attributes?: Attribute[]
   organization?: string
-
-  // TODO: remove after API migration
-  name?: string
 }
 
 interface Attribute {

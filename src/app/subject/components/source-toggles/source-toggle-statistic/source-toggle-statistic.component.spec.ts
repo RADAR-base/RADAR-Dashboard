@@ -9,6 +9,7 @@ import { SourceToggleStatisticComponent } from './source-toggle-statistic.compon
 describe('SourceToggleStatisticComponent', () => {
   let component: SourceToggleStatisticComponent
   let fixture: ComponentFixture<SourceToggleStatisticComponent>
+  let element: HTMLElement
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -24,10 +25,22 @@ describe('SourceToggleStatisticComponent', () => {
 
     fixture = TestBed.createComponent(SourceToggleStatisticComponent)
     component = fixture.componentInstance
+    element = fixture.nativeElement
     fixture.detectChanges()
   })
 
   it('should be created', () => {
     expect(component).toBeTruthy()
+  })
+
+  it('should change statistic on click', () => {
+    fixture.detectChanges()
+
+    const evt = new MouseEvent('click', {})
+    element.querySelector('mat-option').dispatchEvent(evt)
+
+    expect(component.selectedStatistic.toLowerCase).toBe(
+      element.querySelector('mat-option').innerHTML.toLowerCase
+    )
   })
 })

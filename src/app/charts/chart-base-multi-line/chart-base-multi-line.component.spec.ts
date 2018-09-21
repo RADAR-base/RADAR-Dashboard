@@ -56,7 +56,17 @@ describe('ChartBaseMultiLineComponent', () => {
     expect(component.height).toBeGreaterThan(0)
   })
 
-  // TODO: Add tests
-  // it('path.line should NOT have attribute "d" before data changes', () => {})
-  // it('path.line should have attribute "d" when data changes', () => {})
+  it('path should have attribute d when data changes', () => {
+    component.chartData = mockChartData
+    fixture.detectChanges()
+
+    expect(element.querySelector('path')).toBeTruthy()
+    expect(element.querySelector('path').getAttribute('d')).toBeTruthy()
+  })
+
+  it('path should not have attribute d before data changes', () => {
+    fixture.detectChanges()
+
+    expect(element.querySelector('path')).toBeFalsy()
+  })
 })

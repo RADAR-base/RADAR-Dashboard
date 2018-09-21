@@ -7,6 +7,7 @@ import {
   MockTimeIntervalChartData
 } from '../../shared/testing/mocks/mock-chart-data'
 import { parseTimeHoles } from '../../shared/utils/parse-time-holes'
+import { SourceGraphsModule } from '../../subject/components/source-graphs/source-graphs.module'
 import { ChartBaseBarComponent } from './chart-base-bar.component'
 
 describe('ChartBaseBarComponent', () => {
@@ -20,10 +21,14 @@ describe('ChartBaseBarComponent', () => {
     MockTimeFrameChartData,
     MockTimeIntervalChartData
   )
+  const mockTimeFrame = [
+    MockTimeFrameChartData.startDateTime,
+    MockTimeFrameChartData.endDateTime
+  ]
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ChartBaseBarComponent]
+      imports: [SourceGraphsModule]
     })
 
     fixture = TestBed.createComponent(ChartBaseBarComponent)
@@ -74,5 +79,50 @@ describe('ChartBaseBarComponent', () => {
       expect(rectElements[prop].getAttribute('x')).toBeTruthy()
       expect(rectElements[prop].getAttribute('y')).toBeTruthy()
     })
+  })
+
+  it('should create bars when chart has brush component', () => {
+    component.hasBrush = true
+    component.chartData = mockChartData
+    component.sensorDataTimeFrame = [
+      MockTimeFrameChartData.startDateTime,
+      MockTimeFrameChartData.endDateTime
+    ]
+    fixture.detectChanges()
+
+    expect(element.querySelector('.bar')).toBeTruthy()
+  })
+
+  it('should create brush when hasBrush is set to true', () => {
+    component.hasBrush = true
+    component.chartData = mockChartData
+    component.sensorDataTimeFrame = mockTimeFrame
+    fixture.detectChanges()
+
+    expect(element.querySelector('.brush')).toBeTruthy()
+  })
+
+  it('should update brush from timeFrame data', () => {
+    component.hasBrush = true
+    component.chartData = mockChartData
+    component.sensorDataTimeFrame = mockTimeFrame
+    fixture.detectChanges()
+
+    expect(element.querySelector('.brush')).toBeTruthy()
+  })
+
+  it('should emit data on brush', () => {
+    component.hasBrush = true
+    component.categorical = false
+    component.brushWidthDefault = 200
+    component.data = mockChartData
+
+    component.brushMove.subscribe(d => {
+      expect(d).toBeDefined()
+    })
+
+    fixture.detectChanges()
+
+    expect(element.querySelector('.brush')).toBeTruthy()
   })
 })

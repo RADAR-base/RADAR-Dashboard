@@ -72,7 +72,9 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  @Output() tooltipMouseMove = new EventEmitter<Date>()
+  @Output()
+  tooltipMouseMove = new EventEmitter<{ event: MouseEvent; date: Date }>()
+  @Output() tooltipMouseLeave = new EventEmitter()
   @Output() brushMove = new EventEmitter<any>()
 
   uid: string
@@ -152,6 +154,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
         .append('rect')
         .attr('class', 'tooltip-mouse-box')
         .attr('data-tooltipMouseBox', true)
+        .on('mouseleave', () => this.onTooltipMouseLeave())
         .on('mousemove', () => this.onTooltipMouseMove())
     }
 
@@ -166,9 +169,15 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
       const chart = this.chartData[index - 1]
 
       if (chart) {
-        this.tooltipMouseMove.emit(chart.date)
+        this.tooltipMouseMove.emit({ event: d3.event, date: chart.date })
+      } else {
+        this.onTooltipMouseLeave()
       }
     }
+  }
+
+  private onTooltipMouseLeave() {
+    this.tooltipMouseLeave.emit()
   }
 
   private beforeUpdate() {
