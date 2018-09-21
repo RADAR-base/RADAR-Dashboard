@@ -94,32 +94,34 @@ export class SensorsDataService {
   }
 
   private parseURL(sensor: Sensor): string {
-    let url = [
-      this.url,
-      this.options.studyName,
-      this.options.subjectId,
-      sensor.sourceId,
-      sensor.sourceDataName,
-      DescriptiveStatistic[this.options.descriptiveStatistic]
-    ].join('/')
+    if (sensor) {
+      let url = [
+        this.url,
+        this.options.studyName,
+        this.options.subjectId,
+        sensor.sourceId,
+        sensor.sourceDataName,
+        DescriptiveStatistic[this.options.descriptiveStatistic]
+      ].join('/')
 
-    url = url + '?'
-    url = `${url}timeWindow=${this.options.timeWindow}`
+      url = url + '?'
+      url = `${url}timeWindow=${this.options.timeWindow}`
 
-    const startTime =
-      this.options.timeFrame.startDateTime ||
-      this.options.queryParams.startTime ||
-      null
-    const endTime =
-      this.options.timeFrame.endDateTime ||
-      this.options.queryParams.endTime ||
-      null
+      const startTime =
+        this.options.timeFrame.startDateTime ||
+        this.options.queryParams.startTime ||
+        null
+      const endTime =
+        this.options.timeFrame.endDateTime ||
+        this.options.queryParams.endTime ||
+        null
 
-    startTime
-      ? (url = `${url}&startTime=${startTime.toISOString()}`)
-      : (url = url)
-    endTime ? (url = `${url}&endTime=${endTime.toISOString()}`) : (url = url)
+      startTime
+        ? (url = `${url}&startTime=${startTime.toISOString()}`)
+        : (url = url)
+      endTime ? (url = `${url}&endTime=${endTime.toISOString()}`) : (url = url)
 
-    return url
+      return url
+    }
   }
 }
