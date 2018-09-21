@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { MockTimeFrameChartData } from '../../shared/testing/mocks/mock-chart-data'
+import { MockTimeFrameChartData } from '../../../assets/testing/mocks/mock-chart-data'
 import { ChartDateAxisComponent } from './chart-date-axis.component'
 
 describe('ChartDateAxisComponent', () => {

@@ -7,7 +7,7 @@ import { StoreModule, combineReducers } from '@ngrx/store'
 import {
   ActivatedRouteStub,
   RouterStub
-} from '../../shared/testing/router-stubs'
+} from '../../../assets/testing/router-stubs'
 import * as fromRoot from '../../store'
 import * as fromFeature from '../store/studies.reducer'
 import { StudiesPageComponent } from './studies-page.component'

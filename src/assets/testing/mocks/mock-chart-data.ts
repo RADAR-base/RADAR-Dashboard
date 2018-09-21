@@ -1,5 +1,5 @@
-import { ChartData } from '../../models/chart-data.model'
-import { EffectiveTimeFrame } from '../../models/sample-data.model'
+import { ChartData } from '../../../app/shared/models/chart-data.model'
+import { EffectiveTimeFrame } from '../../../app/shared/models/sample-data.model'
 
 export const MockAPISampleDataset = [
   { startDateTime: '2017-06-16T10:09:10.000Z', value: 153 },

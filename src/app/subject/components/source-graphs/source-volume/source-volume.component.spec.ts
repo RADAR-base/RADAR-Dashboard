@@ -2,12 +2,12 @@ import { ComponentFixture, TestBed, async } from '@angular/core/testing'
 import { By } from '@angular/platform-browser'
 import { StoreModule, combineReducers } from '@ngrx/store'
 
-import { ChartBaseBarComponent } from '../../../../charts/chart-base-bar/chart-base-bar.component'
 import {
   MockAPISampleDataset,
   MockTimeFrameChartData,
   MockTimeIntervalChartData
-} from '../../../../shared/testing/mocks/mock-chart-data'
+} from '../../../../../assets/testing/mocks/mock-chart-data'
+import { ChartBaseBarComponent } from '../../../../charts/chart-base-bar/chart-base-bar.component'
 import { parseTimeHoles } from '../../../../shared/utils/parse-time-holes'
 import * as fromRoot from '../../../../store'
 import * as fromFeature from '../../../store'

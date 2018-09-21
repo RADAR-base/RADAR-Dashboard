@@ -4,14 +4,14 @@ import {
   MockChartDataWithStartEndHolesExpected,
   MockTimeFrameChartData,
   MockTimeFrameChartDataWithStartEndHoles
-} from '../testing/mocks/mock-chart-data'
+} from '../../../assets/testing/mocks/mock-chart-data'
 import {
   MockAPIComplianceDataset,
   MockComplianceDataExpected,
   MockComplianceDataWithStartEndHolesExpected,
   MockTimeFrameCompliance,
   MockTimeFrameComplianceWithStartEndHoles
-} from '../testing/mocks/mock-compliance-data'
+} from '../../../assets/testing/mocks/mock-compliance-data'
 import { parseTimeHoles } from './parse-time-holes'
 
 describe('parseTimeHoles', () => {

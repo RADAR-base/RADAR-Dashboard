@@ -1,11 +1,11 @@
 import { Dictionary } from '@ngrx/entity/src/models'
 
-import { ChartType } from '../../enums/chart-type.enum'
-import { DataType } from '../../enums/data-type.enum'
-import { Sensor } from '../../models/sensor.model'
-import { SensorsData } from '../../models/sensors-data.model'
-import { SourceData } from '../../models/source-data.model'
-import { Source } from '../../models/source.model'
+import { ChartType } from '../../../app/shared/enums/chart-type.enum'
+import { DataType } from '../../../app/shared/enums/data-type.enum'
+import { Sensor } from '../../../app/shared/models/sensor.model'
+import { SensorsData } from '../../../app/shared/models/sensors-data.model'
+import { SourceData } from '../../../app/shared/models/source-data.model'
+import { Source } from '../../../app/shared/models/source.model'
 
 export const MockSensorsOptions = {
   studyName: 'Test-Project',

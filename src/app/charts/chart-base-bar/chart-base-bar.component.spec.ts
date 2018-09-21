@@ -4,7 +4,7 @@ import {
   MockAPISampleDataset,
   MockTimeFrameChartData,
   MockTimeIntervalChartData
-} from '../../shared/testing/mocks/mock-chart-data'
+} from '../../../assets/testing/mocks/mock-chart-data'
 import { parseTimeHoles } from '../../shared/utils/parse-time-holes'
 import { SourceGraphsModule } from '../../subject/components/source-graphs/source-graphs.module'
 import { ChartBaseBarComponent } from './chart-base-bar.component'

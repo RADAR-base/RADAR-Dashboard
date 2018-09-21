@@ -5,7 +5,7 @@ import {
   MockAccelerationKeys,
   MockAccelerationTimeFrame,
   MockAccelerationTimeInterval
-} from '../../shared/testing/mocks/mock-acceleration'
+} from '../../../assets/testing/mocks/mock-acceleration'
 import { parseTimeHoles } from '../../shared/utils/parse-time-holes'
 import { ChartBaseMultiLineComponent } from './chart-base-multi-line.component'
 

@@ -9,7 +9,7 @@ import { StoreModule } from '@ngrx/store'
 import {
   MockCompliance,
   MockComplianceExpected
-} from '../../shared/testing/mocks/mock-compliance'
+} from '../../../assets/testing/mocks/mock-compliance'
 import { reducers } from '../../store'
 import { ComplianceDataService } from './compliance-data.service'
 

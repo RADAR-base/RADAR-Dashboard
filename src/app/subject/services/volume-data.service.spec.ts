@@ -6,14 +6,14 @@ import { TestBed } from '@angular/core/testing'
 import { EffectsModule } from '@ngrx/effects'
 import { StoreModule } from '@ngrx/store'
 
-import { AppConfig } from '../../shared/app-config'
-import { DescriptiveStatistic } from '../../shared/enums/descriptive-statistic.enum'
-import { MockConfig } from '../../shared/testing/mocks/mock-config'
+import { MockConfig } from '../../../assets/testing/mocks/mock-config'
 import {
   MockSensorDataAPIResponse,
   MockVolumeOptions,
   MockVolumeSources
-} from '../../shared/testing/mocks/mock-sources'
+} from '../../../assets/testing/mocks/mock-sources'
+import { AppConfig } from '../../shared/app-config'
+import { DescriptiveStatistic } from '../../shared/enums/descriptive-statistic.enum'
 import { reducers } from '../../store'
 import { VolumeDataService } from './volume-data.service'
 

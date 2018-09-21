@@ -5,7 +5,7 @@ import {
   MockComplianceKeys,
   MockTimeFrameCompliance,
   MockTimeIntervalCompliance
-} from '../../shared/testing/mocks/mock-compliance-data'
+} from '../../../assets/testing/mocks/mock-compliance-data'
 import { parseTimeHoles } from '../../shared/utils/parse-time-holes'
 import { ChartBaseMultiBarComponent } from './chart-base-multi-bar.component'
 

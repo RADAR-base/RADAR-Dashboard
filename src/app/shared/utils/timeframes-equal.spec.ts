@@ -1,4 +1,4 @@
-import { MockTimeFrameChartData } from '../testing/mocks/mock-chart-data'
+import { MockTimeFrameChartData } from '../../../assets/testing/mocks/mock-chart-data'
 import { timeFramesEqual } from './timeframes-equal'
 
 describe('timeFramesEqual', () => {

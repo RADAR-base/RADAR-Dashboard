@@ -1,7 +1,7 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { MockComplianceDataExpected } from '../../../shared/testing/mocks/mock-compliance-data'
+import { MockComplianceDataExpected } from '../../../../assets/testing/mocks/mock-compliance-data'
 import { CompliancePlotComponent } from './compliance-plot.component'
 import { CompliancePlotModule } from './compliance-plot.module'
 
