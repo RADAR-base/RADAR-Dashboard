@@ -11,13 +11,16 @@
       <div class="source-name">{{ source.sourceName }}</div>
       <div class="source-status">
         <span class="source-status-icon {{source.status}}"></span>
-        {{ source.status }}
+        {{ source.status  }}
       </div>
     </ng-container>
   </div>
 
   <div class="footer">
-    <button mat-button (click)="navigateToSubjectHandler()">
+    <button
+      mat-button
+      (click)="navigateToSubjectHandler()"
+    >
       OPEN SUBJECT DATA
     </button>
   </div>
