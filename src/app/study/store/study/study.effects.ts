@@ -7,6 +7,7 @@ import { catchError, map, switchMap, withLatestFrom } from 'rxjs/operators'
 import { Study } from '../../../shared/models/study.model'
 import * as fromRoot from '../../../store/index'
 import { StudyService } from '../../services/study.service'
+import * as complianceDataActions from '../compliance-data/compliance-data.actions'
 import * as fromStudy from '../index'
 import * as actions from './study.actions'
 
@@ -32,6 +33,12 @@ export class StudyEffects {
         catchError(() => of(new actions.LoadFail()))
       )
     })
+  )
+
+  @Effect()
+  loadComplianceData$ = this.actions$.pipe(
+    ofType(actions.LOAD_SUCCESS),
+    map(([]) => new complianceDataActions.Load())
   )
 
   constructor(

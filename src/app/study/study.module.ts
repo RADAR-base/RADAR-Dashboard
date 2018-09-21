@@ -8,6 +8,7 @@ import { TileModule } from '../core/components/tile/tile.module'
 import { ToolbarModule } from '../core/components/toolbar/toolbar.module'
 import { MaterialModule } from '../material'
 import { CompliancePlotModule } from './components/compliance-plot/compliance-plot.module'
+import { ComplianceToggleModule } from './components/compliance-toggle/compliance-toggle.module'
 import { SubjectTableModule } from './components/subject-table/subject-table.module'
 import { StudyPageComponent } from './containers/study-page.component'
 import { ComplianceDataService } from './services/compliance-data.service'
@@ -27,6 +28,7 @@ import { routes } from './study.routing'
     MaterialModule,
     SubjectTableModule,
     CompliancePlotModule,
+    ComplianceToggleModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature('study', reducers),
     EffectsModule.forFeature([

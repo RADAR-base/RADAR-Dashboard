@@ -224,7 +224,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
       this.legendWidth =
         this.keyStrLength * this.legendCharSpace * this.keys.length +
         this.keys.length * this.legendOffset
-      this.legendWrapXPos = this.width - 50 - this.legendWidth
+      this.legendWrapXPos = this.width - this.legendOffset - this.legendWidth
 
       this.legend = this.chart
         .append('g')
@@ -236,6 +236,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
       this.legend
         .append('rect')
         .attr('width', this.legendWidth)
+        .attr('height', '22px')
         .attr('rx', '4')
         .attr('ry', '4')
         .attr('class', 'legends')
