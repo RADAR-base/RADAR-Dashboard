@@ -1,6 +1,5 @@
-import { TimeWindow } from '../../enums/time-window.enum'
-import { ChartData } from '../../models/chart-data.model'
-import { EffectiveTimeFrame } from '../../models/sample-data.model'
+import { ChartData } from '../../../app/shared/models/chart-data.model'
+import { EffectiveTimeFrame } from '../../../app/shared/models/sample-data.model'
 
 export const MockComplianceKeys = [
   { key: 'a', doc: 'A', label: { EN: 'A' } },

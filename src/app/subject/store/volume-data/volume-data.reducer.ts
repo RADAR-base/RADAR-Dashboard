@@ -102,7 +102,6 @@ export function reducer(state = initialState, action: actions.Actions): State {
 
     case actions.LOAD_SUCCESS: {
       const data = action.payload.dataset
-      const header = action.payload.header
 
       if (!data) {
         return state

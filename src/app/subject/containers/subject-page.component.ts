@@ -29,7 +29,7 @@ export class SubjectPageComponent implements OnInit, OnDestroy {
   subject$: Observable<Subject>
   sources$: Observable<Source[]>
   sourceIsLoaded$: Observable<boolean>
-  sensorsIsDataLoaded$: Observable<any>
+  sensorsIsDataLoaded$: Observable<Dictionary<boolean>>
   sensorsData$: Observable<Dictionary<SensorsData>>
   sensorsDataTimeFrame$: Observable<TimeFrame>
   sensorsDataTimeInterval$: Observable<any>

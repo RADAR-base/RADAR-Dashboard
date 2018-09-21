@@ -2,8 +2,6 @@ import { TimeWindow } from '../enums/time-window.enum'
 import { TimeFrame } from '../models/time.model'
 
 export function getTimeInterval(timeFrame: TimeFrame) {
-  const ONE_YEAR = TimeWindow['ONE_WEEK'] * 52
-  const TWO_MONTHS = ONE_YEAR / 6
   const ONE_DAY = TimeWindow['ONE_DAY']
   const FORTY_DAYS = ONE_DAY * 40
   const TWO_HOURS = TimeWindow['ONE_HOUR'] * 2

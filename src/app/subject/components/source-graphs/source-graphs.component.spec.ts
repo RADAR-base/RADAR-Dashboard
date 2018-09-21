@@ -2,11 +2,11 @@ import { NO_ERRORS_SCHEMA } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { StoreModule, combineReducers } from '@ngrx/store'
 
-import { ChartBaseLineComponent } from '../../../charts/chart-base-line/chart-base-line.component'
 import {
   MockSensorsAll,
   MockSources
-} from '../../../shared/testing/mocks/mock-sources'
+} from '../../../../assets/testing/mocks/mock-sources'
+import { ChartBaseLineComponent } from '../../../charts/chart-base-line/chart-base-line.component'
 import * as fromRoot from '../../../store'
 import * as fromFeature from '../../store'
 import { SourceGraphComponent } from './source-graph/source-graph.component'
@@ -43,8 +43,15 @@ describe('SourceGraphsComponent', () => {
     element = fixture.nativeElement
 
     component.sources = []
-    component.isDataLoaded = false
-    component.sensorsData = []
+    component.isDataLoaded = { 0: false }
+    component.sensorsData = {
+      id: {
+        data: null,
+        id: 0,
+        sourceDataName: '',
+        sourceDataType: ''
+      }
+    }
     component.volumeData = []
     component.isVolumeDataLoaded = false
     component.volumeTimeFrame = {
@@ -59,7 +66,6 @@ describe('SourceGraphsComponent', () => {
 
   it('should be created', () => {
     component.sources = []
-    component.sensorsData = []
 
     expect(component).toBeTruthy()
   })

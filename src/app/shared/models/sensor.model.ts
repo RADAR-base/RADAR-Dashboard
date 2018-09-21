@@ -1,4 +1,3 @@
-import { DataType } from '../enums/data-type.enum'
 import { ChartOptions } from './chart-options.model'
 import { ConfigKey, ConfigLabel } from './config.model'
 import { SourceData } from './source-data.model'

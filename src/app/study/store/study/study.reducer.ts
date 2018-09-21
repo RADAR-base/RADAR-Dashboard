@@ -1,5 +1,3 @@
-import { createSelector } from '@ngrx/store'
-
 import { Study } from '../../../shared/models/study.model'
 import * as actions from './study.actions'
 

@@ -1,7 +1,6 @@
 import { Action } from '@ngrx/store'
 
-import { AuthData, AuthResponse, UserAuth } from '../models/auth'
-import { User } from '../models/user'
+import { AuthData, UserAuth } from '../models/auth'
 
 export enum AuthActionTypes {
   RehydrateAuth = '[Auth] Rehydrate Auth',

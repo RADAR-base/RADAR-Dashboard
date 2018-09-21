@@ -1,4 +1,4 @@
-import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core'
+import { NO_ERRORS_SCHEMA } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ActivatedRoute, Router } from '@angular/router'
 import { EffectsModule } from '@ngrx/effects'
@@ -7,7 +7,7 @@ import { StoreModule, combineReducers } from '@ngrx/store'
 import {
   ActivatedRouteStub,
   RouterStub
-} from '../../shared/testing/router-stubs'
+} from '../../../assets/testing/router-stubs'
 import * as fromRoot from '../../store'
 import * as fromFeature from '../store/studies.reducer'
 import { StudiesPageComponent } from './studies-page.component'
@@ -15,8 +15,6 @@ import { StudiesPageComponent } from './studies-page.component'
 describe('StudiesPageComponent', () => {
   let component: StudiesPageComponent
   let fixture: ComponentFixture<StudiesPageComponent>
-  let element: HTMLElement
-  let de: DebugElement
 
   beforeEach(async () => {
     const activatedRoute = new ActivatedRouteStub()
@@ -39,8 +37,6 @@ describe('StudiesPageComponent', () => {
 
     fixture = TestBed.createComponent(StudiesPageComponent)
     component = fixture.componentInstance
-    element = fixture.nativeElement
-    de = fixture.debugElement
 
     fixture.detectChanges()
   })

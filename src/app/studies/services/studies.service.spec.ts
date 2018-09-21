@@ -4,8 +4,8 @@ import {
 } from '@angular/common/http/testing'
 import { TestBed } from '@angular/core/testing'
 
+import { MockStudies } from '../../../assets/testing/mocks/mock-studies'
 import { Study } from '../../shared/models/study.model'
-import { MockStudies } from '../../shared/testing/mocks/mock-studies'
 import { StudiesService } from './studies.service'
 
 describe('StudyService', () => {

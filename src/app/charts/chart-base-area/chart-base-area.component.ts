@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Output
-} from '@angular/core'
+import { ChangeDetectionStrategy, Component } from '@angular/core'
 import * as d3 from 'd3'
 
 import { ChartData } from '../../shared/models/chart-data.model'

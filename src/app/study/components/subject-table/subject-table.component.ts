@@ -9,7 +9,6 @@ import {
   ViewChild
 } from '@angular/core'
 import { MatPaginator } from '@angular/material'
-import { Router } from '@angular/router'
 
 import { Subject } from '../../../shared/models/subject.model'
 import { SubjectDataSource } from './subject-data-source'
@@ -47,8 +46,6 @@ export class SubjectTableComponent implements OnInit, OnDestroy {
       })
     )
   }
-
-  constructor(private router: Router) {}
 
   ngOnInit() {
     this.dataSource = new SubjectDataSource(this.subjectDB, this.paginator)

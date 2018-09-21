@@ -1,7 +1,11 @@
-import { ChartType } from '../../enums/chart-type.enum'
-import { DataType } from '../../enums/data-type.enum'
-import { SourceData } from '../../models/source-data.model'
-import { Source } from '../../models/source.model'
+import { Dictionary } from '@ngrx/entity/src/models'
+
+import { ChartType } from '../../../app/shared/enums/chart-type.enum'
+import { DataType } from '../../../app/shared/enums/data-type.enum'
+import { Sensor } from '../../../app/shared/models/sensor.model'
+import { SensorsData } from '../../../app/shared/models/sensors-data.model'
+import { SourceData } from '../../../app/shared/models/source-data.model'
+import { Source } from '../../../app/shared/models/source.model'
 
 export const MockSensorsOptions = {
   studyName: 'Test-Project',
@@ -194,45 +198,54 @@ export const MockSensorDataAPIResponse = {
   ]
 }
 
-export const MockSensorDataResult = {
-  data: [
-    {
-      date: new Date('2000-01-01T00:00:00.000Z'),
-      value: null
-    },
-    {
-      date: new Date('2000-01-01T00:01:00.000Z'),
-      value: 0.48716214
-    },
-    {
-      date: new Date('2000-01-01T00:02:00.000Z'),
-      value: null
-    },
-    {
-      date: new Date('2000-01-01T00:03:00.000Z'),
-      value: 0.41315788
-    },
-    {
-      date: new Date('2000-01-01T00:04:00.000Z'),
-      value: 0.43157892999999997
-    },
-    {
-      date: new Date('2000-01-01T00:06:00.000Z'),
-      value: null
-    },
-    {
-      date: new Date('2000-01-01T00:07:00.000Z'),
-      value: 0
-    },
-    {
-      date: new Date('2000-01-01T00:10:00.000Z'),
-      value: null
-    }
-  ],
-  sensor: MockSourceData
+export const MockSensorChartData = [
+  {
+    date: new Date('2000-01-01T00:00:00.000Z'),
+    value: null
+  },
+  {
+    date: new Date('2000-01-01T00:01:00.000Z'),
+    value: 0.48716214
+  },
+  {
+    date: new Date('2000-01-01T00:02:00.000Z'),
+    value: null
+  },
+  {
+    date: new Date('2000-01-01T00:03:00.000Z'),
+    value: 0.41315788
+  },
+  {
+    date: new Date('2000-01-01T00:04:00.000Z'),
+    value: 0.43157892999999997
+  },
+  {
+    date: new Date('2000-01-01T00:06:00.000Z'),
+    value: null
+  },
+  {
+    date: new Date('2000-01-01T00:07:00.000Z'),
+    value: 0
+  },
+  {
+    date: new Date('2000-01-01T00:10:00.000Z'),
+    value: null
+  }
+]
+
+export const MockSensorDataResult: SensorsData = {
+  id: MockSourceData.id,
+  sourceDataType: MockSourceData.sourceDataType,
+  sourceDataName: MockSourceData.sourceDataName,
+  data: MockSensorChartData
 }
 
-export const MockSensorsAll = {
+export const MockSensorDataTestResult = {
+  sensor: MockSourceData,
+  data: MockSensorChartData
+}
+
+export const MockSensorsAll: Dictionary<SensorsData> = {
   rJywbfpZm: {
     id: 0,
     sourceDataType: '',

@@ -5,7 +5,6 @@ import { of } from 'rxjs'
 import { catchError, map, switchMap, withLatestFrom } from 'rxjs/operators'
 
 import { isLowerTimeResolution } from '../../../shared/enums/time-window.enum'
-import { TimeFrame } from '../../../shared/models/time.model'
 import { getTimeInterval } from '../../../shared/utils/get-time-interval'
 import * as fromRoot from '../../../store'
 import { VolumeDataService } from '../../services/volume-data.service'

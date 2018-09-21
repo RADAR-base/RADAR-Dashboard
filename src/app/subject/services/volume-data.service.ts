@@ -7,8 +7,6 @@ import { takeUntil } from 'rxjs/operators'
 
 import { ENV } from '../../../environments/environment'
 import { DescriptiveStatistic } from '../../shared/enums/descriptive-statistic.enum'
-import { Source } from '../../shared/models/source.model'
-import { Subject } from '../../shared/models/subject.model'
 import * as volumeDataActions from '../store/volume-data/volume-data.actions'
 
 @Injectable()

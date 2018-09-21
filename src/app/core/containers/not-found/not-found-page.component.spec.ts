@@ -1,18 +1,15 @@
-import { DebugElement } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ActivatedRoute, Router } from '@angular/router'
 
 import {
   ActivatedRouteStub,
   RouterStub
-} from '../../../shared/testing/router-stubs'
+} from '../../../../assets/testing/router-stubs'
 import { NotFoundPageComponent } from './not-found-page.component'
 
 describe('NotFoundPageComponent', () => {
   let component: NotFoundPageComponent
   let fixture: ComponentFixture<NotFoundPageComponent>
-  let element: HTMLElement
-  let de: DebugElement
 
   beforeEach(() => {
     const activatedRoute = ActivatedRouteStub
@@ -27,8 +24,6 @@ describe('NotFoundPageComponent', () => {
 
     fixture = TestBed.createComponent(NotFoundPageComponent)
     component = fixture.componentInstance
-    element = fixture.nativeElement
-    de = fixture.debugElement
 
     fixture.detectChanges()
   })

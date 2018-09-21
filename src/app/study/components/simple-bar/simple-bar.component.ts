@@ -12,7 +12,7 @@ import { Component, Input, OnInit } from '@angular/core'
 })
 export class SimpleBarComponent implements OnInit {
   @Input() data
-  type: any
+  type: string
   value: number
   actualWidth: number
 

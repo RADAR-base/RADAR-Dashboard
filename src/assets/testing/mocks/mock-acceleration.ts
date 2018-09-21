@@ -1,4 +1,4 @@
-import { EffectiveTimeFrame } from '../../models/sample-data.model'
+import { EffectiveTimeFrame } from '../../../app/shared/models/sample-data.model'
 
 export const MockAccelerationTimeInterval = 'TEN_SECOND'
 
