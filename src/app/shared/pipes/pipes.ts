@@ -18,6 +18,8 @@ export class DateCalcPipe implements PipeTransform {
   }
 }
 
+// NOTE: This pipe shortens multiple word strings to its initials.
+// Example: From 'Electrodermal Activity' to 'EA'
 @Pipe({ name: 'shorten' })
 export class ShortenLabelPipe implements PipeTransform {
   transform(label: string) {
