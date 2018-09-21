@@ -9,7 +9,6 @@ import * as actions from './sensors-data.actions'
 
 export interface State extends EntityState<SensorsData> {
   areLoaded: { [id: number]: boolean }
-  dates: Date[]
   tooltipDate: Date
   timeFrame: TimeFrame
   prevTimeFrame: TimeFrame
@@ -24,7 +23,6 @@ export const adapter: EntityAdapter<SensorsData> = createEntityAdapter<
 
 export const initialState: State = adapter.getInitialState({
   areLoaded: {},
-  dates: [],
   tooltipDate: null,
   timeFrame: { startDateTime: null, endDateTime: null },
   prevTimeFrame: { startDateTime: null, endDateTime: null },
@@ -106,7 +104,6 @@ export function reducer(state = initialState, action: actions.Actions): State {
 }
 
 export const getIsDataLoaded = (state: State) => state.areLoaded
-export const getDates = (state: State) => state.dates
 export const getTimeFrame = (state: State) => state.timeFrame
 export const getPrevTimeFrame = (state: State) => state.prevTimeFrame
 export const getTimeInterval = (state: State) => state.timeWindow

@@ -31,6 +31,7 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
   lineGroup: any
   gradient: any
   lineChunked: any
+  extentFactor = 1.5
 
   init() {
     // Add HR Gradient
@@ -64,16 +65,16 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
   }
 
   draw() {
+    this.yScale = d3
+      .scaleLinear()
+      .range([this.height, 0])
+      .domain(this.getDomain(d3.extent(this.data, d => d.value as number)))
+      .nice()
+
     this.xScale = d3
       .scaleTime()
       .range([0, this.width])
       .domain(d3.extent(this.data, d => d.date))
-      .nice()
-
-    this.yScale = d3
-      .scaleLinear()
-      .range([this.height, 0])
-      .domain(d3.extent(this.data, d => d.value as number))
       .nice()
 
     this.hasXAxis && this.xAxis.call(d3.axisBottom(this.xScale))
@@ -111,5 +112,11 @@ export class ChartBaseLineComponent extends ChartBaseComponent {
       .transition()
       .attr('opacity', 1)
       .duration(500)
+  }
+
+  private getDomain(extent) {
+    return extent[0] === extent[1]
+      ? [extent[0] / this.extentFactor, extent[0] * this.extentFactor]
+      : extent
   }
 }

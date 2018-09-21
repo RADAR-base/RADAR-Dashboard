@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 import { Store } from '@ngrx/store'
 
 import * as fromSubject from '../../../store'
@@ -21,7 +21,8 @@ import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.ac
       (brushMove)="onBrushMove($event)"
     ></app-chart-base-bar>
   `,
-  styleUrls: ['./source-volume.component.scss']
+  styleUrls: ['./source-volume.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SourceVolumeComponent {
   @Input() data

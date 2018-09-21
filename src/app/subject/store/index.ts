@@ -93,11 +93,6 @@ export const getSensorsDataLoaded = createSelector(
   fromSensorsData.getIsDataLoaded
 )
 
-export const getSensorsDataDates = createSelector(
-  getSensorsDataState,
-  fromSensorsData.getDates
-)
-
 export const getSensorsDataTooltipDate = createSelector(
   getSensorsDataState,
   fromSensorsData.getTooltipDate

@@ -12,8 +12,6 @@
     class="source"
     *ngFor="let source of sources; trackBy: trackBySourceId"
     [class.empty]="source.sourceData === null"
-    (mousemove)="onMouseMove($event)"
-    (mouseleave)="onMouseLeave($event)"
   >
     <div class="source-title">
       {{ source.sourceTypeModel }} | {{ source.sourceName }}
@@ -32,6 +30,8 @@
             [isLoaded]="isDataLoaded[sourceData.uid]"
             [sensorId]="sourceData.uid"
             [path]="path$ | async"
+            (tooltipMouseMoveParent)="onMouseMove($event)"
+            (tooltipMouseLeaveParent)="onMouseLeave()"
           ></app-source-graph>
         </div>
       </ng-container>

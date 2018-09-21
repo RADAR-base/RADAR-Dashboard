@@ -72,7 +72,9 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  @Output() tooltipMouseMove = new EventEmitter<Date>()
+  @Output()
+  tooltipMouseMove = new EventEmitter<{ event: MouseEvent; date: Date }>()
+  @Output() tooltipMouseLeave = new EventEmitter()
   @Output() brushMove = new EventEmitter<any>()
 
   uid: string
@@ -88,7 +90,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
   yAxis: any
   window$: Subscription
   brush: any
-  brushWidthDefault = 120
+  brushWidthDefault = 112
   brushExtent
   brushExtentFromSensors
   brushUpdatedFromSensors: boolean
@@ -152,6 +154,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
         .append('rect')
         .attr('class', 'tooltip-mouse-box')
         .attr('data-tooltipMouseBox', true)
+        .on('mouseleave', () => this.onTooltipMouseLeave())
         .on('mousemove', () => this.onTooltipMouseMove())
     }
 
@@ -166,9 +169,15 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
       const chart = this.chartData[index - 1]
 
       if (chart) {
-        this.tooltipMouseMove.emit(chart.date)
+        this.tooltipMouseMove.emit({ event: d3.event, date: chart.date })
+      } else {
+        this.onTooltipMouseLeave()
       }
     }
+  }
+
+  private onTooltipMouseLeave() {
+    this.tooltipMouseLeave.emit()
   }
 
   private beforeUpdate() {
@@ -224,7 +233,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
       this.legendWidth =
         this.keyStrLength * this.legendCharSpace * this.keys.length +
         this.keys.length * this.legendOffset
-      this.legendWrapXPos = this.width - 50 - this.legendWidth
+      this.legendWrapXPos = this.width - this.legendOffset - this.legendWidth
 
       this.legend = this.chart
         .append('g')
@@ -236,6 +245,7 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
       this.legend
         .append('rect')
         .attr('width', this.legendWidth)
+        .attr('height', '22px')
         .attr('rx', '4')
         .attr('ry', '4')
         .attr('class', 'legends')
@@ -279,24 +289,31 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
     this.brush = d3
       .brushX()
       .extent([[0, 0], [this.width, this.height]])
-      .on('end', () => this.brushed())
+      .on('brush', () => this.brushed())
 
     if (this.sensorDataTimeFrame) {
       this.updateBrushFromSensorDates()
     }
 
-    this.chart
+    const brushEl = this.chart
       .append('g')
       .attr('class', 'brush')
       .call(this.brush)
-      .transition()
-      .duration(1000)
-      .call(
-        this.brush.move,
-        !this.brushExtentFromSensors
-          ? [this.width - this.brushWidthDefault, this.width]
-          : this.brushExtentFromSensors
-      )
+
+    if (!this.brushExtentFromSensors) {
+      brushEl
+        .call(this.brush.move, [this.width - 0.1, this.width])
+        .transition()
+        .duration(2000)
+        .call(
+          this.brush.move,
+          !this.brushExtentFromSensors
+            ? [this.width - this.brushWidthDefault, this.width]
+            : this.brushExtentFromSensors
+        )
+    } else {
+      brushEl.call(this.brush.move, this.brushExtentFromSensors)
+    }
   }
 
   private brushed() {

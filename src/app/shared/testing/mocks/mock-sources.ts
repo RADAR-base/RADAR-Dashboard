@@ -231,3 +231,84 @@ export const MockSensorDataResult = {
   ],
   sensor: MockSourceData
 }
+
+export const MockSensorsAll = {
+  rJywbfpZm: {
+    id: 0,
+    sourceDataType: '',
+    sourceDataName: '',
+    data: [
+      {
+        date: new Date('2000-01-01T00:00:00.000Z'),
+        value: null
+      },
+      {
+        date: new Date('2000-01-01T00:01:00.000Z'),
+        value: 0.48716214
+      },
+      {
+        date: new Date('2000-01-01T00:02:00.000Z'),
+        value: null
+      },
+      {
+        date: new Date('2000-01-01T00:03:00.000Z'),
+        value: 0.41315788
+      },
+      {
+        date: new Date('2000-01-01T00:04:00.000Z'),
+        value: 0.43157892999999997
+      },
+      {
+        date: new Date('2000-01-01T00:06:00.000Z'),
+        value: null
+      },
+      {
+        date: new Date('2000-01-01T00:07:00.000Z'),
+        value: 0
+      },
+      {
+        date: new Date('2000-01-01T00:10:00.000Z'),
+        value: null
+      }
+    ]
+  },
+  rJywbfpZmkl: {
+    id: 1,
+    sourceDataType: '',
+    sourceDataName: '',
+    data: [
+      {
+        date: new Date('2000-01-01T00:00:00.000Z'),
+        value: null
+      },
+      {
+        date: new Date('2000-01-01T00:01:00.000Z'),
+        value: 0.48716214
+      },
+      {
+        date: new Date('2000-01-01T00:02:00.000Z'),
+        value: null
+      },
+      {
+        date: new Date('2000-01-01T00:03:00.000Z'),
+        value: 0.41315788
+      },
+      {
+        date: new Date('2000-01-01T00:04:00.000Z'),
+        value: 0.43157892999999997
+      },
+      {
+        date: new Date('2000-01-01T00:06:00.000Z'),
+        value: null
+      },
+      {
+        date: new Date('2000-01-01T00:07:00.000Z'),
+        value: 0
+      },
+      {
+        date: new Date('2000-01-01T00:10:00.000Z'),
+        value: null
+      }
+    ]
+  }
+}

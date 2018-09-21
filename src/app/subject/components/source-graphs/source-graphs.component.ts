@@ -10,6 +10,7 @@ import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs'
 
 import { ChartData } from '../../../shared/models/chart-data.model'
+import { SensorsData } from '../../../shared/models/sensors-data.model'
 import { SourceData } from '../../../shared/models/source-data.model'
 import { SourceTooltipItem } from '../../../shared/models/source-tooltip.model'
 import { Source } from '../../../shared/models/source.model'
@@ -30,8 +31,8 @@ export class SourceGraphsComponent implements OnInit, OnDestroy {
   @ViewChild('tooltip') tooltip: SourceTooltipComponent
 
   @Input() sources: Source[]
-  @Input() isDataLoaded: boolean
-  @Input() sensorsData: ChartData[]
+  @Input() isDataLoaded: any
+  @Input() sensorsData: any
   @Input() volumeData: ChartData[]
   @Input() isVolumeDataLoaded: boolean
   @Input() volumeTimeFrame: TimeFrame
@@ -73,6 +74,10 @@ export class SourceGraphsComponent implements OnInit, OnDestroy {
     return sourceData.uid
   }
 
+  onMouseLeave() {
+    this.tooltipShow = 0
+  }
+
   onMouseMove(event) {
     if (event.target.getAttribute('data-tooltipMouseBox')) {
       this.tooltipX =
@@ -90,9 +95,5 @@ export class SourceGraphsComponent implements OnInit, OnDestroy {
     } else {
       this.tooltipShow = 0
     }
-  }
-
-  onMouseLeave(event) {
-    this.tooltipShow = 0
   }
 }
