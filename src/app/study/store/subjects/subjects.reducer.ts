@@ -26,6 +26,10 @@ export function reducer(state = initialState, action: actions.Actions): State {
       return { ...adapter.addAll(action.payload, state), isLoaded: true }
     }
 
+    case actions.DESTROY: {
+      return initialState
+    }
+
     default:
       return state
   }

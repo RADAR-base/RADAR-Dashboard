@@ -6,12 +6,17 @@
     >
       <i class="material-icons">arrow_back</i>
     </button>
-    <div class="label">Study {{ (study$ | async)?.projectName }}</div>
+    <div class="label">
+      Study {{ (study$ | async)?.projectName }}
+    </div>
   </div>
 </app-toolbar>
 
 <div class="content">
-  <div class="loading" *ngIf="(isLoaded$ | async) === false; else loaded">
+  <div
+    class="loading"
+    *ngIf="(isLoaded$ | async) === false; else loaded"
+  >
     Loading...
   </div>
 
@@ -19,7 +24,10 @@
     <div *ngIf="!!(study$ | async) === false; else loadedAndValid">
       <p>We could not find this study.</p>
       <p>
-        <button mat-raised-button [routerLink]="['/']">
+        <button
+          mat-raised-button
+          [routerLink]="['/']"
+        >
           Go to Studies
         </button>
       </p>
@@ -27,34 +35,49 @@
   </ng-template>
 
   <ng-template #loadedAndValid>
+
     <app-tile label="Subjects">
-      <div tile-content class="tile-content-subjects">
-        <app-subject-table
-          [subjects]="subjects$ | async"
-          [studyName]="(study$ | async)?.projectName"
-          [isLoaded]="subjectsLoaded$ | async"
-          (openSubject)="openSubjectHandler($event)"
-        ></app-subject-table>
-        <app-subject-detail
-          *ngIf="subject"
-          [subject]="subject"
-        ></app-subject-detail>
+      <div header-content>
+        <button
+          mat-icon-button
+          (click)="refreshSubjectTable()"
+        >
+          <i class="material-icons">refresh</i>
+        </button>
       </div>
+
+      <div
+        tile-content
+        class="tile-content-subjects"
+      >
+        <section [ngClass]="{
+          'subject-table-before': !subject,
+          'subject-table': subject
+        }">
+          <app-subject-table
+            [subjects]="subjects$ | async"
+            [studyName]="(study$ | async)?.projectName"
+            [isLoaded]="subjectsLoaded$ | async"
+            (openSubject)="openSubjectHandler($event)"
+          ></app-subject-table>
+        </section>
+        <section [class.subject-detail]="subject">
+          <app-subject-detail
+            *ngIf="subject"
+            [subject]="subject"
+          ></app-subject-detail>
+        </section>
+      </div>
+
     </app-tile>
 
-    <!-- TODO: Implement when API is ready -->
-    <!-- <app-tile label="Compliance">
+    <app-tile
+      label="Compliance"
+      class="tile-compliance"
+    >
+      <app-compliance-toggle header-content></app-compliance-toggle>
+
       <div tile-content>
-        <div class="legend">
-          <p>
-            <span class="simple"></span>
-            Simple
-            <span class="special"></span>
-            Special
-            <span class="notanswered"></span>
-            Not Answered
-          </p>
-        </div>
         <div class="chart">
           <app-compliance-plot
             [data]="complianceData$ | async"
@@ -62,7 +85,7 @@
           ></app-compliance-plot>
         </div>
       </div>
-    </app-tile> -->
+    </app-tile>
   </ng-template>
 
 </div>

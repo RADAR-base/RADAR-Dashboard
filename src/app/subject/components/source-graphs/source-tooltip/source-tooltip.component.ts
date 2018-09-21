@@ -20,11 +20,11 @@ import { SourceTooltipItem } from '../../../../shared/models/source-tooltip.mode
         [ngSwitch]="item.dataType"
       >
         <div class="item single" *ngSwitchCase="'single'">
-          <span class="label">{{ item.label[language] }}: </span>
+          <span class="label">{{ item.label[language] | shorten }}: </span>
           <span class="value">{{ setValue(item.value) }}</span>
         </div>
         <div class="item multi" *ngSwitchCase="'multi'">
-          <span class="label">{{ item.label[language] }}</span>
+          <span class="label">{{ item.label[language] | shorten }}</span>
           <div *ngFor="let k of item.keys">
             <span class="key-label">{{ k.label[language] }}: </span>
             <span class="value">{{ setMultiValue(k.key, item.value) }}</span>

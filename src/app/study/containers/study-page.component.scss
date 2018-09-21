@@ -7,6 +7,10 @@
   height: 100%;
 }
 
+.content {
+  font-size: 0.75rem;
+}
+
 button {
   color: $cl-white-80;
 }
@@ -17,12 +21,34 @@ app-tile {
 
 app-tile .tile-content-subjects {
   flex-direction: row;
+  margin-bottom: 0;
 }
 
 app-subject-table {
   flex: 5 1 0;
+  height: 100%;
 }
 
 app-subject-detail {
   flex: 1 1 15rem;
+}
+
+.chart {
+  height: 100%;
+}
+
+.subject-table {
+  float: left;
+  overflow: hidden;
+  width: 70%;
+}
+
+.subject-table-before {
+  width: 100%;
+}
+
+.subject-detail {
+  float: left;
+  overflow-y: auto;
+  width: 30%;
 }

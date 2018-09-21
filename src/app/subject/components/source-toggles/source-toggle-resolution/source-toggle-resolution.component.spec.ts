@@ -9,6 +9,7 @@ import { SourceToggleResolutionComponent } from './source-toggle-resolution.comp
 describe('SourceToggleResolutionComponent', () => {
   let component: SourceToggleResolutionComponent
   let fixture: ComponentFixture<SourceToggleResolutionComponent>
+  let element: HTMLElement
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -24,10 +25,22 @@ describe('SourceToggleResolutionComponent', () => {
 
     fixture = TestBed.createComponent(SourceToggleResolutionComponent)
     component = fixture.componentInstance
+    element = fixture.nativeElement
     fixture.detectChanges()
   })
 
   it('should be created', () => {
     expect(component).toBeTruthy()
+  })
+
+  it('should change resolution on click', () => {
+    fixture.detectChanges()
+
+    const evt = new MouseEvent('click', {})
+    element.querySelector('button').dispatchEvent(evt)
+
+    expect(component.selectedTimeInterval.toLowerCase).toBe(
+      element.querySelector('button').innerHTML.toLowerCase
+    )
   })
 })

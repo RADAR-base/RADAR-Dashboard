@@ -1,10 +1,15 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit
+} from '@angular/core'
 import { Router } from '@angular/router'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs'
 
 import { Study } from '../../shared/models/study.model'
-import * as studyAction from '../store/studies.actions'
+import * as studyActions from '../store/studies.actions'
 import * as fromStudies from '../store/studies.reducer'
 
 @Component({
@@ -13,7 +18,7 @@ import * as fromStudies from '../store/studies.reducer'
   styleUrls: ['./studies-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class StudiesPageComponent implements OnInit {
+export class StudiesPageComponent implements OnInit, OnDestroy {
   studies$: Observable<Study[]>
   studiesIsLoaded$: Observable<boolean>
 
@@ -23,9 +28,13 @@ export class StudiesPageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.store.dispatch(new studyAction.Load())
+    this.store.dispatch(new studyActions.Load())
     this.studies$ = this.store.select(fromStudies.getStudies)
     this.studiesIsLoaded$ = this.store.select(fromStudies.getStudiesIsLoaded)
+  }
+
+  ngOnDestroy() {
+    this.store.dispatch(new studyActions.Destroy())
   }
 
   openStudy(studyName) {

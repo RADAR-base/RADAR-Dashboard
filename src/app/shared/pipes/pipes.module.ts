@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core'
 
-import { DateCalcPipe } from './pipes'
+import { DateCalcPipe, ShortenLabelPipe } from './pipes'
 
 @NgModule({
-  declarations: [DateCalcPipe],
-  exports: [DateCalcPipe]
+  declarations: [DateCalcPipe, ShortenLabelPipe],
+  exports: [DateCalcPipe, ShortenLabelPipe]
 })
 export class PipesModule {}

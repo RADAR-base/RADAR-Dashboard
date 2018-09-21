@@ -79,7 +79,7 @@ export class SensorsDataEffects {
               timeInterval ? timeInterval : getTimeInterval(timeFrame)
             )
           )
-        : []
+        : this.store.dispatch(new actions.TimeFrameNoChange())
     })
   )
 
@@ -97,7 +97,7 @@ export class SensorsDataEffects {
       !timeFramesEqual(timeFrame, prevTimeFrame) ||
       timeInterval !== prevTimeInterval
         ? this.store.dispatch(new actions.Load())
-        : []
+        : this.store.dispatch(new actions.TimeIntervalNoChange())
     })
   )
 
