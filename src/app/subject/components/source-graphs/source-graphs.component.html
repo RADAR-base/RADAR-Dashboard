@@ -47,7 +47,10 @@
   </div>
 </div>
 
-<div class="bottom-group">
+<div
+  class="bottom-group"
+  *ngIf="isVolumeDataLoaded"
+>
   <app-source-date-axis
     *ngIf="sensorsDataTimeFrame && sensorsDataTimeFrame?.startDateTime"
     class="common-axis"
@@ -61,7 +64,6 @@
       class="timeframe"
     ></app-source-volume-timeframe>
     <app-source-volume
-      *ngIf="isVolumeDataLoaded"
       class="volume"
       [data]="volumeData"
       [path]="path$ | async"

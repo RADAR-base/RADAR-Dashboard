@@ -31,7 +31,6 @@
           [sensorsDataTimeInterval]="sensorsDataTimeInterval$ | async"
         ></app-source-toggles>
         <app-source-graphs
-          *ngIf="volumeIsDataLoaded$ | async"
           [sources]="sources"
           [sensorsData]="sensorsData$ | async"
           [sensorsDataTimeFrame]="sensorsDataTimeFrame$ | async"

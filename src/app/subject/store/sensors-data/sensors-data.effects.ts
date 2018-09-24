@@ -6,6 +6,7 @@ import {
   catchError,
   debounceTime,
   map,
+  mergeMap,
   switchMap,
   withLatestFrom
 } from 'rxjs/operators'
@@ -66,7 +67,7 @@ export class SensorsDataEffects {
   @Effect({ dispatch: false })
   updateTimeInterval$ = this.actions$.pipe(
     ofType(actions.SET_TIME_FRAME),
-    debounceTime(2000),
+    debounceTime(500),
     withLatestFrom(
       this.store.select(fromSubject.getSensorsDataTimeFrame),
       this.store.select(fromSubject.getSensorsDataPrevTimeFrame),
@@ -84,9 +85,9 @@ export class SensorsDataEffects {
   )
 
   @Effect({ dispatch: false })
-  loadSensorsData$ = this.actions$.pipe(
+  prepLoadSensorsData$ = this.actions$.pipe(
     ofType(actions.SET_TIME_INTERVAL),
-    debounceTime(2000),
+    debounceTime(500),
     withLatestFrom(
       this.store.select(fromSubject.getSensorsDataTimeFrame),
       this.store.select(fromSubject.getSensorsDataPrevTimeFrame),
@@ -96,16 +97,22 @@ export class SensorsDataEffects {
     map(([, timeFrame, prevTimeFrame, timeInterval, prevTimeInterval]) => {
       !timeFramesEqual(timeFrame, prevTimeFrame) ||
       timeInterval !== prevTimeInterval
-        ? this.store.dispatch(new actions.Load())
+        ? this.store.dispatch(new actions.SetToLoading())
         : this.store.dispatch(new actions.TimeIntervalNoChange())
     })
   )
 
   @Effect()
+  loadSensorsData$ = this.actions$.pipe(
+    ofType(actions.SET_TO_LOADING),
+    map(() => new actions.Load())
+  )
+
+  @Effect()
   changeDescriptiveStat$ = this.actions$.pipe(
     ofType(actions.SET_DESCRIPTIVE_STATISTIC),
-    debounceTime(1000),
-    map(() => new actions.Load())
+    debounceTime(500),
+    map(() => new actions.SetToLoading())
   )
 
   constructor(

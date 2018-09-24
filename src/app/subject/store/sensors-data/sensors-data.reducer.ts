@@ -49,13 +49,11 @@ export function reducer(state = initialState, action: actions.Actions): State {
       const data = action.payload.data
       const id = sensor.uid
 
-      if (!state.areLoaded[id]) {
-        return {
-          ...adapter.addOne({ ...sensor, data }, state),
-          areLoaded: { ...state.areLoaded, [id]: true }
-        }
-      } else {
-        return adapter.updateOne({ id: id, changes: { data: data } }, state)
+      return {
+        ...(state.areLoaded[id] == null
+          ? adapter.addOne({ ...sensor, data }, state)
+          : adapter.updateOne({ id: id, changes: { data: data } }, state)),
+        areLoaded: { ...state.areLoaded, [id]: true }
       }
     }
 
@@ -91,6 +89,16 @@ export function reducer(state = initialState, action: actions.Actions): State {
       return {
         ...state,
         descriptiveStatistic: action.payload
+      }
+    }
+
+    case actions.SET_TO_LOADING: {
+      return {
+        ...state,
+        areLoaded: Object.keys(state.areLoaded).reduce((acc, id) => {
+          acc[id] = false
+          return acc
+        }, {})
       }
     }
 
