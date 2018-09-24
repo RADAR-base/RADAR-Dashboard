@@ -22,6 +22,7 @@ export class SensorsDataService {
   private sensors$ = new Subject<Sensor>()
   private sensors: Sensor[] = []
   private options: any = {}
+  private SERVER_ERROR = 'server_error'
 
   constructor(private http: HttpClient, private actions$: Actions) {
     this.sensorsDataLoad$ = this.actions$.ofType(sensorsDataActions.LOAD)
@@ -80,9 +81,15 @@ export class SensorsDataService {
           this.nextSensor()
         },
         error => {
-          this.queue$.next({ data: null, sensor })
+          this.queue$.next({
+            data:
+              error.error.error === this.SERVER_ERROR
+                ? this.SERVER_ERROR
+                : null,
+            sensor
+          })
           this.nextSensor()
-          console.error(error)
+          // console.error(error)
         }
       )
   }
