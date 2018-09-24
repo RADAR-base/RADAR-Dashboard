@@ -66,8 +66,22 @@ export class VolumeDataEffects {
   )
 
   @Effect()
-  loadSensorsData$ = this.actions$.pipe(
+  prepLoadVolumeData$ = this.actions$.pipe(
     ofType(volumeDataActions.SET_TIME_INTERVAL),
+    withLatestFrom(
+      this.store.select(fromSubject.getVolumeDataTimeInterval),
+      this.store.select(fromSubject.getVolumeDataPrevTimeInterval)
+    ),
+    map(([, timeInterval, prevTimeInterval]) => {
+      return timeInterval !== prevTimeInterval
+        ? new volumeDataActions.SetToLoading()
+        : new volumeDataActions.LoadFailReset()
+    })
+  )
+
+  @Effect()
+  loadVolumeData$ = this.actions$.pipe(
+    ofType(volumeDataActions.SET_TO_LOADING),
     map(([]) => new volumeDataActions.Load())
   )
 

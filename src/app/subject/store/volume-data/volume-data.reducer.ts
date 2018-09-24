@@ -11,12 +11,14 @@ export interface VolumeData {
 
 export interface State extends EntityState<VolumeData> {
   isLoaded: boolean
+  isPrevLoaded: boolean
   timeFrame: TimeFrame
   prevTimeFrame: TimeFrame
   timeWindow: string
   prevTimeWindow: string
   descriptiveStatistic: DescriptiveStatistic
   loadFail: boolean
+  loadFailReset: boolean
   timeFrameChanged: boolean
   timeWindowChanged: boolean
 }
@@ -29,12 +31,14 @@ export const adapter: EntityAdapter<VolumeData> = createEntityAdapter<
 
 export const initialState: State = adapter.getInitialState({
   isLoaded: false,
+  isPrevLoaded: false,
   timeFrame: null,
   prevTimeFrame: null,
   timeWindow: null,
   prevTimeWindow: null,
   descriptiveStatistic: DescriptiveStatistic.DISTINCT,
   loadFail: false,
+  loadFailReset: false,
   timeFrameChanged: false,
   timeWindowChanged: false
 })
@@ -59,7 +63,16 @@ export function reducer(state = initialState, action: actions.Actions): State {
         ...state,
         timeWindow: state.prevTimeWindow,
         loadFail: false,
+        loadFailReset: true,
         timeWindowChanged: false
+      }
+    }
+
+    case actions.LOAD_FAIL_RESET_SUCCESS: {
+      return {
+        ...state,
+        isLoaded: true,
+        loadFailReset: false
       }
     }
 
@@ -96,7 +109,15 @@ export function reducer(state = initialState, action: actions.Actions): State {
         ...state,
         prevTimeWindow: state.timeWindow,
         timeWindow: action.payload,
-        timeWindowChanged: true
+        timeWindowChanged: true,
+        isLoaded: false
+      }
+    }
+
+    case actions.SET_TO_LOADING: {
+      return {
+        ...state,
+        isLoaded: false
       }
     }
 
@@ -115,6 +136,7 @@ export function reducer(state = initialState, action: actions.Actions): State {
       return {
         ...adapter.addAll(new_data, state),
         isLoaded: true,
+        isPrevLoaded: true,
         loadFail: false,
         timeFrameChanged: false,
         timeWindowChanged: false
@@ -127,6 +149,7 @@ export function reducer(state = initialState, action: actions.Actions): State {
 }
 
 export const getIsDataLoaded = (state: State) => state.isLoaded
+export const getIsDataPrevLoaded = (state: State) => state.isPrevLoaded
 export const getTimeFrame = (state: State) => state.timeFrame
 export const getPrevTimeFrame = (state: State) => state.prevTimeFrame
 export const getTimeInterval = (state: State) => state.timeWindow
@@ -134,5 +157,6 @@ export const getPrevTimeInterval = (state: State) => state.prevTimeWindow
 export const getDescriptiveStatistic = (state: State) =>
   state.descriptiveStatistic
 export const getHasLoadFailed = (state: State) => state.loadFail
+export const getHasResetLoadFailed = (state: State) => state.loadFailReset
 export const getHasTimeFrameChanged = (state: State) => state.timeFrameChanged
 export const getHasTimeWindowChanged = (state: State) => state.timeWindowChanged
