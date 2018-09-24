@@ -36,6 +36,7 @@ export class SourceGraphsComponent implements OnInit, OnDestroy {
   @Input() sensorsData: Dictionary<SensorsData>
   @Input() volumeData: ChartData[]
   @Input() isVolumeDataLoaded: boolean
+  @Input() isVolumeDataPrevLoaded: boolean
   @Input() volumeTimeFrame: TimeFrame
   @Input() sensorsDataTimeFrame: TimeFrame
 

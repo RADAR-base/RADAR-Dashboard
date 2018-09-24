@@ -35,6 +35,7 @@ export class SubjectPageComponent implements OnInit, OnDestroy {
   sensorsDataTimeInterval$: Observable<any>
   volumeData$: Observable<Dictionary<any>>
   volumeIsDataLoaded$: Observable<boolean>
+  volumeIsDataPrevLoaded$: Observable<boolean>
   volumeTimeFrame$: Observable<any>
 
   constructor(private store: Store<fromSubject.State>) {}
@@ -67,6 +68,9 @@ export class SubjectPageComponent implements OnInit, OnDestroy {
     this.volumeData$ = this.store.select(fromSubject.getVolumeDataFormatted)
     this.volumeIsDataLoaded$ = this.store.select(
       fromSubject.getVolumeDataLoaded
+    )
+    this.volumeIsDataPrevLoaded$ = this.store.select(
+      fromSubject.getVolumeDataPrevLoaded
     )
     this.volumeTimeFrame$ = this.store.select(
       fromSubject.getVolumeDataTimeFrame
