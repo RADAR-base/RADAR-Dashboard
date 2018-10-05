@@ -18,7 +18,9 @@ export class SourcesService {
   }
 
   getAll(studyName, subjectId): Observable<Subject> {
-    const url = `${ENV.API_URI}/projects/${studyName}/subjects/${subjectId}`
+    const url = `${
+      ENV.SETTINGS.API_URI
+    }/projects/${studyName}/subjects/${subjectId}`
 
     return this.http.get<Subject>(url).pipe(takeUntil(this.destroy$))
   }

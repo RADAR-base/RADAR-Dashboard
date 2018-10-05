@@ -11,7 +11,7 @@ import * as volumeDataActions from '../store/volume-data/volume-data.actions'
 
 @Injectable()
 export class VolumeDataService {
-  private url = `${ENV.API_URI}/aggregate`
+  private url = `${ENV.SETTINGS.API_URI}/aggregate`
   private destroy$: Observable<Action>
   private options: any = {}
 

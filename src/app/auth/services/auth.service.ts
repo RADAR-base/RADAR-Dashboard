@@ -40,12 +40,12 @@ export class AuthService {
   login(userAuth) {
     const body = new HttpParams({
       fromObject: {
-        ...ENV.AUTH,
+        ...ENV.SETTINGS.AUTH,
         ...userAuth
       }
     })
 
-    return this.httpClient.post<AuthResponse>(ENV.AUTH_URI, body).pipe(
+    return this.httpClient.post<AuthResponse>(ENV.SETTINGS.AUTH_URI, body).pipe(
       map(response => ({
         token: response.access_token,
         user: this.parseUser(userAuth)

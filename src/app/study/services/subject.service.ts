@@ -9,7 +9,7 @@ export class SubjectService {
   constructor(private http: HttpClient) {}
 
   getAll(studyName) {
-    const url = `${ENV.API_URI}/projects/${studyName}/subjects`
+    const url = `${ENV.SETTINGS.API_URI}/projects/${studyName}/subjects`
 
     return this.http.get<Subject[]>(url)
   }
