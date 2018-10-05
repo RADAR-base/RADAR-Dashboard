@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { RouterModule } from '@angular/router'
-import { JwtModule } from '@auth0/angular-jwt'
+import { JWT_OPTIONS, JwtModule } from '@auth0/angular-jwt'
 import { EffectsModule } from '@ngrx/effects'
 import {
   RouterStateSerializer,
@@ -15,12 +15,12 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { ENV } from '../environments/environment'
 import { routes } from './app.routing'
 import { AuthModule } from './auth/auth.module'
-import { AuthService } from './auth/services/auth.service'
 import { AppComponent } from './core/containers/app.component'
 import { NotFoundPageComponent } from './core/containers/not-found/not-found-page.component'
 import { RadarHttpInterceptorProvider } from './core/services/radar.interceptor'
 import { MaterialModule } from './material'
 import { CustomRouterStateSerializer } from './shared/utils/custom-router-state-serializer'
+import { jwtOptionsFactory } from './shared/utils/jwtOptionsFactory'
 import { metaReducers, reducers } from './store'
 import { StudiesModule } from './studies/studies.module'
 import { StudyModule } from './study/study.module'
@@ -48,10 +48,9 @@ import { SubjectModule } from './subject/subject.module'
 
     // JWT HttpClient interceptor
     JwtModule.forRoot({
-      config: {
-        tokenGetter: AuthService.getToken,
-        whitelistedDomains: ['localhost', ENV.API_DOMAIN],
-        blacklistedRoutes: [ENV.API_FIREBASE + '/config.json']
+      jwtOptionsProvider: {
+        provide: JWT_OPTIONS,
+        useFactory: jwtOptionsFactory
       }
     }),
 
