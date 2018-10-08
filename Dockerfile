@@ -45,6 +45,9 @@ COPY ./docker/init.sh .
 
 COPY --from=0 ${PROJ_FOLDER}/dist /var/www
 
+# specify volume path
+VOLUME /var/www/assets/environments
+
 # expose internal port:80 and run init.sh
 EXPOSE 80
 CMD ["./init.sh"]
