@@ -489,9 +489,9 @@
     "@types/d3-interpolate" "*"
     "@types/d3-selection" "*"
 
-"@types/d3@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@types/d3/-/d3-5.0.0.tgz#fec49f2aea0f0784f829eff38132926e92676d57"
+"@types/d3@^5.5.0":
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/@types/d3/-/d3-5.5.0.tgz#dfdb67190f40a78773d5c8ef9aaba56d02aa8e76"
   dependencies:
     "@types/d3-array" "*"
     "@types/d3-axis" "*"
