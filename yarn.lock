@@ -6891,9 +6891,9 @@ rxjs-tslint@^0.1.5:
     tslint "^5.9.1"
     tsutils "^2.25.0"
 
-rxjs@^6.0.0, rxjs@^6.2.1:
-  version "6.2.1"
-  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.2.1.tgz#246cebec189a6cbc143a3ef9f62d6f4c91813ca1"
+rxjs@^6.0.0, rxjs@^6.5.1:
+  version "6.5.1"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.5.1.tgz#f7a005a9386361921b8524f38f54cbf80e5d08f4"
   dependencies:
     tslib "^1.9.0"
 
