@@ -60,7 +60,7 @@
     "@ngrx/router-store": "^6.0.1",
     "@ngrx/store": "^6.0.1",
     "@types/async": "^2.0.49",
-    "core-js": "^2.5.3",
+    "core-js": "^3.2.0",
     "d3": "^5.5.0",
     "d3-line-chunked": "^1.4.1",
     "d3-selection-multi": "^1.0.1",
