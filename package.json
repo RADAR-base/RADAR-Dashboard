@@ -78,7 +78,7 @@
     "@ngrx/schematics": "^6.1.0",
     "@ngrx/store-devtools": "^6.1.0",
     "@types/d3": "^5.0.0",
-    "@types/hammerjs": "^2.0.35",
+    "@types/hammerjs": "^2.0.36",
     "@types/jasmine": "^2.8.3",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^10.5.1",
