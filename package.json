@@ -104,7 +104,7 @@
     "karma-spec-reporter": "^0.0.32",
     "ngrx-store-freeze": "^0.2.0",
     "node-sass": "^4.8.3",
-    "prettier": "^1.13.7",
+    "prettier": "^1.18.2",
     "protractor": "^5.2.2",
     "rxjs-tslint": "^0.1.5",
     "sass-mq": "^5.0.0",
