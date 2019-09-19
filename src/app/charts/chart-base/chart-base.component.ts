@@ -201,9 +201,12 @@ export class ChartBaseComponent implements AfterViewInit, OnDestroy {
 
     this.draw()
 
+    this.chart.selectAll('.rect-clip').remove()
+
     this.chart
       .append('clipPath')
       .attr('id', 'rect-clip')
+      .attr('class', 'rect-clip')
       .append('rect')
       .attr('x', -this.clipOffset)
       .attr('width', this.width)

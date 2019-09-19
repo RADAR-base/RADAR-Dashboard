@@ -184,6 +184,10 @@ export const getVolumeDataLoaded = createSelector(
   getVolumeDataState,
   fromVolumeData.getIsDataLoaded
 )
+export const getVolumeDataPrevLoaded = createSelector(
+  getVolumeDataState,
+  fromVolumeData.getIsDataPrevLoaded
+)
 
 export const getVolumeDataTimeFrame = createSelector(
   getVolumeDataState,
@@ -213,6 +217,11 @@ export const getVolumeDataDescriptiveStatistic = createSelector(
 export const getVolumeDataHasLoadFailed = createSelector(
   getVolumeDataState,
   fromVolumeData.getHasLoadFailed
+)
+
+export const getVolumeDataHasResetLoadFailed = createSelector(
+  getVolumeDataState,
+  fromVolumeData.getHasResetLoadFailed
 )
 
 export const getVolumeDataHasTimeFrameChanged = createSelector(

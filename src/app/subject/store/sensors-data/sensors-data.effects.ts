@@ -6,14 +6,17 @@ import {
   catchError,
   debounceTime,
   map,
+  mergeMap,
   switchMap,
-  withLatestFrom
+  withLatestFrom,
+  zip
 } from 'rxjs/operators'
 
 import { getTimeInterval } from '../../../shared/utils/get-time-interval'
 import { timeFramesEqual } from '../../../shared/utils/timeframes-equal'
 import * as fromRoot from '../../../store'
 import { SensorsDataService } from '../../services/sensors-data.service'
+import * as volumeDataActions from '../volume-data/volume-data.actions'
 import * as actions from './sensors-data.actions'
 import * as fromSubject from '..'
 
@@ -66,7 +69,7 @@ export class SensorsDataEffects {
   @Effect({ dispatch: false })
   updateTimeInterval$ = this.actions$.pipe(
     ofType(actions.SET_TIME_FRAME),
-    debounceTime(2000),
+    debounceTime(1500),
     withLatestFrom(
       this.store.select(fromSubject.getSensorsDataTimeFrame),
       this.store.select(fromSubject.getSensorsDataPrevTimeFrame),
@@ -84,9 +87,9 @@ export class SensorsDataEffects {
   )
 
   @Effect({ dispatch: false })
-  loadSensorsData$ = this.actions$.pipe(
+  prepLoadSensorsData$ = this.actions$.pipe(
     ofType(actions.SET_TIME_INTERVAL),
-    debounceTime(2000),
+    debounceTime(1500),
     withLatestFrom(
       this.store.select(fromSubject.getSensorsDataTimeFrame),
       this.store.select(fromSubject.getSensorsDataPrevTimeFrame),
@@ -96,16 +99,37 @@ export class SensorsDataEffects {
     map(([, timeFrame, prevTimeFrame, timeInterval, prevTimeInterval]) => {
       !timeFramesEqual(timeFrame, prevTimeFrame) ||
       timeInterval !== prevTimeInterval
-        ? this.store.dispatch(new actions.Load())
+        ? this.store.dispatch(new actions.SetToLoading())
         : this.store.dispatch(new actions.TimeIntervalNoChange())
     })
   )
 
   @Effect()
+  loadSensorsData$ = this.actions$.pipe(
+    ofType(actions.SET_TO_LOADING),
+    map(() => new actions.Load())
+  )
+
+  @Effect()
   changeDescriptiveStat$ = this.actions$.pipe(
     ofType(actions.SET_DESCRIPTIVE_STATISTIC),
-    debounceTime(1000),
-    map(() => new actions.Load())
+    debounceTime(500),
+    map(() => new actions.SetToLoading())
+  )
+
+  @Effect({ dispatch: false })
+  loadSuccessOnLoadReset$ = this.actions$.pipe(
+    ofType(actions.LOAD_SUCCESS),
+    debounceTime(500),
+    withLatestFrom(
+      this.store.select(fromSubject.getVolumeDataHasResetLoadFailed)
+    ),
+    map(
+      ([, loadFailReset]) =>
+        loadFailReset
+          ? this.store.dispatch(new volumeDataActions.LoadFailResetSuccess())
+          : []
+    )
   )
 
   constructor(

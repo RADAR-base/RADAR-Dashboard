@@ -28,6 +28,7 @@
             [sourceData]="sourceData"
             [sensorData]="sensorsData[sourceData.uid]?.data"
             [isLoaded]="isDataLoaded[sourceData.uid]"
+            [isVolumeDataLoaded]="isVolumeDataLoaded"
             [sensorId]="sourceData.uid"
             [path]="path$ | async"
             (tooltipMouseMoveParent)="onMouseMove($event)"
@@ -47,7 +48,10 @@
   </div>
 </div>
 
-<div class="bottom-group">
+<div
+  class="bottom-group"
+  *ngIf="isVolumeDataPrevLoaded"
+>
   <app-source-date-axis
     *ngIf="sensorsDataTimeFrame && sensorsDataTimeFrame?.startDateTime"
     class="common-axis"
@@ -61,7 +65,6 @@
       class="timeframe"
     ></app-source-volume-timeframe>
     <app-source-volume
-      *ngIf="isVolumeDataLoaded"
       class="volume"
       [data]="volumeData"
       [path]="path$ | async"

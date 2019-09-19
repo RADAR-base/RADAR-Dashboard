@@ -16,6 +16,7 @@ export const SET_DESCRIPTIVE_STATISTIC =
 export const TIME_FRAME_NO_CHANGE = '[SensorsData] TIME_FRAME_NO_CHANGE'
 export const TIME_INTERVAL_NO_CHANGE = '[SensorsData] TIME_INTERVAL_NO_CHANGE'
 export const DESTROY = '[SensorsData] DESTROY'
+export const SET_TO_LOADING = '[SensorsData] SET_TO_LOADING'
 
 export class Load implements Action {
   readonly type = LOAD
@@ -71,6 +72,10 @@ export class Destroy implements Action {
   readonly type = DESTROY
 }
 
+export class SetToLoading implements Action {
+  readonly type = SET_TO_LOADING
+}
+
 export type Actions =
   | Load
   | LoadSuccess
@@ -83,3 +88,4 @@ export type Actions =
   | TimeFrameNoChange
   | TimeIntervalNoChange
   | Destroy
+  | SetToLoading

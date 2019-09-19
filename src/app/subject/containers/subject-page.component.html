@@ -31,13 +31,13 @@
           [sensorsDataTimeInterval]="sensorsDataTimeInterval$ | async"
         ></app-source-toggles>
         <app-source-graphs
-          *ngIf="volumeIsDataLoaded$ | async"
           [sources]="sources"
           [sensorsData]="sensorsData$ | async"
           [sensorsDataTimeFrame]="sensorsDataTimeFrame$ | async"
           [isDataLoaded]="sensorsIsDataLoaded$ | async"
           [volumeData]="volumeData$ | async"
           [isVolumeDataLoaded]="volumeIsDataLoaded$ | async"
+          [isVolumeDataPrevLoaded]="volumeIsDataPrevLoaded$ | async"
           [volumeTimeFrame]="volumeTimeFrame$ | async"
           tile-content
         ></app-source-graphs>
