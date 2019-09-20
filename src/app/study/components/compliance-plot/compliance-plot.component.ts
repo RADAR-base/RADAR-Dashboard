@@ -14,7 +14,7 @@ import { ConfigKey } from '../../../shared/models/config.model'
   template: `
     <app-chart-base-multi-bar
       *ngIf="isLoaded && data && keys"
-      [margin]="{top: 40, right: 16, bottom: 32, left: 80}"
+      [margin]="{ top: 40, right: 16, bottom: 32, left: 80 }"
       [chartData]="data"
       [keys]="keys"
       [yTicks]="yTicks"

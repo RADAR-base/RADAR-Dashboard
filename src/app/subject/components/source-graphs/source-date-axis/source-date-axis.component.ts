@@ -9,7 +9,7 @@ import { TimeFrame } from '../../../../shared/models/time.model'
       *ngIf="timeFrame"
       [chartData]="[timeFrame.startDateTime, timeFrame.endDateTime]"
       [hasXAxis]="true"
-      [margin]="{top: 0, right: 36, bottom: 0, left: 80 }"
+      [margin]="{ top: 0, right: 36, bottom: 0, left: 80 }"
     ></app-chart-date-axis>
   `,
   styleUrls: ['./source-date-axis.component.scss'],

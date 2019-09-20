@@ -52,9 +52,7 @@ export function reducer(state = initialState, action: actions.Actions): State {
 
               if (config === null) {
                 console.warn(
-                  `⚠️ the sourceDataType: "${
-                    value.sourceDataType
-                  }" dashboard configuration has not been set in "environments/config.ts". Please add it and open a PR with the changes in https://github.com/RADAR-base/RADAR-Dashboard/`
+                  `⚠️ the sourceDataType: "${value.sourceDataType}" dashboard configuration has not been set in "environments/config.ts". Please add it and open a PR with the changes in https://github.com/RADAR-base/RADAR-Dashboard/`
                 )
               }
 
@@ -72,11 +70,7 @@ export function reducer(state = initialState, action: actions.Actions): State {
 
         if (!sourceData) {
           console.warn(
-            `⚠️ the sourceData is empty in sourceType { id:"${
-              sourceType.id
-            }", model: "${sourceType.model}", producer:"${
-              sourceType.producer
-            }", catalogVersion:"${sourceType.catalogVersion}" }`
+            `⚠️ the sourceData is empty in sourceType { id:"${sourceType.id}", model: "${sourceType.model}", producer:"${sourceType.producer}", catalogVersion:"${sourceType.catalogVersion}" }`
           )
         }
 
@@ -92,11 +86,10 @@ export function reducer(state = initialState, action: actions.Actions): State {
     case actions.TOGGLE_VISIBILITY: {
       const { sourceDataUid, sourceId } = action.payload
       const source = state.entities[sourceId]
-      const sourceData = source.sourceData.map(
-        obj =>
-          obj.uid === sourceDataUid
-            ? { ...obj, visible: !obj.visible }
-            : { ...obj }
+      const sourceData = source.sourceData.map(obj =>
+        obj.uid === sourceDataUid
+          ? { ...obj, visible: !obj.visible }
+          : { ...obj }
       )
       const updatedSource: Update<Source> = {
         id: sourceId,

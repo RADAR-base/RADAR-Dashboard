@@ -29,7 +29,10 @@ export const getStudyIsLoaded = createSelector(
   getStudyState,
   fromStudy.getIsLoaded
 )
-export const getStudy = createSelector(getStudyState, fromStudy.getSelected)
+export const getStudy = createSelector(
+  getStudyState,
+  fromStudy.getSelected
+)
 
 // FromStudies + Router Selectors
 export const getStudyFromStudies = createSelector(

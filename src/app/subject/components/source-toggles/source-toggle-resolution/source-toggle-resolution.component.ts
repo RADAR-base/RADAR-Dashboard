@@ -10,11 +10,17 @@ import * as volumeDataActions from '../../../store/volume-data/volume-data.actio
 @Component({
   selector: 'app-source-toggle-resolution',
   template: `
-  <div class="toggle-menu">
-  <ng-container *ngFor="let timeInterval of timeIntervalKeys">
-  <button [disabled]="selectedTimeInterval == timeInterval" [class.button-selected]="selectedTimeInterval == timeInterval" (click)="onSelect(timeInterval)">{{ timeIntervals[timeInterval]?.label?.EN }}</button>
-  </ng-container>
-  </div>
+    <div class="toggle-menu">
+      <ng-container *ngFor="let timeInterval of timeIntervalKeys">
+        <button
+          [disabled]="selectedTimeInterval == timeInterval"
+          [class.button-selected]="selectedTimeInterval == timeInterval"
+          (click)="onSelect(timeInterval)"
+        >
+          {{ timeIntervals[timeInterval]?.label?.EN }}
+        </button>
+      </ng-container>
+    </div>
   `,
   styleUrls: ['./source-toggle-resolution.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

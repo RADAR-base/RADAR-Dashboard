@@ -25,7 +25,9 @@ export class RouterLinkStubDirective {
 
 @Component({
   selector: 'router-outlet',
-  template: `<p>router-stub</p>`
+  template: `
+    <p>router-stub</p>
+  `
 })
 export class RouterOutletStubComponent {}
 

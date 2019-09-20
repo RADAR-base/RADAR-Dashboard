@@ -17,9 +17,8 @@ export class StudyEffects {
   load$ = this.actions$.pipe(
     ofType(actions.LOAD),
     withLatestFrom(this.store.select(fromStudy.getStudyFromStudies)),
-    map(
-      ([, study]) =>
-        study ? new actions.LoadSuccess(study) : new actions.LoadFromApi()
+    map(([, study]) =>
+      study ? new actions.LoadSuccess(study) : new actions.LoadFromApi()
     )
   )
 

@@ -22,9 +22,8 @@ export class SourceTypesEffects {
   load$ = this.actions$.pipe(
     ofType(SourceTypeActionTypes.Load),
     withLatestFrom(this.store.select(fromSubject.getSourceTypesIds)),
-    map(
-      ([, sourceTypesIds]) =>
-        sourceTypesIds.length ? new LoadSuccess() : new LoadFromApi()
+    map(([, sourceTypesIds]) =>
+      sourceTypesIds.length ? new LoadSuccess() : new LoadFromApi()
     )
   )
 

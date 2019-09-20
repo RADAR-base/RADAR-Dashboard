@@ -93,13 +93,12 @@ export class VolumeDataEffects {
       this.store.select(fromSubject.getVolumeDataTimeFrame),
       this.store.select(fromSubject.getVolumeDataHasTimeFrameChanged)
     ),
-    map(
-      ([, prevTimeInterval, timeFrame, timeFrameChanged]) =>
-        timeFrameChanged
-          ? new volumeDataActions.SetTimeFrame(timeFrame)
-          : isLowerTimeResolution(prevTimeInterval, getTimeInterval(timeFrame))
-            ? new volumeDataActions.SetTimeInterval(getTimeInterval(timeFrame))
-            : new volumeDataActions.LoadFailReset()
+    map(([, prevTimeInterval, timeFrame, timeFrameChanged]) =>
+      timeFrameChanged
+        ? new volumeDataActions.SetTimeFrame(timeFrame)
+        : isLowerTimeResolution(prevTimeInterval, getTimeInterval(timeFrame))
+        ? new volumeDataActions.SetTimeInterval(getTimeInterval(timeFrame))
+        : new volumeDataActions.LoadFailReset()
     )
   )
 

@@ -16,7 +16,8 @@ describe('StudyService', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [StudiesService]
-    }))
+    })
+  )
 
   beforeEach(() => {
     service = TestBed.get(StudiesService)

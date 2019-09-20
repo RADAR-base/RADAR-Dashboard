@@ -24,7 +24,7 @@ import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.ac
       <mat-spinner></mat-spinner>
     </div>
 
-    <div class="nodata" *ngIf="(noDataError || serverError)">
+    <div class="nodata" *ngIf="noDataError || serverError">
       <p class="emoji">🤷‍</p>
       <p *ngIf="noDataError">No data found.</p>
       <p *ngIf="serverError">Maximum time windows exceeded.</p>
