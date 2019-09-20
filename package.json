@@ -106,7 +106,7 @@
     "ngrx-store-freeze": "^0.2.0",
     "node-sass": "^4.12.0",
     "prettier": "^1.17.0",
-    "protractor": "^6.0.0",
+    "protractor": "~5.4.2",
     "rxjs-tslint": "0.1.5",
     "sass-mq": "^5.0.0",
     "stylelint": "^9.10.1",
@@ -116,6 +116,6 @@
     "tslint": "^5.10.0",
     "tslint-angular": "^1.1.2",
     "tslint-config-prettier": "^1.13.0",
-    "typescript": "^3.1.6"
+    "typescript": "~3.1.6"
   }
 }
