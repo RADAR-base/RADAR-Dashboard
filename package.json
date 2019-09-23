@@ -92,7 +92,7 @@
     "import-sort-parser-typescript": "^5.0.0",
     "import-sort-style-module": "^5.0.0",
     "jasmine": "^2.99.0",
-    "jasmine-core": "^2.99.0",
+    "jasmine-core": "^3.5.0",
     "jasmine-spec-reporter": "^4.2.1",
     "karma": "^4.1.0",
     "karma-browserstack-launcher": "^1.5.1",
