@@ -2,8 +2,7 @@
   "lang": "en",
   "short_name": "RADAR Dashboard",
   "name": "RADAR Dashboard",
-  "description":
-    "Manage and monitor research data from the RADAR-CNS Platform.",
+  "description": "Manage and monitor research data from the RADAR-CNS Platform.",
   "icons": [
     {
       "src": "assets/icons/icon_48.png",

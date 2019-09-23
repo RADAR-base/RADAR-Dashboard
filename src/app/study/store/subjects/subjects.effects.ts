@@ -19,11 +19,10 @@ export class SubjectsEffects {
       this.store.select(fromStudy.getSubjects),
       this.store.select(fromRoot.getRouterParamsStudyName)
     ),
-    map(
-      ([, subjects, studyName]) =>
-        subjects.length && studyName === subjects[0].projectName
-          ? new actions.LoadSuccess(subjects)
-          : new actions.LoadFromApi()
+    map(([, subjects, studyName]) =>
+      subjects.length && studyName === subjects[0].projectName
+        ? new actions.LoadSuccess(subjects)
+        : new actions.LoadFromApi()
     )
   )
 

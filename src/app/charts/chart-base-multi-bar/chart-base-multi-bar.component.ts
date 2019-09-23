@@ -104,9 +104,8 @@ export class ChartBaseMultiBarComponent extends ChartBaseComponent {
       .attr('x', d => this.xScaleInner(d.key))
       .attr('y', d => (d.value === null ? 0 : this.yScale(d.value)))
       .attr('width', this.xScaleInner.bandwidth())
-      .attr(
-        'height',
-        d => (d.value === null ? 0 : this.height - this.yScale(d.value))
+      .attr('height', d =>
+        d.value === null ? 0 : this.height - this.yScale(d.value)
       )
       .attr('fill', d => this.colorScale(d.key))
 

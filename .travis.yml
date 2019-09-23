@@ -6,7 +6,7 @@ addons:
 
 language: node_js
 node_js:
-  - "node"
+  - 'node'
 
 cache:
   directories:
@@ -31,4 +31,4 @@ script:
   - cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage
 
   # run e2e tests
-  - xvfb-run -a npm run e2e -- --no-progress --config=protractor-ci.conf.js
+  - xvfb-run -a npm run e2e -- --protractorConfig=protractor-ci.conf.js

@@ -16,11 +16,10 @@ export class StudiesEffects {
   getAll$: Observable<Action> = this.actions$.pipe(
     ofType<actions.Load>(actions.LOAD),
     withLatestFrom(this.store.select(fromStudies.getStudies)),
-    map(
-      ([, studies]) =>
-        studies.length
-          ? new actions.LoadSuccess(studies)
-          : new actions.LoadFromApi()
+    map(([, studies]) =>
+      studies.length
+        ? new actions.LoadSuccess(studies)
+        : new actions.LoadFromApi()
     )
   )
 

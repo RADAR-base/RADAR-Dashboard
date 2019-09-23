@@ -7,13 +7,13 @@ import * as complianceDataActions from '../../store/compliance-data/compliance-d
 @Component({
   selector: 'app-compliance-toggle',
   template: `
-  <div
-  class="toggle-stat"
->
-  <mat-select value="30 days">
-    <mat-option value="30 days" (click)="onSelect(selectedTime)">30 days</mat-option>
-  </mat-select>
-</div>
+    <div class="toggle-stat">
+      <mat-select value="30 days">
+        <mat-option value="30 days" (click)="onSelect(selectedTime)"
+          >30 days</mat-option
+        >
+      </mat-select>
+    </div>
   `,
   styleUrls: ['./compliance-toggle.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

@@ -35,11 +35,14 @@ export const {
   selectAll: getSources
 } = fromSources.adapter.getSelectors(getSourcesState)
 
-export const getSourcesData = createSelector(getSources, sources => {
-  return sources.length && sources[0].sourceData
-    ? sources.reduce((acc, source) => [...acc, ...source.sourceData], [])
-    : null
-})
+export const getSourcesData = createSelector(
+  getSources,
+  sources => {
+    return sources.length && sources[0].sourceData
+      ? sources.reduce((acc, source) => [...acc, ...source.sourceData], [])
+      : null
+  }
+)
 
 export const getSourcesDataEntities = createSelector(
   getSourcesData,

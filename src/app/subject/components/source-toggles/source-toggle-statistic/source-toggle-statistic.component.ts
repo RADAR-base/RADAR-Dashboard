@@ -10,13 +10,17 @@ import * as sensorsDataActions from '../../../store/sensors-data/sensors-data.ac
 @Component({
   selector: 'app-source-toggle-statistic',
   template: `
-  <div class="toggle-stat">
-  <mat-select [value]="statistics[selectedStatistic]?.label?.EN">
-  <mat-option *ngFor="let stat of statisticKeys" (click)="onSelect(stat)" [value]="statistics[stat]?.label?.EN">
-  {{ statistics[stat]?.label?.EN }}
-  </mat-option>
-  </mat-select>
-  </div>
+    <div class="toggle-stat">
+      <mat-select [value]="statistics[selectedStatistic]?.label?.EN">
+        <mat-option
+          *ngFor="let stat of statisticKeys"
+          (click)="onSelect(stat)"
+          [value]="statistics[stat]?.label?.EN"
+        >
+          {{ statistics[stat]?.label?.EN }}
+        </mat-option>
+      </mat-select>
+    </div>
   `,
   styleUrls: ['./source-toggle-statistic.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

@@ -46,12 +46,10 @@ export class ChartBaseBarComponent extends ChartBaseComponent {
 
     this.hasXAxis &&
       this.xAxis
-        .attr(
-          'transform',
-          () =>
-            this.categorical
-              ? `translate(0, ${this.yScale(0)})`
-              : `translate(0, ${this.height})`
+        .attr('transform', () =>
+          this.categorical
+            ? `translate(0, ${this.yScale(0)})`
+            : `translate(0, ${this.height})`
         )
         .call(
           d3
@@ -70,9 +68,8 @@ export class ChartBaseBarComponent extends ChartBaseComponent {
       .enter()
       .append('rect')
       .attr('class', () => (this.categorical ? 'bar' : 'bar-time'))
-      .attr(
-        'x',
-        d => (this.categorical ? this.xScale(d.name) : this.xScale(d.date))
+      .attr('x', d =>
+        this.categorical ? this.xScale(d.name) : this.xScale(d.date)
       )
       .attr(
         'width',

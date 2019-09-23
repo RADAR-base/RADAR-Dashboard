@@ -3,10 +3,19 @@ import { Component, Input, OnInit } from '@angular/core'
 @Component({
   selector: 'app-simple-bar',
   template: `
-          <svg *ngIf="actualWidth" viewBox="0 0 90 5">
-            <rect [attr.width]="actualWidth" [attr.height]="height" [attr.class]="type"></rect>
-            <rect [attr.width]="width-actualWidth" [attr.x]="actualWidth" [attr.height]="height" class="backbar"></rect>
-          </svg>
+    <svg *ngIf="actualWidth" viewBox="0 0 90 5">
+      <rect
+        [attr.width]="actualWidth"
+        [attr.height]="height"
+        [attr.class]="type"
+      ></rect>
+      <rect
+        [attr.width]="width - actualWidth"
+        [attr.x]="actualWidth"
+        [attr.height]="height"
+        class="backbar"
+      ></rect>
+    </svg>
   `,
   styleUrls: ['./simple-bar.component.scss']
 })

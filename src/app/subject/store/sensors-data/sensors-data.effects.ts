@@ -124,11 +124,10 @@ export class SensorsDataEffects {
     withLatestFrom(
       this.store.select(fromSubject.getVolumeDataHasResetLoadFailed)
     ),
-    map(
-      ([, loadFailReset]) =>
-        loadFailReset
-          ? this.store.dispatch(new volumeDataActions.LoadFailResetSuccess())
-          : []
+    map(([, loadFailReset]) =>
+      loadFailReset
+        ? this.store.dispatch(new volumeDataActions.LoadFailResetSuccess())
+        : []
     )
   )
 

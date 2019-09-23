@@ -25,7 +25,8 @@ describe('ComplianceDataService', () => {
         EffectsModule.forRoot([])
       ],
       providers: [ComplianceDataService]
-    }))
+    })
+  )
 
   beforeEach(() => {
     service = TestBed.get(ComplianceDataService)
