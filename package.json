@@ -114,7 +114,7 @@
     "stylelint-order": "^0.8.0",
     "ts-node": "^7.0.0",
     "tslint": "^5.10.0",
-    "tslint-angular": "^1.1.2",
+    "tslint-angular": "^2.0.0",
     "tslint-config-prettier": "^1.13.0",
     "typescript": "~3.1.6"
   }
