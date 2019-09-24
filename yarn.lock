@@ -5295,14 +5295,14 @@ karma-jasmine@^1.0.2, karma-jasmine@^1.1.1:
   resolved "https://registry.yarnpkg.com/karma-jasmine/-/karma-jasmine-1.1.2.tgz#394f2b25ffb4a644b9ada6f22d443e2fd08886c3"
   integrity sha1-OU8rJf+0pkS5rabyLUQ+L9CIhsM=
 
-karma-scss-preprocessor@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/karma-scss-preprocessor/-/karma-scss-preprocessor-3.0.0.tgz#2de708e449b1fc3a7182c58d6c69380f2f9bf3b6"
-  integrity sha1-LecI5Emx/DpxgsWNbGk4Dy+b87Y=
+karma-scss-preprocessor@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/karma-scss-preprocessor/-/karma-scss-preprocessor-4.0.0.tgz#d5eac6868f66efc27fdf530989e520a2c1d69438"
+  integrity sha512-dL3SpV67082x2WZQMpUJFIWLIeQwfuqulR16C4G1Hu5ZQBzsY66xYlNEA7QGlX/XHPKCcucCN06mDQ6clSZp1g==
   dependencies:
-    chalk "^2.0.1"
-    lodash "^4.17.4"
-    strip-ansi "^4.0.0"
+    chalk "^2.4.1"
+    lodash "^4.17.11"
+    strip-ansi "^5.0.0"
 
 karma-source-map-support@1.3.0:
   version "1.3.0"
