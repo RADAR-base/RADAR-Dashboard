@@ -88,7 +88,7 @@
     "codelyzer": "^4.4.1",
     "coveralls": "^3.0.0",
     "import-sort-cli": "^5.0.0",
-    "import-sort-parser-babylon": "^5.0.0",
+    "import-sort-parser-babylon": "^6.0.0",
     "import-sort-parser-typescript": "^5.0.0",
     "import-sort-style-module": "^5.0.0",
     "jasmine": "^2.99.0",
