@@ -54,7 +54,7 @@
     "@angular/platform-browser": "^6.0.7",
     "@angular/platform-browser-dynamic": "^6.0.7",
     "@angular/router": "^6.0.7",
-    "@auth0/angular-jwt": "^2.0.0",
+    "@auth0/angular-jwt": "^3.0.0",
     "@ngrx/effects": "^6.1.0",
     "@ngrx/entity": "^6.1.0",
     "@ngrx/router-store": "^6.1.0",
