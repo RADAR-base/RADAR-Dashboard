@@ -16,7 +16,7 @@ import * as sensorsDataActions from '../store/sensors-data/sensors-data.actions'
 
 @Injectable()
 export class SensorsDataService {
-  private url = `${ENV.API_URI}/data`
+  private url = `${ENV.SETTINGS.API_URI}/data`
   private sensorsDataLoad$: Observable<Action>
   private queue$ = new Subject<any>()
   private sensors$ = new Subject<Sensor>()

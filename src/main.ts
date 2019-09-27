@@ -3,9 +3,14 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'
 
 import { AppModule } from './app/app.module'
 import { ENV } from './environments/environment'
+import { environmentLoader as environmentLoaderPromise } from './environments/environmentLoader'
 
-if (ENV.PROD) {
-  enableProdMode()
-}
+environmentLoaderPromise.then(env => {
+  if (env.PROD) {
+    enableProdMode()
+  }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
+  ENV.SETTINGS = env.SETTINGS
+
+  platformBrowserDynamic().bootstrapModule(AppModule)
+})

@@ -12,18 +12,20 @@ export class ComplianceDataService {
 
   getAll(studyName, timeFrame): Observable<any> {
     // TODO: Change when API is ready
-    return this.http.get<any>(`${ENV.API_LOCAL}/mock-compliance.json`).pipe(
-      delay(1000),
-      map(response => {
-        if (response) {
-          return parseTimeHoles(
-            response.dataset,
-            response.header.effectiveTimeFrame,
-            response.header.timeWindow,
-            true
-          )
-        }
-      })
-    )
+    return this.http
+      .get<any>(`${ENV.SETTINGS.API_LOCAL}/mock-compliance.json`)
+      .pipe(
+        delay(1000),
+        map(response => {
+          if (response) {
+            return parseTimeHoles(
+              response.dataset,
+              response.header.effectiveTimeFrame,
+              response.header.timeWindow,
+              true
+            )
+          }
+        })
+      )
   }
 }

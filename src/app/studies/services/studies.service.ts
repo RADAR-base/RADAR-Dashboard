@@ -9,6 +9,6 @@ export class StudiesService {
   constructor(private http: HttpClient) {}
 
   getAll() {
-    return this.http.get<Study[]>(`${ENV.API_URI}/projects`)
+    return this.http.get<Study[]>(`${ENV.SETTINGS.API_URI}/projects`)
   }
 }

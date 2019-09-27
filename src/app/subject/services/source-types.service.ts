@@ -12,7 +12,7 @@ export class SourceTypesService {
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<SourceType[]> {
-    const url = `${ENV.API_URI}/source-types`
+    const url = `${ENV.SETTINGS.API_URI}/source-types`
 
     return this.http.get<SourceType[]>(url)
   }
