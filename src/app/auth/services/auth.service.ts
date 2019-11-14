@@ -45,7 +45,7 @@ export class AuthService {
 
   login(code) {
     return this.httpClient
-      .post<AuthResponse>(ENV.AUTH_URI, this.getAuthParams(code), {
+      .post<AuthResponse>(ENV.AUTH_URI + '/token', this.getAuthParams(code), {
         headers: this.getAuthHeaders()
       })
       .pipe(
