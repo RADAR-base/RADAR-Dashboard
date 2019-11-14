@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store'
 
-import { AuthData, UserAuth } from '../models/auth'
+import { AuthData } from '../models/auth'
 
 export enum AuthActionTypes {
   RehydrateAuth = '[Auth] Rehydrate Auth',
@@ -25,7 +25,7 @@ export class StoreAuth implements Action {
 export class Login implements Action {
   readonly type = AuthActionTypes.Login
 
-  constructor(public payload: UserAuth) {}
+  constructor() {}
 }
 
 export class LoginSuccess implements Action {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { Store } from '@ngrx/store'
 
-import { UserAuth } from '../../models/auth'
+import { ENV } from '../../../../environments/environment'
 import * as AuthActions from '../../store/auth.actions'
 import * as fromAuth from '../../store/auth.reducer'
 
@@ -13,9 +13,11 @@ import * as fromAuth from '../../store/auth.reducer'
 export class LoginPageComponent implements OnInit {
   constructor(private store: Store<fromAuth.State>) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.store.dispatch(new AuthActions.Login())
+  }
 
-  loginHandler(event: UserAuth) {
-    this.store.dispatch(new AuthActions.Login(event))
+  loginHandler() {
+    window.location.href = `${ENV.AUTH_URI}?client_id=${ENV.AUTH.client_id}&response_type=code&redirect_uri=${ENV.AUTH.redirect_uri}`
   }
 }
