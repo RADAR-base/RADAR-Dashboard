@@ -1,41 +1,7 @@
-<form
-  [formGroup]="form"
-  (ngSubmit)="loginHandler()"
->
-  <div class="logo_wrapper">
-    <img
-      class="logo"
-      src="assets/radar-logo.svg"
-      alt="RADAR-base Logo"
-    >
-  </div>
-
-  <mat-form-field [hideRequiredMarker]="true">
-    <input
-      formControlName="username"
-      matInput
-      required
-      type="text"
-      placeholder="Username"
-    >
-    <mat-error *ngIf="!!formUsername?.errors?.required">Please enter your username</mat-error>
-  </mat-form-field>
-
-  <mat-form-field [hideRequiredMarker]="true">
-    <input
-      formControlName="password"
-      matInput
-      required
-      type="password"
-      placeholder="Password"
-    >
-    <mat-error *ngIf="!!formPassword?.errors?.required">Please enter your password</mat-error>
-  </mat-form-field>
-
-  <button
-    mat-raised-button
-    type="submit"
-  >
-    LOG IN
-  </button>
-</form>
+<div class="logo_wrapper">
+  <img class="logo" src="assets/radar-logo.svg" alt="RADAR-base Logo" />
+</div>
+<br /><br />
+<button mat-raised-button (click)="loginHandler()">
+  LOG IN WITH MANAGEMENT PORTAL
+</button>

@@ -15,6 +15,7 @@
   margin: auto;
   padding: 2rem;
   max-width: 400px;
+  text-align: center;
 }
 
 .logo {
@@ -22,17 +23,6 @@
   animation-name: fade-in;
   animation-duration: 1s;
   animation-fill-mode: both;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-  text-align: center;
-}
-
-form > * {
-  margin: 8px;
 }
 
 button {
