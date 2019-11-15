@@ -44,6 +44,9 @@ export class AuthService {
   }
 
   login(code) {
+    if (!code) {
+      throw new Error('Invalid code')
+    }
     return this.httpClient
       .post<AuthResponse>(ENV.AUTH_URI + '/token', this.getAuthParams(code), {
         headers: this.getAuthHeaders()
