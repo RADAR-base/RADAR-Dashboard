@@ -77,7 +77,7 @@ export class AuthService {
   getAuthParams(code: string) {
     return new HttpParams()
       .set('grant_type', ENV.AUTH.grant_type)
-      .set('redirect_uri', ENV.AUTH.redirect_uri)
+      .set('redirect_uri', window.location.href.split('?')[0])
       .set('code', code)
   }
 }

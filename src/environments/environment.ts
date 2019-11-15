@@ -21,7 +21,6 @@ export const ENV = {
     client_id: 'radar_dashboard',
     client_secret: '',
     scope:
-      'SOURCETYPE.READ PROJECT.READ SOURCE.READ SUBJECT.READ MEASUREMENT.READ',
-    redirect_uri: 'http://localhost:4200/login'
+      'SOURCETYPE.READ PROJECT.READ SOURCE.READ SUBJECT.READ MEASUREMENT.READ'
   }
 }

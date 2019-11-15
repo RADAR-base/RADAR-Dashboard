@@ -18,6 +18,8 @@ export class LoginPageComponent implements OnInit {
   }
 
   loginHandler() {
-    window.location.href = `${ENV.AUTH_URI}/authorize?client_id=${ENV.AUTH.client_id}&response_type=code&redirect_uri=${ENV.AUTH.redirect_uri}`
+    window.location.href = `${ENV.AUTH_URI}/authorize?client_id=${
+      ENV.AUTH.client_id
+    }&response_type=code&redirect_uri=${window.location.href.split('?')[0]}`
   }
 }
