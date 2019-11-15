@@ -19,7 +19,7 @@ export const ENV = {
   AUTH: {
     grant_type: 'authorization_code',
     client_id: 'radar_dashboard',
-    client_secret: '',
+    client_secret: 'says_PRETTY_smiled',
     scope:
       'SOURCETYPE.READ PROJECT.READ SOURCE.READ SUBJECT.READ MEASUREMENT.READ'
   }
