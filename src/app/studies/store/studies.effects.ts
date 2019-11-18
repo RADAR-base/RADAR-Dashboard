@@ -4,6 +4,7 @@ import { Action, Store } from '@ngrx/store'
 import { Observable, of } from 'rxjs'
 import { catchError, exhaustMap, map, withLatestFrom } from 'rxjs/operators'
 
+import * as fromAuth from '../../auth/store/auth.reducer'
 import { Study } from '../../shared/models/study.model'
 import * as fromRoot from '../../store'
 import { StudiesService } from '../services/studies.service'
@@ -26,8 +27,9 @@ export class StudiesEffects {
   @Effect()
   getAllFromAPI$: Observable<Action> = this.actions$.pipe(
     ofType<actions.LoadFromApi>(actions.LOAD_FROM_API),
-    exhaustMap(() => {
-      return this.studiesService.getAll().pipe(
+    withLatestFrom(this.store.select(fromAuth.getUser)),
+    exhaustMap(([, user]) => {
+      return this.studiesService.getAllAssignedToUser(user).pipe(
         map((data: Study[]) => new actions.LoadSuccess(data)),
         catchError(() => of(new actions.LoadFail()))
       )
