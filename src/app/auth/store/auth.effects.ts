@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core'
 import { Router } from '@angular/router'
 import { JwtHelperService } from '@auth0/angular-jwt'
 import { Actions, Effect, ofType } from '@ngrx/effects'
+import { Store } from '@ngrx/store'
 import { of } from 'rxjs'
-import { catchError, exhaustMap, map, tap } from 'rxjs/operators'
+import { catchError, map, switchMap, tap, withLatestFrom } from 'rxjs/operators'
 
-import { UserAuth } from '../models/auth'
+import * as fromRoot from '../../store'
 import { AuthService } from '../services/auth.service'
 import {
   AuthActionTypes,
-  Login,
   LoginFailure,
   LoginSuccess,
   StoreAuth
@@ -20,9 +20,9 @@ export class AuthEffects {
   @Effect()
   login$ = this.actions$.pipe(
     ofType(AuthActionTypes.Login),
-    map((action: Login) => action.payload),
-    exhaustMap((auth: UserAuth) =>
-      this.authService.login(auth).pipe(
+    withLatestFrom(this.store.select(fromRoot.getRouterQueryParams)),
+    switchMap(([, params]) =>
+      this.authService.login(params.code).pipe(
         map(authData => new LoginSuccess(authData)),
         catchError(error => of(new LoginFailure(error)))
       )
@@ -55,6 +55,7 @@ export class AuthEffects {
     private actions$: Actions,
     private authService: AuthService,
     private router: Router,
-    public jwtHelper: JwtHelperService
+    public jwtHelper: JwtHelperService,
+    private store: Store<fromRoot.State>
   ) {}
 }

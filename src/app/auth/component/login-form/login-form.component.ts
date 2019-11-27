@@ -4,9 +4,6 @@ import {
   EventEmitter,
   Output
 } from '@angular/core'
-import { FormControl, FormGroup, Validators } from '@angular/forms'
-
-import { UserAuth } from '../../models/auth'
 
 @Component({
   selector: 'app-login-form',
@@ -15,23 +12,9 @@ import { UserAuth } from '../../models/auth'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginFormComponent {
-  @Output() login = new EventEmitter<UserAuth>()
-
-  form: FormGroup = new FormGroup({
-    username: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required])
-  })
-
-  get formUsername() {
-    return this.form.get('username')
-  }
-  get formPassword() {
-    return this.form.get('password')
-  }
+  @Output() login = new EventEmitter<any>()
 
   loginHandler() {
-    if (this.form.valid) {
-      this.login.emit(this.form.value)
-    }
+    this.login.emit()
   }
 }

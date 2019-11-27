@@ -2,7 +2,7 @@ import { Config } from './config'
 
 export const ENV = {
   PROD: false,
-  TEST: false,
+  TEST: true,
   TOOLS: false,
 
   // CONFIG
@@ -15,7 +15,7 @@ export const ENV = {
   API_LOCAL: '/api',
 
   // AUTH API
-  AUTH_URI: 'https://radar-backend.co.uk/managementportal/oauth/token',
+  AUTH_URI: 'https://radar-backend.co.uk/managementportal/oauth',
   AUTH: {
     grant_type: 'client_credentials',
     client_id: 'radar_dashboard',

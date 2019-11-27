@@ -16,7 +16,7 @@ describe('AuthReducer', () => {
     it('should store data', () => {
       const action = new authActions.StoreAuth({
         token: '1ihi2u',
-        user: { username: 'user', name: 'name', role: '0' }
+        user: { username: 'user', name: 'name', roles: ['0'] }
       })
       const state = fromAuth.reducer(initialState, action)
 

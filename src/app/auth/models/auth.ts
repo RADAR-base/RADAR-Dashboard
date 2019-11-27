@@ -1,10 +1,5 @@
 import { User } from './user'
 
-export interface UserAuth {
-  username: string
-  password: string
-}
-
 export interface AuthResponse {
   access_token: string
   expires_in: number
@@ -12,6 +7,8 @@ export interface AuthResponse {
   iss: string
   jti: string
   token_type: string
+  sub: string
+  roles: string[]
 }
 
 export interface AuthData {

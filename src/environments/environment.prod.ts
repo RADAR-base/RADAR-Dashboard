@@ -16,9 +16,9 @@ export const ENV = {
 
   // AUTH API
   AUTH_URI:
-    'https://radar-cns-platform.rosalind.kcl.ac.uk/managementportal/oauth/token',
+    'https://radar-cns-platform.rosalind.kcl.ac.uk/managementportal/oauth',
   AUTH: {
-    grant_type: 'client_credentials',
+    grant_type: 'authorization_code',
     client_id: 'radar_dashboard',
     client_secret: 'says_PRETTY_smiled',
     scope:
