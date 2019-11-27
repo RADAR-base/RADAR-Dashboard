@@ -14,6 +14,9 @@ export class StudiesService {
   }
 
   getAllAssignedToUser(user: User) {
+    if (ENV.TEST) {
+      return this.getAll()
+    }
     return this.http.get<Study[]>(
       `https://${ENV.API_DOMAIN}/managementportal/api/users/${user.username}/projects`
     )

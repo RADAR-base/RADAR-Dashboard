@@ -4,6 +4,7 @@ import { of } from 'rxjs'
 import { map } from 'rxjs/operators'
 
 import { ENV } from '../../../environments/environment'
+import { AppConfig } from '../../shared/app-config'
 import { AuthData, AuthResponse } from '../models/auth'
 import { storageItems } from '../models/storage'
 import { User } from '../models/user'
@@ -11,6 +12,7 @@ import { User } from '../models/user'
 @Injectable()
 export class AuthService {
   DefaultRequestEncodedContentType = 'application/x-www-form-urlencoded'
+  TOKEN_URI = `${ENV.AUTH_URI}/token`
 
   constructor(private httpClient: HttpClient) {}
 
@@ -44,11 +46,11 @@ export class AuthService {
   }
 
   login(code) {
-    if (!code) {
+    if (!code && !ENV.TEST) {
       throw new Error('Invalid code')
     }
     return this.httpClient
-      .post<AuthResponse>(ENV.AUTH_URI + '/token', this.getAuthParams(code), {
+      .post<AuthResponse>(this.TOKEN_URI, this.getAuthParams(code), {
         headers: this.getAuthHeaders()
       })
       .pipe(
@@ -77,7 +79,15 @@ export class AuthService {
       .set('Content-Type', this.DefaultRequestEncodedContentType)
   }
 
-  getAuthParams(code: string) {
+  getAuthParams(code?: string) {
+    if (ENV.TEST) {
+      return new HttpParams({
+        fromObject: {
+          ...ENV.AUTH,
+          ...AppConfig.config.testUser
+        }
+      })
+    }
     return new HttpParams()
       .set('grant_type', ENV.AUTH.grant_type)
       .set('redirect_uri', window.location.href.split('?')[0])

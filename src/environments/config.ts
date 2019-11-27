@@ -213,5 +213,9 @@ export const Config = {
       label: { EN: 'Microsiemens' }
     },
     doc: 'All possible units requested data is returned as.'
+  },
+  testUser: {
+    username: 'test',
+    password: 'test'
   }
 }

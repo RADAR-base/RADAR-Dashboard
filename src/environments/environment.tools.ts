@@ -2,7 +2,7 @@ import { Config } from './config'
 
 export const ENV = {
   PROD: false,
-  TEST: false,
+  TEST: true,
   TOOLS: true,
 
   // CONFIG
@@ -18,7 +18,7 @@ export const ENV = {
   AUTH_URI: 'http://localhost:8080/oauth',
 
   AUTH: {
-    grant_type: 'authorization_code',
+    grant_type: 'client_credentials',
     client_id: 'radar_dashboard',
     client_secret: '',
     scope:
