@@ -17,7 +17,7 @@ export class SubjectDetailComponent implements OnInit {
 
   navigateToSubjectHandler() {
     this.router.navigateByUrl(
-      `/study/${this.subject.projectName}/subject/${this.subject.subjectId}`
+      `/study/${this.subject.project.projectName}/subject/${this.subject.login}`
     )
   }
 }

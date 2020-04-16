@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http'
 import {
   ChangeDetectionStrategy,
   Component,
@@ -6,11 +7,13 @@ import {
 } from '@angular/core'
 import { Store, select } from '@ngrx/store'
 import { Observable } from 'rxjs'
-import { publishReplay, refCount } from 'rxjs/operators'
+import { map, publishReplay, refCount } from 'rxjs/operators'
 
+import { ENV } from '../../../environments/environment'
 import { Study } from '../../shared/models/study.model'
 import { Subject } from '../../shared/models/subject.model'
 import * as fromRoot from '../../store'
+import { SubjectService } from '../services/subject.service'
 import * as fromStudyPage from '../store'
 import * as complianceDataActions from '../store/compliance-data/compliance-data.actions'
 import * as studyActions from '../store/study/study.actions'
@@ -31,7 +34,14 @@ export class StudyPageComponent implements OnInit, OnDestroy {
   complianceData$: Observable<any>
   isComplianceLoaded$: Observable<boolean>
 
-  constructor(private store: Store<fromRoot.State>) {}
+  appVersions$: Observable<any>
+  appResets$: Observable<any>
+  appRemoves$: Observable<any>
+
+  constructor(
+    private store: Store<fromRoot.State>,
+    private subjectService: SubjectService
+  ) {}
 
   ngOnInit() {
     this.study$ = this.store.pipe(
@@ -50,6 +60,20 @@ export class StudyPageComponent implements OnInit, OnDestroy {
     this.isComplianceLoaded$ = this.store.select(
       fromStudyPage.getComplianceDataLoaded
     )
+
+    this.loadAnalytics()
+  }
+
+  loadAnalytics() {
+    this.study$.subscribe(study => {
+      if (study) {
+        this.appResets$ = this.subjectService.getAppResets(study.projectName)
+        this.appVersions$ = this.subjectService.getAppVersions(
+          study.projectName
+        )
+        this.appRemoves$ = this.subjectService.getAppRemoves(study.projectName)
+      }
+    })
   }
 
   ngOnDestroy() {

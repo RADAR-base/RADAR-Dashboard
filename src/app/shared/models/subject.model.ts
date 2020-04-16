@@ -1,10 +1,14 @@
 import { Source } from './source.model'
 
 export interface Subject {
-  subjectId: string
+  id: number
+  login: string
   status: string
-  humanReadableId: string
-  projectName: string
-  lastSeen: string
+  externalId: string
+  project: any
   sources: Source[]
+  createdDate: Date
+  createdBy: string
+  lastModifiedDate: Date
+  lastModifiedBy: string
 }

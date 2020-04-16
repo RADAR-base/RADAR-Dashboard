@@ -12,6 +12,7 @@ import {
   MatPaginatorModule,
   MatProgressSpinnerModule,
   MatSelectModule,
+  MatSortModule,
   MatTableModule,
   MatToolbarModule
 } from '@angular/material'
@@ -30,7 +31,8 @@ const MAT_MODULES = [
   MatDatepickerModule,
   MatNativeDateModule,
   MatSelectModule,
-  MatOptionModule
+  MatOptionModule,
+  MatSortModule
 ]
 
 @NgModule({

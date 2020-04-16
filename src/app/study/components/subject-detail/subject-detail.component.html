@@ -1,7 +1,7 @@
 <div class="details">
   <div>Sources of</div>
-  <div class="title">{{ subject?.humanReadableId }}</div>
-  <div class="caption">{{ subject?.subjectId }}</div>
+  <div class="title">{{ subject?.login }}</div>
+  <div class="caption">{{ subject?.externalId }}</div>
   <div class="caption">{{ subject?.status }}</div>
 </div>
 
@@ -10,17 +10,14 @@
     <ng-container *ngFor="let source of subject.sources">
       <div class="source-name">{{ source.sourceName }}</div>
       <div class="source-status">
-        <span class="source-status-icon {{source.status}}"></span>
-        {{ source.status  }}
+        <span class="source-status-icon {{ source.status }}"></span>
+        {{ source.status }}
       </div>
     </ng-container>
   </div>
 
   <div class="footer">
-    <button
-      mat-button
-      (click)="navigateToSubjectHandler()"
-    >
+    <button mat-button (click)="navigateToSubjectHandler()">
       OPEN SUBJECT DATA
     </button>
   </div>

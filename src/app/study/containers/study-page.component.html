@@ -1,22 +1,14 @@
 <app-toolbar>
   <div start>
-    <button
-      [routerLink]="['/']"
-      mat-icon-button
-    >
+    <button [routerLink]="['/']" mat-icon-button>
       <i class="material-icons">arrow_back</i>
     </button>
-    <div class="label">
-      Study {{ (study$ | async)?.projectName }}
-    </div>
+    <div class="label">Study {{ (study$ | async)?.projectName }}</div>
   </div>
 </app-toolbar>
 
 <div class="content">
-  <div
-    class="loading"
-    *ngIf="(isLoaded$ | async) === false; else loaded"
-  >
+  <div class="loading" *ngIf="(isLoaded$ | async) === false; else loaded">
     Loading...
   </div>
 
@@ -24,10 +16,7 @@
     <div *ngIf="!!(study$ | async) === false; else loadedAndValid">
       <p>We could not find this study.</p>
       <p>
-        <button
-          mat-raised-button
-          [routerLink]="['/']"
-        >
+        <button mat-raised-button [routerLink]="['/']">
           Go to Studies
         </button>
       </p>
@@ -35,43 +24,47 @@
   </ng-template>
 
   <ng-template #loadedAndValid>
-
     <app-tile label="Subjects">
       <div header-content>
-        <button
-          mat-icon-button
-          (click)="refreshSubjectTable()"
-        >
+        <button mat-icon-button (click)="refreshSubjectTable()">
           <i class="material-icons">refresh</i>
         </button>
       </div>
 
-      <div
-        tile-content
-        class="tile-content-subjects"
-      >
-        <section [ngClass]="{
-          'subject-table-before': !subject,
-          'subject-table': subject
-        }">
+      <div tile-content class="tile-content-subjects">
+        <section
+          [ngClass]="{
+            'subject-table-before': !subject,
+            'subject-table': subject
+          }"
+        >
           <app-subject-table
             [subjects]="subjects$ | async"
             [studyName]="(study$ | async)?.projectName"
             [isLoaded]="subjectsLoaded$ | async"
+            [appResets]="appResets$ | async"
+            [appVersions]="appVersions$ | async"
+            [appRemoves]="appRemoves$ | async"
             (openSubject)="openSubjectHandler($event)"
           ></app-subject-table>
         </section>
         <section [class.subject-detail]="subject">
+          <button
+            *ngIf="subject"
+            mat-icon-button
+            (click)="closeSubjectHandler()"
+          >
+            <i class="material-icons">clear</i>
+          </button>
           <app-subject-detail
             *ngIf="subject"
             [subject]="subject"
           ></app-subject-detail>
         </section>
       </div>
-
     </app-tile>
 
-    <app-tile
+    <!-- <app-tile
       label="Compliance"
       class="tile-compliance"
     >
@@ -85,7 +78,6 @@
           ></app-compliance-plot>
         </div>
       </div>
-    </app-tile>
+    </app-tile> -->
   </ng-template>
-
 </div>

@@ -8,7 +8,7 @@ export interface State extends EntityState<Subject> {
 }
 
 export const adapter: EntityAdapter<Subject> = createEntityAdapter<Subject>({
-  selectId: (subject: Subject) => subject.subjectId
+  selectId: (subject: Subject) => subject.login
 })
 
 export const initialState: State = adapter.getInitialState({
