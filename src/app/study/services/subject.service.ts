@@ -8,12 +8,12 @@ import { Subject } from '../../shared/models/subject.model'
 @Injectable()
 export class SubjectService {
   GOOGLE_STORAGE_URI =
-    'https://staging.radar-armt-notification.appspot.com.storage.googleapis.com'
+    'https://storage.googleapis.com/staging.radar-armt-notification.appspot.com'
 
   constructor(private http: HttpClient) {}
 
   getAll(studyName) {
-    const url = `${ENV.API_URI}/projects/${studyName}/subjects`
+    const url = `https://${ENV.API_DOMAIN}/managementportal/api/projects/${studyName}/subjects`
 
     return this.http.get<Subject[]>(url, { params: { size: '400' } })
   }
