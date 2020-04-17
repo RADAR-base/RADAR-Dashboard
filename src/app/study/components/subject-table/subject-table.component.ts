@@ -33,6 +33,7 @@ export class SubjectTableComponent implements OnInit, OnDestroy, OnChanges {
     'enrolmentDate',
     'lastModifiedDate',
     'sources',
+    'lastTaskDate',
     'nextTaskDate',
     'lastResetDate',
     'lastRemoveDate',
@@ -65,6 +66,7 @@ export class SubjectTableComponent implements OnInit, OnDestroy, OnChanges {
       Object.assign({}, d, {
         deviceStatus: this.getDeviceStatus(d.sources),
         enrolmentDate: new Date(d.createdDate),
+        lastTaskDate: this.getLastTaskDate(d.createdDate),
         nextTaskDate: this.getNextTaskDate(d.createdDate),
         lastResetDate: this.getLastResetDate(d.login),
         appVersion: this.getAppVersion(d.login),
@@ -121,6 +123,21 @@ export class SubjectTableComponent implements OnInit, OnDestroy, OnChanges {
           sources.filter(stat => stat === b).length
       )
       .pop()
+  }
+
+  getLastTaskDate(date) {
+    const now = new Date()
+    let currentDate
+    let nextDate = moment(new Date(date))
+      .startOf('day')
+      .toDate()
+    while (moment(nextDate).isBefore(now)) {
+      currentDate = nextDate
+      nextDate = moment(new Date(nextDate))
+        .add(this.scheduleIncrDays, 'days')
+        .toDate()
+    }
+    return currentDate
   }
 
   getNextTaskDate(date) {
