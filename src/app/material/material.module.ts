@@ -14,7 +14,8 @@ import {
   MatSelectModule,
   MatSortModule,
   MatTableModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatTooltipModule
 } from '@angular/material'
 
 const MAT_MODULES = [
@@ -32,7 +33,8 @@ const MAT_MODULES = [
   MatNativeDateModule,
   MatSelectModule,
   MatOptionModule,
-  MatSortModule
+  MatSortModule,
+  MatTooltipModule
 ]
 
 @NgModule({

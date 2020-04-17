@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http'
 import {
   ChangeDetectionStrategy,
   Component,
@@ -37,7 +36,9 @@ export class SubjectTableComponent implements OnInit, OnDestroy, OnChanges {
     'nextTaskDate',
     'lastResetDate',
     'lastRemoveDate',
-    'appVersion'
+    'appVersion',
+    'lastQuestionnaireFinished',
+    'lastQuestionnaireFinishedDate'
   ]
   dataSource
   // : SubjectDataSource | null
@@ -56,6 +57,7 @@ export class SubjectTableComponent implements OnInit, OnDestroy, OnChanges {
   @Input() appResets
   @Input() appRemoves
   @Input() appVersions
+  @Input() questionnairesFinished
 
   @Input()
   set subjects(value) {
@@ -66,7 +68,11 @@ export class SubjectTableComponent implements OnInit, OnDestroy, OnChanges {
         nextTaskDate: this.getNextTaskDate(d.createdDate),
         lastResetDate: this.getLastResetDate(d.login),
         appVersion: this.getAppVersion(d.login),
-        lastRemoveDate: this.getLastRemoveDate(d.login)
+        lastRemoveDate: this.getLastRemoveDate(d.login),
+        lastQuestionnaireFinished: this.getLastQuestionnaireFinished(d.login),
+        lastQuestionnaireFinishedDate: this.getLastQuestionnaireFinishedDate(
+          d.login
+        )
       })
     )
   }
@@ -145,6 +151,30 @@ export class SubjectTableComponent implements OnInit, OnDestroy, OnChanges {
     console.log(reset)
     if (reset) {
       return new Date(Number(reset['event_timestamp'] / 1000))
+    } else {
+      return undefined
+    }
+  }
+
+  getLastQuestionnaireFinishedDate(subjectId) {
+    const reset = this.questionnairesFinished.find(
+      r => subjectId === r['subjectId']
+    )
+    console.log(reset)
+    if (reset) {
+      return new Date(Number(reset['event_timestamp'] / 1000))
+    } else {
+      return undefined
+    }
+  }
+
+  getLastQuestionnaireFinished(subjectId) {
+    const reset = this.questionnairesFinished.find(
+      r => subjectId === r['subjectId']
+    )
+    console.log(reset)
+    if (reset) {
+      return reset['questionnaireName']
     } else {
       return undefined
     }

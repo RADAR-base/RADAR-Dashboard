@@ -69,6 +69,26 @@ export class SubjectService {
       )
   }
 
+  getQuestionnairesFinished(studyName) {
+    const options = {
+      headers: { 'Content-Type': 'text/plain' },
+      responseType: 'text' as 'json'
+    }
+    return this.http
+      .get<any>(
+        `${this.GOOGLE_STORAGE_URI}/questionnaires_finished_60_days`,
+        options
+      )
+      .pipe(
+        map(response => {
+          if (response) {
+            const parsed = this.parseLineDelimitedJson(response)
+            return parsed.filter(a => a.projectId === studyName)
+          }
+        })
+      )
+  }
+
   parseLineDelimitedJson(data) {
     const array = data.split('\n')
     array.pop()

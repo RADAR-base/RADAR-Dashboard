@@ -37,6 +37,7 @@ export class StudyPageComponent implements OnInit, OnDestroy {
   appVersions$: Observable<any>
   appResets$: Observable<any>
   appRemoves$: Observable<any>
+  questionnairesFinished$: Observable<any>
 
   constructor(
     private store: Store<fromRoot.State>,
@@ -67,11 +68,13 @@ export class StudyPageComponent implements OnInit, OnDestroy {
   loadAnalytics() {
     this.study$.subscribe(study => {
       if (study) {
-        this.appResets$ = this.subjectService.getAppResets(study.projectName)
-        this.appVersions$ = this.subjectService.getAppVersions(
-          study.projectName
+        const project = study.projectName
+        this.appResets$ = this.subjectService.getAppResets(project)
+        this.appVersions$ = this.subjectService.getAppVersions(project)
+        this.appRemoves$ = this.subjectService.getAppRemoves(project)
+        this.questionnairesFinished$ = this.subjectService.getQuestionnairesFinished(
+          project
         )
-        this.appRemoves$ = this.subjectService.getAppRemoves(study.projectName)
       }
     })
   }

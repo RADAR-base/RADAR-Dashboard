@@ -49,7 +49,11 @@
 
     <ng-container matColumnDef="lastModifiedDate">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        Last Modified
+        <span
+          matTooltip="Last modified in Management Portal"
+          matTooltipPosition="above"
+          >Last Modified</span
+        >
       </th>
       <td mat-cell *matCellDef="let row">
         <span class="source-status-icon {{ row.deviceStatus }}"></span>
@@ -80,7 +84,11 @@
 
     <ng-container matColumnDef="lastResetDate">
       <th mat-header-cell mat-sort-header *matHeaderCellDef>
-        Last Reset
+        <span
+          matTooltip="Last reset if any in the last 90 days"
+          matTooltipPosition="above"
+          >Last Reset</span
+        >
       </th>
       <td mat-cell *matCellDef="let row">
         {{ row.lastResetDate | date: 'E LLL d, yyyy' }}
@@ -89,7 +97,11 @@
 
     <ng-container matColumnDef="lastRemoveDate">
       <th mat-header-cell mat-sort-header *matHeaderCellDef>
-        Last Remove
+        <span
+          matTooltip="Last remove if any in the last 90 days"
+          matTooltipPosition="above"
+          >Last Remove</span
+        >
       </th>
       <td mat-cell *matCellDef="let row">
         {{ row.lastRemoveDate | date: 'E LLL d, yyyy' }}
@@ -98,10 +110,40 @@
 
     <ng-container matColumnDef="appVersion">
       <th mat-header-cell mat-sort-header *matHeaderCellDef>
-        App Version
+        <span
+          matTooltip="App version from activity in the last 180 days"
+          matTooltipPosition="above"
+          >App Version</span
+        >
       </th>
       <td mat-cell *matCellDef="let row">
         {{ row.appVersion }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastQuestionnaireFinished">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>
+        <span
+          matTooltip="Last questionnaire finished in the last 60 days"
+          matTooltipPosition="above"
+          >Last Questionaire Finished</span
+        >
+      </th>
+      <td mat-cell *matCellDef="let row">
+        {{ row.lastQuestionnaireFinished }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastQuestionnaireFinishedDate">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>
+        <span
+          matTooltip="Last questionnaire finished in the last 60 days"
+          matTooltipPosition="above"
+          >Last Questionnaire Finished Date</span
+        >
+      </th>
+      <td mat-cell *matCellDef="let row">
+        {{ row.lastQuestionnaireFinishedDate | date: 'E LLL d, yyyy' }}
       </td>
     </ng-container>
 

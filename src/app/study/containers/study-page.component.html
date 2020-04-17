@@ -45,6 +45,7 @@
             [appResets]="appResets$ | async"
             [appVersions]="appVersions$ | async"
             [appRemoves]="appRemoves$ | async"
+            [questionnairesFinished]="questionnairesFinished$ | async"
             (openSubject)="openSubjectHandler($event)"
           ></app-subject-table>
         </section>
