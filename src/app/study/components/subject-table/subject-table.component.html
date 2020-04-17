@@ -75,7 +75,9 @@
 
     <ng-container matColumnDef="lastTaskDate">
       <th mat-header-cell mat-sort-header *matHeaderCellDef>
-        Last Task
+        <span matTooltip="Last PHQ8 Task" matTooltipPosition="above"
+          >Last Task</span
+        >
       </th>
       <td mat-cell *matCellDef="let row">
         {{ row.lastTaskDate | date: 'E LLL d, yyyy' }}
@@ -84,7 +86,9 @@
 
     <ng-container matColumnDef="nextTaskDate">
       <th mat-header-cell mat-sort-header *matHeaderCellDef>
-        Next Task
+        <span matTooltip="Next PHQ8 Task" matTooltipPosition="above"
+          >Next Task</span
+        >
       </th>
       <td mat-cell *matCellDef="let row">
         {{ row.nextTaskDate | date: 'E LLL d, yyyy' }}
