@@ -1,3 +1,7 @@
 :host {
   display: block;
 }
+
+.error {
+  text-align: center;
+}

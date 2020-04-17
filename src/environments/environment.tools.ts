@@ -23,5 +23,7 @@ export const ENV = {
     client_secret: 'says_PRETTY_smiled',
     scope:
       'SOURCETYPE.READ PROJECT.READ SOURCE.READ SUBJECT.READ MEASUREMENT.READ'
-  }
+  },
+  USER: '',
+  PASS: ''
 }

@@ -1,13 +1,6 @@
-<form
-  [formGroup]="form"
-  (ngSubmit)="loginHandler()"
->
+<form [formGroup]="form" (ngSubmit)="loginHandler()">
   <div class="logo_wrapper">
-    <img
-      class="logo"
-      src="assets/radar-logo.svg"
-      alt="RADAR-base Logo"
-    >
+    <img class="logo" src="assets/radar-logo.svg" alt="RADAR-base Logo" />
   </div>
 
   <mat-form-field [hideRequiredMarker]="true">
@@ -17,8 +10,10 @@
       required
       type="text"
       placeholder="Username"
+    />
+    <mat-error *ngIf="!!formUsername?.errors?.required"
+      >Please enter your username</mat-error
     >
-    <mat-error *ngIf="!!formUsername?.errors?.required">Please enter your username</mat-error>
   </mat-form-field>
 
   <mat-form-field [hideRequiredMarker]="true">
@@ -28,14 +23,13 @@
       required
       type="password"
       placeholder="Password"
+    />
+    <mat-error *ngIf="!!formPassword?.errors?.required"
+      >Please enter your password</mat-error
     >
-    <mat-error *ngIf="!!formPassword?.errors?.required">Please enter your password</mat-error>
   </mat-form-field>
 
-  <button
-    mat-raised-button
-    type="submit"
-  >
+  <button mat-raised-button type="submit">
     LOG IN
   </button>
 </form>
