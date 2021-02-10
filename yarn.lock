@@ -164,6 +164,13 @@
   dependencies:
     tslib "^1.9.0"
 
+"@angular/core@^11.0.2":
+  version "11.1.2"
+  resolved "https://registry.yarnpkg.com/@angular/core/-/core-11.1.2.tgz#8aa910860309886090d66cce45dd166b1082eb05"
+  integrity sha512-5urIQTcRZ2hd9Q2JE0KQocjlIvuRdlrSGzxjf9OZbOuapXDNF0Sb3uEcVnt980NS7vw0Am5thVP9gDspS45c7Q==
+  dependencies:
+    tslib "^2.0.0"
+
 "@angular/core@^6.0.7":
   version "6.1.10"
   resolved "https://registry.yarnpkg.com/@angular/core/-/core-6.1.10.tgz#9f3d8b7e44ec0a68c88745d25a920f98bfb2bc43"
@@ -367,10 +374,12 @@
   resolved "https://registry.yarnpkg.com/@ngrx/router-store/-/router-store-6.1.2.tgz#63bfcd3710c53ea2c5456b82c57fd433e5af25bc"
   integrity sha512-sj083ZYrx0aY+vU/t8Ub0KYDHcMpatXJIOJR/eDNSuH54fPiBM9MrdI3hs/XHoXHxSaHOJoZ7f6I8XcUeptxyA==
 
-"@ngrx/schematics@^6.1.0":
-  version "6.1.2"
-  resolved "https://registry.yarnpkg.com/@ngrx/schematics/-/schematics-6.1.2.tgz#52dce7f2d4275791732805576eaf007d1043ef58"
-  integrity sha512-hiu8rdYAJIfIoJHPlAJr+mBkXab7OLRyg8Z/i5lUpmE382yvESfcVI9hqYsGXWBbyfY5Al+BGzGhBth5gc5AvA==
+"@ngrx/schematics@^11.0.0":
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/schematics/-/schematics-11.0.0.tgz#6261ac31eee58c1e7893ba660e4877ff1f326a17"
+  integrity sha512-vDVl5U7Z4fy960MYGM10VEfWL7XPcY4o7OAhoRcm2XQXHfR/1Q0kplWw+T9NwqGxknczR8nCFOzKbF/27Q3Puw==
+  dependencies:
+    "@angular/core" "^11.0.2"
 
 "@ngrx/store-devtools@^6.1.0":
   version "6.1.2"
@@ -8947,6 +8956,11 @@ tslib@^1.7.1, tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.10.0.tgz#c3c19f95973fb0a62973fb09d90d961ee43e5c8a"
   integrity sha512-qOebF53frne81cf0S9B41ByenJ3/IuH8yJKngAX35CmiZySA0khhkovshKK+jGCaMnVomla7gVlIcc3EvKPbTQ==
+
+tslib@^2.0.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.1.0.tgz#da60860f1c2ecaa5703ab7d39bc05b6bf988b97a"
+  integrity sha512-hcVC3wYEziELGGmEEXue7D75zbwIIVUMWAVbHItGPx0ziyXxrOMQx4rQEVEV45Ut/1IotuEvwqPopzIOkDMf0A==
 
 tslint-angular@^1.1.2:
   version "1.1.2"
